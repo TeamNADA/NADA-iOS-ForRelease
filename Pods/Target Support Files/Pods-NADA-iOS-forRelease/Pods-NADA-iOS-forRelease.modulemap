@@ -1,0 +1,6 @@
+framework module Pods_NADA_iOS_forRelease {
+  umbrella header "Pods-NADA-iOS-forRelease-umbrella.h"
+
+  export *
+  module * { export * }
+}

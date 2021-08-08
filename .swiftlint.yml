@@ -4,6 +4,6 @@ disabled_rules:
 - nesting
 excluded:
 - Pods
-- NADA-iOS-forRelease/AppDelegate.swift
-- NADA-iOS-forRelease/SceneDelegate.swift
+- NADA-iOS-forRelease/Sources/AppDelegate.swift
+- NADA-iOS-forRelease/Sources/SceneDelegate.swift
 

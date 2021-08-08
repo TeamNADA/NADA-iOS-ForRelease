@@ -83,6 +83,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F857FC8A26C03A5C00A48D01 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				F8FC438E26C01CDE0033E151 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		F8FC437926C01CDD0033E151 = {
 			isa = PBXGroup;
 			children = (
@@ -106,8 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				F8FC439326C01CDE0033E151 /* Info.plist */,
-				F8FC438526C01CDD0033E151 /* AppDelegate.swift */,
-				F8FC438726C01CDD0033E151 /* SceneDelegate.swift */,
 				F8FC439926C01E2B0033E151 /* Resouces */,
 				F8FC439A26C01EA90033E151 /* Sources */,
 			);
@@ -117,7 +123,7 @@
 		F8FC439926C01E2B0033E151 /* Resouces */ = {
 			isa = PBXGroup;
 			children = (
-				F8FC438E26C01CDE0033E151 /* Assets.xcassets */,
+				F857FC8A26C03A5C00A48D01 /* Assets */,
 				F8FC43A326C01F420033E151 /* Constants */,
 				F8FC43A426C01F5B0033E151 /* Extensions */,
 				F8FC43A526C01F630033E151 /* Fonts */,
@@ -129,12 +135,14 @@
 		F8FC439A26C01EA90033E151 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				F8FC438526C01CDD0033E151 /* AppDelegate.swift */,
+				F8FC438726C01CDD0033E151 /* SceneDelegate.swift */,
 				F8FC439B26C01EC30033E151 /* Cells */,
 				F8FC439C26C01EC90033E151 /* Classes */,
 				F8FC439D26C01EEC0033E151 /* Models */,
 				F8FC439E26C01EF70033E151 /* Network */,
 				F8FC439F26C01EFC0033E151 /* Protocols */,
-				F8FC43A026C01F040033E151 /* ViewController */,
+				F8FC43A026C01F040033E151 /* ViewControllers */,
 				F8FC43A126C01F1F0033E151 /* Views */,
 			);
 			path = Sources;
@@ -180,12 +188,12 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		F8FC43A026C01F040033E151 /* ViewController */ = {
+		F8FC43A026C01F040033E151 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				F8FC438926C01CDD0033E151 /* MainViewController.swift */,
 			);
-			path = ViewController;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		F8FC43A126C01F1F0033E151 /* Views */ = {

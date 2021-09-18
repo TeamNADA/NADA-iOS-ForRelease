@@ -9,4 +9,5 @@ target 'NADA-iOS-forRelease' do
 pod 'Moya', '~> 14.0'
 pod 'SkeletonView'
 pod 'SwiftLint'
+pod 'VerticalCardSwiper'
 end

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		392DEACB26F565D3007674F4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 392DEACA26F565D3007674F4 /* Login.storyboard */; };
+		392DEACD26F573C2007674F4 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392DEACC26F573C2007674F4 /* UIView+Extension.swift */; };
+		392F990126F4DD5C00282F3B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392F990026F4DD5C00282F3B /* LoginViewController.swift */; };
 		DBBB91E1639641F40C5B4416 /* Pods_NADA_iOS_forRelease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */; };
 		F8FC438626C01CDD0033E151 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC438526C01CDD0033E151 /* AppDelegate.swift */; };
 		F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC438726C01CDD0033E151 /* SceneDelegate.swift */; };
@@ -30,6 +33,9 @@
 
 /* Begin PBXFileReference section */
 		1E770167DDA25A2CE063AA5C /* Pods-NADA-iOS-forRelease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.release.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.release.xcconfig"; sourceTree = "<group>"; };
+		392DEACA26F565D3007674F4 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		392DEACC26F573C2007674F4 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		392F990026F4DD5C00282F3B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NADA_iOS_forRelease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F4EE1D042EC783FA8528743 /* Pods-NADA-iOS-forRelease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.debug.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.debug.xcconfig"; sourceTree = "<group>"; };
 		F8FC438226C01CDD0033E151 /* NADA-iOS-forRelease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NADA-iOS-forRelease.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +79,14 @@
 				1E770167DDA25A2CE063AA5C /* Pods-NADA-iOS-forRelease.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		392F98FF26F4DD4800282F3B /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				392F990026F4DD5C00282F3B /* LoginViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		4D28D444572353D68574D2B0 /* Frameworks */ = {
@@ -183,6 +197,7 @@
 		F8FC43A026C01F040033E151 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				392F98FF26F4DD4800282F3B /* Login */,
 				F8FC438926C01CDD0033E151 /* MainViewController.swift */,
 			);
 			path = ViewController;
@@ -201,6 +216,7 @@
 			children = (
 				F8FC439026C01CDE0033E151 /* LaunchScreen.storyboard */,
 				F8FC438B26C01CDD0033E151 /* Main.storyboard */,
+				392DEACA26F565D3007674F4 /* Login.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -219,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				F8FC43A626C020780033E151 /* TempExtensions.swift */,
+				392DEACC26F573C2007674F4 /* UIView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -294,6 +311,7 @@
 				F8FC43BF26C025180033E151 /* .swiftlint.yml in Resources */,
 				F8FC439226C01CDE0033E151 /* LaunchScreen.storyboard in Resources */,
 				F8FC438F26C01CDE0033E151 /* Assets.xcassets in Resources */,
+				392DEACB26F565D3007674F4 /* Login.storyboard in Resources */,
 				F8FC438D26C01CDD0033E151 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,7 +384,9 @@
 			files = (
 				F8FC43B126C020A70033E151 /* TempNetwork.swift in Sources */,
 				F8FC438A26C01CDD0033E151 /* MainViewController.swift in Sources */,
+				392DEACD26F573C2007674F4 /* UIView+Extension.swift in Sources */,
 				F8FC43AF26C0209A0033E151 /* TempModel.swift in Sources */,
+				392F990126F4DD5C00282F3B /* LoginViewController.swift in Sources */,
 				F8FC43AB26C020880033E151 /* TempCell.swift in Sources */,
 				F8FC43A726C020780033E151 /* TempExtensions.swift in Sources */,
 				F8FC43B826C0227D0033E151 /* Const.swift in Sources */,

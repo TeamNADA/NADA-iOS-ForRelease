@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		DBBB91E1639641F40C5B4416 /* Pods_NADA_iOS_forRelease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */; };
+		F83206AA26F61E3700D61711 /* FrontCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83206A826F61E3700D61711 /* FrontCardCell.swift */; };
+		F83206AB26F61E3700D61711 /* FrontCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F83206A926F61E3700D61711 /* FrontCardCell.xib */; };
 		F8FC438626C01CDD0033E151 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC438526C01CDD0033E151 /* AppDelegate.swift */; };
 		F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC438726C01CDD0033E151 /* SceneDelegate.swift */; };
 		F8FC438A26C01CDD0033E151 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC438926C01CDD0033E151 /* MainViewController.swift */; };
@@ -16,7 +18,6 @@
 		F8FC439226C01CDE0033E151 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8FC439026C01CDE0033E151 /* LaunchScreen.storyboard */; };
 		F8FC43A726C020780033E151 /* TempExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43A626C020780033E151 /* TempExtensions.swift */; };
 		F8FC43A926C0207F0033E151 /* TempFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43A826C0207F0033E151 /* TempFont.swift */; };
-		F8FC43AB26C020880033E151 /* TempCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43AA26C020880033E151 /* TempCell.swift */; };
 		F8FC43AD26C020940033E151 /* TempClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43AC26C020940033E151 /* TempClass.swift */; };
 		F8FC43AF26C0209A0033E151 /* TempModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43AE26C0209A0033E151 /* TempModel.swift */; };
 		F8FC43B126C020A70033E151 /* TempNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43B026C020A70033E151 /* TempNetwork.swift */; };
@@ -32,6 +33,8 @@
 		1E770167DDA25A2CE063AA5C /* Pods-NADA-iOS-forRelease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.release.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.release.xcconfig"; sourceTree = "<group>"; };
 		4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NADA_iOS_forRelease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F4EE1D042EC783FA8528743 /* Pods-NADA-iOS-forRelease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.debug.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.debug.xcconfig"; sourceTree = "<group>"; };
+		F83206A826F61E3700D61711 /* FrontCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontCardCell.swift; sourceTree = "<group>"; };
+		F83206A926F61E3700D61711 /* FrontCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FrontCardCell.xib; sourceTree = "<group>"; };
 		F8FC438226C01CDD0033E151 /* NADA-iOS-forRelease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NADA-iOS-forRelease.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8FC438526C01CDD0033E151 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8FC438726C01CDD0033E151 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,7 +45,6 @@
 		F8FC439326C01CDE0033E151 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8FC43A626C020780033E151 /* TempExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempExtensions.swift; sourceTree = "<group>"; };
 		F8FC43A826C0207F0033E151 /* TempFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempFont.swift; sourceTree = "<group>"; };
-		F8FC43AA26C020880033E151 /* TempCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempCell.swift; sourceTree = "<group>"; };
 		F8FC43AC26C020940033E151 /* TempClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempClass.swift; sourceTree = "<group>"; };
 		F8FC43AE26C0209A0033E151 /* TempModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempModel.swift; sourceTree = "<group>"; };
 		F8FC43B026C020A70033E151 /* TempNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempNetwork.swift; sourceTree = "<group>"; };
@@ -81,6 +83,15 @@
 				4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F83206AC26F61E5800D61711 /* CardCell */ = {
+			isa = PBXGroup;
+			children = (
+				F83206A826F61E3700D61711 /* FrontCardCell.swift */,
+				F83206A926F61E3700D61711 /* FrontCardCell.xib */,
+			);
+			path = CardCell;
 			sourceTree = "<group>";
 		};
 		F857FC8A26C03A5C00A48D01 /* Assets */ = {
@@ -151,7 +162,7 @@
 		F8FC439B26C01EC30033E151 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				F8FC43AA26C020880033E151 /* TempCell.swift */,
+				F83206AC26F61E5800D61711 /* CardCell */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -300,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8FC43BF26C025180033E151 /* .swiftlint.yml in Resources */,
+				F83206AB26F61E3700D61711 /* FrontCardCell.xib in Resources */,
 				F8FC439226C01CDE0033E151 /* LaunchScreen.storyboard in Resources */,
 				F8FC438F26C01CDE0033E151 /* Assets.xcassets in Resources */,
 				F8FC438D26C01CDD0033E151 /* Main.storyboard in Resources */,
@@ -374,8 +386,8 @@
 			files = (
 				F8FC43B126C020A70033E151 /* TempNetwork.swift in Sources */,
 				F8FC438A26C01CDD0033E151 /* MainViewController.swift in Sources */,
+				F83206AA26F61E3700D61711 /* FrontCardCell.swift in Sources */,
 				F8FC43AF26C0209A0033E151 /* TempModel.swift in Sources */,
-				F8FC43AB26C020880033E151 /* TempCell.swift in Sources */,
 				F8FC43A726C020780033E151 /* TempExtensions.swift in Sources */,
 				F8FC43B826C0227D0033E151 /* Const.swift in Sources */,
 				F8FC43B326C020B90033E151 /* TempProtocols.swift in Sources */,

@@ -69,6 +69,9 @@
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="kakoLoginButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="9Va-H9-7Md"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="try-ZM-E26">
                                 <rect key="frame" x="28" y="678.33333333333337" width="318" height="44"/>
@@ -78,6 +81,9 @@
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="appleLoginButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="TXz-Hf-fgR"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="1nM-jh-371">
                                 <rect key="frame" x="112.66666666666667" y="632.33333333333337" width="148.66666666666663" height="17"/>

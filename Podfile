@@ -10,4 +10,5 @@ pod 'Moya', '~> 14.0'
 pod 'SkeletonView'
 pod 'SwiftLint'
 pod 'VerticalCardSwiper'
+pod 'KakaoSDKUser'
 end

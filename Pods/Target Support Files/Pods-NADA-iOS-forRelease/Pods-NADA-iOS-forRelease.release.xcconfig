@@ -1,10 +1,10 @@
 ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
 CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Alamofire" "${PODS_CONFIGURATION_BUILD_DIR}/Moya" "${PODS_CONFIGURATION_BUILD_DIR}/SkeletonView" "${PODS_CONFIGURATION_BUILD_DIR}/VerticalCardSwiper"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Alamofire" "${PODS_CONFIGURATION_BUILD_DIR}/KakaoSDKAuth" "${PODS_CONFIGURATION_BUILD_DIR}/KakaoSDKCommon" "${PODS_CONFIGURATION_BUILD_DIR}/KakaoSDKUser" "${PODS_CONFIGURATION_BUILD_DIR}/Moya" "${PODS_CONFIGURATION_BUILD_DIR}/SkeletonView" "${PODS_CONFIGURATION_BUILD_DIR}/VerticalCardSwiper"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Moya/Moya.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SkeletonView/SkeletonView.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/VerticalCardSwiper/VerticalCardSwiper.framework/Headers"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/KakaoSDKAuth/KakaoSDKAuth.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/KakaoSDKCommon/KakaoSDKCommon.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/KakaoSDKUser/KakaoSDKUser.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Moya/Moya.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SkeletonView/SkeletonView.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/VerticalCardSwiper/VerticalCardSwiper.framework/Headers"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_LDFLAGS = $(inherited) -framework "Alamofire" -framework "CFNetwork" -framework "Foundation" -framework "Moya" -framework "SkeletonView" -framework "VerticalCardSwiper"
+OTHER_LDFLAGS = $(inherited) -framework "Alamofire" -framework "CFNetwork" -framework "Foundation" -framework "KakaoSDKAuth" -framework "KakaoSDKCommon" -framework "KakaoSDKUser" -framework "Moya" -framework "SkeletonView" -framework "VerticalCardSwiper"
 OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

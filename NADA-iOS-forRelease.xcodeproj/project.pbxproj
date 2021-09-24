@@ -13,6 +13,12 @@
 		DBBB91E1639641F40C5B4416 /* Pods_NADA_iOS_forRelease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */; };
 		F83206AA26F61E3700D61711 /* FrontCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83206A826F61E3700D61711 /* FrontCardCell.swift */; };
 		F83206AB26F61E3700D61711 /* FrontCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F83206A926F61E3700D61711 /* FrontCardCell.xib */; };
+		F84BAF9D26FDB417004CA335 /* CardCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84BAF9C26FDB417004CA335 /* CardCreationViewController.swift */; };
+		F84BAFA026FDB434004CA335 /* CardCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F84BAF9F26FDB434004CA335 /* CardCreation.storyboard */; };
+		F84BAFAD26FDB543004CA335 /* FrontCardCreationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84BAFAB26FDB543004CA335 /* FrontCardCreationCell.swift */; };
+		F84BAFAE26FDB543004CA335 /* FrontCardCreationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F84BAFAC26FDB543004CA335 /* FrontCardCreationCell.xib */; };
+		F84BAFB126FDB552004CA335 /* BackCardCreationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84BAFAF26FDB552004CA335 /* BackCardCreationCell.swift */; };
+		F84BAFB226FDB552004CA335 /* BackCardCreationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F84BAFB026FDB552004CA335 /* BackCardCreationCell.xib */; };
 		F8FC438626C01CDD0033E151 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC438526C01CDD0033E151 /* AppDelegate.swift */; };
 		F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC438726C01CDD0033E151 /* SceneDelegate.swift */; };
 		F8FC438A26C01CDD0033E151 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC438926C01CDD0033E151 /* MainViewController.swift */; };
@@ -41,6 +47,12 @@
 		7F4EE1D042EC783FA8528743 /* Pods-NADA-iOS-forRelease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.debug.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.debug.xcconfig"; sourceTree = "<group>"; };
 		F83206A826F61E3700D61711 /* FrontCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontCardCell.swift; sourceTree = "<group>"; };
 		F83206A926F61E3700D61711 /* FrontCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FrontCardCell.xib; sourceTree = "<group>"; };
+		F84BAF9C26FDB417004CA335 /* CardCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreationViewController.swift; sourceTree = "<group>"; };
+		F84BAF9F26FDB434004CA335 /* CardCreation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardCreation.storyboard; sourceTree = "<group>"; };
+		F84BAFAB26FDB543004CA335 /* FrontCardCreationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontCardCreationCell.swift; sourceTree = "<group>"; };
+		F84BAFAC26FDB543004CA335 /* FrontCardCreationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FrontCardCreationCell.xib; sourceTree = "<group>"; };
+		F84BAFAF26FDB552004CA335 /* BackCardCreationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackCardCreationCell.swift; sourceTree = "<group>"; };
+		F84BAFB026FDB552004CA335 /* BackCardCreationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackCardCreationCell.xib; sourceTree = "<group>"; };
 		F8FC438226C01CDD0033E151 /* NADA-iOS-forRelease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NADA-iOS-forRelease.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8FC438526C01CDD0033E151 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8FC438726C01CDD0033E151 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +118,33 @@
 				F83206A926F61E3700D61711 /* FrontCardCell.xib */,
 			);
 			path = CardCell;
+			sourceTree = "<group>";
+		};
+		F84BAF9E26FDB425004CA335 /* CardCreation */ = {
+			isa = PBXGroup;
+			children = (
+				F84BAF9F26FDB434004CA335 /* CardCreation.storyboard */,
+			);
+			path = CardCreation;
+			sourceTree = "<group>";
+		};
+		F84BAFA126FDB4E5004CA335 /* CreationCard */ = {
+			isa = PBXGroup;
+			children = (
+				F84BAFAB26FDB543004CA335 /* FrontCardCreationCell.swift */,
+				F84BAFAC26FDB543004CA335 /* FrontCardCreationCell.xib */,
+				F84BAFAF26FDB552004CA335 /* BackCardCreationCell.swift */,
+				F84BAFB026FDB552004CA335 /* BackCardCreationCell.xib */,
+			);
+			path = CreationCard;
+			sourceTree = "<group>";
+		};
+		F84BAFB326FDB8AA004CA335 /* CardCreation */ = {
+			isa = PBXGroup;
+			children = (
+				F84BAF9C26FDB417004CA335 /* CardCreationViewController.swift */,
+			);
+			path = CardCreation;
 			sourceTree = "<group>";
 		};
 		F857FC8A26C03A5C00A48D01 /* Assets */ = {
@@ -176,6 +215,7 @@
 		F8FC439B26C01EC30033E151 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				F84BAFA126FDB4E5004CA335 /* CreationCard */,
 				F83206AC26F61E5800D61711 /* CardCell */,
 			);
 			path = Cells;
@@ -216,6 +256,7 @@
 		F8FC43A026C01F040033E151 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				F84BAFB326FDB8AA004CA335 /* CardCreation */,
 				3979709426FA0BD8003FB4F5 /* Login */,
 				F8FC438926C01CDD0033E151 /* MainViewController.swift */,
 			);
@@ -233,6 +274,7 @@
 		F8FC43A226C01F2B0033E151 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				F84BAF9E26FDB425004CA335 /* CardCreation */,
 				F8FC439026C01CDE0033E151 /* LaunchScreen.storyboard */,
 				F8FC438B26C01CDD0033E151 /* Main.storyboard */,
 				3979709726FA0BF0003FB4F5 /* Login.storyboard */,
@@ -327,9 +369,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F84BAFA026FDB434004CA335 /* CardCreation.storyboard in Resources */,
 				F8FC43BF26C025180033E151 /* .swiftlint.yml in Resources */,
+				F84BAFAE26FDB543004CA335 /* FrontCardCreationCell.xib in Resources */,
 				F83206AB26F61E3700D61711 /* FrontCardCell.xib in Resources */,
 				3979709826FA0BF0003FB4F5 /* Login.storyboard in Resources */,
+				F84BAFB226FDB552004CA335 /* BackCardCreationCell.xib in Resources */,
 				F8FC439226C01CDE0033E151 /* LaunchScreen.storyboard in Resources */,
 				F8FC438F26C01CDE0033E151 /* Assets.xcassets in Resources */,
 				F8FC438D26C01CDD0033E151 /* Main.storyboard in Resources */,
@@ -402,6 +447,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F84BAF9D26FDB417004CA335 /* CardCreationViewController.swift in Sources */,
 				F8FC43B126C020A70033E151 /* TempNetwork.swift in Sources */,
 				F8FC438A26C01CDD0033E151 /* MainViewController.swift in Sources */,
 				3909242F26FA15E800236C51 /* UIView+Extension.swift in Sources */,
@@ -414,7 +460,9 @@
 				F8FC43B526C020C10033E151 /* TempViews.swift in Sources */,
 				F8FC43BA26C022900033E151 /* ViewController.swift in Sources */,
 				F8FC43AD26C020940033E151 /* TempClass.swift in Sources */,
+				F84BAFB126FDB552004CA335 /* BackCardCreationCell.swift in Sources */,
 				F8FC43BC26C022A20033E151 /* Storyboard.swift in Sources */,
+				F84BAFAD26FDB543004CA335 /* FrontCardCreationCell.swift in Sources */,
 				F8FC43A926C0207F0033E151 /* TempFont.swift in Sources */,
 				F8FC438626C01CDD0033E151 /* AppDelegate.swift in Sources */,
 				F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */,

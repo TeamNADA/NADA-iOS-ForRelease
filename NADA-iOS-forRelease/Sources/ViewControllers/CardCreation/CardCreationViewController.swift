@@ -42,11 +42,23 @@ class CardCreationViewController: UIViewController {
 
 extension CardCreationViewController {
     private func setUI() {
+        view.backgroundColor = .black
         creationTextLabel.text = "명함 생성"
+        creationTextLabel.font = UIFont(name: "AppleSDGothicNeo-ExtraBold", size: 26)
+        creationTextLabel.textColor = .white
+        
         frontTextLabel.text = "앞면"
+        frontTextLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 20)
+        frontTextLabel.textColor = .white
+        
         backTextLabel.text = "뒷면"
+        backTextLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 20)
+        backTextLabel.textColor = .white
+        
 //        closeButton
+        
         completeButton.setTitle("다음", for: .normal)
+        completeButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 16)
     }
     private func registerCell() {
         textStatusCollectionView.delegate = self

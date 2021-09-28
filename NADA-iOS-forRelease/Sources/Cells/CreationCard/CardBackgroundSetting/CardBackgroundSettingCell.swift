@@ -22,22 +22,28 @@ class CardBackgroundSettingCell: UICollectionViewCell {
         super.awakeFromNib()
         setUI()
     }
-
 }
 
 // MARK: - Extensions
 
 extension CardBackgroundSettingCell {
     private func setUI() {
-        bgView.backgroundColor = .black
+        bgView.backgroundColor = .white
+//        bgView.isHidden = true
         bgView.layer.cornerRadius = bgView.frame.height / 2
-//        bgView.layer.cornerRadius = 10
-        imageView.layer.cornerRadius = imageView.frame.height / 2
-//        imageView.layer.cornerRadius = 10
+        bgView.layer.cornerRadius = 30
+//        imageView.layer.cornerRadius = imageView.frame.height / 2
+        imageView.layer.cornerRadius = 28
     }
     func initCell(image: String) {
         if let image = UIImage(named: image) {
             imageView.image = image
         }
+    }
+    func cellSelected() {
+        bgView.isHidden = false
+    }
+    func cellUnselected() {
+        bgView.isHidden = true
     }
 }

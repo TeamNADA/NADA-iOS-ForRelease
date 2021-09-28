@@ -42,24 +42,28 @@ class CardCreationViewController: UIViewController {
 
 extension CardCreationViewController {
     private func setUI() {
-//        view.backgroundColor = .black
+        view.backgroundColor = .black
+        cardCreationCollectionView.backgroundColor = .black
+        
         creationTextLabel.text = "명함 생성"
         creationTextLabel.font = UIFont(name: "AppleSDGothicNeo-ExtraBold", size: 26)
-//        creationTextLabel.textColor = .white
+        creationTextLabel.textColor = .white
         
         frontTextLabel.text = "앞면"
         frontTextLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 20)
-//        frontTextLabel.textColor = .white
+        frontTextLabel.textColor = .white
         
         backTextLabel.text = "뒷면"
         backTextLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 20)
-//        backTextLabel.textColor = .white
+        backTextLabel.textColor = .white
         
         closeButton.setImage(UIImage(named: "closeBlack24Dp"), for: .normal)
         closeButton.setTitle("", for: .normal)
         
         completeButton.setTitle("완료", for: .normal)
         completeButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 16)
+        completeButton.setTitleColor(.gray, for: .normal)
+        completeButton.backgroundColor = .darkGray
         
         let cardCreationCollectionViewlayout = cardCreationCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
         cardCreationCollectionViewlayout?.scrollDirection = .horizontal

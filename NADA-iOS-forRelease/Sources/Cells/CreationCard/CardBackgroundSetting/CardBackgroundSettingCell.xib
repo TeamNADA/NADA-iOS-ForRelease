@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,27 +21,24 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5HA-yB-R7S">
                         <rect key="frame" x="0.0" y="0.0" width="286" height="133"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hnM-Yz-8h1">
-                                <rect key="frame" x="2" y="2" width="282" height="129"/>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="hnM-Yz-8h1" firstAttribute="top" secondItem="5HA-yB-R7S" secondAttribute="top" constant="2" id="2Je-Xk-ubp"/>
-                            <constraint firstAttribute="trailing" secondItem="hnM-Yz-8h1" secondAttribute="trailing" constant="2" id="9bi-W3-GB4"/>
-                            <constraint firstAttribute="bottom" secondItem="hnM-Yz-8h1" secondAttribute="bottom" constant="2" id="BHZ-HL-Ta5"/>
-                            <constraint firstItem="hnM-Yz-8h1" firstAttribute="leading" secondItem="5HA-yB-R7S" secondAttribute="leading" constant="2" id="kPl-0S-uLH"/>
-                        </constraints>
                     </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hnM-Yz-8h1">
+                        <rect key="frame" x="2" y="2" width="282" height="129"/>
+                        <color key="backgroundColor" name="AccentColor"/>
+                    </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="5HA-yB-R7S" secondAttribute="bottom" id="6c8-CY-ULf"/>
                 <constraint firstAttribute="trailing" secondItem="5HA-yB-R7S" secondAttribute="trailing" id="Gbu-9Y-Cy6"/>
+                <constraint firstAttribute="trailing" secondItem="hnM-Yz-8h1" secondAttribute="trailing" constant="2" id="MGg-Cb-lL0"/>
+                <constraint firstItem="hnM-Yz-8h1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="2" id="Rjs-Ag-bY0"/>
                 <constraint firstItem="5HA-yB-R7S" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="bZN-gl-Jhl"/>
+                <constraint firstItem="hnM-Yz-8h1" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="2" id="hA9-qF-fWY"/>
                 <constraint firstItem="5HA-yB-R7S" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="pUm-bZ-rD9"/>
+                <constraint firstAttribute="bottom" secondItem="hnM-Yz-8h1" secondAttribute="bottom" constant="2" id="wpX-8b-ecT"/>
             </constraints>
             <size key="customSize" width="286" height="133"/>
             <connections>
@@ -51,6 +49,9 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

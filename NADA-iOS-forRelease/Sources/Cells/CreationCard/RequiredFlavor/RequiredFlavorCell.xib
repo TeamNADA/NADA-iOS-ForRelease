@@ -45,6 +45,7 @@
             </constraints>
             <size key="customSize" width="137" height="88"/>
             <connections>
+                <outlet property="bgView" destination="2yr-2q-c7e" id="chn-Ue-tcx"/>
                 <outlet property="flavorLabel" destination="zsr-kT-9AV" id="qi4-mk-btT"/>
             </connections>
             <point key="canvasLocation" x="199.27536231884059" y="140.625"/>

@@ -15,6 +15,7 @@ class RequiredFlavorCell: UICollectionViewCell {
     
     // MARK: - @IBOutlet Properties
     
+    @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var flavorLabel: UILabel!
     
     // MARK: - Cell Life Cycle
@@ -27,8 +28,11 @@ class RequiredFlavorCell: UICollectionViewCell {
 
 extension RequiredFlavorCell {
     private func setUI() {
+        bgView.backgroundColor = .systemGray2
+        bgView.cornerRadius = 10
+        
         flavorLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 16)
-//        flavorLabel.textColor =
+        flavorLabel.textColor = .systemGray5
     }
     func initCell(flavor: String) {
         flavorLabel.text = flavor

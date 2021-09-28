@@ -12,17 +12,24 @@ class BackCardCreationCell: UICollectionViewCell {
     // MARK: - Properties
     
     static let identifier = "BackCardCreationCell"
-    var flavorList = ["민초", "반민초", "소주", "맥주", "부먹", "찍먹", "양념", "후라이드"]
+    private let flavorList = ["민초", "반민초", "소주", "맥주", "부먹", "찍먹", "양념", "후라이드"]
+    private var optionalInfoList = [UITextField]()
     
     // MARK: - @IBOutlet Properties
     
+    @IBOutlet weak var optionInfoView: UIView!
+    @IBOutlet weak var requiredInfoView: UIView!
+    @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var requiredInfoTextLabel: UILabel!
     @IBOutlet weak var optionalInfoTextLabel: UILabel!
+    
     @IBOutlet weak var firstQuestionTextField: UITextField!
     @IBOutlet weak var firstAnswerTextField: UITextField!
     @IBOutlet weak var secondQuestionTextField: UITextField!
     @IBOutlet weak var secondAnswerTextField: UITextField!
+    
     @IBOutlet weak var requiredCollectionView: UICollectionView!
     
     // MARK: - Cell Life Cycle
@@ -36,21 +43,36 @@ class BackCardCreationCell: UICollectionViewCell {
 
 extension BackCardCreationCell {
     private func setUI() {
-//        scrollView.showsVerticalScrollIndicator = false
+        setUITextFieldList()
+        //        scrollView.showsVerticalScrollIndicator = false
+        scrollView.backgroundColor = .black
+        bgView.backgroundColor = .black
+        requiredCollectionView.backgroundColor = .gray
+        requiredInfoView.backgroundColor = .gray
+        optionInfoView.backgroundColor = .gray
         
         requiredInfoTextLabel.text = "1 필수 정보"
         requiredInfoTextLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
+        requiredInfoTextLabel.textColor = .white
+        
         optionalInfoTextLabel.text = "2 선택 정보"
         optionalInfoTextLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
+        optionalInfoTextLabel.textColor = .white
         
-        firstQuestionTextField.placeholder = "질문 1"
-        firstQuestionTextField.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 16)
-        firstAnswerTextField.placeholder = "대답 1"
-        firstAnswerTextField.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 16)
-        secondQuestionTextField.placeholder = "질문 2"
-        secondQuestionTextField.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 16)
-        secondAnswerTextField.placeholder = "대답 2"
-        secondAnswerTextField.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 16)
+        firstQuestionTextField.attributedPlaceholder = NSAttributedString(string: "질문 1", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray5])
+        firstAnswerTextField.attributedPlaceholder = NSAttributedString(string: "대답 1", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray5])
+        secondQuestionTextField.attributedPlaceholder = NSAttributedString(string: "질문 2", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray5])
+        secondAnswerTextField.attributedPlaceholder = NSAttributedString(string: "대답 2", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray5])
+        
+        _ = optionalInfoList.map {
+            $0.backgroundColor = .systemGray2
+        }
+    }
+    private func setUITextFieldList() {
+        optionalInfoList.append(contentsOf: [firstQuestionTextField,
+                                             firstAnswerTextField,
+                                             secondQuestionTextField,
+                                             secondAnswerTextField])
     }
     private func registerCell() {
         requiredCollectionView.delegate = self

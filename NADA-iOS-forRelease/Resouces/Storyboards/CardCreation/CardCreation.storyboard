@@ -68,13 +68,13 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="SCY-6J-7gG">
-                                <rect key="frame" x="0.0" y="155" width="414" height="648"/>
+                                <rect key="frame" x="0.0" y="155" width="414" height="635"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wd4-Tx-rSs">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="648"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="635"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PLB-cM-M8s">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="648"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="635"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RWl-ol-Bps">
                                                     <size key="itemSize" width="128" height="128"/>
@@ -109,11 +109,14 @@
                                     <constraint firstItem="Wd4-Tx-rSs" firstAttribute="height" secondItem="SCY-6J-7gG" secondAttribute="height" priority="250" id="8wr-yH-onD"/>
                                     <constraint firstItem="Wd4-Tx-rSs" firstAttribute="leading" secondItem="SCY-6J-7gG" secondAttribute="leading" id="Cst-Rs-4nf"/>
                                     <constraint firstItem="Wd4-Tx-rSs" firstAttribute="top" secondItem="SCY-6J-7gG" secondAttribute="top" id="LXj-De-rb4"/>
-                                    <constraint firstItem="Wd4-Tx-rSs" firstAttribute="width" secondItem="SCY-6J-7gG" secondAttribute="width" priority="250" id="gA5-Hh-BXe"/>
+                                    <constraint firstItem="Wd4-Tx-rSs" firstAttribute="width" secondItem="SCY-6J-7gG" secondAttribute="width" id="gA5-Hh-BXe"/>
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9qw-H6-IIh">
-                                <rect key="frame" x="28" y="831" width="358" height="31"/>
+                                <rect key="frame" x="28" y="818" width="358" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="zes-ni-bGa"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                 <connections>

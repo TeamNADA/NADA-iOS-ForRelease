@@ -149,11 +149,14 @@
             </constraints>
             <size key="customSize" width="364" height="689"/>
             <connections>
+                <outlet property="bgView" destination="CX8-sW-5EH" id="f0q-Pd-V4h"/>
                 <outlet property="firstAnswerTextField" destination="9cx-2c-aNd" id="MQo-aR-QNs"/>
                 <outlet property="firstQuestionTextField" destination="Vxc-UH-Nd2" id="jS2-8r-w7S"/>
+                <outlet property="optionInfoView" destination="VgE-mq-74b" id="f1O-9W-ilf"/>
                 <outlet property="optionalInfoTextLabel" destination="FOx-9X-tSn" id="hE1-FU-c1W"/>
                 <outlet property="requiredCollectionView" destination="4NM-U6-Gii" id="gyt-f3-h7A"/>
                 <outlet property="requiredInfoTextLabel" destination="UXB-TC-pyT" id="sic-Na-pst"/>
+                <outlet property="requiredInfoView" destination="3CZ-pH-XIB" id="FhW-Yy-Abs"/>
                 <outlet property="scrollView" destination="Cau-0y-d0k" id="DY9-dH-xTb"/>
                 <outlet property="secondAnswerTextField" destination="cSq-jF-yH4" id="IcX-zB-JUr"/>
                 <outlet property="secondQuestionTextField" destination="6lw-qX-3p1" id="nPF-dg-5mg"/>

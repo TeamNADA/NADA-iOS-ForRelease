@@ -12,7 +12,7 @@ class FrontCardCreationCell: UICollectionViewCell {
     // MARK: - Properties
     
     static let identifier = "FrontCardCreationCell"
-    private let backgroundList = ["addPhotoAlternateBlack24Dp1", "addPhotoAlternateBlack24Dp1", "addPhotoAlternateBlack24Dp1", "addPhotoAlternateBlack24Dp1", "addPhotoAlternateBlack24Dp1", "addPhotoAlternateBlack24Dp1"]
+    private let backgroundList = ["img", "img", "img", "img", "img", "img"]
     private var requiredInfoList = [UITextField]()
     private var optionalInfoList = [UITextField]()
     
@@ -34,13 +34,16 @@ class FrontCardCreationCell: UICollectionViewCell {
     @IBOutlet weak var linkURLTextField: UITextField!
     @IBOutlet weak var clubNameTextField: UITextField!
     
+    @IBOutlet weak var bgView: UIView!
+    @IBOutlet weak var optionalInfoView: UIView!
+    @IBOutlet weak var requiredInfoView: UIView!
+    @IBOutlet weak var setBackgroundView: UIView!
     // MARK: - Cell Life Cycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setUI()
         registerCell()
-        setUITextFieldList()
         setNotificationTextField()
     }
 }
@@ -49,34 +52,47 @@ class FrontCardCreationCell: UICollectionViewCell {
 
 extension FrontCardCreationCell {
     private func setUI() {
+        setUITextFieldList()
 //        scrollView.showsVerticalScrollIndicator = false
+        scrollView.backgroundColor = .black
+        bgView.backgroundColor = .black
+        setBackgroundView.backgroundColor = .gray
+        requiredInfoView.backgroundColor = .gray
+        optionalInfoView.backgroundColor = .gray
+        cardBackgroundSettingCollectionView.backgroundColor = .gray
         
         let collectionViewLayout = cardBackgroundSettingCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
         collectionViewLayout?.scrollDirection = .horizontal
         
         setBackgroundTextLabel.text = "1 배경 지정"
         setBackgroundTextLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
+        setBackgroundTextLabel.textColor = .white
+        
         requiredInfoTextLabel.text = "2 필수 정보"
         requiredInfoTextLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
+        requiredInfoTextLabel.textColor = .white
+        
         optionalInfoTextLabel.text = "3 선택 정보"
         optionalInfoTextLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
+        optionalInfoTextLabel.textColor = .white
         
-        cardNameTextField.placeholder = "명함 이름"
-        userNameTextField.placeholder = "이름"
-        birthTextField.placeholder = "생년월일"
-        mbtiTextField.placeholder = "MBTI"
+        cardNameTextField.attributedPlaceholder = NSAttributedString(string: "명함이름", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray5])
+        userNameTextField.attributedPlaceholder = NSAttributedString(string: "이름", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray5])
+        birthTextField.attributedPlaceholder = NSAttributedString(string: "생년월일", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray5])
+        mbtiTextField.attributedPlaceholder = NSAttributedString(string: "MBTI", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray5])
         
-        instagramTextField.placeholder = "Instagram"
-        linkNameTextField.placeholder = "링크 이름"
-        linkURLTextField.placeholder = "링크"
-        clubNameTextField.placeholder = "동아리 기수 / 파트"
+        instagramTextField.attributedPlaceholder = NSAttributedString(string: "Instagram", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray5])
+        linkNameTextField.attributedPlaceholder = NSAttributedString(string: "링크 이름", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray5])
+        linkURLTextField.attributedPlaceholder = NSAttributedString(string: "링크", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray5])
+        clubNameTextField.attributedPlaceholder = NSAttributedString(string: "동아리 기수 / 파트", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray5])
         
         _ = requiredInfoList.map {
-            $0.borderStyle = .none
             $0.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 16)
+            $0.backgroundColor = .systemGray2
         }
         _ = optionalInfoList.map {
             $0.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 16)
+            $0.backgroundColor = .systemGray2
         }
     }
     private func setUITextFieldList() {
@@ -127,15 +143,13 @@ extension FrontCardCreationCell: UICollectionViewDataSource {
 
 extension FrontCardCreationCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 28, bottom: 0, right: 28)
+        return UIEdgeInsets(top: 0, left: 28, bottom: 7, right: 28)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 16
+        return 18
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = collectionView.frame.height
-        let width = height
         
-        return CGSize(width: width, height: height)
+        return CGSize(width: CGFloat(60), height: CGFloat(60))
     }
 }

@@ -13,6 +13,8 @@ extension Const {
         struct Identifier {
             static let MainViewController = "MainViewController"
             static let CardCreationViewController = "CardCreationViewController"
+            static let LoginViewController = "LoginViewController"
+            static let CardListViewController = "CardListViewController"
         }
         
     }

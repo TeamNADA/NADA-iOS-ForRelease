@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct CardListDataModel
-{
+struct CardListDataModel {
     var title: String
     var date: String
 }

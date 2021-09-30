@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="RequiredFlavorCell" customModule="NADA_iOS_forRelease" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="137" height="88"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="137" height="88"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2yr-2q-c7e">
+                        <rect key="frame" x="0.0" y="0.0" width="137" height="88"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zsr-kT-9AV">
+                                <rect key="frame" x="18" y="33.5" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="zsr-kT-9AV" firstAttribute="centerY" secondItem="2yr-2q-c7e" secondAttribute="centerY" id="4B0-zo-nwu"/>
+                            <constraint firstItem="zsr-kT-9AV" firstAttribute="leading" secondItem="2yr-2q-c7e" secondAttribute="leading" constant="18" id="UaT-7N-Qmn"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="2yr-2q-c7e" secondAttribute="bottom" id="Kkf-I9-frt"/>
+                <constraint firstItem="2yr-2q-c7e" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="LRw-Jk-733"/>
+                <constraint firstItem="2yr-2q-c7e" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="QBI-z1-GNu"/>
+                <constraint firstAttribute="trailing" secondItem="2yr-2q-c7e" secondAttribute="trailing" id="mxO-Fr-25R"/>
+            </constraints>
+            <size key="customSize" width="137" height="88"/>
+            <connections>
+                <outlet property="bgView" destination="2yr-2q-c7e" id="chn-Ue-tcx"/>
+                <outlet property="flavorLabel" destination="zsr-kT-9AV" id="qi4-mk-btT"/>
+            </connections>
+            <point key="canvasLocation" x="199.27536231884059" y="140.625"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

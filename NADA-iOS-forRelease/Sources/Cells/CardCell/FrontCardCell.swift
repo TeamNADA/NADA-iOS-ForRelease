@@ -13,6 +13,7 @@ class FrontCardCell: CardCell {
     // MARK: - Properties
     
     // MARK: - @IBOutlet Properties
+    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var cardNameLabel: UILabel!
     @IBOutlet weak var detailCardNameLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -42,7 +43,8 @@ extension FrontCardCell {
         instagramTextLabel.text = "Instagram"
     }
     
-    func setCell(_ cardName: String,
+    func setCell(_ backgroundImage: String,
+                 _ cardName: String,
                  _ detailCardName: String,
                  _ userName: String,
                  _ birth: String,
@@ -51,6 +53,9 @@ extension FrontCardCell {
                  _ linkImage: String,
                  _ linkText: String,
                  _ linkID: String) {
+        if let bgImage = UIImage(named: backgroundImage) {
+            self.backgroundImageView.image = bgImage
+        }
         self.cardNameLabel.text = cardName
         self.detailCardNameLabel.text = detailCardName
         self.userNameLabel.text = userName

@@ -12,6 +12,7 @@ extension Const {
         
         struct Name {
             static let Main = "Main"
+            static let CardCreation = "CardCreation"
         }
         
     }

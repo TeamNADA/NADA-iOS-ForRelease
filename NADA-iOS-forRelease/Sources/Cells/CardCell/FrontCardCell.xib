@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,6 +17,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="319" height="516"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D6t-Nc-4xH">
+                        <rect key="frame" x="0.0" y="0.0" width="319" height="516"/>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OeE-mZ-GcL">
                         <rect key="frame" x="28" y="28" width="41.5" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -90,8 +94,10 @@
                 <constraint firstItem="GZQ-As-dBg" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" constant="28" id="763-Ll-pxH"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cO6-DY-EUn" secondAttribute="trailing" constant="28" id="7rI-g8-Ig7"/>
                 <constraint firstItem="YdM-EZ-um5" firstAttribute="top" secondItem="8oi-jO-fkf" secondAttribute="bottom" constant="6" id="98c-hk-rDA"/>
+                <constraint firstItem="D6t-Nc-4xH" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="DeT-lx-Vdm"/>
                 <constraint firstItem="aik-Vi-yux" firstAttribute="leading" secondItem="OeE-mZ-GcL" secondAttribute="leading" id="DzT-ZF-buY"/>
                 <constraint firstItem="eyB-c0-PQB" firstAttribute="top" secondItem="aik-Vi-yux" secondAttribute="bottom" constant="8" id="Ebd-SK-4i7"/>
+                <constraint firstAttribute="trailing" secondItem="D6t-Nc-4xH" secondAttribute="trailing" id="GGx-Tf-nEl"/>
                 <constraint firstItem="TXF-fP-7YQ" firstAttribute="leading" secondItem="OeE-mZ-GcL" secondAttribute="leading" id="ITf-JC-Tm4"/>
                 <constraint firstItem="8oi-jO-fkf" firstAttribute="leading" secondItem="OeE-mZ-GcL" secondAttribute="leading" id="JX5-Ad-JqH"/>
                 <constraint firstItem="8oi-jO-fkf" firstAttribute="top" secondItem="TXF-fP-7YQ" secondAttribute="bottom" constant="6" id="PjP-jp-0Vz"/>
@@ -102,17 +108,20 @@
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LqW-bV-yHr" secondAttribute="trailing" constant="28" id="Xoe-ft-DlU"/>
                 <constraint firstItem="LqW-bV-yHr" firstAttribute="leading" secondItem="GZQ-As-dBg" secondAttribute="leading" id="b3W-HQ-dN5"/>
                 <constraint firstItem="el0-x0-WD9" firstAttribute="leading" secondItem="GZQ-As-dBg" secondAttribute="leading" id="fE2-Ve-YvQ"/>
+                <constraint firstAttribute="bottom" secondItem="D6t-Nc-4xH" secondAttribute="bottom" id="g3O-ib-dRy"/>
                 <constraint firstItem="GZQ-As-dBg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YdM-EZ-um5" secondAttribute="trailing" constant="8" id="gg4-nB-dvy"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eyB-c0-PQB" secondAttribute="trailing" constant="28" id="ihs-PT-9zZ"/>
                 <constraint firstItem="OeE-mZ-GcL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="28" id="kch-bF-wdy"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GZQ-As-dBg" secondAttribute="trailing" constant="28" id="nod-Sq-nqs"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OeE-mZ-GcL" secondAttribute="trailing" constant="28" id="oi1-gH-AEU"/>
+                <constraint firstItem="D6t-Nc-4xH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="pVv-z5-cfR"/>
                 <constraint firstItem="LqW-bV-yHr" firstAttribute="top" secondItem="el0-x0-WD9" secondAttribute="bottom" constant="6" id="skB-VW-Mst"/>
                 <constraint firstItem="VDj-1w-jyf" firstAttribute="leading" secondItem="OeE-mZ-GcL" secondAttribute="leading" id="txG-gf-qMy"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aik-Vi-yux" secondAttribute="trailing" constant="28" id="zej-Bm-5qK"/>
             </constraints>
             <size key="customSize" width="307" height="444"/>
             <connections>
+                <outlet property="backgroundImageView" destination="D6t-Nc-4xH" id="qAU-7F-EMV"/>
                 <outlet property="birthLabel" destination="aik-Vi-yux" id="QTx-yd-LoY"/>
                 <outlet property="cardNameLabel" destination="OeE-mZ-GcL" id="vH0-VO-U65"/>
                 <outlet property="detailCardNameLabel" destination="VDj-1w-jyf" id="abm-AI-xEo"/>

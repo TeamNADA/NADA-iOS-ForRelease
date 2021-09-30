@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		3909242F26FA15E800236C51 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909242E26FA15E800236C51 /* UIView+Extension.swift */; };
+		39523E09270184A700536900 /* CardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39523E08270184A700536900 /* CardListViewController.swift */; };
+		39523E0B270184B100536900 /* CardList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39523E0A270184B100536900 /* CardList.storyboard */; };
+		39523E5B2701A48900536900 /* CardListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39523E592701A48900536900 /* CardListTableViewCell.swift */; };
+		39523E5C2701A48900536900 /* CardListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39523E5A2701A48900536900 /* CardListTableViewCell.xib */; };
+		39523E5F2701AA9000536900 /* CardListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39523E5E2701AA9000536900 /* CardListDataModel.swift */; };
 		3979709626FA0BE5003FB4F5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3979709526FA0BE5003FB4F5 /* LoginViewController.swift */; };
 		3979709826FA0BF0003FB4F5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3979709726FA0BF0003FB4F5 /* Login.storyboard */; };
 		DBBB91E1639641F40C5B4416 /* Pods_NADA_iOS_forRelease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */; };
@@ -35,6 +40,11 @@
 /* Begin PBXFileReference section */
 		1E770167DDA25A2CE063AA5C /* Pods-NADA-iOS-forRelease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.release.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.release.xcconfig"; sourceTree = "<group>"; };
 		3909242E26FA15E800236C51 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		39523E08270184A700536900 /* CardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewController.swift; sourceTree = "<group>"; };
+		39523E0A270184B100536900 /* CardList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardList.storyboard; sourceTree = "<group>"; };
+		39523E592701A48900536900 /* CardListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListTableViewCell.swift; sourceTree = "<group>"; };
+		39523E5A2701A48900536900 /* CardListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardListTableViewCell.xib; sourceTree = "<group>"; };
+		39523E5E2701AA9000536900 /* CardListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListDataModel.swift; sourceTree = "<group>"; };
 		3979709526FA0BE5003FB4F5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3979709726FA0BF0003FB4F5 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NADA_iOS_forRelease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +91,31 @@
 				1E770167DDA25A2CE063AA5C /* Pods-NADA-iOS-forRelease.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		39523E072701848E00536900 /* CardList */ = {
+			isa = PBXGroup;
+			children = (
+				39523E08270184A700536900 /* CardListViewController.swift */,
+			);
+			path = CardList;
+			sourceTree = "<group>";
+		};
+		39523E582701A47400536900 /* CardList */ = {
+			isa = PBXGroup;
+			children = (
+				39523E592701A48900536900 /* CardListTableViewCell.swift */,
+				39523E5A2701A48900536900 /* CardListTableViewCell.xib */,
+			);
+			path = CardList;
+			sourceTree = "<group>";
+		};
+		39523E5D2701AA5700536900 /* CardList */ = {
+			isa = PBXGroup;
+			children = (
+				39523E5E2701AA9000536900 /* CardListDataModel.swift */,
+			);
+			path = CardList;
 			sourceTree = "<group>";
 		};
 		3979709426FA0BD8003FB4F5 /* Login */ = {
@@ -176,6 +211,7 @@
 		F8FC439B26C01EC30033E151 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				39523E582701A47400536900 /* CardList */,
 				F83206AC26F61E5800D61711 /* CardCell */,
 			);
 			path = Cells;
@@ -192,6 +228,7 @@
 		F8FC439D26C01EEC0033E151 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				39523E5D2701AA5700536900 /* CardList */,
 				F8FC43AE26C0209A0033E151 /* TempModel.swift */,
 			);
 			path = Models;
@@ -216,6 +253,7 @@
 		F8FC43A026C01F040033E151 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				39523E072701848E00536900 /* CardList */,
 				3979709426FA0BD8003FB4F5 /* Login */,
 				F8FC438926C01CDD0033E151 /* MainViewController.swift */,
 			);
@@ -236,6 +274,7 @@
 				F8FC439026C01CDE0033E151 /* LaunchScreen.storyboard */,
 				F8FC438B26C01CDD0033E151 /* Main.storyboard */,
 				3979709726FA0BF0003FB4F5 /* Login.storyboard */,
+				39523E0A270184B100536900 /* CardList.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -330,8 +369,10 @@
 				F8FC43BF26C025180033E151 /* .swiftlint.yml in Resources */,
 				F83206AB26F61E3700D61711 /* FrontCardCell.xib in Resources */,
 				3979709826FA0BF0003FB4F5 /* Login.storyboard in Resources */,
+				39523E5C2701A48900536900 /* CardListTableViewCell.xib in Resources */,
 				F8FC439226C01CDE0033E151 /* LaunchScreen.storyboard in Resources */,
 				F8FC438F26C01CDE0033E151 /* Assets.xcassets in Resources */,
+				39523E0B270184B100536900 /* CardList.storyboard in Resources */,
 				F8FC438D26C01CDD0033E151 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,6 +446,7 @@
 				F8FC43B126C020A70033E151 /* TempNetwork.swift in Sources */,
 				F8FC438A26C01CDD0033E151 /* MainViewController.swift in Sources */,
 				3909242F26FA15E800236C51 /* UIView+Extension.swift in Sources */,
+				39523E09270184A700536900 /* CardListViewController.swift in Sources */,
 				F83206AA26F61E3700D61711 /* FrontCardCell.swift in Sources */,
 				3979709626FA0BE5003FB4F5 /* LoginViewController.swift in Sources */,
 				F8FC43AF26C0209A0033E151 /* TempModel.swift in Sources */,
@@ -412,7 +454,9 @@
 				F8FC43B826C0227D0033E151 /* Const.swift in Sources */,
 				F8FC43B326C020B90033E151 /* TempProtocols.swift in Sources */,
 				F8FC43B526C020C10033E151 /* TempViews.swift in Sources */,
+				39523E5B2701A48900536900 /* CardListTableViewCell.swift in Sources */,
 				F8FC43BA26C022900033E151 /* ViewController.swift in Sources */,
+				39523E5F2701AA9000536900 /* CardListDataModel.swift in Sources */,
 				F8FC43AD26C020940033E151 /* TempClass.swift in Sources */,
 				F8FC43BC26C022A20033E151 /* Storyboard.swift in Sources */,
 				F8FC43A926C0207F0033E151 /* TempFont.swift in Sources */,

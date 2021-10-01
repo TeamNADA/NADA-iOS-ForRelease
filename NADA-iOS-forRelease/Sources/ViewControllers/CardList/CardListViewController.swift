@@ -52,7 +52,6 @@ extension CardListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .normal, title: "삭제", handler: { (action, view, success) in
         })
-        
         deleteAction.backgroundColor = .red
         
         let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
@@ -75,29 +74,5 @@ extension CardListViewController: UITableViewDataSource {
                             date: cardItems[indexPath.row].date)
         
         return serviceCell
-    }
-}
-
-// 명함 삭제시 Alert창 구현
-extension CardListViewController {
-    func makeRequestAlert(title: String,
-                          message: String,
-                          cancelAction: ((UIAlertAction) -> Void)? = nil,
-                          deleteAction: ((UIAlertAction) -> Void)?,
-                          completion: (() -> Void)? = nil) {
-        let generator = UIImpactFeedbackGenerator(style: .medium)
-        generator.impactOccurred()
-        
-        let alertViewController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: cancelAction)
-        alertViewController.addAction(cancelAction)
-        
-        let deleteAction = UIAlertAction(title: "삭제", style: .default, handler: deleteAction)
-        alertViewController.addAction(deleteAction)
-        
-        alertViewController.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor(red: 30/255, green: 30/255, blue: 30/255, alpha: 75)
-        
-        self.present(alertViewController, animated: true, completion: completion)
     }
 }

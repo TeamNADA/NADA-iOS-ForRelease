@@ -10,6 +10,7 @@
 		390515B82706CEBB00C5F7A5 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 390515B72706CEBB00C5F7A5 /* Colors.xcassets */; };
 		390515BA2706D29B00C5F7A5 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390515B92706D29B00C5F7A5 /* Color.swift */; };
 		3909242F26FA15E800236C51 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909242E26FA15E800236C51 /* UIView+Extension.swift */; };
+		39488E352706E17200BDC917 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39488E342706E17200BDC917 /* UIAlertController+Extension.swift */; };
 		39523E09270184A700536900 /* CardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39523E08270184A700536900 /* CardListViewController.swift */; };
 		39523E0B270184B100536900 /* CardList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39523E0A270184B100536900 /* CardList.storyboard */; };
 		39523E5B2701A48900536900 /* CardListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39523E592701A48900536900 /* CardListTableViewCell.swift */; };
@@ -54,6 +55,7 @@
 		390515B72706CEBB00C5F7A5 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		390515B92706D29B00C5F7A5 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		3909242E26FA15E800236C51 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		39488E342706E17200BDC917 /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		39523E08270184A700536900 /* CardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewController.swift; sourceTree = "<group>"; };
 		39523E0A270184B100536900 /* CardList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardList.storyboard; sourceTree = "<group>"; };
 		39523E592701A48900536900 /* CardListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListTableViewCell.swift; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 			children = (
 				F8FC43A626C020780033E151 /* TempExtensions.swift */,
 				3909242E26FA15E800236C51 /* UIView+Extension.swift */,
+				39488E342706E17200BDC917 /* UIAlertController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -533,6 +536,7 @@
 				39523E09270184A700536900 /* CardListViewController.swift in Sources */,
 				F83206AA26F61E3700D61711 /* FrontCardCell.swift in Sources */,
 				3979709626FA0BE5003FB4F5 /* LoginViewController.swift in Sources */,
+				39488E352706E17200BDC917 /* UIAlertController+Extension.swift in Sources */,
 				F8FC43AF26C0209A0033E151 /* TempModel.swift in Sources */,
 				F8FC43A726C020780033E151 /* TempExtensions.swift in Sources */,
 				F8FC43B826C0227D0033E151 /* Const.swift in Sources */,

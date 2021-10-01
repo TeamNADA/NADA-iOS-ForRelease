@@ -50,7 +50,12 @@ extension CardListViewController: UITableViewDelegate {
     
     // Swipe Action
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .normal, title: "삭제", handler: { (action, view, success) in
+        let deleteAction = UIContextualAction(style: .normal, title: "삭제", handler: { (_ action, _ view, _ success) in
+            self.makeAlert(title: "명함 삭제", message: "명함을 정말 삭제하시겠습니까?", cancelAction: { _ in
+                // 취소 눌렀을 때 액션이 들어갈 부분
+            }, deleteAction: { _ in
+                // 삭제 눌렀을 때 액션이 들어갈 부분
+            }, completion: nil)
         })
         deleteAction.backgroundColor = .red
         
@@ -74,5 +79,32 @@ extension CardListViewController: UITableViewDataSource {
                             date: cardItems[indexPath.row].date)
         
         return serviceCell
+    }
+}
+
+// Alert창 구현
+extension CardListViewController {
+    func makeAlert(title: String,
+                   message: String,
+                   cancelAction: ((UIAlertAction) -> Void)? = nil,
+                   deleteAction: ((UIAlertAction) -> Void)?,
+                   completion: (() -> Void)? = nil) {
+        let genetator = UIImpactFeedbackGenerator(style: .medium)
+        genetator.impactOccurred()
+        
+        let alertViewController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alertViewController.setTitlet(font: UIFont.boldSystemFont(ofSize: 17), color: UIColor.white)
+        alertViewController.setMessage(font: UIFont.systemFont(ofSize: 13), color: UIColor.white)
+        
+        alertViewController.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor(red: 30/255, green: 30/255, blue: 30/255, alpha: 3/4)
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: cancelAction)
+        alertViewController.addAction(cancelAction)
+        
+        let deleteAction = UIAlertAction(title: "삭제", style: .default, handler: deleteAction)
+        alertViewController.addAction(deleteAction)
+        
+        self.present(alertViewController, animated: true, completion: completion)
     }
 }

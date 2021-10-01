@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Card List View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="CardListViewController" id="Y6W-OH-hqX" customClass="CardListViewController" customModule="NADA_iOS_forRelease" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lgy-Hk-Rnf">
+                                <rect key="frame" x="28" y="69" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="RBf-Ky-DHo"/>
+                                    <constraint firstAttribute="width" secondItem="lgy-Hk-Rnf" secondAttribute="height" id="cBY-TA-Nai"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="arrowBackIosNewWhite">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="리스트" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSB-Wx-Jzl">
+                                <rect key="frame" x="72" y="67" width="68" height="32"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="T3m-AC-fcX">
+                                <rect key="frame" x="0.0" y="126" width="375" height="652"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" red="0.1764705882352941" green="0.1764705882352941" blue="0.1764705882352941" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="WSB-Wx-Jzl" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="23" id="0hJ-g2-MU9"/>
+                            <constraint firstItem="lgy-Hk-Rnf" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="28" id="B8X-eH-xhw"/>
+                            <constraint firstItem="lgy-Hk-Rnf" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="25" id="C0T-wZ-eqo"/>
+                            <constraint firstItem="T3m-AC-fcX" firstAttribute="top" secondItem="WSB-Wx-Jzl" secondAttribute="bottom" constant="27" id="CyX-fp-vib"/>
+                            <constraint firstItem="T3m-AC-fcX" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="E4W-Ke-YqM"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="T3m-AC-fcX" secondAttribute="trailing" id="dlD-OW-QE5"/>
+                            <constraint firstItem="WSB-Wx-Jzl" firstAttribute="leading" secondItem="lgy-Hk-Rnf" secondAttribute="trailing" constant="20" id="egP-Mf-usK"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="T3m-AC-fcX" secondAttribute="bottom" id="pk7-m1-pre"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cardListTableView" destination="T3m-AC-fcX" id="Uo2-oe-cYt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="45" y="84"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="arrowBackIosNewWhite" width="24" height="24"/>
+    </resources>
+</document>

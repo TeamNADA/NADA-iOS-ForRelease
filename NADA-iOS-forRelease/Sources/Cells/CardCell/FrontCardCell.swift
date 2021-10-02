@@ -10,8 +10,6 @@ import VerticalCardSwiper
 
 class FrontCardCell: CardCell {
     
-    // MARK: - Properties
-    
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var cardNameLabel: UILabel!
@@ -43,7 +41,7 @@ extension FrontCardCell {
         instagramTextLabel.text = "Instagram"
     }
     
-    func setCell(_ backgroundImage: String,
+    func initCell(_ backgroundImage: String,
                  _ cardName: String,
                  _ detailCardName: String,
                  _ userName: String,

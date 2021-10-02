@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="RequiredFlavorCell" customModule="NADA_iOS_forRelease" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="RequiredFlavorCollectionViewCell" customModule="NADA_iOS_forRelease" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="137" height="88"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -45,7 +45,7 @@
             </constraints>
             <size key="customSize" width="137" height="88"/>
             <connections>
-                <outlet property="bgView" destination="2yr-2q-c7e" id="chn-Ue-tcx"/>
+                <outlet property="bgView" destination="2yr-2q-c7e" id="Kfq-hO-Ue8"/>
                 <outlet property="flavorLabel" destination="zsr-kT-9AV" id="qi4-mk-btT"/>
             </connections>
             <point key="canvasLocation" x="199.27536231884059" y="140.625"/>

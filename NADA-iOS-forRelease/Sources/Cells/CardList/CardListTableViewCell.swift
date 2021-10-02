@@ -8,8 +8,6 @@
 import UIKit
 
 class CardListTableViewCell: UITableViewCell {
-    
-    static let identifier: String = "CardListTableViewCell"
 
     @IBOutlet weak var pinButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
@@ -41,7 +39,7 @@ class CardListTableViewCell: UITableViewCell {
         }
     }
     
-    func setData(title: String,
+    func initData(title: String,
                  date: String) {
         titleLabel.text = title
         dateLabel.text = date

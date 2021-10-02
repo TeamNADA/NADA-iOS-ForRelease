@@ -7,11 +7,10 @@
 
 import UIKit
 
-class FrontCardCreationCell: UICollectionViewCell {
+class FrontCardCreationCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Properties
     
-    static let identifier = "FrontCardCreationCell"
     private let backgroundList = ["img", "img", "img", "img", "img", "img"]
     private var requiredInfoList = [UITextField]()
     private var optionalInfoList = [UITextField]()
@@ -50,9 +49,9 @@ class FrontCardCreationCell: UICollectionViewCell {
 
 // MARK: - Extensions
 
-extension FrontCardCreationCell {
+extension FrontCardCreationCollectionViewCell {
     private func setUI() {
-        setUITextFieldList()
+        initUITextFieldList()
 //        scrollView.showsVerticalScrollIndicator = false
         scrollView.backgroundColor = .black
         bgView.backgroundColor = .black
@@ -95,7 +94,7 @@ extension FrontCardCreationCell {
             $0.backgroundColor = .systemGray2
         }
     }
-    private func setUITextFieldList() {
+    private func initUITextFieldList() {
         requiredInfoList.append(contentsOf: [cardNameTextField,
                                             userNameTextField,
                                             birthTextField,
@@ -108,29 +107,32 @@ extension FrontCardCreationCell {
     private func registerCell() {
         cardBackgroundSettingCollectionView.delegate = self
         cardBackgroundSettingCollectionView.dataSource = self
-        let cell = UINib(nibName: CardBackgroundSettingCell.identifier, bundle: nil)
-        cardBackgroundSettingCollectionView.register(cell, forCellWithReuseIdentifier: CardBackgroundSettingCell.identifier)
+        
+        cardBackgroundSettingCollectionView.register(BackgroundCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.backgroundCollectionViewCell)
     }
     private func setNotificationTextField() {
 
+    }
+    static func nib() -> UINib {
+        return UINib(nibName: "FrontCardCreationCollectionViewCell", bundle: nil)
     }
 }
 
 // MARK: - UICollectionViewDelegate
 
-extension FrontCardCreationCell: UICollectionViewDelegate {
+extension FrontCardCreationCollectionViewCell: UICollectionViewDelegate {
     
 }
 
 // MARK: - UICollectionViewDataSource
 
-extension FrontCardCreationCell: UICollectionViewDataSource {
+extension FrontCardCreationCollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return backgroundList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CardBackgroundSettingCell.identifier, for: indexPath) as? CardBackgroundSettingCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.backgroundCollectionViewCell, for: indexPath) as? BackgroundCollectionViewCell else {
             return UICollectionViewCell()
         }
         cell.initCell(image: backgroundList[indexPath.row])
@@ -141,7 +143,7 @@ extension FrontCardCreationCell: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
-extension FrontCardCreationCell: UICollectionViewDelegateFlowLayout {
+extension FrontCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 28, bottom: 7, right: 28)
     }

@@ -73,9 +73,9 @@ extension CardListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: CardListTableViewCell.identifier, for: indexPath) as? CardListTableViewCell else { return UITableViewCell() }
+        guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.cardListTableViewCell, for: indexPath) as? CardListTableViewCell else { return UITableViewCell() }
         
-        serviceCell.setData(title: cardItems[indexPath.row].title,
+        serviceCell.initData(title: cardItems[indexPath.row].title,
                             date: cardItems[indexPath.row].date)
         
         return serviceCell

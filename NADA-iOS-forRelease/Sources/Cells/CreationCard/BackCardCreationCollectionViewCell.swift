@@ -7,11 +7,11 @@
 
 import UIKit
 
-class BackCardCreationCell: UICollectionViewCell {
+class BackCardCreationCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    static let identifier = "BackCardCreationCell"
+    static let identifier = "BackCardCreationCollectionViewCell"
     private let flavorList = ["민초", "반민초", "소주", "맥주", "부먹", "찍먹", "양념", "후라이드"]
     private var optionalInfoList = [UITextField]()
     
@@ -41,9 +41,9 @@ class BackCardCreationCell: UICollectionViewCell {
     }
 }
 
-extension BackCardCreationCell {
+extension BackCardCreationCollectionViewCell {
     private func setUI() {
-        setUITextFieldList()
+        initUITextFieldList()
         //        scrollView.showsVerticalScrollIndicator = false
         scrollView.backgroundColor = .black
         bgView.backgroundColor = .black
@@ -68,7 +68,7 @@ extension BackCardCreationCell {
             $0.backgroundColor = .systemGray2
         }
     }
-    private func setUITextFieldList() {
+    private func initUITextFieldList() {
         optionalInfoList.append(contentsOf: [firstQuestionTextField,
                                              firstAnswerTextField,
                                              secondQuestionTextField,
@@ -77,26 +77,28 @@ extension BackCardCreationCell {
     private func registerCell() {
         requiredCollectionView.delegate = self
         requiredCollectionView.dataSource = self
-        let cell = UINib(nibName: RequiredFlavorCell.identifier, bundle: nil)
-        requiredCollectionView.register(cell, forCellWithReuseIdentifier: RequiredFlavorCell.identifier)
+        requiredCollectionView.register(RequiredFlavorCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.requiredCollectionViewCell)
+    }
+    static func nib() -> UINib {
+        return UINib(nibName: "BackCardCreationCollectionViewCell", bundle: nil)
     }
 }
 
 // MARK: - UICollectionViewDelegate
 
-extension BackCardCreationCell: UICollectionViewDelegate {
+extension BackCardCreationCollectionViewCell: UICollectionViewDelegate {
     
 }
 
 // MARK: - UICollectionViewDataSource
 
-extension BackCardCreationCell: UICollectionViewDataSource {
+extension BackCardCreationCollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return flavorList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RequiredFlavorCell.identifier, for: indexPath) as? RequiredFlavorCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.requiredCollectionViewCell, for: indexPath) as? RequiredFlavorCollectionViewCell else {
             return UICollectionViewCell()
         }
         cell.initCell(flavor: flavorList[indexPath.row])
@@ -107,7 +109,7 @@ extension BackCardCreationCell: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
-extension BackCardCreationCell: UICollectionViewDelegateFlowLayout {
+extension BackCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 12
     }

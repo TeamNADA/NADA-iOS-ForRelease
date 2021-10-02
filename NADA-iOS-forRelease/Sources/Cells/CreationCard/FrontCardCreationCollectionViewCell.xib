@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="FrontCardCreationCell" customModule="NADA_iOS_forRelease" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="FrontCardCreationCollectionViewCell" customModule="NADA_iOS_forRelease" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="353" height="851"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -216,7 +216,7 @@
             </constraints>
             <size key="customSize" width="353" height="851"/>
             <connections>
-                <outlet property="bgView" destination="rtM-7c-eeD" id="sGP-fC-FBG"/>
+                <outlet property="bgView" destination="rtM-7c-eeD" id="z4A-CV-rwk"/>
                 <outlet property="birthTextField" destination="8ii-Lj-ySG" id="v1a-dP-UMS"/>
                 <outlet property="cardBackgroundSettingCollectionView" destination="3SA-po-Dsl" id="l9c-kT-1bG"/>
                 <outlet property="cardNameTextField" destination="Hxa-u2-Us1" id="4uZ-od-gwh"/>

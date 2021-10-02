@@ -50,7 +50,12 @@ extension CardListViewController: UITableViewDelegate {
     
     // Swipe Action
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .normal, title: "삭제", handler: { (action, view, success) in
+        let deleteAction = UIContextualAction(style: .normal, title: "삭제", handler: { (_ action, _ view, _ success) in
+            self.makeAlert(title: "명함 삭제", message: "명함을 정말 삭제하시겠습니까?", cancelAction: { _ in
+                // 취소 눌렀을 때 액션이 들어갈 부분
+            }, deleteAction: { _ in
+                // 삭제 눌렀을 때 액션이 들어갈 부분
+            }, completion: nil)
         })
         deleteAction.backgroundColor = .red
         

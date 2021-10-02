@@ -79,11 +79,9 @@ extension CardCreationViewController {
         
         cardCreationCollectionView.delegate = self
         cardCreationCollectionView.dataSource = self
-        
-        let frontCardCreationCell = UINib(nibName: FrontCardCreationCell.identifier, bundle: nil)
-        let backCardCreationCell = UINib(nibName: BackCardCreationCell.identifier, bundle: nil)
-        cardCreationCollectionView.register(frontCardCreationCell, forCellWithReuseIdentifier: FrontCardCreationCell.identifier)
-        cardCreationCollectionView.register(backCardCreationCell, forCellWithReuseIdentifier: BackCardCreationCell.identifier)
+
+        cardCreationCollectionView.register(FrontCardCreationCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.frontCardCreationCollectionViewCell)
+        cardCreationCollectionView.register(BackgroundCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.backCardCreationCollectionViewCell)
     }
 }
 
@@ -103,12 +101,12 @@ extension CardCreationViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == cardCreationCollectionView {
             if indexPath.row == 0 {
-                guard let frontCreationCell = collectionView.dequeueReusableCell(withReuseIdentifier: FrontCardCreationCell.identifier, for: indexPath) as? FrontCardCreationCell else {
+                guard let frontCreationCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.frontCardCreationCollectionViewCell, for: indexPath) as? FrontCardCreationCollectionViewCell else {
                     return UICollectionViewCell()
                 }
                 return frontCreationCell
             } else if indexPath.row == 1 {
-                guard let backCreationCell = collectionView.dequeueReusableCell(withReuseIdentifier: BackCardCreationCell.identifier, for: indexPath) as? BackCardCreationCell else {
+                guard let backCreationCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.backCardCreationCollectionViewCell, for: indexPath) as? BackgroundCollectionViewCell else {
                     return UICollectionViewCell()
                 }
                 return backCreationCell

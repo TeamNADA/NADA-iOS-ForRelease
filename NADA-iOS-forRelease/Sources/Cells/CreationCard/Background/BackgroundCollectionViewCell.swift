@@ -7,10 +7,7 @@
 
 import UIKit
 
-class CardBackgroundSettingCell: UICollectionViewCell {
-
-    // MARK: - Properties
-    static let identifier = "CardBackgroundSettingCell"
+class BackgroundCollectionViewCell: UICollectionViewCell {
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var bgView: UIView!
@@ -26,7 +23,7 @@ class CardBackgroundSettingCell: UICollectionViewCell {
 
 // MARK: - Extensions
 
-extension CardBackgroundSettingCell {
+extension BackgroundCollectionViewCell {
     private func setUI() {
         bgView.backgroundColor = .white
 //        bgView.isHidden = true
@@ -45,5 +42,8 @@ extension CardBackgroundSettingCell {
     }
     func cellUnselected() {
         bgView.isHidden = true
+    }
+    static func nib() -> UINib {
+        return UINib(nibName: "BackgroundCollectionViewCell", bundle: nil)
     }
 }

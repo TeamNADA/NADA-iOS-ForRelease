@@ -7,11 +7,7 @@
 
 import UIKit
 
-class RequiredFlavorCell: UICollectionViewCell {
-
-    // MARK: - Properteis
-    
-    static let identifier = "RequiredFlavorCell"
+class RequiredFlavorCollectionViewCell: UICollectionViewCell {
     
     // MARK: - @IBOutlet Properties
     
@@ -26,7 +22,7 @@ class RequiredFlavorCell: UICollectionViewCell {
     }
 }
 
-extension RequiredFlavorCell {
+extension RequiredFlavorCollectionViewCell {
     private func setUI() {
         bgView.backgroundColor = .systemGray2
         bgView.cornerRadius = 10
@@ -36,5 +32,8 @@ extension RequiredFlavorCell {
     }
     func initCell(flavor: String) {
         flavorLabel.text = flavor
+    }
+    static func nib() -> UINib {
+        return UINib(nibName: "RequiredFlavorCollectionViewCell", bundle: nil)
     }
 }

@@ -9,9 +9,8 @@ import Foundation
 import UIKit
 
 extension UIAlertController {
-    
     // Set title font and title color
-    func setTitlet(font: UIFont?, color: UIColor?) {
+    func setTitle(font: UIFont?, color: UIColor?) {
         guard let title = self.title else { return }
         let attributeString = NSMutableAttributedString(string: title)
         
@@ -26,7 +25,7 @@ extension UIAlertController {
         self.setValue(attributeString, forKey: "attributedTitle")
         
     }
-
+    
     // Set message font and message color
     func setMessage(font: UIFont?, color: UIColor?) {
         guard let message = self.message else { return }

@@ -24,6 +24,7 @@ class FrontCardCell: CardCell {
     @IBOutlet weak var linkTextLabel: UILabel!
     @IBOutlet weak var linkIDLabel: UILabel!
     
+    // MARK: - Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -42,15 +43,15 @@ extension FrontCardCell {
     }
     
     func initCell(_ backgroundImage: String,
-                 _ cardName: String,
-                 _ detailCardName: String,
-                 _ userName: String,
-                 _ birth: String,
-                 _ mbti: String,
-                 _ instagramID: String,
-                 _ linkImage: String,
-                 _ linkText: String,
-                 _ linkID: String) {
+                  _ cardName: String,
+                  _ detailCardName: String,
+                  _ userName: String,
+                  _ birth: String,
+                  _ mbti: String,
+                  _ instagramID: String,
+                  _ linkImage: String,
+                  _ linkText: String,
+                  _ linkID: String) {
         if let bgImage = UIImage(named: backgroundImage) {
             self.backgroundImageView.image = bgImage
         }

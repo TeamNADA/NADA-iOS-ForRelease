@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
             window?.windowScene = windowScene
-        window?.rootViewController = UIStoryboard(name: Const.Storyboard.Name.CardCreation, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.CardCreationViewController)
+        window?.rootViewController = UIStoryboard(name: Const.Storyboard.Name.Front, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.FrontViewController)
             window?.makeKeyAndVisible()
     }
 

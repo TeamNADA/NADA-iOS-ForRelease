@@ -30,6 +30,10 @@ class FrontCardCell: CardCell {
         
          setUI()
     }
+    
+    static func nib() -> UINib {
+        return UINib(nibName: "FrontCardCell", bundle: nil)
+    }
 }
 
 // MARK: - Extensions

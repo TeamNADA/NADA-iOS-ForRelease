@@ -37,6 +37,15 @@ class FrontViewController: UIViewController {
         
         setList()
     }
+
+// MARK: - @IBAction
+    // 명함 리스트 뷰로 화면 전환
+    @IBAction func pushToCardListView(_ sender: Any) {
+    }
+    
+    // 명함 생성 뷰로 화면 전환
+    @IBAction func presentToCardCreationView(_ sender: Any) {
+    }
 }
 
 // MARK: - Extension

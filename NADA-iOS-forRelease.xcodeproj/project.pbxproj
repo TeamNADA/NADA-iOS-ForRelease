@@ -12,6 +12,8 @@
 		390515BA2706D29B00C5F7A5 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390515B92706D29B00C5F7A5 /* Color.swift */; };
 		3909242F26FA15E800236C51 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909242E26FA15E800236C51 /* UIView+Extension.swift */; };
 		39488E352706E17200BDC917 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39488E342706E17200BDC917 /* UIAlertController+Extension.swift */; };
+		394F314C27081B3A00C83291 /* FrontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394F314B27081B3A00C83291 /* FrontViewController.swift */; };
+		394F314F27081B4C00C83291 /* Front.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 394F314E27081B4C00C83291 /* Front.storyboard */; };
 		39523E09270184A700536900 /* CardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39523E08270184A700536900 /* CardListViewController.swift */; };
 		39523E0B270184B100536900 /* CardList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39523E0A270184B100536900 /* CardList.storyboard */; };
 		39523E5B2701A48900536900 /* CardListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39523E592701A48900536900 /* CardListTableViewCell.swift */; };
@@ -59,6 +61,8 @@
 		390515B92706D29B00C5F7A5 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		3909242E26FA15E800236C51 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		39488E342706E17200BDC917 /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
+		394F314B27081B3A00C83291 /* FrontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontViewController.swift; sourceTree = "<group>"; };
+		394F314E27081B4C00C83291 /* Front.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Front.storyboard; sourceTree = "<group>"; };
 		39523E08270184A700536900 /* CardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewController.swift; sourceTree = "<group>"; };
 		39523E0A270184B100536900 /* CardList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardList.storyboard; sourceTree = "<group>"; };
 		39523E592701A48900536900 /* CardListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListTableViewCell.swift; sourceTree = "<group>"; };
@@ -121,6 +125,22 @@
 				1E770167DDA25A2CE063AA5C /* Pods-NADA-iOS-forRelease.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		394F314A2708157500C83291 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				394F314B27081B3A00C83291 /* FrontViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		394F314D27081B4100C83291 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				394F314E27081B4C00C83291 /* Front.storyboard */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		39523E072701848E00536900 /* CardList */ = {
@@ -332,6 +352,7 @@
 		F8FC43A026C01F040033E151 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				394F314A2708157500C83291 /* Main */,
 				F84BAFB326FDB8AA004CA335 /* CardCreation */,
 				39523E072701848E00536900 /* CardList */,
 				3979709426FA0BD8003FB4F5 /* Login */,
@@ -351,6 +372,7 @@
 		F8FC43A226C01F2B0033E151 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				394F314D27081B4100C83291 /* Main */,
 				F84BAF9E26FDB425004CA335 /* CardCreation */,
 				F8FC439026C01CDE0033E151 /* LaunchScreen.storyboard */,
 				F8FC438B26C01CDD0033E151 /* Main.storyboard */,
@@ -456,6 +478,7 @@
 				F858079F2700354E00872484 /* BackgroundCollectionViewCell.xib in Resources */,
 				F84BAFAE26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib in Resources */,
 				F83206AB26F61E3700D61711 /* FrontCardCell.xib in Resources */,
+				394F314F27081B4C00C83291 /* Front.storyboard in Resources */,
 				3979709826FA0BF0003FB4F5 /* Login.storyboard in Resources */,
 				F84BAFB226FDB552004CA335 /* BackCardCreationCollectionViewCell.xib in Resources */,
 				39523E5C2701A48900536900 /* CardListTableViewCell.xib in Resources */,
@@ -547,6 +570,7 @@
 				F8FC43AF26C0209A0033E151 /* TempModel.swift in Sources */,
 				F8FC43A726C020780033E151 /* TempExtensions.swift in Sources */,
 				F8FC43B826C0227D0033E151 /* Const.swift in Sources */,
+				394F314C27081B3A00C83291 /* FrontViewController.swift in Sources */,
 				F8F5D0AA270800FD00D99D2E /* Xib.swift in Sources */,
 				F82FF8252702000000E57F8B /* RequiredFlavorCollectionViewCell.swift in Sources */,
 				F8FC43B326C020B90033E151 /* TempProtocols.swift in Sources */,

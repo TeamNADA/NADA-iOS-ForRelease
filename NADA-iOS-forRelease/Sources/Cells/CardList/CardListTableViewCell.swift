@@ -40,7 +40,7 @@ class CardListTableViewCell: UITableViewCell {
     }
     
     func initData(title: String,
-                 date: String) {
+                  date: String) {
         titleLabel.text = title
         dateLabel.text = date
     }

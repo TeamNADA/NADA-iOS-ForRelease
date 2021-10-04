@@ -15,6 +15,7 @@ extension Const {
             static let CardCreation = "CardCreation"
             static let Login = "Login"
             static let CardList = "CardList"
+            static let Front = "Front"
         }
         
     }

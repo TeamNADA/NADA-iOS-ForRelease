@@ -24,11 +24,11 @@ class RequiredFlavorCollectionViewCell: UICollectionViewCell {
 
 extension RequiredFlavorCollectionViewCell {
     private func setUI() {
-        bgView.backgroundColor = .systemGray2
+        bgView.backgroundColor = Colors.inputBlack.color
         bgView.cornerRadius = 10
         
         flavorLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 16)
-        flavorLabel.textColor = .systemGray5
+        flavorLabel.textColor = Colors.hint.color
     }
     func initCell(flavor: String) {
         flavorLabel.text = flavor

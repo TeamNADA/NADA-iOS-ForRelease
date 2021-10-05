@@ -6,10 +6,15 @@
 //
 
 import UIKit
+import KakaoSDKCommon
 
 class CardCreationViewController: UIViewController {
 
     // MARK: - Properties
+    
+    private var frontCardIsEmpty = true
+    private var backCardIsEmpty = true
+    private var restoreFrameYValue = 0.0
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var creationTextLabel: UILabel!
@@ -26,6 +31,9 @@ class CardCreationViewController: UIViewController {
         super.viewDidLoad()
         setUI()
         registerCell()
+        setNotification()
+        touchViewToDownKeyboard()
+        initRestoreFrameYValue()
     }
     
     // MARK: - @IBAction Properties
@@ -44,9 +52,10 @@ extension CardCreationViewController {
     private func setUI() {
         view.backgroundColor = .black
         cardCreationCollectionView.backgroundColor = .black
+        cardCreationCollectionView.isPagingEnabled = true
         
         creationTextLabel.text = "명함 생성"
-        creationTextLabel.font = UIFont(name: "AppleSDGothicNeo-ExtraBold", size: 26)
+        creationTextLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 26)
         creationTextLabel.textColor = .white
         
         frontTextLabel.text = "앞면"
@@ -62,8 +71,10 @@ extension CardCreationViewController {
         
         completeButton.setTitle("완료", for: .normal)
         completeButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 16)
-        completeButton.setTitleColor(.gray, for: .normal)
-        completeButton.backgroundColor = .darkGray
+        completeButton.setTitleColor(Colors.hint.color, for: .normal)
+        completeButton.backgroundColor = Colors.inputBlack.color
+        completeButton.layer.cornerRadius = 10
+        completeButton.isUserInteractionEnabled = false
         
         let cardCreationCollectionViewlayout = cardCreationCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
         cardCreationCollectionViewlayout?.scrollDirection = .horizontal
@@ -81,15 +92,67 @@ extension CardCreationViewController {
         cardCreationCollectionView.dataSource = self
 
         cardCreationCollectionView.register(FrontCardCreationCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.frontCardCreationCollectionViewCell)
-        cardCreationCollectionView.register(BackgroundCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.backCardCreationCollectionViewCell)
+        cardCreationCollectionView.register(BackCardCreationCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.backCardCreationCollectionViewCell)
+    }
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(setFrontCardIsEmpty(_:)), name: .frontCardtextFieldIsEmpty, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setbackCardIsEmpty(_:)), name: .backCardtextFieldIsEmpty, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    private func touchViewToDownKeyboard() {
+        let tapGesture = UITapGestureRecognizer(target: self.view, action: #selector(self.view.endEditing(_:)))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    private func initRestoreFrameYValue() {
+        restoreFrameYValue = self.view.frame.origin.y
+    }
+    @objc
+    private func setFrontCardIsEmpty(_ notification: Notification) {
+        if let isEmpty = notification.object as? Bool {
+            frontCardIsEmpty = isEmpty
+        }
+//        if frontCardIsEmpty == true && backCardIsEmpty == true {
+        if frontCardIsEmpty == true {
+            completeButton.backgroundColor = Colors.inputBlack.color
+            completeButton.setTitleColor(Colors.hint.color, for: .normal)
+            completeButton.isUserInteractionEnabled = false
+        } else {
+            completeButton.backgroundColor = Colors.mainBlue.color
+            completeButton.setTitleColor(Colors.white.color, for: .normal)
+            completeButton.isUserInteractionEnabled = true
+        }
+    }
+    @objc
+    func setbackCardIsEmpty(_ notification: Notification) {
+        if let isEmpty = notification.object as? Bool {
+            backCardIsEmpty = isEmpty
+        }
+        print("backCardIsEmpty : \(backCardIsEmpty)")
+    }
+    @objc
+    func showKeyboard(_ notification: Notification) {
+        if self.view.frame.origin.y == restoreFrameYValue {
+            if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+                let keyboardHeight = keyboardFrame.cgRectValue.height
+                self.view.frame.origin.y -= keyboardHeight
+            }
+        }
+    }
+    @objc
+    private func hideKeyboard(_ notification: Notification) {
+        if self.view.frame.origin.y != restoreFrameYValue {
+            if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+                let keyboardHeight = keyboardFrame.cgRectValue.height
+                self.view.frame.origin.y += keyboardHeight
+            }
+        }
     }
 }
 
 // MARK: - UICollectionViewDelegate
 
-extension CardCreationViewController: UICollectionViewDelegate {
-    
-}
+extension CardCreationViewController: UICollectionViewDelegate { }
 
 // MARK: - UICollectionViewDataSource
 
@@ -106,7 +169,7 @@ extension CardCreationViewController: UICollectionViewDataSource {
                 }
                 return frontCreationCell
             } else if indexPath.row == 1 {
-                guard let backCreationCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.backCardCreationCollectionViewCell, for: indexPath) as? BackgroundCollectionViewCell else {
+                guard let backCreationCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.backCardCreationCollectionViewCell, for: indexPath) as? BackCardCreationCollectionViewCell else {
                     return UICollectionViewCell()
                 }
                 return backCreationCell

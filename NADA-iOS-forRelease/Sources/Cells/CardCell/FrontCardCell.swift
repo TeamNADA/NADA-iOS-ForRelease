@@ -27,7 +27,6 @@ class FrontCardCell: CardCell {
     // MARK: - Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        
          setUI()
     }
     

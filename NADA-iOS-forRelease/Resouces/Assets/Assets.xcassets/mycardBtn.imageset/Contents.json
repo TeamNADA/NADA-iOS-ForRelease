@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "mycardBtn.png",
+      "scale" : "1x",
+      "idiom" : "universal"
+    },
+    {
+      "scale" : "2x",
+      "filename" : "mycardBtn@2x.png",
+      "idiom" : "universal"
+    },
+    {
+      "filename" : "mycardBtn@3x.png",
+      "scale" : "3x",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

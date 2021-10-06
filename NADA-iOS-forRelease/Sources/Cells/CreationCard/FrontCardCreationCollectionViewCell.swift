@@ -90,13 +90,13 @@ extension FrontCardCreationCollectionViewCell {
             $0.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 16)
             $0.backgroundColor = Colors.inputBlack.color
             $0.textColor = Colors.white.color
-            $0.layer.cornerRadius = 10
+            $0.layer.cornerRadius = 5
         }
         _ = optionalInfoList.map {
             $0.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 16)
             $0.backgroundColor = Colors.inputBlack.color
             $0.textColor = Colors.white.color
-            $0.layer.cornerRadius = 10
+            $0.layer.cornerRadius = 5
         }
     }
     private func initUITextFieldList() {

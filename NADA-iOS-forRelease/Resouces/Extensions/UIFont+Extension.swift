@@ -15,7 +15,7 @@ extension UIFont {
   }
 
   class var menu: UIFont {
-    return UIFont(name: "AppleSDGothicNeo-ExtraBold", size: 26.0)!
+    return UIFont(name: "AppleSDGothicNeo-Bold", size: 26.0)!
   }
 
   class var cardName: UIFont {
@@ -23,7 +23,7 @@ extension UIFont {
   }
 
   class var modalName: UIFont {
-    return UIFont(name: "AppleSDGothicNeo-ExtraBold", size: 22.0)!
+    return UIFont(name: "AppleSDGothicNeo-Bold", size: 22.0)!
   }
 
   class var menuSub: UIFont {
@@ -91,7 +91,7 @@ extension UIFont {
   }
 
   class var login: UIFont {
-    return UIFont(name: "AppleSDGothicNeo-ExtraBold", size: 14.0)!
+    return UIFont(name: "AppleSDGothicNeo-Bold", size: 14.0)!
   }
 
   class var hint2: UIFont {

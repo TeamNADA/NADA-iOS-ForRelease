@@ -53,30 +53,30 @@ class CardCreationViewController: UIViewController {
 
 extension CardCreationViewController {
     private func setUI() {
-        view.backgroundColor = Colors.black.color
-        statusMovedView.backgroundColor = Colors.white.color
-        cardCreationCollectionView.backgroundColor = Colors.black.color
+        view.backgroundColor = .black1
+        statusMovedView.backgroundColor = .white1
+        cardCreationCollectionView.backgroundColor = .black1
         cardCreationCollectionView.isPagingEnabled = true
         
         creationTextLabel.text = "명함 생성"
-        creationTextLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 26)
-        creationTextLabel.textColor = Colors.white.color
+        creationTextLabel.font = .menu
+        creationTextLabel.textColor = .white1
         
         frontTextLabel.text = "앞면"
-        frontTextLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 20)
-        frontTextLabel.textColor = Colors.white.color
+        frontTextLabel.font = .menuSub
+        frontTextLabel.textColor = .white1
         
         backTextLabel.text = "뒷면"
-        backTextLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 20)
-        backTextLabel.textColor = Colors.hint.color
+        backTextLabel.font = .menuSub
+        backTextLabel.textColor = .hintGray1
         
-        closeButton.setImage(UIImage(named: "closeBlack24Dp"), for: .normal)
+        closeButton.setImage(UIImage(named: "closeBlack"), for: .normal)
         closeButton.setTitle("", for: .normal)
         
         completeButton.setTitle("완료", for: .normal)
-        completeButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 16)
-        completeButton.setTitleColor(Colors.hint.color, for: .normal)
-        completeButton.backgroundColor = Colors.inputBlack.color
+        completeButton.titleLabel?.font = .btn
+        completeButton.setTitleColor(.hintGray1, for: .normal)
+        completeButton.backgroundColor = .inputBlack2
         completeButton.layer.cornerRadius = 10
         completeButton.isUserInteractionEnabled = false
         
@@ -121,12 +121,12 @@ extension CardCreationViewController {
         }
 //        if frontCardIsEmpty == true && backCardIsEmpty == true {
         if frontCardIsEmpty == true {
-            completeButton.backgroundColor = Colors.inputBlack.color
-            completeButton.setTitleColor(Colors.hint.color, for: .normal)
+            completeButton.backgroundColor = .inputBlack2
+            completeButton.setTitleColor(.hintGray1, for: .normal)
             completeButton.isUserInteractionEnabled = false
         } else {
-            completeButton.backgroundColor = Colors.mainBlue.color
-            completeButton.setTitleColor(Colors.white.color, for: .normal)
+            completeButton.backgroundColor = .mainBlue
+            completeButton.setTitleColor(.white1, for: .normal)
             completeButton.isUserInteractionEnabled = true
         }
     }
@@ -158,14 +158,14 @@ extension CardCreationViewController {
     @objc
     private func dragToBack() {
         let indexPath = IndexPath(item: 1, section: 0)
-        cardCreationCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+        cardCreationCollectionView.scrollToItem(at: indexPath, at: .right, animated: true)
         if currentIndex == 0 {
-            UIView.animate(withDuration: 0.2) {
+            UIView.animate(withDuration: 0.3) {
                 self.statusMovedView.transform = CGAffineTransform(translationX: self.backTextLabel.frame.origin.x - self.statusMovedView.frame.origin.x + 5, y: 0)
             }
             currentIndex = 1
-            self.frontTextLabel.textColor = Colors.hint.color
-            self.backTextLabel.textColor = Colors.white.color
+            self.frontTextLabel.textColor = .hintGray1
+            self.backTextLabel.textColor = .white1
         }
     }
     @objc
@@ -173,12 +173,12 @@ extension CardCreationViewController {
         if currentIndex == 1 {
             let indexPath = IndexPath(item: 0, section: 0)
             cardCreationCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
-            UIView.animate(withDuration: 0.2) {
+            UIView.animate(withDuration: 0.3) {
                 self.statusMovedView.transform = .identity
             }
             currentIndex = 0
-            self.frontTextLabel.textColor = Colors.white.color
-            self.backTextLabel.textColor = Colors.hint.color
+            self.frontTextLabel.textColor = .white1
+            self.backTextLabel.textColor = .hintGray1
         }
     }
 }
@@ -193,15 +193,15 @@ extension CardCreationViewController: UICollectionViewDelegate {
                 self.statusMovedView.transform = CGAffineTransform(translationX: self.backTextLabel.frame.origin.x - self.statusMovedView.frame.origin.x + 5, y: 0)
             }
             currentIndex = 1
-            self.frontTextLabel.textColor = Colors.hint.color
-            self.backTextLabel.textColor = Colors.white.color
+            self.frontTextLabel.textColor = .hintGray1
+            self.backTextLabel.textColor = .white
         } else if targetIndex == 0 && currentIndex == 1 {
             UIView.animate(withDuration: 0.2) {
                 self.statusMovedView.transform = .identity
             }
             currentIndex = 0
-            self.frontTextLabel.textColor = Colors.white.color
-            self.backTextLabel.textColor = Colors.hint.color
+            self.frontTextLabel.textColor = .white1
+            self.backTextLabel.textColor = .hintGray1
         }
     }
 }

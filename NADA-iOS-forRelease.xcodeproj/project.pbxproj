@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		39007F2C27080D8200E7143E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39007F2B27080D8200E7143E /* UIViewController+Extension.swift */; };
 		390515B82706CEBB00C5F7A5 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 390515B72706CEBB00C5F7A5 /* Colors.xcassets */; };
-		390515BA2706D29B00C5F7A5 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390515B92706D29B00C5F7A5 /* Color.swift */; };
 		3909242F26FA15E800236C51 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909242E26FA15E800236C51 /* UIView+Extension.swift */; };
 		39488E352706E17200BDC917 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39488E342706E17200BDC917 /* UIAlertController+Extension.swift */; };
 		394F314C27081B3A00C83291 /* FrontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394F314B27081B3A00C83291 /* FrontViewController.swift */; };
@@ -21,6 +20,7 @@
 		39523E5F2701AA9000536900 /* CardListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39523E5E2701AA9000536900 /* CardListDataModel.swift */; };
 		3979709626FA0BE5003FB4F5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3979709526FA0BE5003FB4F5 /* LoginViewController.swift */; };
 		3979709826FA0BF0003FB4F5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3979709726FA0BF0003FB4F5 /* Login.storyboard */; };
+		39C1E88F270EC762006D2089 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C1E88E270EC762006D2089 /* UIColor+Extension.swift */; };
 		39D2E130270B43DA00AD0889 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D2E12F270B43DA00AD0889 /* UIFont+Extension.swift */; };
 		DBBB91E1639641F40C5B4416 /* Pods_NADA_iOS_forRelease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */; };
 		F822E7A92709CEB60020452C /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F822E7A82709CEB60020452C /* Notification.swift */; };
@@ -57,7 +57,6 @@
 		1E770167DDA25A2CE063AA5C /* Pods-NADA-iOS-forRelease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.release.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.release.xcconfig"; sourceTree = "<group>"; };
 		39007F2B27080D8200E7143E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		390515B72706CEBB00C5F7A5 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		390515B92706D29B00C5F7A5 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		3909242E26FA15E800236C51 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		39488E342706E17200BDC917 /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		394F314B27081B3A00C83291 /* FrontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +68,7 @@
 		39523E5E2701AA9000536900 /* CardListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListDataModel.swift; sourceTree = "<group>"; };
 		3979709526FA0BE5003FB4F5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3979709726FA0BF0003FB4F5 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		39C1E88E270EC762006D2089 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		39D2E12F270B43DA00AD0889 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NADA_iOS_forRelease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F4EE1D042EC783FA8528743 /* Pods-NADA-iOS-forRelease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.debug.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.debug.xcconfig"; sourceTree = "<group>"; };
@@ -384,7 +384,6 @@
 				F8FC43B726C0227D0033E151 /* Const.swift */,
 				F8FC43B926C022900033E151 /* ViewController.swift */,
 				F8FC43BB26C022A20033E151 /* Storyboard.swift */,
-				390515B92706D29B00C5F7A5 /* Color.swift */,
 				F8F5D0A9270800FD00D99D2E /* Xib.swift */,
 				F822E7A82709CEB60020452C /* Notification.swift */,
 			);
@@ -398,6 +397,7 @@
 				39488E342706E17200BDC917 /* UIAlertController+Extension.swift */,
 				39007F2B27080D8200E7143E /* UIViewController+Extension.swift */,
 				39D2E12F270B43DA00AD0889 /* UIFont+Extension.swift */,
+				39C1E88E270EC762006D2089 /* UIColor+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -562,6 +562,7 @@
 				F83206AA26F61E3700D61711 /* FrontCardCell.swift in Sources */,
 				3979709626FA0BE5003FB4F5 /* LoginViewController.swift in Sources */,
 				39488E352706E17200BDC917 /* UIAlertController+Extension.swift in Sources */,
+				39C1E88F270EC762006D2089 /* UIColor+Extension.swift in Sources */,
 				F8FC43AF26C0209A0033E151 /* TempModel.swift in Sources */,
 				F8FC43B826C0227D0033E151 /* Const.swift in Sources */,
 				394F314C27081B3A00C83291 /* FrontViewController.swift in Sources */,
@@ -574,7 +575,6 @@
 				F8FC43BA26C022900033E151 /* ViewController.swift in Sources */,
 				39523E5F2701AA9000536900 /* CardListDataModel.swift in Sources */,
 				F8FC43AD26C020940033E151 /* TempClass.swift in Sources */,
-				390515BA2706D29B00C5F7A5 /* Color.swift in Sources */,
 				F84BAFB126FDB552004CA335 /* BackCardCreationCollectionViewCell.swift in Sources */,
 				F8FC43BC26C022A20033E151 /* Storyboard.swift in Sources */,
 				F84BAFAD26FDB543004CA335 /* FrontCardCreationCollectionViewCell.swift in Sources */,

@@ -46,29 +46,29 @@ extension BackCardCreationCollectionViewCell {
     private func setUI() {
         initUITextFieldList()
         scrollView.indicatorStyle = .white
-        scrollView.backgroundColor = Colors.black.color
-        bgView.backgroundColor = Colors.black.color
-        requiredCollectionView.backgroundColor = Colors.step.color
-        requiredInfoView.backgroundColor = Colors.step.color
-        optionInfoView.backgroundColor = Colors.step.color
+        scrollView.backgroundColor = .black1
+        bgView.backgroundColor = .black1
+        requiredCollectionView.backgroundColor = .stepBlack5
+        requiredInfoView.backgroundColor = .stepBlack5
+        optionInfoView.backgroundColor = .stepBlack5
         
         requiredInfoTextLabel.text = "1 필수 정보"
-        requiredInfoTextLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
-        requiredInfoTextLabel.textColor = Colors.white.color
+        requiredInfoTextLabel.font = .step
+        requiredInfoTextLabel.textColor = .white1
         
         optionalInfoTextLabel.text = "2 선택 정보"
-        optionalInfoTextLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
-        optionalInfoTextLabel.textColor = Colors.white.color
+        optionalInfoTextLabel.font = .step
+        optionalInfoTextLabel.textColor = .white1
         
-        firstQuestionTextField.attributedPlaceholder = NSAttributedString(string: "질문 1", attributes: [NSAttributedString.Key.foregroundColor: Colors.hint.color])
-        firstAnswerTextField.attributedPlaceholder = NSAttributedString(string: "대답 1", attributes: [NSAttributedString.Key.foregroundColor: Colors.hint.color])
-        secondQuestionTextField.attributedPlaceholder = NSAttributedString(string: "질문 2", attributes: [NSAttributedString.Key.foregroundColor: Colors.hint.color])
-        secondAnswerTextField.attributedPlaceholder = NSAttributedString(string: "대답 2", attributes: [NSAttributedString.Key.foregroundColor: Colors.hint.color])
+        firstQuestionTextField.attributedPlaceholder = NSAttributedString(string: "질문 1", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
+        firstAnswerTextField.attributedPlaceholder = NSAttributedString(string: "대답 1", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
+        secondQuestionTextField.attributedPlaceholder = NSAttributedString(string: "질문 2", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
+        secondAnswerTextField.attributedPlaceholder = NSAttributedString(string: "대답 2", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
         
         _ = optionalInfoList.map {
-            $0.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 16)
-            $0.backgroundColor = Colors.inputBlack.color
-            $0.textColor = Colors.white.color
+            $0.font = .hint
+            $0.backgroundColor = .inputBlack2
+            $0.textColor = .white1
             $0.layer.cornerRadius = 5
         }
     }
@@ -142,7 +142,7 @@ extension BackCardCreationCollectionViewCell: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.becomeFirstResponder()
         textField.borderWidth = 1
-        textField.borderColor = Colors.white.color
+        textField.borderColor = .white1
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.borderWidth = 0

@@ -15,12 +15,14 @@ class CardCreationViewController: UIViewController {
     private var frontCardIsEmpty = true
     private var backCardIsEmpty = true
     private var restoreFrameYValue = 0.0
+    private var currentIndex = 0
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var creationTextLabel: UILabel!
     @IBOutlet weak var frontTextLabel: UILabel!
     @IBOutlet weak var backTextLabel: UILabel!
-    @IBOutlet weak var textStatusCollectionView: UICollectionView!
+
+    @IBOutlet weak var statusMovedView: UIView!
     @IBOutlet weak var cardCreationCollectionView: UICollectionView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var completeButton: UIButton!
@@ -34,6 +36,7 @@ class CardCreationViewController: UIViewController {
         setNotification()
         touchViewToDownKeyboard()
         initRestoreFrameYValue()
+        setTextLabelGesture()
     }
     
     // MARK: - @IBAction Properties
@@ -50,21 +53,22 @@ class CardCreationViewController: UIViewController {
 
 extension CardCreationViewController {
     private func setUI() {
-        view.backgroundColor = .black
-        cardCreationCollectionView.backgroundColor = .black
+        view.backgroundColor = Colors.black.color
+        statusMovedView.backgroundColor = Colors.white.color
+        cardCreationCollectionView.backgroundColor = Colors.black.color
         cardCreationCollectionView.isPagingEnabled = true
         
         creationTextLabel.text = "명함 생성"
         creationTextLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 26)
-        creationTextLabel.textColor = .white
+        creationTextLabel.textColor = Colors.white.color
         
         frontTextLabel.text = "앞면"
         frontTextLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 20)
-        frontTextLabel.textColor = .white
+        frontTextLabel.textColor = Colors.white.color
         
         backTextLabel.text = "뒷면"
         backTextLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 20)
-        backTextLabel.textColor = .white
+        backTextLabel.textColor = Colors.hint.color
         
         closeButton.setImage(UIImage(named: "closeBlack24Dp"), for: .normal)
         closeButton.setTitle("", for: .normal)
@@ -83,11 +87,6 @@ extension CardCreationViewController {
         cardCreationCollectionView.showsVerticalScrollIndicator = false
     }
     private func registerCell() {
-//        let textStatusCollectionViewlayout = textStatusCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
-//        textStatusCollectionViewlayout?.scrollDirection = .horizontal
-//        textStatusCollectionView.delegate = self
-//        textStatusCollectionView.dataSource = self
-        
         cardCreationCollectionView.delegate = self
         cardCreationCollectionView.dataSource = self
 
@@ -106,6 +105,14 @@ extension CardCreationViewController {
     }
     private func initRestoreFrameYValue() {
         restoreFrameYValue = self.view.frame.origin.y
+    }
+    private func setTextLabelGesture() {
+        let tapFrontTextLabelGesture = UITapGestureRecognizer(target: self, action: #selector(dragToFront))
+        frontTextLabel.addGestureRecognizer(tapFrontTextLabelGesture)
+        frontTextLabel.isUserInteractionEnabled = true
+        let tapBackTextLabelGesture = UITapGestureRecognizer(target: self, action: #selector(dragToBack))
+        backTextLabel.addGestureRecognizer(tapBackTextLabelGesture)
+        backTextLabel.isUserInteractionEnabled = true
     }
     @objc
     private func setFrontCardIsEmpty(_ notification: Notification) {
@@ -148,11 +155,56 @@ extension CardCreationViewController {
             }
         }
     }
+    @objc
+    private func dragToBack() {
+        let indexPath = IndexPath(item: 1, section: 0)
+        cardCreationCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+        if currentIndex == 0 {
+            UIView.animate(withDuration: 0.2) {
+                self.statusMovedView.transform = CGAffineTransform(translationX: self.backTextLabel.frame.origin.x - self.statusMovedView.frame.origin.x + 5, y: 0)
+            }
+            currentIndex = 1
+            self.frontTextLabel.textColor = Colors.hint.color
+            self.backTextLabel.textColor = Colors.white.color
+        }
+    }
+    @objc
+    private func dragToFront() {
+        if currentIndex == 1 {
+            let indexPath = IndexPath(item: 0, section: 0)
+            cardCreationCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+            UIView.animate(withDuration: 0.2) {
+                self.statusMovedView.transform = .identity
+            }
+            currentIndex = 0
+            self.frontTextLabel.textColor = Colors.white.color
+            self.backTextLabel.textColor = Colors.hint.color
+        }
+    }
 }
 
 // MARK: - UICollectionViewDelegate
 
-extension CardCreationViewController: UICollectionViewDelegate { }
+extension CardCreationViewController: UICollectionViewDelegate {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let targetIndex = targetContentOffset.pointee.x / scrollView.frame.size.width
+        if targetIndex == 1 && currentIndex == 0 {
+            UIView.animate(withDuration: 0.2) {
+                self.statusMovedView.transform = CGAffineTransform(translationX: self.backTextLabel.frame.origin.x - self.statusMovedView.frame.origin.x + 5, y: 0)
+            }
+            currentIndex = 1
+            self.frontTextLabel.textColor = Colors.hint.color
+            self.backTextLabel.textColor = Colors.white.color
+        } else if targetIndex == 0 && currentIndex == 1 {
+            UIView.animate(withDuration: 0.2) {
+                self.statusMovedView.transform = .identity
+            }
+            currentIndex = 0
+            self.frontTextLabel.textColor = Colors.white.color
+            self.backTextLabel.textColor = Colors.hint.color
+        }
+    }
+}
 
 // MARK: - UICollectionViewDataSource
 

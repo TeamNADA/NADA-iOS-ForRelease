@@ -36,29 +36,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KAZ-zy-W47">
-                                <rect key="frame" x="28" y="114" width="114" height="2"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="2" id="5a5-lK-ETW"/>
-                                </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sfi-BS-fFq">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="aAV-62-4sK">
-                                        <rect key="frame" x="-7" y="0.0" width="128" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="SGD-1f-teK">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZD-YQ-z5l">
                                 <rect key="frame" x="319" y="66" width="67" height="31"/>
                                 <state key="normal" title="Button"/>
@@ -123,27 +100,34 @@
                                     <action selector="pushToCardCompletionView:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="VWF-RT-J7D"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gBB-hQ-SyS">
+                                <rect key="frame" x="33" y="114" width="32" height="2"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="Hm8-0C-mLG"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="9qw-H6-IIh" secondAttribute="trailing" constant="28" id="2E8-4e-xYZ"/>
                             <constraint firstAttribute="bottom" secondItem="9qw-H6-IIh" secondAttribute="bottom" constant="34" id="3yV-Y5-mgf"/>
-                            <constraint firstItem="SCY-6J-7gG" firstAttribute="top" secondItem="KAZ-zy-W47" secondAttribute="bottom" constant="18" id="4vF-oG-vQt"/>
                             <constraint firstItem="nZD-YQ-z5l" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="22" id="4ws-5t-Weg"/>
                             <constraint firstItem="q7k-m0-xi2" firstAttribute="top" secondItem="tbX-yg-azh" secondAttribute="bottom" constant="23" id="6Aa-rV-V5M"/>
                             <constraint firstItem="tbX-yg-azh" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="23" id="7U3-Fg-7iD"/>
                             <constraint firstItem="q7k-m0-xi2" firstAttribute="leading" secondItem="tbX-yg-azh" secondAttribute="leading" id="7jD-u0-Xt5"/>
                             <constraint firstItem="SCY-6J-7gG" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="8ME-sT-obO"/>
+                            <constraint firstItem="gBB-hQ-SyS" firstAttribute="leading" secondItem="q7k-m0-xi2" secondAttribute="leading" constant="5" id="DHT-gt-rBw"/>
                             <constraint firstItem="yP6-6Y-BPF" firstAttribute="leading" secondItem="q7k-m0-xi2" secondAttribute="trailing" constant="30" id="GED-As-RPG"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="nZD-YQ-z5l" secondAttribute="trailing" constant="28" id="LS9-Ox-DcH"/>
                             <constraint firstItem="9qw-H6-IIh" firstAttribute="top" secondItem="SCY-6J-7gG" secondAttribute="bottom" constant="28" id="OXo-Pk-oAs"/>
-                            <constraint firstItem="KAZ-zy-W47" firstAttribute="leading" secondItem="q7k-m0-xi2" secondAttribute="leading" id="YyP-Qy-yTD"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="SCY-6J-7gG" secondAttribute="trailing" id="aGQ-yr-mMG"/>
                             <constraint firstItem="tbX-yg-azh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="28" id="cvz-4j-mTX"/>
-                            <constraint firstItem="KAZ-zy-W47" firstAttribute="trailing" secondItem="yP6-6Y-BPF" secondAttribute="trailing" id="d8b-Vk-bCG"/>
+                            <constraint firstItem="SCY-6J-7gG" firstAttribute="top" secondItem="gBB-hQ-SyS" secondAttribute="bottom" constant="18" id="ljP-7j-j3g"/>
                             <constraint firstItem="yP6-6Y-BPF" firstAttribute="centerY" secondItem="q7k-m0-xi2" secondAttribute="centerY" id="nzF-Df-pZK"/>
-                            <constraint firstItem="KAZ-zy-W47" firstAttribute="top" secondItem="q7k-m0-xi2" secondAttribute="bottom" constant="3" id="tTa-kQ-SWn"/>
+                            <constraint firstItem="gBB-hQ-SyS" firstAttribute="trailing" secondItem="q7k-m0-xi2" secondAttribute="trailing" constant="-5" id="oCK-mc-g4U"/>
+                            <constraint firstItem="gBB-hQ-SyS" firstAttribute="top" secondItem="q7k-m0-xi2" secondAttribute="bottom" constant="3" id="s9h-ZW-dSo"/>
                             <constraint firstItem="9qw-H6-IIh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="28" id="wtH-NH-2Nj"/>
                         </constraints>
                     </view>
@@ -154,7 +138,7 @@
                         <outlet property="completeButton" destination="9qw-H6-IIh" id="5sg-Bu-nnt"/>
                         <outlet property="creationTextLabel" destination="tbX-yg-azh" id="yEi-1t-EcY"/>
                         <outlet property="frontTextLabel" destination="q7k-m0-xi2" id="F41-zp-Pzb"/>
-                        <outlet property="textStatusCollectionView" destination="KAZ-zy-W47" id="HUX-cF-ptL"/>
+                        <outlet property="statusMovedView" destination="gBB-hQ-SyS" id="M3E-Ph-HP4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

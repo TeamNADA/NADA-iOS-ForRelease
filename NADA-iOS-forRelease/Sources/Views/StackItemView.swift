@@ -16,8 +16,6 @@ class StackItemView: UIView {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var selectView: UIView!
     
-    weak var delegate: StackItemViewDelegate?
-    
     static var newInstance: StackItemView {
         return Bundle.main.loadNibNamed(
             StackItemView.className(),
@@ -25,6 +23,8 @@ class StackItemView: UIView {
             options: nil
         )?.first as! StackItemView
     }
+    
+    weak var delegate: StackItemViewDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()

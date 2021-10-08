@@ -8,6 +8,7 @@
 import Foundation
 
 class BottomStackItem {
+    
     var tabImage: String
     var isSelected: Bool
     

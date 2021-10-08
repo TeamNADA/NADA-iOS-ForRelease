@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -80,28 +79,6 @@
                                 <rect key="frame" x="0.0" y="109" width="375" height="669"/>
                                 <color key="backgroundColor" name="black"/>
                             </view>
-                            <view contentMode="scaleToFill" restorationIdentifier="TabBar" translatesAutoresizingMaskIntoConstraints="NO" id="vlA-KL-acJ">
-                                <rect key="frame" x="75.666666666666686" y="674" width="224" height="70"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="cRf-io-d7E">
-                                        <rect key="frame" x="0.0" y="0.0" width="224" height="70"/>
-                                    </stackView>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="2wA-j8-tej"/>
-                                    <constraint firstAttribute="bottom" secondItem="cRf-io-d7E" secondAttribute="bottom" id="3I7-sl-CCr"/>
-                                    <constraint firstItem="cRf-io-d7E" firstAttribute="top" secondItem="vlA-KL-acJ" secondAttribute="top" id="DAN-fu-yLL"/>
-                                    <constraint firstAttribute="trailing" secondItem="cRf-io-d7E" secondAttribute="trailing" id="s9W-94-e75"/>
-                                    <constraint firstAttribute="width" constant="224" id="tm7-Od-PL9"/>
-                                    <constraint firstItem="cRf-io-d7E" firstAttribute="leading" secondItem="vlA-KL-acJ" secondAttribute="leading" id="vkr-vI-d5O"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="35"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="black"/>
@@ -110,15 +87,12 @@
                             <constraint firstItem="wDj-gp-dYn" firstAttribute="top" secondItem="QnQ-Yt-6c0" secondAttribute="bottom" id="F93-Yd-v2M"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="wDj-gp-dYn" secondAttribute="bottom" id="IW5-Fp-jzx"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="QnQ-Yt-6c0" secondAttribute="trailing" id="Pot-gQ-ULg"/>
-                            <constraint firstItem="vlA-KL-acJ" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="V6p-l3-lvB"/>
                             <constraint firstItem="QnQ-Yt-6c0" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="W4T-GW-QCg"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="wDj-gp-dYn" secondAttribute="trailing" id="ZIB-d9-Ftk"/>
                             <constraint firstItem="wDj-gp-dYn" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="hRq-Hl-TFx"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="vlA-KL-acJ" secondAttribute="bottom" constant="34" id="qLd-WV-oEh"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bottomStack" destination="cRf-io-d7E" id="EOo-dV-LIV"/>
                         <outlet property="cardSwiper" destination="wDj-gp-dYn" id="5G0-dA-eHs"/>
                     </connections>
                 </viewController>
@@ -137,8 +111,5 @@
         <namedColor name="white">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

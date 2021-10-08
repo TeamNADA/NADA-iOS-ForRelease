@@ -10,6 +10,14 @@ import VerticalCardSwiper
 
 class FrontViewController: UIViewController {
     
+    static var newInstance: FrontViewController {
+        let storyboard = UIStoryboard(name: "Front", bundle: nil)
+        let vc = storyboard.instantiateViewController(
+            withIdentifier: "FrontViewController"
+        ) as! FrontViewController
+        return vc
+    }
+    
     // MARK: - Properteis
     private var imageList = [String]()
     private var cardNameList = [String]()
@@ -24,30 +32,11 @@ class FrontViewController: UIViewController {
     
     // MARK: - @IBOutlet
     @IBOutlet weak var cardSwiper: VerticalCardSwiper!
-    @IBOutlet weak var bottomStack: UIStackView!
-    
-    var currentIndex = 0
-    
-    lazy var tabs: [StackItemView] = {
-        var items = [StackItemView]()
-        for _ in 0..<2 {
-            items.append(StackItemView.newInstance)
-        }
-        return items
-    }()
-    
-    lazy var tabModels: [BottomStackItem] = {
-        return [
-            BottomStackItem(tabImage: "homeBtnOnClick"),
-            BottomStackItem(tabImage: "myCardBtn")
-        ]
-    }()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setupTabs()
         // cardSwiper.delegate = self
         cardSwiper.datasource = self
         
@@ -56,16 +45,6 @@ class FrontViewController: UIViewController {
         cardSwiper.register(nib: UINib(nibName: "FrontCardCell", bundle: nil), forCellWithReuseIdentifier: "FrontCardCell")
         
         setList()
-    }
-    
-    func setupTabs() {
-        for (index, model) in self.tabModels.enumerated() {
-            let tabView = self.tabs[index]
-            model.isSelected = index == 0
-            tabView.item = model
-            tabView.delegate = self
-            self.bottomStack.addArrangedSubview(tabView)
-        }
     }
     
     // MARK: - @IBAction
@@ -132,13 +111,5 @@ extension FrontViewController: VerticalCardSwiperDatasource {
         cell.initCell(imageList[index], cardNameList[index], detailCardNameList[index], userNameList[index], birthList[index], mbtiList[index], instagramIDList[index], linkImageList[index], linkTextList[index], linkIDList[index])
         
         return cell
-    }
-}
-
-extension FrontViewController: StackItemViewDelegate {
-    func handleTap(_ view: StackItemView) {
-        self.tabs[self.currentIndex].isSelected = false
-        view.isSelected = true
-        self.currentIndex = self.tabs.firstIndex(where: { $0 === view }) ?? 0
     }
 }

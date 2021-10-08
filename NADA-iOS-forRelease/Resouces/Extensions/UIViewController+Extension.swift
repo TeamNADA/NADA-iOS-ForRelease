@@ -9,6 +9,20 @@ import Foundation
 import UIKit
 
 extension UIViewController {
+    
+    // RootStackTabViewController
+    var rootVC: RootStackTabViewController? {
+        var selfVC = self
+        while let parentVC = selfVC.parent {
+            if let vc = parentVC as? RootStackTabViewController {
+                return vc
+            } else {
+                selfVC = parentVC
+            }
+        }
+        return nil
+    }
+    
     // Common Alert
     func makeAlert(title: String,
                    message: String,
@@ -32,4 +46,5 @@ extension UIViewController {
         
         self.present(alertViewController, animated: true, completion: completion)
     }
+    
 }

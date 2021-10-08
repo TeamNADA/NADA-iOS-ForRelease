@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,9 +22,9 @@
                         <constraint firstAttribute="width" secondItem="pPd-4c-cDv" secondAttribute="height" id="UXv-BZ-ewE"/>
                     </constraints>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XsZ-QD-9VA">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XsZ-QD-9VA" customClass="StackItemView" customModule="NADA_iOS_forRelease" customModuleProvider="target">
                     <rect key="frame" x="53" y="56" width="6" height="6"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="XsZ-QD-9VA" secondAttribute="height" multiplier="1:1" id="1Ba-Sr-nu6"/>
                         <constraint firstAttribute="height" constant="6" id="4kw-MC-RmW"/>
@@ -53,8 +52,5 @@
         <namedColor name="black1">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

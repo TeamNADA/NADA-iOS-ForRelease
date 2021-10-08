@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+class BottomStackItem {
+    var tabImage: String
+    var isSelected: Bool
+    
+    init(tabImage: String,
+         isSelected: Bool = false) {
+        self.tabImage = tabImage
+        self.isSelected = isSelected
+    }
+}
+

@@ -9,7 +9,7 @@ import UIKit
 import VerticalCardSwiper
 
 class FrontViewController: UIViewController {
-
+    
     // MARK: - Properteis
     private var imageList = [String]()
     private var cardNameList = [String]()
@@ -24,10 +24,30 @@ class FrontViewController: UIViewController {
     
     // MARK: - @IBOutlet
     @IBOutlet weak var cardSwiper: VerticalCardSwiper!
+    @IBOutlet weak var bottomStack: UIStackView!
+    
+    var currentIndex = 0
+    
+    lazy var tabs: [StackItemView] = {
+        var items = [StackItemView]()
+        for _ in 0..<2 {
+            items.append(StackItemView.newInstance)
+        }
+        return items
+    }()
+    
+    lazy var tabModels: [BottomStackItem] = {
+        return [
+            BottomStackItem(tabImage: "homeBtnOnClick"),
+            BottomStackItem(tabImage: "myCardBtn")
+        ]
+    }()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.setupTabs()
         // cardSwiper.delegate = self
         cardSwiper.datasource = self
         
@@ -37,8 +57,18 @@ class FrontViewController: UIViewController {
         
         setList()
     }
-
-// MARK: - @IBAction
+    
+    func setupTabs() {
+        for (index, model) in self.tabModels.enumerated() {
+            let tabView = self.tabs[index]
+            model.isSelected = index == 0
+            tabView.item = model
+            tabView.delegate = self
+            self.bottomStack.addArrangedSubview(tabView)
+        }
+    }
+    
+    // MARK: - @IBAction
     // 명함 리스트 뷰로 화면 전환
     @IBAction func pushToCardListView(_ sender: Any) {
     }
@@ -53,34 +83,34 @@ extension FrontViewController {
     private func setList() {
         imageList.append(contentsOf: [ "testBg",
                                        "testBg"
-        ])
+                                     ])
         cardNameList.append(contentsOf: [ "SOPT 28기 명함",
                                           "SOPT 28기 명함"
-        ])
+                                        ])
         detailCardNameList.append(contentsOf: [ "28기 디자인파트원",
                                                 "28기 디자인파트원"
-        ])
+                                              ])
         userNameList.append(contentsOf: ["김태양",
                                          "김태양"
-        ])
+                                        ])
         birthList.append(contentsOf: [ "2002/11/06 (20세)",
                                        "2002/11/06 (20세)"
-        ])
+                                     ])
         mbtiList.append(contentsOf: [ "ISTJ",
                                       "ISTJ"
-        ])
+                                    ])
         instagramIDList.append(contentsOf: [ "@passio84ever",
                                              "@passio84ever"
-        ])
+                                           ])
         linkImageList.append(contentsOf: [ "testLink",
                                            "testLink"
-        ])
+                                         ])
         linkTextList.append(contentsOf: [ "Blog",
                                           "Blog"
-        ])
+                                        ])
         linkIDList.append(contentsOf: [ "blog.naver.com/\npark_yunjung",
                                         "blog.naver.com/\npark_yunjung"
-        ])
+                                      ])
     }
 }
 
@@ -102,5 +132,13 @@ extension FrontViewController: VerticalCardSwiperDatasource {
         cell.initCell(imageList[index], cardNameList[index], detailCardNameList[index], userNameList[index], birthList[index], mbtiList[index], instagramIDList[index], linkImageList[index], linkTextList[index], linkIDList[index])
         
         return cell
+    }
+}
+
+extension FrontViewController: StackItemViewDelegate {
+    func handleTap(_ view: StackItemView) {
+        self.tabs[self.currentIndex].isSelected = false
+        view.isSelected = true
+        self.currentIndex = self.tabs.firstIndex(where: { $0 === view }) ?? 0
     }
 }

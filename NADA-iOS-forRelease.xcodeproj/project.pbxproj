@@ -41,7 +41,6 @@
 		F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC438726C01CDD0033E151 /* SceneDelegate.swift */; };
 		F8FC438F26C01CDE0033E151 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8FC438E26C01CDE0033E151 /* Assets.xcassets */; };
 		F8FC439226C01CDE0033E151 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8FC439026C01CDE0033E151 /* LaunchScreen.storyboard */; };
-		F8FC43A926C0207F0033E151 /* TempFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43A826C0207F0033E151 /* TempFont.swift */; };
 		F8FC43AD26C020940033E151 /* TempClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43AC26C020940033E151 /* TempClass.swift */; };
 		F8FC43AF26C0209A0033E151 /* TempModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43AE26C0209A0033E151 /* TempModel.swift */; };
 		F8FC43B126C020A70033E151 /* TempNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43B026C020A70033E151 /* TempNetwork.swift */; };
@@ -92,7 +91,6 @@
 		F8FC438E26C01CDE0033E151 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F8FC439126C01CDE0033E151 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F8FC439326C01CDE0033E151 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F8FC43A826C0207F0033E151 /* TempFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempFont.swift; sourceTree = "<group>"; };
 		F8FC43AC26C020940033E151 /* TempClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempClass.swift; sourceTree = "<group>"; };
 		F8FC43AE26C0209A0033E151 /* TempModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempModel.swift; sourceTree = "<group>"; };
 		F8FC43B026C020A70033E151 /* TempNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempNetwork.swift; sourceTree = "<group>"; };
@@ -282,7 +280,6 @@
 				F857FC8A26C03A5C00A48D01 /* Assets */,
 				F8FC43A326C01F420033E151 /* Constants */,
 				F8FC43A426C01F5B0033E151 /* Extensions */,
-				F8FC43A526C01F630033E151 /* Fonts */,
 				F8FC43A226C01F2B0033E151 /* Storyboards */,
 			);
 			path = Resouces;
@@ -400,14 +397,6 @@
 				39C1E88E270EC762006D2089 /* UIColor+Extension.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		F8FC43A526C01F630033E151 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				F8FC43A826C0207F0033E151 /* TempFont.swift */,
-			);
-			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -579,7 +568,6 @@
 				F8FC43BC26C022A20033E151 /* Storyboard.swift in Sources */,
 				F84BAFAD26FDB543004CA335 /* FrontCardCreationCollectionViewCell.swift in Sources */,
 				F822E7A92709CEB60020452C /* Notification.swift in Sources */,
-				F8FC43A926C0207F0033E151 /* TempFont.swift in Sources */,
 				F8FC438626C01CDD0033E151 /* AppDelegate.swift in Sources */,
 				F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */,
 			);

@@ -367,6 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				F8FC43AC26C020940033E151 /* TempClass.swift */,
+				3958F222270FDA7100B100B2 /* BottomStackItem.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -414,6 +415,8 @@
 			children = (
 				399C55D5271191EC00845A54 /* CustomTabBar */,
 				F8FC43B426C020C10033E151 /* TempViews.swift */,
+				3958F228270FDB9900B100B2 /* StackItemView.xib */,
+				3958F22A270FDBA300B100B2 /* StackItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -528,6 +531,8 @@
 				394F314F27081B4C00C83291 /* Front.storyboard in Resources */,
 				3979709826FA0BF0003FB4F5 /* Login.storyboard in Resources */,
 				F84BAFB226FDB552004CA335 /* BackCardCreationCollectionViewCell.xib in Resources */,
+				3958F2402710056D00B100B2 /* Root.storyboard in Resources */,
+				3958F229270FDB9900B100B2 /* StackItemView.xib in Resources */,
 				39523E5C2701A48900536900 /* CardListTableViewCell.xib in Resources */,
 				F8FC439226C01CDE0033E151 /* LaunchScreen.storyboard in Resources */,
 				F8FC438F26C01CDE0033E151 /* Assets.xcassets in Resources */,
@@ -617,6 +622,7 @@
 				39488E352706E17200BDC917 /* UIAlertController+Extension.swift in Sources */,
 				399C55DB2711927900845A54 /* CustomTabBarController.swift in Sources */,
 				39C1E88F270EC762006D2089 /* UIColor+Extension.swift in Sources */,
+				3958F223270FDA7100B100B2 /* BottomStackItem.swift in Sources */,
 				F8FC43AF26C0209A0033E151 /* TempModel.swift in Sources */,
 				F8FC43B826C0227D0033E151 /* Const.swift in Sources */,
 				394F314C27081B3A00C83291 /* FrontViewController.swift in Sources */,
@@ -628,10 +634,12 @@
 				39523E5B2701A48900536900 /* CardListTableViewCell.swift in Sources */,
 				399C55D72711921100845A54 /* CustomTabBarButton.swift in Sources */,
 				F8FC43BA26C022900033E151 /* ViewController.swift in Sources */,
+				3958F242271005B500B100B2 /* RootStackTabViewController.swift in Sources */,
 				39523E5F2701AA9000536900 /* CardListDataModel.swift in Sources */,
 				399C55D92711924500845A54 /* CustomTabBar.swift in Sources */,
 				F8FC43AD26C020940033E151 /* TempClass.swift in Sources */,
 				F84BAFB126FDB552004CA335 /* BackCardCreationCollectionViewCell.swift in Sources */,
+				3958F22B270FDBA300B100B2 /* StackItemView.swift in Sources */,
 				F8FC43BC26C022A20033E151 /* Storyboard.swift in Sources */,
 				399C55DD271192D000845A54 /* CustomTabIndicatorView.swift in Sources */,
 				F84BAFAD26FDB543004CA335 /* FrontCardCreationCollectionViewCell.swift in Sources */,

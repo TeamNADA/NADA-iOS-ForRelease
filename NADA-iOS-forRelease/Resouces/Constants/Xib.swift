@@ -14,6 +14,6 @@ extension Const {
         static let backCardCreationCollectionViewCell = "BackCardCreationCollectionViewCell"
         static let cardListTableViewCell = "CardListTableViewCell"
         static let frontCardCell = "FrontCardCell"
-        static let backgroundCollectionViewCell = "BackgroundCollectionViewCell"
+        static let backgroundCollectionViewCell = "backgroundCollectionViewCell"
     }
 }

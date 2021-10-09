@@ -15,6 +15,8 @@ extension Const {
             static let Login = "Login"
             static let CardList = "CardList"
             static let Front = "Front"
+            static let Group = "Group"
+            static let CustomTabBar = "CustomTabBar"
         }
         
     }

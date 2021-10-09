@@ -15,7 +15,9 @@ extension Const {
             static let LoginViewController = "LoginViewController"
             static let CardListViewController = "CardListViewController"
             static let FrontViewController = "FrontViewController"
+            static let GroupViewController = "GroupViewController"
+            static let TabBarViewController = "TabBarViewController"
+            static let CustomTabBarController = "CustomTabBarController"
         }
-        
     }
 }

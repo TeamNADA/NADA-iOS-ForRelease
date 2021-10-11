@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class CustomTabBarController: UITabBarController {
+open class CustomTabBarController: UITabBarController {
     
     @IBInspectable public var tintColor: UIColor? {
         didSet {
@@ -48,7 +48,7 @@ class CustomTabBarController: UITabBarController {
         }
     }
     
-    fileprivate var bottomSpacing: CGFloat = 21
+    fileprivate var bottomSpacing: CGFloat = 20
     fileprivate var tabBarHeight: CGFloat = 70
     fileprivate var horizontleSpacing: CGFloat = 20
     

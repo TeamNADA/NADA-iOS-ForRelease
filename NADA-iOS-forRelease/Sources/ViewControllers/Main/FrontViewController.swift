@@ -52,8 +52,8 @@ class FrontViewController: UIViewController {
 // MARK: - Extension
 extension FrontViewController {
     private func setList() {
-        imageList.append(contentsOf: [ "testBg",
-                                       "testBg"
+        imageList.append(contentsOf: [ "bg1",
+                                       "bg2"
                                      ])
         cardNameList.append(contentsOf: [ "SOPT 28기 명함",
                                           "SOPT 28기 명함"

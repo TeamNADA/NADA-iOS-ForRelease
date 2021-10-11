@@ -48,14 +48,16 @@ open class CustomTabBar: UIView {
     lazy var indicatorView: CustomTabIndicatorView = {
         let view = CustomTabIndicatorView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        // view.constraint(width: 5)
-        // view.backgroundColor = tintColor
-        // view.makeWidthEqualHeight()
+        prepareForAutoLayout()
+        view.constraint(width: 5)
+        view.backgroundColor = tintColor
+        view.makeWidthEqualHeight()
         
         return view
     }()
     
     private var indicatorViewYConstraint: NSLayoutConstraint!
+    private var indicatorViewXConstraint: NSLayoutConstraint!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -81,9 +83,7 @@ open class CustomTabBar: UIView {
         addSubview(stackView)
         addSubview(indicatorView)
         
-        // self.backgroundColor = .black1
-        self.setGradient(color1: UIColor(red: 1, green: 1, blue: 1, alpha: 0.35),
-                         color2: UIColor(red: 1, green: 1, blue: 1, alpha: 0.15))
+        self.backgroundColor = .white
         
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: 3, height: 3)
@@ -122,7 +122,7 @@ open class CustomTabBar: UIView {
     func select(at index: Int, notifyDelegate: Bool = true) {
         for (bIndex, view) in stackView.arrangedSubviews.enumerated() {
             if let button = view as? UIButton {
-                button.tintColor =  bIndex == index ? tintColor : .hintGray1
+                button.tintColor =  bIndex == index ? tintColor : UIColor.white
             }
         }
         
@@ -159,30 +159,29 @@ open class CustomTabBar: UIView {
     
     func select(at index: Int) {
         /* move the indicator view */
-        //        if indicatorViewXConstraint != nil {
-        //            indicatorViewXConstraint.isActive = false
-        //            indicatorViewXConstraint = nil
-        //        }
+        if indicatorViewXConstraint != nil {
+            indicatorViewXConstraint.isActive = false
+            indicatorViewXConstraint = nil
+        }
         
         for (bIndex, button) in buttons().enumerated() {
             button.selectedColor = tintColor
             button.isSelected = bIndex == index
             
-            //            if bIndex == index {
-            //                indicatorViewXConstraint = indicatorView.centerXAnchor.constraint(equalTo: button.centerXAnchor)
-            //                indicatorViewXConstraint.isActive = true
-            //            }
+            if bIndex == index {
+                indicatorViewXConstraint = indicatorView.centerXAnchor.constraint(equalTo: button.centerXAnchor)
+                indicatorViewXConstraint.isActive = true
+            }
         }
         
         UIView.animate(withDuration: 0.25) {
             self.layoutIfNeeded()
         }
-        
         self.delegate?.cardTabBar(self, didSelectItemAt: index)
     }
     
     @objc func buttonTapped(sender: CustomTabBarButton) {
-        if let index = stackView.arrangedSubviews.firstIndex(of: sender) {
+        if let index = stackView.arrangedSubviews.firstIndex(of: sender){
             select(at: index)
         }
     }
@@ -211,14 +210,14 @@ open class CustomTabBar: UIView {
 }
 
 // 그라데이션 배경 추가
-extension CustomTabBar {
-    func setGradient(color1: UIColor, color2: UIColor) {
-        let gradient: CAGradientLayer = CAGradientLayer()
-        gradient.colors = [color1.cgColor, color2.cgColor]
-        gradient.locations = [0.0, 1.0]
-        gradient.startPoint = CGPoint(x: 0.5, y: 0.0)
-        gradient.endPoint = CGPoint(x: 0.5, y: 1.0)
-        gradient.frame = bounds
-        layer.addSublayer(gradient)
-    }
-}
+//extension CustomTabBar {
+//    func setGradient(color1: UIColor, color2: UIColor) {
+//        let gradient: CAGradientLayer = CAGradientLayer()
+//        gradient.colors = [color1.cgColor, color2.cgColor]
+//        gradient.locations = [0.0, 1.0]
+//        gradient.startPoint = CGPoint(x: 0.5, y: 0.0)
+//        gradient.endPoint = CGPoint(x: 0.5, y: 1.0)
+//        gradient.frame = bounds
+//        layer.addSublayer(gradient)
+//    }
+//}

@@ -14,9 +14,18 @@
                 <tabBarController storyboardIdentifier="CustomTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="eRZ-8q-um0" customClass="CustomTabBarController" customModule="NADA_iOS_forRelease" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IDI-Fs-Cpv">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" name="white1"/>
                     </tabBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                            <color key="value" name="white1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="tabBarBackgroundColor">
+                            <color key="value" name="gray1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="3n9-65-2Zt" kind="relationship" relationship="viewControllers" id="YqW-H3-cvm"/>
                         <segue destination="8MW-XI-FLU" kind="relationship" relationship="viewControllers" id="NhT-GM-FlB"/>
@@ -48,6 +57,9 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="gray1">
+            <color red="0.42352941176470588" green="0.42352941176470588" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="white1">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

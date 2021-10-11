@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-open class CustomTabBarController: UITabBarController {
+class CustomTabBarController: UITabBarController {
     
     @IBInspectable public var tintColor: UIColor? {
         didSet {
@@ -28,7 +28,7 @@ open class CustomTabBarController: UITabBarController {
         return CustomTabBar()
     }()
     
-    fileprivate(set) lazy var smallBottomView: UIView = {
+    private(set) lazy var smallBottomView: UIView = {
         let anotherSmallView = UIView()
         anotherSmallView.backgroundColor = .clear
         anotherSmallView.translatesAutoresizingMaskIntoConstraints = false
@@ -48,9 +48,9 @@ open class CustomTabBarController: UITabBarController {
         }
     }
     
-    fileprivate var bottomSpacing: CGFloat = 20
-    fileprivate var tabBarHeight: CGFloat = 70
-    fileprivate var horizontleSpacing: CGFloat = 20
+    private var bottomSpacing: CGFloat = 7
+    private var tabBarHeight: CGFloat = 70
+    private var horizontleSpacing: CGFloat = 75
     
     override open func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +79,7 @@ open class CustomTabBarController: UITabBarController {
         }
     }
     
-    fileprivate func addAnotherSmallView() {
+    private func addAnotherSmallView() {
         self.view.addSubview(smallBottomView)
         
         smallBottomView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
@@ -99,7 +99,7 @@ open class CustomTabBarController: UITabBarController {
         smallBottomView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     
-    fileprivate func setupTabBar() {
+    private func setupTabBar() {
         customTabBar.delegate = self
         self.view.addSubview(customTabBar)
         

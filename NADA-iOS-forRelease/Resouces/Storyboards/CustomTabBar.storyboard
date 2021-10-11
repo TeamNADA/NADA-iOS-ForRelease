@@ -39,7 +39,7 @@
         <scene sceneID="NEi-CT-Crw">
             <objects>
                 <viewControllerPlaceholder storyboardIdentifier="Front" storyboardName="Front" id="3n9-65-2Zt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="UAL-yR-u56"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="homeBtnOnClick" id="UAL-yR-u56"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7CF-Kp-fcq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -49,7 +49,7 @@
         <scene sceneID="5ba-ro-f6A">
             <objects>
                 <viewControllerPlaceholder storyboardIdentifier="Group" storyboardName="Group" id="8MW-XI-FLU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="VjP-2J-EEK"/>
+                    <tabBarItem key="tabBarItem" title="Group" image="myCardBtn" id="VjP-2J-EEK"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0hA-Lx-Oun" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -57,6 +57,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="homeBtnOnClick" width="30" height="30"/>
+        <image name="myCardBtn" width="30" height="30"/>
         <namedColor name="gray1">
             <color red="0.42352941176470588" green="0.42352941176470588" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -32,7 +32,6 @@ open class CustomTabBar: UIView {
         buttons().forEach { button in
             button.selectedColor = tintColor
         }
-        
         indicatorView.tintColor = tintColor
     }
     
@@ -82,13 +81,6 @@ open class CustomTabBar: UIView {
         
         addSubview(stackView)
         addSubview(indicatorView)
-        
-        self.backgroundColor = .white
-        
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOffset = CGSize(width: 3, height: 3)
-        self.layer.shadowRadius = 6
-        self.layer.shadowOpacity = 0.15
         
         indicatorViewYConstraint?.isActive = false
         indicatorViewYConstraint = indicatorView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: -10.5)
@@ -181,7 +173,7 @@ open class CustomTabBar: UIView {
     }
     
     @objc func buttonTapped(sender: CustomTabBarButton) {
-        if let index = stackView.arrangedSubviews.firstIndex(of: sender){
+        if let index = stackView.arrangedSubviews.firstIndex(of: sender) {
             select(at: index)
         }
     }
@@ -208,16 +200,3 @@ open class CustomTabBar: UIView {
         layer.cornerRadius = bounds.height / 2
     }
 }
-
-// 그라데이션 배경 추가
-//extension CustomTabBar {
-//    func setGradient(color1: UIColor, color2: UIColor) {
-//        let gradient: CAGradientLayer = CAGradientLayer()
-//        gradient.colors = [color1.cgColor, color2.cgColor]
-//        gradient.locations = [0.0, 1.0]
-//        gradient.startPoint = CGPoint(x: 0.5, y: 0.0)
-//        gradient.endPoint = CGPoint(x: 0.5, y: 1.0)
-//        gradient.frame = bounds
-//        layer.addSublayer(gradient)
-//    }
-//}

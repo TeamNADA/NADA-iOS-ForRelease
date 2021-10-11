@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Front View Controller-->
+        <!--Home-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController storyboardIdentifier="FrontViewController" id="Y6W-OH-hqX" customClass="FrontViewController" customModule="NADA_iOS_forRelease" customModuleProvider="target" sceneMemberID="viewController">
@@ -91,7 +91,7 @@
                             <constraint firstItem="wDj-gp-dYn" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="hRq-Hl-TFx"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="homeBtnOnClick" id="VDP-2f-dqN"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="homeBtnOnClick" id="VDP-2f-dqN"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="cardSwiper" destination="wDj-gp-dYn" id="5G0-dA-eHs"/>

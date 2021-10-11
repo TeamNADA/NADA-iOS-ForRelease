@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Group View Controller-->
+        <!--Group-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController storyboardIdentifier="GroupViewController" id="Y6W-OH-hqX" customClass="GroupViewController" customModule="NADA_iOS_forRelease" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,7 +19,7 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="black1"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="myCardBtn" id="nzX-dQ-9yY"/>
+                    <tabBarItem key="tabBarItem" title="Group" image="myCardBtn" id="nzX-dQ-9yY"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

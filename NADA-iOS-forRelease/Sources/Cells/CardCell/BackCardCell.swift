@@ -31,11 +31,13 @@ class BackCardCell: CardCell {
         setUI()
     }
     
+    // MARK: - Function
     static func nib() -> UINib {
         return UINib(nibName: "BackCardCell", bundle: nil)
     }
 }
 
+// MARK: - Extension
 extension BackCardCell {
     private func setUI() {
         

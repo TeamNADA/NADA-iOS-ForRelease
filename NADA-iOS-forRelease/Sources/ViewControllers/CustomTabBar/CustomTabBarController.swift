@@ -17,13 +17,6 @@ class CustomTabBarController: UITabBarController {
         }
     }
     
-    @IBInspectable public var tabBarBackgroundColor: UIColor? {
-        didSet {
-            customTabBar.backgroundColor = tabBarBackgroundColor
-            customTabBar.reloadApperance()
-        }
-    }
-    
     public let customTabBar: CustomTabBar = {
         return CustomTabBar()
     }()
@@ -64,6 +57,8 @@ class CustomTabBarController: UITabBarController {
         
         customTabBar.items = tabBar.items!
         customTabBar.select(at: selectedIndex)
+        customTabBar.setGradient(color1: UIColor(red: 1, green: 1, blue: 1, alpha: 0.35),
+                                 color2: UIColor(red: 1, green: 1, blue: 1, alpha: 0.15))
     }
     
     public func setTabBarHidden(_ isHidden: Bool, animated: Bool) {
@@ -118,5 +113,18 @@ class CustomTabBarController: UITabBarController {
 extension CustomTabBarController: CardTabBarDelegate {
     func cardTabBar(_ sender: CustomTabBar, didSelectItemAt index: Int) {
         self.selectedIndex = index
+    }
+}
+
+extension CustomTabBar {
+    func setGradient(color1: UIColor, color2: UIColor) {
+        let gradient: CAGradientLayer = CAGradientLayer()
+        gradient.colors = [color1.cgColor, color2.cgColor]
+        gradient.locations = [0.0, 1.0]
+        gradient.startPoint = CGPoint(x: 0.5, y: 0.0)
+        gradient.endPoint = CGPoint(x: 0.5, y: 1.0)
+        gradient.frame = bounds
+        gradient.cornerRadius = 35
+        layer.addSublayer(gradient)
     }
 }

@@ -53,33 +53,73 @@ class FrontViewController: UIViewController {
 extension FrontViewController {
     private func setList() {
         imageList.append(contentsOf: [ "bg1",
-                                       "bg2"
+                                       "bg1",
+                                       "bg2",
+                                       "bg3",
+                                       "bg4",
+                                       "bg5"
                                      ])
         cardNameList.append(contentsOf: [ "SOPT 28기 명함",
+                                          "SOPT 28기 명함",
+                                          "SOPT 28기 명함",
+                                          "SOPT 28기 명함",
+                                          "SOPT 28기 명함",
                                           "SOPT 28기 명함"
                                         ])
         detailCardNameList.append(contentsOf: [ "28기 디자인파트원",
+                                                "28기 디자인파트원",
+                                                "28기 디자인파트원",
+                                                "28기 디자인파트원",
+                                                "28기 디자인파트원",
                                                 "28기 디자인파트원"
                                               ])
         userNameList.append(contentsOf: ["김태양",
+                                         "김태양",
+                                         "김태양",
+                                         "김태양",
+                                         "김태양",
                                          "김태양"
                                         ])
         birthList.append(contentsOf: [ "2002/11/06 (20세)",
+                                       "2002/11/06 (20세)",
+                                       "2002/11/06 (20세)",
+                                       "2002/11/06 (20세)",
+                                       "2002/11/06 (20세)",
                                        "2002/11/06 (20세)"
                                      ])
         mbtiList.append(contentsOf: [ "ISTJ",
+                                      "ISTJ",
+                                      "ISTJ",
+                                      "ISTJ",
+                                      "ISTJ",
                                       "ISTJ"
                                     ])
         instagramIDList.append(contentsOf: [ "@passio84ever",
+                                             "@passio84ever",
+                                             "@passio84ever",
+                                             "@passio84ever",
+                                             "@passio84ever",
                                              "@passio84ever"
                                            ])
         linkImageList.append(contentsOf: [ "testLink",
+                                           "testLink",
+                                           "testLink",
+                                           "testLink",
+                                           "testLink",
                                            "testLink"
                                          ])
         linkTextList.append(contentsOf: [ "Blog",
+                                          "Blog",
+                                          "Blog",
+                                          "Blog",
+                                          "Blog",
                                           "Blog"
                                         ])
         linkIDList.append(contentsOf: [ "blog.naver.com/\npark_yunjung",
+                                        "blog.naver.com/\npark_yunjung",
+                                        "blog.naver.com/\npark_yunjung",
+                                        "blog.naver.com/\npark_yunjung",
+                                        "blog.naver.com/\npark_yunjung",
                                         "blog.naver.com/\npark_yunjung"
                                       ])
     }

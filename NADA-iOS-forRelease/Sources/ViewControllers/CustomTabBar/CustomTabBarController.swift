@@ -10,6 +10,7 @@ import UIKit
 
 class CustomTabBarController: UITabBarController {
     
+    // MARK: - Properties
     @IBInspectable public var tintColor: UIColor? {
         didSet {
             customTabBar.tintColor = tintColor
@@ -41,10 +42,11 @@ class CustomTabBarController: UITabBarController {
         }
     }
     
-    private var bottomSpacing: CGFloat = 7
+    private var bottomSpacing: CGFloat = 5
     private var tabBarHeight: CGFloat = 70
     private var horizontleSpacing: CGFloat = 75
     
+    // MARK: - Life Cycles
     override open func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,8 +61,10 @@ class CustomTabBarController: UITabBarController {
         customTabBar.select(at: selectedIndex)
         customTabBar.setGradient(color1: UIColor(red: 1, green: 1, blue: 1, alpha: 0.35),
                                  color2: UIColor(red: 1, green: 1, blue: 1, alpha: 0.15))
+        customTabBar.setBlur()
     }
     
+    // MARK: - Functions
     public func setTabBarHidden(_ isHidden: Bool, animated: Bool) {
         let block = {
             self.customTabBar.alpha = isHidden ? 0 : 1
@@ -109,7 +113,7 @@ class CustomTabBarController: UITabBarController {
         customTabBar.tintColor = tintColor
     }
 }
-
+// MARK: - Extensions
 extension CustomTabBarController: CardTabBarDelegate {
     func cardTabBar(_ sender: CustomTabBar, didSelectItemAt index: Int) {
         self.selectedIndex = index
@@ -117,6 +121,7 @@ extension CustomTabBarController: CardTabBarDelegate {
 }
 
 extension CustomTabBar {
+    // 그라데이션 효과 적용
     func setGradient(color1: UIColor, color2: UIColor) {
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.colors = [color1.cgColor, color2.cgColor]
@@ -126,5 +131,16 @@ extension CustomTabBar {
         gradient.frame = bounds
         gradient.cornerRadius = 35
         layer.addSublayer(gradient)
+    }
+    
+    // Blur Effect 적용
+    func setBlur() {
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.bounds
+        blurEffectView.layer.cornerRadius = 35
+        blurEffectView.clipsToBounds = true
+        self.addSubview(blurEffectView)
+        self.sendSubviewToBack(blurEffectView)
     }
 }

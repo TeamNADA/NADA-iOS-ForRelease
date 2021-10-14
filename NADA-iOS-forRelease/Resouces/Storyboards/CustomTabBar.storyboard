@@ -49,7 +49,7 @@
         <scene sceneID="5ba-ro-f6A">
             <objects>
                 <viewControllerPlaceholder storyboardIdentifier="Group" storyboardName="Group" id="8MW-XI-FLU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Group" image="myCardBtn" id="VjP-2J-EEK"/>
+                    <tabBarItem key="tabBarItem" title="Group" image="mycardBtn" id="VjP-2J-EEK"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0hA-Lx-Oun" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -58,7 +58,7 @@
     </scenes>
     <resources>
         <image name="homeBtnOnClick" width="30" height="30"/>
-        <image name="myCardBtn" width="30" height="30"/>
+        <image name="mycardBtn" width="30" height="30"/>
         <namedColor name="white1">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

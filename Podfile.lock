@@ -1,6 +1,5 @@
 PODS:
   - Alamofire (5.4.3)
-  - FLUtilities (0.1.0)
   - KakaoSDKAuth (2.5.6):
     - KakaoSDKCommon (= 2.5.6)
   - KakaoSDKCommon (2.5.6):
@@ -21,7 +20,6 @@ PODS:
   - VerticalCardSwiper (2.3.1)
 
 DEPENDENCIES:
-  - FLUtilities (from `https://github.com/Nickelfox/FLUtilities.git`, branch `develop`)
   - KakaoSDKUser
   - Moya (~> 14.0)
   - SkeletonView
@@ -39,19 +37,8 @@ SPEC REPOS:
     - SwiftLint
     - VerticalCardSwiper
 
-EXTERNAL SOURCES:
-  FLUtilities:
-    :branch: develop
-    :git: https://github.com/Nickelfox/FLUtilities.git
-
-CHECKOUT OPTIONS:
-  FLUtilities:
-    :commit: eef14072880333c5b97e54c672387f4f34bcecc5
-    :git: https://github.com/Nickelfox/FLUtilities.git
-
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
-  FLUtilities: 1b101734a35e894fd019e3fe6b430214c8fa3186
   KakaoSDKAuth: 1e1fa737e78eed3f301ab5c164526781a37a42f9
   KakaoSDKCommon: cdf340a8f671eef75f4ca012003cb350af3c4b6d
   KakaoSDKUser: f488aa4699b3fd3a836ab5c7e25e2cb4cea190c1
@@ -60,6 +47,6 @@ SPEC CHECKSUMS:
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   VerticalCardSwiper: 68df635b354500f86934ea044ade37a264c044c6
 
-PODFILE CHECKSUM: 9ce82b6d6e7f63822904e6b7bbdd799093e97269
+PODFILE CHECKSUM: ed90d25629de2c0d09e14aa4277ccf85ccb9037a
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2

@@ -23,7 +23,7 @@
                             <color key="value" name="white1"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="tabBarBackgroundColor">
-                            <color key="value" name="gray1"/>
+                            <color key="value" name="white3"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
@@ -49,7 +49,7 @@
         <scene sceneID="5ba-ro-f6A">
             <objects>
                 <viewControllerPlaceholder storyboardIdentifier="Group" storyboardName="Group" id="8MW-XI-FLU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Group" image="myCardBtn" id="VjP-2J-EEK"/>
+                    <tabBarItem key="tabBarItem" title="Group" image="mycardBtn" id="VjP-2J-EEK"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0hA-Lx-Oun" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -58,12 +58,12 @@
     </scenes>
     <resources>
         <image name="homeBtnOnClick" width="30" height="30"/>
-        <image name="myCardBtn" width="30" height="30"/>
-        <namedColor name="gray1">
-            <color red="0.42352941176470588" green="0.42352941176470588" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <image name="mycardBtn" width="30" height="30"/>
         <namedColor name="white1">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white3">
+            <color red="1" green="1" blue="1" alpha="0.30000001192092896" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

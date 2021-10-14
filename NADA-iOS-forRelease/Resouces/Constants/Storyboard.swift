@@ -11,12 +11,12 @@ extension Const {
     struct Storyboard {
         
         struct Name {
-            static let CardCreation = "CardCreation"
-            static let Login = "Login"
-            static let CardList = "CardList"
-            static let Front = "Front"
-            static let Group = "Group"
-            static let CustomTabBar = "CustomTabBar"
+            static let cardCreation = "CardCreation"
+            static let login = "Login"
+            static let cardList = "CardList"
+            static let front = "Front"
+            static let group = "Group"
+            static let customTabBar = "CustomTabBar"
         }
         
     }

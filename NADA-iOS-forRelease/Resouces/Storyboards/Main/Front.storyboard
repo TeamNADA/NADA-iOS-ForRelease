@@ -75,8 +75,19 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wDj-gp-dYn" customClass="VerticalCardSwiper" customModule="VerticalCardSwiper">
-                                <rect key="frame" x="0.0" y="109" width="375" height="669"/>
+                                <rect key="frame" x="0.0" y="109" width="375" height="703"/>
                                 <color key="backgroundColor" name="black"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                                        <real key="value" value="9"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cardSpacing">
+                                        <real key="value" value="28"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="visibleNextCardHeight">
+                                        <real key="value" value="150"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -84,7 +95,7 @@
                         <constraints>
                             <constraint firstItem="QnQ-Yt-6c0" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="8Ph-LL-Rp0"/>
                             <constraint firstItem="wDj-gp-dYn" firstAttribute="top" secondItem="QnQ-Yt-6c0" secondAttribute="bottom" id="F93-Yd-v2M"/>
-                            <constraint firstAttribute="bottom" secondItem="wDj-gp-dYn" secondAttribute="bottom" constant="34" id="IW5-Fp-jzx"/>
+                            <constraint firstAttribute="bottom" secondItem="wDj-gp-dYn" secondAttribute="bottom" id="IW5-Fp-jzx"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="QnQ-Yt-6c0" secondAttribute="trailing" id="Pot-gQ-ULg"/>
                             <constraint firstItem="QnQ-Yt-6c0" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="W4T-GW-QCg"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="wDj-gp-dYn" secondAttribute="trailing" id="ZIB-d9-Ftk"/>

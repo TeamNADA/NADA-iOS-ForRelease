@@ -11,11 +11,13 @@ extension Const {
     struct ViewController {
         
         struct Identifier {
-            static let CardCreationViewController = "CardCreationViewController"
-            static let LoginViewController = "LoginViewController"
-            static let CardListViewController = "CardListViewController"
-            static let FrontViewController = "FrontViewController"
+            static let cardCreationViewController = "CardCreationViewController"
+            static let loginViewController = "LoginViewController"
+            static let cardListViewController = "CardListViewController"
+            static let frontViewController = "FrontViewController"
+            static let groupViewController = "GroupViewController"
+            static let tabBarViewController = "TabBarViewController"
+            static let customTabBarController = "CustomTabBarController"
         }
-        
     }
 }

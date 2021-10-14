@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 extension UIViewController {
+    
     // Common Alert
     func makeAlert(title: String,
                    message: String,
@@ -32,4 +33,5 @@ extension UIViewController {
         
         self.present(alertViewController, animated: true, completion: completion)
     }
+    
 }

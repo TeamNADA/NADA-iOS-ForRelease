@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eRZ-8q-um0">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Custom Tab Bar Controller-->
+        <scene sceneID="oiP-4J-oIi">
+            <objects>
+                <tabBarController storyboardIdentifier="CustomTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="eRZ-8q-um0" customClass="CustomTabBarController" customModule="NADA_iOS_forRelease" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IDI-Fs-Cpv">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="white1"/>
+                    </tabBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                            <color key="value" name="white1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="tabBarBackgroundColor">
+                            <color key="value" name="white3"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="3n9-65-2Zt" kind="relationship" relationship="viewControllers" id="YqW-H3-cvm"/>
+                        <segue destination="8MW-XI-FLU" kind="relationship" relationship="viewControllers" id="NhT-GM-FlB"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yc7-aF-71N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="94.581280788177338"/>
+        </scene>
+        <!--Front-->
+        <scene sceneID="NEi-CT-Crw">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Front" storyboardName="Front" id="3n9-65-2Zt" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="homeBtnOnClick" id="UAL-yR-u56"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7CF-Kp-fcq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="724" y="35"/>
+        </scene>
+        <!--Group-->
+        <scene sceneID="5ba-ro-f6A">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Group" storyboardName="Group" id="8MW-XI-FLU" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Group" image="mycardBtn" id="VjP-2J-EEK"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0hA-Lx-Oun" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="727" y="134"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="homeBtnOnClick" width="30" height="30"/>
+        <image name="mycardBtn" width="30" height="30"/>
+        <namedColor name="white1">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white3">
+            <color red="1" green="1" blue="1" alpha="0.30000001192092896" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

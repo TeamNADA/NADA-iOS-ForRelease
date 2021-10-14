@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Front View Controller-->
+        <!--Home-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController storyboardIdentifier="FrontViewController" id="Y6W-OH-hqX" customClass="FrontViewController" customModule="NADA_iOS_forRelease" customModuleProvider="target" sceneMemberID="viewController">
@@ -20,14 +20,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QnQ-Yt-6c0">
                                 <rect key="frame" x="0.0" y="44" width="375" height="65"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JIR-f3-VcW">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JIR-f3-VcW">
                                         <rect key="frame" x="32" y="24" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="JIR-f3-VcW" secondAttribute="height" id="scM-CY-Nf2"/>
                                             <constraint firstAttribute="width" constant="24" id="yvQ-YM-dAK"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="B"/>
+                                        <state key="normal" image="personWhite"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내 명함" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wmQ-mM-ggB">
                                         <rect key="frame" x="70" y="24" width="73" height="31.333333333333329"/>
@@ -44,16 +44,18 @@
                                                     <constraint firstAttribute="width" constant="24" id="Bag-OJ-ABO"/>
                                                     <constraint firstAttribute="width" secondItem="lcE-gz-5aV" secondAttribute="height" multiplier="1:1" id="gRu-lm-T4I"/>
                                                 </constraints>
+                                                <color key="tintColor" name="white"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" image="viewListBlack"/>
                                                 <connections>
                                                     <action selector="pushToCardListView:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Fmp-83-YAT"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xkB-Yv-PAo">
                                                 <rect key="frame" x="44" y="0.0" width="24" height="24"/>
+                                                <color key="tintColor" name="white"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" image="addCircleBlack"/>
                                                 <connections>
                                                     <action selector="presentToCardCreationView:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Ce8-Q3-50O"/>
                                                 </connections>
@@ -73,8 +75,19 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wDj-gp-dYn" customClass="VerticalCardSwiper" customModule="VerticalCardSwiper">
-                                <rect key="frame" x="0.0" y="109" width="375" height="669"/>
+                                <rect key="frame" x="0.0" y="109" width="375" height="703"/>
                                 <color key="backgroundColor" name="black"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                                        <real key="value" value="9"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cardSpacing">
+                                        <real key="value" value="28"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="visibleNextCardHeight">
+                                        <real key="value" value="150"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -82,13 +95,15 @@
                         <constraints>
                             <constraint firstItem="QnQ-Yt-6c0" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="8Ph-LL-Rp0"/>
                             <constraint firstItem="wDj-gp-dYn" firstAttribute="top" secondItem="QnQ-Yt-6c0" secondAttribute="bottom" id="F93-Yd-v2M"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="wDj-gp-dYn" secondAttribute="bottom" id="IW5-Fp-jzx"/>
+                            <constraint firstAttribute="bottom" secondItem="wDj-gp-dYn" secondAttribute="bottom" id="IW5-Fp-jzx"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="QnQ-Yt-6c0" secondAttribute="trailing" id="Pot-gQ-ULg"/>
                             <constraint firstItem="QnQ-Yt-6c0" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="W4T-GW-QCg"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="wDj-gp-dYn" secondAttribute="trailing" id="ZIB-d9-Ftk"/>
                             <constraint firstItem="wDj-gp-dYn" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="hRq-Hl-TFx"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Home" image="homeBtnOnClick" id="VDP-2f-dqN"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="cardSwiper" destination="wDj-gp-dYn" id="5G0-dA-eHs"/>
                     </connections>
@@ -99,6 +114,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="addCircleBlack" width="24" height="24"/>
+        <image name="homeBtnOnClick" width="30" height="30"/>
+        <image name="personWhite" width="24" height="24"/>
+        <image name="viewListBlack" width="24" height="24"/>
         <namedColor name="black">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

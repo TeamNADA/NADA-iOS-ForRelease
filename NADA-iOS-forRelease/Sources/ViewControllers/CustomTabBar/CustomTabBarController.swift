@@ -83,16 +83,16 @@ class CustomTabBarController: UITabBarController {
         
         smallBottomView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
-        let cr: NSLayoutConstraint
+        let constraint: NSLayoutConstraint
         
         if #available(iOS 11.0, *) {
-            cr = smallBottomView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: tabBarHeight)
+            constraint = smallBottomView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: tabBarHeight)
         } else {
-            cr = smallBottomView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: tabBarHeight)
+            constraint = smallBottomView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: tabBarHeight)
         }
         
-        cr.priority = .defaultHigh
-        cr.isActive = true
+        constraint.priority = .defaultHigh
+        constraint.isActive = true
         
         smallBottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         smallBottomView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true

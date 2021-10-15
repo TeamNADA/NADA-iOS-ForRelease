@@ -21,7 +21,7 @@ class FrontViewController: UIViewController {
     private var linkImageList = [String]()
     private var linkTextList = [String]()
     private var linkIDList = [String]()
-
+    
     private var mintImageList = [String]()
     private var noMintImageList = [String]()
     private var sojuImageList = [String]()
@@ -56,14 +56,22 @@ class FrontViewController: UIViewController {
         setBackList()
         
     }
-
+    
     // MARK: - @IBAction
     // 명함 리스트 뷰로 화면 전환
     @IBAction func pushToCardListView(_ sender: Any) {
+        guard let nextVC = UIStoryboard(name: "CardList", bundle: nil).instantiateViewController(identifier: "CardListViewController") as? CardListViewController else { return }
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
     // 명함 생성 뷰로 화면 전환
     @IBAction func presentToCardCreationView(_ sender: Any) {
+        let stortboard = UIStoryboard(name: "CardCreation", bundle: nil)
+
+        if let nextVC = stortboard.instantiateViewController(identifier: "CardCreationViewController") as? CardCreationViewController {
+                nextVC.modalPresentationStyle = .overFullScreen
+            self.present(nextVC, animated: true, completion: nil)
+        }
     }
 }
 
@@ -131,26 +139,32 @@ extension FrontViewController {
                                               ""
                                              ])
         firstAnswerList.append(contentsOf: ["질문에 대한 대답입니다.",
-                                              ""
-                                             ])
+                                            ""
+                                           ])
         secondQuestionList.append(contentsOf: ["Q2. 직접 질문 추가",
-                                              ""
-                                             ])
+                                               ""
+                                              ])
         secondAnswerList.append(contentsOf: ["질문에 대한 대답입니다.",
-                                              ""
-                                             ])
+                                             ""
+                                            ])
     }
 }
 
 // VerticalCardSwiperDelegate
 extension FrontViewController: VerticalCardSwiperDelegate {
     func didTapCard(verticalCardSwiperView: VerticalCardSwiperView, index: Int) {
+        let frontCell = cardSwiper.cardForItem(at: index)
+        let backCell = cardSwiper.cardForItem(at: index)
         if isFrontCard[index] {
-            cardSwiper.reloadData()
             isFrontCard[index] = false
+            UIView.transition(with: frontCell ?? CardCell(), duration: 0.5, options: .transitionFlipFromLeft, animations: nil, completion: {_ in
+                self.cardSwiper.reloadData()
+            })
         } else {
-            cardSwiper.reloadData()
             isFrontCard[index] = true
+            UIView.transition(with: backCell ?? CardCell(), duration: 0.5, options: .transitionFlipFromRight, animations: nil, completion: {_ in
+                self.cardSwiper.reloadData()
+            })
         }
     }
 }
@@ -163,18 +177,17 @@ extension FrontViewController: VerticalCardSwiperDatasource {
     
     func cardForItemAt(verticalCardSwiperView: VerticalCardSwiperView, cardForItemAt index: Int) -> CardCell {
         if isFrontCard[index] {
-            guard let cell = verticalCardSwiperView.dequeueReusableCell(withReuseIdentifier: "FrontCardCell", for: index) as? FrontCardCell else {
+            guard let frontCell = verticalCardSwiperView.dequeueReusableCell(withReuseIdentifier: "FrontCardCell", for: index) as? FrontCardCell else {
                 return CardCell()
             }
-            cell.initCell(imageList[index], cardNameList[index], detailCardNameList[index], userNameList[index], birthList[index], mbtiList[index], instagramIDList[index], linkImageList[index], linkTextList[index], linkIDList[index])
-            return cell
-            
+            frontCell.initCell(imageList[index], cardNameList[index], detailCardNameList[index], userNameList[index], birthList[index], mbtiList[index], instagramIDList[index], linkImageList[index], linkTextList[index], linkIDList[index])
+            return frontCell
         } else {
-            guard let cell = verticalCardSwiperView.dequeueReusableCell(withReuseIdentifier: "BackCardCell", for: index) as? BackCardCell else {
+            guard let backCell = verticalCardSwiperView.dequeueReusableCell(withReuseIdentifier: "BackCardCell", for: index) as? BackCardCell else {
                 return CardCell()
             }
-            cell.initCell(imageList[index], mintImageList[index], noMintImageList[index], sojuImageList[index], beerImageList[index], pourImageList[index], putSauceImageList[index], yangnyumImageList[index], friedImageList[index], firstQuestionList[index], firstAnswerList[index], secondQuestionList[index], secondAnswerList[index])
-            return cell
+            backCell.initCell(imageList[index], mintImageList[index], noMintImageList[index], sojuImageList[index], beerImageList[index], pourImageList[index], putSauceImageList[index], yangnyumImageList[index], friedImageList[index], firstQuestionList[index], firstAnswerList[index], secondQuestionList[index], secondAnswerList[index])
+            return backCell
         }
     }
 }

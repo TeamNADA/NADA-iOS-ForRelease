@@ -27,6 +27,12 @@ class CardListViewController: UIViewController {
         cardListTableView.dataSource = self
     }
     
+    // MARK: - IBAction
+    @IBAction func dismissToPreviousView(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    
     // MARK: - Functions
     func setCardList() {
         cardItems.append(contentsOf: [
@@ -76,7 +82,7 @@ extension CardListViewController: UITableViewDataSource {
         guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.cardListTableViewCell, for: indexPath) as? CardListTableViewCell else { return UITableViewCell() }
         
         serviceCell.initData(title: cardItems[indexPath.row].title,
-                            date: cardItems[indexPath.row].date)
+                             date: cardItems[indexPath.row].date)
         
         return serviceCell
     }

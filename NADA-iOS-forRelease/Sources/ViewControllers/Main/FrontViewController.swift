@@ -11,6 +11,7 @@ import VerticalCardSwiper
 class FrontViewController: UIViewController {
     
     // MARK: - Properteis
+    // 앞면
     private var imageList = [String]()
     private var cardNameList = [String]()
     private var detailCardNameList = [String]()
@@ -22,6 +23,7 @@ class FrontViewController: UIViewController {
     private var linkTextList = [String]()
     private var linkIDList = [String]()
     
+    // 뒷면
     private var mintImageList = [String]()
     private var noMintImageList = [String]()
     private var sojuImageList = [String]()
@@ -37,10 +39,10 @@ class FrontViewController: UIViewController {
     
     var isFrontCard: [Bool] = [true, true]
     
-    // MARK: - @IBOutlet
+    // MARK: - @IBOutlet Properties
     @IBOutlet weak var cardSwiper: VerticalCardSwiper!
     
-    // MARK: - Life Cycle
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,25 +59,22 @@ class FrontViewController: UIViewController {
         
     }
     
-    // MARK: - @IBAction
+    // MARK: - @IBAction Properties
     // 명함 리스트 뷰로 화면 전환
     @IBAction func pushToCardListView(_ sender: Any) {
-        guard let nextVC = UIStoryboard(name: "CardList", bundle: nil).instantiateViewController(identifier: "CardListViewController") as? CardListViewController else { return }
+        let nextVC = UIStoryboard(name: Const.Storyboard.Name.cardList, bundle: nil).instantiateViewController(identifier: Const.ViewController.Identifier.cardListViewController)
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
     // 명함 생성 뷰로 화면 전환
     @IBAction func presentToCardCreationView(_ sender: Any) {
-        let stortboard = UIStoryboard(name: "CardCreation", bundle: nil)
-
-        if let nextVC = stortboard.instantiateViewController(identifier: "CardCreationViewController") as? CardCreationViewController {
-                nextVC.modalPresentationStyle = .overFullScreen
-            self.present(nextVC, animated: true, completion: nil)
-        }
+        let nextVC = UIStoryboard(name: Const.Storyboard.Name.cardCreation, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardCreationViewController)
+        nextVC.modalPresentationStyle = .overFullScreen
+        self.present(nextVC, animated: true, completion: nil)
     }
 }
 
-// MARK: - Extension
+// MARK: - Extensions
 extension FrontViewController {
     private func setFrontList() {
         imageList.append(contentsOf: ["bg1",
@@ -150,26 +149,26 @@ extension FrontViewController {
     }
 }
 
-// VerticalCardSwiperDelegate
+// MARK: - VerticalCardSwiperDelegate
 extension FrontViewController: VerticalCardSwiperDelegate {
     func didTapCard(verticalCardSwiperView: VerticalCardSwiperView, index: Int) {
         let frontCell = cardSwiper.cardForItem(at: index)
         let backCell = cardSwiper.cardForItem(at: index)
         if isFrontCard[index] {
             isFrontCard[index] = false
-            UIView.transition(with: frontCell ?? CardCell(), duration: 0.5, options: .transitionFlipFromLeft, animations: nil, completion: {_ in
+            UIView.transition(with: frontCell ?? CardCell(), duration: 0.5, options: .transitionFlipFromLeft, animations: nil) {_ in
                 self.cardSwiper.reloadData()
-            })
+            }
         } else {
             isFrontCard[index] = true
-            UIView.transition(with: backCell ?? CardCell(), duration: 0.5, options: .transitionFlipFromRight, animations: nil, completion: {_ in
+            UIView.transition(with: backCell ?? CardCell(), duration: 0.5, options: .transitionFlipFromRight, animations: nil) {_ in
                 self.cardSwiper.reloadData()
-            })
+            }
         }
     }
 }
 
-// VerticalCardSwiperDatasource
+// MARK: - VerticalCardSwiperDatasource
 extension FrontViewController: VerticalCardSwiperDatasource {
     func numberOfCards(verticalCardSwiperView: VerticalCardSwiperView) -> Int {
         return imageList.count

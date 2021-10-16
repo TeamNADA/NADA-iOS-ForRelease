@@ -25,17 +25,19 @@ class BackCardCell: CardCell {
     @IBOutlet weak var secondQuestionLabel: UILabel!
     @IBOutlet weak var secondAnswerLabel: UILabel!
     
-    // MARK: - Life Cycle
+    // MARK: - View Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
         setUI()
     }
     
+    // MARK: - Functions
     static func nib() -> UINib {
         return UINib(nibName: "BackCardCell", bundle: nil)
     }
 }
 
+// MARK: - Extensions
 extension BackCardCell {
     private func setUI() {
         

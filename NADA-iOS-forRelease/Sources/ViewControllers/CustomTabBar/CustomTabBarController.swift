@@ -46,7 +46,7 @@ class CustomTabBarController: UITabBarController {
     private var tabBarHeight: CGFloat = 70
     private var horizontleSpacing: CGFloat = 75
     
-    // MARK: - Life Cycles
+    // MARK: - View Life Cycle
     override open func viewDidLoad() {
         super.viewDidLoad()
         
@@ -113,13 +113,14 @@ class CustomTabBarController: UITabBarController {
         customTabBar.tintColor = tintColor
     }
 }
-// MARK: - Extensions
+// MARK: - CardTabBarDelegate
 extension CustomTabBarController: CardTabBarDelegate {
     func cardTabBar(_ sender: CustomTabBar, didSelectItemAt index: Int) {
         self.selectedIndex = index
     }
 }
 
+// MARK: - Extensions
 extension CustomTabBar {
     // 그라데이션 효과 적용
     func setGradient(color1: UIColor, color2: UIColor) {

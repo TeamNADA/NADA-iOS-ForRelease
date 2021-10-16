@@ -143,6 +143,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="square.and.pencil" catalog="system" width="128" height="115"/>
+        <image name="square.and.pencil" catalog="system" width="32" height="32"/>
     </resources>
 </document>

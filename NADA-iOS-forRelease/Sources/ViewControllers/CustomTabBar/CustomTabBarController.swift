@@ -46,7 +46,7 @@ class CustomTabBarController: UITabBarController {
     private var tabBarHeight: CGFloat = 70
     private var horizontleSpacing: CGFloat = 75
     
-    // MARK: - Life Cycles
+    // MARK: - View Life Cycle
     override open func viewDidLoad() {
         super.viewDidLoad()
         
@@ -83,16 +83,16 @@ class CustomTabBarController: UITabBarController {
         
         smallBottomView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
-        let cr: NSLayoutConstraint
+        let constraint: NSLayoutConstraint
         
         if #available(iOS 11.0, *) {
-            cr = smallBottomView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: tabBarHeight)
+            constraint = smallBottomView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: tabBarHeight)
         } else {
-            cr = smallBottomView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: tabBarHeight)
+            constraint = smallBottomView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: tabBarHeight)
         }
         
-        cr.priority = .defaultHigh
-        cr.isActive = true
+        constraint.priority = .defaultHigh
+        constraint.isActive = true
         
         smallBottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         smallBottomView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -113,13 +113,14 @@ class CustomTabBarController: UITabBarController {
         customTabBar.tintColor = tintColor
     }
 }
-// MARK: - Extensions
+// MARK: - CardTabBarDelegate
 extension CustomTabBarController: CardTabBarDelegate {
     func cardTabBar(_ sender: CustomTabBar, didSelectItemAt index: Int) {
         self.selectedIndex = index
     }
 }
 
+// MARK: - Extensions
 extension CustomTabBar {
     // 그라데이션 효과 적용
     func setGradient(color1: UIColor, color2: UIColor) {

@@ -10,21 +10,27 @@ import Moya
 
 class CardListViewController: UIViewController {
     
-    // MARK: - IBOutlet
-    @IBOutlet weak var cardListTableView: UITableView!
-    
     // MARK: - Properties
     var cardItems: [CardListDataModel] = []
     
-    // MARK: - Life Cycle
+    // MARK: - IBOutlet Properties
+    @IBOutlet weak var cardListTableView: UITableView!
+    
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setCardList()
         
         cardListTableView.register(CardListTableViewCell.nib(), forCellReuseIdentifier: "CardListTableViewCell")
+        
         cardListTableView.delegate = self
         cardListTableView.dataSource = self
+    }
+    
+    // MARK: - IBAction Properties
+    @IBAction func dismissToPreviousView(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Functions
@@ -41,8 +47,7 @@ class CardListViewController: UIViewController {
     }
 }
 
-// MARK: - Extensions
-// TableViewDelegate
+// MARK: - UITableViewDelegate
 extension CardListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
@@ -66,7 +71,7 @@ extension CardListViewController: UITableViewDelegate {
     }
 }
 
-// TableViewDataSource
+// MARK: - UITableViewDataSource
 extension CardListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cardItems.count
@@ -76,7 +81,7 @@ extension CardListViewController: UITableViewDataSource {
         guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.cardListTableViewCell, for: indexPath) as? CardListTableViewCell else { return UITableViewCell() }
         
         serviceCell.initData(title: cardItems[indexPath.row].title,
-                            date: cardItems[indexPath.row].date)
+                             date: cardItems[indexPath.row].date)
         
         return serviceCell
     }

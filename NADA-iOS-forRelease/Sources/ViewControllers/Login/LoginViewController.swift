@@ -9,14 +9,14 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-    // MARK: - Life Cycle
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-    // MARK: - IBAction
+    // MARK: - IBAction Properties
     // 카카오톡으로 로그인 버튼 클릭 시
     @IBAction func kakaoLoginButton(_ sender: Any) {
         

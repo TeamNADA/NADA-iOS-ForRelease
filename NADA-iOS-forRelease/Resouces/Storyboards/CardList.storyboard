@@ -23,9 +23,12 @@
                                     <constraint firstAttribute="width" secondItem="lgy-Hk-Rnf" secondAttribute="height" id="cBY-TA-Nai"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" image="arrowBackIosNewWhite">
+                                <state key="normal" image="arrowBackWhite">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="dismissToPreviousView:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="FyT-yw-Rdn"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="리스트" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSB-Wx-Jzl">
                                 <rect key="frame" x="72" y="67" width="68" height="32"/>
@@ -64,6 +67,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrowBackIosNewWhite" width="24" height="24"/>
+        <image name="arrowBackWhite" width="24" height="24"/>
     </resources>
 </document>

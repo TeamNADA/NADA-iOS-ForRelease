@@ -57,7 +57,7 @@ class CardListViewController: UIViewController {
 // MARK: - UITableViewDelegate
 extension CardListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
+        return 76   
     }
     
     // Swipe Action

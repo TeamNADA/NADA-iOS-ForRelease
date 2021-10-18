@@ -62,6 +62,15 @@ class CustomTabBarController: UITabBarController {
         customTabBar.setGradient(color1: UIColor(red: 1, green: 1, blue: 1, alpha: 0.35),
                                  color2: UIColor(red: 1, green: 1, blue: 1, alpha: 0.15))
         customTabBar.setBlur()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(nextClickRecieved),
+                                               name: NSNotification.Name("deleteTabBar"),
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(prviousClickRecieved),
+                                               name: NSNotification.Name("expressTabBar"),
+                                               object: nil)
     }
     
     // MARK: - Functions
@@ -113,6 +122,7 @@ class CustomTabBarController: UITabBarController {
         customTabBar.tintColor = tintColor
     }
 }
+
 // MARK: - CardTabBarDelegate
 extension CustomTabBarController: CardTabBarDelegate {
     func cardTabBar(_ sender: CustomTabBar, didSelectItemAt index: Int) {
@@ -120,7 +130,19 @@ extension CustomTabBarController: CardTabBarDelegate {
     }
 }
 
-// MARK: - Extensions
+// MARK: - CustomTabBarController Extensions
+extension CustomTabBarController {
+    // 탭바의 hidden 상태처리 함수
+    @objc func nextClickRecieved() {
+        setTabBarHidden(true, animated: false)
+    }
+    
+    @objc func prviousClickRecieved() {
+        setTabBarHidden(false, animated: false)
+    }
+}
+
+// MARK: - CustomTabBar Extensions
 extension CustomTabBar {
     // 그라데이션 효과 적용
     func setGradient(color1: UIColor, color2: UIColor) {

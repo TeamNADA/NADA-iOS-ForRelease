@@ -11,7 +11,7 @@
         <!--Custom Tab Bar Controller-->
         <scene sceneID="oiP-4J-oIi">
             <objects>
-                <tabBarController storyboardIdentifier="CustomTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="eRZ-8q-um0" customClass="CustomTabBarController" customModule="NADA_iOS_forRelease" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="CustomTabBarController" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="eRZ-8q-um0" customClass="CustomTabBarController" customModule="NADA_iOS_forRelease" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IDI-Fs-Cpv">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

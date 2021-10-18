@@ -20,12 +20,15 @@ class CardListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationBackSwipeMotion()
+        
         setCardList()
         
         cardListTableView.register(CardListTableViewCell.nib(), forCellReuseIdentifier: "CardListTableViewCell")
         
         cardListTableView.delegate = self
         cardListTableView.dataSource = self
+        
     }
     
     // MARK: - IBAction Properties
@@ -44,6 +47,10 @@ class CardListViewController: UIViewController {
             CardListDataModel(title: "SOPT 28기 명함", date: "2021/08/29"),
             CardListDataModel(title: "SOPT 28기 명함", date: "2021/08/29")
         ])
+    }
+    
+    func navigationBackSwipeMotion() {
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
 }
 

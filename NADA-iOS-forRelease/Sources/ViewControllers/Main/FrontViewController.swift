@@ -63,6 +63,7 @@ class FrontViewController: UIViewController {
     // 명함 리스트 뷰로 화면 전환
     @IBAction func pushToCardListView(_ sender: Any) {
         let nextVC = UIStoryboard(name: Const.Storyboard.Name.cardList, bundle: nil).instantiateViewController(identifier: Const.ViewController.Identifier.cardListViewController)
+        
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     

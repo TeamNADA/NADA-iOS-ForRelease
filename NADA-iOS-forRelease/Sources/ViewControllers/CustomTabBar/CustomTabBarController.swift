@@ -65,7 +65,7 @@ class CustomTabBarController: UITabBarController {
     }
     
     // MARK: - Functions
-    public func setTabBarHidden(_ isHidden: Bool, animated: Bool) {
+    private func setTabBarHidden(_ isHidden: Bool, animated: Bool) {
         let block = {
             self.customTabBar.alpha = isHidden ? 0 : 1
             self.additionalSafeAreaInsets = isHidden ? .zero : UIEdgeInsets(top: 0, left: 0, bottom: self.tabBarHeight + self.bottomSpacing, right: 0)

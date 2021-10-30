@@ -55,6 +55,9 @@
                         </constraints>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                         <state key="normal" image="reorderBlack"/>
+                        <connections>
+                            <action selector="reorderButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7av-2F-TNo"/>
+                        </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gqs-4Z-ROz">
                         <rect key="frame" x="0.0" y="75" width="375" height="1"/>

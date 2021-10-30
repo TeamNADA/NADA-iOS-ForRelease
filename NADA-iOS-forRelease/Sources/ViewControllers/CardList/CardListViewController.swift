@@ -30,9 +30,17 @@ class CardListViewController: UIViewController {
         cardListTableView.delegate = self
         cardListTableView.dataSource = self
         
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressCalled(_:)))
-        cardListTableView.addGestureRecognizer(longPressGesture)
+        self.cardListTableView.allowsSelection = false
         
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressCalled(gestureRecognizer:)))
+        cardListTableView.addGestureRecognizer(longPressGesture)
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        cardListTableView.reloadData()
     }
     
     // MARK: - IBAction Properties
@@ -60,7 +68,8 @@ class CardListViewController: UIViewController {
     func snapShotOfCall(_ inputView: UIView) -> UIView {
         UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, false, 0.0)
         inputView.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let image = UIGraphicsGetImageFromCurrentImageContext()! as UIImage
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
         
         let cellSnapshot: UIView = UIImageView(image: image)
         cellSnapshot.layer.masksToBounds = false
@@ -70,74 +79,6 @@ class CardListViewController: UIViewController {
         cellSnapshot.layer.shadowOpacity = 0.4
         
         return cellSnapshot
-    }
-    
-    @objc func longPressCalled(_ longPress: UILongPressGestureRecognizer) {
-        let locationInView = longPress.location(in: cardListTableView)
-        let indexPath = cardListTableView.indexPathForRow(at: locationInView)
-        
-        struct MyCell {
-            static var cellSnapShot: UIView?
-        }
-        
-        struct Path {
-            static var initialIndexPath: IndexPath?
-        }
-        
-        switch longPress.state {
-            
-        case UIGestureRecognizer.State.began:
-            guard let indexPath = indexPath else {
-                return
-            }
-            guard let cell = cardListTableView.cellForRow(at: indexPath) else { return }
-            Path.initialIndexPath = indexPath
-            MyCell.cellSnapShot = snapShotOfCall(cell)
-            
-            var center = cell.center
-            MyCell.cellSnapShot?.center = center
-            MyCell.cellSnapShot?.alpha = 0.0
-            cardListTableView.addSubview(MyCell.cellSnapShot!)
-            
-            UIImageView.animate(withDuration: 0.25, animations: { () -> Void in
-                center.y = locationInView.y
-                MyCell.cellSnapShot?.center = center
-                MyCell.cellSnapShot?.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
-                MyCell.cellSnapShot?.alpha = 0.98
-                cell.alpha = 0.0
-            }, completion: { (finished) -> Void in
-                if finished {
-                    cell.isHidden = true
-                }
-            })
-            
-        case UIGestureRecognizer.State.changed:
-            var center = MyCell.cellSnapShot?.center
-            center?.y = locationInView.y
-            MyCell.cellSnapShot?.center = center!
-            
-            if (indexPath != nil) && (indexPath != Path.initialIndexPath) {
-                swap(&cardItems[indexPath!.row], &cardItems[Path.initialIndexPath!.row])
-                cardListTableView.moveRow(at: Path.initialIndexPath!, to: indexPath!)
-                Path.initialIndexPath = indexPath
-            }
-        default:
-            guard let cell = cardListTableView.cellForRow(at: Path.initialIndexPath!) else {return}
-            cell.isHidden = true
-            cell.alpha = 0.0
-            
-            UIView.animate(withDuration: 0.25, animations: { () -> Void in
-                MyCell.cellSnapShot?.center = cell.center
-                MyCell.cellSnapShot?.transform = CGAffineTransform.identity
-                MyCell.cellSnapShot?.alpha = 0.0
-            }, completion: { (finished) -> Void in
-                if finished {
-                    Path.initialIndexPath = nil
-                    MyCell.cellSnapShot?.removeFromSuperview()
-                    MyCell.cellSnapShot = nil
-                }
-            })
-        }
     }
 }
 
@@ -178,5 +119,107 @@ extension CardListViewController: UITableViewDataSource {
                              date: cardItems[indexPath.row].date)
         
         return serviceCell
+    }
+}
+
+// MARK: - Extension: 테이블 뷰 Drag & Drop 기능
+extension CardListViewController {
+    // FIX: cyclomatic_complexity 워닝 발생 -> decision이 복잡해서라는데...일단 보류...
+    @objc func longPressCalled(gestureRecognizer: UIGestureRecognizer) {
+        guard let longPress = gestureRecognizer as? UILongPressGestureRecognizer else { return }
+        let state = longPress.state
+        let locationInView = longPress.location(in: cardListTableView)
+        let indexPath = cardListTableView.indexPathForRow(at: locationInView)
+        
+        // 최초 indexPath 변수
+        struct Initial {
+            static var initialIndexPath: IndexPath?
+        }
+        
+        // 스냅샷
+        struct MyCell {
+            static var cellSnapshot: UIView?
+            static var cellIsAnimating: Bool = false
+            static var cellNeedToShow: Bool = false
+        }
+        
+        // UIGestureRecognizer 상태에 따른 case 분기처리
+        switch state {
+            
+        // longPress 제스처가 시작할 때 case
+        case UIGestureRecognizer.State.began:
+            if indexPath != nil {
+                Initial.initialIndexPath = indexPath
+                var cell: UITableViewCell? = UITableViewCell()
+                cell = cardListTableView.cellForRow(at: indexPath!)
+                
+                MyCell.cellSnapshot = snapShotOfCall(cell!)
+                
+                var center = cell?.center
+                MyCell.cellSnapshot!.center = center!
+                MyCell.cellSnapshot!.alpha = 0.0
+                cardListTableView.addSubview(MyCell.cellSnapshot!)
+                
+                UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                    center?.y = locationInView.y
+                    MyCell.cellIsAnimating = true
+                    MyCell.cellSnapshot!.center = center!
+                    MyCell.cellSnapshot!.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+                    MyCell.cellSnapshot!.alpha = 0.98
+                    cell?.alpha = 0.0
+                }, completion: { (finished) -> Void in
+                    if finished {
+                        MyCell.cellIsAnimating = false
+                        if MyCell.cellNeedToShow {
+                            MyCell.cellNeedToShow = false
+                            UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                                cell?.alpha = 1
+                            })
+                        } else {
+                            cell?.isHidden = true
+                        }
+                    }
+                })
+            }
+        // longPress 제스처가 변경될 때 case
+        case UIGestureRecognizer.State.changed:
+            if MyCell.cellSnapshot != nil {
+                var center = MyCell.cellSnapshot!.center
+                center.y = locationInView.y
+                MyCell.cellSnapshot!.center = center
+                
+                if ((indexPath != nil) && (indexPath != Initial.initialIndexPath)) && Initial.initialIndexPath != nil {
+                    // this line change row index
+                    self.cardItems.insert(self.cardItems.remove(at: Initial.initialIndexPath!.row), at: indexPath!.row)
+                    cardListTableView.moveRow(at: Initial.initialIndexPath!, to: indexPath!)
+                    Initial.initialIndexPath = indexPath
+                }
+            }
+        // longPress 제스처가 끝났을 때 case
+        default:
+            if Initial.initialIndexPath != nil {
+                let cell = cardListTableView.cellForRow(at: Initial.initialIndexPath!)
+                if MyCell.cellIsAnimating {
+                    MyCell.cellNeedToShow = true
+                } else {
+                    cell?.isHidden = false
+                    cell?.alpha = 0.0
+                }
+                
+                UIView.animate(withDuration: 0.2, animations: { () -> Void in
+                    MyCell.cellSnapshot!.center = (cell?.center)!
+                    MyCell.cellSnapshot!.transform = CGAffineTransform.identity
+                    MyCell.cellSnapshot!.alpha = 0.0
+                    cell?.alpha = 1.0
+                    
+                }, completion: { (finished) -> Void in
+                    if finished {
+                        Initial.initialIndexPath = nil
+                        MyCell.cellSnapshot!.removeFromSuperview()
+                        MyCell.cellSnapshot = nil
+                    }
+                })
+            }
+        }
     }
 }

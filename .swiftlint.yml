@@ -3,6 +3,7 @@ disabled_rules:
 - trailing_whitespace
 - nesting
 - function_parameter_count
+- function_body_length
 excluded:
 - Pods
 - NADA-iOS-forRelease/Sources/AppDelegate.swift

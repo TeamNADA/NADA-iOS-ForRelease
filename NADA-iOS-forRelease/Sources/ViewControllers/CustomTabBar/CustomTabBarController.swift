@@ -65,11 +65,11 @@ class CustomTabBarController: UITabBarController {
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(nextClickRecieved),
-                                               name: NSNotification.Name("deleteTabBar"),
+                                               name: .deleteTabBar,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(prviousClickRecieved),
-                                               name: NSNotification.Name("expressTabBar"),
+                                               name: .expressTabBar,
                                                object: nil)
     }
     

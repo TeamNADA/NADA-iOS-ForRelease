@@ -24,16 +24,12 @@ class CardListViewController: UIViewController {
         navigationBackSwipeMotion()
         
         setCardList()
+        setLongPressGesture()
         
         cardListTableView.register(CardListTableViewCell.nib(), forCellReuseIdentifier: "CardListTableViewCell")
         
         cardListTableView.delegate = self
         cardListTableView.dataSource = self
-        
-        self.cardListTableView.allowsSelection = false
-        
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressCalled(gestureRecognizer:)))
-        cardListTableView.addGestureRecognizer(longPressGesture)
 
     }
     
@@ -59,6 +55,13 @@ class CardListViewController: UIViewController {
             CardListDataModel(title: "SOPT 28기 명함", date: "2021/08/29"),
             CardListDataModel(title: "SOPT 28기 명함", date: "2021/08/29")
         ])
+    }
+    
+    func setLongPressGesture() {
+        self.cardListTableView.allowsSelection = false
+        
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressCalled(gestureRecognizer:)))
+        cardListTableView.addGestureRecognizer(longPressGesture)
     }
     
     func navigationBackSwipeMotion() {

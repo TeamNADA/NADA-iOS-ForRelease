@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,22 +37,32 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="T3m-AC-fcX">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="T3m-AC-fcX">
                                 <rect key="frame" x="0.0" y="126" width="375" height="652"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" red="0.1764705882352941" green="0.1764705882352941" blue="0.1764705882352941" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9r1-kP-Lgu">
+                                <rect key="frame" x="0.0" y="125" width="375" height="1"/>
+                                <color key="backgroundColor" name="black5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="Nns-gn-uHB"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="WSB-Wx-Jzl" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="23" id="0hJ-g2-MU9"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="9r1-kP-Lgu" secondAttribute="trailing" id="4fU-0h-0EB"/>
+                            <constraint firstItem="9r1-kP-Lgu" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="B19-Hv-G1e"/>
                             <constraint firstItem="lgy-Hk-Rnf" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="28" id="B8X-eH-xhw"/>
                             <constraint firstItem="lgy-Hk-Rnf" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="25" id="C0T-wZ-eqo"/>
                             <constraint firstItem="T3m-AC-fcX" firstAttribute="top" secondItem="WSB-Wx-Jzl" secondAttribute="bottom" constant="27" id="CyX-fp-vib"/>
                             <constraint firstItem="T3m-AC-fcX" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="E4W-Ke-YqM"/>
+                            <constraint firstItem="T3m-AC-fcX" firstAttribute="top" secondItem="9r1-kP-Lgu" secondAttribute="bottom" id="UlC-ol-x58"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="T3m-AC-fcX" secondAttribute="trailing" id="dlD-OW-QE5"/>
                             <constraint firstItem="WSB-Wx-Jzl" firstAttribute="leading" secondItem="lgy-Hk-Rnf" secondAttribute="trailing" constant="20" id="egP-Mf-usK"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="T3m-AC-fcX" secondAttribute="bottom" id="pk7-m1-pre"/>
@@ -63,10 +74,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="45" y="84"/>
+            <point key="canvasLocation" x="44" y="83.497536945812811"/>
         </scene>
     </scenes>
     <resources>
         <image name="arrowBackWhite" width="24" height="24"/>
+        <namedColor name="black5">
+            <color red="0.054901960784313725" green="0.054901960784313725" blue="0.054901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

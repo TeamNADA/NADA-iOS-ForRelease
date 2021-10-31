@@ -62,10 +62,19 @@ class CustomTabBarController: UITabBarController {
         customTabBar.setGradient(color1: UIColor(red: 1, green: 1, blue: 1, alpha: 0.35),
                                  color2: UIColor(red: 1, green: 1, blue: 1, alpha: 0.15))
         customTabBar.setBlur()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(nextClickRecieved),
+                                               name: .deleteTabBar,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(prviousClickRecieved),
+                                               name: .expressTabBar,
+                                               object: nil)
     }
     
     // MARK: - Functions
-    public func setTabBarHidden(_ isHidden: Bool, animated: Bool) {
+    private func setTabBarHidden(_ isHidden: Bool, animated: Bool) {
         let block = {
             self.customTabBar.alpha = isHidden ? 0 : 1
             self.additionalSafeAreaInsets = isHidden ? .zero : UIEdgeInsets(top: 0, left: 0, bottom: self.tabBarHeight + self.bottomSpacing, right: 0)
@@ -113,6 +122,7 @@ class CustomTabBarController: UITabBarController {
         customTabBar.tintColor = tintColor
     }
 }
+
 // MARK: - CardTabBarDelegate
 extension CustomTabBarController: CardTabBarDelegate {
     func cardTabBar(_ sender: CustomTabBar, didSelectItemAt index: Int) {
@@ -120,7 +130,19 @@ extension CustomTabBarController: CardTabBarDelegate {
     }
 }
 
-// MARK: - Extensions
+// MARK: - CustomTabBarController Extensions
+extension CustomTabBarController {
+    // 탭바의 hidden 상태처리 함수
+    @objc func nextClickRecieved() {
+        setTabBarHidden(true, animated: false)
+    }
+    
+    @objc func prviousClickRecieved() {
+        setTabBarHidden(false, animated: false)
+    }
+}
+
+// MARK: - CustomTabBar Extensions
 extension CustomTabBar {
     // 그라데이션 효과 적용
     func setGradient(color1: UIColor, color2: UIColor) {

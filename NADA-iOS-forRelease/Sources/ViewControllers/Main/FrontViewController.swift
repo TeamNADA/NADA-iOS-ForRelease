@@ -59,10 +59,19 @@ class FrontViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.post(name: NSNotification.Name("expressTabBar"), object: nil)
+        
+    }
+    
     // MARK: - @IBAction Properties
     // 명함 리스트 뷰로 화면 전환
     @IBAction func pushToCardListView(_ sender: Any) {
         let nextVC = UIStoryboard(name: Const.Storyboard.Name.cardList, bundle: nil).instantiateViewController(identifier: Const.ViewController.Identifier.cardListViewController)
+    
+        NotificationCenter.default.post(name: NSNotification.Name("deleteTabBar"), object: nil)
+        
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     

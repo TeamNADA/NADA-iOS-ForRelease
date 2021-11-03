@@ -9,6 +9,6 @@ import Foundation
 
 extension Const {
     struct URL {
-        static let baseURL = ""
+        static let baseURL = "http://nada-server.o-r.kr"
     }
 }

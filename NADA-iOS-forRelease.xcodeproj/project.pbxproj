@@ -46,6 +46,8 @@
 		F84BAFB226FDB552004CA335 /* BackCardCreationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F84BAFB026FDB552004CA335 /* BackCardCreationCollectionViewCell.xib */; };
 		F858079E2700354E00872484 /* BackgroundCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858079C2700354E00872484 /* BackgroundCollectionViewCell.swift */; };
 		F858079F2700354E00872484 /* BackgroundCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F858079D2700354E00872484 /* BackgroundCollectionViewCell.xib */; };
+		F87122762733046300A24E74 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87122752733046300A24E74 /* Card.swift */; };
+		F871227827330A3800A24E74 /* CardCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F871227727330A3800A24E74 /* CardCreationRequest.swift */; };
 		F8C83FAE272F99940009DF0D /* MoyaLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FAD272F99940009DF0D /* MoyaLoggerPlugin.swift */; };
 		F8C83FB6272F9E380009DF0D /* UtilService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FB5272F9E380009DF0D /* UtilService.swift */; };
 		F8C83FB8272F9E3F0009DF0D /* UtilAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FB7272F9E3F0009DF0D /* UtilAPI.swift */; };
@@ -114,6 +116,8 @@
 		F84BAFB026FDB552004CA335 /* BackCardCreationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackCardCreationCollectionViewCell.xib; sourceTree = "<group>"; };
 		F858079C2700354E00872484 /* BackgroundCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundCollectionViewCell.swift; sourceTree = "<group>"; };
 		F858079D2700354E00872484 /* BackgroundCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackgroundCollectionViewCell.xib; sourceTree = "<group>"; };
+		F87122752733046300A24E74 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		F871227727330A3800A24E74 /* CardCreationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreationRequest.swift; sourceTree = "<group>"; };
 		F8C83FAD272F99940009DF0D /* MoyaLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggerPlugin.swift; sourceTree = "<group>"; };
 		F8C83FB5272F9E380009DF0D /* UtilService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilService.swift; sourceTree = "<group>"; };
 		F8C83FB7272F9E3F0009DF0D /* UtilAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilAPI.swift; sourceTree = "<group>"; };
@@ -321,6 +325,15 @@
 			path = Background;
 			sourceTree = "<group>";
 		};
+		F87122722733032300A24E74 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				F87122752733046300A24E74 /* Card.swift */,
+				F871227727330A3800A24E74 /* CardCreationRequest.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
 		F8C83FAC272F998A0009DF0D /* Plugin */ = {
 			isa = PBXGroup;
 			children = (
@@ -370,6 +383,7 @@
 			children = (
 				F8C83FBA272F9F370009DF0D /* NetworkResult.swift */,
 				F8C83FBC272F9F430009DF0D /* GenericResponse.swift */,
+				F87122722733032300A24E74 /* Card */,
 			);
 			path = NetworkModel;
 			sourceTree = "<group>";
@@ -685,6 +699,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F87122762733046300A24E74 /* Card.swift in Sources */,
 				F84BAF9D26FDB417004CA335 /* CardCreationViewController.swift in Sources */,
 				F8C83FCB272FA32C0009DF0D /* GroupService.swift in Sources */,
 				F858079E2700354E00872484 /* BackgroundCollectionViewCell.swift in Sources */,
@@ -708,6 +723,7 @@
 				F8F5D0AA270800FD00D99D2E /* Xib.swift in Sources */,
 				F82FF8252702000000E57F8B /* RequiredFlavorCollectionViewCell.swift in Sources */,
 				F8C83FC7272FA2A20009DF0D /* CardService.swift in Sources */,
+				F871227827330A3800A24E74 /* CardCreationRequest.swift in Sources */,
 				F8FC43B326C020B90033E151 /* TempProtocols.swift in Sources */,
 				F8FC43B526C020C10033E151 /* TempViews.swift in Sources */,
 				F8C83FBB272F9F370009DF0D /* NetworkResult.swift in Sources */,

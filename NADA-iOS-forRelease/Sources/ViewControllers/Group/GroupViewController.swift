@@ -12,7 +12,31 @@ class GroupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        //그룹 리스트 조회 서버 테스트
+        getGroupListFetchWithAPI(userID: "nada")
     }
     
+}
+
+// MARK: - Network
+
+extension GroupViewController {
+    func getGroupListFetchWithAPI(userID: String) {
+        GroupAPI.shared.getGroupListFetch(userID: userID) { response in
+            switch response {
+            case .success(let data):
+                if let group = data as? Groups {
+                    print(group)
+                }
+            case .requestErr(let message):
+                print("getGroupListFetchWithAPI - requestErr", message)
+            case .pathErr:
+                print("getGroupListFetchWithAPI - pathErr")
+            case .serverErr:
+                print("getGroupListFetchWithAPI - serverErr")
+            case .networkFail:
+                print("getGroupListFetchWithAPI - networkFail")
+            }
+        }
+    }
 }

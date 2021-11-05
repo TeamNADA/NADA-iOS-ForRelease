@@ -31,21 +31,21 @@ public class GroupAPI {
         }
     }
     
-//    func deleteGroupFetch(userID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-//        groupProvider.request(.groupListFetch(userID: userID)) { (result) in
-//            switch result {
-//            case .success(let response):
-//                let statusCode = response.statusCode
-//                let data = response.data
-//
-//                let networkResult = self.judgeStatus(by: statusCode, data)
-//                completion(networkResult)
-//
-//            case .failure(let err):
-//                print(err)
-//            }
-//        }
-//    }
+    func deleteGroup(groupID: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
+        groupProvider.request(.groupDelete(groupID: groupID)) { (result) in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+
+                let networkResult = self.judgeStatus(by: statusCode, data)
+                completion(networkResult)
+
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
 
     private func judgeStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         

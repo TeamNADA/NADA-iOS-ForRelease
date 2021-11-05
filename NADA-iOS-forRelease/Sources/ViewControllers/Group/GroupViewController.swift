@@ -14,6 +14,8 @@ class GroupViewController: UIViewController {
         
         //그룹 리스트 조회 서버 테스트
         getGroupListFetchWithAPI(userID: "nada")
+        //그룹 삭제 서버 테스트
+        deleteGroupWithAPI(groupID: 1)
     }
     
 }
@@ -23,6 +25,25 @@ class GroupViewController: UIViewController {
 extension GroupViewController {
     func getGroupListFetchWithAPI(userID: String) {
         GroupAPI.shared.getGroupListFetch(userID: userID) { response in
+            switch response {
+            case .success(let data):
+                if let group = data as? Groups {
+                    print(group)
+                }
+            case .requestErr(let message):
+                print("getGroupListFetchWithAPI - requestErr", message)
+            case .pathErr:
+                print("getGroupListFetchWithAPI - pathErr")
+            case .serverErr:
+                print("getGroupListFetchWithAPI - serverErr")
+            case .networkFail:
+                print("getGroupListFetchWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func deleteGroupWithAPI(groupID: Int) {
+        GroupAPI.shared.deleteGroup(groupID: groupID) { response in
             switch response {
             case .success(let data):
                 if let group = data as? Groups {

@@ -12,10 +12,12 @@ class GroupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //그룹 리스트 조회 서버 테스트
+        // 그룹 리스트 조회 서버 테스트
         getGroupListFetchWithAPI(userID: "nada")
-        //그룹 삭제 서버 테스트
+        // 그룹 삭제 서버 테스트
         deleteGroupWithAPI(groupID: 1)
+        // 그룹 추가 서버 테스트
+        postGroupAddWithAPI(groupRequest: GroupAddRequest(userId: "nada", groupName: "나다나다"))
     }
     
 }
@@ -28,7 +30,8 @@ extension GroupViewController {
             switch response {
             case .success(let data):
                 if let group = data as? Groups {
-                    print(group)
+//                    print(group)
+                    // 그룹 리스트 조회 서버통신 성공했을때
                 }
             case .requestErr(let message):
                 print("getGroupListFetchWithAPI - requestErr", message)
@@ -43,20 +46,41 @@ extension GroupViewController {
     }
     
     func deleteGroupWithAPI(groupID: Int) {
-        GroupAPI.shared.deleteGroup(groupID: groupID) { response in
+        GroupAPI.shared.deleteGroup(groupID: groupID) { response in  
             switch response {
             case .success(let data):
                 if let group = data as? Groups {
-                    print(group)
+//                    print(group)
+                    // 그룹 삭제 서버 통신 성공했을 떄
                 }
             case .requestErr(let message):
-                print("getGroupListFetchWithAPI - requestErr", message)
+                print("deleteGroupWithAPI - requestErr", message)
             case .pathErr:
-                print("getGroupListFetchWithAPI - pathErr")
+                print("deleteGroupWithAPI - pathErr")
             case .serverErr:
-                print("getGroupListFetchWithAPI - serverErr")
+                print("deleteGroupWithAPI - serverErr")
             case .networkFail:
-                print("getGroupListFetchWithAPI - networkFail")
+                print("deleteGroupWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func postGroupAddWithAPI(groupRequest: GroupAddRequest) {
+        GroupAPI.shared.postGroupAdd(groupRequest: groupRequest) { response in
+            switch response {
+            case .success(let data):
+                if let group = data as? Groups {
+//                    print(group)
+                    // 그룹 추가 서버 통신 성공했을 떄
+                }
+            case .requestErr(let message):
+                print("postGroupAddWithAPI - requestErr", message)
+            case .pathErr:
+                print("postGroupAddWithAPI - pathErr")
+            case .serverErr:
+                print("postGroupAddWithAPI - serverErr")
+            case .networkFail:
+                print("postGroupAddWithAPI - networkFail")
             }
         }
     }

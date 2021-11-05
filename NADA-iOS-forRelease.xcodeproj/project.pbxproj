@@ -33,6 +33,7 @@
 		39F5A3D0271461EA00191F94 /* BackCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5A3CE271461EA00191F94 /* BackCardCell.swift */; };
 		39F5A3D1271461EA00191F94 /* BackCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39F5A3CF271461EA00191F94 /* BackCardCell.xib */; };
 		777FF89B27359B7800BF69D3 /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89A27359B7800BF69D3 /* Groups.swift */; };
+		777FF89D2735B16B00BF69D3 /* GroupAddRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89C2735B16B00BF69D3 /* GroupAddRequest.swift */; };
 		DBBB91E1639641F40C5B4416 /* Pods_NADA_iOS_forRelease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */; };
 		F822E7A92709CEB60020452C /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F822E7A82709CEB60020452C /* Notification.swift */; };
 		F82FF81D2701EBCE00E57F8B /* CardCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F82FF81C2701EBCE00E57F8B /* CardCreation.storyboard */; };
@@ -104,6 +105,7 @@
 		39F5A3CF271461EA00191F94 /* BackCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackCardCell.xib; sourceTree = "<group>"; };
 		4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NADA_iOS_forRelease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		777FF89A27359B7800BF69D3 /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
+		777FF89C2735B16B00BF69D3 /* GroupAddRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAddRequest.swift; sourceTree = "<group>"; };
 		7F4EE1D042EC783FA8528743 /* Pods-NADA-iOS-forRelease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.debug.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.debug.xcconfig"; sourceTree = "<group>"; };
 		F822E7A82709CEB60020452C /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		F82FF81C2701EBCE00E57F8B /* CardCreation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardCreation.storyboard; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				777FF89A27359B7800BF69D3 /* Groups.swift */,
+				777FF89C2735B16B00BF69D3 /* GroupAddRequest.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -732,6 +735,7 @@
 				F8C83FC9272FA3190009DF0D /* GroupAPI.swift in Sources */,
 				F8FC43B826C0227D0033E151 /* Const.swift in Sources */,
 				394F314C27081B3A00C83291 /* FrontViewController.swift in Sources */,
+				777FF89D2735B16B00BF69D3 /* GroupAddRequest.swift in Sources */,
 				F8F5D0AA270800FD00D99D2E /* Xib.swift in Sources */,
 				F82FF8252702000000E57F8B /* RequiredFlavorCollectionViewCell.swift in Sources */,
 				F8C83FC7272FA2A20009DF0D /* CardService.swift in Sources */,

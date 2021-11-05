@@ -11,6 +11,7 @@ import Moya
 enum GroupService {
     case groupListFetch(userID: String)
     case groupDelete(groupID: Int)
+    case groupAdd(groupRequest: GroupAddRequest)
 }
 
 extension GroupService: TargetType {
@@ -25,6 +26,8 @@ extension GroupService: TargetType {
             return "/groups"
         case .groupDelete(let groupID):
             return "/group/\(groupID)"
+        case .groupAdd:
+            return "/group"
         }
     }
     
@@ -34,6 +37,8 @@ extension GroupService: TargetType {
             return .get
         case .groupDelete:
             return .delete
+        case .groupAdd:
+            return .post
         }
     }
     
@@ -47,6 +52,8 @@ extension GroupService: TargetType {
             return .requestParameters(parameters: ["userId": userID], encoding: URLEncoding.queryString)
         case .groupDelete:
             return .requestPlain
+        case .groupAdd(let groupRequest):
+            return .requestJSONEncodable(groupRequest)
         }
     }
     
@@ -55,6 +62,8 @@ extension GroupService: TargetType {
         case .groupListFetch:
             return ["Content-Type": "application/json"]
         case .groupDelete:
+            return ["Content-Type": "application/json"]
+        case .groupAdd:
             return ["Content-Type": "application/json"]
         }
     }

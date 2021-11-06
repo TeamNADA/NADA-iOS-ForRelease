@@ -15,9 +15,11 @@ class GroupViewController: UIViewController {
         // 그룹 리스트 조회 서버 테스트
         getGroupListFetchWithAPI(userID: "nada")
         // 그룹 삭제 서버 테스트
-        deleteGroupWithAPI(groupID: 1)
+//        deleteGroupWithAPI(groupID: 1)
         // 그룹 추가 서버 테스트
-        postGroupAddWithAPI(groupRequest: GroupAddRequest(userId: "nada", groupName: "나다나다"))
+//        postGroupAddWithAPI(groupRequest: GroupAddRequest(userId: "nada", groupName: "나다나다"))
+        // 그룹 수정 서버 테스트
+//        putGroupEditWithAPI(groupRequest: GroupEditRequest(groupId: "5", groupName: "수정나다"))
     }
     
 }
@@ -67,6 +69,26 @@ extension GroupViewController {
     
     func postGroupAddWithAPI(groupRequest: GroupAddRequest) {
         GroupAPI.shared.postGroupAdd(groupRequest: groupRequest) { response in
+            switch response {
+            case .success(let data):
+                if let group = data as? Groups {
+//                    print(group)
+                    // 그룹 추가 서버 통신 성공했을 떄
+                }
+            case .requestErr(let message):
+                print("postGroupAddWithAPI - requestErr", message)
+            case .pathErr:
+                print("postGroupAddWithAPI - pathErr")
+            case .serverErr:
+                print("postGroupAddWithAPI - serverErr")
+            case .networkFail:
+                print("postGroupAddWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func putGroupEditWithAPI(groupRequest: GroupEditRequest) {
+        GroupAPI.shared.putGroupEdit(groupRequest: groupRequest) { response in
             switch response {
             case .success(let data):
                 if let group = data as? Groups {

@@ -12,6 +12,7 @@ enum GroupService {
     case groupListFetch(userID: String)
     case groupDelete(groupID: Int)
     case groupAdd(groupRequest: GroupAddRequest)
+    case groupEdit(groupRequest: GroupEditRequest)
 }
 
 extension GroupService: TargetType {
@@ -28,6 +29,8 @@ extension GroupService: TargetType {
             return "/group/\(groupID)"
         case .groupAdd:
             return "/group"
+        case .groupEdit:
+            return "/group"
         }
     }
     
@@ -39,6 +42,8 @@ extension GroupService: TargetType {
             return .delete
         case .groupAdd:
             return .post
+        case .groupEdit:
+            return .put
         }
     }
     
@@ -54,6 +59,8 @@ extension GroupService: TargetType {
             return .requestPlain
         case .groupAdd(let groupRequest):
             return .requestJSONEncodable(groupRequest)
+        case .groupEdit(let groupRequest):
+            return .requestJSONEncodable(groupRequest)
         }
     }
     
@@ -64,6 +71,8 @@ extension GroupService: TargetType {
         case .groupDelete:
             return ["Content-Type": "application/json"]
         case .groupAdd:
+            return ["Content-Type": "application/json"]
+        case .groupEdit:
             return ["Content-Type": "application/json"]
         }
     }

@@ -96,13 +96,13 @@ extension GroupViewController {
                     // 그룹 추가 서버 통신 성공했을 떄
                 }
             case .requestErr(let message):
-                print("postGroupAddWithAPI - requestErr", message)
+                print("putGroupEditWithAPI - requestErr", message)
             case .pathErr:
-                print("postGroupAddWithAPI - pathErr")
+                print("putGroupEditWithAPI - pathErr")
             case .serverErr:
-                print("postGroupAddWithAPI - serverErr")
+                print("putGroupEditWithAPI - serverErr")
             case .networkFail:
-                print("postGroupAddWithAPI - networkFail")
+                print("putGroupEditWithAPI - networkFail")
             }
         }
     }

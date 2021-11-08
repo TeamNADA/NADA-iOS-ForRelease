@@ -33,6 +33,7 @@
 		39F5A3D0271461EA00191F94 /* BackCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5A3CE271461EA00191F94 /* BackCardCell.swift */; };
 		39F5A3D1271461EA00191F94 /* BackCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39F5A3CF271461EA00191F94 /* BackCardCell.xib */; };
 		DBBB91E1639641F40C5B4416 /* Pods_NADA_iOS_forRelease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */; };
+		F811720027383097002742CF /* ChangeGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81171FF27383097002742CF /* ChangeGroupRequest.swift */; };
 		F822E7A92709CEB60020452C /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F822E7A82709CEB60020452C /* Notification.swift */; };
 		F82FF81D2701EBCE00E57F8B /* CardCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F82FF81C2701EBCE00E57F8B /* CardCreation.storyboard */; };
 		F82FF8252702000000E57F8B /* RequiredFlavorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FF8232702000000E57F8B /* RequiredFlavorCollectionViewCell.swift */; };
@@ -103,6 +104,7 @@
 		39F5A3CF271461EA00191F94 /* BackCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackCardCell.xib; sourceTree = "<group>"; };
 		4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NADA_iOS_forRelease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F4EE1D042EC783FA8528743 /* Pods-NADA-iOS-forRelease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.debug.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.debug.xcconfig"; sourceTree = "<group>"; };
+		F81171FF27383097002742CF /* ChangeGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeGroupRequest.swift; sourceTree = "<group>"; };
 		F822E7A82709CEB60020452C /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		F82FF81C2701EBCE00E57F8B /* CardCreation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardCreation.storyboard; sourceTree = "<group>"; };
 		F82FF8232702000000E57F8B /* RequiredFlavorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredFlavorCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -256,6 +258,14 @@
 				4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F81171FE27383077002742CF /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				F81171FF27383097002742CF /* ChangeGroupRequest.swift */,
+			);
+			path = Group;
 			sourceTree = "<group>";
 		};
 		F82FF8222701FFE300E57F8B /* RequiredFlavor */ = {
@@ -437,6 +447,7 @@
 				F8FC439C26C01EC90033E151 /* Classes */,
 				F8FC439D26C01EEC0033E151 /* AppModel */,
 				F8C83FB9272F9F030009DF0D /* NetworkModel */,
+				F81171FE27383077002742CF /* Group */,
 				F8FC439E26C01EF70033E151 /* NetworkService */,
 				F8FC439F26C01EFC0033E151 /* Protocols */,
 				F8FC43A026C01F040033E151 /* ViewControllers */,
@@ -746,6 +757,7 @@
 				F8FC438626C01CDD0033E151 /* AppDelegate.swift in Sources */,
 				F8C83FB8272F9E3F0009DF0D /* UtilAPI.swift in Sources */,
 				F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */,
+				F811720027383097002742CF /* ChangeGroupRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,4 +11,5 @@ pod 'SkeletonView'
 pod 'SwiftLint'
 pod 'VerticalCardSwiper'
 pod 'KakaoSDKUser'
+pod 'IQKeyboardManagerSwift'
 end

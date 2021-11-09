@@ -16,6 +16,7 @@ class CardCreationViewController: UIViewController {
     private var backCardIsEmpty = true
     private var restoreFrameYValue = 0.0
     private var currentIndex = 0
+    private var cardData: Card?
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var creationTextLabel: UILabel!
@@ -37,6 +38,37 @@ class CardCreationViewController: UIViewController {
         touchViewToDownKeyboard()
         initRestoreFrameYValue()
         setTextLabelGesture()
+        
+        // TODO: 서버통신 테스트 중. 추후 호출 위치 변경.
+//        cardDetailFetchWithAPI(cardID: "cardA")
+//        let cardCreationRequest = CardCreationRequest(userID: "nada",
+//                                                      defaultImage: 0,
+//                                                      title: "명함 이름",
+//                                                      name: "개빡쳐하는 오야옹~",
+//                                                      birthDate: "1999/05/12",
+//                                                      mbti: "ENFP",
+//                                                      instagram: "yaeoni",
+//                                                      linkName: "예원깃헓",
+//                                                      link: "github.com/yaeoni",
+//                                                      description: "NADA의 짱귀염둥이 ㅎ 막이래~",
+//                                                      isMincho: false,
+//                                                      isSoju: true,
+//                                                      isBoomuk: false,
+//                                                      isSauced: true,
+//                                                      oneQuestion: "테스트용이라",
+//                                                      oneAnswer: "모든 정보 다 넣음",
+//                                                      twoQuestion: "홀리몰리",
+//                                                      twoAnswer: "루삥뽕")
+//        cardCreationWithAPI(request: cardCreationRequest, image: UIImage(systemName: "circle")!)
+        
+        // TODO: group.서버통신 테스트 중. 추후 호출 위치 변경.
+//        let changeGroupRequest = ChangeGroupRequest(cardID: "cardA",
+//                                                    userID: "nada2",
+//                                                    groupID: 3,
+//                                                    newGroupID: 2)
+//        changeGroupWithAPI(request: changeGroupRequest)
+        
+//        cardInGroupDeleteWithAPI(groupID: 3, cardID: "cardA")
     }
     
     // MARK: - @IBAction Properties
@@ -179,6 +211,79 @@ extension CardCreationViewController {
             currentIndex = 0
             self.frontTextLabel.textColor = .white1
             self.backTextLabel.textColor = .hintGray1
+        }
+    }
+}
+
+// MARK: - Network
+
+extension CardCreationViewController {
+    func cardDetailFetchWithAPI(cardID: String) {
+        CardAPI.shared.getCardDetailFetch(cardID: cardID) { response in
+            switch response {
+            case .success(let data):
+                if let card = data as? Card {
+                    self.cardData = card
+                }
+            case .requestErr(let message):
+                print("getCardDetailFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("getCardDetailFetchWithAPI - pathErr")
+            case .serverErr:
+                print("getCardDetailFetchWithAPI - serverErr")
+            case .networkFail:
+                print("getCardDetailFetchWithAPI - networkFail")
+            }
+        }
+    }
+    func cardCreationWithAPI(request: CardCreationRequest, image: UIImage) {
+        CardAPI.shared.postCardCreation(request: request, image: image) { response in
+            switch response {
+            case .success:
+                print("postCardCreationWithAPI - success")
+            case .requestErr(let message):
+                print("postCardCreationWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("postCardCreationWithAPI - pathErr")
+            case .serverErr:
+                print("postCardCreationWithAPI - serverErr")
+            case .networkFail:
+                print("postCardCreationWithAPI - networkFail")
+            }
+        }
+    }
+    // TODO: - group 서버통신. 위치변경.
+    func changeGroupWithAPI(request: ChangeGroupRequest) {
+        GroupAPI.shared.putChangeGroup(request: request) { response in
+            switch response {
+            case .success:
+                print("postCardCreationWithAPI - success")
+            case .requestErr(let message):
+                print("postCardCreationWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("postCardCreationWithAPI - pathErr")
+            case .serverErr:
+                print("postCardCreationWithAPI - serverErr")
+            case .networkFail:
+                print("postCardCreationWithAPI - networkFail")
+            }
+        }
+    }
+    func cardInGroupDeleteWithAPI(groupID: Int, cardID: String) {
+        GroupAPI.shared.deleteCardInGroupDelete(groupID: groupID, cardID: cardID) { response in
+            switch response {
+            case .success:
+                print("postCardCreationWithAPI - success")
+            case .requestErr(let message):
+                print("postCardCreationWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("postCardCreationWithAPI - pathErr")
+            case .serverErr:
+                print("postCardCreationWithAPI - serverErr")
+            case .networkFail:
+                print("postCardCreationWithAPI - networkFail")
+            }
+            
         }
     }
 }

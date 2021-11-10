@@ -35,11 +35,9 @@ class CardCreationViewController: UIViewController {
         setUI()
         registerCell()
         setNotification()
-        touchViewToDownKeyboard()
-        initRestoreFrameYValue()
         setTextLabelGesture()
         
-        // TODO: 서버통신 테스트 중. 추후 호출 위치 변경.
+        // FIXME: 서버통신 테스트 중. 추후 호출 위치 변경.
 //        cardDetailFetchWithAPI(cardID: "cardA")
 //        let cardCreationRequest = CardCreationRequest(userID: "nada",
 //                                                      defaultImage: 0,
@@ -61,7 +59,7 @@ class CardCreationViewController: UIViewController {
 //                                                      twoAnswer: "루삥뽕")
 //        cardCreationWithAPI(request: cardCreationRequest, image: UIImage(systemName: "circle")!)
         
-        // TODO: group.서버통신 테스트 중. 추후 호출 위치 변경.
+        // FIXME: group.서버통신 테스트 중. 추후 호출 위치 변경.
 //        let changeGroupRequest = ChangeGroupRequest(cardID: "cardA",
 //                                                    userID: "nada2",
 //                                                    groupID: 3,
@@ -128,15 +126,6 @@ extension CardCreationViewController {
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(setFrontCardIsEmpty(_:)), name: .frontCardtextFieldIsEmpty, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setbackCardIsEmpty(_:)), name: .backCardtextFieldIsEmpty, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    private func touchViewToDownKeyboard() {
-        let tapGesture = UITapGestureRecognizer(target: self.view, action: #selector(self.view.endEditing(_:)))
-        self.view.addGestureRecognizer(tapGesture)
-    }
-    private func initRestoreFrameYValue() {
-        restoreFrameYValue = self.view.frame.origin.y
     }
     private func setTextLabelGesture() {
         let tapFrontTextLabelGesture = UITapGestureRecognizer(target: self, action: #selector(dragToFront))
@@ -153,13 +142,14 @@ extension CardCreationViewController {
         }
 //        if frontCardIsEmpty == true && backCardIsEmpty == true {
         if frontCardIsEmpty == true {
-            completeButton.backgroundColor = .inputBlack2
-            completeButton.setTitleColor(.hintGray1, for: .normal)
-            completeButton.isUserInteractionEnabled = false
+            // TODO: - 버튼설정
+//            completeButton.backgroundColor = .inputBlack2
+//            completeButton.setTitleColor(.hintGray1, for: .normal)
+//            completeButton.isUserInteractionEnabled = false
         } else {
-            completeButton.backgroundColor = .mainBlue
-            completeButton.setTitleColor(.white1, for: .normal)
-            completeButton.isUserInteractionEnabled = true
+//            completeButton.backgroundColor = .mainBlue
+//            completeButton.setTitleColor(.white1, for: .normal)
+//            completeButton.isUserInteractionEnabled = true
         }
     }
     @objc
@@ -167,24 +157,16 @@ extension CardCreationViewController {
         if let isEmpty = notification.object as? Bool {
             backCardIsEmpty = isEmpty
         }
-        print("backCardIsEmpty : \(backCardIsEmpty)")
-    }
-    @objc
-    func showKeyboard(_ notification: Notification) {
-        if self.view.frame.origin.y == restoreFrameYValue {
-            if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-                let keyboardHeight = keyboardFrame.cgRectValue.height
-                self.view.frame.origin.y -= keyboardHeight
-            }
-        }
-    }
-    @objc
-    private func hideKeyboard(_ notification: Notification) {
-        if self.view.frame.origin.y != restoreFrameYValue {
-            if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-                let keyboardHeight = keyboardFrame.cgRectValue.height
-                self.view.frame.origin.y += keyboardHeight
-            }
+        //        if frontCardIsEmpty == true && backCardIsEmpty == true {
+        if backCardIsEmpty == true {
+            // TODO: - 버튼설정
+            //            completeButton.backgroundColor = .inputBlack2
+            //            completeButton.setTitleColor(.hintGray1, for: .normal)
+            //            completeButton.isUserInteractionEnabled = false
+        } else {
+            //            completeButton.backgroundColor = .mainBlue
+            //            completeButton.setTitleColor(.white1, for: .normal)
+            //            completeButton.isUserInteractionEnabled = true
         }
     }
     @objc

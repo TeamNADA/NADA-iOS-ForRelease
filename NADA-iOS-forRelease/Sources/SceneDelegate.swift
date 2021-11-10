@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -23,6 +24,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = UIStoryboard(name: Const.Storyboard.Name.customTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.customTabBarController)
         // window?.rootViewController = TabBarViewController()
         window?.makeKeyAndVisible()
+        
+        
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = false
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

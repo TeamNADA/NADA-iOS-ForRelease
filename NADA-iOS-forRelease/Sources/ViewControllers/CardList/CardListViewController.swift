@@ -283,7 +283,7 @@ extension CardListViewController {
                         MyCell.cellSnapshot = nil
                         
                         // FIXME: - 카드 리스트 조회 서버 테스트
-                        self.putCardListEditWithAPI(request: CardListEditRequest(cardID: "cardA", priority: 1))
+                        // self.putCardListEditWithAPI(request: CardListEditRequest(cardID: "cardA", priority: 1))
                     }
                 })
             }

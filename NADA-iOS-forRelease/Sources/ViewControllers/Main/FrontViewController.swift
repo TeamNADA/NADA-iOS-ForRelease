@@ -57,6 +57,8 @@ class FrontViewController: UIViewController {
         setFrontList()
         setBackList()
         
+        // TODO: - 서버 테스트
+        getCardListFetchWithAPI(userID: "nada", isList: false, offset: 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -196,6 +198,28 @@ extension FrontViewController: VerticalCardSwiperDatasource {
             }
             backCell.initCell(imageList[index], mintImageList[index], noMintImageList[index], sojuImageList[index], beerImageList[index], pourImageList[index], putSauceImageList[index], yangnyumImageList[index], friedImageList[index], firstQuestionList[index], firstAnswerList[index], secondQuestionList[index], secondAnswerList[index])
             return backCell
+        }
+    }
+}
+
+// MARK: - Network
+extension FrontViewController {
+    func getCardListFetchWithAPI(userID: String, isList: Bool, offset: Int) {
+        CardAPI.shared.getCardListFetch(userID: userID, isList: isList, offset: offset) { response in
+            switch response {
+            case .success(let data):
+                if let card = data as? CardListRequest {
+                    print(card)
+                }
+            case .requestErr(let message):
+                print("getCardListFetchWithAPI - requestErr", message)
+            case .pathErr:
+                print("getCardListFetchWithAPI - pathErr")
+            case .serverErr:
+                print("getCardListFetchWithAPI - serverErr")
+            case .networkFail:
+                print("getCardListFetchWithAPI - networkFail")
+            }
         }
     }
 }

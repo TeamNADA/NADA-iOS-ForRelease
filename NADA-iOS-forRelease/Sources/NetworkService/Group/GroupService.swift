@@ -75,8 +75,8 @@ extension GroupService: TargetType {
             return .requestJSONEncodable(cardRequest)
         case .cardListFetch(let cardListRequest):
             return .requestParameters(parameters: ["userId": cardListRequest.userId,
-                                                   "groupId" : cardListRequest.groupId,
-                                                   "offset" : cardListRequest.offset], encoding: URLEncoding.queryString)
+                                                   "groupId": cardListRequest.groupId,
+                                                   "offset": cardListRequest.offset], encoding: URLEncoding.queryString)
         }
     }
     

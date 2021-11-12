@@ -13,14 +13,17 @@ class GroupViewController: UIViewController {
         super.viewDidLoad()
         
         // 그룹 리스트 조회 서버 테스트
-        getGroupListFetchWithAPI(userID: "nada")
+//        getGroupListFetchWithAPI(userID: "nada")
         // 그룹 삭제 서버 테스트
 //        deleteGroupWithAPI(groupID: 1)
         // 그룹 추가 서버 테스트
 //        postGroupAddWithAPI(groupRequest: GroupAddRequest(userId: "nada", groupName: "나다나다"))
         // 그룹 수정 서버 테스트
 //        putGroupEditWithAPI(groupRequest: GroupEditRequest(groupId: 5, groupName: "수정나다"))
+        // 그룹 속 명함 추가 테스트
 //        postCardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardId: "cardA", userId: "nada", groupId: 1))
+        // 그룹 속 명함 조회 테스트
+//        getCardListWithAPI(cardListRequest: CardListRequest(userId: "nada2", groupId: 3, offset: 0))
     }
     
 }
@@ -110,6 +113,26 @@ extension GroupViewController {
     
     func postCardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest) {
         GroupAPI.shared.postCardAddInGroup(cardRequest: cardRequest) { response in
+            switch response {
+            case .success(let data):
+                if let group = data as? Groups {
+//                    print(group)
+                    // 그룹 추가 서버 통신 성공했을 떄
+                }
+            case .requestErr(let message):
+                print("postCardAddInGroupWithAPI - requestErr", message)
+            case .pathErr:
+                print("postCardAddInGroupWithAPI - pathErr")
+            case .serverErr:
+                print("postCardAddInGroupWithAPI - serverErr")
+            case .networkFail:
+                print("postCardAddInGroupWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func getCardListWithAPI(cardListRequest: CardListRequest) {
+        GroupAPI.shared.getCardListFetch(cardListRequest: cardListRequest) { response in
             switch response {
             case .success(let data):
                 if let group = data as? Groups {

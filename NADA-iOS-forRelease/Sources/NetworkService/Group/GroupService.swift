@@ -14,6 +14,7 @@ enum GroupService {
     case groupAdd(groupRequest: GroupAddRequest)
     case groupEdit(groupRequest: GroupEditRequest)
     case cardAddInGroup(cardRequest: CardAddInGroupRequest)
+    case cardListFetch(cardListRequest: CardListRequest)
 }
 
 extension GroupService: TargetType {
@@ -34,6 +35,8 @@ extension GroupService: TargetType {
             return "/group"
         case .cardAddInGroup:
             return "/groups/card"
+        case .cardListFetch:
+            return "/groups/cards"
         }
     }
     
@@ -49,6 +52,8 @@ extension GroupService: TargetType {
             return .put
         case .cardAddInGroup:
             return .post
+        case .cardListFetch:
+            return .get
         }
     }
     
@@ -68,6 +73,10 @@ extension GroupService: TargetType {
             return .requestJSONEncodable(groupRequest)
         case .cardAddInGroup(let cardRequest):
             return .requestJSONEncodable(cardRequest)
+        case .cardListFetch(let cardListRequest):
+            return .requestParameters(parameters: ["userId": cardListRequest.userId,
+                                                   "groupId" : cardListRequest.groupId,
+                                                   "offset" : cardListRequest.offset], encoding: URLEncoding.queryString)
         }
     }
     
@@ -82,6 +91,8 @@ extension GroupService: TargetType {
         case .groupEdit:
             return ["Content-Type": "application/json"]
         case .cardAddInGroup:
+            return ["Content-Type": "application/json"]
+        case .cardListFetch:
             return ["Content-Type": "application/json"]
         }
     }

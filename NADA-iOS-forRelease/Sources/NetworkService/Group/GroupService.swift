@@ -13,6 +13,7 @@ enum GroupService {
     case groupDelete(groupID: Int)
     case groupAdd(groupRequest: GroupAddRequest)
     case groupEdit(groupRequest: GroupEditRequest)
+    case cardAddInGroup(cardRequest: CardAddInGroupRequest)
 }
 
 extension GroupService: TargetType {
@@ -31,6 +32,8 @@ extension GroupService: TargetType {
             return "/group"
         case .groupEdit:
             return "/group"
+        case .cardAddInGroup:
+            return "/groups/card"
         }
     }
     
@@ -44,6 +47,8 @@ extension GroupService: TargetType {
             return .post
         case .groupEdit:
             return .put
+        case .cardAddInGroup:
+            return .post
         }
     }
     
@@ -61,6 +66,8 @@ extension GroupService: TargetType {
             return .requestJSONEncodable(groupRequest)
         case .groupEdit(let groupRequest):
             return .requestJSONEncodable(groupRequest)
+        case .cardAddInGroup(let cardRequest):
+            return .requestJSONEncodable(cardRequest)
         }
     }
     
@@ -73,6 +80,8 @@ extension GroupService: TargetType {
         case .groupAdd:
             return ["Content-Type": "application/json"]
         case .groupEdit:
+            return ["Content-Type": "application/json"]
+        case .cardAddInGroup:
             return ["Content-Type": "application/json"]
         }
     }

@@ -79,6 +79,22 @@ public class GroupAPI {
         }
     }
     
+    func postCardAddInGroup(cardRequest: CardAddInGroupRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
+        groupProvider.request(.cardAddInGroup(cardRequest: cardRequest)) { (result) in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+
+                let networkResult = self.judgeStatus(by: statusCode, data)
+                completion(networkResult)
+
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
     private func judgeStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()

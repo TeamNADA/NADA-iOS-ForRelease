@@ -19,7 +19,8 @@ class GroupViewController: UIViewController {
         // 그룹 추가 서버 테스트
 //        postGroupAddWithAPI(groupRequest: GroupAddRequest(userId: "nada", groupName: "나다나다"))
         // 그룹 수정 서버 테스트
-//        putGroupEditWithAPI(groupRequest: GroupEditRequest(groupId: "5", groupName: "수정나다"))
+//        putGroupEditWithAPI(groupRequest: GroupEditRequest(groupId: 5, groupName: "수정나다"))
+//        postCardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardId: "cardA", userId: "nada", groupId: 1))
     }
     
 }
@@ -103,6 +104,26 @@ extension GroupViewController {
                 print("putGroupEditWithAPI - serverErr")
             case .networkFail:
                 print("putGroupEditWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func postCardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest) {
+        GroupAPI.shared.postCardAddInGroup(cardRequest: cardRequest) { response in
+            switch response {
+            case .success(let data):
+                if let group = data as? Groups {
+//                    print(group)
+                    // 그룹 추가 서버 통신 성공했을 떄
+                }
+            case .requestErr(let message):
+                print("postCardAddInGroupWithAPI - requestErr", message)
+            case .pathErr:
+                print("postCardAddInGroupWithAPI - pathErr")
+            case .serverErr:
+                print("postCardAddInGroupWithAPI - serverErr")
+            case .networkFail:
+                print("postCardAddInGroupWithAPI - networkFail")
             }
         }
     }

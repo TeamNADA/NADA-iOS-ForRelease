@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.4.4)
+  - IQKeyboardManagerSwift (6.5.6)
   - KakaoSDKAuth (2.8.2):
     - KakaoSDKCommon (= 2.8.2)
   - KakaoSDKCommon (2.8.2):
@@ -20,6 +21,7 @@ PODS:
   - VerticalCardSwiper (2.3.1)
 
 DEPENDENCIES:
+  - IQKeyboardManagerSwift
   - KakaoSDKUser
   - Moya (~> 14.0)
   - SkeletonView
@@ -29,6 +31,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - IQKeyboardManagerSwift
     - KakaoSDKAuth
     - KakaoSDKCommon
     - KakaoSDKUser
@@ -39,6 +42,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   KakaoSDKAuth: 2b7e6998d7028cabd037ef8d0d2f987b4eec9f89
   KakaoSDKCommon: 1b5dc1c785688bed6d6747d05f2c8e08420f09ff
   KakaoSDKUser: 937f1acc1380192d38483480d5bf01b141471829
@@ -47,6 +51,6 @@ SPEC CHECKSUMS:
   SwiftLint: e5c7f1fba68eccfc51509d5b2ce1699f5502e0c7
   VerticalCardSwiper: 68df635b354500f86934ea044ade37a264c044c6
 
-PODFILE CHECKSUM: ed90d25629de2c0d09e14aa4277ccf85ccb9037a
+PODFILE CHECKSUM: 176ec86a8b34d679a9bdc17fac73e683359a616f
 
 COCOAPODS: 1.11.2

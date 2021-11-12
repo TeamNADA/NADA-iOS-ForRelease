@@ -15,10 +15,11 @@ enum GroupService {
     case groupEdit(groupRequest: GroupEditRequest)
     case cardAddInGroup(cardRequest: CardAddInGroupRequest)
     case cardListFetch(cardListRequest: CardListRequest)
+    case changeCardGroup(request: ChangeGroupRequest)
+    case cardInGroupDelete(groupID: Int, cardID: String)
 }
 
 extension GroupService: TargetType {
-    
     var baseURL: URL {
         return URL(string: Const.URL.baseURL)!
     }
@@ -37,6 +38,10 @@ extension GroupService: TargetType {
             return "/groups/card"
         case .cardListFetch:
             return "/groups/cards"
+        case .changeCardGroup:
+            return "/groups/card"
+        case .cardInGroupDelete(let groupID, let cardID):
+            return "/group/\(groupID)/\(cardID)"
         }
     }
     
@@ -54,6 +59,10 @@ extension GroupService: TargetType {
             return .post
         case .cardListFetch:
             return .get
+        case .changeCardGroup:
+            return .put
+        case .cardInGroupDelete:
+            return .delete
         }
     }
     
@@ -77,6 +86,10 @@ extension GroupService: TargetType {
             return .requestParameters(parameters: ["userId": cardListRequest.userId,
                                                    "groupId": cardListRequest.groupId,
                                                    "offset": cardListRequest.offset], encoding: URLEncoding.queryString)
+        case .changeCardGroup(let requestModel):
+            return .requestJSONEncodable(requestModel)
+        case .cardInGroupDelete:
+            return .requestPlain
         }
     }
     
@@ -94,7 +107,10 @@ extension GroupService: TargetType {
             return ["Content-Type": "application/json"]
         case .cardListFetch:
             return ["Content-Type": "application/json"]
+        case .changeCardGroup:
+            return ["Content-Type": "application/json"]
+        case .cardInGroupDelete:
+            return ["Content-Type": "application/json"]
         }
     }
-    
 }

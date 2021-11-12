@@ -44,7 +44,7 @@ final class MoyaLoggerPlugin: PluginType {
     let request = response.request
     let url = request?.url?.absoluteString ?? "nil"
     let statusCode = response.statusCode
-    var log = "------------------- 네트워크 통신 성공(isFromError: \(isFromError) -------------------"
+    var log = "------------------- 네트워크 통신 성공(isFromError: \(isFromError)) -------------------"
     log.append("\n[\(statusCode)] \(url)\n----------------------------------------------------\n")
     log.append("API: \(target)\n")
     response.response?.allHeaderFields.forEach {

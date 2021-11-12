@@ -8,9 +8,9 @@
 import Foundation
 
 struct GenericResponse<T: Codable>: Codable {
-    var msg: String
-    var timestamp: String
-    var data: T?
+    let msg: String
+    let timestamp: String
+    let data: T?
     
     enum CodingKeys: String, CodingKey {
         case msg

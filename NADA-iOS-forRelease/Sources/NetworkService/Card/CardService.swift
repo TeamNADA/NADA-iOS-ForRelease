@@ -105,8 +105,11 @@ extension CardService: TargetType {
             multiPartData.append(imageData)
             
             return .uploadMultipart(multiPartData)
-        case .cardListFetch(let userID):
-            return .requestParameters(parameters: ["userId": userID], encoding: URLEncoding.queryString)
+        case .cardListFetch(let mainListRequest):
+            return .requestParameters(parameters: ["userId": mainListRequest.userID,
+                                                   "list": mainListRequest.isList,
+                                                   "offset": mainListRequest.offset
+            ], encoding: URLEncoding.queryString)
         case .cardListEdit(let requestModel):
             return .requestJSONEncodable(requestModel)
         case .cardDelete:

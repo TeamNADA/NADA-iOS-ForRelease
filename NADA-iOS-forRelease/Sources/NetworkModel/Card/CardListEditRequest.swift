@@ -9,6 +9,11 @@ import Foundation
 
 // MARK: - CardListEdit
 struct CardListEditRequest: Codable {
+    let ordered: [Ordered]
+}
+
+// MARK: - Ordered
+struct Ordered: Codable {
     let cardID: String
     let priority: Int
 

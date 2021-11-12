@@ -100,7 +100,7 @@ extension CardListViewController: UITableViewDelegate {
                 // 취소 눌렀을 때 액션이 들어갈 부분
             }, deleteAction: { _ in
                 // FIXME: - 카드 삭제 서버 테스트
-                // self.deleteCardWithAPI(cardID: "cardA")
+                self.deleteCardWithAPI(cardID: "cardA")
             }, completion: nil)
         })
         deleteAction.backgroundColor = .red
@@ -283,7 +283,7 @@ extension CardListViewController {
                         MyCell.cellSnapshot = nil
                         
                         // FIXME: - 카드 리스트 조회 서버 테스트
-                        // self.putCardListEditWithAPI(request: CardListEditRequest(cardID: "cardA", priority: 1))
+                        // self.putCardListEditWithAPI(request: CardListEditRequest(ordered: [Ordered(cardID: "cardA", priority: 1), Ordered(cardID: "cardB", priority: 0)]))
                     }
                 })
             }

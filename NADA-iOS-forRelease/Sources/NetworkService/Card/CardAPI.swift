@@ -104,7 +104,7 @@ public class CardAPI {
         }
         
         switch statusCode {
-        case 201:
+        case 200:
             return .success(decodedData.data)
         case 400..<500:
             return .requestErr(decodedData.msg)

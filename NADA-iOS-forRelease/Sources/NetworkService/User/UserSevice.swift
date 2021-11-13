@@ -10,6 +10,9 @@ import Moya
 
 enum UserSevice {
     case userIDFetch(userID: String)
+    case userTokenFetch(userID: String)
+    case userSignUp(request: User)
+    case userDelete(userID: String)
 }
 
 extension UserSevice: TargetType {
@@ -19,8 +22,14 @@ extension UserSevice: TargetType {
 
     var path: String {
         switch self {
-        case .userIDFetch(userID: let userID):
+        case .userIDFetch(let userID):
             return "/\(userID)/login"
+        case .userTokenFetch(let userID):
+            return "/auth/\(userID)/login"
+        case .userSignUp:
+            return "/register"
+        case .userDelete(let userID):
+            return "/\(userID)"
         }
     }
 
@@ -28,6 +37,12 @@ extension UserSevice: TargetType {
         switch self {
         case .userIDFetch:
             return .get
+        case .userTokenFetch:
+            return .get
+        case .userSignUp:
+            return .post
+        case .userDelete:
+            return .delete
         }
     }
 
@@ -39,12 +54,24 @@ extension UserSevice: TargetType {
         switch self {
         case .userIDFetch:
             return .requestPlain
+        case .userTokenFetch:
+            return .requestPlain
+        case .userSignUp(let request):
+            return .requestJSONEncodable(request)
+        case .userDelete:
+            return .requestPlain
         }
     }
 
     var headers: [String: String]? {
         switch self {
         case .userIDFetch:
+            return ["Content-Type": "application/json"]
+        case .userTokenFetch:
+            return ["Content-Type": "application/json"]
+        case .userSignUp:
+            return ["Content-Type": "application/json"]
+        case .userDelete:
             return ["Content-Type": "application/json"]
         }
     }

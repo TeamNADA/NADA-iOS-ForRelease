@@ -31,10 +31,78 @@ public class UserAPI {
         }
     }
     
+    func getUserTokenFetch(userID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        userProvider.request(.userTokenFetch(userID: userID)) { (result) in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+
+                let networkResult = self.judgeGetUserTokenFetchStatus(by: statusCode, data)
+                completion(networkResult)
+
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
+    func postUserSignUp(request: User, completion: @escaping (NetworkResult<Any>) -> Void) {
+        userProvider.request(.userSignUp(request: request)) { (result) in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+
+                let networkResult = self.judgeStatus(by: statusCode, data)
+                completion(networkResult)
+
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
+    func deleteUser(userID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        userProvider.request(.userDelete(userID: userID)) { (result) in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                let networkResult = self.judgeStatus(by: statusCode, data)
+                completion(networkResult)
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
     private func judgeStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<User>.self, from: data)
+        else {
+            return .pathErr
+        }
+        
+        switch statusCode {
+        case 200:
+            return .success(decodedData.data)
+        case 400..<500:
+            return .requestErr(decodedData.msg)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    private func judgeGetUserTokenFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
+        
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(GenericResponse<UserWithTokenRequest>.self, from: data)
         else {
             return .pathErr
         }

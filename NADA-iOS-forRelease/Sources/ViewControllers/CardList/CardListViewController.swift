@@ -30,7 +30,9 @@ class CardListViewController: UIViewController {
         
         cardListTableView.delegate = self
         cardListTableView.dataSource = self
-
+        
+        // FIXME: - 카드 리스트 조회 서버 테스트
+        getCardListFetchWithAPI(userID: "nada", isList: true, offset: 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,7 +99,8 @@ extension CardListViewController: UITableViewDelegate {
             self.makeAlert(title: "명함 삭제", message: "명함을 정말 삭제하시겠습니까?", cancelAction: { _ in
                 // 취소 눌렀을 때 액션이 들어갈 부분
             }, deleteAction: { _ in
-                // 삭제 눌렀을 때 액션이 들어갈 부분
+                // FIXME: - 카드 삭제 서버 테스트
+                // self.deleteCardWithAPI(cardID: "cardA")
             }, completion: nil)
         })
         deleteAction.backgroundColor = .red
@@ -107,6 +110,64 @@ extension CardListViewController: UITableViewDelegate {
         
         return swipeActions
     }
+}
+
+// MARK: - Network
+
+extension CardListViewController {
+    func getCardListFetchWithAPI(userID: String, isList: Bool, offset: Int) {
+        CardAPI.shared.getCardListFetch(userID: userID, isList: isList, offset: offset) { response in
+            switch response {
+            case .success(let data):
+                if let card = data as? CardListRequest {
+                    print(card)
+                }
+            case .requestErr(let message):
+                print("getCardListFetchWithAPI - requestErr", message)
+            case .pathErr:
+                print("getCardListFetchWithAPI - pathErr")
+            case .serverErr:
+                print("getCardListFetchWithAPI - serverErr")
+            case .networkFail:
+                print("getCardListFetchWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func putCardListEditWithAPI(request: CardListEditRequest) {
+        CardAPI.shared.putCardListEdit(request: request) { response in
+            switch response {
+            case .success(let data):
+                print(data)
+            case .requestErr(let message):
+                print("putCardListEditWithAPI - requestErr", message)
+            case .pathErr:
+                print("putCardListEditWithAPI - pathErr")
+            case .serverErr:
+                print("putCardListEditWithAPI - serverErr")
+            case .networkFail:
+                print("putCardListEditWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func deleteCardWithAPI(cardID: String) {
+        CardAPI.shared.deleteCard(cardID: cardID) { response in
+            switch response {
+            case .success(let data):
+                print(data)
+            case .requestErr(let message):
+                print("deleteGroupWithAPI - requestErr", message)
+            case .pathErr:
+                print("deleteGroupWithAPI - pathErr")
+            case .serverErr:
+                print("deleteGroupWithAPI - serverErr")
+            case .networkFail:
+                print("deleteGroupWithAPI - networkFail")
+            }
+        }
+    }
+    
 }
 
 // MARK: - UITableViewDataSource
@@ -149,7 +210,7 @@ extension CardListViewController {
         // UIGestureRecognizer 상태에 따른 case 분기처리
         switch state {
             
-        // longPress 제스처가 시작할 때 case
+            // longPress 제스처가 시작할 때 case
         case UIGestureRecognizer.State.began:
             if indexPath != nil {
                 Initial.initialIndexPath = indexPath
@@ -184,7 +245,7 @@ extension CardListViewController {
                     }
                 })
             }
-        // longPress 제스처가 변경될 때 case
+            // longPress 제스처가 변경될 때 case
         case UIGestureRecognizer.State.changed:
             if MyCell.cellSnapshot != nil {
                 var center = MyCell.cellSnapshot!.center
@@ -198,7 +259,7 @@ extension CardListViewController {
                     Initial.initialIndexPath = indexPath
                 }
             }
-        // longPress 제스처가 끝났을 때 case
+            // longPress 제스처가 끝났을 때 case
         default:
             if Initial.initialIndexPath != nil {
                 let cell = cardListTableView.cellForRow(at: Initial.initialIndexPath!)
@@ -220,6 +281,9 @@ extension CardListViewController {
                         Initial.initialIndexPath = nil
                         MyCell.cellSnapshot!.removeFromSuperview()
                         MyCell.cellSnapshot = nil
+                        
+                        // FIXME: - 카드 리스트 조회 서버 테스트
+                        // self.putCardListEditWithAPI(request: CardListEditRequest(ordered: [Ordered(cardID: "cardA", priority: 1), Ordered(cardID: "cardB", priority: 0)]))
                     }
                 })
             }

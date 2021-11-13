@@ -11,6 +11,9 @@ import Moya
 enum CardService {
     case cardDetailFetch(cardID: String)
     case cardCreation(request: CardCreationRequest, image: UIImage)
+    case cardListFetch(userID: String, isList: Bool?, offset: Int?)
+    case cardListEdit(request: CardListEditRequest)
+    case cardDelete(cardID: String)
 }
 
 extension CardService: TargetType {
@@ -25,6 +28,12 @@ extension CardService: TargetType {
             return "/card/\(cardID)"
         case .cardCreation:
             return "/card"
+        case .cardListFetch:
+            return "/cards"
+        case .cardListEdit:
+            return "/cards"
+        case .cardDelete(let cardID):
+            return "/card/\(cardID)"
         }
     }
     
@@ -34,6 +43,12 @@ extension CardService: TargetType {
             return .get
         case .cardCreation:
             return .post
+        case .cardListFetch:
+            return .get
+        case .cardListEdit:
+            return .put
+        case .cardDelete:
+            return .delete
         }
     }
     
@@ -48,7 +63,7 @@ extension CardService: TargetType {
         case .cardCreation(let request, let image):
             
             var multiPartData: [Moya.MultipartFormData] = []
-
+            
             let userIDData = request.userID.data(using: .utf8) ?? Data()
             multiPartData.append(MultipartFormData(provider: .data(userIDData), name: "card.userId"))
             let defaultImageData = "\(request.defaultImage)".data(using: .utf8) ?? Data()
@@ -85,11 +100,20 @@ extension CardService: TargetType {
             multiPartData.append(MultipartFormData(provider: .data(twoQuestionData), name: "card.twoQuestion"))
             let twoAnswerData = request.twoAnswer.data(using: .utf8) ?? Data()
             multiPartData.append(MultipartFormData(provider: .data(twoAnswerData), name: "card.twoAnswer"))
-
+            
             let imageData = MultipartFormData(provider: .data(image.pngData() ?? Data()), name: "image", fileName: "image", mimeType: "image/png")
             multiPartData.append(imageData)
-
+            
             return .uploadMultipart(multiPartData)
+        case .cardListFetch(let mainListRequest):
+            return .requestParameters(parameters: ["userId": mainListRequest.userID,
+                                                   "list": mainListRequest.isList,
+                                                   "offset": mainListRequest.offset
+            ], encoding: URLEncoding.queryString)
+        case .cardListEdit(let requestModel):
+            return .requestJSONEncodable(requestModel)
+        case .cardDelete:
+            return .requestPlain
         }
     }
     
@@ -99,6 +123,12 @@ extension CardService: TargetType {
             return .none
         case .cardCreation:
             return ["Content-Type": "multipart/form-data"]
+        case .cardListFetch:
+            return ["Content-Type": "application/json"]
+        case .cardListEdit:
+            return ["Content-Type": "application/json"]
+        case .cardDelete:
+            return .none
         }
     }
 }

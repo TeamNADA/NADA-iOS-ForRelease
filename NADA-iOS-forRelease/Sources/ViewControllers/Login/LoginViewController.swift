@@ -13,7 +13,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // FIXME: - 서버 연결 테스트, 추후 위치 수정 필요
+        getUserIDFetchWithAPI(userID: "nada")
     }
     
     // MARK: - IBAction Properties
@@ -26,5 +27,24 @@ class LoginViewController: UIViewController {
     @IBAction func appleLoginButton(_ sender: Any) {
         
     }
-    
+}
+
+// MARK: - Network
+extension LoginViewController {
+    func getUserIDFetchWithAPI(userID: String) {
+        UserAPI.shared.getUserIDFetch(userID: userID) { response in
+            switch response {
+            case .success(let data):
+                print(data)
+            case .requestErr(let message):
+                print("getUserIDFetchWithAPI - requestErr", message)
+            case .pathErr:
+                print("getUserIDFetchWithAPI - pathErr")
+            case .serverErr:
+                print("getUserIDFetchWithAPI - serverErr")
+            case .networkFail:
+                print("getUserIDFetchWithAPI - networkFail")
+            }
+        }
+    }
 }

@@ -58,7 +58,7 @@ class FrontViewController: UIViewController {
         setBackList()
         
         // TODO: - 서버 테스트
-        getCardListFetchWithAPI(userID: "nada", isList: false, offset: 0)
+//        cardListFetchWithAPI(userID: "nada", isList: false, offset: 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -204,21 +204,21 @@ extension FrontViewController: VerticalCardSwiperDatasource {
 
 // MARK: - Network
 extension FrontViewController {
-    func getCardListFetchWithAPI(userID: String, isList: Bool, offset: Int) {
-        CardAPI.shared.getCardListFetch(userID: userID, isList: isList, offset: offset) { response in
+    func cardListFetchWithAPI(userID: String, isList: Bool, offset: Int) {
+        CardAPI.shared.cardListFetch(userID: userID, isList: isList, offset: offset) { response in
             switch response {
             case .success(let data):
                 if let card = data as? CardListRequest {
                     print(card)
                 }
             case .requestErr(let message):
-                print("getCardListFetchWithAPI - requestErr", message)
+                print("cardListFetchWithAPI - requestErr: \(message)")
             case .pathErr:
-                print("getCardListFetchWithAPI - pathErr")
+                print("cardListFetchWithAPI - pathErr")
             case .serverErr:
-                print("getCardListFetchWithAPI - serverErr")
+                print("cardListFetchWithAPI - serverErr")
             case .networkFail:
-                print("getCardListFetchWithAPI - networkFail")
+                print("cardListFetchWithAPI - networkFail")
             }
         }
     }

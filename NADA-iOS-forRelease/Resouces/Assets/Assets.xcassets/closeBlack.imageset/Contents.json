@@ -1,8 +1,8 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
       "filename" : "closeBlack24Dp.png",
+      "idiom" : "universal",
       "scale" : "1x"
     },
     {
@@ -11,13 +11,13 @@
       "scale" : "2x"
     },
     {
-      "scale" : "3x",
+      "filename" : "closeBlack24Dp@3x.png",
       "idiom" : "universal",
-      "filename" : "closeBlack24Dp@3x.png"
+      "scale" : "3x"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }

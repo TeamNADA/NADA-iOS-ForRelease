@@ -13,7 +13,9 @@ class BackCardCreationCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "BackCardCreationCollectionViewCell"
     private let flavorList = ["민초", "반민초", "소주", "맥주", "부먹", "찍먹", "양념", "후라이드"]
-    private var optionalInfoList = [UITextField]()
+    private var textFieldList = [UITextField]()
+    private var requiredCollectionViewList = [UICollectionView]()
+    public weak var backCardCreationDelegate: BackCardCreationDelegate?
     
     // MARK: - @IBOutlet Properties
     
@@ -30,7 +32,10 @@ class BackCardCreationCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var secondQuestionTextField: UITextField!
     @IBOutlet weak var secondAnswerTextField: UITextField!
     
-    @IBOutlet weak var requiredCollectionView: UICollectionView!
+    @IBOutlet weak var isMinchoCollectionView: UICollectionView!
+    @IBOutlet weak var isSojuCollectionView: UICollectionView!
+    @IBOutlet weak var isBoomukCollectionView: UICollectionView!
+    @IBOutlet weak var isSaucedCollectionView: UICollectionView!
     
     // MARK: - Cell Life Cycle
     
@@ -42,14 +47,22 @@ class BackCardCreationCollectionViewCell: UICollectionViewCell {
     }
 }
 
+// MARK: - Extensions
+
 extension BackCardCreationCollectionViewCell {
     private func setUI() {
         initUITextFieldList()
+        initCollectionViewList()
+        
         scrollView.indicatorStyle = .white
         scrollView.backgroundColor = .black1
+        
         bgView.backgroundColor = .black1
-        requiredCollectionView.backgroundColor = .stepBlack5
+        
+        _ = requiredCollectionViewList.map { $0.backgroundColor = .stepBlack5 }
+        
         requiredInfoView.backgroundColor = .stepBlack5
+        
         optionInfoView.backgroundColor = .stepBlack5
         
         requiredInfoTextLabel.text = "1 필수 정보"
@@ -65,26 +78,35 @@ extension BackCardCreationCollectionViewCell {
         secondQuestionTextField.attributedPlaceholder = NSAttributedString(string: "질문 2", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
         secondAnswerTextField.attributedPlaceholder = NSAttributedString(string: "대답 2", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
         
-        _ = optionalInfoList.map {
+        _ = textFieldList.map {
             $0.font = .hint
             $0.backgroundColor = .inputBlack2
             $0.textColor = .white1
             $0.layer.cornerRadius = 5
+            $0.borderStyle = .none
         }
     }
     private func initUITextFieldList() {
-        optionalInfoList.append(contentsOf: [firstQuestionTextField,
+        textFieldList.append(contentsOf: [firstQuestionTextField,
                                              firstAnswerTextField,
                                              secondQuestionTextField,
                                              secondAnswerTextField])
     }
+    private func initCollectionViewList() {
+        requiredCollectionViewList.append(contentsOf: [isMinchoCollectionView,
+                                              isSojuCollectionView,
+                                              isBoomukCollectionView,
+                                              isSaucedCollectionView])
+    }
     private func registerCell() {
-        requiredCollectionView.delegate = self
-        requiredCollectionView.dataSource = self
-        requiredCollectionView.register(RequiredFlavorCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.requiredCollectionViewCell)
+        _ = requiredCollectionViewList.map {
+            $0.delegate = self
+            $0.dataSource = self
+            $0.register(RequiredFlavorCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.requiredCollectionViewCell)
+        }
     }
     private func textFieldDelegate() {
-        _ = optionalInfoList.map { $0.delegate = self }
+        _ = textFieldList.map { $0.delegate = self }
     }
     static func nib() -> UINib {
         return UINib(nibName: "BackCardCreationCollectionViewCell", bundle: nil)
@@ -95,7 +117,25 @@ extension BackCardCreationCollectionViewCell {
 
 extension BackCardCreationCollectionViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
+        if isMinchoCollectionView.indexPathsForSelectedItems?.isEmpty == false &&
+            isSojuCollectionView.indexPathsForSelectedItems?.isEmpty == false &&
+            isBoomukCollectionView.indexPathsForSelectedItems?.isEmpty == false &&
+            isSaucedCollectionView.indexPathsForSelectedItems?.isEmpty == false {
+            backCardCreationDelegate?.backCardCreation(requiredInfo: true)
+            backCardCreationDelegate?.backCardCreation(withRequired: [
+                "isMincho": isMinchoCollectionView.indexPathsForSelectedItems == [[0]] ? true: false,
+                "isSoju": isSojuCollectionView.indexPathsForSelectedItems == [[0]] ? true: false,
+                "isBoomuk": isBoomukCollectionView.indexPathsForSelectedItems == [[0]] ? true: false,
+                "isSauced": isSaucedCollectionView.indexPathsForSelectedItems == [[0]] ? true: false
+            ], withOptional: [
+                "oneQuestion": firstQuestionTextField.text ?? "",
+                "oneAnswer": firstAnswerTextField.text ?? "",
+                "twoQuestion": secondQuestionTextField.text ?? "",
+                "twoAnswer": secondAnswerTextField.text ?? ""
+            ])
+        } else {
+            backCardCreationDelegate?.backCardCreation(requiredInfo: false)
+        }
     }
 }
 
@@ -103,15 +143,23 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDelegate {
 
 extension BackCardCreationCollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return flavorList.count
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.requiredCollectionViewCell, for: indexPath) as? RequiredFlavorCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.initCell(flavor: flavorList[indexPath.row])
         
+        if collectionView == isMinchoCollectionView {
+            cell.initCell(flavor: flavorList[indexPath.item])
+        } else if collectionView == isSojuCollectionView {
+            cell.initCell(flavor: flavorList[indexPath.item + 2])
+        } else if collectionView == isBoomukCollectionView {
+            cell.initCell(flavor: flavorList[indexPath.item + 4])
+        } else {
+            cell.initCell(flavor: flavorList[indexPath.item + 6])
+        }
         return cell
     }
 }
@@ -120,7 +168,7 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDataSource {
 
 extension BackCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 12
+        return 0
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 13
@@ -129,10 +177,10 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayout
         return .zero
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.frame.width - 13) / 2
-        let height = (collectionView.frame.height - 36) / 4
+        let cellWidth = (collectionView.frame.width - 13) / 2
+        let cellHeight = (collectionView.frame.height)
         
-        return CGSize(width: width, height: height)
+        return CGSize(width: cellWidth, height: cellHeight)
     }
 }
 

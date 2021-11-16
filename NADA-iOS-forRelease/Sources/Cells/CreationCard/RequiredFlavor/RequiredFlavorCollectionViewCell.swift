@@ -29,11 +29,24 @@ extension RequiredFlavorCollectionViewCell {
         
         flavorLabel.font = .hint
         flavorLabel.textColor = .hintGray1
+        flavorLabel.lineBreakMode = .byTruncatingTail
+        flavorLabel.textAlignment = .center
     }
     func initCell(flavor: String) {
         flavorLabel.text = flavor
     }
     static func nib() -> UINib {
         return UINib(nibName: "RequiredFlavorCollectionViewCell", bundle: nil)
+    }
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                bgView.backgroundColor = .white1
+                flavorLabel.textColor = .black1
+            } else {
+                bgView.backgroundColor = .inputBlack2
+                flavorLabel.textColor = .hintGray1
+            }
+        }
     }
 }

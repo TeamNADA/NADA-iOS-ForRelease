@@ -32,7 +32,7 @@ class CardListViewController: UIViewController {
         cardListTableView.dataSource = self
         
         // FIXME: - 카드 리스트 조회 서버 테스트
-        getCardListFetchWithAPI(userID: "nada", isList: true, offset: 0)
+//        cardListFetchWithAPI(userID: "nada", isList: true, offset: 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,8 +115,8 @@ extension CardListViewController: UITableViewDelegate {
 // MARK: - Network
 
 extension CardListViewController {
-    func getCardListFetchWithAPI(userID: String, isList: Bool, offset: Int) {
-        CardAPI.shared.getCardListFetch(userID: userID, isList: isList, offset: offset) { response in
+    func cardListFetchWithAPI(userID: String, isList: Bool, offset: Int) {
+        CardAPI.shared.cardListFetch(userID: userID, isList: isList, offset: offset) { response in
             switch response {
             case .success(let data):
                 if let card = data as? CardListRequest {
@@ -134,8 +134,8 @@ extension CardListViewController {
         }
     }
     
-    func putCardListEditWithAPI(request: CardListEditRequest) {
-        CardAPI.shared.putCardListEdit(request: request) { response in
+    func cardListEditWithAPI(request: CardListEditRequest) {
+        CardAPI.shared.cardListEdit(request: request) { response in
             switch response {
             case .success(let data):
                 print(data)
@@ -152,7 +152,7 @@ extension CardListViewController {
     }
     
     func deleteCardWithAPI(cardID: String) {
-        CardAPI.shared.deleteCard(cardID: cardID) { response in
+        CardAPI.shared.cardDelete(cardID: cardID) { response in
             switch response {
             case .success(let data):
                 print(data)

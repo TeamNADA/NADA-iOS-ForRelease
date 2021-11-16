@@ -6,17 +6,40 @@
 //
 
 import UIKit
-import KakaoSDKCommon
 
 class CardCreationViewController: UIViewController {
 
     // MARK: - Properties
+    
+    enum ButtonState {
+        case enable
+        case disable
+    }
+    
+    var completeButtonIsEnabled: ButtonState = .disable {
+        didSet {
+            if completeButtonIsEnabled == .disable {
+                completeButton.isEnabled = false
+                if #available(iOS 15.0, *) {
+                    completeButton.setNeedsUpdateConfiguration()
+                }
+            } else {
+                completeButton.isEnabled = true
+                if #available(iOS 15.0, *) {
+                    completeButton.setNeedsUpdateConfiguration()
+                }
+            }
+        }
+    }
     
     private var frontCardIsEmpty = true
     private var backCardIsEmpty = true
     private var restoreFrameYValue = 0.0
     private var currentIndex = 0
     private var cardData: Card?
+    private var cardCreationRequest: CardCreationRequest?
+    private var frontCard: FrontCard?
+    private var backCard: BackCard?
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var creationTextLabel: UILabel!
@@ -34,13 +57,31 @@ class CardCreationViewController: UIViewController {
         super.viewDidLoad()
         setUI()
         registerCell()
-        setNotification()
         setTextLabelGesture()
         
         // FIXME: 서버통신 테스트 중. 추후 호출 위치 변경.
 //        cardDetailFetchWithAPI(cardID: "cardA")
-//        let cardCreationRequest = CardCreationRequest(userID: "nada",
-//                                                      defaultImage: 0,
+        
+        // FIXME: group.서버통신 테스트 중. 추후 호출 위치 변경.
+//        let changeGroupRequest = ChangeGroupRequest(cardID: "cardA",
+//                                                    userID: "nada2",
+//                                                    groupID: 3,
+//                                                    newGroupID: 2)
+//        changeGroupWithAPI(request: changeGroupRequest)
+        
+        // FIXME: group.서버통신 테스트 중. 추후 호출 위치 변경.
+//        cardInGroupDeleteWithAPI(groupID: 3, cardID: "cardA")
+    }
+    
+    // MARK: - @IBAction Properties
+
+    @IBAction func dismissToPreviousView(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    @IBAction func pushToCardCompletionView(_ sender: Any) {
+        // TODO: - CardCompletionView 화면전환
+//        cardCreationRequest = CardCreationRequest(userID: "nada",
+//defaultImage: 0,
 //                                                      title: "명함 이름",
 //                                                      name: "개빡쳐하는 오야옹~",
 //                                                      birthDate: "1999/05/12",
@@ -57,25 +98,14 @@ class CardCreationViewController: UIViewController {
 //                                                      oneAnswer: "모든 정보 다 넣음",
 //                                                      twoQuestion: "홀리몰리",
 //                                                      twoAnswer: "루삥뽕")
+//        guard let frontCard = frontCard, let backCard = backCard else {
+//            return
+//        }
+//        cardCreationRequest = CardCreationRequest(userID: "", frontCard: frontCard, backCard: backCard)
+//        guard let cardCreationRequest = cardCreationRequest else {
+//            return
+//        }
 //        cardCreationWithAPI(request: cardCreationRequest, image: UIImage(systemName: "circle")!)
-        
-        // FIXME: group.서버통신 테스트 중. 추후 호출 위치 변경.
-//        let changeGroupRequest = ChangeGroupRequest(cardID: "cardA",
-//                                                    userID: "nada2",
-//                                                    groupID: 3,
-//                                                    newGroupID: 2)
-//        changeGroupWithAPI(request: changeGroupRequest)
-        
-//        cardInGroupDeleteWithAPI(groupID: 3, cardID: "cardA")
-    }
-    
-    // MARK: - @IBAction Properties
-
-    @IBAction func dismissToPreviousView(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    @IBAction func pushToCardCompletionView(_ sender: Any) {
-        // CardCompletionView 화면전환
     }
 }
 
@@ -103,12 +133,37 @@ extension CardCreationViewController {
         closeButton.setImage(UIImage(named: "closeBlack"), for: .normal)
         closeButton.setTitle("", for: .normal)
         
-        completeButton.setTitle("완료", for: .normal)
         completeButton.titleLabel?.font = .btn
-        completeButton.setTitleColor(.hintGray1, for: .normal)
-        completeButton.backgroundColor = .inputBlack2
         completeButton.layer.cornerRadius = 10
-        completeButton.isUserInteractionEnabled = false
+        completeButton.isEnabled = false
+        
+        // MARK: - #available(iOS 15.0, *)
+        if #available(iOS 15.0, *) {
+            let config = UIButton.Configuration.filled()
+            completeButton.configuration = config
+            
+            let configHandler: UIButton.ConfigurationUpdateHandler = { button in
+                switch button.state {
+                case .disabled:
+                    button.configuration?.title = "완료"
+                    button.configuration?.baseBackgroundColor = .inputBlack2
+                    button.configuration?.baseForegroundColor = .hintGray1
+                default:
+                    button.configuration?.title = "완료"
+                    button.configuration?.baseBackgroundColor = .mainBlue
+                    button.configuration?.baseForegroundColor = .white1
+                }
+            }
+            completeButton.configurationUpdateHandler = configHandler
+        } else {
+            completeButton.setTitle("완료", for: .normal)
+            completeButton.setTitleColor(.white1, for: .normal)
+        // TODO: - 뷰 확정되면 이미지로 background 세팅
+        //        completeButton.setBackgroundImage(, for: .normal)
+        
+        completeButton.setTitleColor(.hintGray1, for: .disabled)
+        //        completeButton.setBackgroundImage(, for: .disabled)
+    }
         
         let cardCreationCollectionViewlayout = cardCreationCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
         cardCreationCollectionViewlayout?.scrollDirection = .horizontal
@@ -123,10 +178,6 @@ extension CardCreationViewController {
         cardCreationCollectionView.register(FrontCardCreationCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.frontCardCreationCollectionViewCell)
         cardCreationCollectionView.register(BackCardCreationCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.backCardCreationCollectionViewCell)
     }
-    private func setNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(setFrontCardIsEmpty(_:)), name: .frontCardtextFieldIsEmpty, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(setbackCardIsEmpty(_:)), name: .backCardtextFieldIsEmpty, object: nil)
-    }
     private func setTextLabelGesture() {
         let tapFrontTextLabelGesture = UITapGestureRecognizer(target: self, action: #selector(dragToFront))
         frontTextLabel.addGestureRecognizer(tapFrontTextLabelGesture)
@@ -135,40 +186,9 @@ extension CardCreationViewController {
         backTextLabel.addGestureRecognizer(tapBackTextLabelGesture)
         backTextLabel.isUserInteractionEnabled = true
     }
-    @objc
-    private func setFrontCardIsEmpty(_ notification: Notification) {
-        if let isEmpty = notification.object as? Bool {
-            frontCardIsEmpty = isEmpty
-        }
-//        if frontCardIsEmpty == true && backCardIsEmpty == true {
-        if frontCardIsEmpty == true {
-            // TODO: - 버튼설정
-//            completeButton.backgroundColor = .inputBlack2
-//            completeButton.setTitleColor(.hintGray1, for: .normal)
-//            completeButton.isUserInteractionEnabled = false
-        } else {
-//            completeButton.backgroundColor = .mainBlue
-//            completeButton.setTitleColor(.white1, for: .normal)
-//            completeButton.isUserInteractionEnabled = true
-        }
-    }
-    @objc
-    func setbackCardIsEmpty(_ notification: Notification) {
-        if let isEmpty = notification.object as? Bool {
-            backCardIsEmpty = isEmpty
-        }
-        //        if frontCardIsEmpty == true && backCardIsEmpty == true {
-        if backCardIsEmpty == true {
-            // TODO: - 버튼설정
-            //            completeButton.backgroundColor = .inputBlack2
-            //            completeButton.setTitleColor(.hintGray1, for: .normal)
-            //            completeButton.isUserInteractionEnabled = false
-        } else {
-            //            completeButton.backgroundColor = .mainBlue
-            //            completeButton.setTitleColor(.white1, for: .normal)
-            //            completeButton.isUserInteractionEnabled = true
-        }
-    }
+    
+    // MARK: - @objc Methods
+    
     @objc
     private func dragToBack() {
         let indexPath = IndexPath(item: 1, section: 0)
@@ -201,69 +221,70 @@ extension CardCreationViewController {
 
 extension CardCreationViewController {
     func cardDetailFetchWithAPI(cardID: String) {
-        CardAPI.shared.getCardDetailFetch(cardID: cardID) { response in
+        CardAPI.shared.cardDetailFetch(cardID: cardID) { response in
             switch response {
             case .success(let data):
                 if let card = data as? Card {
                     self.cardData = card
                 }
             case .requestErr(let message):
-                print("getCardDetailFetchWithAPI - requestErr: \(message)")
+                print("cardDetailFetchWithAPI - requestErr: \(message)")
             case .pathErr:
-                print("getCardDetailFetchWithAPI - pathErr")
+                print("cardDetailFetchWithAPI - pathErr")
             case .serverErr:
-                print("getCardDetailFetchWithAPI - serverErr")
+                print("cardDetailFetchWithAPI - serverErr")
             case .networkFail:
-                print("getCardDetailFetchWithAPI - networkFail")
+                print("cardDetailFetchWithAPI - networkFail")
             }
         }
     }
     func cardCreationWithAPI(request: CardCreationRequest, image: UIImage) {
-        CardAPI.shared.postCardCreation(request: request, image: image) { response in
+        CardAPI.shared.cardCreation(request: request, image: image) { response in
             switch response {
             case .success:
-                print("postCardCreationWithAPI - success")
+                print("cardCreationWithAPI - success")
             case .requestErr(let message):
-                print("postCardCreationWithAPI - requestErr: \(message)")
+                print("cardCreationWithAPI - requestErr: \(message)")
             case .pathErr:
-                print("postCardCreationWithAPI - pathErr")
+                print("cardCreationWithAPI - pathErr")
             case .serverErr:
-                print("postCardCreationWithAPI - serverErr")
+                print("cardCreationWithAPI - serverErr")
             case .networkFail:
-                print("postCardCreationWithAPI - networkFail")
+                print("cardCreationWithAPI - networkFail")
             }
         }
     }
     // TODO: - group 서버통신. 위치변경.
     func changeGroupWithAPI(request: ChangeGroupRequest) {
-        GroupAPI.shared.putChangeGroup(request: request) { response in
+        GroupAPI.shared.changeCardGroup(request: request) { response in
             switch response {
             case .success:
-                print("postCardCreationWithAPI - success")
+                print("changeGroupWithAPI - success")
             case .requestErr(let message):
-                print("postCardCreationWithAPI - requestErr: \(message)")
+                print("changeGroupWithAPI - requestErr: \(message)")
             case .pathErr:
-                print("postCardCreationWithAPI - pathErr")
+                print("changeGroupWithAPI - pathErr")
             case .serverErr:
-                print("postCardCreationWithAPI - serverErr")
+                print("changeGroupWithAPI - serverErr")
             case .networkFail:
-                print("postCardCreationWithAPI - networkFail")
+                print("changeGroupWithAPI - networkFail")
             }
         }
     }
+    // TODO: - group 서버통신. 위치변경.
     func cardInGroupDeleteWithAPI(groupID: Int, cardID: String) {
-        GroupAPI.shared.deleteCardInGroupDelete(groupID: groupID, cardID: cardID) { response in
+        GroupAPI.shared.cardInGroupDelete(groupID: groupID, cardID: cardID) { response in
             switch response {
             case .success:
-                print("postCardCreationWithAPI - success")
+                print("cardInGroupDeleteWithAPI - success")
             case .requestErr(let message):
-                print("postCardCreationWithAPI - requestErr: \(message)")
+                print("cardInGroupDeleteWithAPI - requestErr: \(message)")
             case .pathErr:
-                print("postCardCreationWithAPI - pathErr")
+                print("cardInGroupDeleteWithAPI - pathErr")
             case .serverErr:
-                print("postCardCreationWithAPI - serverErr")
+                print("cardInGroupDeleteWithAPI - serverErr")
             case .networkFail:
-                print("postCardCreationWithAPI - networkFail")
+                print("cardInGroupDeleteWithAPI - networkFail")
             }
             
         }
@@ -302,15 +323,17 @@ extension CardCreationViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == cardCreationCollectionView {
-            if indexPath.row == 0 {
+            if indexPath.item == 0 {
                 guard let frontCreationCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.frontCardCreationCollectionViewCell, for: indexPath) as? FrontCardCreationCollectionViewCell else {
                     return UICollectionViewCell()
                 }
+                frontCreationCell.frontCardCreationDelegate = self
                 return frontCreationCell
-            } else if indexPath.row == 1 {
+            } else if indexPath.item == 1 {
                 guard let backCreationCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.backCardCreationCollectionViewCell, for: indexPath) as? BackCardCreationCollectionViewCell else {
                     return UICollectionViewCell()
                 }
+                backCreationCell.backCardCreationDelegate = self
                 return backCreationCell
             }
         }
@@ -326,16 +349,59 @@ extension CardCreationViewController: UICollectionViewDelegateFlowLayout {
         let width = collectionView.frame.width
         return CGSize(width: width, height: height)
     }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return .zero
     }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+}
+
+extension CardCreationViewController: FrontCardCreationDelegate {
+    func frontCardCreation(requiredInfo valid: Bool) {
+        frontCardIsEmpty = !valid
+        if frontCardIsEmpty == false && backCardIsEmpty == false {
+            completeButtonIsEnabled = .enable
+        } else {
+            completeButtonIsEnabled = .disable
+        }
+    }
+
+    func frontCardCreation(withRequired requiredInfo: [String: String], withOptional optionalInfo: [String: String]) {
+        frontCard = FrontCard(defaultImage: Int(requiredInfo["defaultImage"] ?? "0") ?? 0,
+                              title: requiredInfo["title"]  ?? "",
+                              name: requiredInfo["name"] ?? "",
+                              birthDate: requiredInfo["birthDate"] ?? "",
+                              mbti: requiredInfo["mbti"] ?? "",
+                              instagram: optionalInfo["instagram"] ?? "",
+                              linkName: optionalInfo["linkName"] ?? "",
+                              link: optionalInfo["link"] ?? "",
+                              description: optionalInfo["description"] ?? "")
+    }
+}
+
+extension CardCreationViewController: BackCardCreationDelegate {
+    func backCardCreation(requiredInfo valid: Bool) {
+        func checkBackRequiredInfo(_ valid: Bool) {
+            backCardIsEmpty = !valid
+            if frontCardIsEmpty == false && backCardIsEmpty == false {
+                completeButtonIsEnabled = .enable
+            } else {
+                completeButtonIsEnabled = .disable
+            }
+        }
+    }
+    func backCardCreation(withRequired requiredInfo: [String: Bool], withOptional optionalInfo: [String: String]) {
+        backCard = BackCard(isMincho: requiredInfo["isMincho"] ?? false,
+                            isSoju: requiredInfo["isSoju"] ?? false,
+                            isBoomuk: requiredInfo["isBoomuk"] ?? false,
+                            isSauced: requiredInfo["isSauced"] ?? false,
+                            oneQuestion: optionalInfo["oneQuestion"] ?? "",
+                            oneAnswer: optionalInfo["oneAnswer"] ?? "",
+                            twoQuestion: optionalInfo["twoQuestion"] ?? "",
+                            twoAnswer: optionalInfo["twoAnswer"] ?? "")
     }
 }

@@ -12,8 +12,9 @@ class FrontCardCreationCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties
     
     private let backgroundList = ["img", "img", "img", "img", "img", "img"]
-    private var requiredInfoList = [UITextField]()
-    private var optionalInfoList = [UITextField]()
+    private var requiredTextFieldList = [UITextField]()
+    private var optionalTextFieldList = [UITextField]()
+    public weak var frontCardCreationDelegate: FrontCardCreationDelegate?
     
     // MARK: - @IBOutlet Properties
     
@@ -86,25 +87,27 @@ extension FrontCardCreationCollectionViewCell {
         linkURLTextField.attributedPlaceholder = NSAttributedString(string: "링크", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
         clubNameTextField.attributedPlaceholder = NSAttributedString(string: "동아리 기수 / 파트", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
         
-        _ = requiredInfoList.map {
+        _ = requiredTextFieldList.map {
             $0.font = .hint
             $0.backgroundColor = .inputBlack2
             $0.textColor = .white1
             $0.layer.cornerRadius = 5
+            $0.borderStyle = .none
         }
-        _ = optionalInfoList.map {
+        _ = optionalTextFieldList.map {
             $0.font = .hint
             $0.backgroundColor = .inputBlack2
             $0.textColor = .white1
             $0.layer.cornerRadius = 5
+            $0.borderStyle = .none
         }
     }
     private func initUITextFieldList() {
-        requiredInfoList.append(contentsOf: [cardNameTextField,
+        requiredTextFieldList.append(contentsOf: [cardNameTextField,
                                             userNameTextField,
                                             birthTextField,
                                             mbtiTextField])
-        optionalInfoList.append(contentsOf: [instagramTextField,
+        optionalTextFieldList.append(contentsOf: [instagramTextField,
                                             linkNameTextField,
                                             linkURLTextField,
                                             clubNameTextField])
@@ -116,8 +119,8 @@ extension FrontCardCreationCollectionViewCell {
         cardBackgroundSettingCollectionView.register(BackgroundCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.backgroundCollectionViewCell)
     }
     private func textFieldDelegate() {
-        _ = requiredInfoList.map { $0.delegate = self }
-        _ = optionalInfoList.map { $0.delegate = self }
+        _ = requiredTextFieldList.map { $0.delegate = self }
+        _ = optionalTextFieldList.map { $0.delegate = self }
     }
     static func nib() -> UINib {
         return UINib(nibName: "FrontCardCreationCollectionViewCell", bundle: nil)
@@ -126,9 +129,7 @@ extension FrontCardCreationCollectionViewCell {
 
 // MARK: - UICollectionViewDelegate
 
-extension FrontCardCreationCollectionViewCell: UICollectionViewDelegate {
-    
-}
+extension FrontCardCreationCollectionViewCell: UICollectionViewDelegate { }
 
 // MARK: - UICollectionViewDataSource
 
@@ -141,7 +142,7 @@ extension FrontCardCreationCollectionViewCell: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.backgroundCollectionViewCell, for: indexPath) as? BackgroundCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.initCell(image: backgroundList[indexPath.row])
+        cell.initCell(image: backgroundList[indexPath.item])
         
         return cell
     }
@@ -172,9 +173,21 @@ extension FrontCardCreationCollectionViewCell: UITextFieldDelegate {
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         if cardNameTextField.hasText && userNameTextField.hasText && birthTextField.hasText && mbtiTextField.hasText {
-            NotificationCenter.default.post(name: .frontCardtextFieldIsEmpty, object: false)
+            frontCardCreationDelegate?.frontCardCreation(requiredInfo: true)
+            frontCardCreationDelegate?.frontCardCreation(withRequired: [
+                "defaultImage": String(0),
+                "title": cardNameTextField.text ?? "",
+                "name": userNameTextField.text ?? "",
+                "birthDate": birthTextField.text ?? "",
+                "mbti": mbtiTextField.text ?? ""
+            ], withOptional: [
+                "instagram": instagramTextField.text ?? "",
+                "linkName": linkNameTextField.text ?? "",
+                "link": linkURLTextField.text ?? "",
+                "description": clubNameTextField.text ?? ""
+            ])
         } else {
-            NotificationCenter.default.post(name: .frontCardtextFieldIsEmpty, object: true)
+            frontCardCreationDelegate?.frontCardCreation(requiredInfo: false)
         }
         textField.borderWidth = 0
     }

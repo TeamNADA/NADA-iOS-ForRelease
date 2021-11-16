@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CardListRequest: Codable {
+struct CardListInGroupRequest: Codable {
     var userId: String
     var groupId: Int
     var offset: Int

@@ -32,6 +32,7 @@
 		39D2E130270B43DA00AD0889 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D2E12F270B43DA00AD0889 /* UIFont+Extension.swift */; };
 		39F5A3D0271461EA00191F94 /* BackCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5A3CE271461EA00191F94 /* BackCardCell.swift */; };
 		39F5A3D1271461EA00191F94 /* BackCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39F5A3CF271461EA00191F94 /* BackCardCell.xib */; };
+		7729171F2743D604001593E0 /* CardsInGroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7729171E2743D604001593E0 /* CardsInGroupResponse.swift */; };
 		777FF89B27359B7800BF69D3 /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89A27359B7800BF69D3 /* Groups.swift */; };
 		777FF89D2735B16B00BF69D3 /* GroupAddRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89C2735B16B00BF69D3 /* GroupAddRequest.swift */; };
 		777FF89F27364B7B00BF69D3 /* GroupEditRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89E27364B7B00BF69D3 /* GroupEditRequest.swift */; };
@@ -108,6 +109,7 @@
 		39F5A3CE271461EA00191F94 /* BackCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackCardCell.swift; sourceTree = "<group>"; };
 		39F5A3CF271461EA00191F94 /* BackCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackCardCell.xib; sourceTree = "<group>"; };
 		4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NADA_iOS_forRelease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7729171E2743D604001593E0 /* CardsInGroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsInGroupResponse.swift; sourceTree = "<group>"; };
 		777FF89A27359B7800BF69D3 /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
 		777FF89C2735B16B00BF69D3 /* GroupAddRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAddRequest.swift; sourceTree = "<group>"; };
 		777FF89E27364B7B00BF69D3 /* GroupEditRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEditRequest.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				777FF89E27364B7B00BF69D3 /* GroupEditRequest.swift */,
 				77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */,
 				77AA68EB273E202D009C89B0 /* CardListRequest.swift */,
+				7729171E2743D604001593E0 /* CardsInGroupResponse.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -782,6 +785,7 @@
 				F822E7A92709CEB60020452C /* Notification.swift in Sources */,
 				77AA68EC273E202D009C89B0 /* CardListRequest.swift in Sources */,
 				F8C83FC5272FA2940009DF0D /* CardAPI.swift in Sources */,
+				7729171F2743D604001593E0 /* CardsInGroupResponse.swift in Sources */,
 				F8FC438626C01CDD0033E151 /* AppDelegate.swift in Sources */,
 				F8C83FB8272F9E3F0009DF0D /* UtilAPI.swift in Sources */,
 				F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */,

@@ -138,9 +138,10 @@ extension GroupViewController {
         GroupAPI.shared.getCardListFetch(cardListRequest: cardListRequest) { response in
             switch response {
             case .success(let data):
-                if let group = data as? Groups {
+                if let cards = data as? CardsInGroupResponse {
 //                    print(group)
                     // 그룹 추가 서버 통신 성공했을 떄
+                    print(cards)
                 }
             case .requestErr(let message):
                 print("postCardAddInGroupWithAPI - requestErr", message)

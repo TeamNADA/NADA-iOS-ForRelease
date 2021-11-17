@@ -113,7 +113,7 @@ class CardCreationViewController: UIViewController {
 
 extension CardCreationViewController {
     private func setUI() {
-        view.backgroundColor = .black1
+        view.backgroundColor = #colorLiteral(
         statusMovedView.backgroundColor = .white1
         cardCreationCollectionView.backgroundColor = .black1
         cardCreationCollectionView.isPagingEnabled = true

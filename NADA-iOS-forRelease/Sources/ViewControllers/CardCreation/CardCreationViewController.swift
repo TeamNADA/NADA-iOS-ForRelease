@@ -110,25 +110,24 @@ class CardCreationViewController: UIViewController {
 }
 
 // MARK: - Extensions
-
 extension CardCreationViewController {
     private func setUI() {
-        view.backgroundColor = #colorLiteral(
-        statusMovedView.backgroundColor = .white1
-        cardCreationCollectionView.backgroundColor = .black1
+        // view.backgroundColor = .white1
+        // statusMovedView.backgroundColor = .white1
+        // cardCreationCollectionView.backgroundColor = .black1
         cardCreationCollectionView.isPagingEnabled = true
         
         creationTextLabel.text = "명함 생성"
         creationTextLabel.font = .menu
-        creationTextLabel.textColor = .white1
+        // creationTextLabel.textColor = .white1
         
         frontTextLabel.text = "앞면"
         frontTextLabel.font = .menuSub
-        frontTextLabel.textColor = .white1
+        // frontTextLabel.textColor = .white1
         
         backTextLabel.text = "뒷면"
         backTextLabel.font = .menuSub
-        backTextLabel.textColor = .hintGray1
+        // backTextLabel.textColor = .hintGray1
         
         closeButton.setImage(UIImage(named: "closeBlack"), for: .normal)
         closeButton.setTitle("", for: .normal)
@@ -146,22 +145,22 @@ extension CardCreationViewController {
                 switch button.state {
                 case .disabled:
                     button.configuration?.title = "완료"
-                    button.configuration?.baseBackgroundColor = .inputBlack2
-                    button.configuration?.baseForegroundColor = .hintGray1
+                    // button.configuration?.baseBackgroundColor = .inputBlack2
+                    // button.configuration?.baseForegroundColor = .hintGray1
                 default:
                     button.configuration?.title = "완료"
-                    button.configuration?.baseBackgroundColor = .mainBlue
-                    button.configuration?.baseForegroundColor = .white1
+                    // button.configuration?.baseBackgroundColor = .mainBlue
+                    // button.configuration?.baseForegroundColor = .white1
                 }
             }
             completeButton.configurationUpdateHandler = configHandler
         } else {
             completeButton.setTitle("완료", for: .normal)
-            completeButton.setTitleColor(.white1, for: .normal)
+            // completeButton.setTitleColor(.white1, for: .normal)
         // TODO: - 뷰 확정되면 이미지로 background 세팅
         //        completeButton.setBackgroundImage(, for: .normal)
         
-        completeButton.setTitleColor(.hintGray1, for: .disabled)
+        // completeButton.setTitleColor(.hintGray1, for: .disabled)
         //        completeButton.setBackgroundImage(, for: .disabled)
     }
         
@@ -198,8 +197,8 @@ extension CardCreationViewController {
                 self.statusMovedView.transform = CGAffineTransform(translationX: self.backTextLabel.frame.origin.x - self.statusMovedView.frame.origin.x + 5, y: 0)
             }
             currentIndex = 1
-            self.frontTextLabel.textColor = .hintGray1
-            self.backTextLabel.textColor = .white1
+            // self.frontTextLabel.textColor = .hintGray1
+            // self.backTextLabel.textColor = .white1
         }
     }
     @objc
@@ -211,14 +210,13 @@ extension CardCreationViewController {
                 self.statusMovedView.transform = .identity
             }
             currentIndex = 0
-            self.frontTextLabel.textColor = .white1
-            self.backTextLabel.textColor = .hintGray1
+            // self.frontTextLabel.textColor = .white1
+            // self.backTextLabel.textColor = .hintGray1
         }
     }
 }
 
 // MARK: - Network
-
 extension CardCreationViewController {
     func cardDetailFetchWithAPI(cardID: String) {
         CardAPI.shared.cardDetailFetch(cardID: cardID) { response in
@@ -292,7 +290,6 @@ extension CardCreationViewController {
 }
 
 // MARK: - UICollectionViewDelegate
-
 extension CardCreationViewController: UICollectionViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let targetIndex = targetContentOffset.pointee.x / scrollView.frame.size.width
@@ -301,21 +298,20 @@ extension CardCreationViewController: UICollectionViewDelegate {
                 self.statusMovedView.transform = CGAffineTransform(translationX: self.backTextLabel.frame.origin.x - self.statusMovedView.frame.origin.x + 5, y: 0)
             }
             currentIndex = 1
-            self.frontTextLabel.textColor = .hintGray1
-            self.backTextLabel.textColor = .white
+            // self.frontTextLabel.textColor = .hintGray1
+            // self.backTextLabel.textColor = .white
         } else if targetIndex == 0 && currentIndex == 1 {
             UIView.animate(withDuration: 0.2) {
                 self.statusMovedView.transform = .identity
             }
             currentIndex = 0
-            self.frontTextLabel.textColor = .white1
-            self.backTextLabel.textColor = .hintGray1
+            // self.frontTextLabel.textColor = .white1
+            // self.backTextLabel.textColor = .hintGray1
         }
     }
 }
 
 // MARK: - UICollectionViewDataSource
-
 extension CardCreationViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
@@ -342,7 +338,6 @@ extension CardCreationViewController: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-
 extension CardCreationViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = collectionView.frame.height

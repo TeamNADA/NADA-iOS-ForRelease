@@ -48,40 +48,39 @@ class BackCardCreationCollectionViewCell: UICollectionViewCell {
 }
 
 // MARK: - Extensions
-
 extension BackCardCreationCollectionViewCell {
     private func setUI() {
         initUITextFieldList()
         initCollectionViewList()
         
         scrollView.indicatorStyle = .white
-        scrollView.backgroundColor = .black1
+        // scrollView.backgroundColor = .black1
         
-        bgView.backgroundColor = .black1
+        // bgView.backgroundColor = .black1
         
-        _ = requiredCollectionViewList.map { $0.backgroundColor = .stepBlack5 }
+        // _ = requiredCollectionViewList.map { $0.backgroundColor = .stepBlack5 }
         
-        requiredInfoView.backgroundColor = .stepBlack5
+        // requiredInfoView.backgroundColor = .stepBlack5
         
-        optionInfoView.backgroundColor = .stepBlack5
+        // optionInfoView.backgroundColor = .stepBlack5
         
         requiredInfoTextLabel.text = "1 필수 정보"
         requiredInfoTextLabel.font = .step
-        requiredInfoTextLabel.textColor = .white1
+        // requiredInfoTextLabel.textColor = .white1
         
         optionalInfoTextLabel.text = "2 선택 정보"
         optionalInfoTextLabel.font = .step
-        optionalInfoTextLabel.textColor = .white1
+        // optionalInfoTextLabel.textColor = .white1
         
-        firstQuestionTextField.attributedPlaceholder = NSAttributedString(string: "질문 1", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
-        firstAnswerTextField.attributedPlaceholder = NSAttributedString(string: "대답 1", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
-        secondQuestionTextField.attributedPlaceholder = NSAttributedString(string: "질문 2", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
-        secondAnswerTextField.attributedPlaceholder = NSAttributedString(string: "대답 2", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
+        // firstQuestionTextField.attributedPlaceholder = NSAttributedString(string: "질문 1", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
+        // firstAnswerTextField.attributedPlaceholder = NSAttributedString(string: "대답 1", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
+        // secondQuestionTextField.attributedPlaceholder = NSAttributedString(string: "질문 2", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
+        // secondAnswerTextField.attributedPlaceholder = NSAttributedString(string: "대답 2", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
         
         _ = textFieldList.map {
             $0.font = .hint
-            $0.backgroundColor = .inputBlack2
-            $0.textColor = .white1
+            // $0.backgroundColor = .inputBlack2
+            // $0.textColor = .white1
             $0.layer.cornerRadius = 5
             $0.borderStyle = .none
         }
@@ -114,7 +113,6 @@ extension BackCardCreationCollectionViewCell {
 }
 
 // MARK: - UICollectionViewDelegate
-
 extension BackCardCreationCollectionViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if isMinchoCollectionView.indexPathsForSelectedItems?.isEmpty == false &&
@@ -140,7 +138,6 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDelegate {
 }
 
 // MARK: - UICollectionViewDataSource
-
 extension BackCardCreationCollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
@@ -165,7 +162,6 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-
 extension BackCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
@@ -185,12 +181,11 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayout
 }
 
 // MARK: - UITextFieldDelegate
-
 extension BackCardCreationCollectionViewCell: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.becomeFirstResponder()
         textField.borderWidth = 1
-        textField.borderColor = .white1
+        // textField.borderColor = .white1
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.borderWidth = 0

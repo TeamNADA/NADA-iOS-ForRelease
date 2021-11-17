@@ -24,11 +24,11 @@ class RequiredFlavorCollectionViewCell: UICollectionViewCell {
 
 extension RequiredFlavorCollectionViewCell {
     private func setUI() {
-        bgView.backgroundColor = .inputBlack2
+        // bgView.backgroundColor = .inputBlack2
         bgView.cornerRadius = 10
         
         flavorLabel.font = .hint
-        flavorLabel.textColor = .hintGray1
+        // flavorLabel.textColor = .hintGray1
         flavorLabel.lineBreakMode = .byTruncatingTail
         flavorLabel.textAlignment = .center
     }
@@ -41,11 +41,11 @@ extension RequiredFlavorCollectionViewCell {
     override var isSelected: Bool {
         didSet {
             if isSelected {
-                bgView.backgroundColor = .white1
-                flavorLabel.textColor = .black1
+                // bgView.backgroundColor = .white1
+                // flavorLabel.textColor = .black1
             } else {
-                bgView.backgroundColor = .inputBlack2
-                flavorLabel.textColor = .hintGray1
+                // bgView.backgroundColor = .inputBlack2
+                // flavorLabel.textColor = .hintGray1
             }
         }
     }

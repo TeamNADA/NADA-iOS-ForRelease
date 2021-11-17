@@ -31,8 +31,8 @@ public class GroupAPI {
         }
     }
     
-    func cardInGroupDelete(groupID: Int, cardID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        groupProvider.request(.cardInGroupDelete(groupID: groupID, cardID: cardID)) { (result) in
+    func cardDeleteInGroup(groupID: Int, cardID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        groupProvider.request(.cardDeleteInGroup(groupID: groupID, cardID: cardID)) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
@@ -127,14 +127,14 @@ public class GroupAPI {
         }
     }
     
-    func cardListInGroupFetch(cardListInGroupRequest: CardListInGroupRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
-        groupProvider.request(.cardListInGroupFetch(cardListInGroupRequest: cardListInGroupRequest)) { (result) in
+    func cardListFetchInGroup(cardListInGroupRequest: CardListInGroupRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
+        groupProvider.request(.cardListFetchInGroup(cardListInGroupRequest: cardListInGroupRequest)) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeCardListInGroupFetchStatus(by: statusCode, data)
+                let networkResult = self.judgeCardListFetchInGroupStatus(by: statusCode, data)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -163,7 +163,7 @@ public class GroupAPI {
         }
     }
     
-    private func judgeCardListInGroupFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
+    private func judgeCardListFetchInGroupStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<CardsInGroupResponse>.self, from: data)

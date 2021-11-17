@@ -135,7 +135,7 @@ extension GroupViewController {
     }
     
     func cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest) {
-        GroupAPI.shared.cardListInGroupFetch(cardListInGroupRequest: cardListInGroupRequest) { response in
+        GroupAPI.shared.cardListFetchInGroup(cardListInGroupRequest: cardListInGroupRequest) { response in
             switch response {
             case .success(let data):
                 if let cards = data as? CardsInGroupResponse {

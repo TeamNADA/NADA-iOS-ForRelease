@@ -70,7 +70,7 @@ class CardCreationViewController: UIViewController {
 //        changeGroupWithAPI(request: changeGroupRequest)
         
         // FIXME: group.서버통신 테스트 중. 추후 호출 위치 변경.
-//        cardInGroupDeleteWithAPI(groupID: 3, cardID: "cardA")
+//        cardDeleteInGroupWithAPI(groupID: 3, cardID: "cardA")
     }
     
     // MARK: - @IBAction Properties
@@ -272,19 +272,19 @@ extension CardCreationViewController {
         }
     }
     // TODO: - group 서버통신. 위치변경.
-    func cardInGroupDeleteWithAPI(groupID: Int, cardID: String) {
-        GroupAPI.shared.cardInGroupDelete(groupID: groupID, cardID: cardID) { response in
+    func cardDeleteInGroupWithAPI(groupID: Int, cardID: String) {
+        GroupAPI.shared.cardDeleteInGroup(groupID: groupID, cardID: cardID) { response in
             switch response {
             case .success:
-                print("cardInGroupDeleteWithAPI - success")
+                print("cardDeleteInGroupWithAPI - success")
             case .requestErr(let message):
-                print("cardInGroupDeleteWithAPI - requestErr: \(message)")
+                print("cardDeleteInGroupWithAPI - requestErr: \(message)")
             case .pathErr:
-                print("cardInGroupDeleteWithAPI - pathErr")
+                print("cardDeleteInGroupWithAPI - pathErr")
             case .serverErr:
-                print("cardInGroupDeleteWithAPI - serverErr")
+                print("cardDeleteInGroupWithAPI - serverErr")
             case .networkFail:
-                print("cardInGroupDeleteWithAPI - networkFail")
+                print("cardDeleteInGroupWithAPI - networkFail")
             }
             
         }

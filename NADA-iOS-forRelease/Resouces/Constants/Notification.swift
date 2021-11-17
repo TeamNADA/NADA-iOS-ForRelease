@@ -8,8 +8,9 @@
 import Foundation
 
 extension Notification.Name {
-    static let frontCardtextFieldIsEmpty = Notification.Name("frontCardtextFieldIsEmpty")
-    static let backCardtextFieldIsEmpty = Notification.Name("backCardtextFieldIsEmpty")
+    // delegate 패턴으로 대체
+//    static let frontCardtextFieldIsEmpty = Notification.Name("frontCardtextFieldIsEmpty")
+//    static let backCardtextFieldIsEmpty = Notification.Name("backCardtextFieldIsEmpty")
     static let deleteTabBar = NSNotification.Name("deleteTabBar")
     static let expressTabBar = NSNotification.Name("expressTabBar")
 }

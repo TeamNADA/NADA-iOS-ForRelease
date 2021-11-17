@@ -14,9 +14,9 @@ enum GroupService {
     case groupAdd(groupRequest: GroupAddRequest)
     case groupEdit(groupRequest: GroupEditRequest)
     case cardAddInGroup(cardRequest: CardAddInGroupRequest)
-    case cardListFetch(cardListRequest: CardListRequest)
+    case cardListFetchInGroup(cardListInGroupRequest: CardListInGroupRequest)
     case changeCardGroup(request: ChangeGroupRequest)
-    case cardInGroupDelete(groupID: Int, cardID: String)
+    case cardDeleteInGroup(groupID: Int, cardID: String)
 }
 
 extension GroupService: TargetType {
@@ -36,33 +36,25 @@ extension GroupService: TargetType {
             return "/group"
         case .cardAddInGroup:
             return "/groups/card"
-        case .cardListFetch:
+        case .cardListFetchInGroup:
             return "/groups/cards"
         case .changeCardGroup:
             return "/groups/card"
-        case .cardInGroupDelete(let groupID, let cardID):
+        case .cardDeleteInGroup(let groupID, let cardID):
             return "/group/\(groupID)/\(cardID)"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .groupListFetch:
+        case .groupListFetch, .cardListFetchInGroup:
             return .get
-        case .groupDelete:
+        case .groupDelete, .cardDeleteInGroup:
             return .delete
-        case .groupAdd:
+        case .groupAdd, .cardAddInGroup:
             return .post
-        case .groupEdit:
+        case .groupEdit, .changeCardGroup:
             return .put
-        case .cardAddInGroup:
-            return .post
-        case .cardListFetch:
-            return .get
-        case .changeCardGroup:
-            return .put
-        case .cardInGroupDelete:
-            return .delete
         }
     }
     
@@ -73,8 +65,9 @@ extension GroupService: TargetType {
     var task: Task {
         switch self {
         case .groupListFetch(let userID):
-            return .requestParameters(parameters: ["userId": userID], encoding: URLEncoding.queryString)
-        case .groupDelete:
+            return .requestParameters(parameters: ["userId": userID],
+                                      encoding: URLEncoding.queryString)
+        case .groupDelete, .cardDeleteInGroup:
             return .requestPlain
         case .groupAdd(let groupRequest):
             return .requestJSONEncodable(groupRequest)
@@ -82,34 +75,20 @@ extension GroupService: TargetType {
             return .requestJSONEncodable(groupRequest)
         case .cardAddInGroup(let cardRequest):
             return .requestJSONEncodable(cardRequest)
-        case .cardListFetch(let cardListRequest):
-            return .requestParameters(parameters: ["userId": cardListRequest.userId,
-                                                   "groupId": cardListRequest.groupId,
-                                                   "offset": cardListRequest.offset], encoding: URLEncoding.queryString)
+        case .cardListFetchInGroup(let cardListInGroupRequest):
+            return .requestParameters(parameters: ["userId": cardListInGroupRequest.userId,
+                                                   "groupId": cardListInGroupRequest.groupId,
+                                                   "offset": cardListInGroupRequest.offset], encoding: URLEncoding.queryString)
         case .changeCardGroup(let requestModel):
             return .requestJSONEncodable(requestModel)
-        case .cardInGroupDelete:
-            return .requestPlain
         }
     }
     
     var headers: [String: String]? {
         switch self {
-        case .groupListFetch:
-            return ["Content-Type": "application/json"]
-        case .groupDelete:
-            return ["Content-Type": "application/json"]
-        case .groupAdd:
-            return ["Content-Type": "application/json"]
-        case .groupEdit:
-            return ["Content-Type": "application/json"]
-        case .cardAddInGroup:
-            return ["Content-Type": "application/json"]
-        case .cardListFetch:
-            return ["Content-Type": "application/json"]
-        case .changeCardGroup:
-            return ["Content-Type": "application/json"]
-        case .cardInGroupDelete:
+        case .groupListFetch, .cardListFetchInGroup, .groupDelete, .cardDeleteInGroup:
+            return .none
+        case .groupAdd, .groupEdit, .cardAddInGroup, .changeCardGroup:
             return ["Content-Type": "application/json"]
         }
     }

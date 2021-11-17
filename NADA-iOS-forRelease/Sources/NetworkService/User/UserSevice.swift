@@ -35,9 +35,7 @@ extension UserSevice: TargetType {
 
     var method: Moya.Method {
         switch self {
-        case .userIDFetch:
-            return .get
-        case .userTokenFetch:
+        case .userIDFetch, .userTokenFetch:
             return .get
         case .userSignUp:
             return .post
@@ -52,26 +50,18 @@ extension UserSevice: TargetType {
     
     var task: Task {
         switch self {
-        case .userIDFetch:
-            return .requestPlain
-        case .userTokenFetch:
+        case .userIDFetch, .userTokenFetch, .userDelete:
             return .requestPlain
         case .userSignUp(let request):
             return .requestJSONEncodable(request)
-        case .userDelete:
-            return .requestPlain
         }
     }
 
     var headers: [String: String]? {
         switch self {
-        case .userIDFetch:
-            return ["Content-Type": "application/json"]
-        case .userTokenFetch:
-            return ["Content-Type": "application/json"]
+        case .userIDFetch, .userTokenFetch, .userDelete:
+            return .none
         case .userSignUp:
-            return ["Content-Type": "application/json"]
-        case .userDelete:
             return ["Content-Type": "application/json"]
         }
     }

@@ -15,45 +15,13 @@ public class GroupAPI {
 
     public init() { }
 
-    func putChangeGroup(request: ChangeGroupRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func changeCardGroup(request: ChangeGroupRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
         groupProvider.request(.changeCardGroup(request: request)) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                
-                let networkResult = self.judgePutChangeGroupStatus(by: statusCode, data)
-                completion(networkResult)
-                
-            case .failure(let err):
-                print(err)
-            }
-        }
-    }
-    
-    func deleteCardInGroupDelete(groupID: Int, cardID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        groupProvider.request(.cardInGroupDelete(groupID: groupID, cardID: cardID)) { (result) in
-            switch result {
-            case .success(let response):
-                let statusCode = response.statusCode
-                let data = response.data
-                
-                let networkResult = self.judgePutChangeGroupStatus(by: statusCode, data)
-                completion(networkResult)
-                
-            case .failure(let err):
-                print(err)
-            }
-        }
-    }
-    
-    func getGroupListFetch(userID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        groupProvider.request(.groupListFetch(userID: userID)) { (result) in
-            switch result {
-            case .success(let response):
-                let statusCode = response.statusCode
-                let data = response.data
-                
+
                 let networkResult = self.judgeStatus(by: statusCode, data)
                 completion(networkResult)
                 
@@ -63,7 +31,39 @@ public class GroupAPI {
         }
     }
     
-    func deleteGroup(groupID: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func cardDeleteInGroup(groupID: Int, cardID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        groupProvider.request(.cardDeleteInGroup(groupID: groupID, cardID: cardID)) { (result) in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+
+                let networkResult = self.judgeStatus(by: statusCode, data)
+                completion(networkResult)
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
+    func groupListFetch(userID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        groupProvider.request(.groupListFetch(userID: userID)) { (result) in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                let networkResult = self.judgeGroupListFetchStatus(by: statusCode, data)
+                completion(networkResult)
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
+    func groupDelete(groupID: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
         groupProvider.request(.groupDelete(groupID: groupID)) { (result) in
             switch result {
             case .success(let response):
@@ -79,7 +79,7 @@ public class GroupAPI {
         }
     }
     
-    func postGroupAdd(groupRequest: GroupAddRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func groupAdd(groupRequest: GroupAddRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
         groupProvider.request(.groupAdd(groupRequest: groupRequest)) { (result) in
             switch result {
             case .success(let response):
@@ -95,7 +95,7 @@ public class GroupAPI {
         }
     }
     
-    func putGroupEdit(groupRequest: GroupEditRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func groupEdit(groupRequest: GroupEditRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
         groupProvider.request(.groupEdit(groupRequest: groupRequest)) { (result) in
             switch result {
             case .success(let response):
@@ -111,7 +111,7 @@ public class GroupAPI {
         }
     }
     
-    func postCardAddInGroup(cardRequest: CardAddInGroupRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func cardAddInGroup(cardRequest: CardAddInGroupRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
         groupProvider.request(.cardAddInGroup(cardRequest: cardRequest)) { (result) in
             switch result {
             case .success(let response):
@@ -127,14 +127,14 @@ public class GroupAPI {
         }
     }
     
-    func getCardListFetch(cardListRequest: CardListRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
-        groupProvider.request(.cardListFetch(cardListRequest: cardListRequest)) { (result) in
+    func cardListFetchInGroup(cardListInGroupRequest: CardListInGroupRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
+        groupProvider.request(.cardListFetchInGroup(cardListInGroupRequest: cardListInGroupRequest)) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeGetCardListStatus(by: statusCode, data)
+                let networkResult = self.judgeCardListFetchInGroupStatus(by: statusCode, data)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -143,17 +143,17 @@ public class GroupAPI {
         }
     }
     
-    private func judgeStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
-        
+    private func judgeGroupListFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
+
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<Groups>.self, from: data)
         else {
             return .pathErr
         }
-        
+
         switch statusCode {
         case 200:
-            return .success(decodedData.data)
+            return .success(decodedData.data ?? "None-Data")
         case 400..<500:
             return .requestErr(decodedData.msg)
         case 500:
@@ -163,7 +163,7 @@ public class GroupAPI {
         }
     }
     
-    private func judgeGetCardListStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
+    private func judgeCardListFetchInGroupStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<CardsInGroupResponse>.self, from: data)
@@ -173,7 +173,7 @@ public class GroupAPI {
         
         switch statusCode {
         case 200:
-            return .success(decodedData.data)
+            return .success(decodedData.data ?? "None-Data")
         case 400..<500:
             return .requestErr(decodedData.msg)
         case 500:
@@ -183,17 +183,15 @@ public class GroupAPI {
         }
     }
     
-    private func judgePutChangeGroupStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
+    private func judgeStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<Card>.self, from: data)
-        else {
-            return .pathErr
-        }
+        guard let decodedData = try? decoder.decode(GenericResponse<String>.self, from: data)
+        else { return .pathErr }
         
         switch statusCode {
         case 200:
-            return .success(decodedData.data)
+            return .success(decodedData.msg)
         case 400..<500:
             return .requestErr(decodedData.msg)
         case 500:

@@ -35,7 +35,7 @@ class LoginViewController: UIViewController {
 // MARK: - Network
 extension LoginViewController {
     func getUserIDFetchWithAPI(userID: String) {
-        UserAPI.shared.getUserIDFetch(userID: userID) { response in
+        UserAPI.shared.userIDFetch(userID: userID) { response in
             switch response {
             case .success(let data):
                 print(data)
@@ -52,7 +52,7 @@ extension LoginViewController {
     }
     
     func getUserTokenFetchWithAPI(userID: String) {
-        UserAPI.shared.getUserTokenFetch(userID: userID) { response in
+        UserAPI.shared.userTokenFetch(userID: userID) { response in
             switch response {
             case .success(let data):
                 print(data)
@@ -69,7 +69,7 @@ extension LoginViewController {
     }
     
     func postUserSignUpWithAPI(request: User) {
-        UserAPI.shared.postUserSignUp(request: request) { response in
+        UserAPI.shared.userSignUp(request: request) { response in
             switch response {
             case .success:
                 print("postUserSignUpWithAPI - success")
@@ -87,7 +87,7 @@ extension LoginViewController {
     
     // FIXME: - 계정 탈퇴 네트워크 함수 추후 위치 수정
     func deleteUserWithAPI(userID: String) {
-        UserAPI.shared.deleteUser(userID: userID) { response in
+        UserAPI.shared.userDelete(userID: userID) { response in
             switch response {
             case .success:
                 print("deleteUserWithAPI - success")

@@ -35,6 +35,7 @@
 		39D88B622745FBA900A72164 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39D88B612745FBA900A72164 /* More.storyboard */; };
 		39D88B642745FDD400A72164 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39D88B632745FDD400A72164 /* TabBar.storyboard */; };
 		39D88B662745FE5F00A72164 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D88B652745FE5F00A72164 /* TabBarViewController.swift */; };
+		39D88B6B274600B100A72164 /* CommonBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D88B6A274600B100A72164 /* CommonBottomSheetViewController.swift */; };
 		39F5A3D0271461EA00191F94 /* BackCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5A3CE271461EA00191F94 /* BackCardCell.swift */; };
 		39F5A3D1271461EA00191F94 /* BackCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39F5A3CF271461EA00191F94 /* BackCardCell.xib */; };
 		7729171F2743D604001593E0 /* CardsInGroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7729171E2743D604001593E0 /* CardsInGroupResponse.swift */; };
@@ -117,6 +118,7 @@
 		39D88B612745FBA900A72164 /* More.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		39D88B632745FDD400A72164 /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		39D88B652745FE5F00A72164 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		39D88B6A274600B100A72164 /* CommonBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonBottomSheetViewController.swift; sourceTree = "<group>"; };
 		39F5A3CE271461EA00191F94 /* BackCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackCardCell.swift; sourceTree = "<group>"; };
 		39F5A3CF271461EA00191F94 /* BackCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackCardCell.xib; sourceTree = "<group>"; };
 		4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NADA_iOS_forRelease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -289,6 +291,14 @@
 				39D88B652745FE5F00A72164 /* TabBarViewController.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		39D88B692746009B00A72164 /* BottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				39D88B6A274600B100A72164 /* CommonBottomSheetViewController.swift */,
+			);
+			path = BottomSheet;
 			sourceTree = "<group>";
 		};
 		4D28D444572353D68574D2B0 /* Frameworks */ = {
@@ -564,6 +574,7 @@
 		F8FC43A026C01F040033E151 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				39D88B692746009B00A72164 /* BottomSheet */,
 				39D88B682745FE6C00A72164 /* TabBar */,
 				394F314A2708157500C83291 /* Main */,
 				3958F237270FFB8700B100B2 /* Group */,
@@ -809,6 +820,7 @@
 				39523E5B2701A48900536900 /* CardListTableViewCell.swift in Sources */,
 				F8A9FE1A2743DC6B00BC60CE /* CardListInGroupRequest.swift in Sources */,
 				3981148E273BEBB300E28630 /* CardListEditRequest.swift in Sources */,
+				39D88B6B274600B100A72164 /* CommonBottomSheetViewController.swift in Sources */,
 				F8FC43BA26C022900033E151 /* ViewController.swift in Sources */,
 				39523E5F2701AA9000536900 /* CardListDataModel.swift in Sources */,
 				39D13568273FDCB800B1A148 /* UserWithTokenRequest.swift in Sources */,

@@ -8,7 +8,7 @@
 import Foundation
 
 struct CardAddInGroupRequest: Codable {
-    var cardId: String?
-    var userId: String?
-    var groupId: Int?
+    var cardId: String
+    var userId: String
+    var groupId: Int
 }

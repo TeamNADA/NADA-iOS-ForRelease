@@ -9,5 +9,4 @@ import Foundation
 
 struct CardListDataModel {
     var title: String
-    var date: String
 }

@@ -17,7 +17,6 @@ extension Const {
             static let frontViewController = "FrontViewController"
             static let groupViewController = "GroupViewController"
             static let tabBarViewController = "TabBarViewController"
-            static let customTabBarController = "CustomTabBarController"
         }
     }
 }

@@ -68,6 +68,13 @@ class FrontViewController: UIViewController {
     }
     
     // MARK: - @IBAction Properties
+    // 명함 생성 뷰로 화면 전환
+    @IBAction func presentToCardCreationView(_ sender: Any) {
+        let nextVC = UIStoryboard(name: Const.Storyboard.Name.cardCreation, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardCreationViewController)
+        nextVC.modalPresentationStyle = .overFullScreen
+        self.present(nextVC, animated: true, completion: nil)
+    }
+    
     // 명함 리스트 뷰로 화면 전환
     @IBAction func pushToCardListView(_ sender: Any) {
         let nextVC = UIStoryboard(name: Const.Storyboard.Name.cardList, bundle: nil).instantiateViewController(identifier: Const.ViewController.Identifier.cardListViewController)
@@ -76,20 +83,13 @@ class FrontViewController: UIViewController {
         
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
-    
-    // 명함 생성 뷰로 화면 전환
-    @IBAction func presentToCardCreationView(_ sender: Any) {
-        let nextVC = UIStoryboard(name: Const.Storyboard.Name.cardCreation, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardCreationViewController)
-        nextVC.modalPresentationStyle = .overFullScreen
-        self.present(nextVC, animated: true, completion: nil)
-    }
 }
 
 // MARK: - Extensions
 extension FrontViewController {
     private func setFrontList() {
-        imageList.append(contentsOf: ["bg1",
-                                      "bg1"
+        imageList.append(contentsOf: ["card",
+                                      "card"
                                      ])
         cardNameList.append(contentsOf: ["SOPT 28기 명함",
                                          "SOPT 28기 명함"

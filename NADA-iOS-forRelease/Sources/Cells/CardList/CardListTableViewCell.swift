@@ -13,7 +13,6 @@ class CardListTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var reorderButton: UIButton!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -32,7 +31,7 @@ class CardListTableViewCell: UITableViewCell {
     // 핀 이미지 클릭 시
     @IBAction func pinButtonClicked(_ sender: Any) {
         let pinImage = UIImage(named: "iconPin")
-        let reorderImage = UIImage(named: "iconReorder")
+        _ = UIImage(named: "iconReorder")
         
         if pinButton.currentImage == pinImage {
             pinButton.setImage(UIImage(named: "iconPinInactive"), for: UIControl.State.normal)

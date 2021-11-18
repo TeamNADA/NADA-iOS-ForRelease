@@ -62,7 +62,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G4S-UU-Nlv" customClass="VerticalCardSwiper" customModule="VerticalCardSwiper">
-                                <rect key="frame" x="0.0" y="94" width="375" height="718"/>
+                                <rect key="frame" x="0.0" y="94" width="375" height="635"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
@@ -75,12 +75,10 @@
                             <constraint firstItem="FvW-XO-xRq" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="aUZ-9B-MHj"/>
                             <constraint firstItem="G4S-UU-Nlv" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="cDg-sT-T2P"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="FvW-XO-xRq" secondAttribute="trailing" id="jxE-l0-mQp"/>
-                            <constraint firstAttribute="bottom" secondItem="G4S-UU-Nlv" secondAttribute="bottom" id="ni7-jU-JdH"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="G4S-UU-Nlv" secondAttribute="bottom" id="ni7-jU-JdH"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="iconHome" selectedImage="iconHomeSelected" id="KGr-aG-jdG">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="" image="iconHome" selectedImage="iconHomeSelected" id="trK-km-n7M"/>
                     <navigationItem key="navigationItem" id="cZk-R4-laO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -91,11 +89,11 @@
             </objects>
             <point key="canvasLocation" x="970.39999999999998" y="34.729064039408868"/>
         </scene>
-        <!--Home-->
+        <!--Navigation Controller-->
         <scene sceneID="Iry-nU-jak">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="HRL-Ko-Eah" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="homeBtnOnClick" id="VDP-2f-dqN"/>
+                    <tabBarItem key="tabBarItem" title="" landscapeImage="iconHome" selectedImage="iconHomeSelected" id="VDP-2f-dqN"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SGQ-gu-e0K">
                         <autoresizingMask key="autoresizingMask"/>
@@ -111,7 +109,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="homeBtnOnClick" width="30" height="30"/>
         <image name="iconAdd" width="30" height="30"/>
         <image name="iconHome" width="30" height="30"/>
         <image name="iconHomeSelected" width="30" height="35"/>

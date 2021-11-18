@@ -11,6 +11,8 @@
 		390515B82706CEBB00C5F7A5 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 390515B72706CEBB00C5F7A5 /* Colors.xcassets */; };
 		3909242F26FA15E800236C51 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909242E26FA15E800236C51 /* UIView+Extension.swift */; };
 		39288E12273F52B20072F403 /* CardListLookUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39288E11273F52B20072F403 /* CardListLookUpRequest.swift */; };
+		392F7FB4274621F1008CDBF5 /* MoreListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392F7FB2274621F1008CDBF5 /* MoreListTableViewCell.swift */; };
+		392F7FB5274621F1008CDBF5 /* MoreListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 392F7FB3274621F1008CDBF5 /* MoreListTableViewCell.xib */; };
 		39488E352706E17200BDC917 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39488E342706E17200BDC917 /* UIAlertController+Extension.swift */; };
 		394F314C27081B3A00C83291 /* FrontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394F314B27081B3A00C83291 /* FrontViewController.swift */; };
 		394F314F27081B4C00C83291 /* Front.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 394F314E27081B4C00C83291 /* Front.storyboard */; };
@@ -94,6 +96,8 @@
 		390515B72706CEBB00C5F7A5 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		3909242E26FA15E800236C51 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		39288E11273F52B20072F403 /* CardListLookUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListLookUpRequest.swift; sourceTree = "<group>"; };
+		392F7FB2274621F1008CDBF5 /* MoreListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreListTableViewCell.swift; sourceTree = "<group>"; };
+		392F7FB3274621F1008CDBF5 /* MoreListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreListTableViewCell.xib; sourceTree = "<group>"; };
 		39488E342706E17200BDC917 /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		394F314B27081B3A00C83291 /* FrontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontViewController.swift; sourceTree = "<group>"; };
 		394F314E27081B4C00C83291 /* Front.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Front.storyboard; sourceTree = "<group>"; };
@@ -193,6 +197,15 @@
 				1E770167DDA25A2CE063AA5C /* Pods-NADA-iOS-forRelease.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		392F7FB1274621CF008CDBF5 /* MoreList */ = {
+			isa = PBXGroup;
+			children = (
+				392F7FB2274621F1008CDBF5 /* MoreListTableViewCell.swift */,
+				392F7FB3274621F1008CDBF5 /* MoreListTableViewCell.xib */,
+			);
+			path = MoreList;
 			sourceTree = "<group>";
 		};
 		394F314A2708157500C83291 /* Main */ = {
@@ -527,6 +540,7 @@
 		F8FC439B26C01EC30033E151 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				392F7FB1274621CF008CDBF5 /* MoreList */,
 				F84BAFA126FDB4E5004CA335 /* CreationCard */,
 				39523E582701A47400536900 /* CardList */,
 				F83206AC26F61E5800D61711 /* CardCell */,
@@ -712,6 +726,7 @@
 				39F5A3D1271461EA00191F94 /* BackCardCell.xib in Resources */,
 				39523E0B270184B100536900 /* CardList.storyboard in Resources */,
 				F82FF81D2701EBCE00E57F8B /* CardCreation.storyboard in Resources */,
+				392F7FB5274621F1008CDBF5 /* MoreListTableViewCell.xib in Resources */,
 				390515B82706CEBB00C5F7A5 /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -830,6 +845,7 @@
 				F8FC43BC26C022A20033E151 /* Storyboard.swift in Sources */,
 				F8C83FC1272FA06E0009DF0D /* UserAPI.swift in Sources */,
 				F8C83FC3272FA17B0009DF0D /* URL.swift in Sources */,
+				392F7FB4274621F1008CDBF5 /* MoreListTableViewCell.swift in Sources */,
 				77AA68EA273E0EC4009C89B0 /* CardAddInGroupRequest.swift in Sources */,
 				F8C83FAE272F99940009DF0D /* MoyaLoggerPlugin.swift in Sources */,
 				F84BAFAD26FDB543004CA335 /* FrontCardCreationCollectionViewCell.swift in Sources */,

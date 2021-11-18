@@ -49,55 +49,54 @@ class FrontCardCreationCollectionViewCell: UICollectionViewCell {
 }
 
 // MARK: - Extensions
-
 extension FrontCardCreationCollectionViewCell {
     private func setUI() {
         initUITextFieldList()
         cardBackgroundSettingCollectionView.showsHorizontalScrollIndicator = false
         scrollView.indicatorStyle = .white
-        scrollView.backgroundColor = .black1
-        bgView.backgroundColor = .black1
-        setBackgroundView.backgroundColor = .stepBlack5
-        requiredInfoView.backgroundColor = .stepBlack5
-        optionalInfoView.backgroundColor = .stepBlack5
-        cardBackgroundSettingCollectionView.backgroundColor = .stepBlack5
+        // scrollView.backgroundColor = .black1
+        // bgView.backgroundColor = .black1
+        // setBackgroundView.backgroundColor = .stepBlack5
+        // requiredInfoView.backgroundColor = .stepBlack5
+        // optionalInfoView.backgroundColor = .stepBlack5
+        // cardBackgroundSettingCollectionView.backgroundColor = .stepBlack5
         
         let collectionViewLayout = cardBackgroundSettingCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
         collectionViewLayout?.scrollDirection = .horizontal
         
         setBackgroundTextLabel.text = "1 배경 지정"
         setBackgroundTextLabel.font = .step
-        setBackgroundTextLabel.textColor = .white1
+        // setBackgroundTextLabel.textColor = .white1
         
         requiredInfoTextLabel.text = "2 필수 정보"
         requiredInfoTextLabel.font = .step
-        requiredInfoTextLabel.textColor = .white1
+        // requiredInfoTextLabel.textColor = .white1
         
         optionalInfoTextLabel.text = "3 선택 정보"
         optionalInfoTextLabel.font = .step
-        optionalInfoTextLabel.textColor = .white1
+        // optionalInfoTextLabel.textColor = .white1
         
-        cardNameTextField.attributedPlaceholder = NSAttributedString(string: "명함이름", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
-        userNameTextField.attributedPlaceholder = NSAttributedString(string: "이름", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
-        birthTextField.attributedPlaceholder = NSAttributedString(string: "생년월일", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
-        mbtiTextField.attributedPlaceholder = NSAttributedString(string: "MBTI", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
+        // cardNameTextField.attributedPlaceholder = NSAttributedString(string: "명함이름", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
+        // userNameTextField.attributedPlaceholder = NSAttributedString(string: "이름", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
+        // birthTextField.attributedPlaceholder = NSAttributedString(string: "생년월일", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
+        // mbtiTextField.attributedPlaceholder = NSAttributedString(string: "MBTI", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
         
-        instagramTextField.attributedPlaceholder = NSAttributedString(string: "Instagram", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
-        linkNameTextField.attributedPlaceholder = NSAttributedString(string: "링크 이름", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
-        linkURLTextField.attributedPlaceholder = NSAttributedString(string: "링크", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
-        clubNameTextField.attributedPlaceholder = NSAttributedString(string: "동아리 기수 / 파트", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
+        // instagramTextField.attributedPlaceholder = NSAttributedString(string: "Instagram", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
+        // linkNameTextField.attributedPlaceholder = NSAttributedString(string: "링크 이름", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
+        // linkURLTextField.attributedPlaceholder = NSAttributedString(string: "링크", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
+        // clubNameTextField.attributedPlaceholder = NSAttributedString(string: "동아리 기수 / 파트", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
         
         _ = requiredTextFieldList.map {
             $0.font = .hint
-            $0.backgroundColor = .inputBlack2
-            $0.textColor = .white1
+            // $0.backgroundColor = .inputBlack2
+            // $0.textColor = .white1
             $0.layer.cornerRadius = 5
             $0.borderStyle = .none
         }
         _ = optionalTextFieldList.map {
             $0.font = .hint
-            $0.backgroundColor = .inputBlack2
-            $0.textColor = .white1
+            // $0.backgroundColor = .inputBlack2
+            // $0.textColor = .white1
             $0.layer.cornerRadius = 5
             $0.borderStyle = .none
         }
@@ -128,11 +127,9 @@ extension FrontCardCreationCollectionViewCell {
 }
 
 // MARK: - UICollectionViewDelegate
-
 extension FrontCardCreationCollectionViewCell: UICollectionViewDelegate { }
 
 // MARK: - UICollectionViewDataSource
-
 extension FrontCardCreationCollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return backgroundList.count
@@ -149,7 +146,6 @@ extension FrontCardCreationCollectionViewCell: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-
 extension FrontCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 28, bottom: 7, right: 28)
@@ -164,12 +160,11 @@ extension FrontCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayou
 }
 
 // MARK: - UITextFieldDelegate
-
 extension FrontCardCreationCollectionViewCell: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.becomeFirstResponder()
         textField.borderWidth = 1
-        textField.borderColor = .white1
+        // textField.borderColor = .white1
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         if cardNameTextField.hasText && userNameTextField.hasText && birthTextField.hasText && mbtiTextField.hasText {

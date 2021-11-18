@@ -34,10 +34,8 @@ class CardListTableViewCell: UITableViewCell {
         
         if pinButton.currentImage == pinImage {
             pinButton.setImage(UIImage(named: "pushPinBlack"), for: UIControl.State.normal)
-            self.contentView.backgroundColor = UIColor.black1
         } else {
             pinButton.setImage(UIImage(named: "pushPinBlackFilled"), for: UIControl.State.normal)
-            self.contentView.backgroundColor = UIColor.listSelectedBlack3
         }
     }
     

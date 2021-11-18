@@ -76,7 +76,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wDj-gp-dYn" customClass="VerticalCardSwiper" customModule="VerticalCardSwiper">
                                 <rect key="frame" x="0.0" y="109" width="375" height="703"/>
-                                <color key="backgroundColor" name="black"/>
+                                <color key="backgroundColor" name="background"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="topInset">
                                         <real key="value" value="9"/>
@@ -91,7 +91,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" name="black"/>
+                        <color key="backgroundColor" name="background"/>
                         <constraints>
                             <constraint firstItem="QnQ-Yt-6c0" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="8Ph-LL-Rp0"/>
                             <constraint firstItem="wDj-gp-dYn" firstAttribute="top" secondItem="QnQ-Yt-6c0" secondAttribute="bottom" id="F93-Yd-v2M"/>
@@ -136,6 +136,9 @@
         <image name="homeBtnOnClick" width="30" height="30"/>
         <image name="personWhite" width="24" height="24"/>
         <image name="viewListBlack" width="24" height="24"/>
+        <namedColor name="background">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="black">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

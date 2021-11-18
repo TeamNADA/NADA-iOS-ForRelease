@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "filename" : "iconReorder.png",
+      "scale" : "1x"
+    },
+    {
+      "scale" : "2x",
+      "filename" : "iconReorder@2x.png",
+      "idiom" : "universal"
+    },
+    {
+      "filename" : "iconReorder@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

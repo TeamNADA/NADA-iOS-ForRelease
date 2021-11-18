@@ -31,7 +31,6 @@ class CardListTableViewCell: UITableViewCell {
     // 핀 이미지 클릭 시
     @IBAction func pinButtonClicked(_ sender: Any) {
         let pinImage = UIImage(named: "iconPin")
-        _ = UIImage(named: "iconReorder")
         
         if pinButton.currentImage == pinImage {
             pinButton.setImage(UIImage(named: "iconPinInactive"), for: UIControl.State.normal)

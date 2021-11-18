@@ -46,6 +46,18 @@ class CommonBottomSheetViewController: UIViewController {
         return view
     }()
     
+    // 자연스러운 애니메이션을 위한..커버..
+    let bottomSheetCoverView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        
+        view.layer.cornerRadius = 27
+        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        view.clipsToBounds = true
+        
+        return view
+    }()
+    
     // dismiss Indicator View UI 구성 부분
     private let dismissIndicatorView: UIView = {
         let view = UIView()
@@ -85,6 +97,7 @@ class CommonBottomSheetViewController: UIViewController {
         view.addSubview(bottomSheetView)
         view.addSubview(dismissIndicatorView)
         view.addSubview(titleLabel)
+        view.addSubview(bottomSheetCoverView)
         
         dimmedBackView.alpha = 0.0
         setupLayout()
@@ -123,6 +136,14 @@ class CommonBottomSheetViewController: UIViewController {
             bottomSheetViewTopConstraint
         ])
         
+        bottomSheetCoverView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            bottomSheetCoverView.topAnchor.constraint(equalTo: bottomSheetView.topAnchor),
+            bottomSheetCoverView.leadingAnchor.constraint(equalTo: bottomSheetView.leadingAnchor),
+            bottomSheetCoverView.trailingAnchor.constraint(equalTo: bottomSheetView.trailingAnchor),
+            bottomSheetCoverView.bottomAnchor.constraint(equalTo: bottomSheetView.bottomAnchor)
+        ])
+        
         dismissIndicatorView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             dismissIndicatorView.widthAnchor.constraint(equalToConstant: 102),
@@ -146,10 +167,12 @@ class CommonBottomSheetViewController: UIViewController {
         
         bottomSheetViewTopConstraint.constant = (safeAreaHeight + bottomPadding) - bottomHeight
         
-        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
             self.dimmedBackView.alpha = 0.5
             self.view.layoutIfNeeded()
-        }, completion: nil)
+        }, completion: { _ in
+            self.bottomSheetCoverView.isHidden = true
+        })
     }
     
     // 바텀 시트 사라지는 애니메이션
@@ -157,9 +180,10 @@ class CommonBottomSheetViewController: UIViewController {
         let safeAreaHeight = view.safeAreaLayoutGuide.layoutFrame.height
         let bottomPadding = view.safeAreaInsets.bottom
         bottomSheetViewTopConstraint.constant = safeAreaHeight + bottomPadding
-        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
             self.dimmedBackView.alpha = 0.0
             self.view.layoutIfNeeded()
+            self.bottomSheetCoverView.isHidden = false
         }) { _ in
             if self.presentingViewController != nil {
                 self.dismiss(animated: false, completion: nil)

@@ -8,6 +8,14 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Spoqa Han Sans Neo Bold.otf">
+            <string>SpoqaHanSansNeo-Bold</string>
+        </array>
+        <array key="Spoqa Han Sans Neo Regular.otf">
+            <string>SpoqaHanSansNeo-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -32,88 +40,88 @@
                         <state key="normal" image="iconShare"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😎 나의 취향" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHb-jJ-jng">
-                        <rect key="frame" x="24" y="50" width="95" height="21.5"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                        <rect key="frame" x="24" y="50" width="96.5" height="22"/>
+                        <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="18"/>
                         <color key="textColor" name="primary"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🤓 나의 TMI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XT5-iW-6kG">
-                        <rect key="frame" x="24" y="376.5" width="96" height="21.5"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                        <rect key="frame" x="24" y="377" width="96" height="22"/>
+                        <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="18"/>
                         <color key="textColor" name="primary"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qum-Iq-vKj">
-                        <rect key="frame" x="24" y="87.5" width="133" height="45"/>
+                        <rect key="frame" x="24" y="88" width="133" height="45"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="133" id="7yW-Y7-0oL"/>
                             <constraint firstAttribute="height" constant="45" id="aMn-t7-Cgm"/>
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yJZ-UI-FTC">
-                        <rect key="frame" x="24" y="148.5" width="133" height="45"/>
+                        <rect key="frame" x="24" y="149" width="133" height="45"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="133" id="9sT-bI-xnK"/>
                             <constraint firstAttribute="height" constant="45" id="xPq-gX-awB"/>
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sm2-Ib-bYM">
-                        <rect key="frame" x="24" y="209.5" width="133" height="45"/>
+                        <rect key="frame" x="24" y="210" width="133" height="45"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="45" id="8Kz-DG-OR5"/>
                             <constraint firstAttribute="width" constant="133" id="WMN-uc-5CT"/>
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nx7-Vx-MTP">
-                        <rect key="frame" x="24" y="270.5" width="133" height="45"/>
+                        <rect key="frame" x="24" y="271" width="133" height="45"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="45" id="hKX-EG-Je9"/>
                             <constraint firstAttribute="width" constant="133" id="hyX-CK-64f"/>
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bd3-Rn-YVD">
-                        <rect key="frame" x="170" y="87.5" width="133" height="45"/>
+                        <rect key="frame" x="170" y="88" width="133" height="45"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="133" id="WMh-3V-Kyi"/>
                             <constraint firstAttribute="height" constant="45" id="xsy-Gv-mlk"/>
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rxd-qO-yOK">
-                        <rect key="frame" x="170" y="148.5" width="133" height="45"/>
+                        <rect key="frame" x="170" y="149" width="133" height="45"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="133" id="Hr9-Dw-ocQ"/>
                             <constraint firstAttribute="height" constant="45" id="r4X-YT-gNx"/>
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wc5-PI-Gnj">
-                        <rect key="frame" x="170" y="209.5" width="133" height="45"/>
+                        <rect key="frame" x="170" y="210" width="133" height="45"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="45" id="0HT-O1-frn"/>
                             <constraint firstAttribute="width" constant="133" id="Xtz-Fn-nzf"/>
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="25N-CU-6fD">
-                        <rect key="frame" x="170" y="270.5" width="133" height="45"/>
+                        <rect key="frame" x="170" y="271" width="133" height="45"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="133" id="MAF-HV-bBk"/>
                             <constraint firstAttribute="height" constant="45" id="Nzj-7I-Rrt"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ch6-5U-VOL">
-                        <rect key="frame" x="24" y="414" width="279" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <rect key="frame" x="24" y="415" width="279" height="17"/>
+                        <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
                         <color key="textColor" name="primary"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFb-AS-8IM">
-                        <rect key="frame" x="24" y="443" width="279" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <rect key="frame" x="24" y="444" width="279" height="17"/>
+                        <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
                         <color key="textColor" name="primary"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yf-Qs-VBg">
-                        <rect key="frame" x="24" y="472" width="279" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <rect key="frame" x="24" y="473" width="279" height="17"/>
+                        <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
                         <color key="textColor" name="primary"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -190,7 +198,7 @@
                 <outlet property="sauceChickenImageView" destination="Nx7-Vx-MTP" id="EBI-QU-BQH"/>
                 <outlet property="secondTmiLabel" destination="IFb-AS-8IM" id="huF-sy-GN1"/>
                 <outlet property="sojuImageView" destination="yJZ-UI-FTC" id="a17-57-8Jd"/>
-                <outlet property="thirdTmiLabel" destination="9yf-Qs-VBg" id="Vpe-K1-9HG"/>
+                <outlet property="thirdTmiLabel" destination="9yf-Qs-VBg" id="e4s-7p-WmB"/>
             </connections>
             <point key="canvasLocation" x="131.15942028985509" y="79.6875"/>
         </collectionViewCell>

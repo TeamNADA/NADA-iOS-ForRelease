@@ -65,11 +65,11 @@ extension BackCardCreationCollectionViewCell {
         // optionInfoView.backgroundColor = .stepBlack5
         
         requiredInfoTextLabel.text = "1 필수 정보"
-        requiredInfoTextLabel.font = .step
+        // requiredInfoTextLabel.font = .step
         // requiredInfoTextLabel.textColor = .white1
         
         optionalInfoTextLabel.text = "2 선택 정보"
-        optionalInfoTextLabel.font = .step
+        // optionalInfoTextLabel.font = .step
         // optionalInfoTextLabel.textColor = .white1
         
         // firstQuestionTextField.attributedPlaceholder = NSAttributedString(string: "질문 1", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
@@ -78,7 +78,7 @@ extension BackCardCreationCollectionViewCell {
         // secondAnswerTextField.attributedPlaceholder = NSAttributedString(string: "대답 2", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
         
         _ = textFieldList.map {
-            $0.font = .hint
+            // $0.font = .hint
             // $0.backgroundColor = .inputBlack2
             // $0.textColor = .white1
             $0.layer.cornerRadius = 5

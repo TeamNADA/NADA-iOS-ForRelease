@@ -20,10 +20,9 @@ class BackCardCell: CardCell {
     @IBOutlet weak var putSauceEatImageView: UIImageView!
     @IBOutlet weak var sauceChickenImageView: UIImageView!
     @IBOutlet weak var friedChickenImageView: UIImageView!
-    @IBOutlet weak var firstQuestionLabel: UILabel!
-    @IBOutlet weak var firstAnswerLabel: UILabel!
-    @IBOutlet weak var secondQuestionLabel: UILabel!
-    @IBOutlet weak var secondAnswerLabel: UILabel!
+    @IBOutlet weak var firstTmiLabel: UILabel!
+    @IBOutlet weak var secondTmiLabel: UILabel!
+    @IBOutlet weak var thirdTmiLabel: UILabel!
     
     // MARK: - View Life Cycle
     override func awakeFromNib() {
@@ -52,10 +51,9 @@ extension BackCardCell {
                   _ putSauceImage: String,
                   _ yangnyumImage: String,
                   _ friedImage: String,
-                  _ firstQuestion: String,
-                  _ firstAnswer: String,
-                  _ secondQuestion: String,
-                  _ secondAnswer: String) {
+                  _ firstTmi: String,
+                  _ secondTmi: String,
+                  _ thirdTmi: String) {
         if let bgImage = UIImage(named: backgroundImage) {
             self.backgroundImageView.image = bgImage
         }
@@ -83,9 +81,9 @@ extension BackCardCell {
         if let friedImage = UIImage(named: friedImage) {
             self.friedChickenImageView.image = friedImage
         }
-        self.firstQuestionLabel.text = firstQuestion
-        self.firstAnswerLabel.text = firstAnswer
-        self.secondQuestionLabel.text = secondQuestion
-        self.secondAnswerLabel.text = secondAnswer
+
+        self.firstTmiLabel.text = firstTmi
+        self.secondTmiLabel.text = secondTmi
+        self.thirdTmiLabel.text = thirdTmi
     }
 }

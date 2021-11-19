@@ -11,7 +11,7 @@ class CardListTableViewCell: UITableViewCell {
 
     @IBOutlet weak var pinButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var reorderButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,12 +30,14 @@ class CardListTableViewCell: UITableViewCell {
     
     // 핀 이미지 클릭 시
     @IBAction func pinButtonClicked(_ sender: Any) {
-        let pinImage = UIImage(named: "pushPinBlackFilled")
+        let pinImage = UIImage(named: "iconPin")
         
         if pinButton.currentImage == pinImage {
-            pinButton.setImage(UIImage(named: "pushPinBlack"), for: UIControl.State.normal)
+            pinButton.setImage(UIImage(named: "iconPinInactive"), for: UIControl.State.normal)
+            reorderButton.isHidden = false
         } else {
-            pinButton.setImage(UIImage(named: "pushPinBlackFilled"), for: UIControl.State.normal)
+            pinButton.setImage(UIImage(named: "iconPin"), for: UIControl.State.normal)
+            reorderButton.isHidden = true
         }
     }
     
@@ -43,9 +45,7 @@ class CardListTableViewCell: UITableViewCell {
         
     }
     
-    func initData(title: String,
-                  date: String) {
+    func initData(title: String) {
         titleLabel.text = title
-        dateLabel.text = date
     }
 }

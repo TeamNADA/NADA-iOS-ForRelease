@@ -32,10 +32,9 @@ class FrontViewController: UIViewController {
     private var putSauceImageList = [String]()
     private var yangnyumImageList = [String]()
     private var friedImageList = [String]()
-    private var firstQuestionList = [String]()
-    private var firstAnswerList = [String]()
-    private var secondQuestionList = [String]()
-    private var secondAnswerList = [String]()
+    private var firstTmiList = [String]()
+    private var secondTmiList = [String]()
+    private var thirdTmiLabel = [String]()
     
     var isFrontCard: [Bool] = [true, true]
     
@@ -68,6 +67,13 @@ class FrontViewController: UIViewController {
     }
     
     // MARK: - @IBAction Properties
+    // 명함 생성 뷰로 화면 전환
+    @IBAction func presentToCardCreationView(_ sender: Any) {
+        let nextVC = UIStoryboard(name: Const.Storyboard.Name.cardCreation, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardCreationViewController)
+        nextVC.modalPresentationStyle = .overFullScreen
+        self.present(nextVC, animated: true, completion: nil)
+    }
+    
     // 명함 리스트 뷰로 화면 전환
     @IBAction func pushToCardListView(_ sender: Any) {
         let nextVC = UIStoryboard(name: Const.Storyboard.Name.cardList, bundle: nil).instantiateViewController(identifier: Const.ViewController.Identifier.cardListViewController)
@@ -76,20 +82,13 @@ class FrontViewController: UIViewController {
         
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
-    
-    // 명함 생성 뷰로 화면 전환
-    @IBAction func presentToCardCreationView(_ sender: Any) {
-        let nextVC = UIStoryboard(name: Const.Storyboard.Name.cardCreation, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardCreationViewController)
-        nextVC.modalPresentationStyle = .overFullScreen
-        self.present(nextVC, animated: true, completion: nil)
-    }
 }
 
 // MARK: - Extensions
 extension FrontViewController {
     private func setFrontList() {
-        imageList.append(contentsOf: ["bg1",
-                                      "bg1"
+        imageList.append(contentsOf: ["card",
+                                      "card"
                                      ])
         cardNameList.append(contentsOf: ["SOPT 28기 명함",
                                          "SOPT 28기 명함"
@@ -121,42 +120,39 @@ extension FrontViewController {
     }
     
     private func setBackList() {
-        mintImageList.append(contentsOf: ["opt1Select",
-                                          "opt1Select"
+        mintImageList.append(contentsOf: ["iconTasteOnMincho",
+                                          "iconTasteOnMincho"
                                          ])
-        noMintImageList.append(contentsOf: ["opt2Unselect",
-                                            "opt2Unselect"
+        noMintImageList.append(contentsOf: ["iconTasteOffBanmincho",
+                                            "iconTasteOffBanmincho"
                                            ])
-        sojuImageList.append(contentsOf: ["opt3Unselect",
-                                          "opt3Unselect"
+        sojuImageList.append(contentsOf: ["iconTasteOnSoju",
+                                          "iconTasteOnSoju"
                                          ])
-        beerImageList.append(contentsOf: ["opt4Select",
-                                          "opt4Select"
+        beerImageList.append(contentsOf: ["iconTasteOffBeer",
+                                          "iconTasteOffBeer"
                                          ])
-        pourImageList.append(contentsOf: ["opt5Unselect",
-                                          "opt5Unselect"
+        pourImageList.append(contentsOf: ["iconTasteOffBumeok",
+                                          "iconTasteOffBumeok"
                                          ])
-        putSauceImageList.append(contentsOf: ["opt6Select",
-                                              "opt6Select"
+        putSauceImageList.append(contentsOf: ["iconTasteOnZzik",
+                                              "iconTasteOnZzik"
                                              ])
-        yangnyumImageList.append(contentsOf: ["opt7Select",
-                                              "opt7Select"
+        yangnyumImageList.append(contentsOf: ["iconTasteOffSeasoned",
+                                              "iconTasteOffSeasoned"
                                              ])
-        friedImageList.append(contentsOf: ["opt8Unselect",
-                                           "opt8Unselect"
+        friedImageList.append(contentsOf: ["iconTasteOnFried",
+                                           "iconTasteOnFried"
                                           ])
-        firstQuestionList.append(contentsOf: ["Q1. 직접 질문 추가",
-                                              ""
-                                             ])
-        firstAnswerList.append(contentsOf: ["질문에 대한 대답입니다.",
-                                            ""
-                                           ])
-        secondQuestionList.append(contentsOf: ["Q2. 직접 질문 추가",
-                                               ""
-                                              ])
-        secondAnswerList.append(contentsOf: ["질문에 대한 대답입니다.",
-                                             ""
-                                            ])
+        firstTmiList.append(contentsOf: ["첫번째",
+                                         "첫번째"
+                                        ])
+        secondTmiList.append(contentsOf: ["두번째리따리따",
+                                         "두번째"
+                                        ])
+        thirdTmiLabel.append(contentsOf: ["세번째리따라라ㅏㄹ",
+                                         "세번째"
+                                        ])
     }
 }
 
@@ -196,7 +192,7 @@ extension FrontViewController: VerticalCardSwiperDatasource {
             guard let backCell = verticalCardSwiperView.dequeueReusableCell(withReuseIdentifier: "BackCardCell", for: index) as? BackCardCell else {
                 return CardCell()
             }
-            backCell.initCell(imageList[index], mintImageList[index], noMintImageList[index], sojuImageList[index], beerImageList[index], pourImageList[index], putSauceImageList[index], yangnyumImageList[index], friedImageList[index], firstQuestionList[index], firstAnswerList[index], secondQuestionList[index], secondAnswerList[index])
+            backCell.initCell(imageList[index], mintImageList[index], noMintImageList[index], sojuImageList[index], beerImageList[index], pourImageList[index], putSauceImageList[index], yangnyumImageList[index], friedImageList[index], firstTmiList[index], secondTmiList[index], thirdTmiLabel[index])
             return backCell
         }
     }

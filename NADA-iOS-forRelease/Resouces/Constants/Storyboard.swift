@@ -16,7 +16,7 @@ extension Const {
             static let cardList = "CardList"
             static let front = "Front"
             static let group = "Group"
-            static let customTabBar = "CustomTabBar"
+            static let tabBar = "TabBar"
         }
         
     }

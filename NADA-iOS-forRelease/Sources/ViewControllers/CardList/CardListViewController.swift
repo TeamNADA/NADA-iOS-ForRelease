@@ -49,13 +49,13 @@ class CardListViewController: UIViewController {
     // MARK: - Functions
     func setCardList() {
         cardItems.append(contentsOf: [
-            CardListDataModel(title: "SOPT 28기 명함", date: "2021/08/29"),
-            CardListDataModel(title: "SOPT 28기 명함", date: "2021/08/29"),
-            CardListDataModel(title: "SOPT 28기 명함", date: "2021/08/29"),
-            CardListDataModel(title: "SOPT 28기 명함", date: "2021/08/29"),
-            CardListDataModel(title: "SOPT 28기 명함", date: "2021/08/29"),
-            CardListDataModel(title: "SOPT 28기 명함", date: "2021/08/29"),
-            CardListDataModel(title: "SOPT 28기 명함", date: "2021/08/29")
+            CardListDataModel(title: "SOPT 28기 명함"),
+            CardListDataModel(title: "SOPT 28기 명함"),
+            CardListDataModel(title: "SOPT 28기 명함"),
+            CardListDataModel(title: "SOPT 28기 명함"),
+            CardListDataModel(title: "SOPT 28기 명함"),
+            CardListDataModel(title: "SOPT 28기 명함"),
+            CardListDataModel(title: "SOPT 28기 명함")
         ])
     }
     
@@ -90,7 +90,7 @@ class CardListViewController: UIViewController {
 // MARK: - UITableViewDelegate
 extension CardListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 76
+        return 58
     }
     
     // Swipe Action
@@ -179,8 +179,7 @@ extension CardListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.cardListTableViewCell, for: indexPath) as? CardListTableViewCell else { return UITableViewCell() }
         
-        serviceCell.initData(title: cardItems[indexPath.row].title,
-                             date: cardItems[indexPath.row].date)
+        serviceCell.initData(title: cardItems[indexPath.row].title)
         
         return serviceCell
     }

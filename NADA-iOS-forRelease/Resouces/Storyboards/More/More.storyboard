@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--More View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="MoreViewController" customModule="NADA_iOS_forRelease" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wb8-4G-Pj8">
+                                <rect key="frame" x="0.0" y="44" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="더보기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVO-N6-tSR">
+                                        <rect key="frame" x="24" y="18" width="47" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <color key="textColor" name="primary"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="FzB-Ic-NPj"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="QlG-Z3-XvL"/>
+                                    <constraint firstItem="DVO-N6-tSR" firstAttribute="top" secondItem="wb8-4G-Pj8" secondAttribute="top" constant="18" id="Ryv-xo-flI"/>
+                                    <constraint firstItem="DVO-N6-tSR" firstAttribute="leading" secondItem="wb8-4G-Pj8" secondAttribute="leading" constant="24" id="x8c-f6-C4o"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="WnB-Ge-3qg">
+                                <rect key="frame" x="0.0" y="104" width="375" height="625"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="WnB-Ge-3qg" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="9Mp-H8-T3c"/>
+                            <constraint firstAttribute="trailing" secondItem="wb8-4G-Pj8" secondAttribute="trailing" id="GkL-m8-eem"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="WnB-Ge-3qg" secondAttribute="trailing" id="VnA-Ln-U3x"/>
+                            <constraint firstItem="wb8-4G-Pj8" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="aaY-jG-Ypx"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="WnB-Ge-3qg" secondAttribute="bottom" id="cgm-yU-GKk"/>
+                            <constraint firstItem="WnB-Ge-3qg" firstAttribute="top" secondItem="wb8-4G-Pj8" secondAttribute="bottom" constant="10" id="fKt-Z9-LvS"/>
+                            <constraint firstItem="wb8-4G-Pj8" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="qq9-dH-GCJ"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="iconMoreHoriz" selectedImage="iconMoreHorizSelected" id="mtN-II-w2Y"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="64" y="56"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="iconMoreHoriz" width="30" height="30"/>
+        <image name="iconMoreHorizSelected" width="30" height="35"/>
+        <namedColor name="primary">
+            <color red="0.074509803921568626" green="0.078431372549019607" blue="0.086274509803921567" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -8,6 +8,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="NotoSansCJKkr-Regular.otf">
+            <string>NotoSansCJKkr-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Login View Controller-->
         <scene sceneID="s0d-6b-0kx">
@@ -28,7 +33,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="3RT-Mz-xhr"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="NotoSansMyanmar-Regular" family="Noto Sans Myanmar" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="14"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="75" maxY="0.0"/>
                                         <state key="normal" title="카카오 로그인" image="icnKakao">
                                             <color key="titleColor" name="primary"/>
@@ -50,7 +55,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CFr-2z-xuP">
                                         <rect key="frame" x="0.0" y="62" width="327" height="48"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="14"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="68" maxY="0.0"/>
                                         <state key="normal" title="Apple로 로그인" image="icnApple">
                                             <color key="titleColor" name="primary"/>

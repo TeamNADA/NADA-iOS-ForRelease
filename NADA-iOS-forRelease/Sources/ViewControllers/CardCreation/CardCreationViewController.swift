@@ -118,21 +118,21 @@ extension CardCreationViewController {
         cardCreationCollectionView.isPagingEnabled = true
         
         creationTextLabel.text = "명함 생성"
-        creationTextLabel.font = .menu
+        // creationTextLabel.font = .menu
         // creationTextLabel.textColor = .white1
         
         frontTextLabel.text = "앞면"
-        frontTextLabel.font = .menuSub
+        // frontTextLabel.font = .menuSub
         // frontTextLabel.textColor = .white1
         
         backTextLabel.text = "뒷면"
-        backTextLabel.font = .menuSub
+        // backTextLabel.font = .menuSub
         // backTextLabel.textColor = .hintGray1
         
         closeButton.setImage(UIImage(named: "closeBlack"), for: .normal)
         closeButton.setTitle("", for: .normal)
         
-        completeButton.titleLabel?.font = .btn
+        // completeButton.titleLabel?.font = .btn
         completeButton.layer.cornerRadius = 10
         completeButton.isEnabled = false
         

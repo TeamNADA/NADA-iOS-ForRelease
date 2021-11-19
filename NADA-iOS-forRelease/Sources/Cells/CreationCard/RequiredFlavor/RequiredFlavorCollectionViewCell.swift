@@ -27,7 +27,7 @@ extension RequiredFlavorCollectionViewCell {
         // bgView.backgroundColor = .inputBlack2
         bgView.cornerRadius = 10
         
-        flavorLabel.font = .hint
+        // flavorLabel.font = .hint
         // flavorLabel.textColor = .hintGray1
         flavorLabel.lineBreakMode = .byTruncatingTail
         flavorLabel.textAlignment = .center

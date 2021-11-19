@@ -65,15 +65,15 @@ extension FrontCardCreationCollectionViewCell {
         collectionViewLayout?.scrollDirection = .horizontal
         
         setBackgroundTextLabel.text = "1 배경 지정"
-        setBackgroundTextLabel.font = .step
+        // setBackgroundTextLabel.font = .step
         // setBackgroundTextLabel.textColor = .white1
         
         requiredInfoTextLabel.text = "2 필수 정보"
-        requiredInfoTextLabel.font = .step
+        // requiredInfoTextLabel.font = .step
         // requiredInfoTextLabel.textColor = .white1
         
         optionalInfoTextLabel.text = "3 선택 정보"
-        optionalInfoTextLabel.font = .step
+        // optionalInfoTextLabel.font = .step
         // optionalInfoTextLabel.textColor = .white1
         
         // cardNameTextField.attributedPlaceholder = NSAttributedString(string: "명함이름", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
@@ -87,14 +87,14 @@ extension FrontCardCreationCollectionViewCell {
         // clubNameTextField.attributedPlaceholder = NSAttributedString(string: "동아리 기수 / 파트", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
         
         _ = requiredTextFieldList.map {
-            $0.font = .hint
+            // $0.font = .hint
             // $0.backgroundColor = .inputBlack2
             // $0.textColor = .white1
             $0.layer.cornerRadius = 5
             $0.borderStyle = .none
         }
         _ = optionalTextFieldList.map {
-            $0.font = .hint
+            // $0.font = .hint
             // $0.backgroundColor = .inputBlack2
             // $0.textColor = .white1
             $0.layer.cornerRadius = 5

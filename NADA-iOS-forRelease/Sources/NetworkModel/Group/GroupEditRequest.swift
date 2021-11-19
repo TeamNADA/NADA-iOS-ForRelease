@@ -8,6 +8,6 @@
 import Foundation
 
 struct GroupEditRequest: Codable {
-    var groupId: Int?
-    var groupName: String?
+    var groupId: Int
+    var groupName: String
 }

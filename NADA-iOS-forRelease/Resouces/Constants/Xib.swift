@@ -16,5 +16,6 @@ extension Const {
         static let frontCardCell = "FrontCardCell"
         static let backCardCell = "BackCardCell"
         static let backgroundCollectionViewCell = "BackgroundCollectionViewCell"
+        static let groupEditTableViewCell = "GroupEditTableViewCell"
     }
 }

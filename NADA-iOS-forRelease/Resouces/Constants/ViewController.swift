@@ -16,6 +16,7 @@ extension Const {
             static let cardListViewController = "CardListViewController"
             static let frontViewController = "FrontViewController"
             static let groupViewController = "GroupViewController"
+            static let groupEditViewController = "GroupEditViewController"
             static let tabBarViewController = "TabBarViewController"
             static let commonBottomSheetViewController = "CommonBottomSheetViewController"
         }

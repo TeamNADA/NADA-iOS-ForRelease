@@ -6,6 +6,8 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -53,17 +55,81 @@
                                     <constraint firstItem="mEs-Hg-hmk" firstAttribute="top" secondItem="FLd-Fb-pY0" secondAttribute="top" constant="18" id="kuC-sd-JuW"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uxa-QB-Lm4">
+                                <rect key="frame" x="24" y="114" width="32" height="32"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="iconFolder"/>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fjf-wy-tr3">
+                                <rect key="frame" x="66" y="114" width="309" height="32"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="4E1-ms-weE"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gMe-6U-LJh">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="R9F-eE-3xL">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ZEI-dG-j6L">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="khE-2k-qTd">
+                                <rect key="frame" x="24" y="166" width="327" height="563"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Nld-ty-a2r">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="PCp-H1-jI2">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="p6o-Ib-Gp3">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="background"/>
                         <constraints>
+                            <constraint firstItem="khE-2k-qTd" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="9uR-Fm-j3v"/>
+                            <constraint firstItem="khE-2k-qTd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="Ar1-7d-CiY"/>
+                            <constraint firstItem="fjf-wy-tr3" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="H8X-Le-T9d"/>
+                            <constraint firstItem="Uxa-QB-Lm4" firstAttribute="top" secondItem="FLd-Fb-pY0" secondAttribute="bottom" constant="20" id="MyZ-U2-asF"/>
                             <constraint firstItem="FLd-Fb-pY0" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="aGn-hW-YXd"/>
+                            <constraint firstItem="fjf-wy-tr3" firstAttribute="top" secondItem="FLd-Fb-pY0" secondAttribute="bottom" constant="20" id="ecF-D6-hLq"/>
+                            <constraint firstItem="khE-2k-qTd" firstAttribute="top" secondItem="Uxa-QB-Lm4" secondAttribute="bottom" constant="20" id="fV1-Oy-3Vv"/>
+                            <constraint firstItem="fjf-wy-tr3" firstAttribute="leading" secondItem="Uxa-QB-Lm4" secondAttribute="trailing" constant="10" id="myE-dU-3n5"/>
+                            <constraint firstItem="Uxa-QB-Lm4" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="scb-tH-CtV"/>
                             <constraint firstItem="FLd-Fb-pY0" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="uh4-PJ-AR4"/>
+                            <constraint firstItem="khE-2k-qTd" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="vVs-1X-bJx"/>
                             <constraint firstItem="FLd-Fb-pY0" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="vWC-IQ-IfM"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="iconCards" selectedImage="iconCardsSelected" id="K4U-M8-kJl"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="addWithIDButton" destination="nZL-DM-M5o" id="vX5-qb-Oy3"/>
+                        <outlet property="addWithQRButton" destination="Ewx-GU-oh7" id="jTa-yC-e2z"/>
+                        <outlet property="cardsCollectionView" destination="khE-2k-qTd" id="0Og-Kl-bFs"/>
+                        <outlet property="editGroupButton" destination="Uxa-QB-Lm4" id="6ip-Rr-2WS"/>
+                        <outlet property="groupCollectionView" destination="fjf-wy-tr3" id="1IN-7c-Nph"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -73,10 +139,14 @@
     <resources>
         <image name="iconCards" width="30" height="30"/>
         <image name="iconCardsSelected" width="30" height="35"/>
+        <image name="iconFolder" width="32" height="32"/>
         <image name="iconographyCaesarzkn" width="24" height="24"/>
         <image name="personAddAlt1" width="24" height="24"/>
         <namedColor name="background">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

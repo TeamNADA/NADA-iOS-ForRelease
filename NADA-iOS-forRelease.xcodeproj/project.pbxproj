@@ -46,6 +46,8 @@
 		39F5A3D0271461EA00191F94 /* BackCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5A3CE271461EA00191F94 /* BackCardCell.swift */; };
 		39F5A3D1271461EA00191F94 /* BackCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39F5A3CF271461EA00191F94 /* BackCardCell.xib */; };
 		7729171F2743D604001593E0 /* CardsInGroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7729171E2743D604001593E0 /* CardsInGroupResponse.swift */; };
+		77607EDA274A68BE00204CD2 /* GroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77607ED8274A68BD00204CD2 /* GroupCollectionViewCell.swift */; };
+		77607EDB274A68BE00204CD2 /* GroupCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77607ED9274A68BD00204CD2 /* GroupCollectionViewCell.xib */; };
 		777FF89B27359B7800BF69D3 /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89A27359B7800BF69D3 /* Groups.swift */; };
 		777FF89D2735B16B00BF69D3 /* GroupAddRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89C2735B16B00BF69D3 /* GroupAddRequest.swift */; };
 		777FF89F27364B7B00BF69D3 /* GroupEditRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89E27364B7B00BF69D3 /* GroupEditRequest.swift */; };
@@ -137,6 +139,8 @@
 		39F5A3CF271461EA00191F94 /* BackCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackCardCell.xib; sourceTree = "<group>"; };
 		4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NADA_iOS_forRelease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7729171E2743D604001593E0 /* CardsInGroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsInGroupResponse.swift; sourceTree = "<group>"; };
+		77607ED8274A68BD00204CD2 /* GroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewCell.swift; sourceTree = "<group>"; };
+		77607ED9274A68BD00204CD2 /* GroupCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCollectionViewCell.xib; sourceTree = "<group>"; };
 		777FF89A27359B7800BF69D3 /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
 		777FF89C2735B16B00BF69D3 /* GroupAddRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAddRequest.swift; sourceTree = "<group>"; };
 		777FF89E27364B7B00BF69D3 /* GroupEditRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEditRequest.swift; sourceTree = "<group>"; };
@@ -342,6 +346,15 @@
 				4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		77607ED7274A689300204CD2 /* GroupCell */ = {
+			isa = PBXGroup;
+			children = (
+				77607ED8274A68BD00204CD2 /* GroupCollectionViewCell.swift */,
+				77607ED9274A68BD00204CD2 /* GroupCollectionViewCell.xib */,
+			);
+			path = GroupCell;
 			sourceTree = "<group>";
 		};
 		777FF89927359B1000BF69D3 /* Group */ = {
@@ -563,6 +576,7 @@
 		F8FC439B26C01EC30033E151 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				77607ED7274A689300204CD2 /* GroupCell */,
 				392F7FB1274621CF008CDBF5 /* MoreList */,
 				F84BAFA126FDB4E5004CA335 /* CreationCard */,
 				39523E582701A47400536900 /* CardList */,
@@ -733,6 +747,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8FC43BF26C025180033E151 /* .swiftlint.yml in Resources */,
+				77607EDB274A68BE00204CD2 /* GroupCollectionViewCell.xib in Resources */,
 				39369936274A4FCB00684420 /* NotoSansCJKkr-Regular.otf in Resources */,
 				39369935274A4FCB00684420 /* NotoSansCJKkr-Bold.otf in Resources */,
 				39D88B622745FBA900A72164 /* More.storyboard in Resources */,
@@ -853,6 +868,7 @@
 				F82FF8252702000000E57F8B /* RequiredFlavorCollectionViewCell.swift in Sources */,
 				F8C83FC7272FA2A20009DF0D /* CardService.swift in Sources */,
 				39D88B662745FE5F00A72164 /* TabBarViewController.swift in Sources */,
+				77607EDA274A68BE00204CD2 /* GroupCollectionViewCell.swift in Sources */,
 				F871227827330A3800A24E74 /* CardCreationRequest.swift in Sources */,
 				39D88B5F2745FB7E00A72164 /* MoreViewController.swift in Sources */,
 				F8FC43B326C020B90033E151 /* BackCardCreationDelegate.swift in Sources */,

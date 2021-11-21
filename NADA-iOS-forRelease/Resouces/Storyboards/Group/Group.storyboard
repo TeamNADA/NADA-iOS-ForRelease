@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Spoqa Han Sans Neo Bold.otf">
+            <string>SpoqaHanSansNeo-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Group View Controller-->
         <scene sceneID="s0d-6b-0kx">
@@ -16,20 +21,60 @@
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLd-Fb-pY0">
+                                <rect key="frame" x="0.0" y="44" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="명함 모음" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mEs-Hg-hmk">
+                                        <rect key="frame" x="24" y="18" width="78.333333333333329" height="24"/>
+                                        <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ewx-GU-oh7">
+                                        <rect key="frame" x="327" y="16" width="24" height="24"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="iconographyCaesarzkn"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZL-DM-M5o">
+                                        <rect key="frame" x="293" y="16" width="24" height="24"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="personAddAlt1"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="background"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="26r-KF-H7Z"/>
+                                    <constraint firstItem="nZL-DM-M5o" firstAttribute="top" secondItem="FLd-Fb-pY0" secondAttribute="top" constant="16" id="3Ue-fo-LY9"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ewx-GU-oh7" secondAttribute="trailing" constant="24" id="4oT-Xo-588"/>
+                                    <constraint firstItem="Ewx-GU-oh7" firstAttribute="leading" secondItem="nZL-DM-M5o" secondAttribute="trailing" constant="10" id="Kfi-ce-FyM"/>
+                                    <constraint firstItem="mEs-Hg-hmk" firstAttribute="leading" secondItem="FLd-Fb-pY0" secondAttribute="leading" constant="24" id="KuM-w3-EpJ"/>
+                                    <constraint firstItem="Ewx-GU-oh7" firstAttribute="top" secondItem="FLd-Fb-pY0" secondAttribute="top" constant="16" id="cRi-Yd-6eq"/>
+                                    <constraint firstItem="mEs-Hg-hmk" firstAttribute="top" secondItem="FLd-Fb-pY0" secondAttribute="top" constant="18" id="kuC-sd-JuW"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="background"/>
+                        <constraints>
+                            <constraint firstItem="FLd-Fb-pY0" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="aGn-hW-YXd"/>
+                            <constraint firstItem="FLd-Fb-pY0" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="uh4-PJ-AR4"/>
+                            <constraint firstItem="FLd-Fb-pY0" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="vWC-IQ-IfM"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="iconCards" selectedImage="iconCardsSelected" id="K4U-M8-kJl"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="64" y="58"/>
+            <point key="canvasLocation" x="63.200000000000003" y="57.635467980295566"/>
         </scene>
     </scenes>
     <resources>
         <image name="iconCards" width="30" height="30"/>
         <image name="iconCardsSelected" width="30" height="35"/>
+        <image name="iconographyCaesarzkn" width="24" height="24"/>
+        <image name="personAddAlt1" width="24" height="24"/>
         <namedColor name="background">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

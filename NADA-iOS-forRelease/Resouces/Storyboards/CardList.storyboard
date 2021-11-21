@@ -18,7 +18,7 @@
         <!--Card List View Controller-->
         <scene sceneID="jHI-XV-01Y">
             <objects>
-                <viewController storyboardIdentifier="CardListViewController" id="hIB-F2-GxN" customClass="CardListViewController" customModule="NADA_iOS_forRelease" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CardListViewController" hidesBottomBarWhenPushed="YES" id="hIB-F2-GxN" customClass="CardListViewController" customModule="NADA_iOS_forRelease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lQI-zS-JVS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

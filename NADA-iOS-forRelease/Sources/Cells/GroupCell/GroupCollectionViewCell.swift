@@ -10,30 +10,32 @@ import UIKit
 class GroupCollectionViewCell: UICollectionViewCell {
 
     // MARK: - @IBOutlet Properties
-    @IBOutlet weak var groupButton: UIButton!
+    @IBOutlet weak var groupBackground: UIView!
+    @IBOutlet weak var groupName: UILabel!
     
     // MARK: - View Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
         setUI()
     }
+    
+    static func nib() -> UINib {
+        return UINib(nibName: "GroupCollectionViewCell", bundle: nil)
+    }
 }
 
 // MARK: - Extensions
 extension GroupCollectionViewCell {
-    private func setUI(){
-        groupButton.layer.cornerRadius = 15
-        groupButton.setTitleColor(.mainColorButtonText, for: .normal)
-        groupButton.setTitleColor(.background, for: .selected)
+    private func setUI() {
+        groupBackground.layer.cornerRadius = 15
+        groupBackground.backgroundColor = .button
+        groupName.textColor = .mainColorButtonText
     }
     
-    override var isSelected: Bool{
-        didSet{
-            groupButton.backgroundColor = isSelected ? .primary : .button
+    override var isSelected: Bool {
+        didSet {
+            groupBackground.backgroundColor = isSelected ? .primary : .button
+            groupName.textColor = isSelected ? .background : .mainColorButtonText
         }
-    }
-    
-    static func nib() -> UINib {
-        return UINib(nibName: "GroupCollectionViewCell", bundle: nil)
     }
 }

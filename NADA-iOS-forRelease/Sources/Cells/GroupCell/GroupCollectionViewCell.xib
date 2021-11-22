@@ -4,8 +4,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -23,43 +23,42 @@
                 <rect key="frame" x="0.0" y="0.0" width="62" height="32"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FjM-dg-6bG">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5OJ-p4-uaU">
                         <rect key="frame" x="0.0" y="0.0" width="62" height="32"/>
-                        <color key="backgroundColor" name="button"/>
-                        <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="12"/>
-                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                        <state key="normal" title="Button">
-                            <color key="titleColor" name="buttonText"/>
-                        </state>
-                        <state key="selected">
-                            <color key="titleColor" name="background"/>
-                        </state>
-                    </button>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAL-JP-la2">
+                                <rect key="frame" x="15" y="9" width="32.5" height="14.5"/>
+                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="YAL-JP-la2" firstAttribute="centerX" secondItem="5OJ-p4-uaU" secondAttribute="centerX" id="TfV-u4-91E"/>
+                            <constraint firstItem="YAL-JP-la2" firstAttribute="centerY" secondItem="5OJ-p4-uaU" secondAttribute="centerY" id="llr-O3-gj7"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="FjM-dg-6bG" secondAttribute="trailing" id="L0y-4D-aq5"/>
-                <constraint firstAttribute="bottom" secondItem="FjM-dg-6bG" secondAttribute="bottom" id="Q5L-lf-pPB"/>
-                <constraint firstItem="FjM-dg-6bG" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Yeu-DK-sFF"/>
-                <constraint firstItem="FjM-dg-6bG" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="uGN-81-agc"/>
+                <constraint firstItem="5OJ-p4-uaU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="UfN-bd-Jam"/>
+                <constraint firstItem="5OJ-p4-uaU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Xbq-zM-dxA"/>
+                <constraint firstAttribute="trailing" secondItem="5OJ-p4-uaU" secondAttribute="trailing" id="YjN-Qr-akp"/>
+                <constraint firstAttribute="bottom" secondItem="5OJ-p4-uaU" secondAttribute="bottom" id="d9B-Sc-TDc"/>
             </constraints>
             <size key="customSize" width="158" height="50"/>
             <connections>
-                <outlet property="groupButton" destination="FjM-dg-6bG" id="de6-3w-KZh"/>
+                <outlet property="groupBackground" destination="5OJ-p4-uaU" id="2nO-RO-0Qi"/>
+                <outlet property="groupName" destination="YAL-JP-la2" id="jfa-t2-2qO"/>
             </connections>
             <point key="canvasLocation" x="215.94202898550725" y="109.82142857142857"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <namedColor name="background">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="button">
-            <color red="0.9137254901960784" green="0.92549019607843142" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="buttonText">
-            <color red="0.51372549019607838" green="0.53333333333333333" blue="0.5607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

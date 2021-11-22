@@ -18,6 +18,7 @@ extension Const {
             static let group = "Group"
             static let groupEdit = "GroupEdit"
             static let tabBar = "TabBar"
+            static let more = "More"
         }
         
     }

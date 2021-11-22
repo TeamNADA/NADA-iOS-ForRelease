@@ -37,6 +37,7 @@
 		3979709826FA0BF0003FB4F5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3979709726FA0BF0003FB4F5 /* Login.storyboard */; };
 		3981148E273BEBB300E28630 /* CardListEditRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3981148D273BEBB300E28630 /* CardListEditRequest.swift */; };
 		39811490273BEBCE00E28630 /* CardListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3981148F273BEBCE00E28630 /* CardListRequest.swift */; };
+		398413B7274A7A1E005550BC /* AddGroupBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398413B6274A7A1E005550BC /* AddGroupBottomSheetViewController.swift */; };
 		399C55DF2711949D00845A54 /* CGPoint+Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399C55DE2711949D00845A54 /* CGPoint+Distance.swift */; };
 		39C1E88F270EC762006D2089 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C1E88E270EC762006D2089 /* UIColor+Extension.swift */; };
 		39D13565273FDB9C00B1A148 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D13564273FDB9C00B1A148 /* User.swift */; };
@@ -131,6 +132,7 @@
 		3979709726FA0BF0003FB4F5 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		3981148D273BEBB300E28630 /* CardListEditRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListEditRequest.swift; sourceTree = "<group>"; };
 		3981148F273BEBCE00E28630 /* CardListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListRequest.swift; sourceTree = "<group>"; };
+		398413B6274A7A1E005550BC /* AddGroupBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupBottomSheetViewController.swift; sourceTree = "<group>"; };
 		399C55DE2711949D00845A54 /* CGPoint+Distance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Distance.swift"; sourceTree = "<group>"; };
 		39C1E88E270EC762006D2089 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		39D13564273FDB9C00B1A148 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				39D88B6A274600B100A72164 /* CommonBottomSheetViewController.swift */,
+				398413B6274A7A1E005550BC /* AddGroupBottomSheetViewController.swift */,
 			);
 			path = BottomSheet;
 			sourceTree = "<group>";
@@ -860,6 +863,7 @@
 				F8C83FCB272FA32C0009DF0D /* GroupService.swift in Sources */,
 				F858079E2700354E00872484 /* BackgroundCollectionViewCell.swift in Sources */,
 				F8C83FBD272F9F430009DF0D /* GenericResponse.swift in Sources */,
+				398413B7274A7A1E005550BC /* AddGroupBottomSheetViewController.swift in Sources */,
 				39007F2C27080D8200E7143E /* UIViewController+Extension.swift in Sources */,
 				F8C83FB6272F9E380009DF0D /* UtilService.swift in Sources */,
 				3958F239270FFBBF00B100B2 /* GroupViewController.swift in Sources */,

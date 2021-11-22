@@ -27,11 +27,13 @@ class GroupEditViewController: UIViewController {
     
     // MARK: - @IBAction Properties
     @IBAction func dismissToPreviousView(_ sender: UIButton) {
-        // self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func presentToAddGroupBottom(_ sender: UIButton) {
-        
+        let nextVC = AddGroupBottomSheetViewController().setTitle("그룹 추가").setHeight(184)
+        nextVC.modalPresentationStyle = .overFullScreen
+        self.present(nextVC, animated: true, completion: nil)
     }
 }
 

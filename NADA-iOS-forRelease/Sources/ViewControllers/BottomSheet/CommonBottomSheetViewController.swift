@@ -61,7 +61,7 @@ class CommonBottomSheetViewController: UIViewController {
     // dismiss Indicator View UI 구성 부분
     private let dismissIndicatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemGray2
+        view.backgroundColor = .textBox
         view.layer.cornerRadius = 3
         
         return view

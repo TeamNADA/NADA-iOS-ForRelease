@@ -21,7 +21,7 @@ class GroupViewController: UIViewController {
     @IBOutlet weak var cardsCollectionView: UICollectionView!
     
     // 그룹 이름들을 담을 변수 생성
-    var groups = ["미분류", "SOPT", "그룹명엄청길어요이거"]
+    var groups = ["미분류", "SOPT", "그룹명엄청길어요이거", "인하대학교"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -229,7 +229,7 @@ extension GroupViewController: UICollectionViewDataSource {
             } else {
                 groupCell.isSelected = false
             }
-
+            groupCollectionView.layoutIfNeeded()
             return groupCell
         } else {
             guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.frontCardCell, for: indexPath) as? FrontCardCell else {
@@ -255,7 +255,11 @@ extension GroupViewController: UICollectionViewDelegateFlowLayout {
         var width: CGFloat
         
         if collectionView == groupCollectionView {
-            width = collectionView.frame.size.width / CGFloat(groups.count)
+            if groups[indexPath.row].count > 4 {
+                width = CGFloat(groups[indexPath.row].count) * 16
+            } else {
+                width = 62
+            }
             height = collectionView.frame.size.height
         } else {
             width = collectionView.frame.size.width / 2 - 7.5
@@ -268,11 +272,7 @@ extension GroupViewController: UICollectionViewDelegateFlowLayout {
         return .zero
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        if collectionView == groupCollectionView {
-            return 5
-        } else {
-            return 0
-        }
+        return 0
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         if collectionView == groupCollectionView {

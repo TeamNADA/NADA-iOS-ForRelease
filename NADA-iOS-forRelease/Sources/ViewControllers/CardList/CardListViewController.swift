@@ -181,6 +181,11 @@ extension CardListViewController: UITableViewDataSource {
         
         serviceCell.initData(title: cardItems[indexPath.row].title)
         
+        if indexPath.row == 0 {
+            serviceCell.pinButton.imageView?.image = UIImage(named: "iconPin")
+            serviceCell.reorderButton.isHidden = true
+        }
+            
         return serviceCell
     }
 }
@@ -209,9 +214,9 @@ extension CardListViewController {
         // UIGestureRecognizer 상태에 따른 case 분기처리
         switch state {
             
-            // longPress 제스처가 시작할 때 case
+        // longPress 제스처가 시작할 때 case
         case UIGestureRecognizer.State.began:
-            if indexPath != nil {
+            if indexPath!.row != 0 {
                 Initial.initialIndexPath = indexPath
                 var cell: UITableViewCell? = UITableViewCell()
                 cell = cardListTableView.cellForRow(at: indexPath!)
@@ -244,21 +249,21 @@ extension CardListViewController {
                     }
                 })
             }
-            // longPress 제스처가 변경될 때 case
+        // longPress 제스처가 변경될 때 case
         case UIGestureRecognizer.State.changed:
             if MyCell.cellSnapshot != nil {
                 var center = MyCell.cellSnapshot!.center
                 center.y = locationInView.y
                 MyCell.cellSnapshot!.center = center
                 
-                if ((indexPath != nil) && (indexPath != Initial.initialIndexPath)) && Initial.initialIndexPath != nil {
+                if ((indexPath?.row != 0) && (indexPath != Initial.initialIndexPath)) && (Initial.initialIndexPath != nil) && (indexPath != nil) {
                     // this line change row index
                     self.cardItems.insert(self.cardItems.remove(at: Initial.initialIndexPath!.row), at: indexPath!.row)
                     cardListTableView.moveRow(at: Initial.initialIndexPath!, to: indexPath!)
                     Initial.initialIndexPath = indexPath
                 }
             }
-            // longPress 제스처가 끝났을 때 case
+        // longPress 제스처가 끝났을 때 case
         default:
             if Initial.initialIndexPath != nil {
                 let cell = cardListTableView.cellForRow(at: Initial.initialIndexPath!)

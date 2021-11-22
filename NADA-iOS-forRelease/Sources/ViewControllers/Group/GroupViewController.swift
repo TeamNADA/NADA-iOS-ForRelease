@@ -210,20 +210,24 @@ extension GroupViewController: UICollectionViewDelegate {
 // MARK: - UICollectionViewDataSource
 extension GroupViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == groupCollectionView {
+        switch collectionView {
+        case groupCollectionView:
             return groups.count
-        } else {
+        case cardsCollectionView:
             return 4
+        default:
+            return 0
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == groupCollectionView {
+        switch collectionView {
+        case groupCollectionView:
             guard let groupCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.GroupCollectionViewCell, for: indexPath) as? GroupCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            groupCell.groupName.text = groups[indexPath.row]
             
+            groupCell.groupName.text = groups[indexPath.row]
             if indexPath.row == 0 {
                 groupCell.isSelected = true
             } else {
@@ -231,7 +235,7 @@ extension GroupViewController: UICollectionViewDataSource {
             }
             groupCollectionView.layoutIfNeeded()
             return groupCell
-        } else {
+        case cardsCollectionView:
             guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.frontCardCell, for: indexPath) as? FrontCardCell else {
                 return UICollectionViewCell()
             }
@@ -239,11 +243,20 @@ extension GroupViewController: UICollectionViewDataSource {
             cardCell.backgroundColor = .blue
             cardCell.cornerRadius = 15
             return cardCell
+        default:
+            return UICollectionViewCell()
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
+        switch collectionView {
+        case groupCollectionView:
+            print(indexPath.row)
+        case cardsCollectionView:
+            print(indexPath.row)
+        default:
+            print(indexPath.row)
+        }
     }
 }
 
@@ -251,21 +264,24 @@ extension GroupViewController: UICollectionViewDataSource {
 extension GroupViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        var height: CGFloat
         var width: CGFloat
+        var height: CGFloat
         
-        if collectionView == groupCollectionView {
+        switch collectionView {
+        case groupCollectionView:
             if groups[indexPath.row].count > 4 {
                 width = CGFloat(groups[indexPath.row].count) * 16
             } else {
                 width = 62
             }
             height = collectionView.frame.size.height
-        } else {
+        case cardsCollectionView:
             width = collectionView.frame.size.width / 2 - 7.5
             height = collectionView.frame.size.height / 2
+        default:
+            width = 0
+            height = 0
         }
-
         return CGSize(width: width, height: height)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -275,10 +291,13 @@ extension GroupViewController: UICollectionViewDelegateFlowLayout {
         return 0
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        if collectionView == groupCollectionView {
+        switch collectionView {
+        case groupCollectionView:
             return 5
-        } else {
+        case cardsCollectionView:
             return 14
+        default:
+            return 0
         }
     }
 }

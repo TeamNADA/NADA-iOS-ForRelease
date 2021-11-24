@@ -30,14 +30,6 @@ extension MoreViewController: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 5
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.backgroundColor = .textBox
-    }
 }
 
 // MARK: - TableView DataSource
@@ -52,6 +44,10 @@ extension MoreViewController: UITableViewDataSource {
         } else {
             return 0
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

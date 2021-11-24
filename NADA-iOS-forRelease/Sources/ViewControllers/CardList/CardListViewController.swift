@@ -9,8 +9,8 @@ import UIKit
 import Moya
 import KakaoSDKCommon
 
-class CardListViewController: UIViewController {
-    
+class CardListViewController: UIViewController, CardListTableViewDelegate {
+        
     // MARK: - Properties
     var cardItems: [CardListDataModel] = []
     
@@ -50,12 +50,12 @@ class CardListViewController: UIViewController {
     func setCardList() {
         cardItems.append(contentsOf: [
             CardListDataModel(title: "SOPT 28기 명함"),
-            CardListDataModel(title: "SOPT 28기 명함"),
-            CardListDataModel(title: "SOPT 28기 명함"),
-            CardListDataModel(title: "SOPT 28기 명함"),
-            CardListDataModel(title: "SOPT 28기 명함"),
-            CardListDataModel(title: "SOPT 28기 명함"),
-            CardListDataModel(title: "SOPT 28기 명함")
+            CardListDataModel(title: "SOPT 29기 명함"),
+            CardListDataModel(title: "SOPT 30기 명함"),
+            CardListDataModel(title: "SOPT 31기 명함"),
+            CardListDataModel(title: "SOPT 32기 명함"),
+            CardListDataModel(title: "SOPT 33기 명함"),
+            CardListDataModel(title: "SOPT 34기 명함")
         ])
     }
     
@@ -109,7 +109,7 @@ extension CardListViewController: UITableViewDelegate {
         swipeActions.performsFirstActionWithFullSwipe = false
         
         return swipeActions
-    }
+    }    
 }
 
 // MARK: - Network
@@ -184,14 +184,33 @@ extension CardListViewController: UITableViewDataSource {
         if indexPath.row == 0 {
             serviceCell.pinButton.imageView?.image = UIImage(named: "iconPin")
             serviceCell.reorderButton.isHidden = true
+            serviceCell.pinButton.isEnabled = false
+        } else {
+            serviceCell.pinButton.imageView?.image = UIImage(named: "iconPinInactive")
+            serviceCell.reorderButton.isHidden = false
+            serviceCell.pinButton.isEnabled = true
         }
-            
+           
+        if indexPath.row > 0 {
+        }
+        
         return serviceCell
     }
 }
 
 // MARK: - Extension: 테이블 뷰 Drag & Drop 기능
 extension CardListViewController {
+    func pinChanged(_ cell: UITableViewCell, _ button: UIButton) {
+        let index = cardListTableView.indexPath(for: cell)
+        let initialIndexPath: IndexPath?
+        
+//        self.cardItems.insert(self.cardItems.remove(at: 0), at: index!.row)
+//        cardListTableView.moveRow(at: initialIndexPath!, to: )
+        
+//        swap(&cardItems[(index?.row)!], &cardItems[0])
+//        cardListTableView.moveRow(at: index!, to: index!)
+    }
+    
     // FIX: cyclomatic_complexity 워닝 발생 -> decision이 복잡해서라는데...일단 보류...
     @objc func longPressCalled(gestureRecognizer: UIGestureRecognizer) {
         guard let longPress = gestureRecognizer as? UILongPressGestureRecognizer else { return }

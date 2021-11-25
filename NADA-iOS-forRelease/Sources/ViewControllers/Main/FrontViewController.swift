@@ -70,8 +70,9 @@ class FrontViewController: UIViewController {
     // 명함 생성 뷰로 화면 전환
     @IBAction func presentToCardCreationView(_ sender: Any) {
         let nextVC = UIStoryboard(name: Const.Storyboard.Name.cardCreation, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardCreationViewController)
-        nextVC.modalPresentationStyle = .overFullScreen
-        self.present(nextVC, animated: true, completion: nil)
+        let navigationController = UINavigationController(rootViewController: nextVC)
+        navigationController.modalPresentationStyle = .overFullScreen
+        self.present(navigationController, animated: true, completion: nil)
     }
     
     // 명함 리스트 뷰로 화면 전환
@@ -186,7 +187,7 @@ extension FrontViewController: VerticalCardSwiperDatasource {
             guard let frontCell = verticalCardSwiperView.dequeueReusableCell(withReuseIdentifier: "FrontCardCell", for: index) as? FrontCardCell else {
                 return CardCell()
             }
-            frontCell.initCell(imageList[index], cardNameList[index], detailCardNameList[index], userNameList[index], birthList[index], mbtiList[index], instagramIDList[index], linkImageList[index], linkTextList[index], linkIDList[index])
+            frontCell.initCell(imageList[index], cardNameList[index], detailCardNameList[index], userNameList[index], birthList[index], mbtiList[index], instagramIDList[index], linkIDList[index])
             return frontCell
         } else {
             guard let backCell = verticalCardSwiperView.dequeueReusableCell(withReuseIdentifier: "BackCardCell", for: index) as? BackCardCell else {

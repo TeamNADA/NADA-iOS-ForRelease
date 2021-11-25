@@ -27,20 +27,47 @@
                         <color key="textColor" name="secondary"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QoL-PR-cfm">
+                        <rect key="frame" x="16" y="57" width="343" height="1"/>
+                        <color key="backgroundColor" name="textBox"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="JaL-30-a4H"/>
+                        </constraints>
+                    </view>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="X9p-6n-YCp">
+                        <rect key="frame" x="302" y="13" width="51" height="32"/>
+                    </switch>
                 </subviews>
+                <color key="backgroundColor" name="background"/>
                 <constraints>
                     <constraint firstItem="ZEb-kz-9Ea" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="8GW-mI-P4b"/>
                     <constraint firstItem="ZEb-kz-9Ea" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="32" id="94J-lZ-0o9"/>
+                    <constraint firstItem="QoL-PR-cfm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ESt-jC-Lig"/>
+                    <constraint firstAttribute="trailing" secondItem="X9p-6n-YCp" secondAttribute="trailing" constant="24" id="Szs-hm-KCD"/>
+                    <constraint firstItem="X9p-6n-YCp" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ZU2-nv-rwV"/>
+                    <constraint firstAttribute="trailing" secondItem="QoL-PR-cfm" secondAttribute="trailing" constant="16" id="bKa-vh-6I3"/>
+                    <constraint firstItem="X9p-6n-YCp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="glA-bt-HG0"/>
+                    <constraint firstAttribute="bottom" secondItem="QoL-PR-cfm" secondAttribute="bottom" id="sOk-Ny-hpT"/>
                     <constraint firstItem="ZEb-kz-9Ea" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="tsK-gs-8AR"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <point key="canvasLocation" x="131.8840579710145" y="81.361607142857139"/>
+            <connections>
+                <outlet property="modeSwitch" destination="X9p-6n-YCp" id="hL4-79-N7S"/>
+                <outlet property="titleLabel" destination="ZEb-kz-9Ea" id="cQm-Mv-7vw"/>
+            </connections>
+            <point key="canvasLocation" x="474.63768115942031" y="248.4375"/>
         </tableViewCell>
     </objects>
     <resources>
+        <namedColor name="background">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="secondary">
             <color red="0.16862745098039217" green="0.17647058823529413" blue="0.19215686274509805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textBox">
+            <color red="0.94509803921568625" green="0.95294117647058818" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

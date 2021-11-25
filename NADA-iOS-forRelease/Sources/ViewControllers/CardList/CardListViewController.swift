@@ -10,7 +10,7 @@ import Moya
 import KakaoSDKCommon
 
 class CardListViewController: UIViewController {
-    
+        
     // MARK: - Properties
     var cardItems: [CardListDataModel] = []
     
@@ -50,12 +50,11 @@ class CardListViewController: UIViewController {
     func setCardList() {
         cardItems.append(contentsOf: [
             CardListDataModel(title: "SOPT 28기 명함"),
-            CardListDataModel(title: "SOPT 28기 명함"),
-            CardListDataModel(title: "SOPT 28기 명함"),
-            CardListDataModel(title: "SOPT 28기 명함"),
-            CardListDataModel(title: "SOPT 28기 명함"),
-            CardListDataModel(title: "SOPT 28기 명함"),
-            CardListDataModel(title: "SOPT 28기 명함")
+            CardListDataModel(title: "디자인 스터디 명함"),
+            CardListDataModel(title: "아이스브레이킹"),
+            CardListDataModel(title: "NADA 명함"),
+            CardListDataModel(title: "NADA 명함"),
+            CardListDataModel(title: "NADA 명함")
         ])
     }
     
@@ -85,6 +84,21 @@ class CardListViewController: UIViewController {
         
         return cellSnapshot
     }
+    
+    @objc func pinButtonClicked(_ sender: UIButton) {
+        let contentView = sender.superview
+        guard let cell = contentView?.superview as? UITableViewCell else { return }
+        let index = cardListTableView.indexPath(for: cell)
+        
+        if index!.row > 0 {
+            cardListTableView.moveRow(at: index!, to: IndexPath(row: 0, section: 0))
+            self.cardItems.insert(self.cardItems.remove(at: index!.row), at: 0)
+            cardListTableView.reloadData()
+            
+            // FIXME: - 카드 리스트 편집 서버 테스트
+            // self.putCardListEditWithAPI(request: CardListEditRequest(ordered: [Ordered(cardID: "cardA", priority: 1), Ordered(cardID: "cardB", priority: 0)]))
+        }
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -112,8 +126,33 @@ extension CardListViewController: UITableViewDelegate {
     }
 }
 
-// MARK: - Network
+// MARK: - UITableViewDataSource
+extension CardListViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cardItems.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.cardListTableViewCell, for: indexPath) as? CardListTableViewCell else { return UITableViewCell() }
+        
+        serviceCell.initData(title: cardItems[indexPath.row].title)
+        serviceCell.pinButton.addTarget(self, action: #selector(pinButtonClicked(_:)), for: .touchUpInside)
+        
+        if indexPath.row == 0 {
+            serviceCell.pinButton.imageView?.image = UIImage(named: "iconPin")
+            serviceCell.pinButton.isEnabled = false
+            serviceCell.reorderButton.isHidden = true
+        } else {
+            serviceCell.pinButton.imageView?.image = UIImage(named: "iconPinInactive")
+            serviceCell.pinButton.isEnabled = true
+            serviceCell.reorderButton.isHidden = false
+        }
+        
+        return serviceCell
+    }
+}
 
+// MARK: - Network
 extension CardListViewController {
     func cardListFetchWithAPI(userID: String, isList: Bool, offset: Int) {
         CardAPI.shared.cardListFetch(userID: userID, isList: isList, offset: offset) { response in
@@ -170,21 +209,6 @@ extension CardListViewController {
     
 }
 
-// MARK: - UITableViewDataSource
-extension CardListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cardItems.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.cardListTableViewCell, for: indexPath) as? CardListTableViewCell else { return UITableViewCell() }
-        
-        serviceCell.initData(title: cardItems[indexPath.row].title)
-        
-        return serviceCell
-    }
-}
-
 // MARK: - Extension: 테이블 뷰 Drag & Drop 기능
 extension CardListViewController {
     // FIX: cyclomatic_complexity 워닝 발생 -> decision이 복잡해서라는데...일단 보류...
@@ -209,9 +233,9 @@ extension CardListViewController {
         // UIGestureRecognizer 상태에 따른 case 분기처리
         switch state {
             
-            // longPress 제스처가 시작할 때 case
+        // longPress 제스처가 시작할 때 case
         case UIGestureRecognizer.State.began:
-            if indexPath != nil {
+            if indexPath!.row != 0 {
                 Initial.initialIndexPath = indexPath
                 var cell: UITableViewCell? = UITableViewCell()
                 cell = cardListTableView.cellForRow(at: indexPath!)
@@ -244,21 +268,21 @@ extension CardListViewController {
                     }
                 })
             }
-            // longPress 제스처가 변경될 때 case
+        // longPress 제스처가 변경될 때 case
         case UIGestureRecognizer.State.changed:
             if MyCell.cellSnapshot != nil {
                 var center = MyCell.cellSnapshot!.center
                 center.y = locationInView.y
                 MyCell.cellSnapshot!.center = center
                 
-                if ((indexPath != nil) && (indexPath != Initial.initialIndexPath)) && Initial.initialIndexPath != nil {
+                if ((indexPath?.row != 0) && (indexPath != Initial.initialIndexPath)) && (Initial.initialIndexPath != nil) && (indexPath != nil) {
                     // this line change row index
                     self.cardItems.insert(self.cardItems.remove(at: Initial.initialIndexPath!.row), at: indexPath!.row)
                     cardListTableView.moveRow(at: Initial.initialIndexPath!, to: indexPath!)
                     Initial.initialIndexPath = indexPath
                 }
             }
-            // longPress 제스처가 끝났을 때 case
+        // longPress 제스처가 끝났을 때 case
         default:
             if Initial.initialIndexPath != nil {
                 let cell = cardListTableView.cellForRow(at: Initial.initialIndexPath!)
@@ -281,7 +305,7 @@ extension CardListViewController {
                         MyCell.cellSnapshot!.removeFromSuperview()
                         MyCell.cellSnapshot = nil
                         
-                        // FIXME: - 카드 리스트 조회 서버 테스트
+                        // FIXME: - 카드 리스트 편집 서버 테스트
                         // self.putCardListEditWithAPI(request: CardListEditRequest(ordered: [Ordered(cardID: "cardA", priority: 1), Ordered(cardID: "cardB", priority: 0)]))
                     }
                 })

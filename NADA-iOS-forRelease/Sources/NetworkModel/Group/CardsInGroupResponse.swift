@@ -27,7 +27,7 @@ struct CardsInGroupResponse: Codable {
 struct Cards: Codable {
     let cardID, background, title, name, birthDate, age, mbti: String
     let instagram, linkName, link, cardDescription: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case cardID = "cardId"
         case background, title, name, birthDate, age, mbti, instagram, linkName, link

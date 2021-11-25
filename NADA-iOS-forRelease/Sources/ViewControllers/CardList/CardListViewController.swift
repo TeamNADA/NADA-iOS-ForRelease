@@ -190,9 +190,7 @@ extension CardListViewController: UITableViewDataSource {
             serviceCell.reorderButton.isHidden = false
             serviceCell.pinButton.isEnabled = true
         }
-           
-        if indexPath.row > 0 {
-        }
+        serviceCell.delegate = self
         
         return serviceCell
     }
@@ -201,14 +199,7 @@ extension CardListViewController: UITableViewDataSource {
 // MARK: - Extension: 테이블 뷰 Drag & Drop 기능
 extension CardListViewController {
     func pinChanged(_ cell: UITableViewCell, _ button: UIButton) {
-        let index = cardListTableView.indexPath(for: cell)
-        let initialIndexPath: IndexPath?
-        
-//        self.cardItems.insert(self.cardItems.remove(at: 0), at: index!.row)
-//        cardListTableView.moveRow(at: initialIndexPath!, to: )
-        
-//        swap(&cardItems[(index?.row)!], &cardItems[0])
-//        cardListTableView.moveRow(at: index!, to: index!)
+        let index = cardListTableView.indexPathForSelectedRow
     }
     
     // FIX: cyclomatic_complexity 워닝 발생 -> decision이 복잡해서라는데...일단 보류...

@@ -6,19 +6,21 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
-class AddGroupBottomSheetViewController: CommonBottomSheetViewController {
-
+class AddGroupBottomSheetViewController: CommonBottomSheetViewController, UITextFieldDelegate {
+    
     // MARK: - Properties
     // 그룹 추가 텍스트 필드
     private let addGroupTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "  추가할 그룹명을 입력하세요."
         textField.borderStyle = .none
         textField.cornerRadius = 10
         textField.backgroundColor = .textBox
-        textField.attributedPlaceholder = NSAttributedString(string: "   추가할 그룹명을 입력하세요.", attributes: [.foregroundColor: UIColor.quaternary, .font: UIFont.textRegular04])
+        textField.attributedPlaceholder = NSAttributedString(string: "추가할 그룹명을 입력하세요.", attributes: [.foregroundColor: UIColor.quaternary, .font: UIFont.textRegular04])
         textField.returnKeyType = .done
+        textField.setLeftPaddingPoints(12)
+        textField.setRightPaddingPoints(12)
         
         return textField
     }()
@@ -35,29 +37,25 @@ class AddGroupBottomSheetViewController: CommonBottomSheetViewController {
         label.text = "새로운 그룹은 최대 4개까지만 등록 가능합니다."
         label.textColor = .mainColorButtonText
         label.font = .textRegular05
-
+        
         return label
     }()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         setupUI()
+        addGroupTextField.delegate = self
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = false
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//        self.addGroupTextField.becomeFirstResponder()
-//    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        
         self.addGroupTextField.becomeFirstResponder()
     }
-
+    
     // MARK: - @Functions
     // UI 세팅 작업
     private func setupUI() {
@@ -91,5 +89,13 @@ class AddGroupBottomSheetViewController: CommonBottomSheetViewController {
             explainLabel.topAnchor.constraint(equalTo: addGroupTextField.bottomAnchor, constant: 8),
             explainLabel.leadingAnchor.constraint(equalTo: checkImageView.trailingAnchor, constant: 5)
         ])
+    }
+}
+
+extension AddGroupBottomSheetViewController {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        hideBottomSheetAndGoBack()
+        return true
     }
 }

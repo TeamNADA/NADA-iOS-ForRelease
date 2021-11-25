@@ -31,7 +31,7 @@ class CardListTableViewCell: UITableViewCell {
     }
     
     @IBAction func pinButtonConnected(_ sender: UIButton) {
-        // delegate.pinChanged(self, pinButton)
+        delegate.pinChanged(self, pinButton)
     }
     
     func initData(title: String) {

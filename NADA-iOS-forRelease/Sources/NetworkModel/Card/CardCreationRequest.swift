@@ -10,8 +10,8 @@ import Foundation
 // MARK: - CardCreation
 struct CardCreationRequest: Codable {
     let userID: String
-    let frontCard: FrontCard
-    let backCard: BackCard
+    let frontCard: FrontCardDataModel
+    let backCard: BackCardDataModel
     
     enum CodingKeys: String, CodingKey {
         case userID = "userId"
@@ -21,7 +21,7 @@ struct CardCreationRequest: Codable {
 
 // MARK: - FrontCard
 
-struct FrontCard: Codable {
+struct FrontCardDataModel: Codable {
     let defaultImage: Int
     let title, name, birthDate, mbti: String
     let instagram, linkName, link, description: String
@@ -33,7 +33,7 @@ struct FrontCard: Codable {
     
 // MARK: - BackCard
 
-struct BackCard: Codable {
+struct BackCardDataModel: Codable {
     let isMincho, isSoju, isBoomuk, isSauced: Bool
     let oneQuestion, oneAnswer, twoQuestion, twoAnswer: String
 

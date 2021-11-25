@@ -63,6 +63,8 @@
 		F84BAFAE26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F84BAFAC26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib */; };
 		F84BAFB126FDB552004CA335 /* BackCardCreationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84BAFAF26FDB552004CA335 /* BackCardCreationCollectionViewCell.swift */; };
 		F84BAFB226FDB552004CA335 /* BackCardCreationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F84BAFB026FDB552004CA335 /* BackCardCreationCollectionViewCell.xib */; };
+		F85711A5274A6B2200F59F0B /* CardCreationPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85711A4274A6B2200F59F0B /* CardCreationPreviewViewController.swift */; };
+		F85711A7274A6B3400F59F0B /* CardCreationPreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F85711A6274A6B3400F59F0B /* CardCreationPreview.storyboard */; };
 		F858079E2700354E00872484 /* BackgroundCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858079C2700354E00872484 /* BackgroundCollectionViewCell.swift */; };
 		F858079F2700354E00872484 /* BackgroundCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F858079D2700354E00872484 /* BackgroundCollectionViewCell.xib */; };
 		F87122762733046300A24E74 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87122752733046300A24E74 /* Card.swift */; };
@@ -154,6 +156,8 @@
 		F84BAFAC26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FrontCardCreationCollectionViewCell.xib; sourceTree = "<group>"; };
 		F84BAFAF26FDB552004CA335 /* BackCardCreationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackCardCreationCollectionViewCell.swift; sourceTree = "<group>"; };
 		F84BAFB026FDB552004CA335 /* BackCardCreationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackCardCreationCollectionViewCell.xib; sourceTree = "<group>"; };
+		F85711A4274A6B2200F59F0B /* CardCreationPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreationPreviewViewController.swift; sourceTree = "<group>"; };
+		F85711A6274A6B3400F59F0B /* CardCreationPreview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardCreationPreview.storyboard; sourceTree = "<group>"; };
 		F858079C2700354E00872484 /* BackgroundCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundCollectionViewCell.swift; sourceTree = "<group>"; };
 		F858079D2700354E00872484 /* BackgroundCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackgroundCollectionViewCell.xib; sourceTree = "<group>"; };
 		F87122752733046300A24E74 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -389,6 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				F82FF81C2701EBCE00E57F8B /* CardCreation.storyboard */,
+				F85711A6274A6B3400F59F0B /* CardCreationPreview.storyboard */,
 			);
 			path = CardCreation;
 			sourceTree = "<group>";
@@ -410,6 +415,7 @@
 			isa = PBXGroup;
 			children = (
 				F84BAF9C26FDB417004CA335 /* CardCreationViewController.swift */,
+				F85711A4274A6B2200F59F0B /* CardCreationPreviewViewController.swift */,
 			);
 			path = CardCreation;
 			sourceTree = "<group>";
@@ -733,6 +739,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8FC43BF26C025180033E151 /* .swiftlint.yml in Resources */,
+				F85711A7274A6B3400F59F0B /* CardCreationPreview.storyboard in Resources */,
 				39369936274A4FCB00684420 /* NotoSansCJKkr-Regular.otf in Resources */,
 				39369935274A4FCB00684420 /* NotoSansCJKkr-Bold.otf in Resources */,
 				39D88B622745FBA900A72164 /* More.storyboard in Resources */,
@@ -835,6 +842,7 @@
 				3958F239270FFBBF00B100B2 /* GroupViewController.swift in Sources */,
 				3909242F26FA15E800236C51 /* UIView+Extension.swift in Sources */,
 				39523E09270184A700536900 /* CardListViewController.swift in Sources */,
+				F85711A5274A6B2200F59F0B /* CardCreationPreviewViewController.swift in Sources */,
 				777FF89B27359B7800BF69D3 /* Groups.swift in Sources */,
 				777FF89F27364B7B00BF69D3 /* GroupEditRequest.swift in Sources */,
 				399C55DF2711949D00845A54 /* CGPoint+Distance.swift in Sources */,

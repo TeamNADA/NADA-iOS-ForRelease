@@ -12,26 +12,25 @@ class FrontCardCell: CardCell {
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var backgroundImageView: UIImageView!
-    @IBOutlet weak var cardNameLabel: UILabel!
-    @IBOutlet weak var detailCardNameLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var birthLabel: UILabel!
     @IBOutlet weak var mbtiLabel: UILabel!
     @IBOutlet weak var instagramImageView: UIImageView!
-    @IBOutlet weak var instagramTextLabel: UILabel!
     @IBOutlet weak var instagramIDLabel: UILabel!
-    @IBOutlet weak var linkImageView: UIImageView!
-    @IBOutlet weak var linkTextLabel: UILabel!
-    @IBOutlet weak var linkIDLabel: UILabel!
+    @IBOutlet weak var linkURLImageView: UIImageView!
+    @IBOutlet weak var linkURLLabel: UILabel!
     
     // MARK: - Life Cycle
+    
     override func awakeFromNib() {
         super.awakeFromNib()
          setUI()
     }
     
     static func nib() -> UINib {
-        return UINib(nibName: "FrontCardCell", bundle: nil)
+        return UINib(nibName: "FrontCardCell", bundle: Bundle(for: FrontCardCell.self))
     }
 }
 
@@ -40,34 +39,40 @@ class FrontCardCell: CardCell {
 extension FrontCardCell {
     private func setUI() {
         // hidden 에 대한 속성도 여기 쓰자.
-        
-//        instagramImageView.image = UIImage(named: "instagramLogoImg")
-        instagramTextLabel.text = "Instagram"
+
+        titleLabel.font = .title02
+        titleLabel.textColor = .primary
+        descriptionLabel.font = .textRegular03
+        descriptionLabel.textColor = .primary
+        userNameLabel.font = .title01
+        userNameLabel.textColor = .primary
+        birthLabel.font = .textRegular02
+        birthLabel.textColor = .primary
+        mbtiLabel.font = .textRegular02
+        mbtiLabel.textColor = .primary
+        instagramIDLabel.font = .textRegular02
+        instagramIDLabel.textColor = .primary
+        linkURLLabel.font = .textRegular02
+        linkURLLabel.textColor = .primary
     }
     
     func initCell(_ backgroundImage: String,
-                  _ cardName: String,
-                  _ detailCardName: String,
+                  _ cardTitle: String,
+                  _ cardDescription: String,
                   _ userName: String,
                   _ birth: String,
                   _ mbti: String,
                   _ instagramID: String,
-                  _ linkImage: String,
-                  _ linkText: String,
-                  _ linkID: String) {
+                  _ linkURL: String) {
         if let bgImage = UIImage(named: backgroundImage) {
             self.backgroundImageView.image = bgImage
         }
-        self.cardNameLabel.text = cardName
-        self.detailCardNameLabel.text = detailCardName
+        self.titleLabel.text = cardTitle
+        self.descriptionLabel.text = cardDescription
         self.userNameLabel.text = userName
         self.birthLabel.text = birth
         self.mbtiLabel.text = mbti
         self.instagramIDLabel.text = instagramID
-        if let linkImage = UIImage(named: linkImage) {
-            self.linkImageView.image = linkImage
-        }
-        self.linkTextLabel.text = linkText
-        self.linkIDLabel.text = linkID
+        self.linkURLLabel.text = linkURL
     }
 }

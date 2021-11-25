@@ -38,8 +38,8 @@ class CardCreationViewController: UIViewController {
     private var currentIndex = 0
     private var cardData: Card?
     private var cardCreationRequest: CardCreationRequest?
-    private var frontCard: FrontCard?
-    private var backCard: BackCard?
+    private var frontCard: FrontCardDataModel?
+    private var backCard: BackCardDataModel?
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var creationTextLabel: UILabel!
@@ -80,32 +80,6 @@ class CardCreationViewController: UIViewController {
     }
     @IBAction func pushToCardCompletionView(_ sender: Any) {
         // TODO: - CardCompletionView 화면전환
-//        cardCreationRequest = CardCreationRequest(userID: "nada",
-//defaultImage: 0,
-//                                                      title: "명함 이름",
-//                                                      name: "개빡쳐하는 오야옹~",
-//                                                      birthDate: "1999/05/12",
-//                                                      mbti: "ENFP",
-//                                                      instagram: "yaeoni",
-//                                                      linkName: "예원깃헓",
-//                                                      link: "github.com/yaeoni",
-//                                                      description: "NADA의 짱귀염둥이 ㅎ 막이래~",
-//                                                      isMincho: false,
-//                                                      isSoju: true,
-//                                                      isBoomuk: false,
-//                                                      isSauced: true,
-//                                                      oneQuestion: "테스트용이라",
-//                                                      oneAnswer: "모든 정보 다 넣음",
-//                                                      twoQuestion: "홀리몰리",
-//                                                      twoAnswer: "루삥뽕")
-//        guard let frontCard = frontCard, let backCard = backCard else {
-//            return
-//        }
-//        cardCreationRequest = CardCreationRequest(userID: "", frontCard: frontCard, backCard: backCard)
-//        guard let cardCreationRequest = cardCreationRequest else {
-//            return
-//        }
-//        cardCreationWithAPI(request: cardCreationRequest, image: UIImage(systemName: "circle")!)
     }
 }
 
@@ -236,22 +210,7 @@ extension CardCreationViewController {
             }
         }
     }
-    func cardCreationWithAPI(request: CardCreationRequest, image: UIImage) {
-        CardAPI.shared.cardCreation(request: request, image: image) { response in
-            switch response {
-            case .success:
-                print("cardCreationWithAPI - success")
-            case .requestErr(let message):
-                print("cardCreationWithAPI - requestErr: \(message)")
-            case .pathErr:
-                print("cardCreationWithAPI - pathErr")
-            case .serverErr:
-                print("cardCreationWithAPI - serverErr")
-            case .networkFail:
-                print("cardCreationWithAPI - networkFail")
-            }
-        }
-    }
+
     // TODO: - group 서버통신. 위치변경.
     func changeGroupWithAPI(request: ChangeGroupRequest) {
         GroupAPI.shared.changeCardGroup(request: request) { response in
@@ -366,7 +325,7 @@ extension CardCreationViewController: FrontCardCreationDelegate {
     }
 
     func frontCardCreation(withRequired requiredInfo: [String: String], withOptional optionalInfo: [String: String]) {
-        frontCard = FrontCard(defaultImage: Int(requiredInfo["defaultImage"] ?? "0") ?? 0,
+        frontCard = FrontCardDataModel(defaultImage: Int(requiredInfo["defaultImage"] ?? "0") ?? 0,
                               title: requiredInfo["title"]  ?? "",
                               name: requiredInfo["name"] ?? "",
                               birthDate: requiredInfo["birthDate"] ?? "",
@@ -390,7 +349,7 @@ extension CardCreationViewController: BackCardCreationDelegate {
         }
     }
     func backCardCreation(withRequired requiredInfo: [String: Bool], withOptional optionalInfo: [String: String]) {
-        backCard = BackCard(isMincho: requiredInfo["isMincho"] ?? false,
+        backCard = BackCardDataModel(isMincho: requiredInfo["isMincho"] ?? false,
                             isSoju: requiredInfo["isSoju"] ?? false,
                             isBoomuk: requiredInfo["isBoomuk"] ?? false,
                             isSauced: requiredInfo["isSauced"] ?? false,

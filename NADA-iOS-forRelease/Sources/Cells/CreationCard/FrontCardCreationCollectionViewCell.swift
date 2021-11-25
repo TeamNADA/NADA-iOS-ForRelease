@@ -111,7 +111,7 @@ extension FrontCardCreationCollectionViewCell {
             $0.textColor = .primary
             $0.layer.cornerRadius = 10
             $0.borderStyle = .none
-            $0.addLeftPadding()
+            $0.setLeftPaddingPoints(12)
         }
         _ = optionalTextFieldList.map {
             $0.font = .textRegular04
@@ -119,7 +119,7 @@ extension FrontCardCreationCollectionViewCell {
             $0.textColor = .primary
             $0.layer.cornerRadius = 10
             $0.borderStyle = .none
-            $0.addLeftPadding()
+            $0.setLeftPaddingPoints(12)
         }
     }
     private func initUITextFieldList() {

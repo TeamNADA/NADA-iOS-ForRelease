@@ -57,6 +57,8 @@
 		7766A40F274FEBE200714912 /* CardInGroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766A40D274FEBE200714912 /* CardInGroupCollectionViewCell.swift */; };
 		7766A410274FEBE200714912 /* CardInGroupCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7766A40E274FEBE200714912 /* CardInGroupCollectionViewCell.xib */; };
 		77703157275005AA002CBD19 /* CardResultBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77703156275005AA002CBD19 /* CardResultBottomSheetViewController.swift */; };
+		7770315927500C49002CBD19 /* QRScan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7770315827500C49002CBD19 /* QRScan.storyboard */; };
+		7770315B27500C7B002CBD19 /* QRScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7770315A27500C7B002CBD19 /* QRScanViewController.swift */; };
 		777FF89B27359B7800BF69D3 /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89A27359B7800BF69D3 /* Groups.swift */; };
 		777FF89D2735B16B00BF69D3 /* GroupAddRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89C2735B16B00BF69D3 /* GroupAddRequest.swift */; };
 		777FF89F27364B7B00BF69D3 /* GroupEditRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89E27364B7B00BF69D3 /* GroupEditRequest.swift */; };
@@ -162,6 +164,8 @@
 		7766A40D274FEBE200714912 /* CardInGroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInGroupCollectionViewCell.swift; sourceTree = "<group>"; };
 		7766A40E274FEBE200714912 /* CardInGroupCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardInGroupCollectionViewCell.xib; sourceTree = "<group>"; };
 		77703156275005AA002CBD19 /* CardResultBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardResultBottomSheetViewController.swift; sourceTree = "<group>"; };
+		7770315827500C49002CBD19 /* QRScan.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QRScan.storyboard; sourceTree = "<group>"; };
+		7770315A27500C7B002CBD19 /* QRScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScanViewController.swift; sourceTree = "<group>"; };
 		777FF89A27359B7800BF69D3 /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
 		777FF89C2735B16B00BF69D3 /* GroupAddRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAddRequest.swift; sourceTree = "<group>"; };
 		777FF89E27364B7B00BF69D3 /* GroupEditRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEditRequest.swift; sourceTree = "<group>"; };
@@ -309,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				3958F238270FFBBF00B100B2 /* GroupViewController.swift */,
+				7770315A27500C7B002CBD19 /* QRScanViewController.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -318,6 +323,7 @@
 			children = (
 				3958F23B270FFBD500B100B2 /* Group.storyboard */,
 				3936993A274A53C600684420 /* GroupEdit.storyboard */,
+				7770315827500C49002CBD19 /* QRScan.storyboard */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -828,6 +834,7 @@
 				F82FF81D2701EBCE00E57F8B /* CardCreation.storyboard in Resources */,
 				39369937274A4FCB00684420 /* NotoSansCJKkr-Medium.otf in Resources */,
 				392F7FB5274621F1008CDBF5 /* MoreListTableViewCell.xib in Resources */,
+				7770315927500C49002CBD19 /* QRScan.storyboard in Resources */,
 				390515B82706CEBB00C5F7A5 /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -939,6 +946,7 @@
 				F8FC43B526C020C10033E151 /* TempViews.swift in Sources */,
 				F8C83FBB272F9F370009DF0D /* NetworkResult.swift in Sources */,
 				39D2E130270B43DA00AD0889 /* UIFont+Extension.swift in Sources */,
+				7770315B27500C7B002CBD19 /* QRScanViewController.swift in Sources */,
 				39523E5B2701A48900536900 /* CardListTableViewCell.swift in Sources */,
 				F8A9FE1A2743DC6B00BC60CE /* CardListInGroupRequest.swift in Sources */,
 				3981148E273BEBB300E28630 /* CardListEditRequest.swift in Sources */,

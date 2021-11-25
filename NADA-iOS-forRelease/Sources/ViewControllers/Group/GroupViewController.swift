@@ -18,7 +18,9 @@ class GroupViewController: UIViewController {
     }
     
     @IBAction func presentToAddWithQrView(_ sender: Any) {
-        
+        guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.qrScan, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.qrScanViewController) as? QRScanViewController else { return }
+        nextVC.modalPresentationStyle = .overFullScreen
+        self.present(nextVC, animated: true, completion: nil)
     }
     
     // 중간 그룹 이름들 나열된 뷰

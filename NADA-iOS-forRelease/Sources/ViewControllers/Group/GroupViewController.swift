@@ -231,7 +231,7 @@ extension GroupViewController: UICollectionViewDataSource {
         case groupCollectionView:
             return groups.count
         case cardsCollectionView:
-            return 4
+            return 5
         default:
             return 0
         }

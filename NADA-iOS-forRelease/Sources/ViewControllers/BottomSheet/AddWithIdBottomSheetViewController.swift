@@ -96,7 +96,7 @@ class AddWithIdBottomSheetViewController: CommonBottomSheetViewController, UITex
 extension AddWithIdBottomSheetViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        hideBottomSheetAndGoBack()
+        hideBottomSheetAndPresent(nextBottomSheet: CardResultBottomSheetViewController())
         return true
     }
 }

@@ -192,6 +192,26 @@ class CommonBottomSheetViewController: UIViewController {
         }
     }
     
+    func hideBottomSheetAndPresent(nextBottomSheet: CommonBottomSheetViewController) {
+        let safeAreaHeight = view.safeAreaLayoutGuide.layoutFrame.height
+        let bottomPadding = view.safeAreaInsets.bottom
+        bottomSheetViewTopConstraint.constant = safeAreaHeight + bottomPadding
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+            self.dimmedBackView.alpha = 0.0
+            self.view.layoutIfNeeded()
+            self.bottomSheetCoverView.isHidden = false
+        }) { _ in
+            if self.presentingViewController != nil {
+                guard let presentingVC = self.presentingViewController else { return }
+                self.dismiss(animated: false) {
+                    let nextVC = nextBottomSheet.setTitle("이채연").setHeight(574)
+                    nextVC.modalPresentationStyle = .overFullScreen
+                    presentingVC.present(nextVC, animated: true, completion: nil)
+                }
+            }
+        }
+    }
+    
     // UITapGestureRecognizer 연결 함수 부분
     @objc private func dimmedViewTapped(_ tapRecognizer: UITapGestureRecognizer) {
         hideBottomSheetAndGoBack()

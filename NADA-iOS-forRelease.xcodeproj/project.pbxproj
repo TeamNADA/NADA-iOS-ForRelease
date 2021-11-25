@@ -56,6 +56,7 @@
 		77607EDB274A68BE00204CD2 /* GroupCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77607ED9274A68BD00204CD2 /* GroupCollectionViewCell.xib */; };
 		7766A40F274FEBE200714912 /* CardInGroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766A40D274FEBE200714912 /* CardInGroupCollectionViewCell.swift */; };
 		7766A410274FEBE200714912 /* CardInGroupCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7766A40E274FEBE200714912 /* CardInGroupCollectionViewCell.xib */; };
+		77703157275005AA002CBD19 /* CardResultBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77703156275005AA002CBD19 /* CardResultBottomSheetViewController.swift */; };
 		777FF89B27359B7800BF69D3 /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89A27359B7800BF69D3 /* Groups.swift */; };
 		777FF89D2735B16B00BF69D3 /* GroupAddRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89C2735B16B00BF69D3 /* GroupAddRequest.swift */; };
 		777FF89F27364B7B00BF69D3 /* GroupEditRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89E27364B7B00BF69D3 /* GroupEditRequest.swift */; };
@@ -160,6 +161,7 @@
 		77607ED9274A68BD00204CD2 /* GroupCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCollectionViewCell.xib; sourceTree = "<group>"; };
 		7766A40D274FEBE200714912 /* CardInGroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInGroupCollectionViewCell.swift; sourceTree = "<group>"; };
 		7766A40E274FEBE200714912 /* CardInGroupCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardInGroupCollectionViewCell.xib; sourceTree = "<group>"; };
+		77703156275005AA002CBD19 /* CardResultBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardResultBottomSheetViewController.swift; sourceTree = "<group>"; };
 		777FF89A27359B7800BF69D3 /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
 		777FF89C2735B16B00BF69D3 /* GroupAddRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAddRequest.swift; sourceTree = "<group>"; };
 		777FF89E27364B7B00BF69D3 /* GroupEditRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEditRequest.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 				39D88B6A274600B100A72164 /* CommonBottomSheetViewController.swift */,
 				77DFB870274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift */,
 				398413B6274A7A1E005550BC /* AddGroupBottomSheetViewController.swift */,
+				77703156275005AA002CBD19 /* CardResultBottomSheetViewController.swift */,
 			);
 			path = BottomSheet;
 			sourceTree = "<group>";
@@ -955,6 +958,7 @@
 				3936993E274A53E000684420 /* GroupEditViewController.swift in Sources */,
 				F8C83FAE272F99940009DF0D /* MoyaLoggerPlugin.swift in Sources */,
 				F84BAFAD26FDB543004CA335 /* FrontCardCreationCollectionViewCell.swift in Sources */,
+				77703157275005AA002CBD19 /* CardResultBottomSheetViewController.swift in Sources */,
 				39D13565273FDB9C00B1A148 /* User.swift in Sources */,
 				F822E7A92709CEB60020452C /* Notification.swift in Sources */,
 				F8C83FC5272FA2940009DF0D /* CardAPI.swift in Sources */,

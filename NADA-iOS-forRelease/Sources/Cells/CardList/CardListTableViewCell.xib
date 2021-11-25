@@ -28,9 +28,6 @@
                         <state key="normal" image="iconPinInactive"/>
                         <state key="disabled" image="iconPin"/>
                         <state key="selected" image="iconPin"/>
-                        <connections>
-                            <action selector="pinButtonConnected:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Y9I-qR-yg5"/>
-                        </connections>
                     </button>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="fxb-f5-q8B">
                         <rect key="frame" x="77" y="18" width="99.5" height="22"/>

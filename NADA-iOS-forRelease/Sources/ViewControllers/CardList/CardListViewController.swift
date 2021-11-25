@@ -9,7 +9,7 @@ import UIKit
 import Moya
 import KakaoSDKCommon
 
-class CardListViewController: UIViewController, CardListTableViewDelegate {
+class CardListViewController: UIViewController {
         
     // MARK: - Properties
     var cardItems: [CardListDataModel] = []
@@ -85,6 +85,21 @@ class CardListViewController: UIViewController, CardListTableViewDelegate {
         
         return cellSnapshot
     }
+    
+    @objc func pinButtonClicked(_ sender: UIButton) {
+        let contentView = sender.superview
+        guard let cell = contentView?.superview as? UITableViewCell else { return }
+        let index = cardListTableView.indexPath(for: cell)
+        
+        if index!.row > 0 {
+            cardListTableView.moveRow(at: index!, to: IndexPath(row: 0, section: 0))
+            self.cardItems.insert(self.cardItems.remove(at: index!.row), at: 0)
+            cardListTableView.reloadData()
+            
+            // FIXME: - 카드 리스트 편집 서버 테스트
+            // self.putCardListEditWithAPI(request: CardListEditRequest(ordered: [Ordered(cardID: "cardA", priority: 1), Ordered(cardID: "cardB", priority: 0)]))
+        }
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -109,11 +124,34 @@ extension CardListViewController: UITableViewDelegate {
         swipeActions.performsFirstActionWithFullSwipe = false
         
         return swipeActions
-    }    
+    }
+}
+
+// MARK: - UITableViewDataSource
+extension CardListViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cardItems.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.cardListTableViewCell, for: indexPath) as? CardListTableViewCell else { return UITableViewCell() }
+        
+        serviceCell.initData(title: cardItems[indexPath.row].title)
+        serviceCell.pinButton.addTarget(self, action: #selector(pinButtonClicked(_:)), for: .touchUpInside)
+        
+        if indexPath.row == 0 {
+            serviceCell.pinButton.imageView?.image = UIImage(named: "iconPin")
+            serviceCell.reorderButton.isHidden = true
+        } else {
+            serviceCell.pinButton.imageView?.image = UIImage(named: "iconPinInactive")
+            serviceCell.reorderButton.isHidden = false
+        }
+        
+        return serviceCell
+    }
 }
 
 // MARK: - Network
-
 extension CardListViewController {
     func cardListFetchWithAPI(userID: String, isList: Bool, offset: Int) {
         CardAPI.shared.cardListFetch(userID: userID, isList: isList, offset: offset) { response in
@@ -170,38 +208,8 @@ extension CardListViewController {
     
 }
 
-// MARK: - UITableViewDataSource
-extension CardListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cardItems.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.cardListTableViewCell, for: indexPath) as? CardListTableViewCell else { return UITableViewCell() }
-        
-        serviceCell.initData(title: cardItems[indexPath.row].title)
-        
-        if indexPath.row == 0 {
-            serviceCell.pinButton.imageView?.image = UIImage(named: "iconPin")
-            serviceCell.reorderButton.isHidden = true
-            serviceCell.pinButton.isEnabled = false
-        } else {
-            serviceCell.pinButton.imageView?.image = UIImage(named: "iconPinInactive")
-            serviceCell.reorderButton.isHidden = false
-            serviceCell.pinButton.isEnabled = true
-        }
-        serviceCell.delegate = self
-        
-        return serviceCell
-    }
-}
-
 // MARK: - Extension: 테이블 뷰 Drag & Drop 기능
 extension CardListViewController {
-    func pinChanged(_ cell: UITableViewCell, _ button: UIButton) {
-        let index = cardListTableView.indexPathForSelectedRow
-    }
-    
     // FIX: cyclomatic_complexity 워닝 발생 -> decision이 복잡해서라는데...일단 보류...
     @objc func longPressCalled(gestureRecognizer: UIGestureRecognizer) {
         guard let longPress = gestureRecognizer as? UILongPressGestureRecognizer else { return }
@@ -296,7 +304,7 @@ extension CardListViewController {
                         MyCell.cellSnapshot!.removeFromSuperview()
                         MyCell.cellSnapshot = nil
                         
-                        // FIXME: - 카드 리스트 조회 서버 테스트
+                        // FIXME: - 카드 리스트 편집 서버 테스트
                         // self.putCardListEditWithAPI(request: CardListEditRequest(ordered: [Ordered(cardID: "cardA", priority: 1), Ordered(cardID: "cardB", priority: 0)]))
                     }
                 })

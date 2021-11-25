@@ -8,9 +8,7 @@
 import UIKit
 
 class CardListTableViewCell: UITableViewCell {
-    
-    var delegate: CardListTableViewDelegate!
-    
+        
     @IBOutlet weak var pinButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var reorderButton: UIButton!
@@ -30,15 +28,7 @@ class CardListTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @IBAction func pinButtonConnected(_ sender: UIButton) {
-        delegate.pinChanged(self, pinButton)
-    }
-    
     func initData(title: String) {
         titleLabel.text = title
     }
-}
-
-protocol CardListTableViewDelegate {
-    func pinChanged(_ cell: UITableViewCell, _ button: UIButton)
 }

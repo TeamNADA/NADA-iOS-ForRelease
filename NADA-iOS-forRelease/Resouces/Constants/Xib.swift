@@ -16,7 +16,8 @@ extension Const {
         static let frontCardCell = "FrontCardCell"
         static let backCardCell = "BackCardCell"
         static let backgroundCollectionViewCell = "BackgroundCollectionViewCell"
-        static let GroupCollectionViewCell = "GroupCollectionViewCell"
+        static let groupCollectionViewCell = "GroupCollectionViewCell"
+        static let cardInGroupCollectionViewCell = "CardInGroupCollectionViewCell"
         static let groupEditTableViewCell = "GroupEditTableViewCell"
         static let moreListTableViewCell = "MoreListTableViewCell"
     }

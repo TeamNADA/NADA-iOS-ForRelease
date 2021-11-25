@@ -13,17 +13,17 @@ class GroupViewController: UIViewController {
     // 네비게이션 바
     @IBAction func presentToAddWithIdView(_ sender: Any) {
 //        let nextVC = AddWithIdBottomSheetViewController().setTitle("ID로 명함 추가").setHeight(184)
-//        let nextVC = AddGroupBottomSheetViewController().setTitle("ID로 명함 추가").setHeight(184)
-//        nextVC.modalPresentationStyle = .overFullScreen
-//        self.present(nextVC, animated: true, completion: nil)
+        let nextVC = AddGroupBottomSheetViewController().setTitle("ID로 명함 추가").setHeight(184)
+        nextVC.modalPresentationStyle = .overFullScreen
+        self.present(nextVC, animated: true, completion: nil)
     }
+    
     @IBAction func presentToAddWithQrView(_ sender: Any) {
         
     }
     
     // 중간 그룹 이름들 나열된 뷰
     @IBAction func pushToGroupEdit(_ sender: Any) {
-
         guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.groupEdit, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.groupEditViewController) as? GroupEditViewController else { return }
         
         navigationController?.pushViewController(nextVC, animated: true)
@@ -66,11 +66,11 @@ extension GroupViewController {
         cardsCollectionView.delegate = self
         cardsCollectionView.dataSource = self
          
-        groupCollectionView.register(GroupCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.GroupCollectionViewCell)
-        cardsCollectionView.register(FrontCardCell.nib(), forCellWithReuseIdentifier: Const.Xib.frontCardCell)
+        groupCollectionView.register(GroupCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.groupCollectionViewCell)
+        cardsCollectionView.register(CardInGroupCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.cardInGroupCollectionViewCell)
     }
     
-    private func setUI(){
+    private func setUI() {
         navigationController?.navigationBar.isHidden = true
     }
 }
@@ -241,27 +241,25 @@ extension GroupViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
         case groupCollectionView:
-            guard let groupCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.GroupCollectionViewCell, for: indexPath) as? GroupCollectionViewCell else {
+            guard let groupCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.groupCollectionViewCell, for: indexPath) as? GroupCollectionViewCell else {
                 return UICollectionViewCell()
             }
             
             groupCell.groupName.text = groups[indexPath.row]
             if indexPath.row == 0 {
+//                groupCell.groupName.textColor = .background
+//                groupCell.groupBackground.backgroundColor = .primary
                 groupCell.isSelected = true
-                print(groupCell.groupName.text)
-                print(groupCell.groupName.textColor)
             } else {
                 groupCell.isSelected = false
             }
             groupCollectionView.layoutIfNeeded()
             return groupCell
         case cardsCollectionView:
-            guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.frontCardCell, for: indexPath) as? FrontCardCell else {
+            guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.cardInGroupCollectionViewCell, for: indexPath) as? CardInGroupCollectionViewCell else {
                 return UICollectionViewCell()
             }
             
-            cardCell.backgroundColor = .blue
-            cardCell.cornerRadius = 15
             return cardCell
         default:
             return UICollectionViewCell()
@@ -296,8 +294,10 @@ extension GroupViewController: UICollectionViewDelegateFlowLayout {
             }
             height = collectionView.frame.size.height
         case cardsCollectionView:
-            width = collectionView.frame.size.width / 2 - 7.5
-            height = collectionView.frame.size.height / 2
+//            width = collectionView.frame.size.width / 2 - 7.5
+//            height = collectionView.frame.size.height / 2
+            width = 156
+            height = 258
         default:
             width = 0
             height = 0

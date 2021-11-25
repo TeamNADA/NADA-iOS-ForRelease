@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Spoqa Han Sans Neo Bold.otf">
+            <string>SpoqaHanSansNeo-Bold</string>
+        </array>
+        <array key="Spoqa Han Sans Neo Regular.otf">
+            <string>SpoqaHanSansNeo-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CardInGroupCollectionViewCell" id="gTV-IL-0wX" customClass="CardInGroupCollectionViewCell" customModule="NADA_iOS_forRelease" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="156" height="258"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="156" height="258"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UBI-OG-7RY">
+                        <rect key="frame" x="0.0" y="0.0" width="156" height="258"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card" translatesAutoresizingMaskIntoConstraints="NO" id="nFQ-dL-nGf">
+                                <rect key="frame" x="0.0" y="0.0" width="156" height="258"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SOPT 명함" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rng-0l-SgL">
+                                <rect key="frame" x="12" y="25" width="43" height="11"/>
+                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="9"/>
+                                <color key="textColor" name="background"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="29기 디자인파트" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RM7-A9-SfR">
+                                <rect key="frame" x="12" y="40" width="62.5" height="11"/>
+                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="9"/>
+                                <color key="textColor" name="background"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이채연" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tBD-lZ-HlH">
+                                <rect key="frame" x="12" y="147" width="28" height="12"/>
+                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="10"/>
+                                <color key="textColor" name="background"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1998.01.09 (24)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCz-jU-GLW">
+                                <rect key="frame" x="12" y="165" width="66" height="11"/>
+                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="9"/>
+                                <color key="textColor" name="background"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ENFP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wwx-y2-tN3">
+                                <rect key="frame" x="12" y="181" width="23" height="11"/>
+                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="9"/>
+                                <color key="textColor" name="background"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconInstagram" translatesAutoresizingMaskIntoConstraints="NO" id="XFs-Sv-f0r">
+                                <rect key="frame" x="12" y="219" width="12" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="SUx-eT-18P"/>
+                                    <constraint firstAttribute="width" constant="12" id="UYe-3z-FhB"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="chaens_" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2H-kH-GqM">
+                                <rect key="frame" x="27" y="220.5" width="31" height="10"/>
+                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="8"/>
+                                <color key="textColor" name="background"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconUrl" translatesAutoresizingMaskIntoConstraints="NO" id="07x-TC-A3z">
+                                <rect key="frame" x="12" y="236" width="12" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="12" id="Syi-2K-OU3"/>
+                                    <constraint firstAttribute="height" constant="12" id="XnU-uq-Fca"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="https://github.com/TeamNADA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oO0-od-Oxm">
+                                <rect key="frame" x="27" y="238" width="114.5" height="10"/>
+                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="8"/>
+                                <color key="textColor" name="background"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="07x-TC-A3z" firstAttribute="leading" secondItem="UBI-OG-7RY" secondAttribute="leading" constant="12" id="4Z6-6e-o0s"/>
+                            <constraint firstItem="oO0-od-Oxm" firstAttribute="leading" secondItem="07x-TC-A3z" secondAttribute="trailing" constant="3" id="7sY-Ae-RN1"/>
+                            <constraint firstItem="R2H-kH-GqM" firstAttribute="leading" secondItem="XFs-Sv-f0r" secondAttribute="trailing" constant="3" id="ARH-vK-SuC"/>
+                            <constraint firstItem="XFs-Sv-f0r" firstAttribute="leading" secondItem="UBI-OG-7RY" secondAttribute="leading" constant="12" id="DgX-lM-v3f"/>
+                            <constraint firstItem="nFQ-dL-nGf" firstAttribute="leading" secondItem="UBI-OG-7RY" secondAttribute="leading" id="JMw-lr-b2G"/>
+                            <constraint firstItem="Rng-0l-SgL" firstAttribute="top" secondItem="UBI-OG-7RY" secondAttribute="top" constant="25" id="NOP-Sz-J6E"/>
+                            <constraint firstItem="RM7-A9-SfR" firstAttribute="top" secondItem="Rng-0l-SgL" secondAttribute="bottom" constant="4" id="Nd6-dt-CuO"/>
+                            <constraint firstItem="Rng-0l-SgL" firstAttribute="leading" secondItem="UBI-OG-7RY" secondAttribute="leading" constant="12" id="O4d-ho-MRW"/>
+                            <constraint firstItem="Wwx-y2-tN3" firstAttribute="top" secondItem="WCz-jU-GLW" secondAttribute="bottom" constant="5" id="PVA-MH-sAU"/>
+                            <constraint firstAttribute="bottom" secondItem="nFQ-dL-nGf" secondAttribute="bottom" id="R3q-Cr-hzY"/>
+                            <constraint firstItem="XFs-Sv-f0r" firstAttribute="top" secondItem="Wwx-y2-tN3" secondAttribute="bottom" constant="27" id="Tkm-8O-ElT"/>
+                            <constraint firstItem="RM7-A9-SfR" firstAttribute="leading" secondItem="UBI-OG-7RY" secondAttribute="leading" constant="12" id="U5c-7H-oL3"/>
+                            <constraint firstItem="nFQ-dL-nGf" firstAttribute="top" secondItem="UBI-OG-7RY" secondAttribute="top" id="VXI-Ra-fR3"/>
+                            <constraint firstItem="tBD-lZ-HlH" firstAttribute="leading" secondItem="UBI-OG-7RY" secondAttribute="leading" constant="12" id="Z6J-zV-A10"/>
+                            <constraint firstItem="Wwx-y2-tN3" firstAttribute="leading" secondItem="UBI-OG-7RY" secondAttribute="leading" constant="12" id="ZGn-Jf-FsK"/>
+                            <constraint firstAttribute="width" constant="156" id="bCJ-f5-AU6"/>
+                            <constraint firstAttribute="trailing" secondItem="nFQ-dL-nGf" secondAttribute="trailing" id="bYg-oY-TXD"/>
+                            <constraint firstItem="07x-TC-A3z" firstAttribute="top" secondItem="XFs-Sv-f0r" secondAttribute="bottom" constant="5" id="dOi-vF-3nL"/>
+                            <constraint firstItem="WCz-jU-GLW" firstAttribute="top" secondItem="tBD-lZ-HlH" secondAttribute="bottom" constant="6" id="hZ7-6i-u0f"/>
+                            <constraint firstItem="R2H-kH-GqM" firstAttribute="top" secondItem="Wwx-y2-tN3" secondAttribute="bottom" constant="28.5" id="ihY-o5-XjH"/>
+                            <constraint firstItem="oO0-od-Oxm" firstAttribute="top" secondItem="R2H-kH-GqM" secondAttribute="bottom" constant="7.5" id="jy0-Iu-udc"/>
+                            <constraint firstAttribute="height" constant="258" id="k1e-3O-9RK"/>
+                            <constraint firstItem="tBD-lZ-HlH" firstAttribute="top" secondItem="RM7-A9-SfR" secondAttribute="bottom" constant="96" id="k2H-sd-orF"/>
+                            <constraint firstItem="WCz-jU-GLW" firstAttribute="leading" secondItem="UBI-OG-7RY" secondAttribute="leading" constant="12" id="oUb-dX-0YV"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="UBI-OG-7RY" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="K1E-gF-twN"/>
+                <constraint firstAttribute="bottom" secondItem="UBI-OG-7RY" secondAttribute="bottom" id="MmB-W6-Pq9"/>
+                <constraint firstItem="UBI-OG-7RY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="djx-9p-AV5"/>
+                <constraint firstAttribute="trailing" secondItem="UBI-OG-7RY" secondAttribute="trailing" id="vvU-1R-8eZ"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="78.348214285714278"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="card" width="327" height="540"/>
+        <image name="iconInstagram" width="24" height="24"/>
+        <image name="iconUrl" width="24" height="24"/>
+        <namedColor name="background">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

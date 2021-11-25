@@ -29,6 +29,11 @@
                                     <constraint firstAttribute="height" constant="540" id="b0L-OT-Q7F"/>
                                     <constraint firstAttribute="width" constant="327" id="xtT-wz-pPq"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uDr-em-N5O">
                                 <rect key="frame" x="0.0" y="44" width="375" height="50"/>
@@ -37,6 +42,9 @@
                                         <rect key="frame" x="24" y="13" width="24" height="24"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="iconArrow"/>
+                                        <connections>
+                                            <action selector="touchBackButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="A7U-KW-0Uv"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="명함생성" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9F-GG-Wlr">
                                         <rect key="frame" x="154.66666666666666" y="14" width="66" height="22"/>

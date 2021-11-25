@@ -12,165 +12,129 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="BackCardCreationCollectionViewCell" customModule="NADA_iOS_forRelease" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="364" height="689"/>
+            <rect key="frame" x="0.0" y="0.0" width="364" height="604"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="364" height="689"/>
+                <rect key="frame" x="0.0" y="0.0" width="364" height="604"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cau-0y-d0k">
-                        <rect key="frame" x="0.0" y="0.0" width="364" height="689"/>
+                        <rect key="frame" x="0.0" y="0.0" width="364" height="604"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CX8-sW-5EH">
-                                <rect key="frame" x="0.0" y="0.0" width="364" height="648"/>
+                                <rect key="frame" x="0.0" y="0.0" width="364" height="491.5"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3CZ-pH-XIB">
-                                        <rect key="frame" x="0.0" y="0.0" width="364" height="310"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXB-TC-pyT">
-                                                <rect key="frame" x="28" y="28" width="42" height="14"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="4NM-U6-Gii">
-                                                <rect key="frame" x="28" y="70" width="308" height="44"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="sK3-0X-bq0"/>
-                                                </constraints>
-                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9QR-If-qp5">
-                                                    <size key="itemSize" width="128" height="128"/>
-                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                </collectionViewFlowLayout>
-                                            </collectionView>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Uga-cx-3Jf">
-                                                <rect key="frame" x="28" y="126" width="308" height="44"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wmo-xH-qrS">
-                                                    <size key="itemSize" width="128" height="128"/>
-                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                </collectionViewFlowLayout>
-                                            </collectionView>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="m5i-Vd-PDH">
-                                                <rect key="frame" x="28" y="182" width="308" height="44"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NNh-bn-08u">
-                                                    <size key="itemSize" width="128" height="128"/>
-                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                </collectionViewFlowLayout>
-                                            </collectionView>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="9eS-JT-PuT">
-                                                <rect key="frame" x="28" y="238" width="308" height="44"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Sgf-Ek-GHY">
-                                                    <size key="itemSize" width="128" height="128"/>
-                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                </collectionViewFlowLayout>
-                                            </collectionView>
-                                        </subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXB-TC-pyT">
+                                        <rect key="frame" x="24" y="14" width="41.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Uga-cx-3Jf">
+                                        <rect key="frame" x="24" y="98.5" width="316" height="44"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wmo-xH-qrS">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                    </collectionView>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="m5i-Vd-PDH">
+                                        <rect key="frame" x="24" y="152.5" width="316" height="44"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NNh-bn-08u">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                    </collectionView>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="9eS-JT-PuT">
+                                        <rect key="frame" x="24" y="206.5" width="316" height="44"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Sgf-Ek-GHY">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                    </collectionView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vxc-UH-Nd2">
+                                        <rect key="frame" x="24" y="311.5" width="316" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="lke-v9-UUS"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9cx-2c-aNd">
+                                        <rect key="frame" x="24" y="365.5" width="316" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="fsS-MO-0UT"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cSq-jF-yH4">
+                                        <rect key="frame" x="24" y="419.5" width="316" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="YuA-9N-X8X"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOx-9X-tSn">
+                                        <rect key="frame" x="24" y="280.5" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="4NM-U6-Gii">
+                                        <rect key="frame" x="24" y="44.5" width="316" height="44"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="m5i-Vd-PDH" firstAttribute="leading" secondItem="4NM-U6-Gii" secondAttribute="leading" id="7Io-u9-LNZ"/>
-                                            <constraint firstAttribute="trailing" secondItem="4NM-U6-Gii" secondAttribute="trailing" constant="28" id="8Lb-jq-ANM"/>
-                                            <constraint firstItem="9eS-JT-PuT" firstAttribute="top" secondItem="m5i-Vd-PDH" secondAttribute="bottom" constant="12" id="DQd-1i-mo3"/>
-                                            <constraint firstItem="UXB-TC-pyT" firstAttribute="top" secondItem="3CZ-pH-XIB" secondAttribute="top" constant="28" id="DRh-Gv-czI"/>
-                                            <constraint firstItem="Uga-cx-3Jf" firstAttribute="height" secondItem="4NM-U6-Gii" secondAttribute="height" id="H7L-Lt-chg"/>
-                                            <constraint firstAttribute="bottom" secondItem="9eS-JT-PuT" secondAttribute="bottom" constant="28" id="LYs-aB-Nmu"/>
-                                            <constraint firstItem="Uga-cx-3Jf" firstAttribute="trailing" secondItem="4NM-U6-Gii" secondAttribute="trailing" id="MhR-61-rme"/>
-                                            <constraint firstItem="4NM-U6-Gii" firstAttribute="leading" secondItem="3CZ-pH-XIB" secondAttribute="leading" constant="28" id="QQA-Bv-wqr"/>
-                                            <constraint firstItem="9eS-JT-PuT" firstAttribute="leading" secondItem="4NM-U6-Gii" secondAttribute="leading" id="Rnt-8w-DyT"/>
-                                            <constraint firstItem="m5i-Vd-PDH" firstAttribute="trailing" secondItem="4NM-U6-Gii" secondAttribute="trailing" id="V2w-0M-qJS"/>
-                                            <constraint firstItem="4NM-U6-Gii" firstAttribute="top" secondItem="UXB-TC-pyT" secondAttribute="bottom" constant="28" id="Wkl-lf-Vqu"/>
-                                            <constraint firstItem="UXB-TC-pyT" firstAttribute="leading" secondItem="3CZ-pH-XIB" secondAttribute="leading" constant="28" id="fAt-Rc-nk6"/>
-                                            <constraint firstAttribute="height" constant="310" id="fDY-Mv-Ewu"/>
-                                            <constraint firstItem="9eS-JT-PuT" firstAttribute="height" secondItem="4NM-U6-Gii" secondAttribute="height" id="pEW-Dk-x9o"/>
-                                            <constraint firstItem="m5i-Vd-PDH" firstAttribute="top" secondItem="Uga-cx-3Jf" secondAttribute="bottom" constant="12" id="qSa-Is-NAN"/>
-                                            <constraint firstItem="9eS-JT-PuT" firstAttribute="trailing" secondItem="4NM-U6-Gii" secondAttribute="trailing" id="rmv-gn-kGd"/>
-                                            <constraint firstItem="Uga-cx-3Jf" firstAttribute="top" secondItem="4NM-U6-Gii" secondAttribute="bottom" constant="12" id="ryA-Oh-1Jm"/>
-                                            <constraint firstItem="m5i-Vd-PDH" firstAttribute="height" secondItem="4NM-U6-Gii" secondAttribute="height" id="sz3-jb-R5d"/>
-                                            <constraint firstItem="Uga-cx-3Jf" firstAttribute="leading" secondItem="4NM-U6-Gii" secondAttribute="leading" id="yd5-qn-RCz"/>
+                                            <constraint firstAttribute="height" constant="44" id="sK3-0X-bq0"/>
                                         </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VgE-mq-74b">
-                                        <rect key="frame" x="0.0" y="338" width="364" height="310"/>
-                                        <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vxc-UH-Nd2">
-                                                <rect key="frame" x="28" y="61" width="308" height="44"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="lke-v9-UUS"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9cx-2c-aNd">
-                                                <rect key="frame" x="28" y="117" width="308" height="44"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="fsS-MO-0UT"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6lw-qX-3p1">
-                                                <rect key="frame" x="28" y="173" width="308" height="44"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="Wvg-t6-Uvp"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cSq-jF-yH4">
-                                                <rect key="frame" x="28" y="229" width="308" height="44"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="YuA-9N-X8X"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOx-9X-tSn">
-                                                <rect key="frame" x="28" y="28" width="42" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstItem="cSq-jF-yH4" firstAttribute="trailing" secondItem="6lw-qX-3p1" secondAttribute="trailing" id="6Pm-IX-bwM"/>
-                                            <constraint firstItem="cSq-jF-yH4" firstAttribute="leading" secondItem="FOx-9X-tSn" secondAttribute="leading" id="E6a-na-FlH"/>
-                                            <constraint firstItem="6lw-qX-3p1" firstAttribute="leading" secondItem="FOx-9X-tSn" secondAttribute="leading" id="GBK-pS-q0u"/>
-                                            <constraint firstItem="Vxc-UH-Nd2" firstAttribute="leading" secondItem="FOx-9X-tSn" secondAttribute="leading" id="NGc-2A-flo"/>
-                                            <constraint firstItem="9cx-2c-aNd" firstAttribute="top" secondItem="Vxc-UH-Nd2" secondAttribute="bottom" constant="12" id="Ooc-K7-hYn"/>
-                                            <constraint firstAttribute="trailing" secondItem="Vxc-UH-Nd2" secondAttribute="trailing" constant="28" id="RJI-BT-IVV"/>
-                                            <constraint firstItem="cSq-jF-yH4" firstAttribute="top" secondItem="6lw-qX-3p1" secondAttribute="bottom" constant="12" id="TcQ-72-Age"/>
-                                            <constraint firstItem="6lw-qX-3p1" firstAttribute="trailing" secondItem="9cx-2c-aNd" secondAttribute="trailing" id="ak2-1q-nQ9"/>
-                                            <constraint firstAttribute="height" constant="310" id="f5s-VF-Aib"/>
-                                            <constraint firstItem="FOx-9X-tSn" firstAttribute="top" secondItem="VgE-mq-74b" secondAttribute="top" constant="28" id="fQ4-dg-NDt"/>
-                                            <constraint firstItem="6lw-qX-3p1" firstAttribute="top" secondItem="9cx-2c-aNd" secondAttribute="bottom" constant="12" id="jQz-jf-uK6"/>
-                                            <constraint firstItem="Vxc-UH-Nd2" firstAttribute="top" secondItem="FOx-9X-tSn" secondAttribute="bottom" constant="12" id="l9j-4N-N3B"/>
-                                            <constraint firstItem="9cx-2c-aNd" firstAttribute="trailing" secondItem="Vxc-UH-Nd2" secondAttribute="trailing" id="mCQ-bD-0l3"/>
-                                            <constraint firstItem="9cx-2c-aNd" firstAttribute="leading" secondItem="FOx-9X-tSn" secondAttribute="leading" id="nIW-C2-sca"/>
-                                        </constraints>
-                                    </view>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9QR-If-qp5">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                    </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="3CZ-pH-XIB" firstAttribute="top" secondItem="CX8-sW-5EH" secondAttribute="top" id="Ewz-ky-PM9"/>
-                                    <constraint firstAttribute="trailing" secondItem="3CZ-pH-XIB" secondAttribute="trailing" id="QJX-2o-Zgb"/>
-                                    <constraint firstAttribute="trailing" secondItem="VgE-mq-74b" secondAttribute="trailing" id="Ty2-gA-u98"/>
-                                    <constraint firstItem="VgE-mq-74b" firstAttribute="leading" secondItem="CX8-sW-5EH" secondAttribute="leading" id="eQq-lQ-zqn"/>
-                                    <constraint firstItem="FOx-9X-tSn" firstAttribute="leading" secondItem="UXB-TC-pyT" secondAttribute="leading" id="lIu-Lu-AsN"/>
-                                    <constraint firstAttribute="bottom" secondItem="VgE-mq-74b" secondAttribute="bottom" id="laL-39-ps2"/>
-                                    <constraint firstItem="3CZ-pH-XIB" firstAttribute="leading" secondItem="CX8-sW-5EH" secondAttribute="leading" id="nOt-7A-L5q"/>
-                                    <constraint firstItem="VgE-mq-74b" firstAttribute="top" secondItem="3CZ-pH-XIB" secondAttribute="bottom" constant="28" id="zGB-UF-MpG"/>
+                                    <constraint firstItem="UXB-TC-pyT" firstAttribute="leading" secondItem="CX8-sW-5EH" secondAttribute="leading" constant="24" id="2pG-dn-gk9"/>
+                                    <constraint firstItem="Uga-cx-3Jf" firstAttribute="top" secondItem="4NM-U6-Gii" secondAttribute="bottom" constant="10" id="3l3-pI-FwF"/>
+                                    <constraint firstItem="9cx-2c-aNd" firstAttribute="top" secondItem="Vxc-UH-Nd2" secondAttribute="bottom" constant="10" id="8JW-On-Xrv"/>
+                                    <constraint firstItem="Uga-cx-3Jf" firstAttribute="leading" secondItem="4NM-U6-Gii" secondAttribute="leading" id="9kg-9V-8WS"/>
+                                    <constraint firstItem="cSq-jF-yH4" firstAttribute="trailing" secondItem="9cx-2c-aNd" secondAttribute="trailing" id="GHq-e2-ulw"/>
+                                    <constraint firstItem="9cx-2c-aNd" firstAttribute="trailing" secondItem="Vxc-UH-Nd2" secondAttribute="trailing" id="KIf-hM-33O"/>
+                                    <constraint firstItem="Uga-cx-3Jf" firstAttribute="height" secondItem="4NM-U6-Gii" secondAttribute="height" id="KPu-VS-lu6"/>
+                                    <constraint firstItem="m5i-Vd-PDH" firstAttribute="leading" secondItem="Uga-cx-3Jf" secondAttribute="leading" id="KQA-85-9YV"/>
+                                    <constraint firstItem="m5i-Vd-PDH" firstAttribute="height" secondItem="Uga-cx-3Jf" secondAttribute="height" id="LiH-Y5-cs5"/>
+                                    <constraint firstItem="Uga-cx-3Jf" firstAttribute="trailing" secondItem="4NM-U6-Gii" secondAttribute="trailing" id="McC-12-sjP"/>
+                                    <constraint firstItem="cSq-jF-yH4" firstAttribute="top" secondItem="9cx-2c-aNd" secondAttribute="bottom" constant="10" id="Nsu-pv-70a"/>
+                                    <constraint firstItem="FOx-9X-tSn" firstAttribute="top" secondItem="9eS-JT-PuT" secondAttribute="bottom" constant="30" id="QWn-6s-tGb"/>
+                                    <constraint firstItem="4NM-U6-Gii" firstAttribute="leading" secondItem="CX8-sW-5EH" secondAttribute="leading" constant="24" id="SJL-Nk-QUu"/>
+                                    <constraint firstItem="9cx-2c-aNd" firstAttribute="leading" secondItem="Vxc-UH-Nd2" secondAttribute="leading" id="VcM-vw-eFI"/>
+                                    <constraint firstItem="9eS-JT-PuT" firstAttribute="height" secondItem="m5i-Vd-PDH" secondAttribute="height" id="YVN-GA-JOE"/>
+                                    <constraint firstItem="cSq-jF-yH4" firstAttribute="leading" secondItem="9cx-2c-aNd" secondAttribute="leading" id="cUl-Mm-a9t"/>
+                                    <constraint firstItem="Vxc-UH-Nd2" firstAttribute="top" secondItem="FOx-9X-tSn" secondAttribute="bottom" constant="10" id="dNg-8L-im2"/>
+                                    <constraint firstItem="m5i-Vd-PDH" firstAttribute="top" secondItem="Uga-cx-3Jf" secondAttribute="bottom" constant="10" id="egr-9c-nkw"/>
+                                    <constraint firstAttribute="bottom" secondItem="cSq-jF-yH4" secondAttribute="bottom" constant="28" id="fao-fJ-Mmo"/>
+                                    <constraint firstItem="9eS-JT-PuT" firstAttribute="trailing" secondItem="m5i-Vd-PDH" secondAttribute="trailing" id="fy0-WP-ufd"/>
+                                    <constraint firstItem="UXB-TC-pyT" firstAttribute="top" secondItem="CX8-sW-5EH" secondAttribute="top" constant="14" id="g7d-gu-NkK"/>
+                                    <constraint firstItem="m5i-Vd-PDH" firstAttribute="trailing" secondItem="Uga-cx-3Jf" secondAttribute="trailing" id="hht-6j-Rsr"/>
+                                    <constraint firstItem="4NM-U6-Gii" firstAttribute="top" secondItem="UXB-TC-pyT" secondAttribute="bottom" constant="10" id="jY2-qK-vl0"/>
+                                    <constraint firstItem="Vxc-UH-Nd2" firstAttribute="leading" secondItem="CX8-sW-5EH" secondAttribute="leading" constant="24" id="ohM-CP-chi"/>
+                                    <constraint firstItem="FOx-9X-tSn" firstAttribute="leading" secondItem="UXB-TC-pyT" secondAttribute="leading" id="pF5-qj-d3i"/>
+                                    <constraint firstItem="9eS-JT-PuT" firstAttribute="leading" secondItem="m5i-Vd-PDH" secondAttribute="leading" id="r3T-GO-mxF"/>
+                                    <constraint firstItem="9eS-JT-PuT" firstAttribute="top" secondItem="m5i-Vd-PDH" secondAttribute="bottom" constant="10" id="vS7-9i-6n6"/>
+                                    <constraint firstAttribute="trailing" secondItem="Vxc-UH-Nd2" secondAttribute="trailing" constant="24" id="xwu-Gu-fFM"/>
+                                    <constraint firstAttribute="trailing" secondItem="4NM-U6-Gii" secondAttribute="trailing" constant="24" id="z98-Kw-4Mb"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -192,24 +156,21 @@
                 <constraint firstItem="Cau-0y-d0k" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="R0B-wg-sY9"/>
                 <constraint firstItem="Cau-0y-d0k" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="i6z-kb-IcQ"/>
             </constraints>
-            <size key="customSize" width="364" height="689"/>
+            <size key="customSize" width="364" height="604"/>
             <connections>
                 <outlet property="bgView" destination="CX8-sW-5EH" id="f0q-Pd-V4h"/>
-                <outlet property="firstAnswerTextField" destination="9cx-2c-aNd" id="MQo-aR-QNs"/>
-                <outlet property="firstQuestionTextField" destination="Vxc-UH-Nd2" id="jS2-8r-w7S"/>
+                <outlet property="firstTMITextField" destination="Vxc-UH-Nd2" id="QFw-9r-Tmb"/>
                 <outlet property="isBoomukCollectionView" destination="m5i-Vd-PDH" id="TCs-Yv-tMf"/>
                 <outlet property="isMinchoCollectionView" destination="4NM-U6-Gii" id="ytI-aE-2vl"/>
                 <outlet property="isSaucedCollectionView" destination="9eS-JT-PuT" id="QZh-H7-DGD"/>
                 <outlet property="isSojuCollectionView" destination="Uga-cx-3Jf" id="aFZ-3f-iGK"/>
-                <outlet property="optionInfoView" destination="VgE-mq-74b" id="f1O-9W-ilf"/>
                 <outlet property="optionalInfoTextLabel" destination="FOx-9X-tSn" id="hE1-FU-c1W"/>
                 <outlet property="requiredInfoTextLabel" destination="UXB-TC-pyT" id="sic-Na-pst"/>
-                <outlet property="requiredInfoView" destination="3CZ-pH-XIB" id="FhW-Yy-Abs"/>
                 <outlet property="scrollView" destination="Cau-0y-d0k" id="DY9-dH-xTb"/>
-                <outlet property="secondAnswerTextField" destination="cSq-jF-yH4" id="IcX-zB-JUr"/>
-                <outlet property="secondQuestionTextField" destination="6lw-qX-3p1" id="nPF-dg-5mg"/>
+                <outlet property="secondTMITextField" destination="9cx-2c-aNd" id="gtj-d1-BrQ"/>
+                <outlet property="thirdTMITextField" destination="cSq-jF-yH4" id="vKG-l9-csl"/>
             </connections>
-            <point key="canvasLocation" x="369.56521739130437" y="270.20089285714283"/>
+            <point key="canvasLocation" x="369.56521739130437" y="241.74107142857142"/>
         </collectionViewCell>
     </objects>
     <resources>

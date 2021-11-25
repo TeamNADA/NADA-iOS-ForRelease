@@ -19,18 +19,15 @@ class BackCardCreationCollectionViewCell: UICollectionViewCell {
     
     // MARK: - @IBOutlet Properties
     
-    @IBOutlet weak var optionInfoView: UIView!
-    @IBOutlet weak var requiredInfoView: UIView!
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var requiredInfoTextLabel: UILabel!
     @IBOutlet weak var optionalInfoTextLabel: UILabel!
     
-    @IBOutlet weak var firstQuestionTextField: UITextField!
-    @IBOutlet weak var firstAnswerTextField: UITextField!
-    @IBOutlet weak var secondQuestionTextField: UITextField!
-    @IBOutlet weak var secondAnswerTextField: UITextField!
+    @IBOutlet weak var firstTMITextField: UITextField!
+    @IBOutlet weak var secondTMITextField: UITextField!
+    @IBOutlet weak var thirdTMITextField: UITextField!
     
     @IBOutlet weak var isMinchoCollectionView: UICollectionView!
     @IBOutlet weak var isSojuCollectionView: UICollectionView!
@@ -41,6 +38,7 @@ class BackCardCreationCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         setUI()
         registerCell()
         textFieldDelegate()
@@ -53,49 +51,49 @@ extension BackCardCreationCollectionViewCell {
         initUITextFieldList()
         initCollectionViewList()
         
-        scrollView.indicatorStyle = .white
-        // scrollView.backgroundColor = .black1
+        scrollView.indicatorStyle = .default
+        scrollView.backgroundColor = .primary
+        bgView.backgroundColor = .primary
         
-        // bgView.backgroundColor = .black1
+         _ = requiredCollectionViewList.map { $0.backgroundColor = .primary }
         
-        // _ = requiredCollectionViewList.map { $0.backgroundColor = .stepBlack5 }
+        let requiredAttributeString = NSMutableAttributedString(string: "*나의 취향을 골라보세요.")
+        requiredAttributeString.addAttribute(.foregroundColor, value: UIColor.mainColorNadaMain, range: NSRange(location: 0, length: 1))
+        requiredAttributeString.addAttribute(.foregroundColor, value: UIColor.secondary, range: NSRange(location: 1, length: requiredAttributeString.length - 1))
+        requiredInfoTextLabel.attributedText = requiredAttributeString
+        requiredInfoTextLabel.font = .textBold01
         
-        // requiredInfoView.backgroundColor = .stepBlack5
+        optionalInfoTextLabel.text = "나의 재밌는 TMI를 알려주세요. (20자)"
+        optionalInfoTextLabel.font = .textBold01
+        optionalInfoTextLabel.textColor = .secondary
         
-        // optionInfoView.backgroundColor = .stepBlack5
-        
-        requiredInfoTextLabel.text = "1 필수 정보"
-        // requiredInfoTextLabel.font = .step
-        // requiredInfoTextLabel.textColor = .white1
-        
-        optionalInfoTextLabel.text = "2 선택 정보"
-        // optionalInfoTextLabel.font = .step
-        // optionalInfoTextLabel.textColor = .white1
-        
-        // firstQuestionTextField.attributedPlaceholder = NSAttributedString(string: "질문 1", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
-        // firstAnswerTextField.attributedPlaceholder = NSAttributedString(string: "대답 1", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
-        // secondQuestionTextField.attributedPlaceholder = NSAttributedString(string: "질문 2", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
-        // secondAnswerTextField.attributedPlaceholder = NSAttributedString(string: "대답 2", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hintGray1])
+         firstTMITextField.attributedPlaceholder = NSAttributedString(string: "TMI 1", attributes: [NSAttributedString.Key.foregroundColor: UIColor.quaternary])
+         secondTMITextField.attributedPlaceholder = NSAttributedString(string: "TMI 2", attributes: [NSAttributedString.Key.foregroundColor: UIColor.quaternary])
+         thirdTMITextField.attributedPlaceholder = NSAttributedString(string: "TMI 3", attributes: [NSAttributedString.Key.foregroundColor: UIColor.quaternary])
         
         _ = textFieldList.map {
-            // $0.font = .hint
-            // $0.backgroundColor = .inputBlack2
-            // $0.textColor = .white1
-            $0.layer.cornerRadius = 5
+            $0.font = .textRegular04
+            $0.backgroundColor = .textBox
+            $0.textColor = .primary
+            $0.layer.cornerRadius = 10
             $0.borderStyle = .none
+            $0.addLeftPadding()
         }
     }
     private func initUITextFieldList() {
-        textFieldList.append(contentsOf: [firstQuestionTextField,
-                                             firstAnswerTextField,
-                                             secondQuestionTextField,
-                                             secondAnswerTextField])
+        textFieldList.append(contentsOf: [
+            firstTMITextField,
+            secondTMITextField,
+            thirdTMITextField
+        ])
     }
     private func initCollectionViewList() {
-        requiredCollectionViewList.append(contentsOf: [isMinchoCollectionView,
-                                              isSojuCollectionView,
-                                              isBoomukCollectionView,
-                                              isSaucedCollectionView])
+        requiredCollectionViewList.append(contentsOf: [
+            isMinchoCollectionView,
+            isSojuCollectionView,
+            isBoomukCollectionView,
+            isSaucedCollectionView
+        ])
     }
     private func registerCell() {
         _ = requiredCollectionViewList.map {
@@ -108,7 +106,7 @@ extension BackCardCreationCollectionViewCell {
         _ = textFieldList.map { $0.delegate = self }
     }
     static func nib() -> UINib {
-        return UINib(nibName: "BackCardCreationCollectionViewCell", bundle: nil)
+        return UINib(nibName: Const.Xib.backCardCreationCollectionViewCell, bundle: Bundle(for: BackCardCreationCollectionViewCell.self))
     }
 }
 
@@ -121,15 +119,14 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDelegate {
             isSaucedCollectionView.indexPathsForSelectedItems?.isEmpty == false {
             backCardCreationDelegate?.backCardCreation(requiredInfo: true)
             backCardCreationDelegate?.backCardCreation(withRequired: [
-                "isMincho": isMinchoCollectionView.indexPathsForSelectedItems == [[0]] ? true: false,
-                "isSoju": isSojuCollectionView.indexPathsForSelectedItems == [[0]] ? true: false,
-                "isBoomuk": isBoomukCollectionView.indexPathsForSelectedItems == [[0]] ? true: false,
-                "isSauced": isSaucedCollectionView.indexPathsForSelectedItems == [[0]] ? true: false
+                "isMincho": isMinchoCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false,
+                "isSoju": isSojuCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false,
+                "isBoomuk": isBoomukCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false,
+                "isSauced": isSaucedCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false
             ], withOptional: [
-                "oneQuestion": firstQuestionTextField.text ?? "",
-                "oneAnswer": firstAnswerTextField.text ?? "",
-                "twoQuestion": secondQuestionTextField.text ?? "",
-                "twoAnswer": secondAnswerTextField.text ?? ""
+                "firstTMI": firstTMITextField.text ?? "",
+                "secondTMI": secondTMITextField.text ?? "",
+                "thirdTMI": thirdTMITextField.text ?? ""
             ])
         } else {
             backCardCreationDelegate?.backCardCreation(requiredInfo: false)

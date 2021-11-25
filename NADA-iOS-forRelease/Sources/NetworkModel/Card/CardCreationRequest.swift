@@ -12,11 +12,6 @@ struct CardCreationRequest: Codable {
     let userID: String
     let frontCard: FrontCardDataModel
     let backCard: BackCardDataModel
-    
-    enum CodingKeys: String, CodingKey {
-        case userID = "userId"
-        case frontCard, backCard
-    }
 }
 
 // MARK: - FrontCard
@@ -24,20 +19,12 @@ struct CardCreationRequest: Codable {
 struct FrontCardDataModel: Codable {
     let defaultImage: Int
     let title, name, birthDate, mbti: String
-    let instagram, linkName, link, description: String
-
-    enum CodingKeys: String, CodingKey {
-        case defaultImage, title, name, birthDate, mbti, instagram, linkName, link, description
-    }
+    let instagramID, linkURL, description: String
 }
     
 // MARK: - BackCard
 
 struct BackCardDataModel: Codable {
     let isMincho, isSoju, isBoomuk, isSauced: Bool
-    let oneQuestion, oneAnswer, twoQuestion, twoAnswer: String
-
-    enum CodingKeys: String, CodingKey {
-        case isMincho, isSoju, isBoomuk, isSauced, oneQuestion, oneAnswer, twoQuestion, twoAnswer
-    }
+    let firstTMI, secondTMI, thirdTMI: String
 }

@@ -79,34 +79,40 @@ class CardCreationViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func pushToCardCompletionView(_ sender: Any) {
-        // TODO: - CardCompletionView 화면전환
+        guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardCreationPreview, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardCreationPreviewViewController) as? CardCreationPreviewViewController else { return }
+        
+        nextVC.frontCardDataModel = frontCard
+        nextVC.backCardDataModel = backCard
+        navigationController?.pushViewController(nextVC, animated: true)
     }
 }
 
 // MARK: - Extensions
 extension CardCreationViewController {
     private func setUI() {
-        // view.backgroundColor = .white1
-        // statusMovedView.backgroundColor = .white1
-        // cardCreationCollectionView.backgroundColor = .black1
+        navigationController?.navigationBar.isHidden = true
+        
+        view.backgroundColor = .primary
+        statusMovedView.backgroundColor = .secondary
+        cardCreationCollectionView.backgroundColor = .primary
         cardCreationCollectionView.isPagingEnabled = true
         
         creationTextLabel.text = "명함 생성"
-        // creationTextLabel.font = .menu
-        // creationTextLabel.textColor = .white1
+        creationTextLabel.font = .title02
+        creationTextLabel.textColor = .primary
         
         frontTextLabel.text = "앞면"
-        // frontTextLabel.font = .menuSub
-        // frontTextLabel.textColor = .white1
+        frontTextLabel.font = .title01
+        frontTextLabel.textColor = .primary
         
         backTextLabel.text = "뒷면"
-        // backTextLabel.font = .menuSub
-        // backTextLabel.textColor = .hintGray1
+        backTextLabel.font = .title01
+        backTextLabel.textColor = .quaternary
         
-        closeButton.setImage(UIImage(named: "closeBlack"), for: .normal)
+        closeButton.setImage(UIImage(named: "iconClear"), for: .normal)
         closeButton.setTitle("", for: .normal)
         
-        // completeButton.titleLabel?.font = .btn
+        completeButton.titleLabel?.font = .title02
         completeButton.layer.cornerRadius = 10
         completeButton.isEnabled = false
         
@@ -119,12 +125,12 @@ extension CardCreationViewController {
                 switch button.state {
                 case .disabled:
                     button.configuration?.title = "완료"
-                    // button.configuration?.baseBackgroundColor = .inputBlack2
-                    // button.configuration?.baseForegroundColor = .hintGray1
+                    button.configuration?.baseBackgroundColor = .textBox
+                    button.configuration?.baseForegroundColor = .white
                 default:
                     button.configuration?.title = "완료"
-                    // button.configuration?.baseBackgroundColor = .mainBlue
-                    // button.configuration?.baseForegroundColor = .white1
+                    button.configuration?.baseBackgroundColor = .mainColorNadaMain
+                    button.configuration?.baseForegroundColor = .white
                 }
             }
             completeButton.configurationUpdateHandler = configHandler
@@ -132,11 +138,11 @@ extension CardCreationViewController {
             completeButton.setTitle("완료", for: .normal)
             // completeButton.setTitleColor(.white1, for: .normal)
         // TODO: - 뷰 확정되면 이미지로 background 세팅
-        //        completeButton.setBackgroundImage(, for: .normal)
+//                completeButton.setBackgroundImage(, for: .normal)
         
-        // completeButton.setTitleColor(.hintGray1, for: .disabled)
-        //        completeButton.setBackgroundImage(, for: .disabled)
-    }
+         completeButton.setTitleColor(.white, for: .disabled)
+//                completeButton.setBackgroundImage(, for: .disabled)
+        }
         
         let cardCreationCollectionViewlayout = cardCreationCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
         cardCreationCollectionViewlayout?.scrollDirection = .horizontal
@@ -168,11 +174,11 @@ extension CardCreationViewController {
         cardCreationCollectionView.scrollToItem(at: indexPath, at: .right, animated: true)
         if currentIndex == 0 {
             UIView.animate(withDuration: 0.3) {
-                self.statusMovedView.transform = CGAffineTransform(translationX: self.backTextLabel.frame.origin.x - self.statusMovedView.frame.origin.x + 5, y: 0)
+                self.statusMovedView.transform = CGAffineTransform(translationX: self.backTextLabel.frame.origin.x - self.statusMovedView.frame.origin.x - 5, y: 0)
             }
             currentIndex = 1
-            // self.frontTextLabel.textColor = .hintGray1
-            // self.backTextLabel.textColor = .white1
+             self.frontTextLabel.textColor = .quaternary
+             self.backTextLabel.textColor = .secondary
         }
     }
     @objc
@@ -184,8 +190,8 @@ extension CardCreationViewController {
                 self.statusMovedView.transform = .identity
             }
             currentIndex = 0
-            // self.frontTextLabel.textColor = .white1
-            // self.backTextLabel.textColor = .hintGray1
+             self.frontTextLabel.textColor = .secondary
+             self.backTextLabel.textColor = .quaternary
         }
     }
 }
@@ -257,15 +263,15 @@ extension CardCreationViewController: UICollectionViewDelegate {
                 self.statusMovedView.transform = CGAffineTransform(translationX: self.backTextLabel.frame.origin.x - self.statusMovedView.frame.origin.x + 5, y: 0)
             }
             currentIndex = 1
-            // self.frontTextLabel.textColor = .hintGray1
-            // self.backTextLabel.textColor = .white
+             self.frontTextLabel.textColor = .quaternary
+             self.backTextLabel.textColor = .primary
         } else if targetIndex == 0 && currentIndex == 1 {
             UIView.animate(withDuration: 0.2) {
                 self.statusMovedView.transform = .identity
             }
             currentIndex = 0
-            // self.frontTextLabel.textColor = .white1
-            // self.backTextLabel.textColor = .hintGray1
+             self.frontTextLabel.textColor = .primary
+             self.backTextLabel.textColor = .quaternary
         }
     }
 }
@@ -314,6 +320,8 @@ extension CardCreationViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - FrontCardCreationDelegate
+
 extension CardCreationViewController: FrontCardCreationDelegate {
     func frontCardCreation(requiredInfo valid: Bool) {
         frontCardIsEmpty = !valid
@@ -326,36 +334,34 @@ extension CardCreationViewController: FrontCardCreationDelegate {
 
     func frontCardCreation(withRequired requiredInfo: [String: String], withOptional optionalInfo: [String: String]) {
         frontCard = FrontCardDataModel(defaultImage: Int(requiredInfo["defaultImage"] ?? "0") ?? 0,
-                              title: requiredInfo["title"]  ?? "",
-                              name: requiredInfo["name"] ?? "",
-                              birthDate: requiredInfo["birthDate"] ?? "",
-                              mbti: requiredInfo["mbti"] ?? "",
-                              instagram: optionalInfo["instagram"] ?? "",
-                              linkName: optionalInfo["linkName"] ?? "",
-                              link: optionalInfo["link"] ?? "",
-                              description: optionalInfo["description"] ?? "")
+                                       title: requiredInfo["title"]  ?? "",
+                                       name: requiredInfo["name"] ?? "",
+                                       birthDate: requiredInfo["birthDate"] ?? "",
+                                       mbti: requiredInfo["mbti"] ?? "",
+                                       instagramID: optionalInfo["instagram"] ?? "",
+                                       linkURL: optionalInfo["linkURL"] ?? "",
+                                       description: optionalInfo["description"] ?? "")
     }
 }
 
+// MARK: - BackCardCreationDelegate
+
 extension CardCreationViewController: BackCardCreationDelegate {
     func backCardCreation(requiredInfo valid: Bool) {
-        func checkBackRequiredInfo(_ valid: Bool) {
-            backCardIsEmpty = !valid
-            if frontCardIsEmpty == false && backCardIsEmpty == false {
-                completeButtonIsEnabled = .enable
-            } else {
-                completeButtonIsEnabled = .disable
-            }
+        backCardIsEmpty = !valid
+        if frontCardIsEmpty == false && backCardIsEmpty == false {
+            completeButtonIsEnabled = .enable
+        } else {
+            completeButtonIsEnabled = .disable
         }
     }
     func backCardCreation(withRequired requiredInfo: [String: Bool], withOptional optionalInfo: [String: String]) {
         backCard = BackCardDataModel(isMincho: requiredInfo["isMincho"] ?? false,
-                            isSoju: requiredInfo["isSoju"] ?? false,
-                            isBoomuk: requiredInfo["isBoomuk"] ?? false,
-                            isSauced: requiredInfo["isSauced"] ?? false,
-                            oneQuestion: optionalInfo["oneQuestion"] ?? "",
-                            oneAnswer: optionalInfo["oneAnswer"] ?? "",
-                            twoQuestion: optionalInfo["twoQuestion"] ?? "",
-                            twoAnswer: optionalInfo["twoAnswer"] ?? "")
+                                     isSoju: requiredInfo["isSoju"] ?? false,
+                                     isBoomuk: requiredInfo["isBoomuk"] ?? false,
+                                     isSauced: requiredInfo["isSauced"] ?? false,
+                                     firstTMI: optionalInfo["firstTMI"] ?? "",
+                                     secondTMI: optionalInfo["secondTMI"] ?? "",
+                                     thirdTMI: optionalInfo["thirdTMI"] ?? "")
     }
 }

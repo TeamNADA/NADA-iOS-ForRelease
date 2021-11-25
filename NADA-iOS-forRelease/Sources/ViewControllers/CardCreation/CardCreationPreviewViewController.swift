@@ -33,30 +33,37 @@ class CardCreationPreviewViewController: UIViewController {
         guard let cardCreationRequest = cardCreationRequest else { return }
         cardCreationWithAPI(request: cardCreationRequest, image: UIImage(systemName: "circle")!)
     }
+    @IBAction func touchBackButton(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
 }
 
 // MARK: - Extensions
 
 extension CardCreationPreviewViewController {
     private func setUI() {
+        navigationController?.navigationBar.isHidden = true
+        
         noticeLabel.font = .textRegular04
+        noticeLabel.textColor = .primary
         
         setFrontCardWith()
         
     }
     
     private func setFrontCardWith() {
-        guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
+//        guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
         
         // FIXME: - @IBDesignables err
-//        guard let frontCard = Bundle(for: FrontCardCell.self).loadNibNamed("FrontCardCell", owner: self, options: nil)?.first as? FrontCardCell else { return }
+        guard let frontCard = Bundle(for: FrontCardCell.self).loadNibNamed("FrontCardCell", owner: self, options: nil)?.first as? FrontCardCell else { return }
+        
         frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
 
         guard let frontCardDataModel = frontCardDataModel else { return }
-        frontCard.initCell("\(frontCardDataModel.defaultImage)", frontCardDataModel.title, frontCardDataModel.description, frontCardDataModel.name, frontCardDataModel.birthDate, frontCardDataModel.mbti, frontCardDataModel.instagram, frontCardDataModel.link)
+//        frontCard.initCell("\(frontCardDataModel.defaultImage)", frontCardDataModel.title, frontCardDataModel.description, frontCardDataModel.name, frontCardDataModel.birthDate, frontCardDataModel.mbti, frontCardDataModel.instagramID, frontCardDataModel.linkURL)
         
-        // dummy data
-//        frontCard.initCell("0", "nada", "NADA의 짱귀염둥이 ㅎ 막이래~", "개빡쳐하는 오야옹~", "1999/05/12", "ENFP", "yaeoni", "github.com/yaeoni")
+        // FIXME: - dummy data
+        frontCard.initCell("card", "nada", "NADA의 짱귀염둥이 ㅎ 막이래~", "개빡쳐하는 오야옹~", "1999/05/12", "ENFP", "yaeoni", "github.com/yaeoni")
         cardView.addSubview(frontCard)
     }
     

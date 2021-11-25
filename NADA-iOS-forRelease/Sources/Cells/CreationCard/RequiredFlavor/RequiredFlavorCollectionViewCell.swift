@@ -18,34 +18,34 @@ class RequiredFlavorCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         setUI()
     }
 }
 
 extension RequiredFlavorCollectionViewCell {
     private func setUI() {
-        // bgView.backgroundColor = .inputBlack2
+        bgView.backgroundColor = .textBox
         bgView.cornerRadius = 10
         
-        // flavorLabel.font = .hint
-        // flavorLabel.textColor = .hintGray1
-        flavorLabel.lineBreakMode = .byTruncatingTail
+        flavorLabel.font = .button02
+        flavorLabel.textColor = .tertiary
         flavorLabel.textAlignment = .center
     }
     func initCell(flavor: String) {
         flavorLabel.text = flavor
     }
     static func nib() -> UINib {
-        return UINib(nibName: "RequiredFlavorCollectionViewCell", bundle: nil)
+        return UINib(nibName: Const.Xib.requiredCollectionViewCell, bundle: nil)
     }
     override var isSelected: Bool {
         didSet {
             if isSelected {
-                // bgView.backgroundColor = .white1
-                // flavorLabel.textColor = .black1
+                 bgView.backgroundColor = .secondary
+                 flavorLabel.textColor = .primary
             } else {
-                // bgView.backgroundColor = .inputBlack2
-                // flavorLabel.textColor = .hintGray1
+                 bgView.backgroundColor = .textBox
+                 flavorLabel.textColor = .tertiary
             }
         }
     }

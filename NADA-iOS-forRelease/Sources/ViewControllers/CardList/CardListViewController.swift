@@ -50,12 +50,11 @@ class CardListViewController: UIViewController {
     func setCardList() {
         cardItems.append(contentsOf: [
             CardListDataModel(title: "SOPT 28기 명함"),
-            CardListDataModel(title: "SOPT 29기 명함"),
-            CardListDataModel(title: "SOPT 30기 명함"),
-            CardListDataModel(title: "SOPT 31기 명함"),
-            CardListDataModel(title: "SOPT 32기 명함"),
-            CardListDataModel(title: "SOPT 33기 명함"),
-            CardListDataModel(title: "SOPT 34기 명함")
+            CardListDataModel(title: "디자인 스터디 명함"),
+            CardListDataModel(title: "아이스브레이킹"),
+            CardListDataModel(title: "NADA 명함"),
+            CardListDataModel(title: "NADA 명함"),
+            CardListDataModel(title: "NADA 명함")
         ])
     }
     

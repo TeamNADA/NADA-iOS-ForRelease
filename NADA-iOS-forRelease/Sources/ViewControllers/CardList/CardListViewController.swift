@@ -140,9 +140,11 @@ extension CardListViewController: UITableViewDataSource {
         
         if indexPath.row == 0 {
             serviceCell.pinButton.imageView?.image = UIImage(named: "iconPin")
+            serviceCell.pinButton.isEnabled = false
             serviceCell.reorderButton.isHidden = true
         } else {
             serviceCell.pinButton.imageView?.image = UIImage(named: "iconPinInactive")
+            serviceCell.pinButton.isEnabled = true
             serviceCell.reorderButton.isHidden = false
         }
         

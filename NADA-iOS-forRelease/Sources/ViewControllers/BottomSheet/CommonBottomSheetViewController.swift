@@ -72,6 +72,7 @@ class CommonBottomSheetViewController: UIViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20, weight: .bold)
         label.textAlignment = .center
+        label.sizeToFit()
         
         return label
     }()
@@ -155,7 +156,7 @@ class CommonBottomSheetViewController: UIViewController {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: dismissIndicatorView.bottomAnchor, constant: 28),
-            titleLabel.widthAnchor.constraint(equalToConstant: 100),
+//            titleLabel.widthAnchor.constraint(equalToConstant: 100),
             titleLabel.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor)
         ])
     }

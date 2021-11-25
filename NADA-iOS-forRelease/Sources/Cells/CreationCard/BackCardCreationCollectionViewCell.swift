@@ -77,7 +77,7 @@ extension BackCardCreationCollectionViewCell {
             $0.textColor = .primary
             $0.layer.cornerRadius = 10
             $0.borderStyle = .none
-            $0.addLeftPadding()
+            $0.setLeftPaddingPoints(12)
         }
     }
     private func initUITextFieldList() {

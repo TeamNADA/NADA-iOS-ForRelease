@@ -26,10 +26,8 @@
                         </constraints>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                         <state key="normal" image="iconPinInactive"/>
-                        <state key="selected" image="pushPinBlackFilled"/>
-                        <connections>
-                            <action selector="pinButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Gzf-Ta-K4C"/>
-                        </connections>
+                        <state key="disabled" image="iconPin"/>
+                        <state key="selected" image="iconPin"/>
                     </button>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="fxb-f5-q8B">
                         <rect key="frame" x="77" y="18" width="99.5" height="22"/>
@@ -49,9 +47,6 @@
                         </constraints>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                         <state key="normal" image="iconReorder"/>
-                        <connections>
-                            <action selector="reorderButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7av-2F-TNo"/>
-                        </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gqs-4Z-ROz">
                         <rect key="frame" x="16" y="57" width="343" height="1"/>
@@ -81,13 +76,13 @@
                 <outlet property="reorderButton" destination="aro-Pe-dpu" id="Udd-E5-FnG"/>
                 <outlet property="titleLabel" destination="WhY-hv-bQn" id="qs9-h3-TQD"/>
             </connections>
-            <point key="canvasLocation" x="131.15942028985509" y="79.6875"/>
+            <point key="canvasLocation" x="-67" y="81"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="iconPin" width="24" height="24"/>
         <image name="iconPinInactive" width="24" height="24"/>
         <image name="iconReorder" width="24" height="24"/>
-        <image name="pushPinBlackFilled" width="28.5" height="28.5"/>
         <namedColor name="background">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -9,13 +9,30 @@ import UIKit
 
 class CardInGroupCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var birthLabel: UILabel!
+    @IBOutlet weak var mbtiLabel: UILabel!
+    
+    @IBOutlet weak var instagramIDLabel: UILabel!
+    @IBOutlet weak var lineURLLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        setUI()
     }
     
     static func nib() -> UINib {
         return UINib(nibName: "CardInGroupCollectionViewCell", bundle: Bundle(for: CardInGroupCollectionViewCell.self))
     }
 
+}
+
+extension CardInGroupCollectionViewCell {
+    private func setUI() {
+        
+//        backgroundImageView.alpha = 0.4
+    }
 }

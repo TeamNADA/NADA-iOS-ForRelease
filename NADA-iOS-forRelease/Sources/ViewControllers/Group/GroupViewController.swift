@@ -11,11 +11,24 @@ class GroupViewController: UIViewController {
     
     // MARK: - Properties
     // 네비게이션 바
-    @IBOutlet weak var addWithIDButton: UIButton!
-    @IBOutlet weak var addWithQRButton: UIButton!
+    @IBAction func presentToAddWithIdView(_ sender: Any) {
+//        let nextVC = AddWithIdBottomSheetViewController().setTitle("ID로 명함 추가").setHeight(184)
+//        let nextVC = AddGroupBottomSheetViewController().setTitle("ID로 명함 추가").setHeight(184)
+//        nextVC.modalPresentationStyle = .overFullScreen
+//        self.present(nextVC, animated: true, completion: nil)
+    }
+    @IBAction func presentToAddWithQrView(_ sender: Any) {
+        
+    }
     
     // 중간 그룹 이름들 나열된 뷰
-    @IBOutlet weak var editGroupButton: UIButton!
+    @IBAction func pushToGroupEdit(_ sender: Any) {
+
+        guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.groupEdit, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.groupEditViewController) as? GroupEditViewController else { return }
+        
+        navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
     // collectionview
     @IBOutlet weak var groupCollectionView: UICollectionView!
     @IBOutlet weak var cardsCollectionView: UICollectionView!
@@ -26,6 +39,7 @@ class GroupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCell()
+        setUI()
         // 그룹 리스트 조회 서버 테스트
 //        groupListFetchWithAPI(userID: "nada")
 //         그룹 삭제 서버 테스트
@@ -54,6 +68,10 @@ extension GroupViewController {
          
         groupCollectionView.register(GroupCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.GroupCollectionViewCell)
         cardsCollectionView.register(FrontCardCell.nib(), forCellWithReuseIdentifier: Const.Xib.frontCardCell)
+    }
+    
+    private func setUI(){
+        navigationController?.navigationBar.isHidden = true
     }
 }
 
@@ -230,6 +248,8 @@ extension GroupViewController: UICollectionViewDataSource {
             groupCell.groupName.text = groups[indexPath.row]
             if indexPath.row == 0 {
                 groupCell.isSelected = true
+                print(groupCell.groupName.text)
+                print(groupCell.groupName.textColor)
             } else {
                 groupCell.isSelected = false
             }

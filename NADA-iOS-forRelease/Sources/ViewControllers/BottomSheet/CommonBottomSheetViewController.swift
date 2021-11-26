@@ -192,6 +192,7 @@ class CommonBottomSheetViewController: UIViewController {
         }
     }
     
+    // 바텀 시트 사라지고 바로 다시 다음 바텀 시트 올라오는 애니메이션
     func hideBottomSheetAndPresent(nextBottomSheet: CommonBottomSheetViewController) {
         let safeAreaHeight = view.safeAreaLayoutGuide.layoutFrame.height
         let bottomPadding = view.safeAreaInsets.bottom

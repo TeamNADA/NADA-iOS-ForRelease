@@ -9,9 +9,38 @@ import UIKit
 
 class GroupViewController: UIViewController {
     
+    // MARK: - Properties
+    // 네비게이션 바
+    @IBAction func presentToAddWithIdView(_ sender: Any) {
+        let nextVC = AddWithIdBottomSheetViewController().setTitle("ID로 명함 추가").setHeight(184)
+        nextVC.modalPresentationStyle = .overFullScreen
+        self.present(nextVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func presentToAddWithQrView(_ sender: Any) {
+        guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.qrScan, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.qrScanViewController) as? QRScanViewController else { return }
+        nextVC.modalPresentationStyle = .overFullScreen
+        self.present(nextVC, animated: true, completion: nil)
+    }
+    
+    // 중간 그룹 이름들 나열된 뷰
+    @IBAction func pushToGroupEdit(_ sender: Any) {
+        guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.groupEdit, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.groupEditViewController) as? GroupEditViewController else { return }
+        
+        navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
+    // collectionview
+    @IBOutlet weak var groupCollectionView: UICollectionView!
+    @IBOutlet weak var cardsCollectionView: UICollectionView!
+    
+    // 그룹 이름들을 담을 변수 생성
+    var groups = ["미분류", "SOPT", "그룹명엄청길어요이거", "인하대학교"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        registerCell()
+        setUI()
         // 그룹 리스트 조회 서버 테스트
 //        groupListFetchWithAPI(userID: "nada")
 //         그룹 삭제 서버 테스트
@@ -29,6 +58,22 @@ class GroupViewController: UIViewController {
         
     }
     
+}
+
+extension GroupViewController {
+    private func registerCell() {
+        groupCollectionView.delegate = self
+        groupCollectionView.dataSource = self
+        cardsCollectionView.delegate = self
+        cardsCollectionView.dataSource = self
+         
+        groupCollectionView.register(GroupCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.groupCollectionViewCell)
+        cardsCollectionView.register(CardInGroupCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.cardInGroupCollectionViewCell)
+    }
+    
+    private func setUI() {
+        navigationController?.navigationBar.isHidden = true
+    }
 }
 
 // MARK: - Network
@@ -161,7 +206,7 @@ extension GroupViewController {
             case .success(let data):
                 if let card = data as? Card {
 //                    print(card)
-                    //통신 성공
+                    // 통신 성공
                 }
             case .requestErr(let message):
                 print("cardDetailFetchWithAPI - requestErr: \(message)")
@@ -172,6 +217,108 @@ extension GroupViewController {
             case .networkFail:
                 print("cardDetailFetchWithAPI - networkFail")
             }
+        }
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+extension GroupViewController: UICollectionViewDelegate {
+    
+}
+
+// MARK: - UICollectionViewDataSource
+extension GroupViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch collectionView {
+        case groupCollectionView:
+            return groups.count
+        case cardsCollectionView:
+            return 5
+        default:
+            return 0
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        switch collectionView {
+        case groupCollectionView:
+            guard let groupCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.groupCollectionViewCell, for: indexPath) as? GroupCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            
+            groupCell.groupName.text = groups[indexPath.row]
+            if indexPath.row == 0 {
+//                groupCell.groupName.textColor = .background
+//                groupCell.groupBackground.backgroundColor = .primary
+                groupCell.isSelected = true
+            } else {
+                groupCell.isSelected = false
+            }
+            groupCollectionView.layoutIfNeeded()
+            return groupCell
+        case cardsCollectionView:
+            guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.cardInGroupCollectionViewCell, for: indexPath) as? CardInGroupCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            
+            return cardCell
+        default:
+            return UICollectionViewCell()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch collectionView {
+        case groupCollectionView:
+            print(indexPath.row)
+        case cardsCollectionView:
+            print(indexPath.row)
+        default:
+            print(indexPath.row)
+        }
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension GroupViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        var width: CGFloat
+        var height: CGFloat
+        
+        switch collectionView {
+        case groupCollectionView:
+            if groups[indexPath.row].count > 4 {
+                width = CGFloat(groups[indexPath.row].count) * 16
+            } else {
+                width = 62
+            }
+            height = collectionView.frame.size.height
+        case cardsCollectionView:
+//            width = collectionView.frame.size.width / 2 - 7.5
+//            height = collectionView.frame.size.height / 2
+            width = 156
+            height = 258
+        default:
+            width = 0
+            height = 0
+        }
+        return CGSize(width: width, height: height)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .zero
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        switch collectionView {
+        case groupCollectionView:
+            return 5
+        case cardsCollectionView:
+            return 14
+        default:
+            return 0
         }
     }
 }

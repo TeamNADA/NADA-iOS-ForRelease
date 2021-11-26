@@ -46,16 +46,17 @@ class BackCardCreationCollectionViewCell: UICollectionViewCell {
 }
 
 // MARK: - Extensions
+
 extension BackCardCreationCollectionViewCell {
     private func setUI() {
         initUITextFieldList()
         initCollectionViewList()
         
         scrollView.indicatorStyle = .default
-        scrollView.backgroundColor = .primary
-        bgView.backgroundColor = .primary
+        scrollView.backgroundColor = .background
+        bgView.backgroundColor = .background
         
-         _ = requiredCollectionViewList.map { $0.backgroundColor = .primary }
+        _ = requiredCollectionViewList.map { $0.backgroundColor = .background }
         
         let requiredAttributeString = NSMutableAttributedString(string: "*나의 취향을 골라보세요.")
         requiredAttributeString.addAttribute(.foregroundColor, value: UIColor.mainColorNadaMain, range: NSRange(location: 0, length: 1))
@@ -63,13 +64,16 @@ extension BackCardCreationCollectionViewCell {
         requiredInfoTextLabel.attributedText = requiredAttributeString
         requiredInfoTextLabel.font = .textBold01
         
-        optionalInfoTextLabel.text = "나의 재밌는 TMI를 알려주세요. (20자)"
-        optionalInfoTextLabel.font = .textBold01
-        optionalInfoTextLabel.textColor = .secondary
+        let optionalAttributeString = NSMutableAttributedString(string: "나의 재밌는 TMI를 알려주세요. (20자)")
+        optionalAttributeString.addAttribute(.foregroundColor, value: UIColor.secondary, range: NSRange(location: 0, length: 18))
+        optionalAttributeString.addAttribute(.font, value: UIFont.textBold01, range: NSRange(location: 0, length: 18))
+        optionalAttributeString.addAttribute(.foregroundColor, value: UIColor.quaternary, range: NSRange(location: 19, length: 5))
+        optionalAttributeString.addAttribute(.font, value: UIFont.textRegular03, range: NSRange(location: 19, length: 5))
+        optionalInfoTextLabel.attributedText = optionalAttributeString
         
-         firstTMITextField.attributedPlaceholder = NSAttributedString(string: "TMI 1", attributes: [NSAttributedString.Key.foregroundColor: UIColor.quaternary])
-         secondTMITextField.attributedPlaceholder = NSAttributedString(string: "TMI 2", attributes: [NSAttributedString.Key.foregroundColor: UIColor.quaternary])
-         thirdTMITextField.attributedPlaceholder = NSAttributedString(string: "TMI 3", attributes: [NSAttributedString.Key.foregroundColor: UIColor.quaternary])
+        firstTMITextField.attributedPlaceholder = NSAttributedString(string: "TMI 1", attributes: [NSAttributedString.Key.foregroundColor: UIColor.quaternary])
+        secondTMITextField.attributedPlaceholder = NSAttributedString(string: "TMI 2", attributes: [NSAttributedString.Key.foregroundColor: UIColor.quaternary])
+        thirdTMITextField.attributedPlaceholder = NSAttributedString(string: "TMI 3", attributes: [NSAttributedString.Key.foregroundColor: UIColor.quaternary])
         
         _ = textFieldList.map {
             $0.font = .textRegular04
@@ -164,14 +168,14 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayout
         return 0
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 13
+        return 7
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return .zero
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = (collectionView.frame.width - 13) / 2
-        let cellHeight = (collectionView.frame.height)
+        let cellWidth = (collectionView.frame.width - 7) / 2
+        let cellHeight = collectionView.frame.height
         
         return CGSize(width: cellWidth, height: cellHeight)
     }
@@ -182,7 +186,7 @@ extension BackCardCreationCollectionViewCell: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.becomeFirstResponder()
         textField.borderWidth = 1
-        // textField.borderColor = .white1
+        textField.borderColor = .tertiary
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.borderWidth = 0

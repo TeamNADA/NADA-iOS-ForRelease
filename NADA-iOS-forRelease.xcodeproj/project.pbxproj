@@ -39,7 +39,6 @@
 		39811490273BEBCE00E28630 /* CardListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3981148F273BEBCE00E28630 /* CardListRequest.swift */; };
 		398413B7274A7A1E005550BC /* AddGroupBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398413B6274A7A1E005550BC /* AddGroupBottomSheetViewController.swift */; };
 		399C55DF2711949D00845A54 /* CGPoint+Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399C55DE2711949D00845A54 /* CGPoint+Distance.swift */; };
-		39A8DEA3274E6436005DE7C8 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A8DEA2274E6436005DE7C8 /* UITextField+Extension.swift */; };
 		39C1E88F270EC762006D2089 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C1E88E270EC762006D2089 /* UIColor+Extension.swift */; };
 		39D13565273FDB9C00B1A148 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D13564273FDB9C00B1A148 /* User.swift */; };
 		39D13568273FDCB800B1A148 /* UserWithTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D13567273FDCB800B1A148 /* UserWithTokenRequest.swift */; };
@@ -58,7 +57,6 @@
 		77AA68EA273E0EC4009C89B0 /* CardAddInGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */; };
 		DBBB91E1639641F40C5B4416 /* Pods_NADA_iOS_forRelease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */; };
 		F811720027383097002742CF /* ChangeGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81171FF27383097002742CF /* ChangeGroupRequest.swift */; };
-		F81A6833274F49A700B80A4F /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81A6832274F49A700B80A4F /* UITextField+Extension.swift */; };
 		F822E7A92709CEB60020452C /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F822E7A82709CEB60020452C /* Notification.swift */; };
 		F82FF81D2701EBCE00E57F8B /* CardCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F82FF81C2701EBCE00E57F8B /* CardCreation.storyboard */; };
 		F82FF8252702000000E57F8B /* RequiredFlavorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FF8232702000000E57F8B /* RequiredFlavorCollectionViewCell.swift */; };
@@ -76,6 +74,7 @@
 		F858079F2700354E00872484 /* BackgroundCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F858079D2700354E00872484 /* BackgroundCollectionViewCell.xib */; };
 		F87122762733046300A24E74 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87122752733046300A24E74 /* Card.swift */; };
 		F871227827330A3800A24E74 /* CardCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F871227727330A3800A24E74 /* CardCreationRequest.swift */; };
+		F8719DDB274F92E90081AD51 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8719DDA274F92E90081AD51 /* UITextField+Extension.swift */; };
 		F8A9FE1A2743DC6B00BC60CE /* CardListInGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A9FE192743DC6B00BC60CE /* CardListInGroupRequest.swift */; };
 		F8C310C0273A7360008EC5BA /* FrontCardCreationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C310BF273A7360008EC5BA /* FrontCardCreationDelegate.swift */; };
 		F8C83FAE272F99940009DF0D /* MoyaLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FAD272F99940009DF0D /* MoyaLoggerPlugin.swift */; };
@@ -138,7 +137,6 @@
 		3981148F273BEBCE00E28630 /* CardListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListRequest.swift; sourceTree = "<group>"; };
 		398413B6274A7A1E005550BC /* AddGroupBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupBottomSheetViewController.swift; sourceTree = "<group>"; };
 		399C55DE2711949D00845A54 /* CGPoint+Distance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Distance.swift"; sourceTree = "<group>"; };
-		39A8DEA2274E6436005DE7C8 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		39C1E88E270EC762006D2089 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		39D13564273FDB9C00B1A148 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		39D13567273FDCB800B1A148 /* UserWithTokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWithTokenRequest.swift; sourceTree = "<group>"; };
@@ -158,7 +156,6 @@
 		77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddInGroupRequest.swift; sourceTree = "<group>"; };
 		7F4EE1D042EC783FA8528743 /* Pods-NADA-iOS-forRelease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.debug.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.debug.xcconfig"; sourceTree = "<group>"; };
 		F81171FF27383097002742CF /* ChangeGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeGroupRequest.swift; sourceTree = "<group>"; };
-		F81A6832274F49A700B80A4F /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		F822E7A82709CEB60020452C /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		F82FF81C2701EBCE00E57F8B /* CardCreation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardCreation.storyboard; sourceTree = "<group>"; };
 		F82FF8232702000000E57F8B /* RequiredFlavorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredFlavorCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -176,6 +173,7 @@
 		F858079D2700354E00872484 /* BackgroundCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackgroundCollectionViewCell.xib; sourceTree = "<group>"; };
 		F87122752733046300A24E74 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		F871227727330A3800A24E74 /* CardCreationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreationRequest.swift; sourceTree = "<group>"; };
+		F8719DDA274F92E90081AD51 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		F8A9FE192743DC6B00BC60CE /* CardListInGroupRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListInGroupRequest.swift; sourceTree = "<group>"; };
 		F8C310BF273A7360008EC5BA /* FrontCardCreationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontCardCreationDelegate.swift; sourceTree = "<group>"; };
 		F8C83FAD272F99940009DF0D /* MoyaLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggerPlugin.swift; sourceTree = "<group>"; };
@@ -705,12 +703,11 @@
 			children = (
 				3909242E26FA15E800236C51 /* UIView+Extension.swift */,
 				39488E342706E17200BDC917 /* UIAlertController+Extension.swift */,
-				39A8DEA2274E6436005DE7C8 /* UITextField+Extension.swift */,
 				39007F2B27080D8200E7143E /* UIViewController+Extension.swift */,
 				39D2E12F270B43DA00AD0889 /* UIFont+Extension.swift */,
 				39C1E88E270EC762006D2089 /* UIColor+Extension.swift */,
 				399C55DE2711949D00845A54 /* CGPoint+Distance.swift */,
-				F81A6832274F49A700B80A4F /* UITextField+Extension.swift */,
+				F8719DDA274F92E90081AD51 /* UITextField+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -881,7 +878,6 @@
 				F8C83FB6272F9E380009DF0D /* UtilService.swift in Sources */,
 				3958F239270FFBBF00B100B2 /* GroupViewController.swift in Sources */,
 				3909242F26FA15E800236C51 /* UIView+Extension.swift in Sources */,
-				39A8DEA3274E6436005DE7C8 /* UITextField+Extension.swift in Sources */,
 				39523E09270184A700536900 /* CardListViewController.swift in Sources */,
 				F85711A5274A6B2200F59F0B /* CardCreationPreviewViewController.swift in Sources */,
 				777FF89B27359B7800BF69D3 /* Groups.swift in Sources */,
@@ -911,6 +907,7 @@
 				F8C83FBB272F9F370009DF0D /* NetworkResult.swift in Sources */,
 				39D2E130270B43DA00AD0889 /* UIFont+Extension.swift in Sources */,
 				39523E5B2701A48900536900 /* CardListTableViewCell.swift in Sources */,
+				F8719DDB274F92E90081AD51 /* UITextField+Extension.swift in Sources */,
 				F8A9FE1A2743DC6B00BC60CE /* CardListInGroupRequest.swift in Sources */,
 				3981148E273BEBB300E28630 /* CardListEditRequest.swift in Sources */,
 				39D88B6B274600B100A72164 /* CommonBottomSheetViewController.swift in Sources */,

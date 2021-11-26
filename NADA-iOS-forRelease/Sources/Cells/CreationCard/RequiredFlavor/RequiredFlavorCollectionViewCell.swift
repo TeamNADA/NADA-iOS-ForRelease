@@ -23,13 +23,15 @@ class RequiredFlavorCollectionViewCell: UICollectionViewCell {
     }
 }
 
+// MARK: - Extensions
+
 extension RequiredFlavorCollectionViewCell {
     private func setUI() {
         bgView.backgroundColor = .textBox
         bgView.cornerRadius = 10
         
         flavorLabel.font = .button02
-        flavorLabel.textColor = .tertiary
+        flavorLabel.textColor = .quaternary
         flavorLabel.textAlignment = .center
     }
     func initCell(flavor: String) {
@@ -42,10 +44,10 @@ extension RequiredFlavorCollectionViewCell {
         didSet {
             if isSelected {
                  bgView.backgroundColor = .secondary
-                 flavorLabel.textColor = .primary
+                 flavorLabel.textColor = .background
             } else {
                  bgView.backgroundColor = .textBox
-                 flavorLabel.textColor = .tertiary
+                 flavorLabel.textColor = .quaternary
             }
         }
     }

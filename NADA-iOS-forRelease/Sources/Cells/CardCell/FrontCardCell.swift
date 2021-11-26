@@ -38,22 +38,20 @@ class FrontCardCell: CardCell {
 
 extension FrontCardCell {
     private func setUI() {
-        // hidden 에 대한 속성도 여기 쓰자.
-
         titleLabel.font = .title02
-        titleLabel.textColor = .primary
+        titleLabel.textColor = .white
         descriptionLabel.font = .textRegular03
-        descriptionLabel.textColor = .primary
+        descriptionLabel.textColor = .white
         userNameLabel.font = .title01
-        userNameLabel.textColor = .primary
+        userNameLabel.textColor = .white
         birthLabel.font = .textRegular02
-        birthLabel.textColor = .primary
+        birthLabel.textColor = .white
         mbtiLabel.font = .textRegular02
-        mbtiLabel.textColor = .primary
+        mbtiLabel.textColor = .white
         instagramIDLabel.font = .textRegular02
-        instagramIDLabel.textColor = .primary
+        instagramIDLabel.textColor = .white
         linkURLLabel.font = .textRegular02
-        linkURLLabel.textColor = .primary
+        linkURLLabel.textColor = .white
     }
     
     func initCell(_ backgroundImage: String,

@@ -248,13 +248,8 @@ extension GroupViewController: UICollectionViewDataSource {
             
             groupCell.groupName.text = groups[indexPath.row]
             if indexPath.row == 0 {
-//                groupCell.groupName.textColor = .background
-//                groupCell.groupBackground.backgroundColor = .primary
-                groupCell.isSelected = true
-            } else {
-                groupCell.isSelected = false
+                collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
             }
-            groupCollectionView.layoutIfNeeded()
             return groupCell
         case cardsCollectionView:
             guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.cardInGroupCollectionViewCell, for: indexPath) as? CardInGroupCollectionViewCell else {
@@ -309,12 +304,15 @@ extension GroupViewController: UICollectionViewDelegateFlowLayout {
         return .zero
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         switch collectionView {
         case groupCollectionView:
             return 5
+        default:
+            return 0
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        switch collectionView {
         case cardsCollectionView:
             return 14
         default:

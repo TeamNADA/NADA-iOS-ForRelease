@@ -59,6 +59,7 @@ extension FrontCardCreationCollectionViewCell {
         backgroundSettingCollectionView.backgroundColor = .background
         
         let collectionViewLayout = backgroundSettingCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
+        collectionViewLayout?.estimatedItemSize = .zero
         collectionViewLayout?.scrollDirection = .horizontal
         
         let backgroundAttributeString = NSMutableAttributedString(string: "*명함의 배경을 선택해 주세요.")
@@ -176,6 +177,9 @@ extension FrontCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayou
         return UIEdgeInsets(top: 0, left: 26, bottom: 0, right: 26)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 12
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

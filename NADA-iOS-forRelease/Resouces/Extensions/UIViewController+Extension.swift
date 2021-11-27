@@ -16,17 +16,9 @@ extension UIViewController {
                                cancelAction: ((UIAlertAction) -> Void)? = nil,
                                deleteAction: ((UIAlertAction) -> Void)?,
                                completion: (() -> Void)? = nil) {
-        
         let alertViewController = UIAlertController(title: title,
                                                     message: message,
                                                     preferredStyle: .alert)
-        
-        // FIXME: - 민재선배 아래주석 삭제해도 되나요??
-        // alertViewController.setTitle(font: UIFont.boldSystemFont(ofSize: 17), color: UIColor.white)
-        // alertViewController.setMessage(font: UIFont.systemFont(ofSize: 13), color: UIColor.white)
-        // alertViewController.setTint(color: .mainBlue)
-        
-        // alertViewController.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor(red: 30/255, green: 30/255, blue: 30/255, alpha: 3/4)
         
         let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: cancelAction)
         alertViewController.addAction(cancelAction)

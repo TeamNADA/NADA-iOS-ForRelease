@@ -32,7 +32,7 @@ class BackCardCell: CardCell {
     
     // MARK: - Functions
     static func nib() -> UINib {
-        return UINib(nibName: "BackCardCell", bundle: nil)
+        return UINib(nibName: Const.Xib.backCardCell, bundle: nil)
     }
 }
 

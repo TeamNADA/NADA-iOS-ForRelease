@@ -69,12 +69,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gc2-31-hRU">
-                                <rect key="frame" x="24" y="704" width="327" height="54"/>
+                                <rect key="frame" x="24" y="724" width="327" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="smH-Df-7w1"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="btnMainCreate"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                 <connections>
                                     <action selector="touchCompleteButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="fX7-aC-GHN"/>
                                 </connections>
@@ -84,7 +85,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="gc2-31-hRU" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="F5V-8J-dgG"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="gc2-31-hRU" secondAttribute="bottom" constant="20" id="LL1-yz-cMQ"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="gc2-31-hRU" secondAttribute="bottom" id="LL1-yz-cMQ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="uDr-em-N5O" secondAttribute="trailing" id="QIx-O8-j8T"/>
                             <constraint firstItem="gc2-31-hRU" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="aKP-gg-liM"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="gc2-31-hRU" secondAttribute="trailing" constant="24" id="f6v-GI-x11"/>
@@ -98,6 +99,7 @@
                     </view>
                     <connections>
                         <outlet property="cardView" destination="FHO-mj-1yu" id="e9Z-Ne-BT9"/>
+                        <outlet property="completeButton" destination="gc2-31-hRU" id="gN7-ns-bR0"/>
                         <outlet property="noticeLabel" destination="Cgr-Tn-nVH" id="wCc-76-DOD"/>
                     </connections>
                 </viewController>
@@ -107,7 +109,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="btnMainCreate" width="327" height="54"/>
         <image name="iconArrow" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

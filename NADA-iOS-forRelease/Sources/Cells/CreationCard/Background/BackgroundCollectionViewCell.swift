@@ -9,14 +9,21 @@ import UIKit
 
 class BackgroundCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - Properties
+    
+    private let bgViewCornerRadius: CGFloat = 30
+    private let imageviewCornerRadius: CGFloat = 28
+    
     // MARK: - @IBOutlet Properties
+    
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     
-    // MARK: - Cell Life Cycle
+    // MARK: - View Life Cycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         setUI()
     }
 }
@@ -25,25 +32,27 @@ class BackgroundCollectionViewCell: UICollectionViewCell {
 
 extension BackgroundCollectionViewCell {
     private func setUI() {
-        bgView.backgroundColor = .white
-//        bgView.isHidden = true
+        bgView.backgroundColor = .tertiary
+        bgView.isHidden = true
         bgView.layer.cornerRadius = bgView.frame.height / 2
-        bgView.layer.cornerRadius = 30
-//        imageView.layer.cornerRadius = imageView.frame.height / 2
-        imageView.layer.cornerRadius = 28
+        bgView.layer.cornerRadius = bgViewCornerRadius
+        imageView.layer.cornerRadius = imageviewCornerRadius
     }
     func initCell(image: String) {
         if let image = UIImage(named: image) {
             imageView.image = image
         }
     }
-    func cellSelected() {
-        bgView.isHidden = false
-    }
-    func cellUnselected() {
-        bgView.isHidden = true
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                bgView.isHidden = false
+            } else {
+                bgView.isHidden = true
+            }
+        }
     }
     static func nib() -> UINib {
-        return UINib(nibName: "BackgroundCollectionViewCell", bundle: nil)
+        return UINib(nibName: Const.Xib.backgroundCollectionViewCell, bundle: nil)
     }
 }

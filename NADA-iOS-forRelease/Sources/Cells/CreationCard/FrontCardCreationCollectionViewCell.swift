@@ -8,10 +8,10 @@
 import UIKit
 
 class FrontCardCreationCollectionViewCell: UICollectionViewCell {
-
+    
     // MARK: - Properties
     
-    private let backgroundList = ["img", "img", "img", "img", "img", "img"]
+    private let backgroundList = ["img", "img", "img", "img", "img"]
     private var requiredTextFieldList = [UITextField]()
     private var optionalTextFieldList = [UITextField]()
     public weak var frontCardCreationDelegate: FrontCardCreationDelegate?
@@ -48,14 +48,15 @@ class FrontCardCreationCollectionViewCell: UICollectionViewCell {
 }
 
 // MARK: - Extensions
+
 extension FrontCardCreationCollectionViewCell {
     private func setUI() {
         initUITextFieldList()
         backgroundSettingCollectionView.showsHorizontalScrollIndicator = false
         scrollView.indicatorStyle = .default
-         scrollView.backgroundColor = .primary
-         bgView.backgroundColor = .primary
-         backgroundSettingCollectionView.backgroundColor = .primary
+        scrollView.backgroundColor = .background
+        bgView.backgroundColor = .background
+        backgroundSettingCollectionView.backgroundColor = .background
         
         let collectionViewLayout = backgroundSettingCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
         collectionViewLayout?.scrollDirection = .horizontal
@@ -64,7 +65,7 @@ extension FrontCardCreationCollectionViewCell {
         backgroundAttributeString.addAttribute(.foregroundColor, value: UIColor.mainColorNadaMain, range: NSRange(location: 0, length: 1))
         backgroundAttributeString.addAttribute(.foregroundColor, value: UIColor.secondary, range: NSRange(location: 1, length: backgroundAttributeString.length - 1))
         setBackgroundTextLabel.attributedText = backgroundAttributeString
-         setBackgroundTextLabel.font = .textBold01
+        setBackgroundTextLabel.font = .textBold01
         
         let cardTitleAttributeString = NSMutableAttributedString(string: "*명함에 이름을 붙여 주세요.")
         cardTitleAttributeString.addAttribute(.foregroundColor, value: UIColor.mainColorNadaMain, range: NSRange(location: 0, length: 1))
@@ -85,13 +86,13 @@ extension FrontCardCreationCollectionViewCell {
         cardTitleTextField.attributedPlaceholder = NSAttributedString(string: "명함 이름 (15자)", attributes: [
             NSAttributedString.Key.foregroundColor: UIColor.quaternary
         ])
-         userNameTextField.attributedPlaceholder = NSAttributedString(string: "본인 이름 (15자)", attributes: [
+        userNameTextField.attributedPlaceholder = NSAttributedString(string: "본인 이름 (15자)", attributes: [
             NSAttributedString.Key.foregroundColor: UIColor.quaternary
         ])
-         birthTextField.attributedPlaceholder = NSAttributedString(string: "생년월일", attributes: [
+        birthTextField.attributedPlaceholder = NSAttributedString(string: "생년월일", attributes: [
             NSAttributedString.Key.foregroundColor: UIColor.quaternary
         ])
-         mbtiTextField.attributedPlaceholder = NSAttributedString(string: "MBTI", attributes: [
+        mbtiTextField.attributedPlaceholder = NSAttributedString(string: "MBTI", attributes: [
             NSAttributedString.Key.foregroundColor: UIColor.quaternary
         ])
         
@@ -186,11 +187,15 @@ extension FrontCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayou
 extension FrontCardCreationCollectionViewCell: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.borderWidth = 1
-        textField.becomeFirstResponder()
         textField.borderColor = .tertiary
+        textField.becomeFirstResponder()
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if cardTitleTextField.hasText && userNameTextField.hasText && birthTextField.hasText && mbtiTextField.hasText {
+        frontCardCreationDelegate?.frontCardCreation(endEditing: true)
+        if cardTitleTextField.hasText &&
+            userNameTextField.hasText &&
+            birthTextField.hasText &&
+            mbtiTextField.hasText {
             frontCardCreationDelegate?.frontCardCreation(requiredInfo: true)
             frontCardCreationDelegate?.frontCardCreation(withRequired: [
                 "defaultImage": String(0),

@@ -25,7 +25,7 @@
                     </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hnM-Yz-8h1">
                         <rect key="frame" x="2" y="2" width="282" height="129"/>
-                        <color key="backgroundColor" name="AccentColor"/>
+                        <color key="backgroundColor" name="textBox"/>
                     </imageView>
                 </subviews>
             </view>
@@ -45,12 +45,12 @@
                 <outlet property="bgView" destination="5HA-yB-R7S" id="XwF-Gw-MoT"/>
                 <outlet property="imageView" destination="hnM-Yz-8h1" id="aTy-l5-hSx"/>
             </connections>
-            <point key="canvasLocation" x="213.04347826086959" y="130.24553571428572"/>
+            <point key="canvasLocation" x="-74" y="41"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="textBox">
+            <color red="0.94509803921568625" green="0.95294117647058818" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

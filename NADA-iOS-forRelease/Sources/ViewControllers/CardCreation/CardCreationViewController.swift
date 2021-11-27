@@ -32,12 +32,12 @@ class CardCreationViewController: UIViewController {
         }
     }
     
-    private var frontCardIsEmpty = true
-    private var backCardIsEmpty = true
+    private var frontCardRequiredIsEmpty = true
+    private var backCardRequiredIsEmpty = true
+    private var isEditingMode = false
     private var currentIndex = 0
     private var frontCard: FrontCardDataModel?
     private var backCard: BackCardDataModel?
-    private var isEditingMode = false
     
     // MARK: - @IBOutlet Properties
     
@@ -118,14 +118,14 @@ extension CardCreationViewController {
         closeButton.setTitle("", for: .normal)
         
         completeButton.titleLabel?.font = .button01
-        completeButton.layer.cornerRadius = 15
         completeButton.isEnabled = false
         
         // MARK: - #available(iOS 15.0, *)
         if #available(iOS 15.0, *) {
-            let config = UIButton.Configuration.filled()
+            var config = UIButton.Configuration.filled()
+            config.background.cornerRadius = 15
             completeButton.configuration = config
-            
+
             let configHandler: UIButton.ConfigurationUpdateHandler = { button in
                 switch button.state {
                 case .disabled:
@@ -140,13 +140,16 @@ extension CardCreationViewController {
             }
             completeButton.configurationUpdateHandler = configHandler
         } else {
-            completeButton.setTitle("완료", for: .normal)
-            // completeButton.setTitleColor(.white1, for: .normal)
-        // TODO: - 뷰 확정되면 이미지로 background 세팅
-//                completeButton.setBackgroundImage(, for: .normal)
+            // TODO: - QA/iOS 13 테스트. selected 설정.
+            completeButton.layer.cornerRadius = 15
+            
+        completeButton.setTitle("완료", for: .normal)
+            completeButton.setTitleColor(.white, for: .normal)
+        completeButton.setBackgroundImage(UIImage(named: "enableButtonBackground"), for: .normal)
         
-         completeButton.setTitleColor(.white, for: .disabled)
-//                completeButton.setBackgroundImage(, for: .disabled)
+        completeButton.setTitle("완료", for: .disabled)
+        completeButton.setTitleColor(.white, for: .disabled)
+        completeButton.setBackgroundImage(UIImage(named: "disableButtonBackground"), for: .disabled)
         }
         
         let cardCreationCollectionViewlayout = cardCreationCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
@@ -336,14 +339,16 @@ extension CardCreationViewController: UICollectionViewDelegateFlowLayout {
 
 extension CardCreationViewController: FrontCardCreationDelegate {
     func frontCardCreation(requiredInfo valid: Bool) {
-        frontCardIsEmpty = !valid
-        if frontCardIsEmpty == false && backCardIsEmpty == false {
+        frontCardRequiredIsEmpty = !valid
+        if frontCardRequiredIsEmpty == false && backCardRequiredIsEmpty == false {
             completeButtonIsEnabled = .enable
         } else {
             completeButtonIsEnabled = .disable
         }
     }
-
+    func frontCardCreation(endEditing valid: Bool) {
+        isEditingMode = valid
+    }
     func frontCardCreation(withRequired requiredInfo: [String: String], withOptional optionalInfo: [String: String]) {
         frontCard = FrontCardDataModel(defaultImage: Int(requiredInfo["defaultImage"] ?? "0") ?? 0,
                                        title: requiredInfo["title"]  ?? "",
@@ -360,12 +365,15 @@ extension CardCreationViewController: FrontCardCreationDelegate {
 
 extension CardCreationViewController: BackCardCreationDelegate {
     func backCardCreation(requiredInfo valid: Bool) {
-        backCardIsEmpty = !valid
-        if frontCardIsEmpty == false && backCardIsEmpty == false {
+        backCardRequiredIsEmpty = !valid
+        if frontCardRequiredIsEmpty == false && backCardRequiredIsEmpty == false {
             completeButtonIsEnabled = .enable
         } else {
             completeButtonIsEnabled = .disable
         }
+    }
+    func backCardCreation(endEditing valid: Bool) {
+        isEditingMode = valid
     }
     func backCardCreation(withRequired requiredInfo: [String: Bool], withOptional optionalInfo: [String: String]) {
         backCard = BackCardDataModel(isMincho: requiredInfo["isMincho"] ?? false,

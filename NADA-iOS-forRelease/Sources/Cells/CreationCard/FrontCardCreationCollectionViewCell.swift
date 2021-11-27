@@ -191,6 +191,7 @@ extension FrontCardCreationCollectionViewCell: UITextFieldDelegate {
         textField.becomeFirstResponder()
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
+        frontCardCreationDelegate?.frontCardCreation(endEditing: true)
         if cardTitleTextField.hasText &&
             userNameTextField.hasText &&
             birthTextField.hasText &&

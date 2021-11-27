@@ -30,7 +30,7 @@ class FrontCardCell: CardCell {
     }
     
     static func nib() -> UINib {
-        return UINib(nibName: "FrontCardCell", bundle: Bundle(for: FrontCardCell.self))
+        return UINib(nibName: Const.Xib.frontCardCell, bundle: Bundle(for: FrontCardCell.self))
     }
 }
 

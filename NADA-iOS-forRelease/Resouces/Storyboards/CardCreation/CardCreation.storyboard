@@ -44,13 +44,17 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJP-GW-J4W">
-                                <rect key="frame" x="28" y="724" width="319" height="54"/>
+                                <rect key="frame" x="24" y="724" width="327" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="5Vp-dw-6P6"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" systemColor="linkColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="Button">
+                                    <color key="baseForegroundColor" systemColor="linkColor"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="pushToCardCompletionView:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="mWh-HD-gMb"/>
                                 </connections>
@@ -101,12 +105,12 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="RJP-GW-J4W" secondAttribute="trailing" constant="28" id="0DD-rN-SNE"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="RJP-GW-J4W" secondAttribute="trailing" constant="24" id="0DD-rN-SNE"/>
                             <constraint firstItem="tbX-yg-azh" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="5lQ-dG-Pq2"/>
                             <constraint firstItem="q7k-m0-xi2" firstAttribute="top" secondItem="nZD-YQ-z5l" secondAttribute="bottom" constant="31" id="AaJ-DI-Z86"/>
                             <constraint firstItem="Wd4-Tx-rSs" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Baj-5F-dIU"/>
                             <constraint firstItem="gBB-hQ-SyS" firstAttribute="leading" secondItem="q7k-m0-xi2" secondAttribute="leading" constant="-5" id="DHT-gt-rBw"/>
-                            <constraint firstItem="RJP-GW-J4W" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="28" id="E5C-o3-RwM"/>
+                            <constraint firstItem="RJP-GW-J4W" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="E5C-o3-RwM"/>
                             <constraint firstItem="yP6-6Y-BPF" firstAttribute="leading" secondItem="q7k-m0-xi2" secondAttribute="trailing" constant="30" id="GED-As-RPG"/>
                             <constraint firstItem="q7k-m0-xi2" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="25" id="OMc-0v-gBM"/>
                             <constraint firstItem="nZD-YQ-z5l" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="25" id="SXi-JC-xa6"/>
@@ -137,6 +141,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

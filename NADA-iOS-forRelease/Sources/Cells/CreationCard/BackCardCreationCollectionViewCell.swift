@@ -117,6 +117,7 @@ extension BackCardCreationCollectionViewCell {
 // MARK: - UICollectionViewDelegate
 extension BackCardCreationCollectionViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        backCardCreationDelegate?.backCardCreation(endEditing: true)
         if isMinchoCollectionView.indexPathsForSelectedItems?.isEmpty == false &&
             isSojuCollectionView.indexPathsForSelectedItems?.isEmpty == false &&
             isBoomukCollectionView.indexPathsForSelectedItems?.isEmpty == false &&
@@ -189,6 +190,7 @@ extension BackCardCreationCollectionViewCell: UITextFieldDelegate {
         textField.borderColor = .tertiary
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
+        backCardCreationDelegate?.backCardCreation(endEditing: true)
         textField.borderWidth = 0
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

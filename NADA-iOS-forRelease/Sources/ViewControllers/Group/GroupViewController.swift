@@ -301,7 +301,12 @@ extension GroupViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: width, height: height)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .init(top: 0, left: 0, bottom: 0, right: 10)
+        switch collectionView {
+        case groupCollectionView:
+            return .init(top: 0, left: 0, bottom: 0, right: 10)
+        default:
+            return .zero
+        }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         switch collectionView {

@@ -28,6 +28,7 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController, UITe
     private let addButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "btnMainAdd"), for: .normal)
+        button.addTarget(self, action: #selector(presentGroupSelectBottomSheet), for: .touchUpInside)
         
         return button
     }()
@@ -68,6 +69,11 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController, UITe
             addButton.topAnchor.constraint(equalTo: cardView.bottomAnchor, constant: 30),
             addButton.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor)
         ])
+    }
+    
+    @objc func presentGroupSelectBottomSheet() {
+//        hideBottomSheetAndPresent(nextBottomSheet: CardResultBottomSheetViewController())
+        print("next bottomsheet")
     }
 
 }

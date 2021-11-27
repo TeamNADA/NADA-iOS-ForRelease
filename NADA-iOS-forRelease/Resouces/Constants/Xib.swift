@@ -20,5 +20,6 @@ extension Const {
         static let cardInGroupCollectionViewCell = "CardInGroupCollectionViewCell"
         static let groupEditTableViewCell = "GroupEditTableViewCell"
         static let moreListTableViewCell = "MoreListTableViewCell"
+        static let cardView = "CardView"
     }
 }

@@ -20,7 +20,7 @@ class GroupCollectionViewCell: UICollectionViewCell {
     }
     
     static func nib() -> UINib {
-        return UINib(nibName: "GroupCollectionViewCell", bundle: nil)
+        return UINib(nibName: Const.Xib.groupCollectionViewCell, bundle: Bundle(for: GroupCollectionViewCell.self))
     }
 }
 

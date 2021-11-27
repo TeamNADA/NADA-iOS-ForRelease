@@ -52,6 +52,7 @@
 		39F5A3D1271461EA00191F94 /* BackCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39F5A3CF271461EA00191F94 /* BackCardCell.xib */; };
 		7705CF3E2752C7DB005195DF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7705CF3D2752C7DB005195DF /* CardView.swift */; };
 		7705CF402752C844005195DF /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7705CF3F2752C844005195DF /* CardView.xib */; };
+		7713E8482752E2A900724C8B /* SelectGroupBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7713E8472752E2A900724C8B /* SelectGroupBottomSheetViewController.swift */; };
 		7729171F2743D604001593E0 /* CardsInGroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7729171E2743D604001593E0 /* CardsInGroupResponse.swift */; };
 		77607EDA274A68BE00204CD2 /* GroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77607ED8274A68BD00204CD2 /* GroupCollectionViewCell.swift */; };
 		77607EDB274A68BE00204CD2 /* GroupCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77607ED9274A68BD00204CD2 /* GroupCollectionViewCell.xib */; };
@@ -160,6 +161,7 @@
 		4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NADA_iOS_forRelease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7705CF3D2752C7DB005195DF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		7705CF3F2752C844005195DF /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
+		7713E8472752E2A900724C8B /* SelectGroupBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGroupBottomSheetViewController.swift; sourceTree = "<group>"; };
 		7729171E2743D604001593E0 /* CardsInGroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsInGroupResponse.swift; sourceTree = "<group>"; };
 		77607ED8274A68BD00204CD2 /* GroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewCell.swift; sourceTree = "<group>"; };
 		77607ED9274A68BD00204CD2 /* GroupCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 				77DFB870274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift */,
 				398413B6274A7A1E005550BC /* AddGroupBottomSheetViewController.swift */,
 				77703156275005AA002CBD19 /* CardResultBottomSheetViewController.swift */,
+				7713E8472752E2A900724C8B /* SelectGroupBottomSheetViewController.swift */,
 			);
 			path = BottomSheet;
 			sourceTree = "<group>";
@@ -914,6 +917,7 @@
 				F8C83FBD272F9F430009DF0D /* GenericResponse.swift in Sources */,
 				398413B7274A7A1E005550BC /* AddGroupBottomSheetViewController.swift in Sources */,
 				77DFB871274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift in Sources */,
+				7713E8482752E2A900724C8B /* SelectGroupBottomSheetViewController.swift in Sources */,
 				39007F2C27080D8200E7143E /* UIViewController+Extension.swift in Sources */,
 				F8C83FB6272F9E380009DF0D /* UtilService.swift in Sources */,
 				3958F239270FFBBF00B100B2 /* GroupViewController.swift in Sources */,

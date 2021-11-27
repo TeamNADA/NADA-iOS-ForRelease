@@ -8,7 +8,7 @@
 import UIKit
 import IQKeyboardManagerSwift
 
-class CardResultBottomSheetViewController: CommonBottomSheetViewController, UITextFieldDelegate {
+class CardResultBottomSheetViewController: CommonBottomSheetViewController {
 
     // MARK: - Properties
     private let groupLabel: UILabel = {
@@ -72,7 +72,7 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController, UITe
     }
     
     @objc func presentGroupSelectBottomSheet() {
-//        hideBottomSheetAndPresent(nextBottomSheet: CardResultBottomSheetViewController())
+        hideBottomSheetAndPresent(nextBottomSheet: SelectGroupBottomSheetViewController(), title: "그룹선택", height: 386)
         print("next bottomsheet")
     }
 

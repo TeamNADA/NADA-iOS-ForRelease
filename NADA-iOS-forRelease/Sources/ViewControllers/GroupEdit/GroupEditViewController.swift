@@ -31,9 +31,11 @@ class GroupEditViewController: UIViewController {
     }
     
     @IBAction func presentToAddGroupBottom(_ sender: UIButton) {
-        let nextVC = AddGroupBottomSheetViewController().setTitle("그룹 추가").setHeight(184)
+        let nextVC = AddGroupBottomSheetViewController()
+                    .setTitle("그룹 추가")
+                    .setHeight(184)
         nextVC.modalPresentationStyle = .overFullScreen
-        self.present(nextVC, animated: true, completion: nil)
+        self.present(nextVC, animated: false, completion: nil)
     }
 }
 
@@ -63,7 +65,6 @@ extension GroupEditViewController: UITableViewDelegate {
 
 // MARK: - TableView DataSource
 extension GroupEditViewController: UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cardItems.count
     }

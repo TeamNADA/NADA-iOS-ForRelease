@@ -24,14 +24,14 @@ class FrontViewController: UIViewController {
     private var linkIDList = [String]()
     
     // 뒷면
-    private var mintImageList = [String]()
-    private var noMintImageList = [String]()
-    private var sojuImageList = [String]()
-    private var beerImageList = [String]()
-    private var pourImageList = [String]()
-    private var putSauceImageList = [String]()
-    private var yangnyumImageList = [String]()
-    private var friedImageList = [String]()
+    private var mintImageList = [Bool]()
+    private var noMintImageList = [Bool]()
+    private var sojuImageList = [Bool]()
+    private var beerImageList = [Bool]()
+    private var pourImageList = [Bool]()
+    private var putSauceImageList = [Bool]()
+    private var yangnyumImageList = [Bool]()
+    private var friedImageList = [Bool]()
     private var firstTmiList = [String]()
     private var secondTmiList = [String]()
     private var thirdTmiLabel = [String]()
@@ -121,29 +121,29 @@ extension FrontViewController {
     }
     
     private func setBackList() {
-        mintImageList.append(contentsOf: ["iconTasteOnMincho",
-                                          "iconTasteOnMincho"
+        mintImageList.append(contentsOf: [true,
+                                          false
                                          ])
-        noMintImageList.append(contentsOf: ["iconTasteOffBanmincho",
-                                            "iconTasteOffBanmincho"
+        noMintImageList.append(contentsOf: [false,
+                                            true
                                            ])
-        sojuImageList.append(contentsOf: ["iconTasteOnSoju",
-                                          "iconTasteOnSoju"
+        sojuImageList.append(contentsOf: [true,
+                                          false
                                          ])
-        beerImageList.append(contentsOf: ["iconTasteOffBeer",
-                                          "iconTasteOffBeer"
+        beerImageList.append(contentsOf: [false,
+                                          true
                                          ])
-        pourImageList.append(contentsOf: ["iconTasteOffBumeok",
-                                          "iconTasteOffBumeok"
+        pourImageList.append(contentsOf: [false,
+                                          true
                                          ])
-        putSauceImageList.append(contentsOf: ["iconTasteOnZzik",
-                                              "iconTasteOnZzik"
+        putSauceImageList.append(contentsOf: [true,
+                                              false
                                              ])
-        yangnyumImageList.append(contentsOf: ["iconTasteOffSeasoned",
-                                              "iconTasteOffSeasoned"
+        yangnyumImageList.append(contentsOf: [false,
+                                              true
                                              ])
-        friedImageList.append(contentsOf: ["iconTasteOnFried",
-                                           "iconTasteOnFried"
+        friedImageList.append(contentsOf: [true,
+                                           false
                                           ])
         firstTmiList.append(contentsOf: ["첫번째",
                                          "첫번째"

@@ -91,23 +91,23 @@ extension FrontViewController {
         imageList.append(contentsOf: ["card",
                                       "card"
                                      ])
-        cardNameList.append(contentsOf: ["SOPT 28기 명함",
-                                         "SOPT 28기 명함"
+        cardNameList.append(contentsOf: ["SOPT 명함",
+                                         "SOPT 명함"
                                         ])
-        detailCardNameList.append(contentsOf: ["28기 디자인파트원",
-                                               "28기 디자인파트원"
+        detailCardNameList.append(contentsOf: ["29기 디자인파트",
+                                               "29기 디자인파트"
                                               ])
-        userNameList.append(contentsOf: ["김태양",
-                                         "김태양"
+        userNameList.append(contentsOf: ["이채연",
+                                         "이채연"
                                         ])
-        birthList.append(contentsOf: ["2002/11/06 (20세)",
-                                      "2002/11/06 (20세)"
+        birthList.append(contentsOf: ["1998.01.09 (24)",
+                                      "1998.01.09 (24)"
                                      ])
-        mbtiList.append(contentsOf: ["ISTJ",
-                                     "ISTJ"
+        mbtiList.append(contentsOf: ["ENFP",
+                                     "ENFP"
                                     ])
-        instagramIDList.append(contentsOf: ["@passio84ever",
-                                            "@passio84ever"
+        instagramIDList.append(contentsOf: ["chaens_",
+                                            "chaens_"
                                            ])
         linkImageList.append(contentsOf: ["testLink",
                                           "testLink"
@@ -115,8 +115,8 @@ extension FrontViewController {
         linkTextList.append(contentsOf: ["Blog",
                                          "Blog"
                                         ])
-        linkIDList.append(contentsOf: ["blog.naver.com/\npark_yunjung",
-                                       "blog.naver.com/\npark_yunjung"
+        linkIDList.append(contentsOf: ["https://github.com/TeamNADA",
+                                       "https://github.com/TeamNADA"
                                       ])
     }
     

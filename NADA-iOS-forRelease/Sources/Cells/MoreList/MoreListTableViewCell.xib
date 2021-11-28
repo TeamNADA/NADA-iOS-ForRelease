@@ -54,6 +54,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="modeSwitch" destination="X9p-6n-YCp" id="hL4-79-N7S"/>
+                <outlet property="separatorView" destination="QoL-PR-cfm" id="B7m-Td-SQ0"/>
                 <outlet property="titleLabel" destination="ZEb-kz-9Ea" id="cQm-Mv-7vw"/>
             </connections>
             <point key="canvasLocation" x="474.63768115942031" y="248.4375"/>

@@ -47,6 +47,9 @@ extension MoreViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 2 {
+            return 0
+        }
         return 5
     }
     
@@ -55,14 +58,19 @@ extension MoreViewController: UITableViewDataSource {
         
         if indexPath.section == 0 {
             serviceCell.titleLabel.text = firstItems[indexPath.row]
+            if indexPath.row == firstItems.count - 1 {
+                serviceCell.separatorView.isHidden = true
+            }
         } else if indexPath.section == 1 {
             serviceCell.titleLabel.text = secondItems[indexPath.row]
             serviceCell.modeSwitch.isHidden = true
+            if indexPath.row == secondItems.count - 1 {
+                serviceCell.separatorView.isHidden = true
+            }
         } else if indexPath.section == 2 {
             serviceCell.titleLabel.text = thirdItems[indexPath.row]
             serviceCell.modeSwitch.isHidden = true
         }
-        
         return serviceCell
     }
 }

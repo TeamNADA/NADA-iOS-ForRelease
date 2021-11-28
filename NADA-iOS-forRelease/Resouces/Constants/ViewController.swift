@@ -17,10 +17,13 @@ extension Const {
             static let frontViewController = "FrontViewController"
             static let groupViewController = "GroupViewController"
             static let groupEditViewController = "GroupEditViewController"
+            static let qrScanViewController = "QRScanViewController"
             static let tabBarViewController = "TabBarViewController"
             static let commonBottomSheetViewController = "CommonBottomSheetViewController"
             static let cardCreationPreviewViewController = "CardCreationPreviewViewController"
             static let addGroupBottomSheetViewController = "AddGroupBottomSheetViewController"
+            static let addWithIdBottomSheetViewController = "AddWithIdBottomSheetViewController"
+            static let cardResultBottomSheetViewController = "CardResultBottomSheetViewController"
             static let moreViewController = "MoreViewController"
         }
     }

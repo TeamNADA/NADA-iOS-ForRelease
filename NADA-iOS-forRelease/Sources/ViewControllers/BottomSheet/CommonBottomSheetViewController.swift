@@ -72,6 +72,7 @@ class CommonBottomSheetViewController: UIViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20, weight: .bold)
         label.textAlignment = .center
+        label.sizeToFit()
         
         return label
     }()
@@ -155,7 +156,7 @@ class CommonBottomSheetViewController: UIViewController {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: dismissIndicatorView.bottomAnchor, constant: 28),
-            titleLabel.widthAnchor.constraint(equalToConstant: 100),
+//            titleLabel.widthAnchor.constraint(equalToConstant: 100),
             titleLabel.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor)
         ])
     }
@@ -187,6 +188,27 @@ class CommonBottomSheetViewController: UIViewController {
         }) { _ in
             if self.presentingViewController != nil {
                 self.dismiss(animated: false, completion: nil)
+            }
+        }
+    }
+    
+    // 바텀 시트 사라지고 바로 다시 다음 바텀 시트 올라오는 애니메이션
+    func hideBottomSheetAndPresent(nextBottomSheet: CommonBottomSheetViewController) {
+        let safeAreaHeight = view.safeAreaLayoutGuide.layoutFrame.height
+        let bottomPadding = view.safeAreaInsets.bottom
+        bottomSheetViewTopConstraint.constant = safeAreaHeight + bottomPadding
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+            self.dimmedBackView.alpha = 0.0
+            self.view.layoutIfNeeded()
+            self.bottomSheetCoverView.isHidden = false
+        }) { _ in
+            if self.presentingViewController != nil {
+                guard let presentingVC = self.presentingViewController else { return }
+                self.dismiss(animated: false) {
+                    let nextVC = nextBottomSheet.setTitle("이채연").setHeight(574)
+                    nextVC.modalPresentationStyle = .overFullScreen
+                    presentingVC.present(nextVC, animated: true, completion: nil)
+                }
             }
         }
     }

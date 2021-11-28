@@ -8,7 +8,7 @@
 import UIKit
 
 class CardCreationPreviewViewController: UIViewController {
-
+    
     var backgroundImage: Data?
     var frontCardDataModel: FrontCardDataModel?
     var backCardDataModel: BackCardDataModel?
@@ -25,7 +25,7 @@ class CardCreationPreviewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setUI()
     }
     @IBAction func touchCompleteButton(_ sender: Any) {
@@ -79,12 +79,12 @@ extension CardCreationPreviewViewController {
         guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
         
         // FIXME: - @IBDesignables err
-//        guard let frontCard = Bundle(for: FrontCardCell.self).loadNibNamed(Const.Xib.frontCardCell, owner: self, options: nil)?.first as? FrontCardCell else { return }
+        //        guard let frontCard = Bundle(for: FrontCardCell.self).loadNibNamed(Const.Xib.frontCardCell, owner: self, options: nil)?.first as? FrontCardCell else { return }
         
         frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
         // FIXME: - 갤러리 추가/주석해제
-//        guard let frontCardDataModel = frontCardDataModel else { return }
-//        frontCard.initCell("", frontCardDataModel.title, frontCardDataModel.description, frontCardDataModel.name, frontCardDataModel.birthDate, frontCardDataModel.mbti, frontCardDataModel.instagramID, frontCardDataModel.linkURL)
+        //        guard let frontCardDataModel = frontCardDataModel else { return }
+        //        frontCard.initCell("", frontCardDataModel.title, frontCardDataModel.description, frontCardDataModel.name, frontCardDataModel.birthDate, frontCardDataModel.mbti, frontCardDataModel.instagramID, frontCardDataModel.linkURL)
         
         // FIXME: - dummy data
         frontCard.initCell("card", "nada", "NADA의 짱귀염둥이 ㅎ 막이래~", "개빡쳐하는 오야옹~", "1999/05/12", "ENFP", "yaeoni", "github.com/yaeoni")
@@ -95,10 +95,12 @@ extension CardCreationPreviewViewController {
         guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return }
         guard let backCardDataModel = backCardDataModel else { return }
         backCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
-        // TODO: - BackCardCell.initCell 수정되면 반영하기
-//        backCard.initCell("card", <#T##mintImage: String##String#>, <#T##noMintImage: String##String#>, <#T##sojuImage: String##String#>, <#T##beerImage: String##String#>, <#T##pourImage: String##String#>, <#T##putSauceImage: String##String#>, <#T##yangnyumImage: String##String#>, <#T##friedImage: String##String#>, <#T##firstTmi: String##String#>, <#T##secondTmi: String##String#>, <#T##thirdTmi: String##String#>)
+        
+        // FIXME: - dummy data
+        backCard.initCell("card", false, true, false, true, false, true, false, true, "티엠아이", "모쓰지", "모르겠다")
+        cardView.addSubview(backCard)
     }
-
+    
     // MARK: - Network
     
     func cardCreationWithAPI(request: CardCreationRequest, image: UIImage) {

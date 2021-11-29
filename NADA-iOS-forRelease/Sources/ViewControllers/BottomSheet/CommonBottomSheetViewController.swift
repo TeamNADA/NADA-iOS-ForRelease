@@ -37,7 +37,7 @@ class CommonBottomSheetViewController: UIViewController {
     // 바텀 시트 뷰
     let bottomSheetView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .background
         
         view.layer.cornerRadius = 27
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -49,7 +49,7 @@ class CommonBottomSheetViewController: UIViewController {
     // 자연스러운 애니메이션을 위한..커버..
     let bottomSheetCoverView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .background
         
         view.layer.cornerRadius = 27
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -70,7 +70,8 @@ class CommonBottomSheetViewController: UIViewController {
     // 바텀 시트 메인 라벨
     public let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = .title01
+        label.textColor = .primary
         label.textAlignment = .center
         label.sizeToFit()
         

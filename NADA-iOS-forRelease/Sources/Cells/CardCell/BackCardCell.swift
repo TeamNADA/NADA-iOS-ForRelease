@@ -68,46 +68,22 @@ extension BackCardCell {
         if let bgImage = UIImage(named: backgroundImage) {
             self.backgroundImageView.image = bgImage
         }
-        if isMintImage == true {
-            self.mintImageView.image = UIImage(named: "iconTasteOnMincho")
-        } else {
-            self.mintImageView.image = UIImage(named: "iconTasteOffMincho")
-        }
-        if isNoMintImage == true {
-            self.noMintImageView.image = UIImage(named: "iconTasteOnBanmincho")
-        } else {
-            self.noMintImageView.image = UIImage(named: "iconTasteOffBanmincho")
-        }
-        if isSojuImage == true {
-            self.sojuImageView.image = UIImage(named: "iconTasteOnSoju")
-        } else {
-            self.sojuImageView.image = UIImage(named: "iconTasteOffSoju")
-        }
-        if isBeerImage == true {
-            self.beerImageView.image = UIImage(named: "iconTasteOnBeer")
-        } else {
-            self.beerImageView.image = UIImage(named: "iconTasteOffBeer")
-        }
-        if isPourImage == true {
-            self.pourEatImageView.image = UIImage(named: "iconTasteOnBumeok")
-        } else {
-            self.pourEatImageView.image = UIImage(named: "iconTasteOffBumeok")
-        }
-        if isPutSauceImage == true {
-            self.putSauceEatImageView.image = UIImage(named: "iconTasteOnZzik")
-        } else {
-            self.putSauceEatImageView.image = UIImage(named: "iconTasteOffZzik")
-        }
-        if isYangnyumImage == true {
-            self.sauceChickenImageView.image = UIImage(named: "iconTasteOnSeasoned")
-        } else {
-            self.sauceChickenImageView.image = UIImage(named: "iconTasteOffSeasoned")
-        }
-        if isFriedImage == true {
-            self.friedChickenImageView.image = UIImage(named: "iconTasteOnFried")
-        } else {
-            self.friedChickenImageView.image = UIImage(named: "iconTasteOffFried")
-        }
+        self.mintImageView.image = isMintImage == true ?
+        UIImage(named: "iconTasteOnMincho") : UIImage(named: "iconTasteOffMincho")
+        self.noMintImageView.image = isNoMintImage == true ?
+        UIImage(named: "iconTasteOnBanmincho") : UIImage(named: "iconTasteOffBanmincho")
+        self.sojuImageView.image = isSojuImage == true ?
+        UIImage(named: "iconTasteOnSoju") : UIImage(named: "iconTasteOffSoju")
+        self.beerImageView.image = isBeerImage == true ?
+        UIImage(named: "iconTasteOnBeer") : UIImage(named: "iconTasteOffBeer")
+        self.pourEatImageView.image = isPourImage == true ?
+        UIImage(named: "iconTasteOnBumeok") : UIImage(named: "iconTasteOffBumeok")
+        self.putSauceEatImageView.image = isPutSauceImage == true ?
+        UIImage(named: "iconTasteOnZzik") : UIImage(named: "iconTasteOffZzik")
+        self.sauceChickenImageView.image = isYangnyumImage == true ?
+        UIImage(named: "iconTasteOnSeasoned") : UIImage(named: "iconTasteOffSeasoned")
+        self.friedChickenImageView.image = isFriedImage == true ?
+        UIImage(named: "iconTasteOnFried") : UIImage(named: "iconTasteOffFried")
         self.firstTmiLabel.text = firstTmi
         self.secondTmiLabel.text = secondTmi
         self.thirdTmiLabel.text = thirdTmi

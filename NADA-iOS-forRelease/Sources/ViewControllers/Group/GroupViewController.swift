@@ -250,13 +250,8 @@ extension GroupViewController: UICollectionViewDataSource {
             
             groupCell.groupName.text = groups[indexPath.row]
             if indexPath.row == 0 {
-//                groupCell.groupName.textColor = .background
-//                groupCell.groupBackground.backgroundColor = .primary
-                groupCell.isSelected = true
-            } else {
-                groupCell.isSelected = false
+                collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
             }
-            groupCollectionView.layoutIfNeeded()
             return groupCell
         case cardsCollectionView:
             guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.cardInGroupCollectionViewCell, for: indexPath) as? CardInGroupCollectionViewCell else {
@@ -297,8 +292,6 @@ extension GroupViewController: UICollectionViewDelegateFlowLayout {
             }
             height = collectionView.frame.size.height
         case cardsCollectionView:
-//            width = collectionView.frame.size.width / 2 - 7.5
-//            height = collectionView.frame.size.height / 2
             width = 156
             height = 258
         default:
@@ -308,15 +301,23 @@ extension GroupViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: width, height: height)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .zero
+        switch collectionView {
+        case groupCollectionView:
+            return .init(top: 0, left: 0, bottom: 0, right: 10)
+        default:
+            return .zero
+        }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         switch collectionView {
         case groupCollectionView:
             return 5
+        default:
+            return 0
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        switch collectionView {
         case cardsCollectionView:
             return 14
         default:

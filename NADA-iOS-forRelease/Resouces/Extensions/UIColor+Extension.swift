@@ -119,4 +119,19 @@ extension UIColor {
             return UIColor(white: 1.0, alpha: 1.0)
         }
     }
+    
+    @nonobjc class var bottomDimmedBackground: UIColor {
+        if #available(iOS 13, *) {
+            return UIColor { (traitCollection: UITraitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .light {
+                    return UIColor(white: 0.0, alpha: 0.4)
+                } else {
+                    return UIColor(white: 0.0, alpha: 0.6)
+                }
+            }
+        } else {
+            return UIColor(white: 0.0, alpha: 0.4)
+        }
+    }
+
 }

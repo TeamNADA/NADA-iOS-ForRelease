@@ -30,7 +30,7 @@ class CommonBottomSheetViewController: UIViewController {
     // 기존 화면을 흐려지게 만들기 위한 뷰
     private let dimmedBackView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        view.backgroundColor = .bottomDimmedBackground
         return view
     }()
     

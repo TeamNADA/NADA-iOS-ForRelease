@@ -36,6 +36,9 @@
                     </view>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="X9p-6n-YCp">
                         <rect key="frame" x="302" y="13" width="51" height="32"/>
+                        <connections>
+                            <action selector="modeChangeButton:" destination="KGk-i7-Jjw" eventType="valueChanged" id="76S-PD-4BQ"/>
+                        </connections>
                     </switch>
                 </subviews>
                 <color key="backgroundColor" name="background"/>

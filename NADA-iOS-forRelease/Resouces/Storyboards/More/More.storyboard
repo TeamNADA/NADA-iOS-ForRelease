@@ -41,8 +41,11 @@
                                 </constraints>
                             </view>
                             <tableView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="WnB-Ge-3qg">
-                                <rect key="frame" x="0.0" y="104" width="375" height="625"/>
+                                <rect key="frame" x="0.0" y="104" width="375" height="466"/>
                                 <color key="backgroundColor" name="textBox"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="466" id="F5a-T6-amW"/>
+                                </constraints>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -52,7 +55,6 @@
                             <constraint firstAttribute="trailing" secondItem="wb8-4G-Pj8" secondAttribute="trailing" id="GkL-m8-eem"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="WnB-Ge-3qg" secondAttribute="trailing" id="VnA-Ln-U3x"/>
                             <constraint firstItem="wb8-4G-Pj8" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="aaY-jG-Ypx"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="WnB-Ge-3qg" secondAttribute="bottom" id="cgm-yU-GKk"/>
                             <constraint firstItem="WnB-Ge-3qg" firstAttribute="top" secondItem="wb8-4G-Pj8" secondAttribute="bottom" constant="10" id="fKt-Z9-LvS"/>
                             <constraint firstItem="wb8-4G-Pj8" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="qq9-dH-GCJ"/>
                         </constraints>

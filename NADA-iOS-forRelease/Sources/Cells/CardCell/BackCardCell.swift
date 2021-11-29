@@ -12,6 +12,7 @@ class BackCardCell: CardCell {
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var tasteTitleLabel: UILabel!
     @IBOutlet weak var mintImageView: UIImageView!
     @IBOutlet weak var noMintImageView: UIImageView!
     @IBOutlet weak var sojuImageView: UIImageView!
@@ -20,6 +21,7 @@ class BackCardCell: CardCell {
     @IBOutlet weak var putSauceEatImageView: UIImageView!
     @IBOutlet weak var sauceChickenImageView: UIImageView!
     @IBOutlet weak var friedChickenImageView: UIImageView!
+    @IBOutlet weak var tmiTitleLabel: UILabel!
     @IBOutlet weak var firstTmiLabel: UILabel!
     @IBOutlet weak var secondTmiLabel: UILabel!
     @IBOutlet weak var thirdTmiLabel: UILabel!
@@ -32,56 +34,56 @@ class BackCardCell: CardCell {
     
     // MARK: - Functions
     static func nib() -> UINib {
-        return UINib(nibName: Const.Xib.backCardCell, bundle: nil)
+        return UINib(nibName: Const.Xib.backCardCell, bundle: Bundle(for: BackCardCell.self))
     }
 }
 
 // MARK: - Extensions
 extension BackCardCell {
     private func setUI() {
-        
+        tasteTitleLabel.font = .title02
+        tasteTitleLabel.textColor = .white
+        tmiTitleLabel.font = .title02
+        tmiTitleLabel.textColor = .white
+        firstTmiLabel.font = .textRegular04
+        firstTmiLabel.textColor = .white
+        secondTmiLabel.font = .textRegular04
+        secondTmiLabel.textColor = .white
+        thirdTmiLabel.font = .textRegular04
+        thirdTmiLabel.textColor = .white
     }
     
     func initCell(_ backgroundImage: String,
-                  _ mintImage: String,
-                  _ noMintImage: String,
-                  _ sojuImage: String,
-                  _ beerImage: String,
-                  _ pourImage: String,
-                  _ putSauceImage: String,
-                  _ yangnyumImage: String,
-                  _ friedImage: String,
+                  _ isMintImage: Bool,
+                  _ isNoMintImage: Bool,
+                  _ isSojuImage: Bool,
+                  _ isBeerImage: Bool,
+                  _ isPourImage: Bool,
+                  _ isPutSauceImage: Bool,
+                  _ isYangnyumImage: Bool,
+                  _ isFriedImage: Bool,
                   _ firstTmi: String,
                   _ secondTmi: String,
                   _ thirdTmi: String) {
         if let bgImage = UIImage(named: backgroundImage) {
             self.backgroundImageView.image = bgImage
         }
-        if let mtImage = UIImage(named: mintImage) {
-            self.mintImageView.image = mtImage
-        }
-        if let noMtImage = UIImage(named: noMintImage) {
-            self.noMintImageView.image = noMtImage
-        }
-        if let sojuImage = UIImage(named: sojuImage) {
-            self.sojuImageView.image = sojuImage
-        }
-        if let beerImage = UIImage(named: beerImage) {
-            self.beerImageView.image = beerImage
-        }
-        if let bumukImage = UIImage(named: pourImage) {
-            self.pourEatImageView.image = bumukImage
-        }
-        if let jjikmukImage = UIImage(named: putSauceImage) {
-            self.putSauceEatImageView.image = jjikmukImage
-        }
-        if let yangnyumImage = UIImage(named: yangnyumImage) {
-            self.sauceChickenImageView.image = yangnyumImage
-        }
-        if let friedImage = UIImage(named: friedImage) {
-            self.friedChickenImageView.image = friedImage
-        }
-
+        self.mintImageView.image = isMintImage == true ?
+        UIImage(named: "iconTasteOnMincho") : UIImage(named: "iconTasteOffMincho")
+        self.noMintImageView.image = isNoMintImage == true ?
+        UIImage(named: "iconTasteOnBanmincho") : UIImage(named: "iconTasteOffBanmincho")
+        self.sojuImageView.image = isSojuImage == true ?
+        UIImage(named: "iconTasteOnSoju") : UIImage(named: "iconTasteOffSoju")
+        self.beerImageView.image = isBeerImage == true ?
+        UIImage(named: "iconTasteOnBeer") : UIImage(named: "iconTasteOffBeer")
+        self.pourEatImageView.image = isPourImage == true ?
+        UIImage(named: "iconTasteOnBumeok") : UIImage(named: "iconTasteOffBumeok")
+        self.putSauceEatImageView.image = isPutSauceImage == true ?
+        UIImage(named: "iconTasteOnZzik") : UIImage(named: "iconTasteOffZzik")
+        self.sauceChickenImageView.image = isYangnyumImage == true ?
+        UIImage(named: "iconTasteOnSeasoned") : UIImage(named: "iconTasteOffSeasoned")
+        self.friedChickenImageView.image = isFriedImage == true ?
+        UIImage(named: "iconTasteOnFried") : UIImage(named: "iconTasteOffFried")
         self.firstTmiLabel.text = firstTmi
         self.secondTmiLabel.text = secondTmi
         self.thirdTmiLabel.text = thirdTmi

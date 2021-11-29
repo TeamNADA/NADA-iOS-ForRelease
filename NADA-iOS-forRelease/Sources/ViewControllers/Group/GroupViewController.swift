@@ -12,9 +12,11 @@ class GroupViewController: UIViewController {
     // MARK: - Properties
     // 네비게이션 바
     @IBAction func presentToAddWithIdView(_ sender: Any) {
-        let nextVC = AddWithIdBottomSheetViewController().setTitle("ID로 명함 추가").setHeight(184)
+        let nextVC = AddWithIdBottomSheetViewController()
+                    .setTitle("ID로 명함 추가")
+                    .setHeight(184)
         nextVC.modalPresentationStyle = .overFullScreen
-        self.present(nextVC, animated: true, completion: nil)
+        self.present(nextVC, animated: false, completion: nil)
     }
     
     @IBAction func presentToAddWithQrView(_ sender: Any) {

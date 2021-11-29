@@ -48,9 +48,9 @@ extension FrontCardCell {
         birthLabel.textColor = .white
         mbtiLabel.font = .textRegular02
         mbtiLabel.textColor = .white
-        instagramIDLabel.font = .textRegular02
+        instagramIDLabel.font = .textRegular03
         instagramIDLabel.textColor = .white
-        linkURLLabel.font = .textRegular02
+        linkURLLabel.font = .textRegular04
         linkURLLabel.textColor = .white
     }
     

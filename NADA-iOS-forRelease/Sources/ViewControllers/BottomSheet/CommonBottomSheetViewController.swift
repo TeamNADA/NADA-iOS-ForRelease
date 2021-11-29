@@ -15,7 +15,7 @@ import UIKit
  3) InheritanceViewController에 텍스트 필드, 피커 뷰, 버튼 등 각 화면에 맞는 추가 기능 구현
  4) .setHeight 메서드 파라미터로 높이값을 조정 (default값은 475)
  5) .setTitle 메서드 파라미터로 가장 상단 타이틀 라벨에 들어갈 내용 입력 (String)
- 6) present 방식으로 화면에 표출
+ 6) present 방식으로 화면에 표출 (주의!! 이때 present animated는 false로 둬야 지연없이 바텀시트가 올라옵니다 ^_^)
 */
 
 class CommonBottomSheetViewController: UIViewController {
@@ -30,14 +30,14 @@ class CommonBottomSheetViewController: UIViewController {
     // 기존 화면을 흐려지게 만들기 위한 뷰
     private let dimmedBackView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        view.backgroundColor = .bottomDimmedBackground
         return view
     }()
     
     // 바텀 시트 뷰
     let bottomSheetView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .background
         
         view.layer.cornerRadius = 27
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -49,7 +49,7 @@ class CommonBottomSheetViewController: UIViewController {
     // 자연스러운 애니메이션을 위한..커버..
     let bottomSheetCoverView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .background
         
         view.layer.cornerRadius = 27
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -70,7 +70,8 @@ class CommonBottomSheetViewController: UIViewController {
     // 바텀 시트 메인 라벨
     public let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = .title01
+        label.textColor = .primary
         label.textAlignment = .center
         label.sizeToFit()
         

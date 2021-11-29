@@ -208,7 +208,7 @@ class CommonBottomSheetViewController: UIViewController {
                 self.dismiss(animated: false) {
                     let nextVC = nextBottomSheet.setTitle(title).setHeight(height)
                     nextVC.modalPresentationStyle = .overFullScreen
-                    presentingVC.present(nextVC, animated: true, completion: nil)
+                    presentingVC.present(nextVC, animated: false, completion: nil)
                 }
             }
         }

@@ -9,20 +9,37 @@ import UIKit
 
 class MoreViewController: UIViewController {
     
-    var firstItems = ["다크 모드"]
-    var secondItems = ["개인정보 처리방침", "서비스 이용약관", "Team NADA", "오픈소스 라이브러리"]
-    var thirdItems = ["로그아웃", "정보 초기화", "회원탈퇴"]
+    let defaults = UserDefaults.standard
+    
+    var firstItems = ["개인정보 처리방침", "서비스 이용약관", "Team NADA", "오픈소스 라이브러리"]
+    var secondItems = ["로그아웃", "정보 초기화", "회원탈퇴"]
     
     @IBOutlet weak var moreListTableView: UITableView!
+    @IBOutlet weak var darkModeHeaderView: UIView!
+    @IBOutlet weak var modeSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         moreListTableView.register(MoreListTableViewCell.nib(), forCellReuseIdentifier: "MoreListTableViewCell")
         
         moreListTableView.delegate = self
         moreListTableView.dataSource = self
+        moreListTableView.tableHeaderView = darkModeHeaderView
+        
+        modeSwitch.isOn = defaults.bool(forKey: "darkModeState")
+        overrideUserInterfaceStyle = modeSwitch.isOn == true ? .dark : .light
     }
+    
+    @IBAction func darkModeChangeSwitch(_ sender: UISwitch) {
+        if #available(iOS 13, *) {
+            overrideUserInterfaceStyle = modeSwitch.isOn == true ? .dark : .light
+            defaults.set(modeSwitch.isOn, forKey: "darkModeState")
+        } else {
+            overrideUserInterfaceStyle = .light
+        }
+    }
+    
 }
 
 // MARK: - TableView Delegate
@@ -39,18 +56,17 @@ extension MoreViewController: UITableViewDataSource {
             return firstItems.count
         } else if section == 1 {
             return secondItems.count
-        } else if section == 2 {
-            return thirdItems.count
         } else {
             return 0
         }
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 2 {
+        if section == 0 {
+            return 5
+        } else {
             return 0
         }
-        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,14 +79,8 @@ extension MoreViewController: UITableViewDataSource {
             }
         } else if indexPath.section == 1 {
             serviceCell.titleLabel.text = secondItems[indexPath.row]
-            serviceCell.modeSwitch.isHidden = true
-            if indexPath.row == secondItems.count - 1 {
-                serviceCell.separatorView.isHidden = true
-            }
-        } else if indexPath.section == 2 {
-            serviceCell.titleLabel.text = thirdItems[indexPath.row]
-            serviceCell.modeSwitch.isHidden = true
         }
+        
         return serviceCell
     }
 }

@@ -50,6 +50,9 @@
 		39D88B6B274600B100A72164 /* CommonBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D88B6A274600B100A72164 /* CommonBottomSheetViewController.swift */; };
 		39F5A3D0271461EA00191F94 /* BackCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5A3CE271461EA00191F94 /* BackCardCell.swift */; };
 		39F5A3D1271461EA00191F94 /* BackCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39F5A3CF271461EA00191F94 /* BackCardCell.xib */; };
+		7705CF3E2752C7DB005195DF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7705CF3D2752C7DB005195DF /* CardView.swift */; };
+		7705CF402752C844005195DF /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7705CF3F2752C844005195DF /* CardView.xib */; };
+		7713E8482752E2A900724C8B /* SelectGroupBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7713E8472752E2A900724C8B /* SelectGroupBottomSheetViewController.swift */; };
 		7729171F2743D604001593E0 /* CardsInGroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7729171E2743D604001593E0 /* CardsInGroupResponse.swift */; };
 		77607EDA274A68BE00204CD2 /* GroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77607ED8274A68BD00204CD2 /* GroupCollectionViewCell.swift */; };
 		77607EDB274A68BE00204CD2 /* GroupCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77607ED9274A68BD00204CD2 /* GroupCollectionViewCell.xib */; };
@@ -104,7 +107,6 @@
 		F8FC439226C01CDE0033E151 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8FC439026C01CDE0033E151 /* LaunchScreen.storyboard */; };
 		F8FC43AD26C020940033E151 /* TempClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43AC26C020940033E151 /* TempClass.swift */; };
 		F8FC43B326C020B90033E151 /* BackCardCreationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43B226C020B90033E151 /* BackCardCreationDelegate.swift */; };
-		F8FC43B526C020C10033E151 /* TempViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43B426C020C10033E151 /* TempViews.swift */; };
 		F8FC43B826C0227D0033E151 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43B726C0227D0033E151 /* Const.swift */; };
 		F8FC43BA26C022900033E151 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43B926C022900033E151 /* ViewController.swift */; };
 		F8FC43BC26C022A20033E151 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43BB26C022A20033E151 /* Storyboard.swift */; };
@@ -157,6 +159,9 @@
 		39F5A3CE271461EA00191F94 /* BackCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackCardCell.swift; sourceTree = "<group>"; };
 		39F5A3CF271461EA00191F94 /* BackCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackCardCell.xib; sourceTree = "<group>"; };
 		4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NADA_iOS_forRelease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7705CF3D2752C7DB005195DF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		7705CF3F2752C844005195DF /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
+		7713E8472752E2A900724C8B /* SelectGroupBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGroupBottomSheetViewController.swift; sourceTree = "<group>"; };
 		7729171E2743D604001593E0 /* CardsInGroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsInGroupResponse.swift; sourceTree = "<group>"; };
 		77607ED8274A68BD00204CD2 /* GroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewCell.swift; sourceTree = "<group>"; };
 		77607ED9274A68BD00204CD2 /* GroupCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -213,7 +218,6 @@
 		F8FC439326C01CDE0033E151 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8FC43AC26C020940033E151 /* TempClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempClass.swift; sourceTree = "<group>"; };
 		F8FC43B226C020B90033E151 /* BackCardCreationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackCardCreationDelegate.swift; sourceTree = "<group>"; };
-		F8FC43B426C020C10033E151 /* TempViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempViews.swift; sourceTree = "<group>"; };
 		F8FC43B726C0227D0033E151 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		F8FC43B926C022900033E151 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F8FC43BB26C022A20033E151 /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
@@ -375,6 +379,7 @@
 				77DFB870274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift */,
 				398413B6274A7A1E005550BC /* AddGroupBottomSheetViewController.swift */,
 				77703156275005AA002CBD19 /* CardResultBottomSheetViewController.swift */,
+				7713E8472752E2A900724C8B /* SelectGroupBottomSheetViewController.swift */,
 			);
 			path = BottomSheet;
 			sourceTree = "<group>";
@@ -697,7 +702,8 @@
 		F8FC43A126C01F1F0033E151 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F8FC43B426C020C10033E151 /* TempViews.swift */,
+				7705CF3D2752C7DB005195DF /* CardView.swift */,
+				7705CF3F2752C844005195DF /* CardView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -822,6 +828,7 @@
 				3936993B274A53C600684420 /* GroupEdit.storyboard in Resources */,
 				39D88B642745FDD400A72164 /* TabBar.storyboard in Resources */,
 				7766A410274FEBE200714912 /* CardInGroupCollectionViewCell.xib in Resources */,
+				7705CF402752C844005195DF /* CardView.xib in Resources */,
 				39523E5C2701A48900536900 /* CardListTableViewCell.xib in Resources */,
 				F8FC439226C01CDE0033E151 /* LaunchScreen.storyboard in Resources */,
 				F8FC438F26C01CDE0033E151 /* Assets.xcassets in Resources */,
@@ -910,6 +917,7 @@
 				F8C83FBD272F9F430009DF0D /* GenericResponse.swift in Sources */,
 				398413B7274A7A1E005550BC /* AddGroupBottomSheetViewController.swift in Sources */,
 				77DFB871274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift in Sources */,
+				7713E8482752E2A900724C8B /* SelectGroupBottomSheetViewController.swift in Sources */,
 				39007F2C27080D8200E7143E /* UIViewController+Extension.swift in Sources */,
 				F8C83FB6272F9E380009DF0D /* UtilService.swift in Sources */,
 				3958F239270FFBBF00B100B2 /* GroupViewController.swift in Sources */,
@@ -940,7 +948,6 @@
 				F8FC43B326C020B90033E151 /* BackCardCreationDelegate.swift in Sources */,
 				39584581273E951C009CC6B9 /* MainListRequest.swift in Sources */,
 				39369944274A568900684420 /* GroupEditTableViewCell.swift in Sources */,
-				F8FC43B526C020C10033E151 /* TempViews.swift in Sources */,
 				F8C83FBB272F9F370009DF0D /* NetworkResult.swift in Sources */,
 				39D2E130270B43DA00AD0889 /* UIFont+Extension.swift in Sources */,
 				7770315B27500C7B002CBD19 /* QRScanViewController.swift in Sources */,
@@ -949,6 +956,7 @@
 				F8A9FE1A2743DC6B00BC60CE /* CardListInGroupRequest.swift in Sources */,
 				3981148E273BEBB300E28630 /* CardListEditRequest.swift in Sources */,
 				39D88B6B274600B100A72164 /* CommonBottomSheetViewController.swift in Sources */,
+				7705CF3E2752C7DB005195DF /* CardView.swift in Sources */,
 				F8FC43BA26C022900033E151 /* ViewController.swift in Sources */,
 				39523E5F2701AA9000536900 /* CardListDataModel.swift in Sources */,
 				39D13568273FDCB800B1A148 /* UserWithTokenRequest.swift in Sources */,
@@ -1114,13 +1122,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4QG3GC35LA;
+				DEVELOPMENT_TEAM = T3VFJ764ZC;
 				INFOPLIST_FILE = "NADA-iOS-forRelease/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "hyun99999.NADA-iOS-forRelease";
+				PRODUCT_BUNDLE_IDENTIFIER = "YJC.NADA-iOS-forRelease";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1134,13 +1142,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4QG3GC35LA;
+				DEVELOPMENT_TEAM = T3VFJ764ZC;
 				INFOPLIST_FILE = "NADA-iOS-forRelease/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "hyun99999.NADA-iOS-forRelease";
+				PRODUCT_BUNDLE_IDENTIFIER = "YJC.NADA-iOS-forRelease";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

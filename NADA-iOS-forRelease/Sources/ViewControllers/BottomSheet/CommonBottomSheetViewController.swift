@@ -194,7 +194,7 @@ class CommonBottomSheetViewController: UIViewController {
     }
     
     // 바텀 시트 사라지고 바로 다시 다음 바텀 시트 올라오는 애니메이션
-    func hideBottomSheetAndPresent(nextBottomSheet: CommonBottomSheetViewController) {
+    func hideBottomSheetAndPresent(nextBottomSheet: CommonBottomSheetViewController, title: String, height: CGFloat) {
         let safeAreaHeight = view.safeAreaLayoutGuide.layoutFrame.height
         let bottomPadding = view.safeAreaInsets.bottom
         bottomSheetViewTopConstraint.constant = safeAreaHeight + bottomPadding
@@ -206,9 +206,9 @@ class CommonBottomSheetViewController: UIViewController {
             if self.presentingViewController != nil {
                 guard let presentingVC = self.presentingViewController else { return }
                 self.dismiss(animated: false) {
-                    let nextVC = nextBottomSheet.setTitle("이채연").setHeight(574)
+                    let nextVC = nextBottomSheet.setTitle(title).setHeight(height)
                     nextVC.modalPresentationStyle = .overFullScreen
-                    presentingVC.present(nextVC, animated: true, completion: nil)
+                    presentingVC.present(nextVC, animated: false, completion: nil)
                 }
             }
         }

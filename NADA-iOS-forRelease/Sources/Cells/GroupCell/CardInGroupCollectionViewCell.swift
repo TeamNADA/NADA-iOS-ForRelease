@@ -25,7 +25,7 @@ class CardInGroupCollectionViewCell: UICollectionViewCell {
     }
     
     static func nib() -> UINib {
-        return UINib(nibName: "CardInGroupCollectionViewCell", bundle: Bundle(for: CardInGroupCollectionViewCell.self))
+        return UINib(nibName: Const.Xib.cardInGroupCollectionViewCell, bundle: Bundle(for: CardInGroupCollectionViewCell.self))
     }
 
 }

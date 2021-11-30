@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
+	<string></string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>NotoSansCJKkr-Bold.otf</string>

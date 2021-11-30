@@ -12,9 +12,6 @@
         <array key="Spoqa Han Sans Neo Bold.otf">
             <string>SpoqaHanSansNeo-Bold</string>
         </array>
-        <array key="Spoqa Han Sans Neo Regular.otf">
-            <string>SpoqaHanSansNeo-Regular</string>
-        </array>
     </customFonts>
     <scenes>
         <!--More View Controller-->
@@ -44,46 +41,11 @@
                                 </constraints>
                             </view>
                             <tableView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="WnB-Ge-3qg">
-                                <rect key="frame" x="0.0" y="104" width="375" height="467"/>
+                                <rect key="frame" x="0.0" y="104" width="375" height="404"/>
                                 <color key="backgroundColor" name="textBox"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="467" id="F5a-T6-amW"/>
+                                    <constraint firstAttribute="height" constant="404" id="F5a-T6-amW"/>
                                 </constraints>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="Zrj-8B-qqE">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="다크 모드" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qn-Xk-Abr">
-                                            <rect key="frame" x="31.999999999999996" y="20" width="54.666666666666657" height="17"/>
-                                            <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
-                                            <color key="textColor" name="secondary"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="eVa-6a-dUX">
-                                            <rect key="frame" x="302" y="13" width="51" height="31"/>
-                                            <connections>
-                                                <action selector="darkModeChangeSwitch:" destination="Y6W-OH-hqX" eventType="valueChanged" id="kwl-F5-dLZ"/>
-                                            </connections>
-                                        </switch>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dEV-IF-8Rk">
-                                            <rect key="frame" x="0.0" y="58" width="375" height="5"/>
-                                            <color key="backgroundColor" name="textBox"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="5" id="o7I-Wv-uBz"/>
-                                            </constraints>
-                                        </view>
-                                    </subviews>
-                                    <color key="backgroundColor" name="background"/>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="dEV-IF-8Rk" secondAttribute="trailing" id="1de-ak-cdv"/>
-                                        <constraint firstItem="1Qn-Xk-Abr" firstAttribute="leading" secondItem="Zrj-8B-qqE" secondAttribute="leading" constant="32" id="EaX-EN-uw1"/>
-                                        <constraint firstItem="1Qn-Xk-Abr" firstAttribute="top" secondItem="Zrj-8B-qqE" secondAttribute="top" constant="20" id="Y76-Tb-DC6"/>
-                                        <constraint firstAttribute="bottom" secondItem="dEV-IF-8Rk" secondAttribute="bottom" id="hEi-cm-Gba"/>
-                                        <constraint firstItem="eVa-6a-dUX" firstAttribute="top" secondItem="Zrj-8B-qqE" secondAttribute="top" constant="13" id="i2b-OV-pWi"/>
-                                        <constraint firstItem="dEV-IF-8Rk" firstAttribute="leading" secondItem="Zrj-8B-qqE" secondAttribute="leading" id="vMd-PM-EtS"/>
-                                        <constraint firstAttribute="trailing" secondItem="eVa-6a-dUX" secondAttribute="trailing" constant="24" id="ysP-jB-YbZ"/>
-                                    </constraints>
-                                </view>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -100,8 +62,6 @@
                     <tabBarItem key="tabBarItem" title="" image="iconMoreHoriz" selectedImage="iconMoreHorizSelected" id="mtN-II-w2Y"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="darkModeHeaderView" destination="Zrj-8B-qqE" id="3G9-sd-b0Q"/>
-                        <outlet property="modeSwitch" destination="eVa-6a-dUX" id="7lt-Lp-ZL6"/>
                         <outlet property="moreListTableView" destination="WnB-Ge-3qg" id="D85-S9-fqH"/>
                     </connections>
                 </viewController>
@@ -118,9 +78,6 @@
         </namedColor>
         <namedColor name="primary">
             <color red="0.074509803921568626" green="0.078431372549019607" blue="0.086274509803921567" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="secondary">
-            <color red="0.16862745098039217" green="0.17647058823529413" blue="0.19215686274509805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textBox">
             <color red="0.94509803921568625" green="0.95294117647058818" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

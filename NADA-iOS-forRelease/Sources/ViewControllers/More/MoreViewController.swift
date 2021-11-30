@@ -16,8 +16,8 @@ class MoreViewController: UIViewController {
     var secondItems = ["로그아웃", "정보 초기화", "회원탈퇴"]
     
     @IBOutlet weak var moreListTableView: UITableView!
-    @IBOutlet weak var darkModeHeaderView: UIView!
-    @IBOutlet weak var modeSwitch: UISwitch!
+//    @IBOutlet weak var darkModeHeaderView: UIView!
+//    @IBOutlet weak var modeSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class MoreViewController: UIViewController {
         
         moreListTableView.delegate = self
         moreListTableView.dataSource = self
-        moreListTableView.tableHeaderView = darkModeHeaderView
+        // moreListTableView.tableHeaderView = darkModeHeaderView
         
         // TODO: - 다크 모드 대응용 서버 코드
         // modeSwitch.isOn = defaults.bool(forKey: "darkModeState")
@@ -41,8 +41,8 @@ class MoreViewController: UIViewController {
 //        }
     }
     
-    @IBAction func darkModeChangeSwitch(_ sender: UISwitch) {
-        // TODO: - 다크 모드 대응용 서버 코드
+//    @IBAction func darkModeChangeSwitch(_ sender: UISwitch) {
+//        // TODO: - 다크 모드 대응용 서버 코드
 //        if let window = UIApplication.shared.windows.first {
 //            if #available(iOS 13.0, *) {
 //                window.overrideUserInterfaceStyle = modeSwitch.isOn == true ? .dark : .light
@@ -51,7 +51,7 @@ class MoreViewController: UIViewController {
 //                window.overrideUserInterfaceStyle = .light
 //            }
 //        }
-    }
+//    }
 }
 
 // MARK: - TableView Delegate

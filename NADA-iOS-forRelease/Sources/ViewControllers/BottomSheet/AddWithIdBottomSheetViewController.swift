@@ -97,7 +97,7 @@ extension AddWithIdBottomSheetViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         // 서버 연결과 더불어... 검색 결과가 없으면 bottomsheet dismiss 하지 말고 hidden 풀어주기
-        hideBottomSheetAndPresent(nextBottomSheet: CardResultBottomSheetViewController())
+        hideBottomSheetAndPresent(nextBottomSheet: CardResultBottomSheetViewController(), title: "이채연", height: 574)
         return true
     }
 }

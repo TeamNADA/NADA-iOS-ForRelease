@@ -18,7 +18,7 @@ class QRScanViewController: UIViewController {
         let label = UILabel()
         label.text = "QR스캔"
         label.textColor = .background
-        label.font = UIFont(name: "SpoqaHanSansNeo-Bold", size: 20)
+        label.font = UIFont.title01
         return label
     }()
     

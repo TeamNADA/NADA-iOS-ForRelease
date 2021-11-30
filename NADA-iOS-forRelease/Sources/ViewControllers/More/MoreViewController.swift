@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class MoreViewController: UIViewController {
     
@@ -27,19 +28,30 @@ class MoreViewController: UIViewController {
         moreListTableView.dataSource = self
         moreListTableView.tableHeaderView = darkModeHeaderView
         
-        modeSwitch.isOn = defaults.bool(forKey: "darkModeState")
-        overrideUserInterfaceStyle = modeSwitch.isOn == true ? .dark : .light
+        // TODO: - 다크 모드 대응용 서버 코드
+        // modeSwitch.isOn = defaults.bool(forKey: "darkModeState")
+    
+//        if let window = UIApplication.shared.windows.first {
+//            if #available(iOS 13.0, *) {
+//                window.overrideUserInterfaceStyle = modeSwitch.isOn == true ? .dark : .light
+//                defaults.set(modeSwitch.isOn, forKey: "darkModeState")
+//            } else {
+//                window.overrideUserInterfaceStyle = .light
+//            }
+//        }
     }
     
     @IBAction func darkModeChangeSwitch(_ sender: UISwitch) {
-        if #available(iOS 13, *) {
-            overrideUserInterfaceStyle = modeSwitch.isOn == true ? .dark : .light
-            defaults.set(modeSwitch.isOn, forKey: "darkModeState")
-        } else {
-            overrideUserInterfaceStyle = .light
-        }
+        // TODO: - 다크 모드 대응용 서버 코드
+//        if let window = UIApplication.shared.windows.first {
+//            if #available(iOS 13.0, *) {
+//                window.overrideUserInterfaceStyle = modeSwitch.isOn == true ? .dark : .light
+//                defaults.set(modeSwitch.isOn, forKey: "darkModeState")
+//            } else {
+//                window.overrideUserInterfaceStyle = .light
+//            }
+//        }
     }
-    
 }
 
 // MARK: - TableView Delegate

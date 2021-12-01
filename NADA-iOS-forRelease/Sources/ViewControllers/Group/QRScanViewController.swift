@@ -24,21 +24,19 @@ class QRScanViewController: UIViewController {
     
     private let dismissButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "iconClear"), for: .normal)
+        button.setImage(UIImage(named: "iconQRClear"), for: .normal)
         button.addTarget(self, action: #selector(dismissQRScanViewController), for: .touchUpInside)
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        basicSetting()
+        basicSetting()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("basic Setting")
-        basicSetting()
+        print("viewDidAppear")
     }
-
 }
 
 extension QRScanViewController {

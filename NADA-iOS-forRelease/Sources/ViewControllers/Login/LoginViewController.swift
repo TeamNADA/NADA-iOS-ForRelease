@@ -20,40 +20,28 @@ class LoginViewController: UIViewController {
         // getUserIDFetchWithAPI(userID: "nada")
         // getUserTokenFetchWithAPI(userID: "nada")
         // postUserSignUpWithAPI(request: User(userID: "nada3"))
-        // deleteUserWithAPI(userID: "nada3")
     }
     
     // MARK: - IBAction Properties
     // 카카오톡으로 로그인 버튼 클릭 시
     @IBAction func kakaoLoginButton(_ sender: Any) {
-        // 카카오톡 설치 여부 확인
-        if (UserApi.isKakaoTalkLoginAvailable()) {
-            // 카카오톡 로그인. api 호출 결과를 클로저로 전달.
-            UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+        // 유효한 토큰 검사
+        if AuthApi.hasToken() {
+            UserApi.shared.accessTokenInfo { (_, error) in
                 if let error = error {
-                    // 예외 처리 (로그인 취소 등)
-                    print(error)
-                }
-                else {
-                    print("loginWithKakaoTalk() success.")
-                    // do something
-                    _ = oauthToken
-                    // 어세스토큰
-                    let accessToken = oauthToken?.accessToken
+                    if let sdkError = error as? SdkError, sdkError.isInvalidTokenError() == true {
+                        self.signUp()
+                    } else {
+                        // 기타 에러
+                    }
+                } else {
+                    // 토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
+                    // ✅ 사용자 정보를 가져오고 화면전환을 하는 커스텀 메서드
+                    self.getUserInfo()
                 }
             }
         } else {
-            // 웹 브라우저로 카카오 로그인
-            UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
-                if let error = error {
-                    print(error)
-                } else {
-                    print("loginWithKakaoAccount() success.")
-
-                    // do something
-                    _ = oauthToken
-                }
-            }
+            self.signUp()
         }
     }
     
@@ -115,21 +103,58 @@ extension LoginViewController {
             }
         }
     }
+}
+
+// MARK: - Extensions
+extension LoginViewController {
     
-    // FIXME: - 계정 탈퇴 네트워크 함수 추후 위치 수정
-    func deleteUserWithAPI(userID: String) {
-        UserAPI.shared.userDelete(userID: userID) { response in
-            switch response {
-            case .success:
-                print("deleteUserWithAPI - success")
-            case .requestErr(let message):
-                print("deleteUserWithAPI - requestErr: \(message)")
-            case .pathErr:
-                print("deleteUserWithAPI - pathErr")
-            case .serverErr:
-                print("deleteUserWithAPI - serverErr")
-            case .networkFail:
-                print("deleteUserWithAPI - networkFail")
+    func signUp() {
+        // 카카오톡 설치 여부 확인
+        if UserApi.isKakaoTalkLoginAvailable() {
+            // 카카오톡 로그인. api 호출 결과를 클로저로 전달.
+            UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+                if let error = error {
+                    // 예외 처리 (로그인 취소 등)
+                    print(error)
+                } else {
+                    print("loginWithKakaoTalk() success.")
+                    // do something
+                    _ = oauthToken
+                    // 어세스토큰
+                    let accessToken = oauthToken?.accessToken
+                }
+            }
+        } else {
+            // 웹 브라우저로 카카오 로그인
+            UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
+                if let error = error {
+                    print(error)
+                } else {
+                    print("loginWithKakaoAccount() success.")
+                    
+                    // do something
+                    _ = oauthToken
+                }
+            }
+        }
+    }
+    
+    // 사용자 정보를 성공적으로 가져왔을 때, 화면전환
+    private func getUserInfo() {
+        // 사용자 정보 가져오기
+        UserApi.shared.me() {(user, error) in
+            if let error = error {
+                print(error)
+            } else {
+                print("me() success.")
+                
+                // 이메일 정보
+                let email = user?.kakaoAccount?.email
+                
+                guard let nextVC = self.storyboard?.instantiateViewController(withIdentifier: Const.ViewController.Identifier.tabBarViewController) as? TabBarViewController else { return }
+                
+                // ✅ 화면전환
+                self.navigationController?.pushViewController(nextVC, animated: true)
             }
         }
     }

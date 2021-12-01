@@ -6,13 +6,16 @@
 //
 
 import UIKit
+import KakaoSDKCommon
+import KakaoSDKAuth
+import KakaoSDKUser
 
 class LoginViewController: UIViewController {
-
+    
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // FIXME: - 서버 연결 테스트, 추후 위치 수정 필요
         // getUserIDFetchWithAPI(userID: "nada")
         // getUserTokenFetchWithAPI(userID: "nada")
@@ -23,7 +26,35 @@ class LoginViewController: UIViewController {
     // MARK: - IBAction Properties
     // 카카오톡으로 로그인 버튼 클릭 시
     @IBAction func kakaoLoginButton(_ sender: Any) {
-        
+        // 카카오톡 설치 여부 확인
+        if (UserApi.isKakaoTalkLoginAvailable()) {
+            // 카카오톡 로그인. api 호출 결과를 클로저로 전달.
+            UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+                if let error = error {
+                    // 예외 처리 (로그인 취소 등)
+                    print(error)
+                }
+                else {
+                    print("loginWithKakaoTalk() success.")
+                    // do something
+                    _ = oauthToken
+                    // 어세스토큰
+                    let accessToken = oauthToken?.accessToken
+                }
+            }
+        } else {
+            // 웹 브라우저로 카카오 로그인
+            UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
+                if let error = error {
+                    print(error)
+                } else {
+                    print("loginWithKakaoAccount() success.")
+
+                    // do something
+                    _ = oauthToken
+                }
+            }
+        }
     }
     
     // Apple로 로그인 버튼 클릭 시

@@ -126,7 +126,7 @@ extension QRScanViewController: AVCaptureMetadataOutputObjectsDelegate {
             }
 
             // ✅ qr코드가 가진 문자열이 URL 형태를 띈다면 출력.(아무런 qr코드나 찍는다고 출력시키면 안되니까 여기서 분기처리 가능. )
-            if stringValue.hasPrefix("http://") || stringValue.hasPrefix("https://") {
+            if stringValue.hasPrefix("http://") {
                 print(stringValue)
 
                 self.captureSession.stopRunning()
@@ -137,7 +137,7 @@ extension QRScanViewController: AVCaptureMetadataOutputObjectsDelegate {
                 nextVC.modalPresentationStyle = .overFullScreen
                 self.present(nextVC, animated: false, completion: nil)
             } else {
-                print("유효하지 않은 QR입니다.")
+                showToast(message: "유효하지 않은 QR입니다.", font: UIFont.button02)
             }
         }
     }

@@ -8,22 +8,21 @@
 import UIKit
 
 class MoreListTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var modeSwitch: UISwitch!
     @IBOutlet weak var separatorView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
-
+    
     static func nib() -> UINib {
         return UINib(nibName: "MoreListTableViewCell", bundle: nil)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
     }
 }

@@ -14,4 +14,6 @@ extension Notification.Name {
     // MARK: - Card Creation
     static let frontCardBirth = Notification.Name("frontCardBirth")
     static let frontCardMBTI = Notification.Name("frontCardMBTI")
+    static let presentingImagePicker = Notification.Name("presentingImagePicker")
+    static let sendNewImage = Notification.Name("sendNewImage")
 }

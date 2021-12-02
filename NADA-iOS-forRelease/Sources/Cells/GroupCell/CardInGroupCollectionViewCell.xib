@@ -32,6 +32,10 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card" translatesAutoresizingMaskIntoConstraints="NO" id="nFQ-dL-nGf">
                                 <rect key="frame" x="0.0" y="0.0" width="156" height="258"/>
                             </imageView>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9V6-ba-Kga">
+                                <rect key="frame" x="0.0" y="0.0" width="156" height="258"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SOPT 명함" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rng-0l-SgL">
                                 <rect key="frame" x="12" y="25" width="43" height="11"/>
                                 <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="9"/>
@@ -92,7 +96,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="07x-TC-A3z" firstAttribute="leading" secondItem="UBI-OG-7RY" secondAttribute="leading" constant="12" id="4Z6-6e-o0s"/>
+                            <constraint firstItem="9V6-ba-Kga" firstAttribute="leading" secondItem="nFQ-dL-nGf" secondAttribute="leading" id="6TS-WS-WqP"/>
                             <constraint firstItem="oO0-od-Oxm" firstAttribute="leading" secondItem="07x-TC-A3z" secondAttribute="trailing" constant="3" id="7sY-Ae-RN1"/>
+                            <constraint firstItem="9V6-ba-Kga" firstAttribute="trailing" secondItem="nFQ-dL-nGf" secondAttribute="trailing" id="9xP-0b-rf8"/>
                             <constraint firstItem="R2H-kH-GqM" firstAttribute="leading" secondItem="XFs-Sv-f0r" secondAttribute="trailing" constant="3" id="ARH-vK-SuC"/>
                             <constraint firstItem="XFs-Sv-f0r" firstAttribute="leading" secondItem="UBI-OG-7RY" secondAttribute="leading" constant="12" id="DgX-lM-v3f"/>
                             <constraint firstItem="nFQ-dL-nGf" firstAttribute="leading" secondItem="UBI-OG-7RY" secondAttribute="leading" id="JMw-lr-b2G"/>
@@ -109,11 +115,13 @@
                             <constraint firstAttribute="width" constant="156" id="bCJ-f5-AU6"/>
                             <constraint firstAttribute="trailing" secondItem="nFQ-dL-nGf" secondAttribute="trailing" id="bYg-oY-TXD"/>
                             <constraint firstItem="07x-TC-A3z" firstAttribute="top" secondItem="XFs-Sv-f0r" secondAttribute="bottom" constant="5" id="dOi-vF-3nL"/>
+                            <constraint firstItem="9V6-ba-Kga" firstAttribute="top" secondItem="nFQ-dL-nGf" secondAttribute="top" id="gzR-cH-WC7"/>
                             <constraint firstItem="WCz-jU-GLW" firstAttribute="top" secondItem="tBD-lZ-HlH" secondAttribute="bottom" constant="6" id="hZ7-6i-u0f"/>
                             <constraint firstItem="R2H-kH-GqM" firstAttribute="top" secondItem="Wwx-y2-tN3" secondAttribute="bottom" constant="28.5" id="ihY-o5-XjH"/>
                             <constraint firstItem="oO0-od-Oxm" firstAttribute="top" secondItem="R2H-kH-GqM" secondAttribute="bottom" constant="7.5" id="jy0-Iu-udc"/>
                             <constraint firstAttribute="height" constant="258" id="k1e-3O-9RK"/>
                             <constraint firstItem="tBD-lZ-HlH" firstAttribute="top" secondItem="RM7-A9-SfR" secondAttribute="bottom" constant="96" id="k2H-sd-orF"/>
+                            <constraint firstItem="9V6-ba-Kga" firstAttribute="bottom" secondItem="nFQ-dL-nGf" secondAttribute="bottom" id="mtq-ik-plt"/>
                             <constraint firstItem="WCz-jU-GLW" firstAttribute="leading" secondItem="UBI-OG-7RY" secondAttribute="leading" constant="12" id="oUb-dX-0YV"/>
                         </constraints>
                     </view>

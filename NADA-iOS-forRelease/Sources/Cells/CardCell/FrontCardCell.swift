@@ -73,4 +73,23 @@ extension FrontCardCell {
         self.instagramIDLabel.text = instagramID
         self.linkURLLabel.text = linkURL
     }
+    
+    // FIXME: - UIImage 로 넘어올때. 나중에 어떻게 사용할지 정해야함.
+    func initCell(_ backgroundImage: UIImage?,
+                  _ cardTitle: String,
+                  _ cardDescription: String,
+                  _ userName: String,
+                  _ birth: String,
+                  _ mbti: String,
+                  _ instagramID: String,
+                  _ linkURL: String) {
+        self.backgroundImageView.image = backgroundImage ?? UIImage()
+        self.titleLabel.text = cardTitle
+        self.descriptionLabel.text = cardDescription
+        self.userNameLabel.text = userName
+        self.birthLabel.text = birth
+        self.mbtiLabel.text = mbti
+        self.instagramIDLabel.text = instagramID
+        self.linkURLLabel.text = linkURL
+    }
 }

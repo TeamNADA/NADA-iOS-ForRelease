@@ -25,6 +25,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FHO-mj-1yu">
                                 <rect key="frame" x="24" y="114" width="327" height="540"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="540" id="b0L-OT-Q7F"/>
                                     <constraint firstAttribute="width" constant="327" id="xtT-wz-pPq"/>

@@ -17,9 +17,7 @@ class FrontCardCell: CardCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var birthLabel: UILabel!
     @IBOutlet weak var mbtiLabel: UILabel!
-    @IBOutlet weak var instagramImageView: UIImageView!
     @IBOutlet weak var instagramIDLabel: UILabel!
-    @IBOutlet weak var linkURLImageView: UIImageView!
     @IBOutlet weak var linkURLLabel: UILabel!
     
     // MARK: - Life Cycle
@@ -52,6 +50,7 @@ extension FrontCardCell {
         instagramIDLabel.textColor = .white
         linkURLLabel.font = .textRegular04
         linkURLLabel.textColor = .white
+        linkURLLabel.numberOfLines = 2
     }
     
     func initCell(_ backgroundImage: String,
@@ -65,13 +64,13 @@ extension FrontCardCell {
         if let bgImage = UIImage(named: backgroundImage) {
             self.backgroundImageView.image = bgImage
         }
-        self.titleLabel.text = cardTitle
-        self.descriptionLabel.text = cardDescription
-        self.userNameLabel.text = userName
-        self.birthLabel.text = birth
-        self.mbtiLabel.text = mbti
-        self.instagramIDLabel.text = instagramID
-        self.linkURLLabel.text = linkURL
+        titleLabel.text = cardTitle
+        descriptionLabel.text = cardDescription
+        userNameLabel.text = userName
+        birthLabel.text = birth
+        mbtiLabel.text = mbti
+        instagramIDLabel.text = instagramID
+        linkURLLabel.text = linkURL
     }
     
     // FIXME: - UIImage 로 넘어올때. 나중에 어떻게 사용할지 정해야함.
@@ -83,13 +82,13 @@ extension FrontCardCell {
                   _ mbti: String,
                   _ instagramID: String,
                   _ linkURL: String) {
-        self.backgroundImageView.image = backgroundImage ?? UIImage()
-        self.titleLabel.text = cardTitle
-        self.descriptionLabel.text = cardDescription
-        self.userNameLabel.text = userName
-        self.birthLabel.text = birth
-        self.mbtiLabel.text = mbti
-        self.instagramIDLabel.text = instagramID
-        self.linkURLLabel.text = linkURL
+        backgroundImageView.image = backgroundImage ?? UIImage()
+        titleLabel.text = cardTitle
+        descriptionLabel.text = cardDescription
+        userNameLabel.text = userName
+        birthLabel.text = birth
+        mbtiLabel.text = mbti
+        instagramIDLabel.text = instagramID
+        linkURLLabel.text = linkURL
     }
 }

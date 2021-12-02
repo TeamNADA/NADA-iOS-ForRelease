@@ -38,6 +38,8 @@ class CardCreationViewController: UIViewController {
     private var currentIndex = 0
     private var frontCard: FrontCardDataModel?
     private var backCard: BackCardDataModel?
+    private var mbtiText: String?
+    private var birthText: String?
     
     // MARK: - @IBOutlet Properties
     
@@ -301,6 +303,20 @@ extension CardCreationViewController: UICollectionViewDataSource {
                     return UICollectionViewCell()
                 }
                 frontCreationCell.frontCardCreationDelegate = self
+                frontCreationCell.presentingBirthBottomVCClosure = {
+                    let nextVC = SelectBirthBottomSheetViewController()
+                                .setTitle("생년월일")
+                                .setHeight(355)
+                    nextVC.modalPresentationStyle = .overFullScreen
+                    self.present(nextVC, animated: false, completion: nil)
+                }
+                frontCreationCell.presentingMBTIBottomVCClosure = {
+                    let nextVC = SelectMBTIBottmViewController()
+                                .setTitle("MBTI")
+                                .setHeight(355)
+                    nextVC.modalPresentationStyle = .overFullScreen
+                    self.present(nextVC, animated: false, completion: nil)
+                }
                 
                 return frontCreationCell
             } else if indexPath.item == 1 {

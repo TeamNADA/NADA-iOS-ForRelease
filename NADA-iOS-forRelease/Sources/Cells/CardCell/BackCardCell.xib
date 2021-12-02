@@ -38,6 +38,9 @@
                         <rect key="frame" x="279" y="16" width="24" height="24"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                         <state key="normal" image="iconShare"/>
+                        <connections>
+                            <action selector="touchShareButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="9we-bF-B51"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😎 나의 취향" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHb-jJ-jng">
                         <rect key="frame" x="24" y="50" width="95.5" height="22"/>
@@ -202,6 +205,7 @@
                 <outlet property="putSauceEatImageView" destination="wc5-PI-Gnj" id="nYr-Y7-XJC"/>
                 <outlet property="sauceChickenImageView" destination="Nx7-Vx-MTP" id="EBI-QU-BQH"/>
                 <outlet property="secondTmiLabel" destination="IFb-AS-8IM" id="huF-sy-GN1"/>
+                <outlet property="shareButton" destination="3tv-wQ-4Ka" id="uQj-kM-ZBL"/>
                 <outlet property="sojuImageView" destination="yJZ-UI-FTC" id="a17-57-8Jd"/>
                 <outlet property="tasteTitleLabel" destination="dHb-jJ-jng" id="s2A-b9-Osl"/>
                 <outlet property="thirdTmiLabel" destination="9yf-Qs-VBg" id="e4s-7p-WmB"/>

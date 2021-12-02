@@ -19,12 +19,15 @@ class FrontCardCell: CardCell {
     @IBOutlet weak var mbtiLabel: UILabel!
     @IBOutlet weak var instagramIDLabel: UILabel!
     @IBOutlet weak var linkURLLabel: UILabel!
+    @IBOutlet weak var shareButton: UIButton!
     
     // MARK: - Life Cycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
          setUI()
+    }
+    @IBAction func touchShareButton(_ sender: Any) {
     }
     
     static func nib() -> UINib {
@@ -53,6 +56,7 @@ extension FrontCardCell {
         linkURLLabel.textColor = .white
         linkURLLabel.numberOfLines = 2
         linkURLLabel.lineBreakMode = .byTruncatingTail
+        shareButton.isHidden = true
     }
     
     /// 서버에서 image 를 URL 로 가져올 경우 사용.

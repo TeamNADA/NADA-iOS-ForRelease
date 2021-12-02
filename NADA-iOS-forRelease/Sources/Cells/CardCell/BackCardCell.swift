@@ -25,11 +25,15 @@ class BackCardCell: CardCell {
     @IBOutlet weak var firstTmiLabel: UILabel!
     @IBOutlet weak var secondTmiLabel: UILabel!
     @IBOutlet weak var thirdTmiLabel: UILabel!
+    @IBOutlet weak var shareButton: UIButton!
     
     // MARK: - View Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
         setUI()
+    }
+    // TODO: - 2차 릴리즈/공유기능
+    @IBAction func touchShareButton(_ sender: Any) {
     }
     
     // MARK: - Functions
@@ -51,6 +55,8 @@ extension BackCardCell {
         secondTmiLabel.textColor = .white
         thirdTmiLabel.font = .textRegular04
         thirdTmiLabel.textColor = .white
+        // TODO: - 2차 릴리즈/공유기능
+        shareButton.isHidden = true
     }
     
     /// 서버에서 image 를 URL 로 가져올 경우 사용.

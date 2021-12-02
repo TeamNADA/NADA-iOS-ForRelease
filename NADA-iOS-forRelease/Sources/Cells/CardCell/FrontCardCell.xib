@@ -85,6 +85,9 @@
                         <rect key="frame" x="279" y="16" width="24" height="24"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                         <state key="normal" image="iconShare"/>
+                        <connections>
+                            <action selector="touchShareButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Qqf-Lg-a4V"/>
+                        </connections>
                     </button>
                 </subviews>
             </view>
@@ -131,6 +134,7 @@
                 <outlet property="instagramIDLabel" destination="8oi-jO-fkf" id="eIE-ch-cCT"/>
                 <outlet property="linkURLLabel" destination="LqW-bV-yHr" id="vD7-qs-hSc"/>
                 <outlet property="mbtiLabel" destination="eyB-c0-PQB" id="waJ-j4-tRM"/>
+                <outlet property="shareButton" destination="aAt-PF-ce3" id="tNu-aM-Dsc"/>
                 <outlet property="titleLabel" destination="OeE-mZ-GcL" id="NIa-Yu-Bit"/>
                 <outlet property="userNameLabel" destination="cO6-DY-EUn" id="8AO-3c-DDH"/>
             </connections>

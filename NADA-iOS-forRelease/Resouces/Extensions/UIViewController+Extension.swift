@@ -15,7 +15,6 @@ extension UIViewController {
                                cancelAction: ((UIAlertAction) -> Void)? = nil,
                                deleteAction: ((UIAlertAction) -> Void)?,
                                completion: (() -> Void)? = nil) {
-        
         let alertViewController = UIAlertController(title: title,
                                                     message: message,
                                                     preferredStyle: .alert)

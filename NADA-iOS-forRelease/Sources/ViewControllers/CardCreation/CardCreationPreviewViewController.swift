@@ -33,7 +33,7 @@ class CardCreationPreviewViewController: UIViewController {
         cardCreationRequest = CardCreationRequest(userID: "", frontCard: frontCardDataModel, backCard: backCardDataModel)
         guard let cardCreationRequest = cardCreationRequest else { return }
         // TODO: - 갤러리 추가/이미지 코드 추가
-        cardCreationWithAPI(request: cardCreationRequest, image: UIImage(systemName: "card")!)
+        cardCreationWithAPI(request: cardCreationRequest, image: UIImage(named: "card")!)
     }
     @IBAction func touchBackButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
@@ -77,9 +77,6 @@ extension CardCreationPreviewViewController {
     
     private func setFrontCardWith() {
         guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
-        
-        // FIXME: - @IBDesignables err
-        //        guard let frontCard = Bundle(for: FrontCardCell.self).loadNibNamed(Const.Xib.frontCardCell, owner: self, options: nil)?.first as? FrontCardCell else { return }
         
         frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
         // FIXME: - 갤러리 추가/주석해제

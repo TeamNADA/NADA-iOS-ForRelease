@@ -193,7 +193,14 @@ extension FrontViewController: VerticalCardSwiperDatasource {
             guard let backCell = verticalCardSwiperView.dequeueReusableCell(withReuseIdentifier: "BackCardCell", for: index) as? BackCardCell else {
                 return CardCell()
             }
-            backCell.initCell(imageList[index], mintImageList[index], noMintImageList[index], sojuImageList[index], beerImageList[index], pourImageList[index], putSauceImageList[index], yangnyumImageList[index], friedImageList[index], firstTmiList[index], secondTmiList[index], thirdTmiLabel[index])
+            backCell.initCell(imageList[index],
+                              mintImageList[index],
+                              sojuImageList[index],
+                              pourImageList[index],
+                              yangnyumImageList[index],
+                              firstTmiList[index],
+                              secondTmiList[index],
+                              thirdTmiLabel[index])
             return backCell
         }
     }

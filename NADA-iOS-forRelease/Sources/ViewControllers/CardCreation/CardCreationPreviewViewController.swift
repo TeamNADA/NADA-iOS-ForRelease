@@ -103,7 +103,14 @@ extension CardCreationPreviewViewController {
             guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return }
             guard let backCardDataModel = backCardDataModel else { return }
             backCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
-            backCard.initCell(cardBackgroundImage, backCardDataModel.isMincho, !backCardDataModel.isMincho, backCardDataModel.isSoju, !backCardDataModel.isSoju, backCardDataModel.isBoomuk, !backCardDataModel.isBoomuk, backCardDataModel.isSauced, !backCardDataModel.isSauced, backCardDataModel.firstTMI, backCardDataModel.secondTMI, backCardDataModel.thirdTMI)
+            backCard.initCell(cardBackgroundImage,
+                              backCardDataModel.isMincho,
+                              backCardDataModel.isSoju,
+                              backCardDataModel.isBoomuk,
+                              backCardDataModel.isSauced,
+                              backCardDataModel.firstTMI,
+                              backCardDataModel.secondTMI,
+                              backCardDataModel.thirdTMI)
             
             cardView.addSubview(backCard)
             isFront = false
@@ -112,7 +119,14 @@ extension CardCreationPreviewViewController {
             
             frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
             guard let frontCardDataModel = frontCardDataModel else { return }
-            frontCard.initCell(cardBackgroundImage, frontCardDataModel.title, frontCardDataModel.description, frontCardDataModel.name, frontCardDataModel.birthDate, frontCardDataModel.mbti, frontCardDataModel.instagramID, frontCardDataModel.linkURL)
+            frontCard.initCell(cardBackgroundImage,
+                               frontCardDataModel.title,
+                               frontCardDataModel.description,
+                               frontCardDataModel.name,
+                               frontCardDataModel.birthDate,
+                               frontCardDataModel.mbti,
+                               frontCardDataModel.instagramID,
+                               frontCardDataModel.linkURL)
             
             cardView.addSubview(frontCard)
             isFront = true

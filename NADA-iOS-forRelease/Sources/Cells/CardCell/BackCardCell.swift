@@ -88,4 +88,40 @@ extension BackCardCell {
         self.secondTmiLabel.text = secondTmi
         self.thirdTmiLabel.text = thirdTmi
     }
+    
+    // FIXME: - UIImage 로 넘어올때. 나중에 어떻게 사용할지 정해야함.
+    func initCell(_ backgroundImage: UIImage?,
+                  _ isMintImage: Bool,
+                  _ isNoMintImage: Bool,
+                  _ isSojuImage: Bool,
+                  _ isBeerImage: Bool,
+                  _ isPourImage: Bool,
+                  _ isPutSauceImage: Bool,
+                  _ isYangnyumImage: Bool,
+                  _ isFriedImage: Bool,
+                  _ firstTmi: String,
+                  _ secondTmi: String,
+                  _ thirdTmi: String) {
+        
+        self.backgroundImageView.image = backgroundImage ?? UIImage()
+        self.mintImageView.image = isMintImage == true ?
+        UIImage(named: "iconTasteOnMincho") : UIImage(named: "iconTasteOffMincho")
+        self.noMintImageView.image = isNoMintImage == true ?
+        UIImage(named: "iconTasteOnBanmincho") : UIImage(named: "iconTasteOffBanmincho")
+        self.sojuImageView.image = isSojuImage == true ?
+        UIImage(named: "iconTasteOnSoju") : UIImage(named: "iconTasteOffSoju")
+        self.beerImageView.image = isBeerImage == true ?
+        UIImage(named: "iconTasteOnBeer") : UIImage(named: "iconTasteOffBeer")
+        self.pourEatImageView.image = isPourImage == true ?
+        UIImage(named: "iconTasteOnBumeok") : UIImage(named: "iconTasteOffBumeok")
+        self.putSauceEatImageView.image = isPutSauceImage == true ?
+        UIImage(named: "iconTasteOnZzik") : UIImage(named: "iconTasteOffZzik")
+        self.sauceChickenImageView.image = isYangnyumImage == true ?
+        UIImage(named: "iconTasteOnSeasoned") : UIImage(named: "iconTasteOffSeasoned")
+        self.friedChickenImageView.image = isFriedImage == true ?
+        UIImage(named: "iconTasteOnFried") : UIImage(named: "iconTasteOffFried")
+        self.firstTmiLabel.text = firstTmi
+        self.secondTmiLabel.text = secondTmi
+        self.thirdTmiLabel.text = thirdTmi
+    }
 }

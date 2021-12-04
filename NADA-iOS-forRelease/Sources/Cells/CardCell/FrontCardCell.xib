@@ -100,7 +100,7 @@
                 <constraint firstItem="eyB-c0-PQB" firstAttribute="top" secondItem="aik-Vi-yux" secondAttribute="bottom" constant="10" id="Ebd-SK-4i7"/>
                 <constraint firstAttribute="trailing" secondItem="D6t-Nc-4xH" secondAttribute="trailing" id="GGx-Tf-nEl"/>
                 <constraint firstItem="TXF-fP-7YQ" firstAttribute="leading" secondItem="OeE-mZ-GcL" secondAttribute="leading" id="ITf-JC-Tm4"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="LqW-bV-yHr" secondAttribute="bottom" constant="5" id="JrI-dN-H5E"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="LqW-bV-yHr" secondAttribute="bottom" constant="30" id="JrI-dN-H5E"/>
                 <constraint firstItem="S8I-Fv-fkf" firstAttribute="bottom" secondItem="D6t-Nc-4xH" secondAttribute="bottom" id="N52-K9-r1O"/>
                 <constraint firstItem="aik-Vi-yux" firstAttribute="top" secondItem="cO6-DY-EUn" secondAttribute="bottom" constant="13" id="RLL-SV-ohE"/>
                 <constraint firstItem="TXF-fP-7YQ" firstAttribute="top" secondItem="eyB-c0-PQB" secondAttribute="bottom" constant="55" id="RtB-w6-jlM"/>
@@ -125,8 +125,6 @@
                 <outlet property="birthLabel" destination="aik-Vi-yux" id="QTx-yd-LoY"/>
                 <outlet property="descriptionLabel" destination="VDj-1w-jyf" id="YqY-uP-XQV"/>
                 <outlet property="instagramIDLabel" destination="8oi-jO-fkf" id="eIE-ch-cCT"/>
-                <outlet property="instagramImageView" destination="TXF-fP-7YQ" id="yIP-5S-tPH"/>
-                <outlet property="linkURLImageView" destination="el0-x0-WD9" id="O2h-sb-XSb"/>
                 <outlet property="linkURLLabel" destination="LqW-bV-yHr" id="vD7-qs-hSc"/>
                 <outlet property="mbtiLabel" destination="eyB-c0-PQB" id="waJ-j4-tRM"/>
                 <outlet property="titleLabel" destination="OeE-mZ-GcL" id="NIa-Yu-Bit"/>

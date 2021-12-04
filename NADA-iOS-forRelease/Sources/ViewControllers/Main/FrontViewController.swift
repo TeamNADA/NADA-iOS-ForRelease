@@ -55,7 +55,7 @@ class FrontViewController: UIViewController {
         
         setFrontList()
         setBackList()
-        
+                
         // TODO: - 서버 테스트
 //        cardListFetchWithAPI(userID: "nada", isList: false, offset: 0)
     }

@@ -38,6 +38,10 @@ class CardCreationViewController: UIViewController {
     private var currentIndex = 0
     private var frontCard: FrontCardDataModel?
     private var backCard: BackCardDataModel?
+    private var mbtiText: String?
+    private var birthText: String?
+    private var newImage: UIImage?
+    private var defaultImageIndex: Int?
     
     // MARK: - @IBOutlet Properties
     
@@ -57,6 +61,7 @@ class CardCreationViewController: UIViewController {
         setUI()
         registerCell()
         setTextLabelGesture()
+        setNotification()
         
         // FIXME: 서버통신 테스트 중. 추후 호출 위치 변경.
 //        cardDetailFetchWithAPI(cardID: "cardA")
@@ -88,6 +93,7 @@ class CardCreationViewController: UIViewController {
         
         nextVC.frontCardDataModel = frontCard
         nextVC.backCardDataModel = backCard
+        nextVC.cardBackgroundImage = newImage
         navigationController?.pushViewController(nextVC, animated: true)
     }
 }
@@ -173,8 +179,8 @@ extension CardCreationViewController {
         backTextLabel.addGestureRecognizer(tapBackTextLabelGesture)
         backTextLabel.isUserInteractionEnabled = true
     }
-    private func checkEditingMode() {
-        
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(presentToImagePicker), name: .presentingImagePicker, object: nil)
     }
     
     // MARK: - @objc Methods
@@ -204,6 +210,15 @@ extension CardCreationViewController {
              self.frontTextLabel.textColor = .secondary
              self.backTextLabel.textColor = .quaternary
         }
+    }
+    @objc
+    private func presentToImagePicker() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
+        
+        present(imagePicker, animated: true, completion: nil)
     }
 }
 
@@ -301,6 +316,20 @@ extension CardCreationViewController: UICollectionViewDataSource {
                     return UICollectionViewCell()
                 }
                 frontCreationCell.frontCardCreationDelegate = self
+                frontCreationCell.presentingBirthBottomVCClosure = {
+                    let nextVC = SelectBirthBottomSheetViewController()
+                                .setTitle("생년월일")
+                                .setHeight(355)
+                    nextVC.modalPresentationStyle = .overFullScreen
+                    self.present(nextVC, animated: false, completion: nil)
+                }
+                frontCreationCell.presentingMBTIBottomVCClosure = {
+                    let nextVC = SelectMBTIBottmViewController()
+                                .setTitle("MBTI")
+                                .setHeight(355)
+                    nextVC.modalPresentationStyle = .overFullScreen
+                    self.present(nextVC, animated: false, completion: nil)
+                }
                 
                 return frontCreationCell
             } else if indexPath.item == 1 {
@@ -350,8 +379,8 @@ extension CardCreationViewController: FrontCardCreationDelegate {
         isEditingMode = valid
     }
     func frontCardCreation(withRequired requiredInfo: [String: String], withOptional optionalInfo: [String: String]) {
-        frontCard = FrontCardDataModel(defaultImage: Int(requiredInfo["defaultImage"] ?? "0") ?? 0,
-                                       title: requiredInfo["title"]  ?? "",
+        frontCard = FrontCardDataModel(defaultImage: Int(requiredInfo["defaultImage"] ?? "-1") ?? -1,
+                                       title: requiredInfo["title"] ?? "",
                                        name: requiredInfo["name"] ?? "",
                                        birthDate: requiredInfo["birthDate"] ?? "",
                                        mbti: requiredInfo["mbti"] ?? "",
@@ -383,5 +412,20 @@ extension CardCreationViewController: BackCardCreationDelegate {
                                      firstTMI: optionalInfo["firstTMI"] ?? "",
                                      secondTMI: optionalInfo["secondTMI"] ?? "",
                                      thirdTMI: optionalInfo["thirdTMI"] ?? "")
+    }
+}
+
+extension CardCreationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            newImage = editedImage
+        } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            newImage = originalImage
+        }
+        if let cropImage = info[UIImagePickerController.InfoKey.cropRect] as? UIImage {
+            newImage = cropImage
+        }
+        NotificationCenter.default.post(name: .sendNewImage, object: newImage)
+        picker.dismiss(animated: true, completion: nil)
     }
 }

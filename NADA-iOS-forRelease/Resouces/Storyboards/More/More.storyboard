@@ -41,10 +41,10 @@
                                 </constraints>
                             </view>
                             <tableView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="WnB-Ge-3qg">
-                                <rect key="frame" x="0.0" y="104" width="375" height="466"/>
+                                <rect key="frame" x="0.0" y="104" width="375" height="404"/>
                                 <color key="backgroundColor" name="textBox"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="466" id="F5a-T6-amW"/>
+                                    <constraint firstAttribute="height" constant="404" id="F5a-T6-amW"/>
                                 </constraints>
                             </tableView>
                         </subviews>
@@ -67,7 +67,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="64" y="56"/>
+            <point key="canvasLocation" x="63.200000000000003" y="55.418719211822662"/>
         </scene>
     </scenes>
     <resources>

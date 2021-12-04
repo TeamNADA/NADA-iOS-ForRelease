@@ -9,12 +9,20 @@ import UIKit
 
 class FrontCardCreationCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - Protocols
+    
+    public weak var frontCardCreationDelegate: FrontCardCreationDelegate?
+    
     // MARK: - Properties
     
     private let backgroundList = ["img", "img", "img", "img", "img"]
     private var requiredTextFieldList = [UITextField]()
     private var optionalTextFieldList = [UITextField]()
-    public weak var frontCardCreationDelegate: FrontCardCreationDelegate?
+    private var cardBackgroundImage: UIImage?
+    private var defaultImageIndex: Int?
+  
+    public var presentingBirthBottomVCClosure: (() -> Void)?
+    public var presentingMBTIBottomVCClosure: (() -> Void)?
     
     // MARK: - @IBOutlet Properties
     
@@ -44,6 +52,7 @@ class FrontCardCreationCollectionViewCell: UICollectionViewCell {
         setUI()
         registerCell()
         textFieldDelegate()
+        setNotification()
     }
 }
 
@@ -59,6 +68,7 @@ extension FrontCardCreationCollectionViewCell {
         backgroundSettingCollectionView.backgroundColor = .background
         
         let collectionViewLayout = backgroundSettingCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
+        collectionViewLayout?.estimatedItemSize = .zero
         collectionViewLayout?.scrollDirection = .horizontal
         
         let backgroundAttributeString = NSMutableAttributedString(string: "*명함의 배경을 선택해 주세요.")
@@ -96,7 +106,7 @@ extension FrontCardCreationCollectionViewCell {
             NSAttributedString.Key.foregroundColor: UIColor.quaternary
         ])
         
-        instagramIDTextField.attributedPlaceholder = NSAttributedString(string: "Instagram", attributes: [
+        instagramIDTextField.attributedPlaceholder = NSAttributedString(string: "Instagram (@ 제외)", attributes: [
             NSAttributedString.Key.foregroundColor: UIColor.quaternary
         ])
         linkURLTextField.attributedPlaceholder = NSAttributedString(string: "URL (Github, Blog)", attributes: [
@@ -146,59 +156,23 @@ extension FrontCardCreationCollectionViewCell {
         _ = requiredTextFieldList.map { $0.delegate = self }
         _ = optionalTextFieldList.map { $0.delegate = self }
     }
-    static func nib() -> UINib {
-        return UINib(nibName: Const.Xib.frontCardCreationCollectionViewCell, bundle: Bundle(for: FrontCardCreationCollectionViewCell.self))
-    }
-}
-
-// MARK: - UICollectionViewDelegate
-extension FrontCardCreationCollectionViewCell: UICollectionViewDelegate { }
-
-// MARK: - UICollectionViewDataSource
-extension FrontCardCreationCollectionViewCell: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return backgroundList.count
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(setBirthTextField(notification:)), name: .frontCardBirth, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setMBTITextField(notification:)), name: .frontCardMBTI, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setCardBackgroundImage(notifiation:)), name: .sendNewImage, object: nil)
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.backgroundCollectionViewCell, for: indexPath) as? BackgroundCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-        cell.initCell(image: backgroundList[indexPath.item])
-        
-        return cell
-    }
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-extension FrontCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 26, bottom: 0, right: 26)
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 12
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: CGFloat(60), height: CGFloat(60))
-    }
-}
-
-// MARK: - UITextFieldDelegate
-extension FrontCardCreationCollectionViewCell: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.borderWidth = 1
-        textField.borderColor = .tertiary
-        textField.becomeFirstResponder()
-    }
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    /// front card 가 편집되었는지. 필수 항목이 다 입력되었는지 체크.
+    private func checkFrontCradStatus() {
         frontCardCreationDelegate?.frontCardCreation(endEditing: true)
         if cardTitleTextField.hasText &&
             userNameTextField.hasText &&
             birthTextField.hasText &&
-            mbtiTextField.hasText {
+            mbtiTextField.hasText &&
+            defaultImageIndex != nil {
             frontCardCreationDelegate?.frontCardCreation(requiredInfo: true)
             frontCardCreationDelegate?.frontCardCreation(withRequired: [
-                "defaultImage": String(0),
+                "defaultImageIndex": String(defaultImageIndex ?? -1),
                 "title": cardTitleTextField.text ?? "",
                 "name": userNameTextField.text ?? "",
                 "birthDate": birthTextField.text ?? "",
@@ -211,6 +185,112 @@ extension FrontCardCreationCollectionViewCell: UITextFieldDelegate {
         } else {
             frontCardCreationDelegate?.frontCardCreation(requiredInfo: false)
         }
+    }
+    static func nib() -> UINib {
+        return UINib(nibName: Const.Xib.frontCardCreationCollectionViewCell, bundle: Bundle(for: FrontCardCreationCollectionViewCell.self))
+    }
+    
+    // MARK: - @objc Methods
+    
+    @objc
+    private func setBirthTextField(notification: NSNotification) {
+        birthTextField.text = notification.object as? String
+    
+        birthTextField.borderWidth = 0
+    }
+    @objc
+    private func setMBTITextField(notification: NSNotification) {
+        mbtiTextField.text = notification.object as? String
+        
+        mbtiTextField.borderWidth = 0
+    }
+    @objc
+    private func setCardBackgroundImage(notifiation: NSNotification) {
+        cardBackgroundImage = notifiation.object as? UIImage
+        backgroundSettingCollectionView.reloadData()
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+extension FrontCardCreationCollectionViewCell: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        switch indexPath.item {
+        case 0:
+            NotificationCenter.default.post(name: .presentingImagePicker, object: nil)
+            defaultImageIndex = 0
+        case 1:
+            defaultImageIndex = 1
+        case 2:
+            defaultImageIndex = 2
+        case 3:
+            defaultImageIndex = 3
+        case 4:
+            defaultImageIndex = 4
+        default:
+            return
+        }
+        checkFrontCradStatus()
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+extension FrontCardCreationCollectionViewCell: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return backgroundList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.backgroundCollectionViewCell, for: indexPath) as? BackgroundCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        switch indexPath.item {
+        case 0:
+            cell.initCell(image: cardBackgroundImage ?? UIImage(), isFirst: true)
+        default:
+            // FIXME: - 기본 명함 배경 넘겨주면 수정.
+//            guard let image = UIImage(systemName: backgroundList[indexPath.item]) else { return UICollectionViewCell() }
+            cell.initCell(image: UIImage(), isFirst: false)
+        }
+        return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension FrontCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 26, bottom: 0, right: 26)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 12
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: CGFloat(60), height: CGFloat(60))
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension FrontCardCreationCollectionViewCell: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        switch textField {
+        case birthTextField:
+            textField.endEditing(true)
+            presentingBirthBottomVCClosure?()
+        case mbtiTextField:
+            textField.endEditing(true)
+            presentingMBTIBottomVCClosure?()
+        default:
+            textField.borderWidth = 1
+            textField.borderColor = .tertiary
+        }
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        checkFrontCradStatus()
+        textField.resignFirstResponder()
         textField.borderWidth = 0
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

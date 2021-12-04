@@ -9,10 +9,11 @@ import UIKit
 
 class CardCreationPreviewViewController: UIViewController {
     
-    var backgroundImage: Data?
-    var frontCardDataModel: FrontCardDataModel?
-    var backCardDataModel: BackCardDataModel?
+    public var frontCardDataModel: FrontCardDataModel?
+    public var backCardDataModel: BackCardDataModel?
+    public var cardBackgroundImage: UIImage?
     
+    private var isFront = true
     private var cardCreationRequest: CardCreationRequest?
     
     // MARK: - @IBOutlet Properties
@@ -27,13 +28,15 @@ class CardCreationPreviewViewController: UIViewController {
         super.viewDidLoad()
         
         setUI()
+        setFrontCard()
+        setGestureRecognizer()
     }
     @IBAction func touchCompleteButton(_ sender: Any) {
         guard let frontCardDataModel = frontCardDataModel, let backCardDataModel = backCardDataModel else { return }
         cardCreationRequest = CardCreationRequest(userID: "", frontCard: frontCardDataModel, backCard: backCardDataModel)
         guard let cardCreationRequest = cardCreationRequest else { return }
-        // TODO: - 갤러리 추가/이미지 코드 추가
-        cardCreationWithAPI(request: cardCreationRequest, image: UIImage(systemName: "card")!)
+
+        cardCreationWithAPI(request: cardCreationRequest, image: cardBackgroundImage ?? UIImage())
     }
     @IBAction func touchBackButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
@@ -72,33 +75,58 @@ extension CardCreationPreviewViewController {
             completeButton.setBackgroundImage(UIImage(named: "enableButtonBackground"), for: .normal)
             completeButton.setTitleColor(.white, for: .normal)
         }
-        setFrontCardWith()
     }
-    
-    private func setFrontCardWith() {
+    private func setFrontCard() {
         guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
         
-        // FIXME: - @IBDesignables err
-        //        guard let frontCard = Bundle(for: FrontCardCell.self).loadNibNamed(Const.Xib.frontCardCell, owner: self, options: nil)?.first as? FrontCardCell else { return }
-        
         frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
-        // FIXME: - 갤러리 추가/주석해제
-        //        guard let frontCardDataModel = frontCardDataModel else { return }
-        //        frontCard.initCell("", frontCardDataModel.title, frontCardDataModel.description, frontCardDataModel.name, frontCardDataModel.birthDate, frontCardDataModel.mbti, frontCardDataModel.instagramID, frontCardDataModel.linkURL)
+        guard let frontCardDataModel = frontCardDataModel else { return }
+        frontCard.initCell(cardBackgroundImage, frontCardDataModel.title, frontCardDataModel.description, frontCardDataModel.name, frontCardDataModel.birthDate, frontCardDataModel.mbti, frontCardDataModel.instagramID, frontCardDataModel.linkURL)
         
-        // FIXME: - dummy data
-        frontCard.initCell("card", "nada", "NADA의 짱귀염둥이 ㅎ 막이래~", "개빡쳐하는 오야옹~", "1999/05/12", "ENFP", "yaeoni", "github.com/yaeoni")
         cardView.addSubview(frontCard)
     }
-    
-    private func setBackCardWith() {
-        guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return }
-        guard let backCardDataModel = backCardDataModel else { return }
-        backCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
+    private func setGestureRecognizer() {
+        let swipeLeftGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(transitionCardWithAnimation(_:)))
+        swipeLeftGestureRecognizer.direction = .left
+        self.cardView.addGestureRecognizer(swipeLeftGestureRecognizer)
         
-        // FIXME: - dummy data
-        backCard.initCell("card", false, true, false, true, false, true, false, true, "티엠아이", "모쓰지", "모르겠다")
-        cardView.addSubview(backCard)
+        let swipeRightGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(transitionCardWithAnimation(_:)))
+        swipeRightGestureRecognizer.direction = .right
+        self.cardView.addGestureRecognizer(swipeRightGestureRecognizer)
+    }
+
+    // MARK: - @objc Methods
+    
+    @objc
+    private func transitionCardWithAnimation(_ swipeGesture: UISwipeGestureRecognizer) {
+        if isFront {
+            guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return }
+            guard let backCardDataModel = backCardDataModel else { return }
+            backCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
+            backCard.initCell(cardBackgroundImage, backCardDataModel.isMincho, !backCardDataModel.isMincho, backCardDataModel.isSoju, !backCardDataModel.isSoju, backCardDataModel.isBoomuk, !backCardDataModel.isBoomuk, backCardDataModel.isSauced, !backCardDataModel.isSauced, backCardDataModel.firstTMI, backCardDataModel.secondTMI, backCardDataModel.thirdTMI)
+            
+            cardView.addSubview(backCard)
+            isFront = false
+        } else {
+            guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
+            
+            frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
+            guard let frontCardDataModel = frontCardDataModel else { return }
+            frontCard.initCell(cardBackgroundImage, frontCardDataModel.title, frontCardDataModel.description, frontCardDataModel.name, frontCardDataModel.birthDate, frontCardDataModel.mbti, frontCardDataModel.instagramID, frontCardDataModel.linkURL)
+            
+            cardView.addSubview(frontCard)
+            isFront = true
+        }
+        if swipeGesture.direction == .right {
+            UIView.transition(with: cardView, duration: 1, options: .transitionFlipFromLeft, animations: nil) { _ in
+                self.cardView.subviews[0].removeFromSuperview()
+            }
+        } else {
+            UIView.transition(with: cardView, duration: 1, options: .transitionFlipFromRight, animations: nil) { _ in
+                self.cardView.subviews[0].removeFromSuperview()
+            }
+        }
+        
     }
     
     // MARK: - Network

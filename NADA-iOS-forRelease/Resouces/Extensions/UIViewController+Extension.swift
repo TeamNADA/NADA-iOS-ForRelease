@@ -9,14 +9,12 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-    
     /// 취소+삭제 UIAlertController
     func makeCancelDeleteAlert(title: String,
                                message: String,
                                cancelAction: ((UIAlertAction) -> Void)? = nil,
                                deleteAction: ((UIAlertAction) -> Void)?,
                                completion: (() -> Void)? = nil) {
-        
         let alertViewController = UIAlertController(title: title,
                                                     message: message,
                                                     preferredStyle: .alert)

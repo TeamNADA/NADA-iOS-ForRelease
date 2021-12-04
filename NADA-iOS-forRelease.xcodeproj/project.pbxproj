@@ -86,6 +86,8 @@
 		F87122762733046300A24E74 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87122752733046300A24E74 /* Card.swift */; };
 		F871227827330A3800A24E74 /* CardCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F871227727330A3800A24E74 /* CardCreationRequest.swift */; };
 		F8719DDB274F92E90081AD51 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8719DDA274F92E90081AD51 /* UITextField+Extension.swift */; };
+		F8915A22275728F20013D609 /* SelectBirthBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */; };
+		F8915A23275728F20013D609 /* SelectMBTIBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */; };
 		F8A9FE1A2743DC6B00BC60CE /* CardListInGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A9FE192743DC6B00BC60CE /* CardListInGroupRequest.swift */; };
 		F8C310C0273A7360008EC5BA /* FrontCardCreationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C310BF273A7360008EC5BA /* FrontCardCreationDelegate.swift */; };
 		F8C83FAE272F99940009DF0D /* MoyaLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FAD272F99940009DF0D /* MoyaLoggerPlugin.swift */; };
@@ -195,6 +197,8 @@
 		F87122752733046300A24E74 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		F871227727330A3800A24E74 /* CardCreationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreationRequest.swift; sourceTree = "<group>"; };
 		F8719DDA274F92E90081AD51 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectBirthBottomViewController.swift; sourceTree = "<group>"; };
+		F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMBTIBottomViewController.swift; sourceTree = "<group>"; };
 		F8A9FE192743DC6B00BC60CE /* CardListInGroupRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListInGroupRequest.swift; sourceTree = "<group>"; };
 		F8C310BF273A7360008EC5BA /* FrontCardCreationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontCardCreationDelegate.swift; sourceTree = "<group>"; };
 		F8C83FAD272F99940009DF0D /* MoyaLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggerPlugin.swift; sourceTree = "<group>"; };
@@ -380,6 +384,8 @@
 				398413B6274A7A1E005550BC /* AddGroupBottomSheetViewController.swift */,
 				77703156275005AA002CBD19 /* CardResultBottomSheetViewController.swift */,
 				7713E8472752E2A900724C8B /* SelectGroupBottomSheetViewController.swift */,
+				F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */,
+				F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */,
 			);
 			path = BottomSheet;
 			sourceTree = "<group>";
@@ -516,6 +522,15 @@
 				39288E11273F52B20072F403 /* CardListLookUpRequest.swift */,
 			);
 			path = Card;
+			sourceTree = "<group>";
+		};
+		F8915A1F275713A10013D609 /* CardCreation */ = {
+			isa = PBXGroup;
+			children = (
+				F8FC43B226C020B90033E151 /* BackCardCreationDelegate.swift */,
+				F8C310BF273A7360008EC5BA /* FrontCardCreationDelegate.swift */,
+			);
+			path = CardCreation;
 			sourceTree = "<group>";
 		};
 		F8C83FAC272F998A0009DF0D /* Plugin */ = {
@@ -677,8 +692,7 @@
 		F8FC439F26C01EFC0033E151 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				F8FC43B226C020B90033E151 /* BackCardCreationDelegate.swift */,
-				F8C310BF273A7360008EC5BA /* FrontCardCreationDelegate.swift */,
+				F8915A1F275713A10013D609 /* CardCreation */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -977,7 +991,9 @@
 				F822E7A92709CEB60020452C /* Notification.swift in Sources */,
 				F8C83FC5272FA2940009DF0D /* CardAPI.swift in Sources */,
 				7729171F2743D604001593E0 /* CardsInGroupResponse.swift in Sources */,
+				F8915A22275728F20013D609 /* SelectBirthBottomViewController.swift in Sources */,
 				F8FC438626C01CDD0033E151 /* AppDelegate.swift in Sources */,
+				F8915A23275728F20013D609 /* SelectMBTIBottomViewController.swift in Sources */,
 				F8C83FB8272F9E3F0009DF0D /* UtilAPI.swift in Sources */,
 				F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */,
 				39288E12273F52B20072F403 /* CardListLookUpRequest.swift in Sources */,

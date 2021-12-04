@@ -34,14 +34,10 @@ class QRScanViewController: UIViewController {
         basicSetting()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        print("viewDidAppear")
-    }
 }
 
 extension QRScanViewController {
     @objc func dismissQRScanViewController() {
-        print("dismissQRScanViewController")
         self.dismiss(animated: true, completion: nil)
     }
 }

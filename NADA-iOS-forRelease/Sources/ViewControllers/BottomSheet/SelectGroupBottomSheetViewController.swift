@@ -79,18 +79,13 @@ extension SelectGroupBottomSheetViewController: UIPickerViewDelegate, UIPickerVi
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let label = (view as? UILabel) ?? UILabel()
         
-        label.textColor = .quaternary
         label.textAlignment = .center
-        label.font = UIFont(name: "SpoqaHanSansNeo-Regular", size: 16)
         
         if pickerView.selectedRow(inComponent: component) == row {
-            label.attributedText = NSAttributedString(string: groupList[row], attributes: [NSAttributedString.Key.font: UIFont(name: "SpoqaHanSansNeo-Bold", size: 16.0)!, NSAttributedString.Key.foregroundColor: UIColor.mainColorNadaMain])
-            
+            label.attributedText = NSAttributedString(string: groupList[row], attributes: [NSAttributedString.Key.font: UIFont.textBold01, NSAttributedString.Key.foregroundColor: UIColor.mainColorNadaMain])
         } else {
-            label.attributedText = NSAttributedString(string: groupList[row], attributes: [NSAttributedString.Key.font: UIFont(name: "SpoqaHanSansNeo-Regular", size: 16.0)!, NSAttributedString.Key.foregroundColor: UIColor.quaternary])
+            label.attributedText = NSAttributedString(string: groupList[row], attributes: [NSAttributedString.Key.font: UIFont.textRegular03, NSAttributedString.Key.foregroundColor: UIColor.quaternary])
         }
-        
-        label.text = groupList[row]
         
         return label
     }

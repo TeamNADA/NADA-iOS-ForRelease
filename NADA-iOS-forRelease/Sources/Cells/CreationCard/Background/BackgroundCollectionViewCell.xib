@@ -27,28 +27,48 @@
                         <rect key="frame" x="2" y="2" width="282" height="129"/>
                         <color key="backgroundColor" name="textBox"/>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZdQ-cS-9PV">
+                        <rect key="frame" x="2" y="2" width="282" height="129"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconAddPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="e2c-wO-dVr">
+                                <rect key="frame" x="129" y="52.5" width="24" height="24"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.25" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="e2c-wO-dVr" firstAttribute="centerX" secondItem="ZdQ-cS-9PV" secondAttribute="centerX" id="FHk-Ze-VLi"/>
+                            <constraint firstItem="e2c-wO-dVr" firstAttribute="centerY" secondItem="ZdQ-cS-9PV" secondAttribute="centerY" id="WU6-94-t2S"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
+                <constraint firstItem="ZdQ-cS-9PV" firstAttribute="top" secondItem="hnM-Yz-8h1" secondAttribute="top" id="2Fw-tj-oa8"/>
                 <constraint firstAttribute="bottom" secondItem="5HA-yB-R7S" secondAttribute="bottom" id="6c8-CY-ULf"/>
                 <constraint firstAttribute="trailing" secondItem="5HA-yB-R7S" secondAttribute="trailing" id="Gbu-9Y-Cy6"/>
                 <constraint firstAttribute="trailing" secondItem="hnM-Yz-8h1" secondAttribute="trailing" constant="2" id="MGg-Cb-lL0"/>
                 <constraint firstItem="hnM-Yz-8h1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="2" id="Rjs-Ag-bY0"/>
+                <constraint firstItem="ZdQ-cS-9PV" firstAttribute="leading" secondItem="hnM-Yz-8h1" secondAttribute="leading" id="ZsJ-k2-zyI"/>
+                <constraint firstItem="ZdQ-cS-9PV" firstAttribute="trailing" secondItem="hnM-Yz-8h1" secondAttribute="trailing" id="aBg-xq-Mtj"/>
                 <constraint firstItem="5HA-yB-R7S" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="bZN-gl-Jhl"/>
                 <constraint firstItem="hnM-Yz-8h1" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="2" id="hA9-qF-fWY"/>
+                <constraint firstItem="ZdQ-cS-9PV" firstAttribute="bottom" secondItem="hnM-Yz-8h1" secondAttribute="bottom" id="miJ-Zo-YSX"/>
                 <constraint firstItem="5HA-yB-R7S" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="pUm-bZ-rD9"/>
                 <constraint firstAttribute="bottom" secondItem="hnM-Yz-8h1" secondAttribute="bottom" constant="2" id="wpX-8b-ecT"/>
             </constraints>
             <size key="customSize" width="286" height="133"/>
             <connections>
+                <outlet property="addPhotoImageView" destination="e2c-wO-dVr" id="wAY-DM-jFr"/>
                 <outlet property="bgView" destination="5HA-yB-R7S" id="XwF-Gw-MoT"/>
                 <outlet property="imageView" destination="hnM-Yz-8h1" id="aTy-l5-hSx"/>
+                <outlet property="opacityView" destination="ZdQ-cS-9PV" id="bV9-jX-K7u"/>
             </connections>
-            <point key="canvasLocation" x="-74" y="41"/>
+            <point key="canvasLocation" x="-75.362318840579718" y="40.513392857142854"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="iconAddPhoto" width="24" height="24"/>
         <namedColor name="textBox">
             <color red="0.94509803921568625" green="0.95294117647058818" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

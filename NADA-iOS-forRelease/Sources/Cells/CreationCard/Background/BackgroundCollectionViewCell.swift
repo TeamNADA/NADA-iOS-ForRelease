@@ -17,7 +17,9 @@ class BackgroundCollectionViewCell: UICollectionViewCell {
     // MARK: - @IBOutlet Properties
     
     @IBOutlet weak var bgView: UIView!
+    @IBOutlet weak var opacityView: UIView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var addPhotoImageView: UIImageView!
     
     // MARK: - View Life Cycle
     
@@ -34,14 +36,15 @@ extension BackgroundCollectionViewCell {
     private func setUI() {
         bgView.backgroundColor = .tertiary
         bgView.isHidden = true
-        bgView.layer.cornerRadius = bgView.frame.height / 2
         bgView.layer.cornerRadius = bgViewCornerRadius
+        
+        opacityView.layer.cornerRadius = imageviewCornerRadius
         imageView.layer.cornerRadius = imageviewCornerRadius
     }
-    func initCell(image: String) {
-        if let image = UIImage(named: image) {
-            imageView.image = image
-        }
+    func initCell(image: UIImage, isFirst: Bool) {
+        imageView.image = image
+        addPhotoImageView.isHidden = isFirst == true ? false : true
+        opacityView.isHidden = isFirst == true ? false : true
     }
     override var isSelected: Bool {
         didSet {

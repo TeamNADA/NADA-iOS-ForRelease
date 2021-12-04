@@ -149,15 +149,17 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.requiredCollectionViewCell, for: indexPath) as? RequiredFlavorCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
-        if collectionView == isMinchoCollectionView {
+        switch collectionView {
+        case isMinchoCollectionView:
             cell.initCell(flavor: flavorList[indexPath.item])
-        } else if collectionView == isSojuCollectionView {
+        case isSojuCollectionView:
             cell.initCell(flavor: flavorList[indexPath.item + 2])
-        } else if collectionView == isBoomukCollectionView {
+        case isBoomukCollectionView:
             cell.initCell(flavor: flavorList[indexPath.item + 4])
-        } else {
+        case isSaucedCollectionView:
             cell.initCell(flavor: flavorList[indexPath.item + 6])
+        default:
+            return UICollectionViewCell()
         }
         return cell
     }

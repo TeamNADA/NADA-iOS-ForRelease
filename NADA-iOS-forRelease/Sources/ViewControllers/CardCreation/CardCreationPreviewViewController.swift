@@ -9,9 +9,9 @@ import UIKit
 
 class CardCreationPreviewViewController: UIViewController {
     
-    var backgroundImage: Data?
-    var frontCardDataModel: FrontCardDataModel?
-    var backCardDataModel: BackCardDataModel?
+    public var frontCardDataModel: FrontCardDataModel?
+    public var backCardDataModel: BackCardDataModel?
+    public var cardBackgroundImage: UIImage?
     
     private var cardCreationRequest: CardCreationRequest?
     
@@ -32,8 +32,8 @@ class CardCreationPreviewViewController: UIViewController {
         guard let frontCardDataModel = frontCardDataModel, let backCardDataModel = backCardDataModel else { return }
         cardCreationRequest = CardCreationRequest(userID: "", frontCard: frontCardDataModel, backCard: backCardDataModel)
         guard let cardCreationRequest = cardCreationRequest else { return }
-        // TODO: - 갤러리 추가/이미지 코드 추가
-        cardCreationWithAPI(request: cardCreationRequest, image: UIImage(named: "card")!)
+
+        cardCreationWithAPI(request: cardCreationRequest, image: cardBackgroundImage ?? UIImage())
     }
     @IBAction func touchBackButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
@@ -80,11 +80,11 @@ extension CardCreationPreviewViewController {
         
         frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
         // FIXME: - 갤러리 추가/주석해제
-        //        guard let frontCardDataModel = frontCardDataModel else { return }
-        //        frontCard.initCell("", frontCardDataModel.title, frontCardDataModel.description, frontCardDataModel.name, frontCardDataModel.birthDate, frontCardDataModel.mbti, frontCardDataModel.instagramID, frontCardDataModel.linkURL)
+                guard let frontCardDataModel = frontCardDataModel else { return }
+                frontCard.initCell(cardBackgroundImage, frontCardDataModel.title, frontCardDataModel.description, frontCardDataModel.name, frontCardDataModel.birthDate, frontCardDataModel.mbti, frontCardDataModel.instagramID, frontCardDataModel.linkURL)
         
         // FIXME: - dummy data
-        frontCard.initCell("card", "nada", "NADA의 짱귀염둥이 ㅎ 막이래~", "개빡쳐하는 오야옹~", "1999/05/12", "ENFP", "yaeoni", "github.com/yaeoni")
+//        frontCard.initCell("card", "nada", "NADA의 짱귀염둥이 ㅎ 막이래~", "개빡쳐하는 오야옹~", "1999/05/12", "ENFP", "yaeoni", "github.com/yaeoni")
         cardView.addSubview(frontCard)
     }
     

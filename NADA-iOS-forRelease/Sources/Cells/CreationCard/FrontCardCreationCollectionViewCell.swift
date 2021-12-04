@@ -18,6 +18,9 @@ class FrontCardCreationCollectionViewCell: UICollectionViewCell {
     private let backgroundList = ["img", "img", "img", "img", "img"]
     private var requiredTextFieldList = [UITextField]()
     private var optionalTextFieldList = [UITextField]()
+    private var cardBackgroundImage: UIImage?
+    private var defaultImageIndex: Int?
+  
     public var presentingBirthBottomVCClosure: (() -> Void)?
     public var presentingMBTIBottomVCClosure: (() -> Void)?
     
@@ -156,6 +159,32 @@ extension FrontCardCreationCollectionViewCell {
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(setBirthTextField(notification:)), name: .frontCardBirth, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setMBTITextField(notification:)), name: .frontCardMBTI, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setCardBackgroundImage(notifiation:)), name: .sendNewImage, object: nil)
+    }
+    
+    /// front card 가 편집되었는지. 필수 항목이 다 입력되었는지 체크.
+    private func checkFrontCradStatus() {
+        frontCardCreationDelegate?.frontCardCreation(endEditing: true)
+        if cardTitleTextField.hasText &&
+            userNameTextField.hasText &&
+            birthTextField.hasText &&
+            mbtiTextField.hasText &&
+            defaultImageIndex != nil {
+            frontCardCreationDelegate?.frontCardCreation(requiredInfo: true)
+            frontCardCreationDelegate?.frontCardCreation(withRequired: [
+                "defaultImageIndex": String(defaultImageIndex ?? -1),
+                "title": cardTitleTextField.text ?? "",
+                "name": userNameTextField.text ?? "",
+                "birthDate": birthTextField.text ?? "",
+                "mbti": mbtiTextField.text ?? ""
+            ], withOptional: [
+                "instagram": instagramIDTextField.text ?? "",
+                "linkURL": linkURLTextField.text ?? "",
+                "description": descriptionTextField.text ?? ""
+            ])
+        } else {
+            frontCardCreationDelegate?.frontCardCreation(requiredInfo: false)
+        }
     }
     static func nib() -> UINib {
         return UINib(nibName: Const.Xib.frontCardCreationCollectionViewCell, bundle: Bundle(for: FrontCardCreationCollectionViewCell.self))
@@ -169,17 +198,42 @@ extension FrontCardCreationCollectionViewCell {
     
         birthTextField.borderWidth = 0
     }
-    
     @objc
     private func setMBTITextField(notification: NSNotification) {
         mbtiTextField.text = notification.object as? String
         
         mbtiTextField.borderWidth = 0
     }
+    @objc
+    private func setCardBackgroundImage(notifiation: NSNotification) {
+        cardBackgroundImage = notifiation.object as? UIImage
+        backgroundSettingCollectionView.reloadData()
+    }
 }
 
 // MARK: - UICollectionViewDelegate
-extension FrontCardCreationCollectionViewCell: UICollectionViewDelegate { }
+extension FrontCardCreationCollectionViewCell: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        switch indexPath.item {
+        case 0:
+            NotificationCenter.default.post(name: .presentingImagePicker, object: nil)
+            defaultImageIndex = 0
+        case 1:
+            defaultImageIndex = 1
+        case 2:
+            defaultImageIndex = 2
+        case 3:
+            defaultImageIndex = 3
+        case 4:
+            defaultImageIndex = 4
+        default:
+            return
+        }
+        checkFrontCradStatus()
+    }
+}
 
 // MARK: - UICollectionViewDataSource
 extension FrontCardCreationCollectionViewCell: UICollectionViewDataSource {
@@ -191,8 +245,14 @@ extension FrontCardCreationCollectionViewCell: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.backgroundCollectionViewCell, for: indexPath) as? BackgroundCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.initCell(image: backgroundList[indexPath.item])
-        
+        switch indexPath.item {
+        case 0:
+            cell.initCell(image: cardBackgroundImage ?? UIImage(), isFirst: true)
+        default:
+            // FIXME: - 기본 명함 배경 넘겨주면 수정.
+//            guard let image = UIImage(systemName: backgroundList[indexPath.item]) else { return UICollectionViewCell() }
+            cell.initCell(image: UIImage(), isFirst: false)
+        }
         return cell
     }
 }
@@ -216,38 +276,20 @@ extension FrontCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayou
 // MARK: - UITextFieldDelegate
 extension FrontCardCreationCollectionViewCell: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == birthTextField {
+        switch textField {
+        case birthTextField:
             textField.endEditing(true)
             presentingBirthBottomVCClosure?()
-        } else if textField == mbtiTextField {
+        case mbtiTextField:
             textField.endEditing(true)
             presentingMBTIBottomVCClosure?()
-        } else {
+        default:
             textField.borderWidth = 1
             textField.borderColor = .tertiary
         }
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        frontCardCreationDelegate?.frontCardCreation(endEditing: true)
-        if cardTitleTextField.hasText &&
-            userNameTextField.hasText &&
-            birthTextField.hasText &&
-            mbtiTextField.hasText {
-            frontCardCreationDelegate?.frontCardCreation(requiredInfo: true)
-            frontCardCreationDelegate?.frontCardCreation(withRequired: [
-                "defaultImage": String(0),
-                "title": cardTitleTextField.text ?? "",
-                "name": userNameTextField.text ?? "",
-                "birthDate": birthTextField.text ?? "",
-                "mbti": mbtiTextField.text ?? ""
-            ], withOptional: [
-                "instagram": instagramIDTextField.text ?? "",
-                "linkURL": linkURLTextField.text ?? "",
-                "description": descriptionTextField.text ?? ""
-            ])
-        } else {
-            frontCardCreationDelegate?.frontCardCreation(requiredInfo: false)
-        }
+        checkFrontCradStatus()
         textField.resignFirstResponder()
         textField.borderWidth = 0
     }

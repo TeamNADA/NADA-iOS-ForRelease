@@ -115,7 +115,7 @@ extension FrontViewController {
         linkTextList.append(contentsOf: ["Blog",
                                          "Blog"
                                         ])
-        linkIDList.append(contentsOf: ["https://github.com/TeamNADA",
+        linkIDList.append(contentsOf: ["https://github.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADA",
                                        "https://github.com/TeamNADA"
                                       ])
     }

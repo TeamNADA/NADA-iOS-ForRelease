@@ -93,10 +93,11 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Bjc-le-F1v" secondAttribute="bottom" constant="110" id="oqH-i3-LWh"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="FOs-Km-lor"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="120.8" y="83.497536945812811"/>
+            <point key="canvasLocation" x="1063.2" y="83.497536945812811"/>
         </scene>
     </scenes>
     <resources>

@@ -19,12 +19,15 @@ class FrontCardCell: CardCell {
     @IBOutlet weak var mbtiLabel: UILabel!
     @IBOutlet weak var instagramIDLabel: UILabel!
     @IBOutlet weak var linkURLLabel: UILabel!
+    @IBOutlet weak var shareButton: UIButton!
     
     // MARK: - Life Cycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
          setUI()
+    }
+    @IBAction func touchShareButton(_ sender: Any) {
     }
     
     static func nib() -> UINib {
@@ -48,11 +51,15 @@ extension FrontCardCell {
         mbtiLabel.textColor = .white
         instagramIDLabel.font = .textRegular03
         instagramIDLabel.textColor = .white
+        instagramIDLabel.lineBreakMode = .byTruncatingTail
         linkURLLabel.font = .textRegular04
         linkURLLabel.textColor = .white
         linkURLLabel.numberOfLines = 2
+        linkURLLabel.lineBreakMode = .byTruncatingTail
+        shareButton.isHidden = true
     }
     
+    /// 서버에서 image 를 URL 로 가져올 경우 사용.
     func initCell(_ backgroundImage: String,
                   _ cardTitle: String,
                   _ cardDescription: String,
@@ -73,7 +80,7 @@ extension FrontCardCell {
         linkURLLabel.text = linkURL
     }
     
-    // FIXME: - UIImage 로 넘어올때. 나중에 어떻게 사용할지 정해야함.
+    /// 명함생성할 때 image 를 UIImage 로 가져올 경우 사용
     func initCell(_ backgroundImage: UIImage?,
                   _ cardTitle: String,
                   _ cardDescription: String,

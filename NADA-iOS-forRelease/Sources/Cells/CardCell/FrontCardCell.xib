@@ -24,7 +24,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8I-Fv-fkf">
+                    <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8I-Fv-fkf">
                         <rect key="frame" x="0.0" y="0.0" width="327" height="540"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <userDefinedRuntimeAttributes>
@@ -81,6 +81,14 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconUrl" translatesAutoresizingMaskIntoConstraints="NO" id="el0-x0-WD9">
                         <rect key="frame" x="24" y="467.5" width="24" height="24"/>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAt-PF-ce3">
+                        <rect key="frame" x="279" y="16" width="24" height="24"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="iconShare"/>
+                        <connections>
+                            <action selector="touchShareButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Qqf-Lg-a4V"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <constraints>
@@ -88,36 +96,35 @@
                 <constraint firstItem="S8I-Fv-fkf" firstAttribute="leading" secondItem="D6t-Nc-4xH" secondAttribute="leading" id="1U6-VC-gzG"/>
                 <constraint firstItem="eyB-c0-PQB" firstAttribute="leading" secondItem="OeE-mZ-GcL" secondAttribute="leading" id="4Ry-xS-5OB"/>
                 <constraint firstItem="OeE-mZ-GcL" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="50" id="4yZ-WV-dW5"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VDj-1w-jyf" secondAttribute="trailing" constant="24" id="5rw-tM-UsX"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VDj-1w-jyf" secondAttribute="trailing" constant="82" id="5rw-tM-UsX"/>
                 <constraint firstItem="8oi-jO-fkf" firstAttribute="leading" secondItem="TXF-fP-7YQ" secondAttribute="trailing" constant="5" id="6DU-3g-JYy"/>
                 <constraint firstItem="cO6-DY-EUn" firstAttribute="leading" secondItem="OeE-mZ-GcL" secondAttribute="leading" id="6V1-pq-E02"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cO6-DY-EUn" secondAttribute="trailing" constant="24" id="7rI-g8-Ig7"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8oi-jO-fkf" secondAttribute="trailing" constant="24" id="9HM-25-0VI"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cO6-DY-EUn" secondAttribute="trailing" constant="27" id="7rI-g8-Ig7"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8oi-jO-fkf" secondAttribute="trailing" constant="36" id="9HM-25-0VI"/>
                 <constraint firstItem="LqW-bV-yHr" firstAttribute="leading" secondItem="el0-x0-WD9" secondAttribute="trailing" constant="5" id="A8j-k1-Zdw"/>
                 <constraint firstItem="8oi-jO-fkf" firstAttribute="centerY" secondItem="TXF-fP-7YQ" secondAttribute="centerY" id="BNK-kd-R8I"/>
+                <constraint firstItem="aAt-PF-ce3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="CPV-z2-Q2H"/>
                 <constraint firstItem="D6t-Nc-4xH" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="DeT-lx-Vdm"/>
                 <constraint firstItem="aik-Vi-yux" firstAttribute="leading" secondItem="OeE-mZ-GcL" secondAttribute="leading" id="DzT-ZF-buY"/>
                 <constraint firstItem="eyB-c0-PQB" firstAttribute="top" secondItem="aik-Vi-yux" secondAttribute="bottom" constant="10" id="Ebd-SK-4i7"/>
                 <constraint firstAttribute="trailing" secondItem="D6t-Nc-4xH" secondAttribute="trailing" id="GGx-Tf-nEl"/>
                 <constraint firstItem="TXF-fP-7YQ" firstAttribute="leading" secondItem="OeE-mZ-GcL" secondAttribute="leading" id="ITf-JC-Tm4"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="LqW-bV-yHr" secondAttribute="bottom" constant="30" id="JrI-dN-H5E"/>
                 <constraint firstItem="S8I-Fv-fkf" firstAttribute="bottom" secondItem="D6t-Nc-4xH" secondAttribute="bottom" id="N52-K9-r1O"/>
                 <constraint firstItem="aik-Vi-yux" firstAttribute="top" secondItem="cO6-DY-EUn" secondAttribute="bottom" constant="13" id="RLL-SV-ohE"/>
                 <constraint firstItem="TXF-fP-7YQ" firstAttribute="top" secondItem="eyB-c0-PQB" secondAttribute="bottom" constant="55" id="RtB-w6-jlM"/>
                 <constraint firstItem="S8I-Fv-fkf" firstAttribute="top" secondItem="D6t-Nc-4xH" secondAttribute="top" id="Uuk-OY-MiG"/>
                 <constraint firstItem="VDj-1w-jyf" firstAttribute="top" secondItem="OeE-mZ-GcL" secondAttribute="bottom" constant="8" id="W5z-RH-cOC"/>
+                <constraint firstAttribute="trailing" secondItem="aAt-PF-ce3" secondAttribute="trailing" constant="24" id="WO7-2q-KoQ"/>
                 <constraint firstAttribute="bottom" secondItem="D6t-Nc-4xH" secondAttribute="bottom" id="g3O-ib-dRy"/>
                 <constraint firstItem="S8I-Fv-fkf" firstAttribute="trailing" secondItem="D6t-Nc-4xH" secondAttribute="trailing" id="gIl-Qp-bCT"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eyB-c0-PQB" secondAttribute="trailing" constant="24" id="ihs-PT-9zZ"/>
                 <constraint firstItem="OeE-mZ-GcL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="24" id="kch-bF-wdy"/>
                 <constraint firstItem="el0-x0-WD9" firstAttribute="leading" secondItem="OeE-mZ-GcL" secondAttribute="leading" id="ks3-oC-rKr"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OeE-mZ-GcL" secondAttribute="trailing" constant="24" id="oi1-gH-AEU"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OeE-mZ-GcL" secondAttribute="trailing" constant="54" id="oi1-gH-AEU"/>
                 <constraint firstItem="D6t-Nc-4xH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="pVv-z5-cfR"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LqW-bV-yHr" secondAttribute="trailing" constant="24" id="rNN-Bn-HHJ"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LqW-bV-yHr" secondAttribute="trailing" constant="16" id="rNN-Bn-HHJ"/>
                 <constraint firstItem="VDj-1w-jyf" firstAttribute="leading" secondItem="OeE-mZ-GcL" secondAttribute="leading" id="txG-gf-qMy"/>
                 <constraint firstItem="el0-x0-WD9" firstAttribute="top" secondItem="TXF-fP-7YQ" secondAttribute="bottom" constant="10" id="uLD-KR-vXa"/>
                 <constraint firstItem="LqW-bV-yHr" firstAttribute="centerY" secondItem="el0-x0-WD9" secondAttribute="centerY" id="v5J-i2-9Ll"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aik-Vi-yux" secondAttribute="trailing" constant="24" id="zej-Bm-5qK"/>
             </constraints>
             <size key="customSize" width="307" height="444"/>
             <connections>
@@ -127,6 +134,7 @@
                 <outlet property="instagramIDLabel" destination="8oi-jO-fkf" id="eIE-ch-cCT"/>
                 <outlet property="linkURLLabel" destination="LqW-bV-yHr" id="vD7-qs-hSc"/>
                 <outlet property="mbtiLabel" destination="eyB-c0-PQB" id="waJ-j4-tRM"/>
+                <outlet property="shareButton" destination="aAt-PF-ce3" id="tNu-aM-Dsc"/>
                 <outlet property="titleLabel" destination="OeE-mZ-GcL" id="NIa-Yu-Bit"/>
                 <outlet property="userNameLabel" destination="cO6-DY-EUn" id="8AO-3c-DDH"/>
             </connections>
@@ -135,6 +143,7 @@
     </objects>
     <resources>
         <image name="iconInstagram" width="24" height="24"/>
+        <image name="iconShare" width="24" height="24"/>
         <image name="iconUrl" width="24" height="24"/>
     </resources>
 </document>

@@ -35,7 +35,7 @@ class CardCreationPreviewViewController: UIViewController {
         guard let frontCardDataModel = frontCardDataModel, let backCardDataModel = backCardDataModel else { return }
         cardCreationRequest = CardCreationRequest(userID: "", frontCard: frontCardDataModel, backCard: backCardDataModel)
         guard let cardCreationRequest = cardCreationRequest else { return }
-        // TODO: - 갤러리 추가/이미지 코드 추가
+
         cardCreationWithAPI(request: cardCreationRequest, image: cardBackgroundImage ?? UIImage())
     }
     @IBAction func touchBackButton(_ sender: Any) {

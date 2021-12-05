@@ -20,7 +20,7 @@ class FrontCardCreationCollectionViewCell: UICollectionViewCell {
     private var optionalTextFieldList = [UITextField]()
     private var cardBackgroundImage: UIImage?
     private var defaultImageIndex: Int?
-    
+  
     public var presentingBirthBottomVCClosure: (() -> Void)?
     public var presentingMBTIBottomVCClosure: (() -> Void)?
     

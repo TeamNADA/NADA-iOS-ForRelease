@@ -8,8 +8,6 @@
 	<string>명함 배경을 설정하기 위해 갤러리 권한 허용이 필요해요.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>QR코드를 인식하여 명함을 추가하기 위해 카메라 권한 허용이 필요해요.</string>
-	<key>UIUserInterfaceStyle</key>
-	<string></string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>NotoSansCJKkr-Bold.otf</string>
@@ -54,8 +52,6 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>LSApplicationCategoryType</key>
-	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>kakaokompassauth</string>

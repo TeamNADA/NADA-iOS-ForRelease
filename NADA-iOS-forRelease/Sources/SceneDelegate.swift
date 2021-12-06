@@ -29,6 +29,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        
+        let isDark = UserDefaults.standard.bool(forKey: "darkModeState")
+        
+        // 시스템 무시하고 UserDefault 상태에 따라 화면 전체에 다크/라이트 모드를 결정
+        if let window = UIApplication.shared.windows.first {
+            if #available(iOS 13.0, *) {
+                window.overrideUserInterfaceStyle = isDark == true ? .dark : .light
+            } else {
+                window.overrideUserInterfaceStyle = .light
+            }
+        }
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {

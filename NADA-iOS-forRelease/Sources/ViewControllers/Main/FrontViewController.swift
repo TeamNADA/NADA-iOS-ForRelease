@@ -45,17 +45,9 @@ class FrontViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        cardSwiper.delegate = self
-        cardSwiper.datasource = self
-        
-        cardSwiper.isSideSwipingEnabled = false
-        
-        cardSwiper.register(nib: UINib(nibName: "FrontCardCell", bundle: nil), forCellWithReuseIdentifier: "FrontCardCell")
-        cardSwiper.register(nib: UINib(nibName: "BackCardCell", bundle: nil), forCellWithReuseIdentifier: "BackCardCell")
-        
+        setUI()
         setFrontList()
         setBackList()
-                
         // TODO: - 서버 테스트
 //        cardListFetchWithAPI(userID: "nada", isList: false, offset: 0)
     }
@@ -87,6 +79,16 @@ class FrontViewController: UIViewController {
 
 // MARK: - Extensions
 extension FrontViewController {
+    private func setUI() {
+        cardSwiper.delegate = self
+        cardSwiper.datasource = self
+        
+        cardSwiper.isSideSwipingEnabled = false
+        
+        cardSwiper.register(nib: UINib(nibName: "FrontCardCell", bundle: nil), forCellWithReuseIdentifier: "FrontCardCell")
+        cardSwiper.register(nib: UINib(nibName: "BackCardCell", bundle: nil), forCellWithReuseIdentifier: "BackCardCell")
+    }
+    
     private func setFrontList() {
         imageList.append(contentsOf: ["card",
                                       "card"

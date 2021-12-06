@@ -65,9 +65,13 @@
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconInstagram" translatesAutoresizingMaskIntoConstraints="NO" id="TXF-fP-7YQ">
                         <rect key="frame" x="24" y="433.5" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="CMJ-4p-lae"/>
+                            <constraint firstAttribute="height" constant="24" id="Xxs-9N-RXe"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LqW-bV-yHr">
-                        <rect key="frame" x="53" y="469" width="41.5" height="21"/>
+                        <rect key="frame" x="53" y="472" width="41.5" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -80,6 +84,10 @@
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconUrl" translatesAutoresizingMaskIntoConstraints="NO" id="el0-x0-WD9">
                         <rect key="frame" x="24" y="467.5" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="DaP-OT-lYg"/>
+                            <constraint firstAttribute="height" constant="24" id="cpk-TF-9yb"/>
+                        </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAt-PF-ce3">
                         <rect key="frame" x="279" y="16" width="24" height="24"/>
@@ -108,6 +116,7 @@
                 <constraint firstItem="aik-Vi-yux" firstAttribute="leading" secondItem="OeE-mZ-GcL" secondAttribute="leading" id="DzT-ZF-buY"/>
                 <constraint firstItem="eyB-c0-PQB" firstAttribute="top" secondItem="aik-Vi-yux" secondAttribute="bottom" constant="10" id="Ebd-SK-4i7"/>
                 <constraint firstAttribute="trailing" secondItem="D6t-Nc-4xH" secondAttribute="trailing" id="GGx-Tf-nEl"/>
+                <constraint firstItem="LqW-bV-yHr" firstAttribute="top" secondItem="8oi-jO-fkf" secondAttribute="bottom" constant="16" id="Hg4-24-oOy"/>
                 <constraint firstItem="TXF-fP-7YQ" firstAttribute="leading" secondItem="OeE-mZ-GcL" secondAttribute="leading" id="ITf-JC-Tm4"/>
                 <constraint firstItem="S8I-Fv-fkf" firstAttribute="bottom" secondItem="D6t-Nc-4xH" secondAttribute="bottom" id="N52-K9-r1O"/>
                 <constraint firstItem="aik-Vi-yux" firstAttribute="top" secondItem="cO6-DY-EUn" secondAttribute="bottom" constant="13" id="RLL-SV-ohE"/>
@@ -124,7 +133,6 @@
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LqW-bV-yHr" secondAttribute="trailing" constant="16" id="rNN-Bn-HHJ"/>
                 <constraint firstItem="VDj-1w-jyf" firstAttribute="leading" secondItem="OeE-mZ-GcL" secondAttribute="leading" id="txG-gf-qMy"/>
                 <constraint firstItem="el0-x0-WD9" firstAttribute="top" secondItem="TXF-fP-7YQ" secondAttribute="bottom" constant="10" id="uLD-KR-vXa"/>
-                <constraint firstItem="LqW-bV-yHr" firstAttribute="centerY" secondItem="el0-x0-WD9" secondAttribute="centerY" id="v5J-i2-9Ll"/>
             </constraints>
             <size key="customSize" width="307" height="444"/>
             <connections>

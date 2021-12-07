@@ -23,6 +23,8 @@
 		3936993E274A53E000684420 /* GroupEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3936993D274A53E000684420 /* GroupEditViewController.swift */; };
 		39369944274A568900684420 /* GroupEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39369942274A568900684420 /* GroupEditTableViewCell.swift */; };
 		39369945274A568900684420 /* GroupEditTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39369943274A568900684420 /* GroupEditTableViewCell.xib */; };
+		393E3345275F69EE00965BBF /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E3344275F69EE00965BBF /* SplashViewController.swift */; };
+		393E334A275F6A6600965BBF /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 393E3349275F6A6600965BBF /* Splash.storyboard */; };
 		39488E352706E17200BDC917 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39488E342706E17200BDC917 /* UIAlertController+Extension.swift */; };
 		394F314C27081B3A00C83291 /* FrontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394F314B27081B3A00C83291 /* FrontViewController.swift */; };
 		394F314F27081B4C00C83291 /* Front.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 394F314E27081B4C00C83291 /* Front.storyboard */; };
@@ -134,6 +136,8 @@
 		3936993D274A53E000684420 /* GroupEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEditViewController.swift; sourceTree = "<group>"; };
 		39369942274A568900684420 /* GroupEditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEditTableViewCell.swift; sourceTree = "<group>"; };
 		39369943274A568900684420 /* GroupEditTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupEditTableViewCell.xib; sourceTree = "<group>"; };
+		393E3344275F69EE00965BBF /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		393E3349275F6A6600965BBF /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		39488E342706E17200BDC917 /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		394F314B27081B3A00C83291 /* FrontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontViewController.swift; sourceTree = "<group>"; };
 		394F314E27081B4C00C83291 /* Front.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Front.storyboard; sourceTree = "<group>"; };
@@ -277,6 +281,38 @@
 			path = GroupEdit;
 			sourceTree = "<group>";
 		};
+		393E3343275F69DB00965BBF /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				393E3344275F69EE00965BBF /* SplashViewController.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		393E3346275F6A1100965BBF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				3979709726FA0BF0003FB4F5 /* Login.storyboard */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		393E3347275F6A5100965BBF /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				39D88B632745FDD400A72164 /* TabBar.storyboard */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		393E3348275F6A5D00965BBF /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				393E3349275F6A6600965BBF /* Splash.storyboard */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
 		394F314A2708157500C83291 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				394F314E27081B4C00C83291 /* Front.storyboard */,
+				39523E0A270184B100536900 /* CardList.storyboard */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -702,6 +739,7 @@
 		F8FC43A026C01F040033E151 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				393E3343275F69DB00965BBF /* Splash */,
 				3936993C274A53D300684420 /* GroupEdit */,
 				39D88B692746009B00A72164 /* BottomSheet */,
 				39D88B682745FE6C00A72164 /* TabBar */,
@@ -727,14 +765,14 @@
 		F8FC43A226C01F2B0033E151 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				393E3348275F6A5D00965BBF /* Splash */,
+				393E3347275F6A5100965BBF /* TabBar */,
+				393E3346275F6A1100965BBF /* Login */,
 				394F314D27081B4100C83291 /* Main */,
 				3958F23A270FFBC800B100B2 /* Group */,
 				39D88B602745FBA100A72164 /* More */,
 				F84BAF9E26FDB425004CA335 /* CardCreation */,
 				F8FC439026C01CDE0033E151 /* LaunchScreen.storyboard */,
-				3979709726FA0BF0003FB4F5 /* Login.storyboard */,
-				39523E0A270184B100536900 /* CardList.storyboard */,
-				39D88B632745FDD400A72164 /* TabBar.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -846,6 +884,7 @@
 				39D88B642745FDD400A72164 /* TabBar.storyboard in Resources */,
 				7766A410274FEBE200714912 /* CardInGroupCollectionViewCell.xib in Resources */,
 				7705CF402752C844005195DF /* CardView.xib in Resources */,
+				393E334A275F6A6600965BBF /* Splash.storyboard in Resources */,
 				39523E5C2701A48900536900 /* CardListTableViewCell.xib in Resources */,
 				F8FC439226C01CDE0033E151 /* LaunchScreen.storyboard in Resources */,
 				F8FC438F26C01CDE0033E151 /* Assets.xcassets in Resources */,
@@ -998,6 +1037,7 @@
 				F8915A22275728F20013D609 /* SelectBirthBottomViewController.swift in Sources */,
 				F8FC438626C01CDD0033E151 /* AppDelegate.swift in Sources */,
 				F8915A23275728F20013D609 /* SelectMBTIBottomViewController.swift in Sources */,
+				393E3345275F69EE00965BBF /* SplashViewController.swift in Sources */,
 				F8C83FB8272F9E3F0009DF0D /* UtilAPI.swift in Sources */,
 				F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */,
 				39288E12273F52B20072F403 /* CardListLookUpRequest.swift in Sources */,

@@ -22,6 +22,8 @@ PODS:
 
 DEPENDENCIES:
   - IQKeyboardManagerSwift
+  - KakaoSDKAuth
+  - KakaoSDKCommon
   - KakaoSDKUser
   - Moya (~> 14.0)
   - SkeletonView
@@ -51,6 +53,6 @@ SPEC CHECKSUMS:
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   VerticalCardSwiper: 68df635b354500f86934ea044ade37a264c044c6
 
-PODFILE CHECKSUM: 176ec86a8b34d679a9bdc17fac73e683359a616f
+PODFILE CHECKSUM: 6a31cd7bb220f2d3023d8f8d8cbc676e47f4ea89
 
 COCOAPODS: 1.11.2

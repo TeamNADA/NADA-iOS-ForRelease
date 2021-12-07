@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         
-        let isDark = UserDefaults.standard.bool(forKey: "darkModeState")
+        let isDark = UserDefaults.standard.bool(forKey: Const.UserDefaults.darkModeState)
         
         // 시스템 무시하고 UserDefault 상태에 따라 화면 전체에 다크/라이트 모드를 결정
         if let window = UIApplication.shared.windows.first {

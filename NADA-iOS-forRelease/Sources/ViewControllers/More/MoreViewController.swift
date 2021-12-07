@@ -46,7 +46,7 @@ extension MoreViewController {
     }
     
     private func setModeSwitch() {
-        modeSwitch.isOn = defaults.bool(forKey: "darkModeState")
+        modeSwitch.isOn = defaults.bool(forKey: Const.UserDefaults.darkModeState)
         changeInterfaceStyle()
     }
     
@@ -54,7 +54,7 @@ extension MoreViewController {
         if let window = UIApplication.shared.windows.first {
             if #available(iOS 13.0, *) {
                 window.overrideUserInterfaceStyle = modeSwitch.isOn == true ? .dark : .light
-                defaults.set(modeSwitch.isOn, forKey: "darkModeState")
+                defaults.set(modeSwitch.isOn, forKey: Const.UserDefaults.darkModeState)
             } else {
                 window.overrideUserInterfaceStyle = .light
             }

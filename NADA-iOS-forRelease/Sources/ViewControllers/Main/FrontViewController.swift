@@ -7,6 +7,7 @@
 
 import UIKit
 import VerticalCardSwiper
+import KakaoSDKCommon
 
 class FrontViewController: UIViewController {
     
@@ -85,8 +86,8 @@ extension FrontViewController {
         
         cardSwiper.isSideSwipingEnabled = false
         
-        cardSwiper.register(nib: UINib(nibName: "FrontCardCell", bundle: nil), forCellWithReuseIdentifier: "FrontCardCell")
-        cardSwiper.register(nib: UINib(nibName: "BackCardCell", bundle: nil), forCellWithReuseIdentifier: "BackCardCell")
+        cardSwiper.register(nib: UINib(nibName: Const.Xib.frontCardCell, bundle: nil), forCellWithReuseIdentifier: Const.Xib.frontCardCell)
+        cardSwiper.register(nib: UINib(nibName: Const.Xib.backCardCell, bundle: nil), forCellWithReuseIdentifier: Const.Xib.backCardCell)
     }
     
     private func setFrontList() {

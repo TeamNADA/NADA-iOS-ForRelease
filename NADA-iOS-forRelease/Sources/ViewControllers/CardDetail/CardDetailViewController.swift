@@ -8,22 +8,21 @@
 import UIKit
 
 class CardDetailViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    
+    // MARK: - Properties
+    // 네비게이션 바
+    @IBAction func touchBackButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    @IBAction func touchOptionButton(_ sender: Any) {
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBOutlet weak var optionButton: UIButton!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
     }
-    */
 
 }

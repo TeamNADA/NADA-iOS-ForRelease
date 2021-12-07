@@ -12,22 +12,82 @@
         <!--Card Detail View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="CardDetailViewController" id="Y6W-OH-hqX" customClass="CardDetailViewController" customModule="NADA_iOS_forRelease" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CardDetailViewController" hidesBottomBarWhenPushed="YES" id="Y6W-OH-hqX" customClass="CardDetailViewController" customModule="NADA_iOS_forRelease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bq2-MB-M50">
+                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ppy-17-v7q">
+                                        <rect key="frame" x="24" y="14" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="6ax-mU-08u"/>
+                                            <constraint firstAttribute="width" constant="24" id="TLA-gK-219"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="iconArrow"/>
+                                        <connections>
+                                            <action selector="touchBackButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="FfP-WF-ku0"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YU7-vs-utH">
+                                        <rect key="frame" x="366" y="14" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="BFT-9O-Fk8"/>
+                                            <constraint firstAttribute="height" constant="24" id="fRE-lA-AI9"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="iconOption"/>
+                                        <connections>
+                                            <action selector="touchOptionButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="w1V-X4-sTv"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBrownColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="JTJ-UR-Mgq"/>
+                                    <constraint firstItem="ppy-17-v7q" firstAttribute="leading" secondItem="Bq2-MB-M50" secondAttribute="leading" constant="24" id="V5t-lK-Qet"/>
+                                    <constraint firstItem="YU7-vs-utH" firstAttribute="top" secondItem="Bq2-MB-M50" secondAttribute="top" constant="14" id="Xyi-Xa-e57"/>
+                                    <constraint firstAttribute="trailing" secondItem="YU7-vs-utH" secondAttribute="trailing" constant="24" id="um1-Ik-jZ3"/>
+                                    <constraint firstItem="ppy-17-v7q" firstAttribute="top" secondItem="Bq2-MB-M50" secondAttribute="top" constant="14" id="upQ-If-Pv5"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3LS-7h-1h3">
+                                <rect key="frame" x="43.5" y="808" width="327" height="54"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="btnMainMatch"/>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="3LS-7h-1h3" secondAttribute="bottom" id="7Tv-CU-X3h"/>
+                            <constraint firstItem="Bq2-MB-M50" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="DKg-sD-igs"/>
+                            <constraint firstItem="Bq2-MB-M50" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Oh4-BP-iH9"/>
+                            <constraint firstItem="Bq2-MB-M50" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="jse-aF-Dba"/>
+                            <constraint firstItem="3LS-7h-1h3" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="qYv-Oj-pjV"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="optionButton" destination="YU7-vs-utH" id="Jg4-K3-dTV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="114" y="62"/>
+            <point key="canvasLocation" x="113.04347826086958" y="61.607142857142854"/>
         </scene>
     </scenes>
     <resources>
+        <image name="btnMainMatch" width="327" height="54"/>
+        <image name="iconArrow" width="24" height="24"/>
+        <image name="iconOption" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBrownColor">
+            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

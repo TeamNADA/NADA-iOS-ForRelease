@@ -65,6 +65,8 @@
 		777FF89B27359B7800BF69D3 /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89A27359B7800BF69D3 /* Groups.swift */; };
 		777FF89D2735B16B00BF69D3 /* GroupAddRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89C2735B16B00BF69D3 /* GroupAddRequest.swift */; };
 		777FF89F27364B7B00BF69D3 /* GroupEditRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89E27364B7B00BF69D3 /* GroupEditRequest.swift */; };
+		77812947275F6EA3004B34F4 /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77812946275F6EA3004B34F4 /* CardDetailViewController.swift */; };
+		7781294A275F6ED7004B34F4 /* CardDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77812949275F6ED7004B34F4 /* CardDetail.storyboard */; };
 		77AA68EA273E0EC4009C89B0 /* CardAddInGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */; };
 		77DFB871274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFB870274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift */; };
 		DBBB91E1639641F40C5B4416 /* Pods_NADA_iOS_forRelease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */; };
@@ -177,6 +179,8 @@
 		777FF89A27359B7800BF69D3 /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
 		777FF89C2735B16B00BF69D3 /* GroupAddRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAddRequest.swift; sourceTree = "<group>"; };
 		777FF89E27364B7B00BF69D3 /* GroupEditRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEditRequest.swift; sourceTree = "<group>"; };
+		77812946275F6EA3004B34F4 /* CardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
+		77812949275F6ED7004B34F4 /* CardDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardDetail.storyboard; sourceTree = "<group>"; };
 		77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddInGroupRequest.swift; sourceTree = "<group>"; };
 		77DFB870274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWithIdBottomSheetViewController.swift; sourceTree = "<group>"; };
 		7F4EE1D042EC783FA8528743 /* Pods-NADA-iOS-forRelease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.debug.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.debug.xcconfig"; sourceTree = "<group>"; };
@@ -434,6 +438,22 @@
 				7729171E2743D604001593E0 /* CardsInGroupResponse.swift */,
 			);
 			path = Group;
+			sourceTree = "<group>";
+		};
+		77812945275F6E6A004B34F4 /* CardDetail */ = {
+			isa = PBXGroup;
+			children = (
+				77812946275F6EA3004B34F4 /* CardDetailViewController.swift */,
+			);
+			path = CardDetail;
+			sourceTree = "<group>";
+		};
+		77812948275F6EB9004B34F4 /* CardDetail */ = {
+			isa = PBXGroup;
+			children = (
+				77812949275F6ED7004B34F4 /* CardDetail.storyboard */,
+			);
+			path = CardDetail;
 			sourceTree = "<group>";
 		};
 		F81171FE27383077002742CF /* Group */ = {
@@ -702,6 +722,7 @@
 		F8FC43A026C01F040033E151 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				77812945275F6E6A004B34F4 /* CardDetail */,
 				3936993C274A53D300684420 /* GroupEdit */,
 				39D88B692746009B00A72164 /* BottomSheet */,
 				39D88B682745FE6C00A72164 /* TabBar */,
@@ -730,6 +751,7 @@
 				394F314D27081B4100C83291 /* Main */,
 				3958F23A270FFBC800B100B2 /* Group */,
 				39D88B602745FBA100A72164 /* More */,
+				77812948275F6EB9004B34F4 /* CardDetail */,
 				F84BAF9E26FDB425004CA335 /* CardCreation */,
 				F8FC439026C01CDE0033E151 /* LaunchScreen.storyboard */,
 				3979709726FA0BF0003FB4F5 /* Login.storyboard */,
@@ -852,6 +874,7 @@
 				39F5A3D1271461EA00191F94 /* BackCardCell.xib in Resources */,
 				39369939274A4FCB00684420 /* Spoqa Han Sans Neo Regular.otf in Resources */,
 				39369938274A4FCB00684420 /* Spoqa Han Sans Neo Bold.otf in Resources */,
+				7781294A275F6ED7004B34F4 /* CardDetail.storyboard in Resources */,
 				39523E0B270184B100536900 /* CardList.storyboard in Resources */,
 				F82FF81D2701EBCE00E57F8B /* CardCreation.storyboard in Resources */,
 				39369937274A4FCB00684420 /* NotoSansCJKkr-Medium.otf in Resources */,
@@ -992,6 +1015,7 @@
 				F84BAFAD26FDB543004CA335 /* FrontCardCreationCollectionViewCell.swift in Sources */,
 				77703157275005AA002CBD19 /* CardResultBottomSheetViewController.swift in Sources */,
 				39D13565273FDB9C00B1A148 /* User.swift in Sources */,
+				77812947275F6EA3004B34F4 /* CardDetailViewController.swift in Sources */,
 				F822E7A92709CEB60020452C /* Notification.swift in Sources */,
 				F8C83FC5272FA2940009DF0D /* CardAPI.swift in Sources */,
 				7729171F2743D604001593E0 /* CardsInGroupResponse.swift in Sources */,

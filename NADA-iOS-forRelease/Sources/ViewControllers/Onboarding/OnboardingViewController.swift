@@ -60,33 +60,8 @@ extension OnboardingViewController {
 
 extension OnboardingViewController: UICollectionViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-
-//        print(scrollView.contentOffset.y)
-//        print(targetContentOffset.pointee.y)
-//        print(scrollView.frame.height)
-        
-//        if scrollView.contentOffset.y > 0 {
-//            if scrollView.contentOffset.y <= targetContentOffset.pointee.y {
-//                if currentIndex < 3 {
-//                    currentIndex += 1
-//                    print(currentIndex)
-//                }
-//            } else {
-//                if currentIndex > 0 {
-//                    currentIndex -= 1
-//                    print(currentIndex)
-//                }
-//            }
-//            let offset = CGPoint(x: 0, y: currentIndex * ( Size.cellHeigth + Size.cellLineSpacing - Size.topSafeArea))
-//            targetContentOffset.pointee = offset
-//        }
-        guard let cv = scrollView as? UICollectionView else { return }
-        guard let layout = cv.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-//        let cellHeight = layout.itemSize.height + layout.minimumLineSpacing
-        
-        print(scrollView.contentOffset.y)
         var offset = targetContentOffset.pointee
-        let index = round((offset.y) / ( Size.cellHeigth + Size.cellLineSpacing))
+        let index = round(offset.y / Size.cellHeigth)
         
         if index > currentIndex {
             currentIndex += 1

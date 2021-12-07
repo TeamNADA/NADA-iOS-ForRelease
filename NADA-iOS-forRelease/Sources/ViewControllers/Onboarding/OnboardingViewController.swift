@@ -11,14 +11,18 @@ class OnboardingViewController: UIViewController {
 
     // MARK: - Properties
     
+    private var currentIndex: CGFloat = 0
     private let onboardingList = ["onboarding01", "onboarding02", "onboarding03", "onboarding04"]
     // TODO: - 🪓 선배륌들 이런 방법도있어서 써봤어여 사이즈같은 쓰이는 숫자들 여기서 다뤄도 좋을거 같아여..
     private enum Size {
         static let cellWidth: CGFloat = 327
         static let cellHeigth: CGFloat = 327
         static let cellTopInset: CGFloat = 198
-        static let cellBottomInset: CGFloat = 198
-        static let cellLineSpacing: CGFloat = 30
+        static let cellBottomInset: CGFloat = 208
+        // TODO: - 나커톤 때 라이브코딩 쇼쇼쇼
+        static let cellLineSpacing: CGFloat = 85
+        // TODO: - 기기대응응 필요.
+        static let topSafeArea: CGFloat = 44
     }
     
     // MARK: - @IBOutlet Properties
@@ -43,7 +47,6 @@ extension OnboardingViewController {
         collectionViewLayout?.estimatedItemSize = .zero
         collectionViewLayout?.scrollDirection = .vertical
         onboardingCollectionView.showsVerticalScrollIndicator = false
-        onboardingCollectionView.isPagingEnabled = true
     }
     private func collectionViewDelegate() {
         onboardingCollectionView.delegate = self
@@ -55,7 +58,53 @@ extension OnboardingViewController {
 
 // MARK: - UICollectionViewDelegate
 
-extension OnboardingViewController: UICollectionViewDelegate {}
+extension OnboardingViewController: UICollectionViewDelegate {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+
+//        print(scrollView.contentOffset.y)
+//        print(targetContentOffset.pointee.y)
+//        print(scrollView.frame.height)
+        
+//        if scrollView.contentOffset.y > 0 {
+//            if scrollView.contentOffset.y <= targetContentOffset.pointee.y {
+//                if currentIndex < 3 {
+//                    currentIndex += 1
+//                    print(currentIndex)
+//                }
+//            } else {
+//                if currentIndex > 0 {
+//                    currentIndex -= 1
+//                    print(currentIndex)
+//                }
+//            }
+//            let offset = CGPoint(x: 0, y: currentIndex * ( Size.cellHeigth + Size.cellLineSpacing - Size.topSafeArea))
+//            targetContentOffset.pointee = offset
+//        }
+        guard let cv = scrollView as? UICollectionView else { return }
+        guard let layout = cv.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+//        let cellHeight = layout.itemSize.height + layout.minimumLineSpacing
+        
+        print(scrollView.contentOffset.y)
+        var offset = targetContentOffset.pointee
+        let index = round((offset.y) / ( Size.cellHeigth + Size.cellLineSpacing))
+        
+        if index > currentIndex {
+            currentIndex += 1
+        } else if index < currentIndex {
+            if currentIndex != 0 {
+                currentIndex -= 1
+            }
+        }
+        
+        if currentIndex == 0 {
+            offset = CGPoint(x: CGFloat.zero, y: -Size.topSafeArea)
+        } else {
+            offset = CGPoint(x: CGFloat.zero, y: currentIndex * (Size.cellHeigth + Size.cellLineSpacing) - Size.topSafeArea)
+        }
+
+        targetContentOffset.pointee = offset
+    }
+}
 
 // MARK: - UICollectionViewDataSource
 

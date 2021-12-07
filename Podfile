@@ -10,6 +10,8 @@ pod 'Moya', '~> 14.0'
 pod 'SkeletonView'
 pod 'SwiftLint'
 pod 'VerticalCardSwiper'
+pod 'KakaoSDKCommon'
 pod 'KakaoSDKUser'
+pod 'KakaoSDKAuth'
 pod 'IQKeyboardManagerSwift'
 end

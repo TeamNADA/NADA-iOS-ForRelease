@@ -7,6 +7,7 @@
 
 import UIKit
 import VerticalCardSwiper
+import KakaoSDKCommon
 
 class FrontViewController: UIViewController {
     
@@ -45,17 +46,9 @@ class FrontViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        cardSwiper.delegate = self
-        cardSwiper.datasource = self
-        
-        cardSwiper.isSideSwipingEnabled = false
-        
-        cardSwiper.register(nib: UINib(nibName: "FrontCardCell", bundle: nil), forCellWithReuseIdentifier: "FrontCardCell")
-        cardSwiper.register(nib: UINib(nibName: "BackCardCell", bundle: nil), forCellWithReuseIdentifier: "BackCardCell")
-        
+        setUI()
         setFrontList()
         setBackList()
-                
         // TODO: - 서버 테스트
 //        cardListFetchWithAPI(userID: "nada", isList: false, offset: 0)
     }
@@ -87,6 +80,16 @@ class FrontViewController: UIViewController {
 
 // MARK: - Extensions
 extension FrontViewController {
+    private func setUI() {
+        cardSwiper.delegate = self
+        cardSwiper.datasource = self
+        
+        cardSwiper.isSideSwipingEnabled = false
+        
+        cardSwiper.register(nib: UINib(nibName: Const.Xib.frontCardCell, bundle: nil), forCellWithReuseIdentifier: Const.Xib.frontCardCell)
+        cardSwiper.register(nib: UINib(nibName: Const.Xib.backCardCell, bundle: nil), forCellWithReuseIdentifier: Const.Xib.backCardCell)
+    }
+    
     private func setFrontList() {
         imageList.append(contentsOf: ["card",
                                       "card"
@@ -115,7 +118,7 @@ extension FrontViewController {
         linkTextList.append(contentsOf: ["Blog",
                                          "Blog"
                                         ])
-        linkIDList.append(contentsOf: ["https://github.com/TeamNADA",
+        linkIDList.append(contentsOf: ["https://github.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADA",
                                        "https://github.com/TeamNADA"
                                       ])
     }

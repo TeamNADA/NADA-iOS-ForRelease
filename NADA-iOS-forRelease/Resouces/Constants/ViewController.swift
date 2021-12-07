@@ -26,6 +26,7 @@ extension Const {
             static let cardResultBottomSheetViewController = "CardResultBottomSheetViewController"
             static let selectGroupBottomSheetViewController = "SelectGroupBottomSheetViewController"
             static let moreViewController = "MoreViewController"
+            static let onboardingViewController = "OnboardingViewController"
         }
     }
 }

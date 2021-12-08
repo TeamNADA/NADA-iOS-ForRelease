@@ -12,9 +12,12 @@ class BackCardCreationCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties
     
     static let identifier = "BackCardCreationCollectionViewCell"
+    
     private let flavorList = ["민초", "반민초", "소주", "맥주", "부먹", "찍먹", "양념", "후라이드"]
+    private let maxLength: Int = 20
     private var textFieldList = [UITextField]()
     private var requiredCollectionViewList = [UICollectionView]()
+    
     public weak var backCardCreationDelegate: BackCardCreationDelegate?
     
     // MARK: - @IBOutlet Properties
@@ -42,6 +45,7 @@ class BackCardCreationCollectionViewCell: UICollectionViewCell {
         setUI()
         registerCell()
         textFieldDelegate()
+        setNotification()
     }
 }
 
@@ -109,8 +113,47 @@ extension BackCardCreationCollectionViewCell {
     private func textFieldDelegate() {
         _ = textFieldList.map { $0.delegate = self }
     }
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
+    }
     static func nib() -> UINib {
         return UINib(nibName: Const.Xib.backCardCreationCollectionViewCell, bundle: Bundle(for: BackCardCreationCollectionViewCell.self))
+    }
+    
+    // MARK: - @objc Methods
+    
+    @objc
+    private func textFieldDidChange(_ notification: NSNotification) {
+        if let textField = notification.object as? UITextField {
+            switch textField {
+            case firstTMITextField:
+                if let text = firstTMITextField.text {
+                    if text.count > maxLength {
+                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
+                        let newString = String(text[text.startIndex..<maxIndex])
+                        firstTMITextField.text = newString
+                    }
+                }
+            case secondTMITextField:
+                if let text = secondTMITextField.text {
+                    if text.count > maxLength {
+                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
+                        let newString = String(text[text.startIndex..<maxIndex])
+                        secondTMITextField.text = newString
+                    }
+                }
+            case thirdTMITextField:
+                if let text = thirdTMITextField.text {
+                    if text.count > maxLength {
+                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
+                        let newString = String(text[text.startIndex..<maxIndex])
+                        thirdTMITextField.text = newString
+                    }
+                }
+            default:
+                return
+            }
+        }
     }
 }
 

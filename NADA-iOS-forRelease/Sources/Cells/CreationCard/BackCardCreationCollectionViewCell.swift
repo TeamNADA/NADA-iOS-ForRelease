@@ -109,6 +109,27 @@ extension BackCardCreationCollectionViewCell {
     private func textFieldDelegate() {
         _ = textFieldList.map { $0.delegate = self }
     }
+    private func checkBackCradStatus() {
+        backCardCreationDelegate?.backCardCreation(endEditing: true)
+        if isMinchoCollectionView.indexPathsForSelectedItems?.isEmpty == false &&
+            isSojuCollectionView.indexPathsForSelectedItems?.isEmpty == false &&
+            isBoomukCollectionView.indexPathsForSelectedItems?.isEmpty == false &&
+            isSaucedCollectionView.indexPathsForSelectedItems?.isEmpty == false {
+            backCardCreationDelegate?.backCardCreation(requiredInfo: true)
+        } else {
+            backCardCreationDelegate?.backCardCreation(requiredInfo: false)
+        }
+        backCardCreationDelegate?.backCardCreation(withRequired: [
+            "isMincho": isMinchoCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false,
+            "isSoju": isSojuCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false,
+            "isBoomuk": isBoomukCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false,
+            "isSauced": isSaucedCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false
+        ], withOptional: [
+            "firstTMI": firstTMITextField.text ?? "",
+            "secondTMI": secondTMITextField.text ?? "",
+            "thirdTMI": thirdTMITextField.text ?? ""
+        ])
+    }
     static func nib() -> UINib {
         return UINib(nibName: Const.Xib.backCardCreationCollectionViewCell, bundle: Bundle(for: BackCardCreationCollectionViewCell.self))
     }
@@ -117,25 +138,7 @@ extension BackCardCreationCollectionViewCell {
 // MARK: - UICollectionViewDelegate
 extension BackCardCreationCollectionViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        backCardCreationDelegate?.backCardCreation(endEditing: true)
-        if isMinchoCollectionView.indexPathsForSelectedItems?.isEmpty == false &&
-            isSojuCollectionView.indexPathsForSelectedItems?.isEmpty == false &&
-            isBoomukCollectionView.indexPathsForSelectedItems?.isEmpty == false &&
-            isSaucedCollectionView.indexPathsForSelectedItems?.isEmpty == false {
-            backCardCreationDelegate?.backCardCreation(requiredInfo: true)
-            backCardCreationDelegate?.backCardCreation(withRequired: [
-                "isMincho": isMinchoCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false,
-                "isSoju": isSojuCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false,
-                "isBoomuk": isBoomukCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false,
-                "isSauced": isSaucedCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false
-            ], withOptional: [
-                "firstTMI": firstTMITextField.text ?? "",
-                "secondTMI": secondTMITextField.text ?? "",
-                "thirdTMI": thirdTMITextField.text ?? ""
-            ])
-        } else {
-            backCardCreationDelegate?.backCardCreation(requiredInfo: false)
-        }
+        checkBackCradStatus()
     }
 }
 
@@ -193,6 +196,7 @@ extension BackCardCreationCollectionViewCell: UITextFieldDelegate {
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         backCardCreationDelegate?.backCardCreation(endEditing: true)
+        checkBackCradStatus()
         textField.borderWidth = 0
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

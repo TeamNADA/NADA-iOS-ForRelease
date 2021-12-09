@@ -116,6 +116,18 @@ extension BackCardCreationCollectionViewCell {
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
     }
+    private func checkBackCardStatus() {
+        backCardCreationDelegate?.backCardCreation(withRequired: [
+            "isMincho": isMinchoCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false,
+            "isSoju": isSojuCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false,
+            "isBoomuk": isBoomukCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false,
+            "isSauced": isSaucedCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false
+        ], withOptional: [
+            "firstTMI": firstTMITextField.text ?? "",
+            "secondTMI": secondTMITextField.text ?? "",
+            "thirdTMI": thirdTMITextField.text ?? ""
+        ])
+    }
     static func nib() -> UINib {
         return UINib(nibName: Const.Xib.backCardCreationCollectionViewCell, bundle: Bundle(for: BackCardCreationCollectionViewCell.self))
     }
@@ -170,26 +182,7 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDelegate {
         } else {
             backCardCreationDelegate?.backCardCreation(requiredInfo: false)
         }
-        backCardCreationDelegate?.backCardCreation(withRequired: [
-            "isMincho": isMinchoCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false,
-            "isSoju": isSojuCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false,
-            "isBoomuk": isBoomukCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false,
-            "isSauced": isSaucedCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false
-        ], withOptional: [
-            "firstTMI": firstTMITextField.text ?? "",
-            "secondTMI": secondTMITextField.text ?? "",
-            "thirdTMI": thirdTMITextField.text ?? ""
-        ])
-    }
-    static func nib() -> UINib {
-        return UINib(nibName: Const.Xib.backCardCreationCollectionViewCell, bundle: Bundle(for: BackCardCreationCollectionViewCell.self))
-    }
-}
-
-// MARK: - UICollectionViewDelegate
-extension BackCardCreationCollectionViewCell: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        checkBackCradStatus()
+        checkBackCardStatus()
     }
 }
 
@@ -247,7 +240,7 @@ extension BackCardCreationCollectionViewCell: UITextFieldDelegate {
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         backCardCreationDelegate?.backCardCreation(endEditing: true)
-        checkBackCradStatus()
+        checkBackCardStatus()
         textField.borderWidth = 0
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

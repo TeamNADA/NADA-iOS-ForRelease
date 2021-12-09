@@ -173,20 +173,20 @@ extension FrontCardCreationCollectionViewCell {
             mbtiTextField.hasText &&
             defaultImageIndex != nil {
             frontCardCreationDelegate?.frontCardCreation(requiredInfo: true)
-            frontCardCreationDelegate?.frontCardCreation(withRequired: [
-                "defaultImageIndex": String(defaultImageIndex ?? -1),
-                "title": cardTitleTextField.text ?? "",
-                "name": userNameTextField.text ?? "",
-                "birthDate": birthTextField.text ?? "",
-                "mbti": mbtiTextField.text ?? ""
-            ], withOptional: [
-                "instagram": instagramIDTextField.text ?? "",
-                "linkURL": linkURLTextField.text ?? "",
-                "description": descriptionTextField.text ?? ""
-            ])
         } else {
             frontCardCreationDelegate?.frontCardCreation(requiredInfo: false)
         }
+        frontCardCreationDelegate?.frontCardCreation(withRequired: [
+            "defaultImageIndex": String(defaultImageIndex ?? -1),
+            "title": cardTitleTextField.text ?? "",
+            "name": userNameTextField.text ?? "",
+            "birthDate": birthTextField.text ?? "",
+            "mbti": mbtiTextField.text ?? ""
+        ], withOptional: [
+            "instagram": instagramIDTextField.text ?? "",
+            "linkURL": linkURLTextField.text ?? "",
+            "description": descriptionTextField.text ?? ""
+        ])
     }
     static func nib() -> UINib {
         return UINib(nibName: Const.Xib.frontCardCreationCollectionViewCell, bundle: Bundle(for: FrontCardCreationCollectionViewCell.self))

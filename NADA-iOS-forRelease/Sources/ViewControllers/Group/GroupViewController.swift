@@ -292,6 +292,7 @@ extension GroupViewController: UICollectionViewDataSource {
             print(indexPath.row)
         case cardsCollectionView:
             guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
+            nextVC.cardBackgroundImage = UIImage(named: "card")
             
             navigationController?.pushViewController(nextVC, animated: true)
         default:

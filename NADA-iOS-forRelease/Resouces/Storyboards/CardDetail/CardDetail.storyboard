@@ -49,9 +49,6 @@
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="iconOption"/>
-                                        <connections>
-                                            <action selector="touchOptionButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="w1V-X4-sTv"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
@@ -76,7 +73,6 @@
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="540" id="QoQ-xU-ny7"/>
-                                    <constraint firstAttribute="width" constant="327" id="Rkj-hb-41k"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yM7-jk-cSi">
@@ -106,12 +102,14 @@
                             <constraint firstItem="Bq2-MB-M50" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="DKg-sD-igs"/>
                             <constraint firstItem="Bq2-MB-M50" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Oh4-BP-iH9"/>
                             <constraint firstItem="yM7-jk-cSi" firstAttribute="top" secondItem="0P6-1k-dQm" secondAttribute="bottom" constant="13" id="XRH-f9-jqw"/>
+                            <constraint firstItem="0P6-1k-dQm" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="Yhm-Gf-yqd"/>
                             <constraint firstItem="Bq2-MB-M50" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="jse-aF-Dba"/>
                             <constraint firstItem="0P6-1k-dQm" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="qBS-fn-4f0"/>
                             <constraint firstItem="3LS-7h-1h3" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="qYv-Oj-pjV"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cardView" destination="0P6-1k-dQm" id="qGN-9y-K4Y"/>
                         <outlet property="optionButton" destination="YU7-vs-utH" id="Jg4-K3-dTV"/>
                     </connections>
                 </viewController>

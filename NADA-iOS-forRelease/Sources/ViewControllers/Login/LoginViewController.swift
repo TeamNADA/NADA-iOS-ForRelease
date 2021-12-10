@@ -19,7 +19,6 @@ class LoginViewController: UIViewController {
         // FIXME: - 서버 연결 테스트, 추후 위치 수정 필요
         // getUserIDFetchWithAPI(userID: "nada")
         // getUserTokenFetchWithAPI(userID: "nada")
-        // postUserSignUpWithAPI(request: User(userID: "nada3"))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,9 +78,9 @@ extension LoginViewController {
                 } else {                // 로그인 성공했을 때
                     print("loginWithKakaoTalk() success.")
                     self.getUserInfo()
-                    _ = oauthToken
                     // 어세스토큰
-                    let accessToken = oauthToken?.accessToken
+                    // let accessToken = oauthToken?.accessToken
+                    
                     self.goToMain()
                 }
             }
@@ -93,9 +92,8 @@ extension LoginViewController {
                 } else {                // 로그인 성공했을 때
                     print("loginWithKakaoTalk() success.")
                     self.getUserInfo()
-                    _ = oauthToken
                     // 어세스토큰
-                    let accessToken = oauthToken?.accessToken
+                    // let accessToken = oauthToken?.accessToken
                     self.goToMain()
                 }
             }
@@ -110,7 +108,9 @@ extension LoginViewController {
                 print(error)
             } else {
                 print("me() success.")
+                self.goToMain()
                 let email = user?.kakaoAccount?.email   // 이메일 정보
+                
             }
         }
     }
@@ -139,7 +139,7 @@ extension LoginViewController {
             }
         }
     }
-    
+
     func getUserTokenFetchWithAPI(userID: String) {
         UserAPI.shared.userTokenFetch(userID: userID) { response in
             switch response {
@@ -158,7 +158,7 @@ extension LoginViewController {
     }
     
     func postUserSignUpWithAPI(request: User) {
-        UserAPI.shared.userSignUp(request: request) { response in
+        UserAPI.shared.userSocialSignUp(request: request) { response in
             switch response {
             case .success:
                 print("postUserSignUpWithAPI - success")
@@ -173,4 +173,5 @@ extension LoginViewController {
             }
         }
     }
+    
 }

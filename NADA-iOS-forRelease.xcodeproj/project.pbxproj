@@ -297,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				394F314E27081B4C00C83291 /* Front.storyboard */,
+				39523E0A270184B100536900 /* CardList.storyboard */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -343,6 +344,22 @@
 				7770315827500C49002CBD19 /* QRScan.storyboard */,
 			);
 			path = Group;
+			sourceTree = "<group>";
+		};
+		395FE2E127619B0800A9815E /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				3979709726FA0BF0003FB4F5 /* Login.storyboard */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		395FE2E227619B0F00A9815E /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				39D88B632745FDD400A72164 /* TabBar.storyboard */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		3979709426FA0BD8003FB4F5 /* Login */ = {
@@ -762,15 +779,14 @@
 		F8FC43A226C01F2B0033E151 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				395FE2E227619B0F00A9815E /* TabBar */,
+				395FE2E127619B0800A9815E /* Login */,
 				F8518056275D041F006BD5ED /* Onboarding */,
 				394F314D27081B4100C83291 /* Main */,
 				3958F23A270FFBC800B100B2 /* Group */,
 				39D88B602745FBA100A72164 /* More */,
 				F84BAF9E26FDB425004CA335 /* CardCreation */,
 				F8FC439026C01CDE0033E151 /* LaunchScreen.storyboard */,
-				3979709726FA0BF0003FB4F5 /* Login.storyboard */,
-				39523E0A270184B100536900 /* CardList.storyboard */,
-				39D88B632745FDD400A72164 /* TabBar.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";

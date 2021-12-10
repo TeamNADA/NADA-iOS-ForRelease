@@ -34,12 +34,13 @@ class BackgroundCollectionViewCell: UICollectionViewCell {
 
 extension BackgroundCollectionViewCell {
     private func setUI() {
-        bgView.backgroundColor = .tertiary
+        bgView.backgroundColor = .mainColorNadaMain
         bgView.isHidden = true
         bgView.layer.cornerRadius = bgViewCornerRadius
         
         opacityView.layer.cornerRadius = imageviewCornerRadius
         imageView.layer.cornerRadius = imageviewCornerRadius
+        imageView.contentMode = .scaleAspectFill
     }
     func initCell(image: UIImage, isFirst: Bool) {
         imageView.image = image

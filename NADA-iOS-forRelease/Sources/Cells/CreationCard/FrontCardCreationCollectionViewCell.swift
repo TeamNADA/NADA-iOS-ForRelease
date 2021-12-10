@@ -15,7 +15,7 @@ class FrontCardCreationCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    private let backgroundList = ["img", "img", "img", "img", "img"]
+    private let backgroundList = ["", "imageDefaultBg01", "imageDefaultBg02", "imageDefaultBg03", "imageDefaultBg04", "imageDefaultBg05", "imageDefaultBg06", "imageDefaultBg07"]
     private var requiredTextFieldList = [UITextField]()
     private var optionalTextFieldList = [UITextField]()
     private var cardBackgroundImage: UIImage?
@@ -176,17 +176,19 @@ extension FrontCardCreationCollectionViewCell {
         } else {
             frontCardCreationDelegate?.frontCardCreation(requiredInfo: false)
         }
-        frontCardCreationDelegate?.frontCardCreation(withRequired: [
-            "defaultImageIndex": String(defaultImageIndex ?? -1),
-            "title": cardTitleTextField.text ?? "",
-            "name": userNameTextField.text ?? "",
-            "birthDate": birthTextField.text ?? "",
-            "mbti": mbtiTextField.text ?? ""
-        ], withOptional: [
-            "instagram": instagramIDTextField.text ?? "",
-            "linkURL": linkURLTextField.text ?? "",
-            "description": descriptionTextField.text ?? ""
-        ])
+        if let defaultImageIndex = defaultImageIndex {
+            frontCardCreationDelegate?.frontCardCreation(withRequired: [
+                "defaultImageIndex": String(defaultImageIndex),
+                "title": cardTitleTextField.text ?? "",
+                "name": userNameTextField.text ?? "",
+                "birthDate": birthTextField.text ?? "",
+                "mbti": mbtiTextField.text ?? ""
+            ], withOptional: [
+                "instagram": instagramIDTextField.text ?? "",
+                "linkURL": linkURLTextField.text ?? "",
+                "description": descriptionTextField.text ?? ""
+            ])
+        }
     }
     static func nib() -> UINib {
         return UINib(nibName: Const.Xib.frontCardCreationCollectionViewCell, bundle: Bundle(for: FrontCardCreationCollectionViewCell.self))
@@ -261,6 +263,12 @@ extension FrontCardCreationCollectionViewCell: UICollectionViewDelegate {
             defaultImageIndex = 3
         case 4:
             defaultImageIndex = 4
+        case 5:
+            defaultImageIndex = 5
+        case 6:
+            defaultImageIndex = 6
+        case 7:
+            defaultImageIndex = 7
         default:
             return
         }
@@ -282,9 +290,8 @@ extension FrontCardCreationCollectionViewCell: UICollectionViewDataSource {
         case 0:
             cell.initCell(image: cardBackgroundImage ?? UIImage(), isFirst: true)
         default:
-            // FIXME: - 기본 명함 배경 넘겨주면 수정.
-//            guard let image = UIImage(systemName: backgroundList[indexPath.item]) else { return UICollectionViewCell() }
-            cell.initCell(image: UIImage(), isFirst: false)
+            guard let image = UIImage(named: backgroundList[indexPath.item]) else { return UICollectionViewCell() }
+            cell.initCell(image: image, isFirst: false)
         }
         return cell
     }

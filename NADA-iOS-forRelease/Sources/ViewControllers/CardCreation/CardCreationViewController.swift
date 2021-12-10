@@ -41,7 +41,6 @@ class CardCreationViewController: UIViewController {
     private var mbtiText: String?
     private var birthText: String?
     private var newImage: UIImage?
-    private var defaultImageIndex: Int?
     
     // MARK: - @IBOutlet Properties
     
@@ -90,7 +89,7 @@ class CardCreationViewController: UIViewController {
     }
     @IBAction func pushToCardCompletionView(_ sender: Any) {
         guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardCreationPreview, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardCreationPreviewViewController) as? CardCreationPreviewViewController else { return }
-        
+
         nextVC.frontCardDataModel = frontCard
         nextVC.backCardDataModel = backCard
         nextVC.cardBackgroundImage = newImage
@@ -149,13 +148,13 @@ extension CardCreationViewController {
             // TODO: - QA/iOS 13 테스트. selected 설정.
             completeButton.layer.cornerRadius = 15
             
-        completeButton.setTitle("완료", for: .normal)
+            completeButton.setTitle("완료", for: .normal)
             completeButton.setTitleColor(.white, for: .normal)
-        completeButton.setBackgroundImage(UIImage(named: "enableButtonBackground"), for: .normal)
-        
-        completeButton.setTitle("완료", for: .disabled)
-        completeButton.setTitleColor(.white, for: .disabled)
-        completeButton.setBackgroundImage(UIImage(named: "disableButtonBackground"), for: .disabled)
+            completeButton.setBackgroundImage(UIImage(named: "enableButtonBackground"), for: .normal)
+            
+            completeButton.setTitle("완료", for: .disabled)
+            completeButton.setTitleColor(.white, for: .disabled)
+            completeButton.setBackgroundImage(UIImage(named: "disableButtonBackground"), for: .disabled)
         }
         
         let cardCreationCollectionViewlayout = cardCreationCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
@@ -379,7 +378,7 @@ extension CardCreationViewController: FrontCardCreationDelegate {
         isEditingMode = valid
     }
     func frontCardCreation(withRequired requiredInfo: [String: String], withOptional optionalInfo: [String: String]) {
-        frontCard = FrontCardDataModel(defaultImage: Int(requiredInfo["defaultImage"] ?? "-1") ?? -1,
+        frontCard = FrontCardDataModel(defaultImage: Int(requiredInfo["defaultImageIndex"] ?? "-1") ?? -1,
                                        title: requiredInfo["title"] ?? "",
                                        name: requiredInfo["name"] ?? "",
                                        birthDate: requiredInfo["birthDate"] ?? "",
@@ -419,13 +418,9 @@ extension CardCreationViewController: UIImagePickerControllerDelegate, UINavigat
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             newImage = editedImage
-        } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            newImage = originalImage
-        }
-        if let cropImage = info[UIImagePickerController.InfoKey.cropRect] as? UIImage {
-            newImage = cropImage
         }
         NotificationCenter.default.post(name: .sendNewImage, object: newImage)
+        
         picker.dismiss(animated: true, completion: nil)
     }
 }

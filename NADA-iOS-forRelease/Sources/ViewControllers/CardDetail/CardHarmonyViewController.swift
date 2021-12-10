@@ -41,7 +41,7 @@ extension CardHarmonyViewController {
     private func setUI() {
         harmonyImageView.image = UIImage(named: "icnHarmonyRed")
         harmonyPercentLabel.text = "10%"
-        
+        harmonyPercentLabel.textColor = percentageColor
         harmonyDescriptionLabel.text = "좀 더 친해지길 바라..😅"
     }
 }

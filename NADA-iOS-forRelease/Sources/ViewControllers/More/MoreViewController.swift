@@ -12,6 +12,8 @@ class MoreViewController: UIViewController {
     
     // MARK: - Properteis
     let defaults = UserDefaults.standard
+    let policyURL = URL(string: "https://nadaitzme.notion.site/NADA-8385054bc2e44762a62f590534b2a24d")!
+    let serviceURL = URL(string: "https://nadaitzme.notion.site/NADA-58544bc9f0a1493c94f223cab3a440d0")!
     
     var firstItems = ["개인정보 처리방침", "서비스 이용약관", "Team NADA", "오픈소스 라이브러리"]
     var secondItems = ["로그아웃", "정보 초기화", "회원탈퇴"]
@@ -86,8 +88,8 @@ extension MoreViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             switch indexPath.row {
-            case 0: print("개인정보 처리방침")
-            case 1: print("서비스 이용약관")
+            case 0: openURL(link: policyURL)
+            case 1: openURL(link: serviceURL)
             case 2: print("Team NADA")
             case 3: print("오픈소스 라이브러리")
             default: print("default!")
@@ -105,6 +107,17 @@ extension MoreViewController: UITableViewDelegate {
             default: print("default!")
             }
         }
+    }
+}
+
+// MARK: - 셀 클릭에 따른 작업 분리
+extension MoreViewController {
+    
+    func openURL(link: URL) {
+        
+        if UIApplication.shared.canOpenURL(link) {
+            UIApplication.shared.open(link, options: [:], completionHandler: nil)
+        } 
     }
 }
 

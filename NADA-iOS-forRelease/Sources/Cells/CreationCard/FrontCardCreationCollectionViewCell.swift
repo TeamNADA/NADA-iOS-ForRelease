@@ -20,6 +20,7 @@ class FrontCardCreationCollectionViewCell: UICollectionViewCell {
     private var optionalTextFieldList = [UITextField]()
     private var cardBackgroundImage: UIImage?
     private var defaultImageIndex: Int?
+    private let maxLength: Int = 15
   
     public var presentingBirthBottomVCClosure: (() -> Void)?
     public var presentingMBTIBottomVCClosure: (() -> Void)?
@@ -160,6 +161,7 @@ extension FrontCardCreationCollectionViewCell {
         NotificationCenter.default.addObserver(self, selector: #selector(setBirthTextField(notification:)), name: .frontCardBirth, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setMBTITextField(notification:)), name: .frontCardMBTI, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setCardBackgroundImage(notifiation:)), name: .sendNewImage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
     }
     
     /// front card 가 편집되었는지. 필수 항목이 다 입력되었는지 체크.
@@ -171,20 +173,20 @@ extension FrontCardCreationCollectionViewCell {
             mbtiTextField.hasText &&
             defaultImageIndex != nil {
             frontCardCreationDelegate?.frontCardCreation(requiredInfo: true)
-            frontCardCreationDelegate?.frontCardCreation(withRequired: [
-                "defaultImageIndex": String(defaultImageIndex ?? -1),
-                "title": cardTitleTextField.text ?? "",
-                "name": userNameTextField.text ?? "",
-                "birthDate": birthTextField.text ?? "",
-                "mbti": mbtiTextField.text ?? ""
-            ], withOptional: [
-                "instagram": instagramIDTextField.text ?? "",
-                "linkURL": linkURLTextField.text ?? "",
-                "description": descriptionTextField.text ?? ""
-            ])
         } else {
             frontCardCreationDelegate?.frontCardCreation(requiredInfo: false)
         }
+        frontCardCreationDelegate?.frontCardCreation(withRequired: [
+            "defaultImageIndex": String(defaultImageIndex ?? -1),
+            "title": cardTitleTextField.text ?? "",
+            "name": userNameTextField.text ?? "",
+            "birthDate": birthTextField.text ?? "",
+            "mbti": mbtiTextField.text ?? ""
+        ], withOptional: [
+            "instagram": instagramIDTextField.text ?? "",
+            "linkURL": linkURLTextField.text ?? "",
+            "description": descriptionTextField.text ?? ""
+        ])
     }
     static func nib() -> UINib {
         return UINib(nibName: Const.Xib.frontCardCreationCollectionViewCell, bundle: Bundle(for: FrontCardCreationCollectionViewCell.self))
@@ -209,13 +211,44 @@ extension FrontCardCreationCollectionViewCell {
         cardBackgroundImage = notifiation.object as? UIImage
         backgroundSettingCollectionView.reloadData()
     }
+    @objc
+    private func textFieldDidChange(_ notification: Notification) {
+        if let textField = notification.object as? UITextField {
+            switch textField {
+            case cardTitleTextField:
+                if let text = cardTitleTextField.text {
+                    if text.count > maxLength {
+                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
+                        let newString = String(text[text.startIndex..<maxIndex])
+                        cardTitleTextField.text = newString
+                    }
+                }
+            case userNameTextField:
+                if let text = userNameTextField.text {
+                    if text.count > maxLength {
+                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
+                        let newString = String(text[text.startIndex..<maxIndex])
+                        userNameTextField.text = newString
+                    }
+                }
+            case descriptionTextField:
+                if let text = descriptionTextField.text {
+                    if text.count > maxLength {
+                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
+                        let newString = String(text[text.startIndex..<maxIndex])
+                        descriptionTextField.text = newString
+                    }
+                }
+            default:
+                return
+            }
+        }
+    }
 }
 
 // MARK: - UICollectionViewDelegate
 extension FrontCardCreationCollectionViewCell: UICollectionViewDelegate {
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         switch indexPath.item {
         case 0:
             NotificationCenter.default.post(name: .presentingImagePicker, object: nil)

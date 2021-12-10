@@ -101,7 +101,7 @@ extension MoreViewController: UITableViewDelegate {
             case 2:
                 print("회원탈퇴!")
                 // TODO: - 회원탈퇴 서버 전, alert 창이나 별도의 알림 필요, 수정 요함
-                // deleteUserWithAPI(userID: "nada3")
+                deleteUserWithAPI(userID: "2alswo7@naver.com")
             default: print("default!")
             }
         }
@@ -146,7 +146,6 @@ extension MoreViewController: UITableViewDataSource {
 
 // MARK: - Network
 extension MoreViewController {
-    // FIXME: - 계정 탈퇴 네트워크 함수 추후 위치 수정
     func deleteUserWithAPI(userID: String) {
         UserAPI.shared.userDelete(userID: userID) { response in
             switch response {

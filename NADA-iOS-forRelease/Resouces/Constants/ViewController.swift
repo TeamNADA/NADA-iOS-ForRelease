@@ -27,6 +27,7 @@ extension Const {
             static let selectGroupBottomSheetViewController = "SelectGroupBottomSheetViewController"
             static let moreViewController = "MoreViewController"
             static let splashViewController = "SplashViewController"
+            static let onboardingViewController = "OnboardingViewController"
         }
     }
 }

@@ -1,9 +1,9 @@
 {
   "images" : [
     {
-      "scale" : "1x",
+      "idiom" : "universal",
       "filename" : "imgCardBg01.png",
-      "idiom" : "universal"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",

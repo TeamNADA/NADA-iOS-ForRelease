@@ -12,6 +12,7 @@ class CardCreationPreviewViewController: UIViewController {
     public var frontCardDataModel: FrontCardDataModel?
     public var backCardDataModel: BackCardDataModel?
     public var cardBackgroundImage: UIImage?
+    public var defaultImageIndex: Int?
     
     private var isFront = true
     private var cardCreationRequest: CardCreationRequest?
@@ -28,6 +29,7 @@ class CardCreationPreviewViewController: UIViewController {
         super.viewDidLoad()
         
         setUI()
+        setBackgroundImage()
         setFrontCard()
         setGestureRecognizer()
     }
@@ -93,6 +95,25 @@ extension CardCreationPreviewViewController {
         let swipeRightGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(transitionCardWithAnimation(_:)))
         swipeRightGestureRecognizer.direction = .right
         self.cardView.addGestureRecognizer(swipeRightGestureRecognizer)
+    }
+    private func setBackgroundImage() {
+        if frontCardDataModel?.defaultImage == 0 {
+            return
+        } else if frontCardDataModel?.defaultImage == 1 {
+            cardBackgroundImage = UIImage(named: "imgCardBg01")
+        } else if frontCardDataModel?.defaultImage == 2 {
+            cardBackgroundImage = UIImage(named: "imgCardBg02")
+        } else if frontCardDataModel?.defaultImage == 3 {
+            cardBackgroundImage = UIImage(named: "imgCardBg03")
+        } else if frontCardDataModel?.defaultImage == 4 {
+            cardBackgroundImage = UIImage(named: "imgCardBg04")
+        } else if frontCardDataModel?.defaultImage == 5 {
+            cardBackgroundImage = UIImage(named: "imgCardBg05")
+        } else if frontCardDataModel?.defaultImage == 6 {
+            cardBackgroundImage = UIImage(named: "imgCardBg06")
+        } else {
+            cardBackgroundImage = UIImage(named: "imgCardBg07")
+        }
     }
 
     // MARK: - @objc Methods

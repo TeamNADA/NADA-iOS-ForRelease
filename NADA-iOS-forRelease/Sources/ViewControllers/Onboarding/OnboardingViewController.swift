@@ -13,15 +13,12 @@ class OnboardingViewController: UIViewController {
     
     private var currentIndex: CGFloat = 0
     private let onboardingList = ["onboarding01", "onboarding02", "onboarding03", "onboarding04"]
-    // TODO: - 🪓 선배륌들 이런 방법도있어서 써봤어여 사이즈같은 쓰이는 숫자들 여기서 다뤄도 좋을거 같아여..
     private enum Size {
         static let cellWidth: CGFloat = 327
         static let cellHeigth: CGFloat = 327
         static let cellTopInset: CGFloat = 198
         static let cellBottomInset: CGFloat = 208
-        // TODO: - 나커톤 때 라이브코딩 쇼쇼쇼
         static let cellLineSpacing: CGFloat = 85
-        // TODO: - 기기대응응 필요.
         static let topSafeArea: CGFloat = 44
     }
     

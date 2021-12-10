@@ -51,7 +51,7 @@
                                         <state key="normal" image="iconOption"/>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBrownColor"/>
+                                <color key="backgroundColor" name="background"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="JTJ-UR-Mgq"/>
                                     <constraint firstItem="ppy-17-v7q" firstAttribute="leading" secondItem="Bq2-MB-M50" secondAttribute="leading" constant="24" id="V5t-lK-Qet"/>
@@ -123,6 +123,9 @@
         <image name="btnMainMatch" width="327" height="54"/>
         <image name="iconArrow" width="24" height="24"/>
         <image name="iconOption" width="24" height="24"/>
+        <namedColor name="background">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="secondary">
             <color red="0.16862745098039217" green="0.17647058823529413" blue="0.19215686274509805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

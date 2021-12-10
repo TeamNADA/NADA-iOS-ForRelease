@@ -19,10 +19,8 @@ class CardDetailViewController: UIViewController {
     @IBAction func touchBackButton(_ sender: Any) {
         switch status {
         case .group:
-            print("group")
             self.navigationController?.popViewController(animated: true)
         case .add:
-            print("add")
             self.dismiss(animated: true, completion: nil)
         }
     }

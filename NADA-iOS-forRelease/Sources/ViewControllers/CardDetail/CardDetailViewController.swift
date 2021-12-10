@@ -18,6 +18,12 @@ class CardDetailViewController: UIViewController {
         
     }
     
+    @IBAction func presentHarmonyViewController(_ sender: Any) {
+        guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardHarmony, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardHarmonyViewController) as? CardHarmonyViewController else { return }
+        
+        nextVC.modalPresentationStyle = .overFullScreen
+        self.present(nextVC, animated: false, completion: nil)
+    }
     @IBOutlet weak var optionButton: UIButton!
     
     override func viewDidLoad() {

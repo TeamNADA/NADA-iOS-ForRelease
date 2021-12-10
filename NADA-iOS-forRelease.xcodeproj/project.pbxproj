@@ -69,6 +69,8 @@
 		7781294A275F6ED7004B34F4 /* CardDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77812949275F6ED7004B34F4 /* CardDetail.storyboard */; };
 		77AA68EA273E0EC4009C89B0 /* CardAddInGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */; };
 		77DFB871274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFB870274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift */; };
+		77F2C0EB27632A91007641E3 /* CardHarmonyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */; };
+		77F2C0ED27632AA7007641E3 /* CardHarmony.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */; };
 		DBBB91E1639641F40C5B4416 /* Pods_NADA_iOS_forRelease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */; };
 		F811720027383097002742CF /* ChangeGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81171FF27383097002742CF /* ChangeGroupRequest.swift */; };
 		F822E7A92709CEB60020452C /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F822E7A82709CEB60020452C /* Notification.swift */; };
@@ -183,6 +185,8 @@
 		77812949275F6ED7004B34F4 /* CardDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardDetail.storyboard; sourceTree = "<group>"; };
 		77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddInGroupRequest.swift; sourceTree = "<group>"; };
 		77DFB870274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWithIdBottomSheetViewController.swift; sourceTree = "<group>"; };
+		77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHarmonyViewController.swift; sourceTree = "<group>"; };
+		77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardHarmony.storyboard; sourceTree = "<group>"; };
 		7F4EE1D042EC783FA8528743 /* Pods-NADA-iOS-forRelease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.debug.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.debug.xcconfig"; sourceTree = "<group>"; };
 		F81171FF27383097002742CF /* ChangeGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeGroupRequest.swift; sourceTree = "<group>"; };
 		F822E7A82709CEB60020452C /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
@@ -444,6 +448,7 @@
 			isa = PBXGroup;
 			children = (
 				77812946275F6EA3004B34F4 /* CardDetailViewController.swift */,
+				77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */,
 			);
 			path = CardDetail;
 			sourceTree = "<group>";
@@ -452,6 +457,7 @@
 			isa = PBXGroup;
 			children = (
 				77812949275F6ED7004B34F4 /* CardDetail.storyboard */,
+				77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */,
 			);
 			path = CardDetail;
 			sourceTree = "<group>";
@@ -863,6 +869,7 @@
 				394F314F27081B4C00C83291 /* Front.storyboard in Resources */,
 				3979709826FA0BF0003FB4F5 /* Login.storyboard in Resources */,
 				39369945274A568900684420 /* GroupEditTableViewCell.xib in Resources */,
+				77F2C0ED27632AA7007641E3 /* CardHarmony.storyboard in Resources */,
 				F84BAFB226FDB552004CA335 /* BackCardCreationCollectionViewCell.xib in Resources */,
 				3936993B274A53C600684420 /* GroupEdit.storyboard in Resources */,
 				39D88B642745FDD400A72164 /* TabBar.storyboard in Resources */,
@@ -967,6 +974,7 @@
 				777FF89B27359B7800BF69D3 /* Groups.swift in Sources */,
 				777FF89F27364B7B00BF69D3 /* GroupEditRequest.swift in Sources */,
 				399C55DF2711949D00845A54 /* CGPoint+Distance.swift in Sources */,
+				77F2C0EB27632A91007641E3 /* CardHarmonyViewController.swift in Sources */,
 				F83206AA26F61E3700D61711 /* FrontCardCell.swift in Sources */,
 				3979709626FA0BE5003FB4F5 /* LoginViewController.swift in Sources */,
 				39488E352706E17200BDC917 /* UIAlertController+Extension.swift in Sources */,

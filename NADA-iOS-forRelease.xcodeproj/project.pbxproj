@@ -297,22 +297,6 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
-		393E3346275F6A1100965BBF /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				3979709726FA0BF0003FB4F5 /* Login.storyboard */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		393E3347275F6A5100965BBF /* TabBar */ = {
-			isa = PBXGroup;
-			children = (
-				39D88B632745FDD400A72164 /* TabBar.storyboard */,
-			);
-			path = TabBar;
-			sourceTree = "<group>";
-		};
 		393E3348275F6A5D00965BBF /* Splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -1238,7 +1222,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4QG3GC35LA;
+				DEVELOPMENT_TEAM = T3VFJ764ZC;
 				INFOPLIST_FILE = "NADA-iOS-forRelease/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1258,7 +1242,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4QG3GC35LA;
+				DEVELOPMENT_TEAM = T3VFJ764ZC;
 				INFOPLIST_FILE = "NADA-iOS-forRelease/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -8,10 +8,6 @@
 import Foundation
 
 extension Notification.Name {
-    static let deleteTabBar = NSNotification.Name("deleteTabBar")
-    static let expressTabBar = NSNotification.Name("expressTabBar")
-    
-    // MARK: - Card Creation
     static let frontCardBirth = Notification.Name("frontCardBirth")
     static let frontCardMBTI = Notification.Name("frontCardMBTI")
     static let presentingImagePicker = Notification.Name("presentingImagePicker")

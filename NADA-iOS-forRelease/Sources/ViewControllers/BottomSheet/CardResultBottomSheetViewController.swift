@@ -72,7 +72,9 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
     }
     
     @objc func presentGroupSelectBottomSheet() {
-        hideBottomSheetAndPresent(nextBottomSheet: SelectGroupBottomSheetViewController(), title: "그룹선택", height: 386)
+        let nextVC = SelectGroupBottomSheetViewController()
+        nextVC.status = .add
+        hideBottomSheetAndPresent(nextBottomSheet: nextVC, title: "그룹선택", height: 386)
         print("next bottomsheet")
     }
 

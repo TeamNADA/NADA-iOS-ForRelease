@@ -18,6 +18,8 @@ extension Const {
             static let group = "Group"
             static let groupEdit = "GroupEdit"
             static let qrScan = "QRScan"
+            static let cardDetail = "CardDetail"
+            static let cardHarmony = "CardHarmony"
             static let tabBar = "TabBar"
             static let cardCreationPreview = "CardCreationPreview"
             static let more = "More"

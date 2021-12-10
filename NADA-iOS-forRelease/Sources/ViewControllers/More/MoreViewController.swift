@@ -90,7 +90,8 @@ extension MoreViewController: UITableViewDelegate {
             switch indexPath.row {
             case 0: openURL(link: policyURL)
             case 1: openURL(link: serviceURL)
-            case 2: print("Team NADA")
+            case 2: pushView(nextSB: Const.Storyboard.Name.teamNADA,
+                             nextVC: Const.ViewController.Identifier.teamNADAViewController)
             case 3: pushView(nextSB: Const.Storyboard.Name.openSource,
                              nextVC: Const.ViewController.Identifier.openSourceViewController)
             default: print("default!")

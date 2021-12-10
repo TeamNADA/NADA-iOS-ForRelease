@@ -37,7 +37,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오픈소스 라이선스" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JJU-fH-H85">
-                                        <rect key="frame" x="123" y="17" width="129" height="20.666666666666671"/>
+                                        <rect key="frame" x="123" y="18" width="129" height="20.666666666666671"/>
                                         <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="17"/>
                                         <color key="textColor" name="secondary"/>
                                         <nil key="highlightedColor"/>
@@ -45,7 +45,7 @@
                                 </subviews>
                                 <color key="backgroundColor" name="background"/>
                                 <constraints>
-                                    <constraint firstItem="JJU-fH-H85" firstAttribute="top" secondItem="Pg6-Rx-Gjl" secondAttribute="top" constant="17" id="YHq-Up-GEH"/>
+                                    <constraint firstItem="JJU-fH-H85" firstAttribute="top" secondItem="Pg6-Rx-Gjl" secondAttribute="top" constant="18" id="YHq-Up-GEH"/>
                                     <constraint firstItem="mXY-hn-lxo" firstAttribute="centerY" secondItem="Pg6-Rx-Gjl" secondAttribute="centerY" id="g1e-q1-N4b"/>
                                     <constraint firstItem="mXY-hn-lxo" firstAttribute="top" secondItem="Pg6-Rx-Gjl" secondAttribute="top" constant="13" id="nrY-Wo-sC7"/>
                                     <constraint firstAttribute="height" constant="50" id="yrn-W6-rv3"/>

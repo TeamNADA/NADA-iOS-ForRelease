@@ -291,7 +291,9 @@ extension GroupViewController: UICollectionViewDataSource {
         case groupCollectionView:
             print(indexPath.row)
         case cardsCollectionView:
-            print(indexPath.row)
+            guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
+            
+            navigationController?.pushViewController(nextVC, animated: true)
         default:
             print(indexPath.row)
         }

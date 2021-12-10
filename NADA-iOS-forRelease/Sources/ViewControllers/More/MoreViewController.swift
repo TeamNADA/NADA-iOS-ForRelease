@@ -99,8 +99,15 @@ extension MoreViewController: UITableViewDelegate {
         } else if indexPath.section == 1 {
             switch indexPath.row {
             case 0:
-                print("로그아웃!")
-                // logout()
+                makeOKCancelAlert(title: "알림", message: "로그아웃을 하시겠습니까?", okAction: { _ in
+                    UserApi.shared.logout { (error) in
+                        if let error = error {
+                            print(error)
+                        } else {
+                            self.dismiss(animated: true, completion: nil)
+                        }
+                    }
+                })
             case 1: print("정보 초기화!")
             case 2:
                 print("회원탈퇴!")

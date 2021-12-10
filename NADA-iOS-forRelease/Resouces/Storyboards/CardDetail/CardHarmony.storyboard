@@ -37,6 +37,9 @@
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="iconClear"/>
+                                        <connections>
+                                            <action selector="touchDismissButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Xfr-Bs-4a8"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="우리의 궁합은?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uep-BF-agW">
                                         <rect key="frame" x="133.5" y="45" width="113" height="22"/>
@@ -97,9 +100,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dimmedBackView" destination="xKr-nm-jRS" id="SVh-Ze-Ivg"/>
                         <outlet property="harmonyDescriptionLabel" destination="HFM-BK-FiO" id="hgo-XI-2cP"/>
                         <outlet property="harmonyImageView" destination="vw0-oZ-wxA" id="Os1-Kk-wi6"/>
                         <outlet property="harmonyPercentLabel" destination="wbA-oU-czQ" id="CdN-XP-lBo"/>
+                        <outlet property="popUpView" destination="KjU-7K-V6y" id="2NU-B5-9ii"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

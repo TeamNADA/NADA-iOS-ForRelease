@@ -9,29 +9,39 @@ import UIKit
 
 class TabBarViewController: UITabBarController {
     
-    let appearance = UITabBarAppearance()
-
+    // MARK: - Properties
+    
+    private let borderLineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .textBox
+        
+        return view
+    }()
+    
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupStyle()
+        setupUI()
     }
     
-    func setupStyle() {
-//        appearance.configureWithOpaqueBackground()
-//        appearance.shadowColor = UIColor.clear
-//        tabBar.standardAppearance = appearance
-//
-//        if #available(iOS 15.0, *) {
-//            // set tabbar opacity
-//            tabBar.scrollEdgeAppearance = tabBar.standardAppearance
-//        }
-//
-//        // set tabbar shadow
-//        tabBar.layer.masksToBounds = false
-//        tabBar.layer.shadowColor = UIColor.textBox.cgColor
-//        tabBar.layer.shadowOpacity = 0.3
-//        tabBar.layer.shadowOffset = CGSize(width: 0, height: 0)
-//        tabBar.layer.shadowRadius = 6
+    // MARK: - @Functions
+    // UI 세팅 작업
+    private func setupUI() {
+        tabBar.addSubview(borderLineView)
+        
+        setupLayout()
     }
+    
+    // 레이아웃 세팅
+    private func setupLayout() {
+        borderLineView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            borderLineView.topAnchor.constraint(equalTo: tabBar.topAnchor),
+            borderLineView.leadingAnchor.constraint(equalTo: tabBar.leadingAnchor),
+            borderLineView.trailingAnchor.constraint(equalTo: tabBar.trailingAnchor),
+            borderLineView.heightAnchor.constraint(equalToConstant: 1)
+        ])
+    }
+    
 }

@@ -23,6 +23,8 @@ extension Const {
             static let tabBar = "TabBar"
             static let cardCreationPreview = "CardCreationPreview"
             static let more = "More"
+            static let splash = "Splash"
+            static let onboarding = "Onboarding"
         }
         
     }

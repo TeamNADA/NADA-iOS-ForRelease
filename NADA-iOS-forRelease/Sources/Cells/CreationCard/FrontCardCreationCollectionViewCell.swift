@@ -15,11 +15,12 @@ class FrontCardCreationCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    private let backgroundList = ["img", "img", "img", "img", "img"]
+    private let backgroundList = ["", "imageDefaultBg01", "imageDefaultBg02", "imageDefaultBg03", "imageDefaultBg04", "imageDefaultBg05", "imageDefaultBg06", "imageDefaultBg07"]
     private var requiredTextFieldList = [UITextField]()
     private var optionalTextFieldList = [UITextField]()
     private var cardBackgroundImage: UIImage?
     private var defaultImageIndex: Int?
+    private let maxLength: Int = 15
   
     public var presentingBirthBottomVCClosure: (() -> Void)?
     public var presentingMBTIBottomVCClosure: (() -> Void)?
@@ -160,6 +161,7 @@ extension FrontCardCreationCollectionViewCell {
         NotificationCenter.default.addObserver(self, selector: #selector(setBirthTextField(notification:)), name: .frontCardBirth, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setMBTITextField(notification:)), name: .frontCardMBTI, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setCardBackgroundImage(notifiation:)), name: .sendNewImage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
     }
     
     /// front card 가 편집되었는지. 필수 항목이 다 입력되었는지 체크.
@@ -171,8 +173,12 @@ extension FrontCardCreationCollectionViewCell {
             mbtiTextField.hasText &&
             defaultImageIndex != nil {
             frontCardCreationDelegate?.frontCardCreation(requiredInfo: true)
+        } else {
+            frontCardCreationDelegate?.frontCardCreation(requiredInfo: false)
+        }
+        if let defaultImageIndex = defaultImageIndex {
             frontCardCreationDelegate?.frontCardCreation(withRequired: [
-                "defaultImageIndex": String(defaultImageIndex ?? -1),
+                "defaultImageIndex": String(defaultImageIndex),
                 "title": cardTitleTextField.text ?? "",
                 "name": userNameTextField.text ?? "",
                 "birthDate": birthTextField.text ?? "",
@@ -182,8 +188,6 @@ extension FrontCardCreationCollectionViewCell {
                 "linkURL": linkURLTextField.text ?? "",
                 "description": descriptionTextField.text ?? ""
             ])
-        } else {
-            frontCardCreationDelegate?.frontCardCreation(requiredInfo: false)
         }
     }
     static func nib() -> UINib {
@@ -209,13 +213,44 @@ extension FrontCardCreationCollectionViewCell {
         cardBackgroundImage = notifiation.object as? UIImage
         backgroundSettingCollectionView.reloadData()
     }
+    @objc
+    private func textFieldDidChange(_ notification: Notification) {
+        if let textField = notification.object as? UITextField {
+            switch textField {
+            case cardTitleTextField:
+                if let text = cardTitleTextField.text {
+                    if text.count > maxLength {
+                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
+                        let newString = String(text[text.startIndex..<maxIndex])
+                        cardTitleTextField.text = newString
+                    }
+                }
+            case userNameTextField:
+                if let text = userNameTextField.text {
+                    if text.count > maxLength {
+                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
+                        let newString = String(text[text.startIndex..<maxIndex])
+                        userNameTextField.text = newString
+                    }
+                }
+            case descriptionTextField:
+                if let text = descriptionTextField.text {
+                    if text.count > maxLength {
+                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
+                        let newString = String(text[text.startIndex..<maxIndex])
+                        descriptionTextField.text = newString
+                    }
+                }
+            default:
+                return
+            }
+        }
+    }
 }
 
 // MARK: - UICollectionViewDelegate
 extension FrontCardCreationCollectionViewCell: UICollectionViewDelegate {
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         switch indexPath.item {
         case 0:
             NotificationCenter.default.post(name: .presentingImagePicker, object: nil)
@@ -228,6 +263,12 @@ extension FrontCardCreationCollectionViewCell: UICollectionViewDelegate {
             defaultImageIndex = 3
         case 4:
             defaultImageIndex = 4
+        case 5:
+            defaultImageIndex = 5
+        case 6:
+            defaultImageIndex = 6
+        case 7:
+            defaultImageIndex = 7
         default:
             return
         }
@@ -249,9 +290,8 @@ extension FrontCardCreationCollectionViewCell: UICollectionViewDataSource {
         case 0:
             cell.initCell(image: cardBackgroundImage ?? UIImage(), isFirst: true)
         default:
-            // FIXME: - 기본 명함 배경 넘겨주면 수정.
-//            guard let image = UIImage(systemName: backgroundList[indexPath.item]) else { return UICollectionViewCell() }
-            cell.initCell(image: UIImage(), isFirst: false)
+            guard let image = UIImage(named: backgroundList[indexPath.item]) else { return UICollectionViewCell() }
+            cell.initCell(image: image, isFirst: false)
         }
         return cell
     }

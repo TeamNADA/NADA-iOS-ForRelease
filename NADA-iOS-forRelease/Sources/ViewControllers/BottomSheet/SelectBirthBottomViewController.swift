@@ -51,7 +51,7 @@ extension SelectBirthBottomSheetViewController {
         view.addSubview(birthPicker)
         view.addSubview(doneButton)
         
-        selectedBirth = yearList[0] + "/" + monthList[0] + "/" + dayList[0]
+        selectedBirth = yearList[0] + "." + monthList[0] + "." + dayList[0]
         
         birthPicker.delegate = self
         birthPicker.dataSource = self
@@ -81,7 +81,7 @@ extension SelectBirthBottomSheetViewController {
     
     @objc func dismissToCardCreationViewController() {
         NotificationCenter.default.post(name: .frontCardBirth, object: selectedBirth)
-        dismiss(animated: true, completion: nil)
+        hideBottomSheetAndGoBack()
     }
 
 }
@@ -145,7 +145,7 @@ extension SelectBirthBottomSheetViewController: UIPickerViewDelegate, UIPickerVi
         year = year.isEmpty ? yearList[0] : year
         month = month.isEmpty ? monthList[0] : month
         day = day.isEmpty ? dayList[0] : day
-        selectedBirth = year + "/" + month + "/" + day
+        selectedBirth = year + "." + month + "." + day
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {

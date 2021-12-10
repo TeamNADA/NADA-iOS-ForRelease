@@ -119,7 +119,7 @@ extension FrontViewController {
                                          "Blog"
                                         ])
         linkIDList.append(contentsOf: ["https://github.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADA",
-                                       "https://github.com/TeamNADA"
+                                       "https://www.naver.com"
                                       ])
     }
     
@@ -162,6 +162,7 @@ extension FrontViewController {
 
 // MARK: - VerticalCardSwiperDelegate
 extension FrontViewController: VerticalCardSwiperDelegate {
+    // TODO: - FrontCard 에서 링크를 통한 인스타, 사파리 접속을 위해 주석 처리.
     func didTapCard(verticalCardSwiperView: VerticalCardSwiperView, index: Int) {
         let frontCell = cardSwiper.cardForItem(at: index)
         let backCell = cardSwiper.cardForItem(at: index)

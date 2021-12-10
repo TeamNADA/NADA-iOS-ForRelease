@@ -25,7 +25,9 @@ class FrontCardCell: CardCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-         setUI()
+         
+        setUI()
+        setTapGesture()
     }
     @IBAction func touchShareButton(_ sender: Any) {
     }
@@ -54,9 +56,41 @@ extension FrontCardCell {
         instagramIDLabel.lineBreakMode = .byTruncatingTail
         linkURLLabel.font = .textRegular04
         linkURLLabel.textColor = .white
-        linkURLLabel.numberOfLines = 2
+        linkURLLabel.numberOfLines = 1
         linkURLLabel.lineBreakMode = .byTruncatingTail
-        shareButton.isHidden = true
+    }
+    private func setTapGesture() {
+        instagramIDLabel.isUserInteractionEnabled = true
+        let instagramTapGesture = UITapGestureRecognizer(target: self, action: #selector(tapInstagramLabel))
+        instagramIDLabel.addGestureRecognizer(instagramTapGesture)
+        
+        linkURLLabel.isUserInteractionEnabled = true
+        let linkURLTapGesture = UITapGestureRecognizer(target: self, action: #selector(tapLinkURLLabel))
+        linkURLLabel.addGestureRecognizer(linkURLTapGesture)
+    }
+    
+    // MARK: - @objc Methods
+    
+    @objc
+    private func tapInstagramLabel() {
+        let instagramID = instagramIDLabel.text ?? ""
+        let appURL = URL(string: "instagram://user?username=\(instagramID)")!
+        let webURL = URL(string: "https://instagram.com/\(instagramID)")!
+        
+        if UIApplication.shared.canOpenURL(appURL) {
+            UIApplication.shared.open(appURL, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.open(webURL, options: [:], completionHandler: nil)
+        }
+    }
+    @objc
+    private func tapLinkURLLabel() {
+        let linkURL = linkURLLabel.text ?? ""
+        let webURL = URL(string: linkURL)!
+        
+        if UIApplication.shared.canOpenURL(webURL) {
+            UIApplication.shared.open(webURL, options: [:], completionHandler: nil)
+        }
     }
     
     /// 서버에서 image 를 URL 로 가져올 경우 사용.
@@ -99,3 +133,4 @@ extension FrontCardCell {
         linkURLLabel.text = linkURL
     }
 }
+

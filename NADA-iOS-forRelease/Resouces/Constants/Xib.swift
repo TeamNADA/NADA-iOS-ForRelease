@@ -21,5 +21,6 @@ extension Const {
         static let groupEditTableViewCell = "GroupEditTableViewCell"
         static let moreListTableViewCell = "MoreListTableViewCell"
         static let cardView = "CardView"
+        static let onboardingCollectionViewCell = "OnboardingCollectionViewCell"
     }
 }

@@ -317,8 +317,8 @@ extension GroupViewController: UICollectionViewDelegateFlowLayout {
             }
             height = collectionView.frame.size.height
         case cardsCollectionView:
-            width = 156
-            height = 258
+            width = collectionView.frame.size.width * 156/327
+            height = collectionView.frame.size.height * 258/558
         default:
             width = 0
             height = 0
@@ -329,6 +329,8 @@ extension GroupViewController: UICollectionViewDelegateFlowLayout {
         switch collectionView {
         case groupCollectionView:
             return .init(top: 0, left: 0, bottom: 0, right: 10)
+        case cardsCollectionView:
+            return .init(top: 0, left: 0, bottom: 28, right: 0)
         default:
             return .zero
         }
@@ -337,6 +339,8 @@ extension GroupViewController: UICollectionViewDelegateFlowLayout {
         switch collectionView {
         case groupCollectionView:
             return 5
+        case cardsCollectionView:
+            return collectionView.frame.size.width * 15/327
         default:
             return 0
         }
@@ -344,7 +348,7 @@ extension GroupViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         switch collectionView {
         case cardsCollectionView:
-            return 14
+            return collectionView.frame.size.width * 15/327
         default:
             return 0
         }

@@ -56,7 +56,7 @@ extension FrontCardCell {
         instagramIDLabel.lineBreakMode = .byTruncatingTail
         linkURLLabel.font = .textRegular04
         linkURLLabel.textColor = .white
-        linkURLLabel.numberOfLines = 2
+        linkURLLabel.numberOfLines = 1
         linkURLLabel.lineBreakMode = .byTruncatingTail
     }
     private func setTapGesture() {

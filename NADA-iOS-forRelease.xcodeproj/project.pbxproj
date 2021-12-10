@@ -72,6 +72,8 @@
 		DBBB91E1639641F40C5B4416 /* Pods_NADA_iOS_forRelease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */; };
 		F811720027383097002742CF /* ChangeGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81171FF27383097002742CF /* ChangeGroupRequest.swift */; };
 		F822E7A92709CEB60020452C /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F822E7A82709CEB60020452C /* Notification.swift */; };
+		F82FEB4C27639F3100DA7847 /* MainCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FEB4A27639F3100DA7847 /* MainCardCell.swift */; };
+		F82FEB4D27639F3100DA7847 /* MainCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F82FEB4B27639F3100DA7847 /* MainCardCell.xib */; };
 		F82FF81D2701EBCE00E57F8B /* CardCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F82FF81C2701EBCE00E57F8B /* CardCreation.storyboard */; };
 		F82FF8252702000000E57F8B /* RequiredFlavorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FF8232702000000E57F8B /* RequiredFlavorCollectionViewCell.swift */; };
 		F82FF8262702000000E57F8B /* RequiredFlavorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F82FF8242702000000E57F8B /* RequiredFlavorCollectionViewCell.xib */; };
@@ -190,6 +192,8 @@
 		7F4EE1D042EC783FA8528743 /* Pods-NADA-iOS-forRelease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.debug.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.debug.xcconfig"; sourceTree = "<group>"; };
 		F81171FF27383097002742CF /* ChangeGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeGroupRequest.swift; sourceTree = "<group>"; };
 		F822E7A82709CEB60020452C /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		F82FEB4A27639F3100DA7847 /* MainCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardCell.swift; sourceTree = "<group>"; };
+		F82FEB4B27639F3100DA7847 /* MainCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCardCell.xib; sourceTree = "<group>"; };
 		F82FF81C2701EBCE00E57F8B /* CardCreation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardCreation.storyboard; sourceTree = "<group>"; };
 		F82FF8232702000000E57F8B /* RequiredFlavorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredFlavorCollectionViewCell.swift; sourceTree = "<group>"; };
 		F82FF8242702000000E57F8B /* RequiredFlavorCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequiredFlavorCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -501,6 +505,8 @@
 		F83206AC26F61E5800D61711 /* CardCell */ = {
 			isa = PBXGroup;
 			children = (
+				F82FEB4A27639F3100DA7847 /* MainCardCell.swift */,
+				F82FEB4B27639F3100DA7847 /* MainCardCell.xib */,
 				F83206A826F61E3700D61711 /* FrontCardCell.swift */,
 				F83206A926F61E3700D61711 /* FrontCardCell.xib */,
 				39F5A3CE271461EA00191F94 /* BackCardCell.swift */,
@@ -915,6 +921,7 @@
 				F83206AB26F61E3700D61711 /* FrontCardCell.xib in Resources */,
 				394F314F27081B4C00C83291 /* Front.storyboard in Resources */,
 				3979709826FA0BF0003FB4F5 /* Login.storyboard in Resources */,
+				F82FEB4D27639F3100DA7847 /* MainCardCell.xib in Resources */,
 				39369945274A568900684420 /* GroupEditTableViewCell.xib in Resources */,
 				F84BAFB226FDB552004CA335 /* BackCardCreationCollectionViewCell.xib in Resources */,
 				3936993B274A53C600684420 /* GroupEdit.storyboard in Resources */,
@@ -1045,6 +1052,7 @@
 				39369944274A568900684420 /* GroupEditTableViewCell.swift in Sources */,
 				F8C83FBB272F9F370009DF0D /* NetworkResult.swift in Sources */,
 				39D2E130270B43DA00AD0889 /* UIFont+Extension.swift in Sources */,
+				F82FEB4C27639F3100DA7847 /* MainCardCell.swift in Sources */,
 				7770315B27500C7B002CBD19 /* QRScanViewController.swift in Sources */,
 				39523E5B2701A48900536900 /* CardListTableViewCell.swift in Sources */,
 				F8719DDB274F92E90081AD51 /* UITextField+Extension.swift in Sources */,

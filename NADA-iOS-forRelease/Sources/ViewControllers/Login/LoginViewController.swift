@@ -30,15 +30,12 @@ class LoginViewController: UIViewController {
     // MARK: - IBAction Properties
     // 카카오톡으로 로그인 버튼 클릭 시
     @IBAction func kakaoLoginButton(_ sender: Any) {
-        // 유효한 토큰 검사
-        if AuthApi.hasToken() {
+        if AuthApi.hasToken() {     // 유효한 토큰 존재
             UserApi.shared.accessTokenInfo { (_, error) in
                 if let error = error {
                     if let sdkError = error as? SdkError, sdkError.isInvalidTokenError() == true {
                         // 로그인 필요
                         self.signUp()
-                    } else {
-                        // 기타 에러
                     }
                 } else {
                     // 토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
@@ -72,36 +69,30 @@ extension LoginViewController {
         // 카카오톡 설치 여부 확인
         if UserApi.isKakaoTalkLoginAvailable() {
             // 카카오톡 로그인. api 호출 결과를 클로저로 전달.
-            UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
-                if let error = error {  // 예외 처리 (로그인 취소 등)
-                    print(error)
-                } else {                // 로그인 성공했을 때
-                    print("loginWithKakaoTalk() success.")
-                    self.getUserInfo()
-                    // 어세스토큰
-                    // let accessToken = oauthToken?.accessToken
-                    
-                    self.goToMain()
-                }
-            }
+            login()
         } else {
+            print("카카오톡 미설치")
             // 만약, 카카오톡이 깔려있지 않을 경우에는 웹 브라우저로 카카오 로그인함.
-            UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
-                if let error = error {  // 예외 처리 (로그인 취소 등)
-                    print(error)
-                } else {                // 로그인 성공했을 때
-                    print("loginWithKakaoTalk() success.")
-                    self.getUserInfo()
-                    // 어세스토큰
-                    // let accessToken = oauthToken?.accessToken
-                    self.goToMain()
-                }
-            }
+            
         }
     }
     
+    func login() {
+        UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+            if let error = error {
+                print(error)
+            } else {
+                print("loginWithKakaoTalk() success.")
+                if let kakaoData = oauthToken {
+                    
+                }
+            }
+        }
+            
+    }
+    
     // 사용자 정보를 성공적으로 가져왔을 때, 화면전환하는 함수
-    private func getUserInfo() {
+    func getUserInfo() {
         // 사용자 정보 가져오기
         UserApi.shared.me() {(user, error) in
             if let error = error {

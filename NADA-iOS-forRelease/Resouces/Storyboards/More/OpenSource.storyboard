@@ -36,8 +36,8 @@
                                             <action selector="dismissToPreviousView:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Uk4-TS-h01"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오픈소스 라이선스" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JJU-fH-H85">
-                                        <rect key="frame" x="123" y="18" width="129" height="20.666666666666671"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오픈소스 라이브러리" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JJU-fH-H85">
+                                        <rect key="frame" x="115.33333333333333" y="18" width="144.66666666666669" height="20.666666666666671"/>
                                         <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="17"/>
                                         <color key="textColor" name="secondary"/>
                                         <nil key="highlightedColor"/>

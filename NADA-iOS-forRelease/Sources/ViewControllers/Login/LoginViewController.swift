@@ -84,6 +84,11 @@ extension LoginViewController {
                         print("me() success.")
                         let email = user?.kakaoAccount?.email
                         self.postUserSignUpWithAPI(request: email!)
+                        
+                        // FIXME: - 스플래시 복사본에 자동로그인을 위한 토큰처리하기로 변경
+                        UserDefaults.standard.set(oauthToken?.accessToken, forKey: Const.UserDefaults.token)
+                        print("액세스 토큰 : ", oauthToken!.accessToken)
+                        print("리프레시 토큰 : ", oauthToken!.refreshToken)
                     }
                 }
                 
@@ -147,9 +152,8 @@ extension LoginViewController {
     func postUserSignUpWithAPI(request: String) {
         UserAPI.shared.userSocialSignUp(request: request) { response in
             switch response {
-            case .success(let message):
+            case .success:
                 print("postUserSignUpWithAPI - success")
-                
             case .requestErr(let message):
                 print("postUserSignUpWithAPI - requestErr: \(message)")
             case .pathErr:

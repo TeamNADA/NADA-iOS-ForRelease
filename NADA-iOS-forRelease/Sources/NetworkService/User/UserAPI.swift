@@ -79,14 +79,14 @@ public class UserAPI {
         }
     }
     
-    func userSocialSignUp(request: User, completion: @escaping (NetworkResult<Any>) -> Void) {
-        userProvider.request(.userSignUp(request: request)) { (result) in
+    func userSocialSignUp(request: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        userProvider.request(.userSocialSignUp(userID: request)) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
 
-                let networkResult = self.judgeUserTokenFetchStatus(by: statusCode, data)
+                let networkResult = self.judgeStatus(by: statusCode, data)
                 completion(networkResult)
 
             case .failure(let err):

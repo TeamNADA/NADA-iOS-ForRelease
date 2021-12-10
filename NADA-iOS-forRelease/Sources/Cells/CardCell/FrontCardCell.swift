@@ -133,4 +133,3 @@ extension FrontCardCell {
         linkURLLabel.text = linkURL
     }
 }
-

@@ -7,6 +7,7 @@
 
 import UIKit
 import VerticalCardSwiper
+import KakaoSDKCommon
 
 class MainCardCell: CardCell {
 
@@ -16,35 +17,30 @@ class MainCardCell: CardCell {
     
     public var cardDataModel: Card?
     
-    // MARK: - @IBOutlet Properties
-    
-    @IBOutlet weak var cardView: UIView!
-    
     // MARK: - View Life Cycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        setUI()
         setGestureRecognizer()
+    }
+    
+    // MARK: - Methods
+    
+    static func nib() -> UINib {
+        return UINib(nibName: Const.Xib.mainCardCell, bundle: Bundle(for: MainCardCell.self))
     }
 }
 
 // MARK: - Extensions
 
 extension MainCardCell {
-    private func setGestureRecognizer() {
-        let swipeLeftGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(transitionCardWithAnimation(_:)))
-        swipeLeftGestureRecognizer.direction = .left
-        self.cardView.addGestureRecognizer(swipeLeftGestureRecognizer)
-        
-        let swipeRightGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(transitionCardWithAnimation(_:)))
-        swipeRightGestureRecognizer.direction = .right
-        self.cardView.addGestureRecognizer(swipeRightGestureRecognizer)
-    }
-    private func setFrontCard() {
+    private func setUI() { }
+    public func setFrontCard() {
         guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
         
-        frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
+        frontCard.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
         guard let cardDataModel = cardDataModel else { return }
         frontCard.initCell(cardDataModel.background,
                            cardDataModel.title,
@@ -55,16 +51,27 @@ extension MainCardCell {
                            cardDataModel.instagram ?? "",
                            cardDataModel.link ?? "")
         
-        cardView.addSubview(frontCard)
+        contentView.addSubview(frontCard)
     }
-    
+    private func setGestureRecognizer() {
+        let swipeLeftGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(transitionCardWithAnimation(_:)))
+        swipeLeftGestureRecognizer.direction = .left
+        self.contentView.addGestureRecognizer(swipeLeftGestureRecognizer)
+        
+        let swipeRightGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(transitionCardWithAnimation(_:)))
+        swipeRightGestureRecognizer.direction = .right
+        self.contentView.addGestureRecognizer(swipeRightGestureRecognizer)
+    }
+    public func initCell(cardDataModel: Card) {
+        self.cardDataModel = cardDataModel
+    }
     // MARK: - @objc Methods
     
     @objc
     private func transitionCardWithAnimation(_ swipeGesture: UISwipeGestureRecognizer) {
         if isFront {
             guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return }
-            backCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
+            backCard.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
             guard let cardDataModel = cardDataModel else { return }
             backCard.initCell(cardDataModel.background,
                               cardDataModel.isMincho,
@@ -75,12 +82,12 @@ extension MainCardCell {
                               cardDataModel.twoTMI ?? "",
                               cardDataModel.thirdTMI ?? "")
             
-            cardView.addSubview(backCard)
+            contentView.addSubview(backCard)
             isFront = false
         } else {
             guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
             
-            frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
+            frontCard.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
             guard let cardDataModel = cardDataModel else { return }
             frontCard.initCell(cardDataModel.background,
                                cardDataModel.title,
@@ -91,18 +98,17 @@ extension MainCardCell {
                                cardDataModel.instagram ?? "",
                                cardDataModel.link ?? "")
             
-            cardView.addSubview(frontCard)
+            contentView.addSubview(frontCard)
             isFront = true
         }
         if swipeGesture.direction == .right {
-            UIView.transition(with: cardView, duration: 1, options: .transitionFlipFromLeft, animations: nil) { _ in
-                self.cardView.subviews[0].removeFromSuperview()
+            UIView.transition(with: contentView, duration: 1, options: .transitionFlipFromLeft, animations: nil) { _ in
+                self.contentView.subviews[0].removeFromSuperview()
             }
         } else {
-            UIView.transition(with: cardView, duration: 1, options: .transitionFlipFromRight, animations: nil) { _ in
-                self.cardView.subviews[0].removeFromSuperview()
+            UIView.transition(with: contentView, duration: 1, options: .transitionFlipFromRight, animations: nil) { _ in
+                self.contentView.subviews[0].removeFromSuperview()
             }
         }
-        
     }
 }

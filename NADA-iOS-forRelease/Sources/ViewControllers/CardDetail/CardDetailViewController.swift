@@ -11,8 +11,20 @@ class CardDetailViewController: UIViewController {
     
     // MARK: - Properties
     // 네비게이션 바
+    enum Status {
+        case group
+        case add
+    }
+    
     @IBAction func touchBackButton(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        switch status {
+        case .group:
+            print("group")
+            self.navigationController?.popViewController(animated: true)
+        case .add:
+            print("add")
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @IBAction func presentHarmonyViewController(_ sender: Any) {
@@ -24,20 +36,41 @@ class CardDetailViewController: UIViewController {
     
     @IBOutlet weak var optionButton: UIButton!
     @IBOutlet weak var cardView: UIView!
+    @IBOutlet weak var backButton: UIButton!
     
     public var frontCardDataModel: FrontCardDataModel?
     public var backCardDataModel: BackCardDataModel?
     public var cardBackgroundImage: UIImage?
     
     private var isFront = true
+    var status: Status = .group
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUI()
+        setMenu()
+        setFrontCard()
+        setGestureRecognizer()
+    }
+
+}
+
+extension CardDetailViewController {
+    private func setUI() {
+        switch status {
+        case .group:
+            backButton.setImage(UIImage(named: "iconArrow"), for: .normal)
+        case .add:
+            backButton.setImage(UIImage(named: "iconClear"), for: .normal)
+        }
+    }
+    private func setMenu() {
         let changeGroup = UIAction(title: "그룹 변경",
                                    handler: { _ in
             let nextVC = SelectGroupBottomSheetViewController()
                         .setTitle("그룹선택")
                         .setHeight(386)
+            nextVC.status = .detail
             nextVC.modalPresentationStyle = .overFullScreen
             self.present(nextVC, animated: false, completion: nil)
         })
@@ -48,20 +81,15 @@ class CardDetailViewController: UIViewController {
                                        deleteAction: { _ in
                 // TODO: 명함 삭제 서버통신
             }) })
-        let cancel = UIAction(title: "취소", attributes: .destructive, handler: { _ in print("즐겨찾기") })
+        let options = UIMenu(title: "options", options: .displayInline, children: [changeGroup, deleteCard])
+        
+        let cancel = UIAction(title: "취소", attributes: .destructive, handler: { _ in print("취소") })
         
         optionButton.menu = UIMenu(identifier: nil,
                                    options: .displayInline,
-                                   children: [changeGroup, deleteCard, cancel])
+                                   children: [options, cancel])
         optionButton.showsMenuAsPrimaryAction = true
-
-        setFrontCard()
-        setGestureRecognizer()
     }
-
-}
-
-extension CardDetailViewController {
     private func setFrontCard() {
         guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
         

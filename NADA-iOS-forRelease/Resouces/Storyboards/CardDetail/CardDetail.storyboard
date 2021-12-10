@@ -109,13 +109,14 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="ppy-17-v7q" id="mdc-dd-yGB"/>
                         <outlet property="cardView" destination="0P6-1k-dQm" id="qGN-9y-K4Y"/>
                         <outlet property="optionButton" destination="YU7-vs-utH" id="Jg4-K3-dTV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="113.04347826086958" y="61.607142857142854"/>
+            <point key="canvasLocation" x="112.8" y="61.330049261083744"/>
         </scene>
     </scenes>
     <resources>

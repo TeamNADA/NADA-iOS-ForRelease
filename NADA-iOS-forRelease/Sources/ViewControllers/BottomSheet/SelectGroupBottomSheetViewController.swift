@@ -12,6 +12,12 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
     // MARK: - Properties
     var groupList = ["미분류", "SOPT", "동아리", "인하대학교"]
     var selectedGroup = ""
+    enum Status {
+        case detail
+        case add
+    }
+    
+    var status: Status = .add
     
     private let groupPicker: UIPickerView = {
         let pickerView = UIPickerView()
@@ -61,8 +67,17 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
     }
     
     @objc func presentCardInfoViewController() {
-        print("presentCardInfoViewController")
-        print(selectedGroup)
+        switch status {
+        case .detail:
+            // TODO: 그룹 변경 서버통신
+            hideBottomSheetAndGoBack()
+        case .add:
+            print(selectedGroup)
+            
+            guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
+            nextVC.status = .add
+            hideBottomSheetAndPresentVC(nextViewController: nextVC)
+        }
     }
 
 }
@@ -91,7 +106,6 @@ extension SelectGroupBottomSheetViewController: UIPickerViewDelegate, UIPickerVi
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("select=\(groupList[row])")
         selectedGroup = groupList[row]
         pickerView.reloadAllComponents()
     }

@@ -36,9 +36,7 @@ class CardDetailViewController: UIViewController {
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var backButton: UIButton!
     
-    public var frontCardDataModel: FrontCardDataModel?
-    public var backCardDataModel: BackCardDataModel?
-    public var cardBackgroundImage: UIImage?
+    public var cardDataModel: Card?
     
     private var isFront = true
     var status: Status = .group
@@ -92,8 +90,14 @@ extension CardDetailViewController {
         guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
         
         frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
-        guard let frontCardDataModel = frontCardDataModel else { return }
-        frontCard.initCell(cardBackgroundImage, frontCardDataModel.title, frontCardDataModel.description, frontCardDataModel.name, frontCardDataModel.birthDate, frontCardDataModel.mbti, frontCardDataModel.instagramID, frontCardDataModel.linkURL)
+        frontCard.initCell(cardDataModel?.background ?? "",
+                           cardDataModel?.title ?? "",
+                           cardDataModel?.cardDescription ?? "",
+                           cardDataModel?.name ?? "",
+                           cardDataModel?.birthDate ?? "",
+                           cardDataModel?.mbti ?? "",
+                           cardDataModel?.instagram ?? "",
+                           cardDataModel?.link ?? "")
         
         cardView.addSubview(frontCard)
     }
@@ -113,16 +117,15 @@ extension CardDetailViewController {
     private func transitionCardWithAnimation(_ swipeGesture: UISwipeGestureRecognizer) {
         if isFront {
             guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return }
-            guard let backCardDataModel = backCardDataModel else { return }
             backCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
-            backCard.initCell(cardBackgroundImage,
-                              backCardDataModel.isMincho,
-                              backCardDataModel.isSoju,
-                              backCardDataModel.isBoomuk,
-                              backCardDataModel.isSauced,
-                              backCardDataModel.firstTMI,
-                              backCardDataModel.secondTMI,
-                              backCardDataModel.thirdTMI)
+            backCard.initCell(cardDataModel?.background ?? "",
+                              cardDataModel?.isMincho ?? true,
+                              cardDataModel?.isSoju ?? true,
+                              cardDataModel?.isBoomuk ?? true,
+                              cardDataModel?.isSauced ?? true,
+                              cardDataModel?.oneTMI ?? "",
+                              cardDataModel?.twoTMI ?? "",
+                              cardDataModel?.thirdTMI ?? "")
             
             cardView.addSubview(backCard)
             isFront = false
@@ -130,15 +133,14 @@ extension CardDetailViewController {
             guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
             
             frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
-            guard let frontCardDataModel = frontCardDataModel else { return }
-            frontCard.initCell(cardBackgroundImage,
-                               frontCardDataModel.title,
-                               frontCardDataModel.description,
-                               frontCardDataModel.name,
-                               frontCardDataModel.birthDate,
-                               frontCardDataModel.mbti,
-                               frontCardDataModel.instagramID,
-                               frontCardDataModel.linkURL)
+            frontCard.initCell(cardDataModel?.background ?? "",
+                               cardDataModel?.title ?? "",
+                               cardDataModel?.cardDescription ?? "",
+                               cardDataModel?.name ?? "",
+                               cardDataModel?.birthDate ?? "",
+                               cardDataModel?.mbti ?? "",
+                               cardDataModel?.instagram ?? "",
+                               cardDataModel?.link ?? "")
             
             cardView.addSubview(frontCard)
             isFront = true

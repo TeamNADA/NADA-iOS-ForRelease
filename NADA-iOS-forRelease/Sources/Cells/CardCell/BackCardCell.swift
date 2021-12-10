@@ -32,7 +32,6 @@ class BackCardCell: CardCell {
         super.awakeFromNib()
         setUI()
     }
-    // TODO: - 2차 릴리즈/공유기능
     @IBAction func touchShareButton(_ sender: Any) {
     }
     
@@ -55,8 +54,6 @@ extension BackCardCell {
         secondTmiLabel.textColor = .white
         thirdTmiLabel.font = .textRegular04
         thirdTmiLabel.textColor = .white
-        // TODO: - 2차 릴리즈/공유기능
-        shareButton.isHidden = true
     }
     
     /// 서버에서 image 를 URL 로 가져올 경우 사용.

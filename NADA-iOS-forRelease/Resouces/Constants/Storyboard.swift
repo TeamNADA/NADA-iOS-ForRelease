@@ -23,6 +23,7 @@ extension Const {
             static let more = "More"
             static let splash = "Splash"
             static let onboarding = "Onboarding"
+            static let openSource = "OpenSource"
         }
         
     }

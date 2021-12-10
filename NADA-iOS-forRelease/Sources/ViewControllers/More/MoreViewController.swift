@@ -91,7 +91,8 @@ extension MoreViewController: UITableViewDelegate {
             case 0: openURL(link: policyURL)
             case 1: openURL(link: serviceURL)
             case 2: print("Team NADA")
-            case 3: print("오픈소스 라이브러리")
+            case 3: pushView(nextSB: Const.Storyboard.Name.openSource,
+                             nextVC: Const.ViewController.Identifier.openSourceViewController)
             default: print("default!")
             }
         } else if indexPath.section == 1 {
@@ -114,11 +115,17 @@ extension MoreViewController: UITableViewDelegate {
 extension MoreViewController {
     
     func openURL(link: URL) {
-        
         if UIApplication.shared.canOpenURL(link) {
             UIApplication.shared.open(link, options: [:], completionHandler: nil)
         } 
     }
+    
+    func pushView(nextSB: String, nextVC: String) {
+        let nextVC = UIStoryboard(name: nextSB, bundle: nil).instantiateViewController(identifier: nextVC)
+            
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
 }
 
 // MARK: - TableView DataSource

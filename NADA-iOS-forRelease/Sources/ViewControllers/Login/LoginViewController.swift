@@ -39,8 +39,7 @@ class LoginViewController: UIViewController {
                     }
                 } else {
                     // 토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
-                    // ✅ 사용자 정보를 가져오고 화면전환을 하는 커스텀 메서드
-                    self.getUserInfo()
+                    self.login()
                 }
             }
         } else {
@@ -64,16 +63,10 @@ extension LoginViewController {
         self.present(nextVC, animated: true, completion: nil)
     }
     
-    // 카카오 로그인 표출 함수
-    func signUp() {
-        // 카카오톡 설치 여부 확인
-        if UserApi.isKakaoTalkLoginAvailable() {
-            // 카카오톡 로그인. api 호출 결과를 클로저로 전달.
-            login()
-        } else {
-            print("카카오톡 미설치")
-            // 만약, 카카오톡이 깔려있지 않을 경우에는 웹 브라우저로 카카오 로그인함.
-            
+    // 자동 로그인 체크 함수
+    func checkAutoLogin() {
+        if UserDefaults.standard.string(forKey: Const.UserDefaults.token) != nil {
+            goToMain()
         }
     }
     
@@ -83,33 +76,36 @@ extension LoginViewController {
                 print(error)
             } else {
                 print("loginWithKakaoTalk() success.")
-                if let kakaoData = oauthToken {
-                    
-                }
-            }
-        }
-            
-    }
-    
-    // 사용자 정보를 성공적으로 가져왔을 때, 화면전환하는 함수
-    func getUserInfo() {
-        // 사용자 정보 가져오기
-        UserApi.shared.me() {(user, error) in
-            if let error = error {
-                print(error)
-            } else {
-                print("me() success.")
-                self.goToMain()
-                let email = user?.kakaoAccount?.email   // 이메일 정보
                 
+                UserApi.shared.me() {(user, error) in
+                    if let error = error {
+                        print(error)
+                    } else {
+                        print("me() success.")
+                        let email = user?.kakaoAccount?.email
+                        self.postUserSignUpWithAPI(request: email!)
+                    }
+                }
+                
+                self.goToMain()
             }
         }
-    }
-    
-    // 자동 로그인 체크 함수
-    func checkAutoLogin() {
         
     }
+    
+    // 카카오 로그인 표출 함수
+    func signUp() {
+        // 카카오톡 설치 여부 확인
+        if UserApi.isKakaoTalkLoginAvailable() {
+            // 카카오톡 로그인. api 호출 결과를 클로저로 전달.
+            login()
+        } else {
+            print("카카오톡 미설치")
+            // login()
+            // 만약, 카카오톡이 깔려있지 않을 경우에는 웹 브라우저로 카카오 로그인함.
+        }
+    }
+    
 }
 
 // MARK: - Network
@@ -130,7 +126,7 @@ extension LoginViewController {
             }
         }
     }
-
+    
     func getUserTokenFetchWithAPI(userID: String) {
         UserAPI.shared.userTokenFetch(userID: userID) { response in
             switch response {
@@ -148,11 +144,12 @@ extension LoginViewController {
         }
     }
     
-    func postUserSignUpWithAPI(request: User) {
+    func postUserSignUpWithAPI(request: String) {
         UserAPI.shared.userSocialSignUp(request: request) { response in
             switch response {
-            case .success:
+            case .success(let message):
                 print("postUserSignUpWithAPI - success")
+                
             case .requestErr(let message):
                 print("postUserSignUpWithAPI - requestErr: \(message)")
             case .pathErr:

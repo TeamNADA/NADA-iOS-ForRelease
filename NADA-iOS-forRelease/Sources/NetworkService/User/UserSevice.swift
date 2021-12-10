@@ -13,7 +13,7 @@ enum UserSevice {
     case userTokenFetch(userID: String)
     case userSignUp(request: User)
     case userDelete(userID: String)
-    case userSocialSignUp(request: User)
+    case userSocialSignUp(userID: String)
 }
 
 extension UserSevice: TargetType {
@@ -57,8 +57,8 @@ extension UserSevice: TargetType {
             return .requestPlain
         case .userSignUp(let request):
             return .requestJSONEncodable(request)
-        case .userSocialSignUp(let request):
-            return .requestJSONEncodable(request)
+        case .userSocialSignUp(let userID):
+            return .requestParameters(parameters: ["userId": userID], encoding: JSONEncoding.default)
         }
     }
 

@@ -26,6 +26,7 @@ class CardDetailViewController: UIViewController {
     }
     
     @IBAction func presentHarmonyViewController(_ sender: Any) {
+        // TODO: 궁합 서버통신
         guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardHarmony, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardHarmonyViewController) as? CardHarmonyViewController else { return }
         
         nextVC.modalPresentationStyle = .overFullScreen

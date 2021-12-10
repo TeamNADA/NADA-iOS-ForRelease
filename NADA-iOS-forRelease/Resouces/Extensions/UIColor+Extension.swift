@@ -133,5 +133,25 @@ extension UIColor {
             return UIColor(white: 0.0, alpha: 0.4)
         }
     }
+    
+    @nonobjc class var harmonyRed: UIColor {
+      return UIColor(red: 239.0 / 255.0, green: 115.0 / 255.0, blue: 115.0 / 255.0, alpha: 1.0)
+    }
+
+    @nonobjc class var harmonyPurple: UIColor {
+      return UIColor(red: 95.0 / 255.0, green: 111.0 / 255.0, blue: 249.0 / 255.0, alpha: 1.0)
+    }
+
+    @nonobjc class var harmonyGreen: UIColor {
+      return UIColor(red: 110.0 / 255.0, green: 240.0 / 255.0, blue: 166.0 / 255.0, alpha: 1.0)
+    }
+
+    @nonobjc class var harmonyOrange: UIColor {
+      return UIColor(red: 248.0 / 255.0, green: 141.0 / 255.0, blue: 43.0 / 255.0, alpha: 1.0)
+    }
+
+    @nonobjc class var harmonyYellow: UIColor {
+      return UIColor(red: 253.0 / 255.0, green: 209.0 / 255.0, blue: 0.0, alpha: 1.0)
+    }
 
 }

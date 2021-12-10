@@ -44,12 +44,22 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vw0-oZ-wxA">
-                                        <rect key="frame" x="70" y="134" width="240" height="128"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icnHarmonyRed" translatesAutoresizingMaskIntoConstraints="NO" id="vw0-oZ-wxA">
+                                        <rect key="frame" x="90" y="92" width="200" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="HZ9-Zo-jo2"/>
+                                            <constraint firstAttribute="width" constant="200" id="PHx-M2-Puu"/>
+                                        </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="10%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbA-oU-czQ">
-                                        <rect key="frame" x="169" y="305" width="141" height="66"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbA-oU-czQ">
+                                        <rect key="frame" x="140" y="314" width="100.5" height="58"/>
                                         <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="48"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="우리의 궁합은?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFM-BK-FiO">
+                                        <rect key="frame" x="140" y="381" width="100.5" height="19.5"/>
+                                        <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -58,12 +68,15 @@
                                 <constraints>
                                     <constraint firstItem="Uep-BF-agW" firstAttribute="top" secondItem="KjU-7K-V6y" secondAttribute="top" constant="45" id="66S-gz-WlG"/>
                                     <constraint firstAttribute="height" constant="449" id="8Ca-NT-g1e"/>
+                                    <constraint firstItem="HFM-BK-FiO" firstAttribute="top" secondItem="wbA-oU-czQ" secondAttribute="bottom" constant="9" id="Bgp-AS-Fgl"/>
+                                    <constraint firstItem="wbA-oU-czQ" firstAttribute="centerX" secondItem="KjU-7K-V6y" secondAttribute="centerX" id="DX3-cg-sL9"/>
                                     <constraint firstItem="7eg-EZ-rW1" firstAttribute="top" secondItem="KjU-7K-V6y" secondAttribute="top" constant="20" id="FSC-w5-7UM"/>
                                     <constraint firstItem="wbA-oU-czQ" firstAttribute="top" secondItem="vw0-oZ-wxA" secondAttribute="bottom" constant="22" id="HR5-wa-1OP"/>
                                     <constraint firstItem="Uep-BF-agW" firstAttribute="centerX" secondItem="KjU-7K-V6y" secondAttribute="centerX" id="T9j-x3-dam"/>
                                     <constraint firstItem="vw0-oZ-wxA" firstAttribute="top" secondItem="Uep-BF-agW" secondAttribute="bottom" constant="25" id="Uu8-Mw-6Sf"/>
                                     <constraint firstItem="vw0-oZ-wxA" firstAttribute="centerX" secondItem="KjU-7K-V6y" secondAttribute="centerX" id="Z09-vU-77Z"/>
                                     <constraint firstAttribute="trailing" secondItem="7eg-EZ-rW1" secondAttribute="trailing" constant="20" id="ifY-gq-C3V"/>
+                                    <constraint firstItem="HFM-BK-FiO" firstAttribute="centerX" secondItem="KjU-7K-V6y" secondAttribute="centerX" id="ujp-Xc-Me5"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -83,6 +96,11 @@
                             <constraint firstItem="KjU-7K-V6y" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="x8w-MB-mIS"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="harmonyDescriptionLabel" destination="HFM-BK-FiO" id="hgo-XI-2cP"/>
+                        <outlet property="harmonyImageView" destination="vw0-oZ-wxA" id="Os1-Kk-wi6"/>
+                        <outlet property="harmonyPercentLabel" destination="wbA-oU-czQ" id="CdN-XP-lBo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -90,6 +108,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icnHarmonyRed" width="200" height="200"/>
         <image name="iconClear" width="24" height="24"/>
         <namedColor name="background">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

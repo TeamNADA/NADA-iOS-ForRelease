@@ -9,21 +9,22 @@ import UIKit
 
 class CardHarmonyViewController: UIViewController {
 
+    @IBOutlet weak var harmonyImageView: UIImageView!
+    @IBOutlet weak var harmonyPercentLabel: UILabel!
+    @IBOutlet weak var harmonyDescriptionLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setUI()
     }
-    
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension CardHarmonyViewController {
+    private func setUI() {
+        harmonyImageView.image = UIImage(named: "icnHarmonyRed")
+        harmonyPercentLabel.text = "10%"
+        
+        harmonyDescriptionLabel.text = "좀 더 친해지길 바라..😅"
     }
-    */
-
 }

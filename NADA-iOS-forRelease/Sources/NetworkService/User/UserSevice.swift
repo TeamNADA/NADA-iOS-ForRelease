@@ -12,7 +12,7 @@ enum UserSevice {
     case userIDFetch(userID: String)
     case userTokenFetch(userID: String)
     case userSignUp(request: User)
-    case userDelete(userID: String)
+    case userDelete(token: String)
     case userSocialSignUp(userID: String)
 }
 
@@ -29,8 +29,8 @@ extension UserSevice: TargetType {
             return "/auth/\(userID)/login"
         case .userSignUp:
             return "/register"
-        case .userDelete(let userID):
-            return "/\(userID)"
+        case .userDelete:
+            return "/user"
         case .userSocialSignUp:
             return "auth/login"
         }
@@ -64,10 +64,12 @@ extension UserSevice: TargetType {
 
     var headers: [String: String]? {
         switch self {
-        case .userIDFetch, .userTokenFetch, .userDelete:
+        case .userIDFetch, .userTokenFetch:
             return .none
         case .userSignUp, .userSocialSignUp:
             return ["Content-Type": "application/json"]
+        case .userDelete(let token):
+            return ["Content-Type": "application/json", "Authorization": "Bearer " + token]
         }
     }
 }

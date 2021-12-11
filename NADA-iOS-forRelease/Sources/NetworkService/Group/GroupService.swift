@@ -17,6 +17,7 @@ enum GroupService {
     case cardListFetchInGroup(cardListInGroupRequest: CardListInGroupRequest)
     case changeCardGroup(request: ChangeGroupRequest)
     case cardDeleteInGroup(groupID: Int, cardID: String)
+    case groupReset(token: String)
 }
 
 extension GroupService: TargetType {
@@ -26,20 +27,16 @@ extension GroupService: TargetType {
     
     var path: String {
         switch self {
-        case .groupListFetch:
+        case .groupListFetch, .groupReset:
             return "/groups"
         case .groupDelete(let groupID):
             return "/group/\(groupID)"
-        case .groupAdd:
+        case .groupAdd, .groupEdit:
             return "/group"
-        case .groupEdit:
-            return "/group"
-        case .cardAddInGroup:
+        case .cardAddInGroup, .changeCardGroup:
             return "/groups/card"
         case .cardListFetchInGroup:
             return "/groups/cards"
-        case .changeCardGroup:
-            return "/groups/card"
         case .cardDeleteInGroup(let groupID, let cardID):
             return "/group/\(groupID)/\(cardID)"
         }
@@ -49,7 +46,7 @@ extension GroupService: TargetType {
         switch self {
         case .groupListFetch, .cardListFetchInGroup:
             return .get
-        case .groupDelete, .cardDeleteInGroup:
+        case .groupDelete, .cardDeleteInGroup, .groupReset:
             return .delete
         case .groupAdd, .cardAddInGroup:
             return .post
@@ -67,7 +64,7 @@ extension GroupService: TargetType {
         case .groupListFetch(let userID):
             return .requestParameters(parameters: ["userId": userID],
                                       encoding: URLEncoding.queryString)
-        case .groupDelete, .cardDeleteInGroup:
+        case .groupDelete, .cardDeleteInGroup, .groupReset:
             return .requestPlain
         case .groupAdd(let groupRequest):
             return .requestJSONEncodable(groupRequest)
@@ -90,6 +87,8 @@ extension GroupService: TargetType {
             return .none
         case .groupAdd, .groupEdit, .cardAddInGroup, .changeCardGroup:
             return ["Content-Type": "application/json"]
+        case .groupReset(let token):
+            return ["Content-Type": "application/json", "Authorization": "Bearer " + token]
         }
     }
 }

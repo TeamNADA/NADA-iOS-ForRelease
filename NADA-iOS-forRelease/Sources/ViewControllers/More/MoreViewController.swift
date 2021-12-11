@@ -68,8 +68,7 @@ extension MoreViewController {
         UserApi.shared.logout {(error) in
             if let error = error {
                 print(error)
-            }
-            else {
+            } else {
                 print("logout() success.")
                 
                 // ✅ 로그아웃 시 메인으로 보냄
@@ -81,11 +80,13 @@ extension MoreViewController {
 
 // MARK: - TableView Delegate
 extension MoreViewController: UITableViewDelegate {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         if indexPath.section == 0 {
             switch indexPath.row {
             case 0: openURL(link: policyURL)
@@ -98,7 +99,7 @@ extension MoreViewController: UITableViewDelegate {
             }
         } else if indexPath.section == 1 {
             switch indexPath.row {
-            case 0:
+            case 0:     // 로그아웃
                 makeOKCancelAlert(title: "알림", message: "로그아웃을 하시겠습니까?", okAction: { _ in
                     UserApi.shared.logout { (error) in
                         if let error = error {
@@ -108,11 +109,30 @@ extension MoreViewController: UITableViewDelegate {
                         }
                     }
                 })
-            case 1: print("정보 초기화!")
-            case 2:
-                print("회원탈퇴!")
-                // TODO: - 회원탈퇴 서버 전, alert 창이나 별도의 알림 필요, 수정 요함
-                deleteUserWithAPI(userID: "2alswo7@naver.com")
+            case 1:     // 정보 초기화
+                makeOKCancelAlert(title: "", message: "받은 명함과 그룹이 모두 초기화됩니다. 정말 초기화하시겠습니까?", okAction: { _ in
+                    UserApi.shared.logout { (error) in
+                        if let error = error {
+                            print(error)
+                        } else {
+                            self.makeOKAlert(title: "", message: "받은 명함이 초기화 되었습니다.")
+                            let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.token)!
+                            self.groupResetWithAPI(token: acToken)
+                        }
+                    }
+                })
+            case 2:     // 회원탈퇴
+                makeOKCancelAlert(title: "", message: "계정 정보가 모두 삭제됩니다. 정말 탈퇴하시겠습니까?", okAction: { _ in
+                    UserApi.shared.logout { (error) in
+                        if let error = error {
+                            print(error)
+                        } else {
+                            self.makeOKAlert(title: "NADA를 이용해주셔서 감사합니다.", message: "")
+                            let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.token)!
+                            self.deleteUserWithAPI(token: acToken)
+                        }
+                    }
+                })
             default: print("default!")
             }
         }
@@ -174,8 +194,8 @@ extension MoreViewController: UITableViewDataSource {
 
 // MARK: - Network
 extension MoreViewController {
-    func deleteUserWithAPI(userID: String) {
-        UserAPI.shared.userDelete(userID: userID) { response in
+    func deleteUserWithAPI(token: String) {
+        UserAPI.shared.userDelete(token: token) { response in
             switch response {
             case .success:
                 print("deleteUserWithAPI - success")
@@ -187,6 +207,23 @@ extension MoreViewController {
                 print("deleteUserWithAPI - serverErr")
             case .networkFail:
                 print("deleteUserWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func groupResetWithAPI(token: String) {
+        GroupAPI.shared.groupReset(token: token) { response in
+            switch response {
+            case .success:
+                print("groupResetWithAPI - success")
+            case .requestErr(let message):
+                print("groupResetWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("groupResetWithAPI - pathErr")
+            case .serverErr:
+                print("groupResetWithAPI - serverErr")
+            case .networkFail:
+                print("groupResetWithAPI - networkFail")
             }
         }
     }

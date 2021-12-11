@@ -63,8 +63,8 @@ public class UserAPI {
         }
     }
     
-    func userDelete(userID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        userProvider.request(.userDelete(userID: userID)) { (result) in
+    func userDelete(token: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        userProvider.request(.userDelete(token: token)) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode

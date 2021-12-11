@@ -105,7 +105,9 @@ extension MoreViewController: UITableViewDelegate {
                         if let error = error {
                             print(error)
                         } else {
-                            self.dismiss(animated: true, completion: nil)
+                            self.makeOKAlert(title: "", message: "로그아웃이 완료 되었습니다.") { _ in
+                                self.dismiss(animated: true, completion: nil)
+                            }
                         }
                     }
                 })

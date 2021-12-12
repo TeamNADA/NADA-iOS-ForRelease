@@ -48,12 +48,12 @@ extension GroupEditTableViewCell {
     }
     
     @objc private func labelClicked(_ tapRecognizer: UITapGestureRecognizer) {
-        delegate?.presentToGroupNameEdit()
+        delegate?.presentToGroupNameEdit(self.titleLabel)
     }
     
 }
 
 // MARK: - Protocol
 protocol GroupEditViewDelegate: AnyObject {
-    func presentToGroupNameEdit()
+    func presentToGroupNameEdit(_ sender: UILabel)
 }

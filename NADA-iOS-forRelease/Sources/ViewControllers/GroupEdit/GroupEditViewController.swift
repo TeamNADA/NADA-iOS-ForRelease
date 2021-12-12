@@ -8,7 +8,7 @@
 import UIKit
 
 class GroupEditViewController: UIViewController, GroupEditViewDelegate {
-
+    
     // MARK: - Properties
     var cardItems = ["SOPT", "동아리", "학교", "NADA NADA NADA NADA NADA"]
     
@@ -32,8 +32,8 @@ class GroupEditViewController: UIViewController, GroupEditViewDelegate {
     
     @IBAction func presentToAddGroupBottom(_ sender: UIButton) {
         let nextVC = AddGroupBottomSheetViewController()
-                    .setTitle("그룹 추가")
-                    .setHeight(184)
+            .setTitle("그룹 추가")
+            .setHeight(184)
         nextVC.modalPresentationStyle = .overFullScreen
         self.present(nextVC, animated: false, completion: nil)
     }
@@ -44,9 +44,11 @@ extension GroupEditViewController {
     
     func presentToGroupNameEdit() {
         let nextVC = GroupNameEditBottomSheetViewController()
-                    .setTitle("그룹명 변경")
-                    .setHeight(184)
+            .setTitle("그룹명 변경")
+            .setHeight(184)
         nextVC.modalPresentationStyle = .overFullScreen
+        nextVC.text = cardItems[0]
+        
         self.present(nextVC, animated: false, completion: nil)
     }
     
@@ -64,7 +66,7 @@ extension GroupEditViewController: UITableViewDelegate {
             self.makeCancelDeleteAlert(title: "그룹 삭제", message: "해당 그룹에 있던 명함은\n미분류 그룹으로 이동합니다.", cancelAction: { _ in
                 // 취소 눌렀을 때 액션이 들어갈 부분
             }, deleteAction: { _ in
-                // 
+                //
             })
         })
         deleteAction.backgroundColor = .red

@@ -11,6 +11,10 @@ import IQKeyboardManagerSwift
 class GroupNameEditBottomSheetViewController: CommonBottomSheetViewController, UITextFieldDelegate {
 
     // MARK: - Properties
+    
+    // 넘어온 그룹 이름 데이터를 받는 변수 선언
+    var text: String = ""
+    
     // 그룹 추가 텍스트 필드
     private let addGroupTextField: UITextField = {
         let textField = UITextField()
@@ -64,6 +68,8 @@ class GroupNameEditBottomSheetViewController: CommonBottomSheetViewController, U
         view.addSubview(explainLabel)
         
         setupLayout()
+        
+        addGroupTextField.text = text
     }
     
     // 레이아웃 세팅

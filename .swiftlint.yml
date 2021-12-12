@@ -4,6 +4,8 @@ disabled_rules:
 - nesting
 - function_parameter_count
 - function_body_length
+- cyclomatic_complexity
+- file_length
 excluded:
 - Pods
 - NADA-iOS-forRelease/Sources/AppDelegate.swift

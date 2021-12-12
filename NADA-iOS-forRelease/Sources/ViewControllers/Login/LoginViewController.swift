@@ -77,7 +77,7 @@ extension LoginViewController {
             } else {
                 print("loginWithKakaoTalk() success.")
                 
-                UserApi.shared.me() {(user, error) in
+                UserApi.shared.me {(user, error) in
                     if let error = error {
                         print(error)
                     } else {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GroupEditViewController: UIViewController {
+class GroupEditViewController: UIViewController, GroupEditViewDelegate {
 
     // MARK: - Properties
     var cardItems = ["SOPT", "동아리", "학교", "NADA NADA NADA NADA NADA"]
@@ -39,6 +39,19 @@ class GroupEditViewController: UIViewController {
     }
 }
 
+// MARK: - Extensions
+extension GroupEditViewController {
+    
+    func presentToGroupNameEdit() {
+        let nextVC = GroupNameEditBottomSheetViewController()
+                    .setTitle("그룹명 변경")
+                    .setHeight(184)
+        nextVC.modalPresentationStyle = .overFullScreen
+        self.present(nextVC, animated: false, completion: nil)
+    }
+    
+}
+
 // MARK: - TableView Delegate
 extension GroupEditViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -61,6 +74,7 @@ extension GroupEditViewController: UITableViewDelegate {
         
         return swipeActions
     }
+    
 }
 
 // MARK: - TableView DataSource
@@ -73,6 +87,7 @@ extension GroupEditViewController: UITableViewDataSource {
         guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.groupEditTableViewCell, for: indexPath) as? GroupEditTableViewCell else { return UITableViewCell() }
         
         serviceCell.initData(title: cardItems[indexPath.row])
+        serviceCell.delegate = self
         
         return serviceCell
     }

@@ -14,6 +14,7 @@
 		39288E12273F52B20072F403 /* CardListLookUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39288E11273F52B20072F403 /* CardListLookUpRequest.swift */; };
 		392F7FB4274621F1008CDBF5 /* MoreListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392F7FB2274621F1008CDBF5 /* MoreListTableViewCell.swift */; };
 		392F7FB5274621F1008CDBF5 /* MoreListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 392F7FB3274621F1008CDBF5 /* MoreListTableViewCell.xib */; };
+		39317D2227646F8E00D87166 /* GroupNameEditBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39317D2127646F8E00D87166 /* GroupNameEditBottomSheetViewController.swift */; };
 		39369935274A4FCB00684420 /* NotoSansCJKkr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 39369930274A4FCB00684420 /* NotoSansCJKkr-Bold.otf */; };
 		39369936274A4FCB00684420 /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 39369931274A4FCB00684420 /* NotoSansCJKkr-Regular.otf */; };
 		39369937274A4FCB00684420 /* NotoSansCJKkr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 39369932274A4FCB00684420 /* NotoSansCJKkr-Medium.otf */; };
@@ -143,6 +144,7 @@
 		39288E11273F52B20072F403 /* CardListLookUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListLookUpRequest.swift; sourceTree = "<group>"; };
 		392F7FB2274621F1008CDBF5 /* MoreListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreListTableViewCell.swift; sourceTree = "<group>"; };
 		392F7FB3274621F1008CDBF5 /* MoreListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreListTableViewCell.xib; sourceTree = "<group>"; };
+		39317D2127646F8E00D87166 /* GroupNameEditBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNameEditBottomSheetViewController.swift; sourceTree = "<group>"; };
 		39369930274A4FCB00684420 /* NotoSansCJKkr-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Bold.otf"; sourceTree = "<group>"; };
 		39369931274A4FCB00684420 /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
 		39369932274A4FCB00684420 /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; };
@@ -480,6 +482,7 @@
 				39D88B6A274600B100A72164 /* CommonBottomSheetViewController.swift */,
 				77DFB870274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift */,
 				398413B6274A7A1E005550BC /* AddGroupBottomSheetViewController.swift */,
+				39317D2127646F8E00D87166 /* GroupNameEditBottomSheetViewController.swift */,
 				77703156275005AA002CBD19 /* CardResultBottomSheetViewController.swift */,
 				7713E8472752E2A900724C8B /* SelectGroupBottomSheetViewController.swift */,
 				F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */,
@@ -1087,6 +1090,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F87122762733046300A24E74 /* Card.swift in Sources */,
+				39317D2227646F8E00D87166 /* GroupNameEditBottomSheetViewController.swift in Sources */,
 				F84BAF9D26FDB417004CA335 /* CardCreationViewController.swift in Sources */,
 				F8C83FCB272FA32C0009DF0D /* GroupService.swift in Sources */,
 				F858079E2700354E00872484 /* BackgroundCollectionViewCell.swift in Sources */,

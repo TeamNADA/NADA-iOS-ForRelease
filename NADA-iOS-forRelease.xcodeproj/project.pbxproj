@@ -38,6 +38,12 @@
 		3958F23C270FFBD500B100B2 /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3958F23B270FFBD500B100B2 /* Group.storyboard */; };
 		3979709626FA0BE5003FB4F5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3979709526FA0BE5003FB4F5 /* LoginViewController.swift */; };
 		3979709826FA0BF0003FB4F5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3979709726FA0BF0003FB4F5 /* Login.storyboard */; };
+		397B750D2763A5AF004AEB03 /* OpenSource.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 397B750C2763A5AF004AEB03 /* OpenSource.storyboard */; };
+		397B75102763A5F5004AEB03 /* OpenSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B750F2763A5F5004AEB03 /* OpenSourceViewController.swift */; };
+		397B75132763A916004AEB03 /* OpenSourceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B75112763A916004AEB03 /* OpenSourceTableViewCell.swift */; };
+		397B75142763A916004AEB03 /* OpenSourceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 397B75122763A916004AEB03 /* OpenSourceTableViewCell.xib */; };
+		397B75172763B5B7004AEB03 /* TeamNADA.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 397B75162763B5B7004AEB03 /* TeamNADA.storyboard */; };
+		397B751A2763B5F1004AEB03 /* TeamNADAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B75192763B5F1004AEB03 /* TeamNADAViewController.swift */; };
 		3981148E273BEBB300E28630 /* CardListEditRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3981148D273BEBB300E28630 /* CardListEditRequest.swift */; };
 		39811490273BEBCE00E28630 /* CardListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3981148F273BEBCE00E28630 /* CardListRequest.swift */; };
 		398413B7274A7A1E005550BC /* AddGroupBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398413B6274A7A1E005550BC /* AddGroupBottomSheetViewController.swift */; };
@@ -161,6 +167,12 @@
 		3958F23B270FFBD500B100B2 /* Group.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
 		3979709526FA0BE5003FB4F5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3979709726FA0BF0003FB4F5 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		397B750C2763A5AF004AEB03 /* OpenSource.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OpenSource.storyboard; sourceTree = "<group>"; };
+		397B750F2763A5F5004AEB03 /* OpenSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceViewController.swift; sourceTree = "<group>"; };
+		397B75112763A916004AEB03 /* OpenSourceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceTableViewCell.swift; sourceTree = "<group>"; };
+		397B75122763A916004AEB03 /* OpenSourceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenSourceTableViewCell.xib; sourceTree = "<group>"; };
+		397B75162763B5B7004AEB03 /* TeamNADA.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamNADA.storyboard; sourceTree = "<group>"; };
+		397B75192763B5F1004AEB03 /* TeamNADAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamNADAViewController.swift; sourceTree = "<group>"; };
 		3981148D273BEBB300E28630 /* CardListEditRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListEditRequest.swift; sourceTree = "<group>"; };
 		3981148F273BEBCE00E28630 /* CardListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListRequest.swift; sourceTree = "<group>"; };
 		398413B6274A7A1E005550BC /* AddGroupBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupBottomSheetViewController.swift; sourceTree = "<group>"; };
@@ -402,6 +414,31 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		397B750E2763A5DD004AEB03 /* OpenSource */ = {
+			isa = PBXGroup;
+			children = (
+				397B750F2763A5F5004AEB03 /* OpenSourceViewController.swift */,
+			);
+			path = OpenSource;
+			sourceTree = "<group>";
+		};
+		397B75152763A91D004AEB03 /* OpenSource */ = {
+			isa = PBXGroup;
+			children = (
+				397B75112763A916004AEB03 /* OpenSourceTableViewCell.swift */,
+				397B75122763A916004AEB03 /* OpenSourceTableViewCell.xib */,
+			);
+			path = OpenSource;
+			sourceTree = "<group>";
+		};
+		397B75182763B5DA004AEB03 /* TeamNADA */ = {
+			isa = PBXGroup;
+			children = (
+				397B75192763B5F1004AEB03 /* TeamNADAViewController.swift */,
+			);
+			path = TeamNADA;
+			sourceTree = "<group>";
+		};
 		3981148A273BEB7200E28630 /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -423,6 +460,8 @@
 			isa = PBXGroup;
 			children = (
 				39D88B612745FBA900A72164 /* More.storyboard */,
+				397B750C2763A5AF004AEB03 /* OpenSource.storyboard */,
+				397B75162763B5B7004AEB03 /* TeamNADA.storyboard */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -755,6 +794,7 @@
 		F8FC439B26C01EC30033E151 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				397B75152763A91D004AEB03 /* OpenSource */,
 				F8518051275D039D006BD5ED /* Onboarding */,
 				3936993F274A565E00684420 /* GroupEdit */,
 				77607ED7274A689300204CD2 /* GroupCell */,
@@ -805,6 +845,8 @@
 		F8FC43A026C01F040033E151 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				397B75182763B5DA004AEB03 /* TeamNADA */,
+				397B750E2763A5DD004AEB03 /* OpenSource */,
 				77812945275F6E6A004B34F4 /* CardDetail */,
 				F8518059275D0468006BD5ED /* Onboarding */,
 				393E3343275F69DB00965BBF /* Splash */,
@@ -937,6 +979,7 @@
 			files = (
 				F8518058275D042B006BD5ED /* Onboarding.storyboard in Resources */,
 				F8FC43BF26C025180033E151 /* .swiftlint.yml in Resources */,
+				397B75142763A916004AEB03 /* OpenSourceTableViewCell.xib in Resources */,
 				F85711A7274A6B3400F59F0B /* CardCreationPreview.storyboard in Resources */,
 				77607EDB274A68BE00204CD2 /* GroupCollectionViewCell.xib in Resources */,
 				39369936274A4FCB00684420 /* NotoSansCJKkr-Regular.otf in Resources */,
@@ -953,10 +996,12 @@
 				39369945274A568900684420 /* GroupEditTableViewCell.xib in Resources */,
 				77F2C0ED27632AA7007641E3 /* CardHarmony.storyboard in Resources */,
 				F84BAFB226FDB552004CA335 /* BackCardCreationCollectionViewCell.xib in Resources */,
+				397B75172763B5B7004AEB03 /* TeamNADA.storyboard in Resources */,
 				3936993B274A53C600684420 /* GroupEdit.storyboard in Resources */,
 				39D88B642745FDD400A72164 /* TabBar.storyboard in Resources */,
 				7766A410274FEBE200714912 /* CardInGroupCollectionViewCell.xib in Resources */,
 				7705CF402752C844005195DF /* CardView.xib in Resources */,
+				397B750D2763A5AF004AEB03 /* OpenSource.storyboard in Resources */,
 				393E334A275F6A6600965BBF /* Splash.storyboard in Resources */,
 				39523E5C2701A48900536900 /* CardListTableViewCell.xib in Resources */,
 				F8FC439226C01CDE0033E151 /* LaunchScreen.storyboard in Resources */,
@@ -1056,6 +1101,7 @@
 				39523E09270184A700536900 /* CardListViewController.swift in Sources */,
 				F85711A5274A6B2200F59F0B /* CardCreationPreviewViewController.swift in Sources */,
 				777FF89B27359B7800BF69D3 /* Groups.swift in Sources */,
+				397B75102763A5F5004AEB03 /* OpenSourceViewController.swift in Sources */,
 				777FF89F27364B7B00BF69D3 /* GroupEditRequest.swift in Sources */,
 				399C55DF2711949D00845A54 /* CGPoint+Distance.swift in Sources */,
 				77F2C0EB27632A91007641E3 /* CardHarmonyViewController.swift in Sources */,
@@ -1088,6 +1134,7 @@
 				39523E5B2701A48900536900 /* CardListTableViewCell.swift in Sources */,
 				F8719DDB274F92E90081AD51 /* UITextField+Extension.swift in Sources */,
 				F8A9FE1A2743DC6B00BC60CE /* CardListInGroupRequest.swift in Sources */,
+				397B751A2763B5F1004AEB03 /* TeamNADAViewController.swift in Sources */,
 				3981148E273BEBB300E28630 /* CardListEditRequest.swift in Sources */,
 				39D88B6B274600B100A72164 /* CommonBottomSheetViewController.swift in Sources */,
 				7705CF3E2752C7DB005195DF /* CardView.swift in Sources */,
@@ -1121,6 +1168,7 @@
 				F8C83FB8272F9E3F0009DF0D /* UtilAPI.swift in Sources */,
 				F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */,
 				39288E12273F52B20072F403 /* CardListLookUpRequest.swift in Sources */,
+				397B75132763A916004AEB03 /* OpenSourceTableViewCell.swift in Sources */,
 				F811720027383097002742CF /* ChangeGroupRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

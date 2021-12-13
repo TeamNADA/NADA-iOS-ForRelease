@@ -30,6 +30,8 @@ extension Const {
             static let moreViewController = "MoreViewController"
             static let splashViewController = "SplashViewController"
             static let onboardingViewController = "OnboardingViewController"
+            static let openSourceViewController = "OpenSourceViewController"
+            static let teamNADAViewController = "TeamNADAViewController"
         }
     }
 }

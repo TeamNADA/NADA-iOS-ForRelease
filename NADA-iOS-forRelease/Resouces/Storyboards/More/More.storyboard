@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tDA-DH-lHp">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -98,7 +98,7 @@
                             <constraint firstItem="wb8-4G-Pj8" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="qq9-dH-GCJ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="iconMoreHoriz" selectedImage="iconMoreHorizSelected" id="mtN-II-w2Y"/>
+                    <navigationItem key="navigationItem" id="70Q-sm-rAN"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="darkModeHeaderView" destination="OX6-in-bQj" id="i9G-xo-r1q"/>
@@ -107,6 +107,24 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1005.6" y="55.418719211822662"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Gol-Ui-cUX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="tDA-DH-lHp" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="iconMoreHoriz" selectedImage="iconMoreHorizSelected" id="mtN-II-w2Y"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9sb-lE-b9D">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="rer-TS-18F"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OIR-ha-aEV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="63.200000000000003" y="55.418719211822662"/>
         </scene>

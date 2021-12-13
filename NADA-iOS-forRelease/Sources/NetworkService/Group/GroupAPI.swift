@@ -143,6 +143,22 @@ public class GroupAPI {
         }
     }
     
+    func groupReset(token: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        groupProvider.request(.groupReset(token: token)) { (result) in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                let networkResult = self.judgeStatus(by: statusCode, data)
+                completion(networkResult)
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
     private func judgeGroupListFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
 
         let decoder = JSONDecoder()

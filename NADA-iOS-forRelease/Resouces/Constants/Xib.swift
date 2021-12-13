@@ -23,5 +23,6 @@ extension Const {
         static let cardView = "CardView"
         static let onboardingCollectionViewCell = "OnboardingCollectionViewCell"
         static let mainCardCell = "MainCardCell"
+        static let openSourceTableViewCell = "OpenSourceTableViewCell"
     }
 }

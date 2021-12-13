@@ -45,13 +45,13 @@ extension GroupEditViewController {
     func presentToGroupNameEdit(_ sender: UILabel) {
         let contentView = sender.superview
         guard let cell = contentView?.superview as? UITableViewCell else { return }
-        let index = groupEditTableView.indexPath(for: cell)
+        guard let index = groupEditTableView.indexPath(for: cell) else { return }
         
         let nextVC = GroupNameEditBottomSheetViewController()
             .setTitle("그룹명 변경")
             .setHeight(184)
         nextVC.modalPresentationStyle = .overFullScreen
-        nextVC.text = cardItems[index!.row]
+        nextVC.text = cardItems[index.row]
         
         self.present(nextVC, animated: false, completion: nil)
     }

@@ -9,17 +9,13 @@ import UIKit
 
 class OpenSourceViewController: UIViewController {
 
+    // MARK: - Properteis
     var openSourceList = ["Moya", "SkeletonView", "SwiftLint", "VerticalCardSwiper", "KakaoSDK", "IQKeyboardManagerSwift"]
-    
-    let moyaURL = URL(string: "https://github.com/Moya/Moya")!
-    let skeletonURL = URL(string: "https://github.com/Juanpe/SkeletonView")!
-    let swiftLintURL = URL(string: "https://github.com/realm/SwiftLint")!
-    let cardSwiperURL = URL(string: "https://github.com/JoniVR/VerticalCardSwiper")!
-    let kakaoURL = URL(string: "https://developers.kakao.com/sdk/reference/ios/release/KakaoSDKCommon/index.html")!
-    let keyboardURL = URL(string: "https://github.com/hackiftekhar/IQKeyboardManager")!
 
+    // MARK: - @IBOutlet Properties
     @IBOutlet weak var openSourceTableView: UITableView!
     
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,6 +23,7 @@ class OpenSourceViewController: UIViewController {
         navigationBackSwipeMotion()
     }
     
+    // MARK: - @IBAction Properties
     @IBAction func dismissToPreviousView(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -64,12 +61,12 @@ extension OpenSourceViewController: UITableViewDelegate {
         cell!.contentView.backgroundColor = .background
         
         switch indexPath.row {
-        case 0: openURL(link: moyaURL)
-        case 1: openURL(link: skeletonURL)
-        case 2: openURL(link: swiftLintURL)
-        case 3: openURL(link: cardSwiperURL)
-        case 4: openURL(link: kakaoURL)
-        case 5: openURL(link: keyboardURL)
+        case 0: openURL(link: URL(string: Const.URL.moyaURL)!)
+        case 1: openURL(link: URL(string: Const.URL.skeletonURL)!)
+        case 2: openURL(link: URL(string: Const.URL.swiftLintURL)!)
+        case 3: openURL(link: URL(string: Const.URL.cardSwiperURL)!)
+        case 4: openURL(link: URL(string: Const.URL.kakaoURL)!)
+        case 5: openURL(link: URL(string: Const.URL.keyboardURL)!)
         default: print("default!")
             
         }

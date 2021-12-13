@@ -12,9 +12,7 @@ class MoreViewController: UIViewController {
     
     // MARK: - Properteis
     let defaults = UserDefaults.standard
-    let policyURL = URL(string: "https://nadaitzme.notion.site/NADA-8385054bc2e44762a62f590534b2a24d")!
-    let serviceURL = URL(string: "https://nadaitzme.notion.site/NADA-58544bc9f0a1493c94f223cab3a440d0")!
-    
+
     var firstItems = ["개인정보 처리방침", "서비스 이용약관", "Team NADA", "오픈소스 라이브러리"]
     var secondItems = ["로그아웃", "정보 초기화", "회원탈퇴"]
     
@@ -89,8 +87,8 @@ extension MoreViewController: UITableViewDelegate {
         
         if indexPath.section == 0 {
             switch indexPath.row {
-            case 0: openURL(link: policyURL)
-            case 1: openURL(link: serviceURL)
+            case 0: openURL(link: URL(string: Const.URL.policyURL)!)
+            case 1: openURL(link: URL(string: Const.URL.serviceURL)!)
             case 2: pushView(nextSB: Const.Storyboard.Name.teamNADA,
                              nextVC: Const.ViewController.Identifier.teamNADAViewController)
             case 3: pushView(nextSB: Const.Storyboard.Name.openSource,

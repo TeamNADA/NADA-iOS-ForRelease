@@ -9,13 +9,20 @@ import UIKit
 
 class GroupEditTableViewCell: UITableViewCell {
 
+    // MARK: - Properties
+    weak var delegate: GroupEditViewDelegate?
+    
+    // MARK: - @IBOutlet Properties
     @IBOutlet weak var titleLabel: UILabel!
     
+    // MARK: - View Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        setupGestureRecognizer()
     }
 
+    // MARK: - Functions
     static func nib() -> UINib {
         return UINib(nibName: "GroupEditTableViewCell", bundle: nil)
     }
@@ -29,4 +36,24 @@ class GroupEditTableViewCell: UITableViewCell {
     func initData(title: String) {
         titleLabel.text = title
     }
+}
+
+// MARK: - Extensions
+extension GroupEditTableViewCell {
+    
+    private func setupGestureRecognizer() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(labelClicked))
+        titleLabel.addGestureRecognizer(tapGestureRecognizer)
+        titleLabel.isUserInteractionEnabled = true
+    }
+    
+    @objc private func labelClicked(_ tapRecognizer: UITapGestureRecognizer) {
+        delegate?.presentToGroupNameEdit(self.titleLabel)
+    }
+    
+}
+
+// MARK: - Protocol
+protocol GroupEditViewDelegate: AnyObject {
+    func presentToGroupNameEdit(_ sender: UILabel)
 }

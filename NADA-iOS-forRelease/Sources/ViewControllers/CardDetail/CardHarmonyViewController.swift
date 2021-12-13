@@ -21,11 +21,11 @@ class CardHarmonyViewController: UIViewController {
             self.dimmedBackView.alpha = 0.0
             self.view.layoutIfNeeded()
             self.popUpView.isHidden = true
-        }) { _ in
+        }, completion: { _ in
             if self.presentingViewController != nil {
                 self.dismiss(animated: false, completion: nil)
             }
-        }
+        })
     }
     
     var percentageColor: UIColor?

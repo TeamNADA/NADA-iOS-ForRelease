@@ -7,8 +7,8 @@
 
 import UIKit
 
-class GroupEditViewController: UIViewController {
-
+class GroupEditViewController: UIViewController, GroupEditViewDelegate {
+    
     // MARK: - Properties
     var cardItems = ["SOPT", "동아리", "학교", "NADA NADA NADA NADA NADA"]
     
@@ -32,11 +32,30 @@ class GroupEditViewController: UIViewController {
     
     @IBAction func presentToAddGroupBottom(_ sender: UIButton) {
         let nextVC = AddGroupBottomSheetViewController()
-                    .setTitle("그룹 추가")
-                    .setHeight(184)
+            .setTitle("그룹 추가")
+            .setHeight(184)
         nextVC.modalPresentationStyle = .overFullScreen
         self.present(nextVC, animated: false, completion: nil)
     }
+}
+
+// MARK: - Extensions
+extension GroupEditViewController {
+    
+    func presentToGroupNameEdit(_ sender: UILabel) {
+        let contentView = sender.superview
+        guard let cell = contentView?.superview as? UITableViewCell else { return }
+        guard let index = groupEditTableView.indexPath(for: cell) else { return }
+        
+        let nextVC = GroupNameEditBottomSheetViewController()
+            .setTitle("그룹명 변경")
+            .setHeight(184)
+        nextVC.modalPresentationStyle = .overFullScreen
+        nextVC.text = cardItems[index.row]
+        
+        self.present(nextVC, animated: false, completion: nil)
+    }
+    
 }
 
 // MARK: - TableView Delegate
@@ -51,7 +70,7 @@ extension GroupEditViewController: UITableViewDelegate {
             self.makeCancelDeleteAlert(title: "그룹 삭제", message: "해당 그룹에 있던 명함은\n미분류 그룹으로 이동합니다.", cancelAction: { _ in
                 // 취소 눌렀을 때 액션이 들어갈 부분
             }, deleteAction: { _ in
-                // 
+                //
             })
         })
         deleteAction.backgroundColor = .red
@@ -61,6 +80,7 @@ extension GroupEditViewController: UITableViewDelegate {
         
         return swipeActions
     }
+    
 }
 
 // MARK: - TableView DataSource
@@ -73,6 +93,7 @@ extension GroupEditViewController: UITableViewDataSource {
         guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.groupEditTableViewCell, for: indexPath) as? GroupEditTableViewCell else { return UITableViewCell() }
         
         serviceCell.initData(title: cardItems[indexPath.row])
+        serviceCell.delegate = self
         
         return serviceCell
     }

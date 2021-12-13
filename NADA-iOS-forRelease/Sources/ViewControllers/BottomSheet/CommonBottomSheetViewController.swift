@@ -186,11 +186,11 @@ class CommonBottomSheetViewController: UIViewController {
             self.dimmedBackView.alpha = 0.0
             self.view.layoutIfNeeded()
             self.bottomSheetCoverView.isHidden = false
-        }) { _ in
+        }, completion: { _ in
             if self.presentingViewController != nil {
                 self.dismiss(animated: false, completion: nil)
             }
-        }
+        })
     }
     
     // 바텀 시트 사라지고 바로 다시 다음 바텀 시트 올라오는 애니메이션
@@ -202,7 +202,7 @@ class CommonBottomSheetViewController: UIViewController {
             self.dimmedBackView.alpha = 0.0
             self.view.layoutIfNeeded()
             self.bottomSheetCoverView.isHidden = false
-        }) { _ in
+        }, completion: { _ in
             if self.presentingViewController != nil {
                 guard let presentingVC = self.presentingViewController else { return }
                 self.dismiss(animated: false) {
@@ -211,7 +211,7 @@ class CommonBottomSheetViewController: UIViewController {
                     presentingVC.present(nextVC, animated: false, completion: nil)
                 }
             }
-        }
+        })
     }
     
     func hideBottomSheetAndPresentVC(nextViewController: UIViewController) {
@@ -222,7 +222,7 @@ class CommonBottomSheetViewController: UIViewController {
             self.dimmedBackView.alpha = 0.0
             self.view.layoutIfNeeded()
             self.bottomSheetCoverView.isHidden = false
-        }) { _ in
+        }, completion: { _ in
             if self.presentingViewController != nil {
                 guard let presentingVC = self.presentingViewController else { return }
                 self.dismiss(animated: false) {
@@ -231,7 +231,7 @@ class CommonBottomSheetViewController: UIViewController {
                     presentingVC.present(nextVC, animated: true, completion: nil)
                 }
             }
-        }
+        })
     }
     
     // UITapGestureRecognizer 연결 함수 부분

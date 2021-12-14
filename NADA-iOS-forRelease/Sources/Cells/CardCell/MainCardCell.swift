@@ -14,6 +14,7 @@ class MainCardCell: CardCell {
     // MARK: - Properties
     
     private var isFront = true
+    private var isShareable = true
     
     public var cardDataModel: Card?
     
@@ -47,7 +48,8 @@ extension MainCardCell {
                            cardDataModel.birthDate,
                            cardDataModel.mbti,
                            cardDataModel.instagram ?? "",
-                           cardDataModel.link ?? "")
+                           cardDataModel.link ?? "",
+                           isShareable: isShareable)
         
         contentView.addSubview(frontCard)
     }
@@ -78,7 +80,8 @@ extension MainCardCell {
                               cardDataModel.isSauced,
                               cardDataModel.oneTMI ?? "",
                               cardDataModel.twoTMI ?? "",
-                              cardDataModel.thirdTMI ?? "")
+                              cardDataModel.thirdTMI ?? "",
+                              isShareable: isShareable)
             
             contentView.addSubview(backCard)
             isFront = false
@@ -94,7 +97,8 @@ extension MainCardCell {
                                cardDataModel.birthDate,
                                cardDataModel.mbti,
                                cardDataModel.instagram ?? "",
-                               cardDataModel.link ?? "")
+                               cardDataModel.link ?? "",
+                               isShareable: isShareable)
             
             contentView.addSubview(frontCard)
             isFront = true

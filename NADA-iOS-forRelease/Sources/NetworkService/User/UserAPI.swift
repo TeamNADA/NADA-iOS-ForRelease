@@ -9,11 +9,7 @@ import Foundation
 import Moya
 
 public class UserAPI {
-    
-    // let token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWRhMiIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE2NDAxMTAyNTB9.qH2fMkrtcVk9GtMEsBEWo0YFvIRTgKPVntBzpeGyyAe5POqnuKf3AtUTJE8yy6gPsAOl0bq8ChCn4RCL0fchp"
-    // let authPlugin = AccessTokenPlugin { _ in token }
-    // let userProvider = MoyaProvider<UserSevice>(plugins: [authPlugin])
-        
+     
     static let shared = UserAPI()
     var userProvider = MoyaProvider<UserSevice>(plugins: [MoyaLoggerPlugin()])
     

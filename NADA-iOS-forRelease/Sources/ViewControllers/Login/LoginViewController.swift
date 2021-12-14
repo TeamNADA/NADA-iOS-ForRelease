@@ -139,8 +139,9 @@ extension LoginViewController {
     func postUserSignUpWithAPI(request: String) {
         UserAPI.shared.userSocialSignUp(request: request) { response in
             switch response {
-            case .success:
+            case .success(let data):
                 print("postUserSignUpWithAPI - success")
+                print(data, "⭐️")
             case .requestErr(let message):
                 print("postUserSignUpWithAPI - requestErr: \(message)")
             case .pathErr:

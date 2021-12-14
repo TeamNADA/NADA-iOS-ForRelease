@@ -17,8 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         KakaoSDKCommon.initSDK(appKey: "5b8dd8cc878344bb7532eeca4365a4aa")
         
-        let userToken = UserDefaults.standard.string(forKey: Const.UserDefaults.token)
-        isLogin = userToken != nil ? true : false
+        if UserDefaults.standard.string(forKey: Const.UserDefaults.token) != nil {
+            // isLogin = true
+        }
         return true
     }
     

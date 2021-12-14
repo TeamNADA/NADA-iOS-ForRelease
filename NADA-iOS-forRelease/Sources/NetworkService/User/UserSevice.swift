@@ -16,11 +16,8 @@ enum UserSevice {
     case userSocialSignUp(userID: String)
 }
 
-extension UserSevice: TargetType, AccessTokenAuthorizable {
-    var authorizationType: AuthorizationType? {
-        return .bearer
-    }
-    
+extension UserSevice: TargetType {
+
     var baseURL: URL {
         return URL(string: Const.URL.baseURL)!
     }
@@ -75,9 +72,5 @@ extension UserSevice: TargetType, AccessTokenAuthorizable {
         case .userDelete(let token):
             return ["Content-Type": "application/json", "Authorization": "Bearer " + token]
         }
-        // case .userDelete:
-        //    return ["Content-Type": "application/json"]
-        // }
-        
     }
 }

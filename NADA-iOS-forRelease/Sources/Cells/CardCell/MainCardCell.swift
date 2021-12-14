@@ -34,6 +34,7 @@ class MainCardCell: CardCell {
         super.prepareForReuse()
         
         contentView.subviews.forEach { $0.removeFromSuperview() }
+        contentView.frame = CGRect(x: 0, y: 0, width: Size.cellWidth, height: Size.cellHeight)
     }
     
     // MARK: - Methods
@@ -49,7 +50,7 @@ extension MainCardCell {
     public func setFrontCard() {
         guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
         
-        frontCard.frame = CGRect(x: 0, y: 0, width: Size.cellWidth, height: Size.cellHeight)
+        frontCard.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
         guard let cardDataModel = cardDataModel else { return }
         frontCard.initCell(cardDataModel.background,
                            cardDataModel.title,
@@ -81,7 +82,7 @@ extension MainCardCell {
     private func transitionCardWithAnimation(_ swipeGesture: UISwipeGestureRecognizer) {
         if isFront {
             guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return }
-            backCard.frame = CGRect(x: 0, y: 0, width: Size.cellWidth, height: Size.cellHeight)
+            backCard.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
             guard let cardDataModel = cardDataModel else { return }
             backCard.initCell(cardDataModel.background,
                               cardDataModel.isMincho,
@@ -98,7 +99,7 @@ extension MainCardCell {
         } else {
             guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
             
-            frontCard.frame = CGRect(x: 0, y: 0, width: Size.cellWidth, height: Size.cellHeight)
+            frontCard.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
             guard let cardDataModel = cardDataModel else { return }
             frontCard.initCell(cardDataModel.background,
                                cardDataModel.title,

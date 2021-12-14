@@ -16,11 +16,15 @@ enum UserSevice {
     case userSocialSignUp(userID: String)
 }
 
-extension UserSevice: TargetType {
+extension UserSevice: TargetType, AccessTokenAuthorizable {
+    var authorizationType: AuthorizationType? {
+        return .bearer
+    }
+    
     var baseURL: URL {
         return URL(string: Const.URL.baseURL)!
     }
-
+    
     var path: String {
         switch self {
         case .userIDFetch(let userID):
@@ -35,7 +39,7 @@ extension UserSevice: TargetType {
             return "auth/login"
         }
     }
-
+    
     var method: Moya.Method {
         switch self {
         case .userIDFetch, .userTokenFetch:
@@ -46,7 +50,7 @@ extension UserSevice: TargetType {
             return .delete
         }
     }
-
+    
     var sampleData: Data {
         return Data()
     }
@@ -61,7 +65,7 @@ extension UserSevice: TargetType {
             return .requestParameters(parameters: ["userId": userID], encoding: JSONEncoding.default)
         }
     }
-
+    
     var headers: [String: String]? {
         switch self {
         case .userIDFetch, .userTokenFetch:
@@ -71,5 +75,9 @@ extension UserSevice: TargetType {
         case .userDelete(let token):
             return ["Content-Type": "application/json", "Authorization": "Bearer " + token]
         }
+        // case .userDelete:
+        //    return ["Content-Type": "application/json"]
+        // }
+        
     }
 }

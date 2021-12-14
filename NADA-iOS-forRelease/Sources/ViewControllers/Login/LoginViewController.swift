@@ -21,12 +21,6 @@ class LoginViewController: UIViewController {
         // getUserTokenFetchWithAPI(userID: "nada")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        checkAutoLogin()
-    }
-    
     // MARK: - IBAction Properties
     // 카카오톡으로 로그인 버튼 클릭 시
     @IBAction func kakaoLoginButton(_ sender: Any) {
@@ -61,13 +55,6 @@ extension LoginViewController {
         let nextVC = UIStoryboard(name: Const.Storyboard.Name.tabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.tabBarViewController)
         nextVC.modalPresentationStyle = .overFullScreen
         self.present(nextVC, animated: true, completion: nil)
-    }
-    
-    // 자동 로그인 체크 함수
-    func checkAutoLogin() {
-        if UserDefaults.standard.string(forKey: Const.UserDefaults.token) != nil {
-            goToMain()
-        }
     }
     
     func login() {
@@ -106,8 +93,8 @@ extension LoginViewController {
             login()
         } else {
             print("카카오톡 미설치")
-            // login()
             // 만약, 카카오톡이 깔려있지 않을 경우에는 웹 브라우저로 카카오 로그인함.
+            login()
         }
     }
     

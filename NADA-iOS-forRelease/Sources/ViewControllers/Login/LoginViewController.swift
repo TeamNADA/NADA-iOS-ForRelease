@@ -164,8 +164,8 @@ extension LoginViewController {
             switch response {
             case .success(let loginData):
                 print("postUserSignUpWithAPI - success")
-                if let userData = loginData as? UserData {
-                    if let tokenData = userData.token as? Token {
+                if let userData = loginData as? UserWithTokenRequest {
+                    if let tokenData = userData.user.token as? Token {
                         UserDefaults.standard.set(tokenData.accessToken, forKey: Const.UserDefaults.accessToken)
                         UserDefaults.standard.set(tokenData.refreshToken, forKey: Const.UserDefaults.refreshToken)
                         print(tokenData, "⭐️⭐️⭐️")

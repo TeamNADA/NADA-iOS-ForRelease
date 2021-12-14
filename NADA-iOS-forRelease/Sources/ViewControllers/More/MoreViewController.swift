@@ -116,7 +116,7 @@ extension MoreViewController: UITableViewDelegate {
                             print(error)
                         } else {
                             self.makeOKAlert(title: "", message: "받은 명함이 초기화 되었습니다.")
-                            let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.token)!
+                            let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken)!
                             self.groupResetWithAPI(token: acToken)
                         }
                     }
@@ -128,7 +128,7 @@ extension MoreViewController: UITableViewDelegate {
                             print(error)
                         } else {
                             self.makeOKAlert(title: "NADA를 이용해주셔서 감사합니다.", message: "")
-                            let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.token)!
+                            let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken)!
                             self.deleteUserWithAPI(token: acToken)
                         }
                     }

@@ -33,7 +33,7 @@ class LoginViewController: UIViewController {
                     }
                 } else {
                     // 토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
-                    self.login()
+                    self.signUp()
                 }
             }
         } else {
@@ -57,12 +57,15 @@ extension LoginViewController {
         self.present(nextVC, animated: true, completion: nil)
     }
     
-    func login() {
+    func loginWithApp() {
         UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
             if let error = error {
                 print(error)
             } else {
                 print("loginWithKakaoTalk() success.")
+
+                // FIXME: - 토큰으로 변경됬을 경우를 일단 대비
+                _ = oauthToken
                 
                 UserApi.shared.me {(user, error) in
                     if let error = error {
@@ -80,16 +83,29 @@ extension LoginViewController {
         
     }
     
+    func loginWithWeb() {
+        UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
+            if let error = error {
+                print(error)
+            } else {
+                print("loginWithKakaoAccount() success.")
+                
+                // FIXME: - 토큰으로 변경됬을 경우를 일단 대비
+                _ = oauthToken
+            }
+        }
+    }
+    
     // 카카오 로그인 표출 함수
     func signUp() {
         // 카카오톡 설치 여부 확인
         if UserApi.isKakaoTalkLoginAvailable() {
             // 카카오톡 로그인. api 호출 결과를 클로저로 전달.
-            login()
+            loginWithApp()
         } else {
             print("카카오톡 미설치")
             // 만약, 카카오톡이 깔려있지 않을 경우에는 웹 브라우저로 카카오 로그인함.
-            login()
+            loginWithWeb()
         }
     }
     
@@ -137,8 +153,9 @@ extension LoginViewController {
             case .success(let loginData):
                 print("postUserSignUpWithAPI - success")
                 if let userData = loginData as? UserData {
-                    if let tokenData = userData.token.accessToken as? String {
-                        UserDefaults.standard.set(tokenData, forKey: Const.UserDefaults.token)
+                    if let tokenData = userData.token as? Token {
+                        UserDefaults.standard.set(tokenData.accessToken, forKey: Const.UserDefaults.accessToken)
+                        UserDefaults.standard.set(tokenData.refreshToken, forKey: Const.UserDefaults.refreshToken)
                         print(tokenData, "⭐️⭐️⭐️")
                     }
                 }

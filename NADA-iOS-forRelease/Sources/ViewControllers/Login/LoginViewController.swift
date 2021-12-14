@@ -71,11 +71,6 @@ extension LoginViewController {
                         print("me() success.")
                         let email = user?.kakaoAccount?.email
                         self.postUserSignUpWithAPI(request: email!)
-                        
-                        // FIXME: - 스플래시 복사본에 자동로그인을 위한 토큰처리하기로 변경
-                        
-                        print("액세스 토큰 : ", oauthToken!.accessToken)
-                        print("리프레시 토큰 : ", oauthToken!.refreshToken)
                     }
                 }
                 
@@ -141,13 +136,11 @@ extension LoginViewController {
             switch response {
             case .success(let loginData):
                 print("postUserSignUpWithAPI - success")
-                // print(loginData, "⭐️")
-                if let userData = loginData as? GenericResponse<UserWithTokenRequest> {
-                    print(userData, "⭐️⭐️")
-                    // if let tokenData = userData.user.token.accessToken.data(using: String.Encoding.utf8) {
-                        // UserDefaults.standard.set(tokenData, forKey: Const.UserDefaults.token)
-                        // print(tokenData, "⭐️")
-                    // }
+                if let userData = loginData as? UserData {
+                    if let tokenData = userData.token.accessToken as? String {
+                        UserDefaults.standard.set(tokenData, forKey: Const.UserDefaults.token)
+                        print(tokenData, "⭐️⭐️⭐️")
+                    }
                 }
             case .requestErr(let message):
                 print("postUserSignUpWithAPI - requestErr: \(message)")

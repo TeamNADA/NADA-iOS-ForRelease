@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         KakaoSDKCommon.initSDK(appKey: "5b8dd8cc878344bb7532eeca4365a4aa")
         
         if UserDefaults.standard.string(forKey: Const.UserDefaults.token) != nil {
-            // isLogin = true
+            isLogin = true
         }
         return true
     }

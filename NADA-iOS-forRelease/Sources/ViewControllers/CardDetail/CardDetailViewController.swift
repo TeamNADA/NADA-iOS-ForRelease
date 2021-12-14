@@ -38,6 +38,7 @@ class CardDetailViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     
     public var cardDataModel: Card?
+    private var isShareable: Bool = false
     
     private var isFront = true
     var status: Status = .group
@@ -98,7 +99,8 @@ extension CardDetailViewController {
                            cardDataModel?.birthDate ?? "",
                            cardDataModel?.mbti ?? "",
                            cardDataModel?.instagram ?? "",
-                           cardDataModel?.link ?? "")
+                           cardDataModel?.link ?? "",
+                           isShareable: isShareable)
         
         cardView.addSubview(frontCard)
     }
@@ -126,7 +128,8 @@ extension CardDetailViewController {
                               cardDataModel?.isSauced ?? true,
                               cardDataModel?.oneTMI ?? "",
                               cardDataModel?.twoTMI ?? "",
-                              cardDataModel?.thirdTMI ?? "")
+                              cardDataModel?.thirdTMI ?? "",
+                              isShareable: isShareable)
             
             cardView.addSubview(backCard)
             isFront = false
@@ -141,7 +144,8 @@ extension CardDetailViewController {
                                cardDataModel?.birthDate ?? "",
                                cardDataModel?.mbti ?? "",
                                cardDataModel?.instagram ?? "",
-                               cardDataModel?.link ?? "")
+                               cardDataModel?.link ?? "",
+                               isShareable: isShareable)
             
             cardView.addSubview(frontCard)
             isFront = true

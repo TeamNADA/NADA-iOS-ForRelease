@@ -16,6 +16,7 @@ class CardCreationPreviewViewController: UIViewController {
     
     private var isFront = true
     private var cardCreationRequest: CardCreationRequest?
+    private var isShareable = false
     
     // MARK: - @IBOutlet Properties
     
@@ -83,7 +84,15 @@ extension CardCreationPreviewViewController {
         
         frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
         guard let frontCardDataModel = frontCardDataModel else { return }
-        frontCard.initCell(cardBackgroundImage, frontCardDataModel.title, frontCardDataModel.description, frontCardDataModel.name, frontCardDataModel.birthDate, frontCardDataModel.mbti, frontCardDataModel.instagramID, frontCardDataModel.linkURL)
+        frontCard.initCell(cardBackgroundImage,
+                           frontCardDataModel.title,
+                           frontCardDataModel.description,
+                           frontCardDataModel.name,
+                           frontCardDataModel.birthDate,
+                           frontCardDataModel.mbti,
+                           frontCardDataModel.instagramID,
+                           frontCardDataModel.linkURL,
+                           isShareable: isShareable)
         
         cardView.addSubview(frontCard)
     }
@@ -147,7 +156,8 @@ extension CardCreationPreviewViewController {
                                frontCardDataModel.birthDate,
                                frontCardDataModel.mbti,
                                frontCardDataModel.instagramID,
-                               frontCardDataModel.linkURL)
+                               frontCardDataModel.linkURL,
+                               isShareable: isShareable)
             
             cardView.addSubview(frontCard)
             isFront = true

@@ -101,7 +101,8 @@ extension FrontCardCell {
                   _ birth: String,
                   _ mbti: String,
                   _ instagramID: String,
-                  _ linkURL: String) {
+                  _ linkURL: String,
+                  isShareable: Bool) {
         if let bgImage = UIImage(named: backgroundImage) {
             self.backgroundImageView.image = bgImage
         }
@@ -112,6 +113,8 @@ extension FrontCardCell {
         mbtiLabel.text = mbti
         instagramIDLabel.text = instagramID
         linkURLLabel.text = linkURL
+        
+        shareButton.isHidden = !isShareable
     }
     
     /// 명함생성할 때 image 를 UIImage 로 가져올 경우 사용
@@ -122,7 +125,8 @@ extension FrontCardCell {
                   _ birth: String,
                   _ mbti: String,
                   _ instagramID: String,
-                  _ linkURL: String) {
+                  _ linkURL: String,
+                  isShareable: Bool) {
         backgroundImageView.image = backgroundImage ?? UIImage()
         titleLabel.text = cardTitle
         descriptionLabel.text = cardDescription
@@ -131,5 +135,7 @@ extension FrontCardCell {
         mbtiLabel.text = mbti
         instagramIDLabel.text = instagramID
         linkURLLabel.text = linkURL
+        
+        shareButton.isHidden = !isShareable
     }
 }

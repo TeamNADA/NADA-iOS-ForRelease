@@ -15,14 +15,14 @@ class MainCardCell: CardCell {
     
     private var isFront = true
     
+    public var isShareable: Bool?
     public var cardDataModel: Card?
     
     // MARK: - View Life Cycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        setUI()
+
         setGestureRecognizer()
     }
     
@@ -36,7 +36,6 @@ class MainCardCell: CardCell {
 // MARK: - Extensions
 
 extension MainCardCell {
-    private func setUI() { }
     public func setFrontCard() {
         guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
         
@@ -49,7 +48,8 @@ extension MainCardCell {
                            cardDataModel.birthDate,
                            cardDataModel.mbti,
                            cardDataModel.instagram ?? "",
-                           cardDataModel.link ?? "")
+                           cardDataModel.link ?? "",
+                           isShareable: isShareable ?? false)
         
         contentView.addSubview(frontCard)
     }
@@ -80,7 +80,8 @@ extension MainCardCell {
                               cardDataModel.isSauced,
                               cardDataModel.oneTMI ?? "",
                               cardDataModel.twoTMI ?? "",
-                              cardDataModel.thirdTMI ?? "")
+                              cardDataModel.thirdTMI ?? "",
+                              isShareable: isShareable ?? false)
             
             contentView.addSubview(backCard)
             isFront = false
@@ -96,17 +97,18 @@ extension MainCardCell {
                                cardDataModel.birthDate,
                                cardDataModel.mbti,
                                cardDataModel.instagram ?? "",
-                               cardDataModel.link ?? "")
+                               cardDataModel.link ?? "",
+                               isShareable: isShareable ?? false)
             
             contentView.addSubview(frontCard)
             isFront = true
         }
         if swipeGesture.direction == .right {
-            UIView.transition(with: contentView, duration: 1, options: .transitionFlipFromLeft, animations: nil) { _ in
+            UIView.transition(with: contentView, duration: 0.5, options: .transitionFlipFromLeft, animations: nil) { _ in
                 self.contentView.subviews[0].removeFromSuperview()
             }
         } else {
-            UIView.transition(with: contentView, duration: 1, options: .transitionFlipFromRight, animations: nil) { _ in
+            UIView.transition(with: contentView, duration: 0.5, options: .transitionFlipFromRight, animations: nil) { _ in
                 self.contentView.subviews[0].removeFromSuperview()
             }
         }

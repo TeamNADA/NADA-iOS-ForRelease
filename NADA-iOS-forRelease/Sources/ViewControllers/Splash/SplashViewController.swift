@@ -10,7 +10,7 @@ import UIKit
 class SplashViewController: UIViewController {
 
     // MARK: - Properties
-    private let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    private weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
 
     // MARK: - @IBOutlet Properties
     
@@ -24,7 +24,7 @@ class SplashViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
             self.setIsLogin()
         }
     }

@@ -12,4 +12,3 @@ struct CardListLookUpRequest: Codable {
     let offset: Int
     let cards: [Card]
 }
-

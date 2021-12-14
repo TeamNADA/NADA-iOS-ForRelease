@@ -21,8 +21,7 @@ class MainCardCell: CardCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        setUI()
+
         setGestureRecognizer()
     }
     

@@ -14,6 +14,10 @@ class MainCardCell: CardCell {
     // MARK: - Properties
     
     private var isFront = true
+    private enum Size {
+        static let cellHeight: CGFloat = 540
+        static let cellWidth: CGFloat = 327
+    }
     
     public var isShareable: Bool?
     public var cardDataModel: Card?
@@ -24,6 +28,12 @@ class MainCardCell: CardCell {
         super.awakeFromNib()
 
         setGestureRecognizer()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        contentView.subviews.forEach { $0.removeFromSuperview() }
     }
     
     // MARK: - Methods
@@ -39,7 +49,7 @@ extension MainCardCell {
     public func setFrontCard() {
         guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
         
-        frontCard.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
+        frontCard.frame = CGRect(x: 0, y: 0, width: Size.cellWidth, height: Size.cellHeight)
         guard let cardDataModel = cardDataModel else { return }
         frontCard.initCell(cardDataModel.background,
                            cardDataModel.title,
@@ -71,7 +81,7 @@ extension MainCardCell {
     private func transitionCardWithAnimation(_ swipeGesture: UISwipeGestureRecognizer) {
         if isFront {
             guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return }
-            backCard.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
+            backCard.frame = CGRect(x: 0, y: 0, width: Size.cellWidth, height: Size.cellHeight)
             guard let cardDataModel = cardDataModel else { return }
             backCard.initCell(cardDataModel.background,
                               cardDataModel.isMincho,
@@ -88,7 +98,7 @@ extension MainCardCell {
         } else {
             guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
             
-            frontCard.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
+            frontCard.frame = CGRect(x: 0, y: 0, width: Size.cellWidth, height: Size.cellHeight)
             guard let cardDataModel = cardDataModel else { return }
             frontCard.initCell(cardDataModel.background,
                                cardDataModel.title,

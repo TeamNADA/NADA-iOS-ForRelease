@@ -14,6 +14,10 @@ class MainCardCell: CardCell {
     // MARK: - Properties
     
     private var isFront = true
+    private enum Size {
+        static let cellHeight: CGFloat = 540
+        static let cellWidth: CGFloat = 327
+    }
     
     public var isShareable: Bool?
     public var cardDataModel: Card?
@@ -24,6 +28,13 @@ class MainCardCell: CardCell {
         super.awakeFromNib()
 
         setGestureRecognizer()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        contentView.subviews.forEach { $0.removeFromSuperview() }
+        contentView.frame = CGRect(x: 0, y: 0, width: Size.cellWidth, height: Size.cellHeight)
     }
     
     // MARK: - Methods

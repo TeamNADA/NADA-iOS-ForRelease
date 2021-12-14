@@ -92,6 +92,18 @@ extension LoginViewController {
                 
                 // FIXME: - 토큰으로 변경됬을 경우를 일단 대비
                 _ = oauthToken
+                
+                UserApi.shared.me {(user, error) in
+                    if let error = error {
+                        print(error)
+                    } else {
+                        print("me() success.")
+                        let email = user?.kakaoAccount?.email
+                        self.postUserSignUpWithAPI(request: email!)
+                    }
+                }
+                
+                self.goToMain()
             }
         }
     }

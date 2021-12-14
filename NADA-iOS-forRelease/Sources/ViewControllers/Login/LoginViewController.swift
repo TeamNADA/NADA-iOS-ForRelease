@@ -73,7 +73,7 @@ extension LoginViewController {
                         self.postUserSignUpWithAPI(request: email!)
                         
                         // FIXME: - 스플래시 복사본에 자동로그인을 위한 토큰처리하기로 변경
-                        UserDefaults.standard.set(oauthToken?.accessToken, forKey: Const.UserDefaults.token)
+                        
                         print("액세스 토큰 : ", oauthToken!.accessToken)
                         print("리프레시 토큰 : ", oauthToken!.refreshToken)
                     }
@@ -139,9 +139,16 @@ extension LoginViewController {
     func postUserSignUpWithAPI(request: String) {
         UserAPI.shared.userSocialSignUp(request: request) { response in
             switch response {
-            case .success(let data):
+            case .success(let loginData):
                 print("postUserSignUpWithAPI - success")
-                print(data, "⭐️")
+                // print(loginData, "⭐️")
+                if let userData = loginData as? GenericResponse<UserWithTokenRequest> {
+                    print(userData, "⭐️⭐️")
+                    // if let tokenData = userData.user.token.accessToken.data(using: String.Encoding.utf8) {
+                        // UserDefaults.standard.set(tokenData, forKey: Const.UserDefaults.token)
+                        // print(tokenData, "⭐️")
+                    // }
+                }
             case .requestErr(let message):
                 print("postUserSignUpWithAPI - requestErr: \(message)")
             case .pathErr:

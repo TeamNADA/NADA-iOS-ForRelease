@@ -85,7 +85,6 @@ public class UserAPI {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-
                 let networkResult = self.judgeStatus(by: statusCode, data)
                 completion(networkResult)
 
@@ -137,14 +136,14 @@ public class UserAPI {
     
     private func judgeStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<String>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<UserWithTokenRequest>.self, from: data)
         else { return .pathErr }
         
         switch statusCode {
         case 200:
-            return .success(decodedData.msg)
+            return .success(decodedData)
         case 400..<500:
-            return .requestErr(decodedData.msg)
+            return .requestErr(decodedData)
         case 500:
             return .serverErr
         default:

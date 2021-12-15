@@ -7,6 +7,8 @@
 
 import UIKit
 
+import IQKeyboardManagerSwift
+
 class BackCardCreationCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
@@ -53,6 +55,8 @@ class BackCardCreationCollectionViewCell: UICollectionViewCell {
 
 extension BackCardCreationCollectionViewCell {
     private func setUI() {
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        
         initUITextFieldList()
         initCollectionViewList()
         

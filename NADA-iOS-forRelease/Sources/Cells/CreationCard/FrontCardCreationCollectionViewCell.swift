@@ -7,6 +7,8 @@
 
 import UIKit
 
+import IQKeyboardManagerSwift
+
 class FrontCardCreationCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Protocols
@@ -61,6 +63,8 @@ class FrontCardCreationCollectionViewCell: UICollectionViewCell {
 
 extension FrontCardCreationCollectionViewCell {
     private func setUI() {
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        
         initUITextFieldList()
         backgroundSettingCollectionView.showsHorizontalScrollIndicator = false
         scrollView.indicatorStyle = .default

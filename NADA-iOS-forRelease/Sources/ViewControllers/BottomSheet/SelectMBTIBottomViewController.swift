@@ -45,6 +45,14 @@ class SelectMBTIBottmViewController: CommonBottomSheetViewController {
         setupUI()
     }
     
+    // MARK: - override Methods
+    
+    override func hideBottomSheetAndGoBack() {
+        super.hideBottomSheetAndGoBack()
+        
+        NotificationCenter.default.post(name: .dismissRequiredBottomSheet, object: nil)
+    }
+    
     // MARK: - Methods
     
     // UI 세팅 작업

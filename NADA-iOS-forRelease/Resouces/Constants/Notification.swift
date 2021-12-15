@@ -12,4 +12,6 @@ extension Notification.Name {
     static let frontCardMBTI = Notification.Name("frontCardMBTI")
     static let presentingImagePicker = Notification.Name("presentingImagePicker")
     static let sendNewImage = Notification.Name("sendNewImage")
+    static let touchRequiredView = Notification.Name("touchRequiredView")
+    static let dismissRequiredBottomSheet = Notification.Name("dismissRequiredBottomSheet")
 }

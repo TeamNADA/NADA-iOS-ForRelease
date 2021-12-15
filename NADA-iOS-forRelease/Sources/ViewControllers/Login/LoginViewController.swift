@@ -51,7 +51,7 @@ class LoginViewController: UIViewController {
 // MARK: - Extensions
 extension LoginViewController {
     // 메인 화면으로 전환 함수
-    func goToMain() {
+    func presentToMain() {
         let nextVC = UIStoryboard(name: Const.Storyboard.Name.tabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.tabBarViewController)
         nextVC.modalPresentationStyle = .overFullScreen
         self.present(nextVC, animated: true, completion: nil)
@@ -71,13 +71,13 @@ extension LoginViewController {
                     if let error = error {
                         print(error)
                     } else {
-                        print("me() success.")
-                        let email = user?.kakaoAccount?.email
-                        self.postUserSignUpWithAPI(request: email!)
+                        if let email = user?.kakaoAccount?.email {
+                            self.postUserSignUpWithAPI(request: email)
+                        }
                     }
                 }
                 
-                self.goToMain()
+                self.presentToMain()
             }
         }
         
@@ -97,13 +97,13 @@ extension LoginViewController {
                     if let error = error {
                         print(error)
                     } else {
-                        print("me() success.")
-                        let email = user?.kakaoAccount?.email
-                        self.postUserSignUpWithAPI(request: email!)
+                        if let email = user?.kakaoAccount?.email {
+                            self.postUserSignUpWithAPI(request: email)
+                        }
                     }
                 }
                 
-                self.goToMain()
+                self.presentToMain()
             }
         }
     }
@@ -115,7 +115,6 @@ extension LoginViewController {
             // 카카오톡 로그인. api 호출 결과를 클로저로 전달.
             loginWithApp()
         } else {
-            print("카카오톡 미설치")
             // 만약, 카카오톡이 깔려있지 않을 경우에는 웹 브라우저로 카카오 로그인함.
             loginWithWeb()
         }
@@ -168,7 +167,6 @@ extension LoginViewController {
                     if let tokenData = userData.user.token as? Token {
                         UserDefaults.standard.set(tokenData.accessToken, forKey: Const.UserDefaults.accessToken)
                         UserDefaults.standard.set(tokenData.refreshToken, forKey: Const.UserDefaults.refreshToken)
-                        print(tokenData, "⭐️⭐️⭐️")
                     }
                 }
             case .requestErr(let message):

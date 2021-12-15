@@ -105,6 +105,7 @@ extension MoreViewController: UITableViewDelegate {
                         } else {
                             self.makeOKAlert(title: "", message: "로그아웃이 완료 되었습니다.") { _ in
                                 self.dismiss(animated: true, completion: nil)
+                                UserDefaults.standard.removeObject(forKey: Const.UserDefaults.accessToken)
                             }
                         }
                     }
@@ -116,8 +117,9 @@ extension MoreViewController: UITableViewDelegate {
                             print(error)
                         } else {
                             self.makeOKAlert(title: "", message: "받은 명함이 초기화 되었습니다.")
-                            let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken)!
-                            self.groupResetWithAPI(token: acToken)
+                            if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken) {
+                                self.groupResetWithAPI(token: acToken)
+                            }
                         }
                     }
                 })
@@ -128,8 +130,9 @@ extension MoreViewController: UITableViewDelegate {
                             print(error)
                         } else {
                             self.makeOKAlert(title: "NADA를 이용해주셔서 감사합니다.", message: "")
-                            let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken)!
-                            self.deleteUserWithAPI(token: acToken)
+                            if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken) {
+                                self.deleteUserWithAPI(token: acToken)
+                            }
                         }
                     }
                 })

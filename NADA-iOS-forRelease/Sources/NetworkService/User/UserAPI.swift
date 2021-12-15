@@ -9,7 +9,7 @@ import Foundation
 import Moya
 
 public class UserAPI {
-    
+     
     static let shared = UserAPI()
     var userProvider = MoyaProvider<UserSevice>(plugins: [MoyaLoggerPlugin()])
     
@@ -85,8 +85,7 @@ public class UserAPI {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-
-                let networkResult = self.judgeStatus(by: statusCode, data)
+                let networkResult = self.judgeUserTokenFetchStatus(by: statusCode, data)
                 completion(networkResult)
 
             case .failure(let err):

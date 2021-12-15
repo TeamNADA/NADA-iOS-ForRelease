@@ -10,6 +10,7 @@ import Foundation
 extension Const {
     struct UserDefaults {
         static let darkModeState = "darkModeState"
-        static let token = "token"
+        static let accessToken = "accessToken"
+        static let refreshToken = "refreshToken"
     }
 }

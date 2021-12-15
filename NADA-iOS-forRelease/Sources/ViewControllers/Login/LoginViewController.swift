@@ -21,12 +21,6 @@ class LoginViewController: UIViewController {
         // getUserTokenFetchWithAPI(userID: "nada")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        checkAutoLogin()
-    }
-    
     // MARK: - IBAction Properties
     // 카카오톡으로 로그인 버튼 클릭 시
     @IBAction func kakaoLoginButton(_ sender: Any) {
@@ -39,7 +33,7 @@ class LoginViewController: UIViewController {
                     }
                 } else {
                     // 토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
-                    self.login()
+                    self.signUp()
                 }
             }
         } else {
@@ -57,45 +51,61 @@ class LoginViewController: UIViewController {
 // MARK: - Extensions
 extension LoginViewController {
     // 메인 화면으로 전환 함수
-    func goToMain() {
+    func presentToMain() {
         let nextVC = UIStoryboard(name: Const.Storyboard.Name.tabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.tabBarViewController)
         nextVC.modalPresentationStyle = .overFullScreen
         self.present(nextVC, animated: true, completion: nil)
     }
     
-    // 자동 로그인 체크 함수
-    func checkAutoLogin() {
-        if UserDefaults.standard.string(forKey: Const.UserDefaults.token) != nil {
-            goToMain()
-        }
-    }
-    
-    func login() {
+    func loginWithApp() {
         UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
             if let error = error {
                 print(error)
             } else {
                 print("loginWithKakaoTalk() success.")
+
+                // FIXME: - 토큰으로 변경됬을 경우를 일단 대비
+                _ = oauthToken
                 
                 UserApi.shared.me {(user, error) in
                     if let error = error {
                         print(error)
                     } else {
-                        print("me() success.")
-                        let email = user?.kakaoAccount?.email
-                        self.postUserSignUpWithAPI(request: email!)
-                        
-                        // FIXME: - 스플래시 복사본에 자동로그인을 위한 토큰처리하기로 변경
-                        UserDefaults.standard.set(oauthToken?.accessToken, forKey: Const.UserDefaults.token)
-                        print("액세스 토큰 : ", oauthToken!.accessToken)
-                        print("리프레시 토큰 : ", oauthToken!.refreshToken)
+                        if let email = user?.kakaoAccount?.email {
+                            self.postUserSignUpWithAPI(request: email)
+                        }
                     }
                 }
                 
-                self.goToMain()
+                self.presentToMain()
             }
         }
         
+    }
+    
+    func loginWithWeb() {
+        UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
+            if let error = error {
+                print(error)
+            } else {
+                print("loginWithKakaoAccount() success.")
+                
+                // FIXME: - 토큰으로 변경됬을 경우를 일단 대비
+                _ = oauthToken
+                
+                UserApi.shared.me {(user, error) in
+                    if let error = error {
+                        print(error)
+                    } else {
+                        if let email = user?.kakaoAccount?.email {
+                            self.postUserSignUpWithAPI(request: email)
+                        }
+                    }
+                }
+                
+                self.presentToMain()
+            }
+        }
     }
     
     // 카카오 로그인 표출 함수
@@ -103,11 +113,10 @@ extension LoginViewController {
         // 카카오톡 설치 여부 확인
         if UserApi.isKakaoTalkLoginAvailable() {
             // 카카오톡 로그인. api 호출 결과를 클로저로 전달.
-            login()
+            loginWithApp()
         } else {
-            print("카카오톡 미설치")
-            // login()
             // 만약, 카카오톡이 깔려있지 않을 경우에는 웹 브라우저로 카카오 로그인함.
+            loginWithWeb()
         }
     }
     
@@ -152,8 +161,14 @@ extension LoginViewController {
     func postUserSignUpWithAPI(request: String) {
         UserAPI.shared.userSocialSignUp(request: request) { response in
             switch response {
-            case .success:
+            case .success(let loginData):
                 print("postUserSignUpWithAPI - success")
+                if let userData = loginData as? UserWithTokenRequest {
+                    if let tokenData = userData.user.token as? Token {
+                        UserDefaults.standard.set(tokenData.accessToken, forKey: Const.UserDefaults.accessToken)
+                        UserDefaults.standard.set(tokenData.refreshToken, forKey: Const.UserDefaults.refreshToken)
+                    }
+                }
             case .requestErr(let message):
                 print("postUserSignUpWithAPI - requestErr: \(message)")
             case .pathErr:

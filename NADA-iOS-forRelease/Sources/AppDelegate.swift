@@ -11,11 +11,15 @@ import KakaoSDKCommon
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    
+    var isLogin = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         KakaoSDKCommon.initSDK(appKey: "5b8dd8cc878344bb7532eeca4365a4aa")
+        
+        if UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken) != nil {
+            isLogin = true
+        }
         return true
     }
     

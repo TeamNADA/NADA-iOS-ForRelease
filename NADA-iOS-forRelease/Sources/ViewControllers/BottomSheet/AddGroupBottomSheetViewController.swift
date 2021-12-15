@@ -92,10 +92,35 @@ class AddGroupBottomSheetViewController: CommonBottomSheetViewController, UIText
     }
 }
 
+// MARK: - Extensions
 extension AddGroupBottomSheetViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         hideBottomSheetAndGoBack()
         return true
+    }
+}
+
+// MARK: - Network
+extension AddGroupBottomSheetViewController {
+    
+    func cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest) {
+        GroupAPI.shared.cardAddInGroup(cardRequest: cardRequest) { response in
+            switch response {
+            case .success(let data):
+                if let group = data as? Groups {
+//                    print(group)
+                    // 그룹 추가 서버 통신 성공했을 떄
+                }
+            case .requestErr(let message):
+                print("cardAddInGroupWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("cardAddInGroupWithAPI - pathErr")
+            case .serverErr:
+                print("cardAddInGroupWithAPI - serverErr")
+            case .networkFail:
+                print("cardAddInGroupWithAPI - networkFail")
+            }
+        }
     }
 }

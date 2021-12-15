@@ -9,8 +9,12 @@ import UIKit
 import KakaoSDKCommon
 import KakaoSDKAuth
 import KakaoSDKUser
+import AuthenticationServices
 
 class LoginViewController: UIViewController {
+    
+    @IBOutlet weak var kakaoLogin: UIButton!
+    @IBOutlet weak var appleLogin: UIButton!
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {

@@ -73,6 +73,7 @@
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="540" id="QoQ-xU-ny7"/>
+                                    <constraint firstAttribute="width" constant="327" id="kxJ-eu-o5K"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -99,15 +100,16 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="background"/>
                         <constraints>
+                            <constraint firstItem="3LS-7h-1h3" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="2og-jr-jCJ"/>
                             <constraint firstItem="0P6-1k-dQm" firstAttribute="top" secondItem="Bq2-MB-M50" secondAttribute="bottom" constant="20" id="4hH-Kb-3uL"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="3LS-7h-1h3" secondAttribute="bottom" id="7Tv-CU-X3h"/>
                             <constraint firstItem="yM7-jk-cSi" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="CGs-NI-i21"/>
                             <constraint firstItem="Bq2-MB-M50" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="DKg-sD-igs"/>
                             <constraint firstItem="Bq2-MB-M50" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Oh4-BP-iH9"/>
                             <constraint firstItem="yM7-jk-cSi" firstAttribute="top" secondItem="0P6-1k-dQm" secondAttribute="bottom" constant="13" id="XRH-f9-jqw"/>
-                            <constraint firstItem="0P6-1k-dQm" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="Yhm-Gf-yqd"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="3LS-7h-1h3" secondAttribute="trailing" constant="24" id="fag-w7-Yoe"/>
                             <constraint firstItem="Bq2-MB-M50" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="jse-aF-Dba"/>
                             <constraint firstItem="0P6-1k-dQm" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="qBS-fn-4f0"/>
                             <constraint firstItem="3LS-7h-1h3" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="qYv-Oj-pjV"/>
@@ -134,9 +136,6 @@
         <namedColor name="secondary">
             <color red="0.16862745098039217" green="0.17647058823529413" blue="0.19215686274509805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

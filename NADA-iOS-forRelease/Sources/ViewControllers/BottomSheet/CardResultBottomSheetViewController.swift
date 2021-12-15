@@ -67,7 +67,9 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
         addButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             addButton.topAnchor.constraint(equalTo: cardView.bottomAnchor, constant: 30),
-            addButton.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor)
+            addButton.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor),
+            addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24)
         ])
     }
     

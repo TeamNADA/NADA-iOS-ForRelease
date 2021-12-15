@@ -55,14 +55,18 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
         groupPicker.selectedRow(inComponent: 0)
         groupPicker.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            groupPicker.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 14),
-            groupPicker.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor)
+            groupPicker.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: -20),
+            groupPicker.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor),
+            groupPicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            groupPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
         ])
         
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             doneButton.topAnchor.constraint(equalTo: groupPicker.bottomAnchor, constant: 0),
-            doneButton.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor)
+            doneButton.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor),
+            doneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24)
         ])
     }
     

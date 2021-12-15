@@ -316,7 +316,7 @@ extension GroupViewController: UICollectionViewDelegateFlowLayout {
             }
             height = collectionView.frame.size.height
         case cardsCollectionView:
-            width = collectionView.frame.size.width * 156/327
+            width = collectionView.frame.size.width/2 - collectionView.frame.size.width * 8/327
             height = collectionView.frame.size.height * 258/558
         default:
             width = 0

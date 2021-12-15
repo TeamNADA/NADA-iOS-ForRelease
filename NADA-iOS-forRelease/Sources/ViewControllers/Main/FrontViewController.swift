@@ -13,38 +13,40 @@ class FrontViewController: UIViewController {
     
     // MARK: - Properteis
 
-    var cardDataList: [Card]? = [Card(cardID: "card",
-                                      background: "card",
-                                      title: "SOPT 명함",
-                                      name: "이채연",
-                                      birthDate: "1998.01.09 (24)",
-                                      mbti: "ENFP",
-                                      instagram: "chaens_",
-                                      link: "https://github.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADA",
-                                      cardDescription: "29기 디자인파트",
-                                      isMincho: true,
-                                      isSoju: true,
-                                      isBoomuk: true,
-                                      isSauced: true,
-                                      oneTMI: "첫번째",
-                                      twoTMI: "두번째",
-                                      thirdTMI: "세번째세번째세번째"),
-                                 Card(cardID: "card",
-                                      background: "card",
-                                      title: "SOPT 명함",
-                                      name: "이채연",
-                                      birthDate: "1998.01.09 (24)",
-                                      mbti: "ENFP",
-                                      instagram: "minimin.0_0",
-                                      link: "https://www.naver.com",
-                                      cardDescription: "29기 디자인파트",
-                                      isMincho: true,
-                                      isSoju: true,
-                                      isBoomuk: true,
-                                      isSauced: true,
-                                      oneTMI: "첫번째",
-                                      twoTMI: "두번째",
-                                      thirdTMI: "세번째세번째세번째")]
+//    var cardDataList: [Card]? = [Card(cardID: "card",
+//                                      background: "card",
+//                                      title: "SOPT 명함",
+//                                      name: "이채연",
+//                                      birthDate: "1998.01.09 (24)",
+//                                      mbti: "ENFP",
+//                                      instagram: "chaens_",
+//                                      link: "https://github.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADA",
+//                                      cardDescription: "29기 디자인파트",
+//                                      isMincho: true,
+//                                      isSoju: true,
+//                                      isBoomuk: true,
+//                                      isSauced: true,
+//                                      oneTMI: "첫번째",
+//                                      twoTMI: "두번째",
+//                                      thirdTMI: "세번째세번째세번째"),
+//                                 Card(cardID: "card",
+//                                      background: "card",
+//                                      title: "SOPT 명함",
+//                                      name: "이채연",
+//                                      birthDate: "1998.01.09 (24)",
+//                                      mbti: "ENFP",
+//                                      instagram: "minimin.0_0",
+//                                      link: "https://www.naver.com",
+//                                      cardDescription: "29기 디자인파트",
+//                                      isMincho: true,
+//                                      isSoju: true,
+//                                      isBoomuk: true,
+//                                      isSauced: true,
+//                                      oneTMI: "첫번째",
+//                                      twoTMI: "두번째",
+//                                      thirdTMI: "세번째세번째세번째")]
+    
+    var cardDataList: [Card]? = []
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var cardSwiper: VerticalCardSwiper!
@@ -90,6 +92,7 @@ extension FrontViewController {
         cardSwiper.isSideSwipingEnabled = false
         
         cardSwiper.register(nib: MainCardCell.nib(), forCellWithReuseIdentifier: Const.Xib.mainCardCell)
+        cardSwiper.register(nib: EmptyCardCell.nib(), forCellWithReuseIdentifier: Const.Xib.emptyCardCell)
     }
     
 //    private func setCardDataModelList() {
@@ -140,17 +143,23 @@ extension FrontViewController: VerticalCardSwiperDelegate {
 // MARK: - VerticalCardSwiperDatasource
 extension FrontViewController: VerticalCardSwiperDatasource {
     func numberOfCards(verticalCardSwiperView: VerticalCardSwiperView) -> Int {
-        return cardDataList?.count ?? 0
+        guard let count = cardDataList?.count else { return 0 }
+        return count == 0 ? 1 : count
     }
     
     func cardForItemAt(verticalCardSwiperView: VerticalCardSwiperView, cardForItemAt index: Int) -> CardCell {
-        guard let cell = verticalCardSwiperView.dequeueReusableCell(withReuseIdentifier: Const.Xib.mainCardCell, for: index) as? MainCardCell else { return CardCell() }
-        guard let cardDataList = cardDataList else { return CardCell() }
-        cell.initCell(cardDataModel: cardDataList[index])
-        cell.isShareable = true
-        cell.setFrontCard()
-        
-        return cell
+        if cardDataList?.count != 0 {
+            guard let cell = verticalCardSwiperView.dequeueReusableCell(withReuseIdentifier: Const.Xib.mainCardCell, for: index) as? MainCardCell else { return CardCell() }
+            guard let cardDataList = cardDataList else { return CardCell() }
+            cell.initCell(cardDataModel: cardDataList[index])
+            cell.isShareable = true
+            cell.setFrontCard()
+            
+            return cell
+        } else {
+            guard let cell = verticalCardSwiperView.dequeueReusableCell(withReuseIdentifier: Const.Xib.emptyCardCell, for: index) as? EmptyCardCell else { return CardCell() }
+            return cell
+        }
     }
 }
 

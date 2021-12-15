@@ -24,5 +24,6 @@ extension Const {
         static let onboardingCollectionViewCell = "OnboardingCollectionViewCell"
         static let mainCardCell = "MainCardCell"
         static let openSourceTableViewCell = "OpenSourceTableViewCell"
+        static let emptyCardCell = "EmptyCardCell"
     }
 }

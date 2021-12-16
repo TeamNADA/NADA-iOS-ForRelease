@@ -45,6 +45,14 @@ class SelectMBTIBottmViewController: CommonBottomSheetViewController {
         setupUI()
     }
     
+    // MARK: - override Methods
+    
+    override func hideBottomSheetAndGoBack() {
+        super.hideBottomSheetAndGoBack()
+        
+        NotificationCenter.default.post(name: .dismissRequiredBottomSheet, object: nil)
+    }
+    
     // MARK: - Methods
     
     // UI 세팅 작업
@@ -77,7 +85,7 @@ class SelectMBTIBottmViewController: CommonBottomSheetViewController {
     }
     
     @objc func dismissToCardCreationViewController() {
-        NotificationCenter.default.post(name: .frontCardMBTI, object: selectedMBTI)
+        NotificationCenter.default.post(name: .completeFrontCardMBTI, object: selectedMBTI)
         hideBottomSheetAndGoBack()
     }
 

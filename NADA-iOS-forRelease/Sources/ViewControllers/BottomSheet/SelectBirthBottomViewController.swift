@@ -88,7 +88,7 @@ extension SelectBirthBottomSheetViewController {
     // MARK: - @objc Methods
     
     @objc func dismissToCardCreationViewController() {
-        NotificationCenter.default.post(name: .frontCardBirth, object: selectedBirth)
+        NotificationCenter.default.post(name: .completeFrontCardBirth, object: selectedBirth)
         hideBottomSheetAndGoBack()
     }
 

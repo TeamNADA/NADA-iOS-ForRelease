@@ -178,8 +178,8 @@ extension FrontCardCreationCollectionViewCell {
         _ = optionalTextFieldList.map { $0.delegate = self }
     }
     private func setNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(setBirthTextField(notification:)), name: .frontCardBirth, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(setMBTITextField(notification:)), name: .frontCardMBTI, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setBirthText(notification:)), name: .completeFrontCardBirth, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setMBTIText(notification:)), name: .completeFrontCardMBTI, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setCardBackgroundImage(notifiation:)), name: .sendNewImage, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(dismissBorderLine), name: .dismissRequiredBottomSheet, object: nil)
@@ -218,16 +218,22 @@ extension FrontCardCreationCollectionViewCell {
     // MARK: - @objc Methods
     
     @objc
-    private func setBirthTextField(notification: NSNotification) {
+    private func setBirthText(notification: NSNotification) {
         birthLabel.text = notification.object as? String
-        birthView.borderWidth = 0
         birthLabel.textColor = .primary
+        
+        birthView.borderWidth = 0
+        
+        checkFrontCradStatus()
     }
     @objc
-    private func setMBTITextField(notification: NSNotification) {
+    private func setMBTIText(notification: NSNotification) {
         mbtiLabel.text = notification.object as? String
-        mbtiView.borderWidth = 0
         mbtiLabel.textColor = .primary
+        
+        mbtiView.borderWidth = 0
+        
+        checkFrontCradStatus()
     }
     @objc
     private func setCardBackgroundImage(notifiation: NSNotification) {

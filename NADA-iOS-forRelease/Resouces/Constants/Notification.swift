@@ -8,8 +8,8 @@
 import Foundation
 
 extension Notification.Name {
-    static let frontCardBirth = Notification.Name("frontCardBirth")
-    static let frontCardMBTI = Notification.Name("frontCardMBTI")
+    static let completeFrontCardBirth = Notification.Name("completeFrontCardBirth")
+    static let completeFrontCardMBTI = Notification.Name("completeFrontCardMBTI")
     static let presentingImagePicker = Notification.Name("presentingImagePicker")
     static let sendNewImage = Notification.Name("sendNewImage")
     static let touchRequiredView = Notification.Name("touchRequiredView")

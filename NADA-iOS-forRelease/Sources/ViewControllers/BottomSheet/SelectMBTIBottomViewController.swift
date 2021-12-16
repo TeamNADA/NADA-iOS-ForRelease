@@ -85,7 +85,7 @@ class SelectMBTIBottmViewController: CommonBottomSheetViewController {
     }
     
     @objc func dismissToCardCreationViewController() {
-        NotificationCenter.default.post(name: .frontCardMBTI, object: selectedMBTI)
+        NotificationCenter.default.post(name: .completeFrontCardMBTI, object: selectedMBTI)
         hideBottomSheetAndGoBack()
     }
 

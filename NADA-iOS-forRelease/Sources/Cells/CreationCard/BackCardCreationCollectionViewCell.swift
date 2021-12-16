@@ -7,6 +7,8 @@
 
 import UIKit
 
+import IQKeyboardManagerSwift
+
 class BackCardCreationCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
@@ -53,6 +55,8 @@ class BackCardCreationCollectionViewCell: UICollectionViewCell {
 
 extension BackCardCreationCollectionViewCell {
     private func setUI() {
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        
         initUITextFieldList()
         initCollectionViewList()
         
@@ -115,6 +119,7 @@ extension BackCardCreationCollectionViewCell {
     }
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(dismissKeyboard), name: .touchRequiredView, object: nil)
     }
     private func checkBackCardStatus() {
         backCardCreationDelegate?.backCardCreation(withRequired: [
@@ -166,6 +171,10 @@ extension BackCardCreationCollectionViewCell {
                 return
             }
         }
+    }
+    @objc
+    private func dismissKeyboard() {
+        _ = textFieldList.map { $0.resignFirstResponder() }
     }
 }
 

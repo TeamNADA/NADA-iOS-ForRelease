@@ -42,6 +42,14 @@ class SelectBirthBottomSheetViewController: CommonBottomSheetViewController {
         
         setupUI()
     }
+    
+    // MARK: - override Methods
+    
+    override func hideBottomSheetAndGoBack() {
+        super.hideBottomSheetAndGoBack()
+        
+        NotificationCenter.default.post(name: .dismissRequiredBottomSheet, object: nil)
+    }
 }
     
 // MARK: - Extensions
@@ -80,7 +88,7 @@ extension SelectBirthBottomSheetViewController {
     // MARK: - @objc Methods
     
     @objc func dismissToCardCreationViewController() {
-        NotificationCenter.default.post(name: .frontCardBirth, object: selectedBirth)
+        NotificationCenter.default.post(name: .completeFrontCardBirth, object: selectedBirth)
         hideBottomSheetAndGoBack()
     }
 

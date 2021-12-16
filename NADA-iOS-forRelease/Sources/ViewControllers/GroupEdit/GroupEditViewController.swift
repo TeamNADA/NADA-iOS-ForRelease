@@ -31,11 +31,16 @@ class GroupEditViewController: UIViewController {
     }
     
     @IBAction func presentToAddGroupBottom(_ sender: UIButton) {
-        let nextVC = AddGroupBottomSheetViewController()
-            .setTitle("그룹 추가")
-            .setHeight(184)
-        nextVC.modalPresentationStyle = .overFullScreen
-        self.present(nextVC, animated: false, completion: nil)
+        // FIXME: - 서버 통신 시, cardItems에 GroupVC에서 통신했던 서버 내용을 담는 것으로 로직 수정
+        if cardItems.count == 4 {
+            makeOKAlert(title: "", message: "새로운 그룹은 최대 4개까지만 등록 가능합니다.")
+        } else {
+            let nextVC = AddGroupBottomSheetViewController()
+                .setTitle("그룹 추가")
+                .setHeight(184)
+            nextVC.modalPresentationStyle = .overFullScreen
+            self.present(nextVC, animated: false, completion: nil)
+        }
     }
 }
 

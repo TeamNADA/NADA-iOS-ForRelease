@@ -183,6 +183,7 @@ extension FrontCardCreationCollectionViewCell {
         NotificationCenter.default.addObserver(self, selector: #selector(setCardBackgroundImage(notifiation:)), name: .sendNewImage, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(dismissBorderLine), name: .dismissRequiredBottomSheet, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setDefaultImageIndexEmpty), name: .cancelImagePicker, object: nil)
     }
     
     /// front card 가 편집되었는지. 필수 항목이 다 입력되었는지 체크.
@@ -300,6 +301,12 @@ extension FrontCardCreationCollectionViewCell {
     private func dismissBorderLine() {
         birthView.layer.borderWidth = 0
         mbtiView.layer.borderWidth = 0
+    }
+    @objc
+    private func setDefaultImageIndexEmpty() {
+        defaultImageIndex = nil
+        
+        backgroundSettingCollectionView.reloadData()
     }
 }
 

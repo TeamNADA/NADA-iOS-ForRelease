@@ -423,4 +423,9 @@ extension CardCreationViewController: UIImagePickerControllerDelegate, UINavigat
         
         picker.dismiss(animated: true, completion: nil)
     }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        NotificationCenter.default.post(name: .cancelImagePicker, object: nil)
+        
+        dismiss(animated: true, completion: nil)
+    }
 }

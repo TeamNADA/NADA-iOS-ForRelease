@@ -342,6 +342,11 @@ extension FrontCardCreationCollectionViewCell: UICollectionViewDataSource {
             guard let image = UIImage(named: backgroundList[indexPath.item]) else { return UICollectionViewCell() }
             cell.initCell(image: image, isFirst: false)
         }
+        
+        if defaultImageIndex == 0 &&
+           indexPath.item == 0 {
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
+        }
         return cell
     }
 }

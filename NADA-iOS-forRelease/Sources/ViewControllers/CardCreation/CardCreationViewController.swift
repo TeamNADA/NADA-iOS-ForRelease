@@ -216,6 +216,7 @@ extension CardCreationViewController {
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
+        imagePicker.modalPresentationStyle = .overFullScreen
         
         present(imagePicker, animated: true, completion: nil)
     }
@@ -422,5 +423,10 @@ extension CardCreationViewController: UIImagePickerControllerDelegate, UINavigat
         NotificationCenter.default.post(name: .sendNewImage, object: newImage)
         
         picker.dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        NotificationCenter.default.post(name: .cancelImagePicker, object: nil)
+        
+        dismiss(animated: true, completion: nil)
     }
 }

@@ -183,6 +183,7 @@ extension FrontCardCreationCollectionViewCell {
         NotificationCenter.default.addObserver(self, selector: #selector(setCardBackgroundImage(notifiation:)), name: .sendNewImage, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(dismissBorderLine), name: .dismissRequiredBottomSheet, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(cancelImagePicker), name: .cancelImagePicker, object: nil)
     }
     
     /// front card 가 편집되었는지. 필수 항목이 다 입력되었는지 체크.
@@ -230,7 +231,6 @@ extension FrontCardCreationCollectionViewCell {
     private func setMBTIText(notification: NSNotification) {
         mbtiLabel.text = notification.object as? String
         mbtiLabel.textColor = .primary
-        
         mbtiView.borderWidth = 0
         
         checkFrontCradStatus()
@@ -238,7 +238,10 @@ extension FrontCardCreationCollectionViewCell {
     @objc
     private func setCardBackgroundImage(notifiation: NSNotification) {
         cardBackgroundImage = notifiation.object as? UIImage
+        defaultImageIndex = 0
         backgroundSettingCollectionView.reloadData()
+        
+        checkFrontCradStatus()
     }
     @objc
     private func textFieldDidChange(_ notification: Notification) {
@@ -301,6 +304,12 @@ extension FrontCardCreationCollectionViewCell {
         birthView.layer.borderWidth = 0
         mbtiView.layer.borderWidth = 0
     }
+    @objc
+    private func cancelImagePicker() {
+        if cardBackgroundImage == nil {
+            backgroundSettingCollectionView.deselectItem(at: IndexPath.init(item: 0, section: 0), animated: true)
+        }
+    }
 }
 
 // MARK: - UICollectionViewDelegate
@@ -309,7 +318,11 @@ extension FrontCardCreationCollectionViewCell: UICollectionViewDelegate {
         switch indexPath.item {
         case 0:
             NotificationCenter.default.post(name: .presentingImagePicker, object: nil)
-            defaultImageIndex = 0
+            if cardBackgroundImage == nil {
+                defaultImageIndex = nil
+            } else {
+                defaultImageIndex = 0
+            }
         case 1:
             defaultImageIndex = 1
         case 2:

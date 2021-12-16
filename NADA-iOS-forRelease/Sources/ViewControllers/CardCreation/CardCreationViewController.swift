@@ -216,6 +216,7 @@ extension CardCreationViewController {
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
+        imagePicker.modalPresentationStyle = .overFullScreen
         
         present(imagePicker, animated: true, completion: nil)
     }

@@ -37,9 +37,10 @@ class CardCreationPreviewViewController: UIViewController {
     @IBAction func touchCompleteButton(_ sender: Any) {
         guard let frontCardDataModel = frontCardDataModel, let backCardDataModel = backCardDataModel else { return }
         cardCreationRequest = CardCreationRequest(userID: "", frontCard: frontCardDataModel, backCard: backCardDataModel)
-        guard let cardCreationRequest = cardCreationRequest else { return }
+        guard let cardCreationRequest = cardCreationRequest,
+              let cardBackgroundImage = cardBackgroundImage else { return }
 
-        cardCreationWithAPI(request: cardCreationRequest, image: cardBackgroundImage ?? UIImage())
+        cardCreationWithAPI(request: cardCreationRequest, image: cardBackgroundImage)
     }
     @IBAction func touchBackButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)

@@ -11,8 +11,8 @@ extension Const {
     struct Header {
 //        static let bearerHeader = ["Content-Type": "application/json",
 //                                   "Authorization": "Bearer " + Const.UserDefaults.accessToken]
-        static let header = ["Content-Type": "application/json"]
-        static let bearerHeader = ["Content-Type": "application/json",
+        static let bearerHeader = ["Authorization": "Bearer " + "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWRhMiIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE2NDAxMTAyNTB9.qH2fMkrtcVk9GtMEsBEWo0YFvIRTgKPVntBzpeGyyAe5POqnuKf3AtUTJE8yy6gPsAOl0bq8ChCn4RCL0fchpA"]
+        static let basicHeader = ["Content-Type": "application/json",
                                    "Authorization": "Bearer " + "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWRhMiIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE2NDAxMTAyNTB9.qH2fMkrtcVk9GtMEsBEWo0YFvIRTgKPVntBzpeGyyAe5POqnuKf3AtUTJE8yy6gPsAOl0bq8ChCn4RCL0fchpA"]
     }
 }

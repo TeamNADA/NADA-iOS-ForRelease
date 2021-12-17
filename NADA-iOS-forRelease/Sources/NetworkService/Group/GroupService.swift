@@ -25,6 +25,15 @@ extension GroupService: TargetType {
         return URL(string: Const.URL.baseURL)!
     }
     
+    var authorizationType: AuthorizationType? {
+        switch self {
+        case .groupListFetch, .cardListFetchInGroup, .groupDelete, .cardDeleteInGroup:
+            return .bearer
+        case .groupAdd, .groupEdit, .cardAddInGroup, .changeCardGroup, .groupReset:
+            return .bearer
+        }
+    }
+    
     var path: String {
         switch self {
         case .groupListFetch, .groupReset:
@@ -84,9 +93,9 @@ extension GroupService: TargetType {
     var headers: [String: String]? {
         switch self {
         case .groupListFetch, .cardListFetchInGroup, .groupDelete, .cardDeleteInGroup:
-            return .none
+            return Const.Header.bearerHeader
         case .groupAdd, .groupEdit, .cardAddInGroup, .changeCardGroup:
-            return ["Content-Type": "application/json"]
+            return Const.Header.bearerHeader
         case .groupReset(let token):
             return ["Content-Type": "application/json", "Authorization": "Bearer " + token]
         }

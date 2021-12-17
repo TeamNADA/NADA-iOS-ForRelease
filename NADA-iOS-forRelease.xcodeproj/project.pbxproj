@@ -124,6 +124,7 @@
 		F8C83FC7272FA2A20009DF0D /* CardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FC6272FA2A20009DF0D /* CardService.swift */; };
 		F8C83FC9272FA3190009DF0D /* GroupAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FC8272FA3190009DF0D /* GroupAPI.swift */; };
 		F8C83FCB272FA32C0009DF0D /* GroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FCA272FA32C0009DF0D /* GroupService.swift */; };
+		F8D74DD8276C7FB60071E5FC /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D74DD7276C7FB60071E5FC /* UIImageView+Extension.swift */; };
 		F8F5D0AA270800FD00D99D2E /* Xib.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F5D0A9270800FD00D99D2E /* Xib.swift */; };
 		F8FC438626C01CDD0033E151 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC438526C01CDD0033E151 /* AppDelegate.swift */; };
 		F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC438726C01CDD0033E151 /* SceneDelegate.swift */; };
@@ -257,6 +258,7 @@
 		F8C83FC6272FA2A20009DF0D /* CardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardService.swift; sourceTree = "<group>"; };
 		F8C83FC8272FA3190009DF0D /* GroupAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAPI.swift; sourceTree = "<group>"; };
 		F8C83FCA272FA32C0009DF0D /* GroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupService.swift; sourceTree = "<group>"; };
+		F8D74DD7276C7FB60071E5FC /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		F8F5D0A9270800FD00D99D2E /* Xib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Xib.swift; sourceTree = "<group>"; };
 		F8FC438226C01CDD0033E151 /* NADA-iOS-forRelease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NADA-iOS-forRelease.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8FC438526C01CDD0033E151 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -922,6 +924,7 @@
 				39C1E88E270EC762006D2089 /* UIColor+Extension.swift */,
 				399C55DE2711949D00845A54 /* CGPoint+Distance.swift */,
 				F8719DDA274F92E90081AD51 /* UITextField+Extension.swift */,
+				F8D74DD7276C7FB60071E5FC /* UIImageView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1168,6 +1171,7 @@
 				F84BAFAD26FDB543004CA335 /* FrontCardCreationCollectionViewCell.swift in Sources */,
 				F8518054275D040C006BD5ED /* OnboardingCollectionViewCell.swift in Sources */,
 				77703157275005AA002CBD19 /* CardResultBottomSheetViewController.swift in Sources */,
+				F8D74DD8276C7FB60071E5FC /* UIImageView+Extension.swift in Sources */,
 				39D13565273FDB9C00B1A148 /* User.swift in Sources */,
 				77812947275F6EA3004B34F4 /* CardDetailViewController.swift in Sources */,
 				F822E7A92709CEB60020452C /* Notification.swift in Sources */,

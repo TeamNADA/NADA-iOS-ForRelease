@@ -29,22 +29,6 @@ class GroupNameEditBottomSheetViewController: CommonBottomSheetViewController, U
         return textField
     }()
     
-    private let checkImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "iconDone")
-        
-        return imageView
-    }()
-    
-    private let explainLabel: UILabel = {
-        let label = UILabel()
-        label.text = "새로운 그룹은 최대 4개까지만 등록 가능합니다."
-        label.textColor = .mainColorButtonText
-        label.font = .textRegular05
-        
-        return label
-    }()
-    
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,8 +48,6 @@ class GroupNameEditBottomSheetViewController: CommonBottomSheetViewController, U
     // UI 세팅 작업
     private func setupUI() {
         view.addSubview(addGroupTextField)
-        view.addSubview(checkImageView)
-        view.addSubview(explainLabel)
         
         setupLayout()
         
@@ -80,20 +62,6 @@ class GroupNameEditBottomSheetViewController: CommonBottomSheetViewController, U
             addGroupTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             addGroupTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             addGroupTextField.heightAnchor.constraint(equalToConstant: 45)
-        ])
-        
-        checkImageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            checkImageView.topAnchor.constraint(equalTo: addGroupTextField.bottomAnchor, constant: 7),
-            checkImageView.leadingAnchor.constraint(equalTo: addGroupTextField.leadingAnchor, constant: 4),
-            checkImageView.widthAnchor.constraint(equalToConstant: 16),
-            checkImageView.heightAnchor.constraint(equalToConstant: 16)
-        ])
-        
-        explainLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            explainLabel.topAnchor.constraint(equalTo: addGroupTextField.bottomAnchor, constant: 8),
-            explainLabel.leadingAnchor.constraint(equalTo: checkImageView.trailingAnchor, constant: 5)
         ])
     }
 }

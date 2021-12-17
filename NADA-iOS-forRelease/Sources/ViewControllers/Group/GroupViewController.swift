@@ -183,26 +183,6 @@ extension GroupViewController {
         }
     }
     
-    func cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest) {
-        GroupAPI.shared.cardAddInGroup(cardRequest: cardRequest) { response in
-            switch response {
-            case .success(let data):
-                if let group = data as? Groups {
-//                    print(group)
-                    // 그룹 추가 서버 통신 성공했을 떄
-                }
-            case .requestErr(let message):
-                print("cardAddInGroupWithAPI - requestErr: \(message)")
-            case .pathErr:
-                print("cardAddInGroupWithAPI - pathErr")
-            case .serverErr:
-                print("cardAddInGroupWithAPI - serverErr")
-            case .networkFail:
-                print("cardAddInGroupWithAPI - networkFail")
-            }
-        }
-    }
-    
     func cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest) {
         GroupAPI.shared.cardListFetchInGroup(cardListInGroupRequest: cardListInGroupRequest) { response in
             switch response {

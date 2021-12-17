@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GroupEditViewController: UIViewController, GroupEditViewDelegate {
+class GroupEditViewController: UIViewController {
     
     // MARK: - Properties
     var cardItems = ["SOPT", "동아리", "학교", "NADA NADA NADA NADA NADA"]
@@ -31,31 +31,17 @@ class GroupEditViewController: UIViewController, GroupEditViewDelegate {
     }
     
     @IBAction func presentToAddGroupBottom(_ sender: UIButton) {
-        let nextVC = AddGroupBottomSheetViewController()
-            .setTitle("그룹 추가")
-            .setHeight(184)
-        nextVC.modalPresentationStyle = .overFullScreen
-        self.present(nextVC, animated: false, completion: nil)
+        // FIXME: - 서버 통신 시, cardItems에 GroupVC에서 통신했던 서버 내용을 담는 것으로 로직 수정
+        if cardItems.count == 4 {
+            makeOKAlert(title: "", message: "새로운 그룹은 최대 4개까지만 등록 가능합니다.")
+        } else {
+            let nextVC = AddGroupBottomSheetViewController()
+                .setTitle("그룹 추가")
+                .setHeight(184)
+            nextVC.modalPresentationStyle = .overFullScreen
+            self.present(nextVC, animated: false, completion: nil)
+        }
     }
-}
-
-// MARK: - Extensions
-extension GroupEditViewController {
-    
-    func presentToGroupNameEdit(_ sender: UILabel) {
-        let contentView = sender.superview
-        guard let cell = contentView?.superview as? UITableViewCell else { return }
-        guard let index = groupEditTableView.indexPath(for: cell) else { return }
-        
-        let nextVC = GroupNameEditBottomSheetViewController()
-            .setTitle("그룹명 변경")
-            .setHeight(184)
-        nextVC.modalPresentationStyle = .overFullScreen
-        nextVC.text = cardItems[index.row]
-        
-        self.present(nextVC, animated: false, completion: nil)
-    }
-    
 }
 
 // MARK: - TableView Delegate
@@ -81,6 +67,16 @@ extension GroupEditViewController: UITableViewDelegate {
         return swipeActions
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let nextVC = GroupNameEditBottomSheetViewController()
+            .setTitle("그룹명 변경")
+            .setHeight(184)
+        nextVC.modalPresentationStyle = .overFullScreen
+        nextVC.text = cardItems[indexPath.row]
+        
+        self.present(nextVC, animated: false, completion: nil)
+    }
+    
 }
 
 // MARK: - TableView DataSource
@@ -93,7 +89,6 @@ extension GroupEditViewController: UITableViewDataSource {
         guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.groupEditTableViewCell, for: indexPath) as? GroupEditTableViewCell else { return UITableViewCell() }
         
         serviceCell.initData(title: cardItems[indexPath.row])
-        serviceCell.delegate = self
         
         return serviceCell
     }

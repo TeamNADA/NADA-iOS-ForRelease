@@ -82,6 +82,7 @@
 		77DFB871274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFB870274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift */; };
 		77F2C0EB27632A91007641E3 /* CardHarmonyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */; };
 		77F2C0ED27632AA7007641E3 /* CardHarmony.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */; };
+		77F47D93276C79B600414659 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F47D92276C79B600414659 /* Header.swift */; };
 		DBBB91E1639641F40C5B4416 /* Pods_NADA_iOS_forRelease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */; };
 		F811720027383097002742CF /* ChangeGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81171FF27383097002742CF /* ChangeGroupRequest.swift */; };
 		F822E7A92709CEB60020452C /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F822E7A82709CEB60020452C /* Notification.swift */; };
@@ -215,6 +216,7 @@
 		77DFB870274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWithIdBottomSheetViewController.swift; sourceTree = "<group>"; };
 		77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHarmonyViewController.swift; sourceTree = "<group>"; };
 		77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardHarmony.storyboard; sourceTree = "<group>"; };
+		77F47D92276C79B600414659 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		7F4EE1D042EC783FA8528743 /* Pods-NADA-iOS-forRelease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.debug.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.debug.xcconfig"; sourceTree = "<group>"; };
 		F81171FF27383097002742CF /* ChangeGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeGroupRequest.swift; sourceTree = "<group>"; };
 		F822E7A82709CEB60020452C /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
@@ -908,6 +910,7 @@
 				F822E7A82709CEB60020452C /* Notification.swift */,
 				F8C83FC2272FA17B0009DF0D /* URL.swift */,
 				3927A7D6275F2A9B008BCD2A /* UserDefaults.swift */,
+				77F47D92276C79B600414659 /* Header.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1112,6 +1115,7 @@
 				39523E09270184A700536900 /* CardListViewController.swift in Sources */,
 				F85711A5274A6B2200F59F0B /* CardCreationPreviewViewController.swift in Sources */,
 				777FF89B27359B7800BF69D3 /* Groups.swift in Sources */,
+				77F47D93276C79B600414659 /* Header.swift in Sources */,
 				397B75102763A5F5004AEB03 /* OpenSourceViewController.swift in Sources */,
 				777FF89F27364B7B00BF69D3 /* GroupEditRequest.swift in Sources */,
 				399C55DF2711949D00845A54 /* CGPoint+Distance.swift in Sources */,

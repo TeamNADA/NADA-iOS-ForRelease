@@ -59,14 +59,14 @@ class GroupViewController: UIViewController {
     @IBOutlet weak var cardsCollectionView: UICollectionView!
     
     // 그룹 이름들을 담을 변수 생성
-    var groups = ["미분류", "SOPT", "그룹명엄청길어요이거", "인하대학교"]
+    var serverGroups: Groups?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCell()
         setUI()
         // 그룹 리스트 조회 서버 테스트
-//        groupListFetchWithAPI(userID: "nada")
+        groupListFetchWithAPI(userID: "nada")
 //         그룹 삭제 서버 테스트
 //        groupDeleteWithAPI(groupID: 1)
 //         그룹 추가 서버 테스트
@@ -108,8 +108,8 @@ extension GroupViewController {
             switch response {
             case .success(let data):
                 if let group = data as? Groups {
-//                    print(group)
-                    // 그룹 리스트 조회 서버통신 성공했을때
+                    self.serverGroups = group
+                    self.groupCollectionView.reloadData()
                 }
             case .requestErr(let message):
                 print("groupListFetchWithAPI - requestErr: \(message)")
@@ -235,7 +235,7 @@ extension GroupViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case groupCollectionView:
-            return groups.count
+            return serverGroups?.groups.count ?? 0
         case cardsCollectionView:
             return 5
         default:
@@ -250,7 +250,8 @@ extension GroupViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            groupCell.groupName.text = groups[indexPath.row]
+            groupCell.groupName.text = serverGroups?.groups[indexPath.row].groupName
+            
             if indexPath.row == 0 {
                 collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
             }
@@ -289,8 +290,8 @@ extension GroupViewController: UICollectionViewDelegateFlowLayout {
         
         switch collectionView {
         case groupCollectionView:
-            if groups[indexPath.row].count > 4 {
-                width = CGFloat(groups[indexPath.row].count) * 16
+            if serverGroups?.groups[indexPath.row].groupName.count ?? 0 > 4 {
+                width = CGFloat(serverGroups?.groups[indexPath.row].groupName.count ?? 0) * 16
             } else {
                 width = 62
             }

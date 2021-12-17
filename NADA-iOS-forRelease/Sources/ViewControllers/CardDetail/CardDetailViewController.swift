@@ -151,11 +151,11 @@ extension CardDetailViewController {
             isFront = true
         }
         if swipeGesture.direction == .right {
-            UIView.transition(with: cardView, duration: 1, options: .transitionFlipFromLeft, animations: nil) { _ in
+            UIView.transition(with: cardView, duration: 0.5, options: .transitionFlipFromLeft, animations: nil) { _ in
                 self.cardView.subviews[0].removeFromSuperview()
             }
         } else {
-            UIView.transition(with: cardView, duration: 1, options: .transitionFlipFromRight, animations: nil) { _ in
+            UIView.transition(with: cardView, duration: 0.5, options: .transitionFlipFromRight, animations: nil) { _ in
                 self.cardView.subviews[0].removeFromSuperview()
             }
         }

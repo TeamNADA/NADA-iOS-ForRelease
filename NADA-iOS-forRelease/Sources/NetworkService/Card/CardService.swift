@@ -62,8 +62,6 @@ extension CardService: TargetType {
             
             var multiPartData: [Moya.MultipartFormData] = []
             
-            let userIDData = request.userID.data(using: .utf8) ?? Data()
-            multiPartData.append(MultipartFormData(provider: .data(userIDData), name: "card.userId"))
             let defaultImageData = Int(request.frontCard.defaultImage).description.data(using: .utf8) ?? Data()
             multiPartData.append(MultipartFormData(provider: .data(defaultImageData), name: "card.defaultImage"))
             let titleData = request.frontCard.title.data(using: .utf8) ?? Data()
@@ -114,7 +112,7 @@ extension CardService: TargetType {
         case .cardDetailFetch, .cardListFetch, .cardDelete:
             return .none
         case .cardCreation:
-            return ["Content-Type": "multipart/form-data"]
+            return Const.Header.basicHeader
         case .cardListEdit:
             return ["Content-Type": "application/json"]
         }

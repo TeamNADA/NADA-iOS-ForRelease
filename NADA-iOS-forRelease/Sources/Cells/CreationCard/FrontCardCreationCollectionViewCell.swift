@@ -125,7 +125,7 @@ extension FrontCardCreationCollectionViewCell {
         instagramIDTextField.attributedPlaceholder = NSAttributedString(string: "Instagram (@ 제외)", attributes: [
             NSAttributedString.Key.foregroundColor: UIColor.quaternary
         ])
-        linkURLTextField.attributedPlaceholder = NSAttributedString(string: "URL (Github, Blog)", attributes: [
+        linkURLTextField.attributedPlaceholder = NSAttributedString(string: "URL (Github, Blog 등)", attributes: [
             NSAttributedString.Key.foregroundColor: UIColor.quaternary
         ])
         descriptionTextField.attributedPlaceholder = NSAttributedString(string: "동아리 기수 / 파트 (15자)", attributes: [

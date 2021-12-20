@@ -9,7 +9,6 @@ import Foundation
 
 // MARK: - CardCreation
 struct CardCreationRequest: Codable {
-    let userID: String
     let frontCard: FrontCardDataModel
     let backCard: BackCardDataModel
 }

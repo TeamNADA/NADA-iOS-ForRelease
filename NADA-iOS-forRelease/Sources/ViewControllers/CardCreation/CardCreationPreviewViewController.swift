@@ -36,7 +36,7 @@ class CardCreationPreviewViewController: UIViewController {
     }
     @IBAction func touchCompleteButton(_ sender: Any) {
         guard let frontCardDataModel = frontCardDataModel, let backCardDataModel = backCardDataModel else { return }
-        cardCreationRequest = CardCreationRequest(userID: "", frontCard: frontCardDataModel, backCard: backCardDataModel)
+        cardCreationRequest = CardCreationRequest(frontCard: frontCardDataModel, backCard: backCardDataModel)
         guard let cardCreationRequest = cardCreationRequest,
               let cardBackgroundImage = cardBackgroundImage else { return }
 

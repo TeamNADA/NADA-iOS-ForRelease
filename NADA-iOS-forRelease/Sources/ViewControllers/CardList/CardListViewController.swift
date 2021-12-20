@@ -110,7 +110,7 @@ extension CardListViewController: UITableViewDelegate {
     // Swipe Action
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .normal, title: "삭제", handler: { (_ action, _ view, _ success) in
-            self.makeCancelDeleteAlert(title: "명함 삭제", message: "명함을 정말 삭제하시겠습니까?", cancelAction: { _ in
+            self.makeCancelDeleteAlert(title: "명함 삭제", message: "명함을 정말 삭제하시겠습니까?\n공유된 명함일 경우, 친구의 명함 모음에서도 해당 명함이 삭제됩니다.", cancelAction: { _ in
                 // 취소 눌렀을 때 액션이 들어갈 부분
             }, deleteAction: { _ in
                 // FIXME: - 카드 삭제 서버 테스트

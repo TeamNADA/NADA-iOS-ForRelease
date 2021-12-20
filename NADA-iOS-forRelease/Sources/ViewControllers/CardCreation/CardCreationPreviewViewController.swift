@@ -182,6 +182,7 @@ extension CardCreationPreviewViewController {
             switch response {
             case .success:
                 print("cardCreationWithAPI - success")
+                self.dismiss(animated: true, completion: nil)
             case .requestErr(let message):
                 print("cardCreationWithAPI - requestErr: \(message)")
             case .pathErr:

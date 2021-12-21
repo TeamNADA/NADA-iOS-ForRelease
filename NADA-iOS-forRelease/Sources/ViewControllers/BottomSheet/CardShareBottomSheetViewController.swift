@@ -17,36 +17,25 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         return imageView
     }()
     
-    private let idTitleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "ID"
-        label.textColor = .secondary
-        label.font = .title01
-        
-        return label
-    }()
-    
-    private let idLabel: UILabel = {
-        let label = UILabel()
-        label.text = "1D856A"
-        label.textColor = .secondary
-        label.font = .textRegular01
-        
-        return label
-    }()
-    
-    private let copyButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "iconCopy"), for: .normal)
-        button.addTarget(self, action: #selector(copyId), for: .touchUpInside)
-        
-        return button
-    }()
-    
     private let idStackView: UIStackView = {
-        let stackView = UIStackView()
-//        [self.idTitle]
+        let idTitlelabel = UILabel()
+        idTitlelabel.text = "ID"
+        idTitlelabel.textColor = .secondary
+        idTitlelabel.font = .title01
+        
+        let idLabel = UILabel()
+        idLabel.text = "1D856A"
+        idLabel.textColor = .secondary
+        idLabel.font = .textRegular01
+        
+        let copyButton = UIButton()
+        copyButton.setImage(UIImage(named: "iconCopy"), for: .normal)
+        copyButton.addTarget(self, action: #selector(copyId), for: .touchUpInside)
+        
+        let stackView = UIStackView(arrangedSubviews: [idTitlelabel, idLabel, copyButton])
         stackView.axis = .horizontal
+        stackView.spacing = 10
+        stackView.distribution = .fill
         return stackView
     }()
     

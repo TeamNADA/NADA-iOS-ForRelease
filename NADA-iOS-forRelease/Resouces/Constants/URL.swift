@@ -18,5 +18,6 @@ extension Const {
         static let cardSwiperURL = "https://github.com/JoniVR/VerticalCardSwiper"
         static let kakaoURL = "https://developers.kakao.com/sdk/reference/ios/release/KakaoSDKCommon/index.html"
         static let keyboardURL = "https://github.com/hackiftekhar/IQKeyboardManager"
+        static let kingfisherURL = "https://github.com/onevcat/Kingfisher"
     }
 }

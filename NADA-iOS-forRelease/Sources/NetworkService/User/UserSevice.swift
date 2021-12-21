@@ -14,6 +14,7 @@ enum UserSevice {
     case userSignUp(request: User)
     case userDelete(token: String)
     case userSocialSignUp(userID: String)
+    case userLogout(token: String)
 }
 
 extension UserSevice: TargetType {
@@ -34,6 +35,8 @@ extension UserSevice: TargetType {
             return "/user"
         case .userSocialSignUp:
             return "auth/login"
+        case .userLogout:
+            return "auth/logout"
         }
     }
     
@@ -43,7 +46,7 @@ extension UserSevice: TargetType {
             return .get
         case .userSignUp, .userSocialSignUp:
             return .post
-        case .userDelete:
+        case .userDelete, .userLogout:
             return .delete
         }
     }
@@ -54,7 +57,7 @@ extension UserSevice: TargetType {
     
     var task: Task {
         switch self {
-        case .userIDFetch, .userTokenFetch, .userDelete:
+        case .userIDFetch, .userTokenFetch, .userDelete, .userLogout:
             return .requestPlain
         case .userSignUp(let request):
             return .requestJSONEncodable(request)
@@ -70,6 +73,8 @@ extension UserSevice: TargetType {
         case .userSignUp, .userSocialSignUp:
             return ["Content-Type": "application/json"]
         case .userDelete(let token):
+            return ["Content-Type": "application/json", "Authorization": "Bearer " + token]
+        case .userLogout(let token):
             return ["Content-Type": "application/json", "Authorization": "Bearer " + token]
         }
     }

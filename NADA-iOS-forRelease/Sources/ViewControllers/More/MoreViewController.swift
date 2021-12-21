@@ -99,16 +99,24 @@ extension MoreViewController: UITableViewDelegate {
             switch indexPath.row {
             case 0:     // 로그아웃
                 makeOKCancelAlert(title: "", message: "로그아웃 하시겠습니까?", okAction: { _ in
-                    UserApi.shared.logout { (error) in
-                        if let error = error {
-                            print(error)
-                        } else {
-                            self.makeOKAlert(title: "", message: "로그아웃이 완료 되었습니다.") { _ in
-                                self.dismiss(animated: true, completion: nil)
-                                UserDefaults.standard.removeObject(forKey: Const.UserDefaults.accessToken)
-                            }
+                    self.makeOKAlert(title: "", message: "로그아웃이 완료 되었습니다.") { _ in
+                        self.dismiss(animated: true, completion: nil)
+                        if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken) {
+                            self.logoutUserWithAPI(token: acToken)
+                            // UserDefaults.standard.removeObject(forKey: Const.UserDefaults.accessToken)
                         }
                     }
+                    
+//                    UserApi.shared.logout { (error) in
+//                        if let error = error {
+//                            print(error)
+//                        } else {
+//                            self.makeOKAlert(title: "", message: "로그아웃이 완료 되었습니다.") { _ in
+//                                self.dismiss(animated: true, completion: nil)
+//                                UserDefaults.standard.removeObject(forKey: Const.UserDefaults.accessToken)
+//                            }
+//                        }
+//                    }
                 })
             case 1:     // 받은 명함 초기화
                 makeOKCancelAlert(title: "", message: "받은 명함과 그룹이 모두 초기화됩니다. 정말 초기화하시겠습니까?", okAction: { _ in
@@ -230,4 +238,22 @@ extension MoreViewController {
             }
         }
     }
+    
+    func logoutUserWithAPI(token: String) {
+        UserAPI.shared.userLogout(token: token) { response in
+            switch response {
+            case .success:
+                print("logoutUserWithAPI - success")
+            case .requestErr(let message):
+                print("logoutUserWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("logoutUserWithAPI - pathErr")
+            case .serverErr:
+                print("logoutUserWithAPI - serverErr")
+            case .networkFail:
+                print("logoutUserWithAPI - networkFail")
+            }
+        }
+    }
+    
 }

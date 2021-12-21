@@ -67,10 +67,9 @@ extension BackCardCell {
                   _ secondTMI: String,
                   _ thirdTMI: String,
                   isShareable: Bool) {
-        if let bgImage = UIImage(named: backgroundImageString) {
-            self.backgroundImageView.image = bgImage
+        if let url = URL(string: backgroundImageString) {
+            backgroundImageView.kf.setImage(with: url)
         }
-        
         mintImageView.image = isMint == true ?
         UIImage(named: "iconTasteOnMincho") : UIImage(named: "iconTasteOffMincho")
         noMintImageView.image = isMint == false ?

@@ -14,7 +14,7 @@ class MoreViewController: UIViewController {
     let defaults = UserDefaults.standard
 
     var firstItems = ["개인정보 처리방침", "서비스 이용약관", "Team NADA", "오픈소스 라이브러리"]
-    var secondItems = ["로그아웃", "정보 초기화", "회원탈퇴"]
+    var secondItems = ["로그아웃", "받은 명함 초기화", "모든 명함 삭제하기"]
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var moreListTableView: UITableView!
@@ -110,7 +110,7 @@ extension MoreViewController: UITableViewDelegate {
                         }
                     }
                 })
-            case 1:     // 정보 초기화
+            case 1:     // 받은 명함 초기화
                 makeOKCancelAlert(title: "", message: "받은 명함과 그룹이 모두 초기화됩니다. 정말 초기화하시겠습니까?", okAction: { _ in
                     UserApi.shared.logout { (error) in
                         if let error = error {
@@ -123,13 +123,13 @@ extension MoreViewController: UITableViewDelegate {
                         }
                     }
                 })
-            case 2:     // 회원탈퇴
-                makeOKCancelAlert(title: "", message: "계정 정보가 모두 삭제됩니다. 정말 탈퇴하시겠습니까?", okAction: { _ in
+            case 2:     // 모든 명함 삭제하기
+                makeOKCancelAlert(title: "", message: "내 명함과 받은 명함이 모두 삭제됩니다. 삭제 하시겠습니까?", okAction: { _ in
                     UserApi.shared.logout { (error) in
                         if let error = error {
                             print(error)
                         } else {
-                            self.makeOKAlert(title: "NADA를 이용해주셔서 감사합니다.", message: "")
+                            self.makeOKAlert(title: "", message: "모든 명함이 삭제되었습니다.")
                             if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken) {
                                 self.deleteUserWithAPI(token: acToken)
                             }

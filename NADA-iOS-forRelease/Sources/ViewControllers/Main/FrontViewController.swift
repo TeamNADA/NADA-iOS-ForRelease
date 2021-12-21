@@ -57,6 +57,7 @@ class FrontViewController: UIViewController {
         
 //        setCardDataModelList()
         setDelegate()
+        setNotification()
         // TODO: - 서버 테스트
 //        cardListFetchWithAPI(userID: "nada", isList: false, offset: 0)
     }
@@ -93,6 +94,19 @@ extension FrontViewController {
         
         cardSwiper.register(nib: MainCardCell.nib(), forCellWithReuseIdentifier: Const.Xib.mainCardCell)
         cardSwiper.register(nib: EmptyCardCell.nib(), forCellWithReuseIdentifier: Const.Xib.emptyCardCell)
+        
+    }
+    
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didRecievePresentCardShare(_:)), name: NSNotification.Name("presentCardShare"), object: nil)
+    }
+    
+    @objc func didRecievePresentCardShare(_ notification: Notification) {
+        let nextVC = CardShareBottomSheetViewController()
+            .setTitle("명함공유")
+            .setHeight(404)
+        nextVC.modalPresentationStyle = .overFullScreen
+        self.present(nextVC, animated: false, completion: nil)
     }
     
 //    private func setCardDataModelList() {
@@ -184,3 +198,4 @@ extension FrontViewController {
         }
     }
 }
+

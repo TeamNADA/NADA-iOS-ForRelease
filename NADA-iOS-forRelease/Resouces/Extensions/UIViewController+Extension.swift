@@ -73,9 +73,9 @@ extension UIViewController {
                                                    y: self.view.frame.size.height - 230,
                                                    width: 170, height: 35))
         case "copyID":
-            toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 110,
+            toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 100,
                                                    y: self.view.frame.size.height/2,
-                                                   width: 230, height: 35))
+                                                   width: 200, height: 35))
         case "saveImage":
             toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 85,
                                                    y: self.view.frame.size.height/2,

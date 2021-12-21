@@ -58,6 +58,7 @@ class GroupViewController: UIViewController {
     // collectionview
     @IBOutlet weak var groupCollectionView: UICollectionView!
     @IBOutlet weak var cardsCollectionView: UICollectionView!
+    @IBOutlet weak var emptyView: UIView!
     
     // 그룹 이름들을 담을 변수 생성
     var serverGroups: Groups?
@@ -99,6 +100,7 @@ extension GroupViewController {
     }
     
     private func setUI() {
+        emptyView.isHidden = true
         navigationController?.navigationBar.isHidden = true
     }
 }
@@ -184,6 +186,11 @@ extension GroupViewController {
             case .success(let data):
                 if let cards = data as? CardsInGroupResponse {
                     self.serverCards = cards
+                    if cards.cards.count == 0 {
+                        self.emptyView.isHidden = false
+                    } else {
+                        self.emptyView.isHidden = true
+                    }
                     self.cardsCollectionView.reloadData()
                 }
             case .requestErr(let message):

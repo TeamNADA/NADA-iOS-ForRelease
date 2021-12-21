@@ -86,7 +86,13 @@ extension FrontCardCell {
     @objc
     private func tapLinkURLLabel() {
         let linkURL = linkURLLabel.text ?? ""
-        let webURL = URL(string: linkURL)!
+        let webURL: URL
+        
+        if linkURL.hasPrefix("https://") {
+            webURL = URL(string: linkURL)!
+        } else {
+            webURL = URL(string: "https://" + linkURL)!
+        }
         
         if UIApplication.shared.canOpenURL(webURL) {
             UIApplication.shared.open(webURL, options: [:], completionHandler: nil)

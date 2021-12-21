@@ -21,6 +21,9 @@ class FrontCardCell: CardCell {
     @IBOutlet weak var linkURLLabel: UILabel!
     @IBOutlet weak var shareButton: UIButton!
     
+    @IBOutlet weak var instagramImageView: UIImageView!
+    @IBOutlet weak var linkURLImageView: UIImageView!
+    
     // MARK: - Life Cycle
     
     override func awakeFromNib() {
@@ -120,6 +123,13 @@ extension FrontCardCell {
         instagramIDLabel.text = instagramID
         linkURLLabel.text = linkURL
         
+        if instagramID.isEmpty {
+            instagramImageView.isHidden = true
+        }
+        if linkURL.isEmpty {
+            linkURLImageView.isHidden = true
+        }
+        
         shareButton.isHidden = !isShareable
     }
     
@@ -141,6 +151,13 @@ extension FrontCardCell {
         mbtiLabel.text = mbti
         instagramIDLabel.text = instagramID
         linkURLLabel.text = linkURL
+        
+        if instagramID.isEmpty {
+            instagramImageView.isHidden = true
+        }
+        if linkURL.isEmpty {
+            linkURLImageView.isHidden = true
+        }
         
         shareButton.isHidden = !isShareable
     }

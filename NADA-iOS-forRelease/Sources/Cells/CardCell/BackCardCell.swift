@@ -90,9 +90,23 @@ extension BackCardCell {
         friedChickenImageView.image = isSauced == false ?
         UIImage(named: "iconTasteOnFried") : UIImage(named: "iconTasteOffFried")
         
-        firstTmiLabel.text = firstTMI
-        secondTmiLabel.text = secondTMI
-        thirdTmiLabel.text = thirdTMI
+        if !firstTMI.isEmpty {
+            firstTmiLabel.text = "•  " + firstTMI
+        } else {
+            firstTmiLabel.text = firstTMI
+        }
+        
+        if !secondTMI.isEmpty {
+            secondTmiLabel.text = "•  " + secondTMI
+        } else {
+            secondTmiLabel.text = secondTMI
+        }
+        
+        if !thirdTMI.isEmpty {
+            thirdTmiLabel.text = "•  " + thirdTMI
+        } else {
+            thirdTmiLabel.text = thirdTMI
+        }
         
         shareButton.isHidden = !isShareable
     }
@@ -105,30 +119,47 @@ extension BackCardCell {
                   _ isSauced: Bool,
                   _ firstTMI: String,
                   _ secondTMI: String,
-                  _ thirdTMI: String) {
-        self.backgroundImageView.image = backgroundImage ?? UIImage()
-        self.mintImageView.image = isMint == true ?
+                  _ thirdTMI: String,
+                  isShareable: Bool) {
+        backgroundImageView.image = backgroundImage ?? UIImage()
+        mintImageView.image = isMint == true ?
         UIImage(named: "iconTasteOnMincho") : UIImage(named: "iconTasteOffMincho")
-        self.noMintImageView.image = isMint == false ?
+        noMintImageView.image = isMint == false ?
         UIImage(named: "iconTasteOnBanmincho") : UIImage(named: "iconTasteOffBanmincho")
         
-        self.sojuImageView.image = isSoju == true ?
+        sojuImageView.image = isSoju == true ?
         UIImage(named: "iconTasteOnSoju") : UIImage(named: "iconTasteOffSoju")
-        self.beerImageView.image = isSoju == false ?
+        beerImageView.image = isSoju == false ?
         UIImage(named: "iconTasteOnBeer") : UIImage(named: "iconTasteOffBeer")
         
-        self.pourEatImageView.image = isBoomuk == true ?
+        pourEatImageView.image = isBoomuk == true ?
         UIImage(named: "iconTasteOnBumeok") : UIImage(named: "iconTasteOffBumeok")
-        self.putSauceEatImageView.image = isBoomuk == false ?
+        putSauceEatImageView.image = isBoomuk == false ?
         UIImage(named: "iconTasteOnZzik") : UIImage(named: "iconTasteOffZzik")
         
-        self.sauceChickenImageView.image = isSauced == true ?
+        sauceChickenImageView.image = isSauced == true ?
         UIImage(named: "iconTasteOnSeasoned") : UIImage(named: "iconTasteOffSeasoned")
-        self.friedChickenImageView.image = isSauced == false ?
+        friedChickenImageView.image = isSauced == false ?
         UIImage(named: "iconTasteOnFried") : UIImage(named: "iconTasteOffFried")
         
-        self.firstTmiLabel.text = firstTMI
-        self.secondTmiLabel.text = secondTMI
-        self.thirdTmiLabel.text = thirdTMI
+        if !firstTMI.isEmpty {
+            firstTmiLabel.text = "● " + firstTMI
+        } else {
+            firstTmiLabel.text = firstTMI
+        }
+        
+        if !secondTMI.isEmpty {
+            secondTmiLabel.text = "● " + secondTMI
+        } else {
+            secondTmiLabel.text = secondTMI
+        }
+        
+        if !thirdTMI.isEmpty {
+            thirdTmiLabel.text = "● " + thirdTMI
+        } else {
+            thirdTmiLabel.text = thirdTMI
+        }
+        
+        shareButton.isHidden = !isShareable
     }
 }

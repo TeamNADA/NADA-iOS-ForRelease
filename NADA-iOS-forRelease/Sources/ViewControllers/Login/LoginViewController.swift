@@ -54,6 +54,14 @@ class LoginViewController: UIViewController {
         ])
     }
     
+    // 메인 화면으로 전환 함수
+    func presentToMain() {
+        let nextVC = UIStoryboard(name: Const.Storyboard.Name.tabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.tabBarViewController)
+        nextVC.modalPresentationStyle = .overFullScreen
+        self.present(nextVC, animated: true, completion: nil)
+    }
+    
+    // 카카오 로그인 버튼 클릭 시
     @objc
     func kakaoSignInButtonPress() {
         if AuthApi.hasToken() {     // 유효한 토큰 존재
@@ -74,6 +82,7 @@ class LoginViewController: UIViewController {
         }
     }
     
+    // 애플 로그인 버튼 클릭 시
     @objc
     func appleSignInButtonPress() {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
@@ -90,22 +99,12 @@ class LoginViewController: UIViewController {
 
 // MARK: - KakaoSignIn
 extension LoginViewController {
-    // 메인 화면으로 전환 함수
-    func presentToMain() {
-        let nextVC = UIStoryboard(name: Const.Storyboard.Name.tabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.tabBarViewController)
-        nextVC.modalPresentationStyle = .overFullScreen
-        self.present(nextVC, animated: true, completion: nil)
-    }
-    
     func loginWithApp() {
         UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
             if let error = error {
                 print(error)
             } else {
                 print("loginWithKakaoTalk() success.")
-                
-                // FIXME: - 토큰으로 변경됬을 경우를 일단 대비
-                _ = oauthToken
                 
                 UserApi.shared.me {(user, error) in
                     if let error = error {
@@ -129,9 +128,6 @@ extension LoginViewController {
                 print(error)
             } else {
                 print("loginWithKakaoAccount() success.")
-                
-                // FIXME: - 토큰으로 변경됬을 경우를 일단 대비
-                _ = oauthToken
                 
                 UserApi.shared.me {(user, error) in
                     if let error = error {
@@ -181,6 +177,8 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
             print("User ID : \(userIdentifier)")
             print("User Email : \(email ?? "")")
             print("User Name : \((fullName?.givenName ?? "") + (fullName?.familyName ?? ""))")
+            postUserSignUpWithAPI(request: userIdentifier)
+            presentToMain()
             
         default:
             break
@@ -235,6 +233,8 @@ extension LoginViewController {
             case .success(let loginData):
                 print("postUserSignUpWithAPI - success")
                 if let userData = loginData as? UserWithTokenRequest {
+                    print(userData.user.userID, "⭐️")
+                    UserDefaults.standard.set(userData.user.userID, forKey: Const.UserDefaults.userID)
                     if let tokenData = userData.user.token as? Token {
                         UserDefaults.standard.set(tokenData.accessToken, forKey: Const.UserDefaults.accessToken)
                         UserDefaults.standard.set(tokenData.refreshToken, forKey: Const.UserDefaults.refreshToken)

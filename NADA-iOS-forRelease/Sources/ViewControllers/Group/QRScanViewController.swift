@@ -131,7 +131,7 @@ extension QRScanViewController: AVCaptureMetadataOutputObjectsDelegate {
                 nextVC.modalPresentationStyle = .overFullScreen
                 self.present(nextVC, animated: false, completion: nil)
             } else {
-                showToast(message: "유효하지 않은 QR입니다.", font: UIFont.button02)
+                showToast(message: "유효하지 않은 QR입니다.", font: UIFont.button02, view: "QRScan")
             }
         }
     }

@@ -15,4 +15,5 @@ extension Notification.Name {
     static let touchRequiredView = Notification.Name("touchRequiredView")
     static let dismissRequiredBottomSheet = Notification.Name("dismissRequiredBottomSheet")
     static let cancelImagePicker = Notification.Name("cancelImagePicker")
+    static let presentCardShare = Notification.Name("presentCardShare")
 }

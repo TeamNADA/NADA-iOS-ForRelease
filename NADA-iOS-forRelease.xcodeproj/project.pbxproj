@@ -67,6 +67,7 @@
 		7705CF402752C844005195DF /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7705CF3F2752C844005195DF /* CardView.xib */; };
 		7713E8482752E2A900724C8B /* SelectGroupBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7713E8472752E2A900724C8B /* SelectGroupBottomSheetViewController.swift */; };
 		7729171F2743D604001593E0 /* CardsInGroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7729171E2743D604001593E0 /* CardsInGroupResponse.swift */; };
+		7734D5AA27719520004360E4 /* CardShareBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7734D5A927719520004360E4 /* CardShareBottomSheetViewController.swift */; };
 		77607EDA274A68BE00204CD2 /* GroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77607ED8274A68BD00204CD2 /* GroupCollectionViewCell.swift */; };
 		77607EDB274A68BE00204CD2 /* GroupCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77607ED9274A68BD00204CD2 /* GroupCollectionViewCell.xib */; };
 		7766A40F274FEBE200714912 /* CardInGroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766A40D274FEBE200714912 /* CardInGroupCollectionViewCell.swift */; };
@@ -204,6 +205,7 @@
 		7705CF3F2752C844005195DF /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
 		7713E8472752E2A900724C8B /* SelectGroupBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGroupBottomSheetViewController.swift; sourceTree = "<group>"; };
 		7729171E2743D604001593E0 /* CardsInGroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsInGroupResponse.swift; sourceTree = "<group>"; };
+		7734D5A927719520004360E4 /* CardShareBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardShareBottomSheetViewController.swift; sourceTree = "<group>"; };
 		77607ED8274A68BD00204CD2 /* GroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewCell.swift; sourceTree = "<group>"; };
 		77607ED9274A68BD00204CD2 /* GroupCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCollectionViewCell.xib; sourceTree = "<group>"; };
 		7766A40D274FEBE200714912 /* CardInGroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInGroupCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -499,6 +501,7 @@
 				7713E8472752E2A900724C8B /* SelectGroupBottomSheetViewController.swift */,
 				F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */,
 				F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */,
+				7734D5A927719520004360E4 /* CardShareBottomSheetViewController.swift */,
 			);
 			path = BottomSheet;
 			sourceTree = "<group>";
@@ -1133,6 +1136,7 @@
 				F8FC43B826C0227D0033E151 /* Const.swift in Sources */,
 				394F314C27081B3A00C83291 /* FrontViewController.swift in Sources */,
 				777FF89D2735B16B00BF69D3 /* GroupAddRequest.swift in Sources */,
+				7734D5AA27719520004360E4 /* CardShareBottomSheetViewController.swift in Sources */,
 				F8F5D0AA270800FD00D99D2E /* Xib.swift in Sources */,
 				F82FF8252702000000E57F8B /* RequiredFlavorCollectionViewCell.swift in Sources */,
 				F8C83FC7272FA2A20009DF0D /* CardService.swift in Sources */,

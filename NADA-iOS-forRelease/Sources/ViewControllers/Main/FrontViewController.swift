@@ -56,6 +56,9 @@ class FrontViewController: UIViewController {
         super.viewDidLoad()
 //        setCardDataModelList()
         setDelegate()
+        setNotification()
+        // TODO: - 서버 테스트
+//        cardListFetchWithAPI(userID: "nada", isList: false, offset: 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,6 +94,7 @@ extension FrontViewController {
         
         cardSwiper.register(nib: MainCardCell.nib(), forCellWithReuseIdentifier: Const.Xib.mainCardCell)
         cardSwiper.register(nib: EmptyCardCell.nib(), forCellWithReuseIdentifier: Const.Xib.emptyCardCell)
+        
     }
     
     private func setMain() {
@@ -98,6 +102,18 @@ extension FrontViewController {
             cardListFetchWithAPI(userID: "nada2", isList: false, offset: 0)
         }
     }
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didRecievePresentCardShare(_:)), name: Notification.Name.presentCardShare, object: nil)
+    }
+    
+    @objc func didRecievePresentCardShare(_ notification: Notification) {
+        let nextVC = CardShareBottomSheetViewController()
+            .setTitle("명함공유")
+            .setHeight(404)
+        nextVC.modalPresentationStyle = .overFullScreen
+        self.present(nextVC, animated: false, completion: nil)
+    }
+    
 //    private func setCardDataModelList() {
 //        cardDataList?.append(contentsOf: [
 //            Card(cardID: "card",

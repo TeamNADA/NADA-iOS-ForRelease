@@ -14,6 +14,8 @@ enum UserSevice {
     case userSignUp(request: User)
     case userDelete(token: String)
     case userSocialSignUp(userID: String)
+    case userLogout(token: String)
+    case userTokenReissue(request: UserWithTokenRequest)
 }
 
 extension UserSevice: TargetType {
@@ -34,6 +36,10 @@ extension UserSevice: TargetType {
             return "/user"
         case .userSocialSignUp:
             return "auth/login"
+        case .userLogout:
+            return "auth/logout"
+        case .userTokenReissue:
+            return "auth/reissue"
         }
     }
     
@@ -41,9 +47,9 @@ extension UserSevice: TargetType {
         switch self {
         case .userIDFetch, .userTokenFetch:
             return .get
-        case .userSignUp, .userSocialSignUp:
+        case .userSignUp, .userSocialSignUp, .userTokenReissue:
             return .post
-        case .userDelete:
+        case .userDelete, .userLogout:
             return .delete
         }
     }
@@ -54,22 +60,26 @@ extension UserSevice: TargetType {
     
     var task: Task {
         switch self {
-        case .userIDFetch, .userTokenFetch, .userDelete:
+        case .userIDFetch, .userTokenFetch, .userDelete, .userLogout:
             return .requestPlain
         case .userSignUp(let request):
             return .requestJSONEncodable(request)
         case .userSocialSignUp(let userID):
             return .requestParameters(parameters: ["userId": userID], encoding: JSONEncoding.default)
+        case .userTokenReissue(let request):
+            return .requestJSONEncodable(request)
         }
     }
     
     var headers: [String: String]? {
         switch self {
-        case .userIDFetch, .userTokenFetch:
-            return .none
+        case .userIDFetch, .userTokenFetch, .userTokenReissue:
+            return Const.Header.bearerHeader
         case .userSignUp, .userSocialSignUp:
             return ["Content-Type": "application/json"]
         case .userDelete(let token):
+            return ["Content-Type": "application/json", "Authorization": "Bearer " + token]
+        case .userLogout(let token):
             return ["Content-Type": "application/json", "Authorization": "Bearer " + token]
         }
     }

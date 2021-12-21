@@ -52,6 +52,16 @@ class LoginViewController: UIViewController {
             authorizationButton.bottomAnchor.constraint(equalTo: loginProviderStackView.bottomAnchor),
             authorizationButton.heightAnchor.constraint(equalToConstant: 48)
         ])
+        
+        let isDark = UserDefaults.standard.bool(forKey: Const.UserDefaults.darkModeState)
+        
+        if let window = UIApplication.shared.windows.first {
+            if #available(iOS 13.0, *) {
+                window.overrideUserInterfaceStyle = isDark == true ? .dark : .light
+            } else {
+                window.overrideUserInterfaceStyle = .light
+            }
+        }
     }
     
     // 메인 화면으로 전환 함수
@@ -212,6 +222,23 @@ extension LoginViewController {
                 print("postUserSignUpWithAPI - serverErr")
             case .networkFail:
                 print("postUserSignUpWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func postUserTokenReissue(request: UserWithTokenRequest) {
+        UserAPI.shared.userTokenReissue(request: request) { response in
+            switch response {
+            case .success(let data):
+                print("postUserTokenReissue - Success")
+            case .requestErr(let message):
+                print("postUserTokenReissue - requestErr: \(message)")
+            case .pathErr:
+                print("postUserTokenReissue - pathErr")
+            case .serverErr:
+                print("postUserTokenReissue - serverErr")
+            case .networkFail:
+                print("postUserTokenReissue - networkFail")
             }
         }
     }

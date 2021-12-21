@@ -12,7 +12,7 @@ import KakaoSDKCommon
 class CardListViewController: UIViewController {
         
     // MARK: - Properties
-    var cardItems: [CardListDataModel] = []
+    var cardItems: [CardListRequest] = []
     
     // MARK: - IBOutlet Properties
     @IBOutlet weak var cardListTableView: UITableView!
@@ -32,7 +32,7 @@ class CardListViewController: UIViewController {
         cardListTableView.dataSource = self
         
         // FIXME: - 카드 리스트 조회 서버 테스트
-//        cardListFetchWithAPI(userID: "nada", isList: true, offset: 0)
+        cardListFetchWithAPI(userID: "nada", isList: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,14 +48,15 @@ class CardListViewController: UIViewController {
     
     // MARK: - Functions
     func setCardList() {
-        cardItems.append(contentsOf: [
-            CardListDataModel(title: "SOPT 28기 명함"),
-            CardListDataModel(title: "디자인 스터디 명함"),
-            CardListDataModel(title: "아이스브레이킹"),
-            CardListDataModel(title: "NADA 명함"),
-            CardListDataModel(title: "NADA 명함"),
-            CardListDataModel(title: "NADA 명함")
-        ])
+//        cardItems.append(contentsOf: [
+//            CardListDataModel(title: "SOPT 28기 명함"),
+//            CardListDataModel(title: "디자인 스터디 명함"),
+//            CardListDataModel(title: "아이스브레이킹"),
+//            CardListDataModel(title: "NADA 명함"),
+//            CardListDataModel(title: "NADA 명함"),
+//            CardListDataModel(title: "NADA 명함")
+//        ])
+        
     }
     
     func setLongPressGesture() {
@@ -154,12 +155,13 @@ extension CardListViewController: UITableViewDataSource {
 
 // MARK: - Network
 extension CardListViewController {
-    func cardListFetchWithAPI(userID: String, isList: Bool, offset: Int) {
-        CardAPI.shared.cardListFetch(userID: userID, isList: isList, offset: offset) { response in
+    func cardListFetchWithAPI(userID: String, isList: Bool) {
+        CardAPI.shared.cardListFetch(userID: userID, isList: isList, offset: nil) { response in
             switch response {
             case .success(let data):
+                print(data, "⭐️")
                 if let card = data as? CardListRequest {
-                    print(card)
+                    
                 }
             case .requestErr(let message):
                 print("getCardListFetchWithAPI - requestErr", message)

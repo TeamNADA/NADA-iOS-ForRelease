@@ -54,9 +54,11 @@ class FrontViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 //        setCardDataModelList()
         setDelegate()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         setMain()
     }
     

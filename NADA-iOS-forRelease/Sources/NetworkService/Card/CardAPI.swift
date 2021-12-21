@@ -47,7 +47,7 @@ public class CardAPI {
         }
     }
     
-    func cardListFetch(userID: String, isList: Bool, offset: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func cardListFetch(userID: String, isList: Bool, offset: Int?, completion: @escaping (NetworkResult<Any>) -> Void) {
         cardProvider.request(.cardListFetch(userID: userID, isList: isList, offset: offset)) { (result) in
             switch result {
             case .success(let response):

@@ -9,10 +9,10 @@ import Foundation
 
 // MARK: - CardList
 struct CardListRequest: Codable {
-    let cardID, title, createDate: String
+    let cardID, title: String
 
     enum CodingKeys: String, CodingKey {
         case cardID = "cardId"
-        case title, createDate
+        case title
     }
 }

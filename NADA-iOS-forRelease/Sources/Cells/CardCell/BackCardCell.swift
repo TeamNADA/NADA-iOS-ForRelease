@@ -33,7 +33,7 @@ class BackCardCell: CardCell {
         setUI()
     }
     @IBAction func touchShareButton(_ sender: Any) {
-        NotificationCenter.default.post(name: NSNotification.Name("presentCardShare"), object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: Notification.Name.presentCardShare, object: nil, userInfo: nil)
     }
     
     // MARK: - Functions

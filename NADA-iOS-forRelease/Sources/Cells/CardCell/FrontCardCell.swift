@@ -30,7 +30,7 @@ class FrontCardCell: CardCell {
         setTapGesture()
     }
     @IBAction func touchShareButton(_ sender: Any) {
-        NotificationCenter.default.post(name: NSNotification.Name("presentCardShare"), object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: Notification.Name.presentCardShare, object: nil, userInfo: nil)
     }
     
     static func nib() -> UINib {

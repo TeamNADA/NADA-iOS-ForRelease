@@ -98,7 +98,7 @@ extension FrontViewController {
     }
     
     private func setNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(didRecievePresentCardShare(_:)), name: NSNotification.Name("presentCardShare"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didRecievePresentCardShare(_:)), name: Notification.Name.presentCardShare, object: nil)
     }
     
     @objc func didRecievePresentCardShare(_ notification: Notification) {
@@ -198,4 +198,3 @@ extension FrontViewController {
         }
     }
 }
-

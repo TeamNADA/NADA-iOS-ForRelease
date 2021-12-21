@@ -70,11 +70,12 @@ class GroupViewController: UIViewController {
         registerCell()
         setUI()
         // 그룹 리스트 조회 서버 테스트
-        groupListFetchWithAPI(userID: "nada")
+        groupListFetchWithAPI(userID: "nada2")
+//        groupListFetchWithAPI(userID: Const.UserDefaults.userID)
 //         그룹 삭제 서버 테스트
 //        groupDeleteWithAPI(groupID: 1)
 //         그룹 추가 서버 테스트
-//        groupAddWithAPI(groupRequest: GroupAddRequest(userId: "nada", groupName: "대학교"))
+//        groupAddWithAPI(groupRequest: GroupAddRequest(userId: "nada2", groupName: "대학교"))
 //         그룹 수정 서버 테스트
 //        groupEditWithAPI(groupRequest: GroupEditRequest(groupId: 5, groupName: "수정나다"))
 //         그룹 속 명함 추가 테스트
@@ -115,7 +116,10 @@ extension GroupViewController {
                 if let group = data as? Groups {
                     self.serverGroups = group
                     self.groupCollectionView.reloadData()
-                    self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada", groupId: group.groups[0].groupID, offset: 0))
+                    if !group.groups.isEmpty {
+                        self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada2", groupId: group.groups[0].groupID, offset: 0))
+//                        self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: Const.UserDefaults.userID, groupId: group.groups[0].groupID, offset: 0))
+                    }
                 }
             case .requestErr(let message):
                 print("groupListFetchWithAPI - requestErr: \(message)")

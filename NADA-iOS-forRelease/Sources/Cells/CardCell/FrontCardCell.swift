@@ -7,6 +7,7 @@
 
 import UIKit
 import VerticalCardSwiper
+import Kingfisher
 
 class FrontCardCell: CardCell {
     
@@ -113,8 +114,13 @@ extension FrontCardCell {
                   _ instagramID: String,
                   _ linkURL: String,
                   isShareable: Bool) {
-        if let bgImage = UIImage(named: backgroundImage) {
-            self.backgroundImageView.image = bgImage
+        
+        if backgroundImage.hasPrefix("https://") {
+            self.backgroundImageView.updateServerImage(backgroundImage)
+        } else {
+            if let bgImage = UIImage(named: backgroundImage) {
+                self.backgroundImageView.image = bgImage
+            }
         }
         titleLabel.text = cardTitle
         descriptionLabel.text = cardDescription

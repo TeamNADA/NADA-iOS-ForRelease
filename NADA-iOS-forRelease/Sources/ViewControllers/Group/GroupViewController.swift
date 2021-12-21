@@ -63,26 +63,31 @@ class GroupViewController: UIViewController {
     var serverGroups: Groups?
     var serverCards: CardsInGroupResponse?
     var serverCardsWithBack: Card?
+    var groupId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCell()
         setUI()
         // 그룹 리스트 조회 서버 테스트
-        groupListFetchWithAPI(userID: "nada")
+//        groupListFetchWithAPI(userID: "nada2")
 //         그룹 삭제 서버 테스트
 //        groupDeleteWithAPI(groupID: 1)
 //         그룹 추가 서버 테스트
-//        groupAddWithAPI(groupRequest: GroupAddRequest(userId: "nada", groupName: "대학교"))
+//        groupAddWithAPI(groupRequest: GroupAddRequest(userId: "nada", groupName: "미분류"))
 //         그룹 수정 서버 테스트
 //        groupEditWithAPI(groupRequest: GroupEditRequest(groupId: 5, groupName: "수정나다"))
 //         그룹 속 명함 추가 테스트
-//        cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardId: "cardC", userId: "nada", groupId: 18))
+//        cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardId: "cardA", userId: "nada2", groupId: 1))
 //         그룹 속 명함 조회 테스트
 //        cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada", groupId: 5, offset: 0))
 //         명함 검색 테스트
 //        cardDetailFetchWithAPI(cardID: "cardA")
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        groupListFetchWithAPI(userID: "nada2")
     }
     
 }
@@ -113,7 +118,8 @@ extension GroupViewController {
                 if let group = data as? Groups {
                     self.serverGroups = group
                     self.groupCollectionView.reloadData()
-                    self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada", groupId: group.groups[0].groupID, offset: 0))
+                    self.groupId = group.groups[0].groupID
+                    self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada2", groupId: group.groups[0].groupID, offset: 0))
                 }
             case .requestErr(let message):
                 print("groupListFetchWithAPI - requestErr: \(message)")
@@ -221,6 +227,7 @@ extension GroupViewController {
                                                 oneTmi: card.card.oneTmi,
                                                 twoTmi: card.card.twoTmi,
                                                 threeTmi: card.card.threeTmi)
+                    nextVC.groupId = self.groupId
                     self.navigationController?.pushViewController(nextVC, animated: true)
                 }
             case .requestErr(let message):
@@ -308,7 +315,8 @@ extension GroupViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView {
         case groupCollectionView:
-            cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada", groupId: serverGroups?.groups[indexPath.row].groupID ?? 0, offset: 0))
+            groupId = serverGroups?.groups[indexPath.row].groupID
+            cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada2", groupId: serverGroups?.groups[indexPath.row].groupID ?? 0, offset: 0))
         case cardsCollectionView:
             cardDetailFetchWithAPI(cardID: serverCards?.cards[indexPath.row].cardID ?? "")
         default:

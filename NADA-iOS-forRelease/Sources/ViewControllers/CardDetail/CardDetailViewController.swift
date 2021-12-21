@@ -43,6 +43,7 @@ class CardDetailViewController: UIViewController {
     
     private var isFront = true
     var status: Status = .group
+    var groupId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +53,28 @@ class CardDetailViewController: UIViewController {
         setGestureRecognizer()
     }
 
+}
+
+extension CardDetailViewController {
+    // TODO: - group 서버통신. 위치변경.
+    func cardDeleteInGroupWithAPI(groupID: Int, cardID: String) {
+        GroupAPI.shared.cardDeleteInGroup(groupID: groupID, cardID: cardID) { response in
+            switch response {
+            case .success:
+                print("cardDeleteInGroupWithAPI - success")
+                self.navigationController?.popViewController(animated: true)
+            case .requestErr(let message):
+                print("cardDeleteInGroupWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("cardDeleteInGroupWithAPI - pathErr")
+            case .serverErr:
+                print("cardDeleteInGroupWithAPI - serverErr")
+            case .networkFail:
+                print("cardDeleteInGroupWithAPI - networkFail")
+            }
+            
+        }
+    }
 }
 
 extension CardDetailViewController {
@@ -79,7 +102,8 @@ extension CardDetailViewController {
             self.makeCancelDeleteAlert(title: "명함 삭제",
                                        message: "명함을 정말 삭제하시겠습니까?",
                                        deleteAction: { _ in
-                // TODO: 명함 삭제 서버통신
+                // 명함 삭제 서버통신
+                self.cardDeleteInGroupWithAPI(groupID: self.groupId ?? 0, cardID: self.cardDataModel?.cardID ?? "")
             }) })
         let options = UIMenu(title: "options", options: .displayInline, children: [changeGroup, deleteCard])
         

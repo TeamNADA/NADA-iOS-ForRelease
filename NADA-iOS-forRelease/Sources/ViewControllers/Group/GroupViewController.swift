@@ -7,6 +7,7 @@
 
 import Photos
 import UIKit
+import Kingfisher
 
 class GroupViewController: UIViewController {
     
@@ -61,6 +62,7 @@ class GroupViewController: UIViewController {
     // 그룹 이름들을 담을 변수 생성
     var serverGroups: Groups?
     var serverCards: CardsInGroupResponse?
+    var serverCardsWithBack: Card?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,13 +73,13 @@ class GroupViewController: UIViewController {
 //         그룹 삭제 서버 테스트
 //        groupDeleteWithAPI(groupID: 1)
 //         그룹 추가 서버 테스트
-//        groupAddWithAPI(groupRequest: GroupAddRequest(userId: "nada", groupName: "SOPT"))
+//        groupAddWithAPI(groupRequest: GroupAddRequest(userId: "nada", groupName: "대학교"))
 //         그룹 수정 서버 테스트
 //        groupEditWithAPI(groupRequest: GroupEditRequest(groupId: 5, groupName: "수정나다"))
 //         그룹 속 명함 추가 테스트
-//        cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardId: "cardA", userId: "nada", groupId: 5))
+//        cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardId: "cardC", userId: "nada", groupId: 18))
 //         그룹 속 명함 조회 테스트
-        cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada", groupId: 5, offset: 0))
+//        cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada", groupId: 5, offset: 0))
 //         명함 검색 테스트
 //        cardDetailFetchWithAPI(cardID: "cardA")
         
@@ -111,6 +113,7 @@ extension GroupViewController {
                 if let group = data as? Groups {
                     self.serverGroups = group
                     self.groupCollectionView.reloadData()
+                    self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada", groupId: group.groups[0].groupID, offset: 0))
                 }
             case .requestErr(let message):
                 print("groupListFetchWithAPI - requestErr: \(message)")
@@ -180,7 +183,6 @@ extension GroupViewController {
             switch response {
             case .success(let data):
                 if let cards = data as? CardsInGroupResponse {
-                    // 그룹 추가 서버 통신 성공했을 떄
                     self.serverCards = cards
                     self.cardsCollectionView.reloadData()
                 }
@@ -201,8 +203,7 @@ extension GroupViewController {
             switch response {
             case .success(let data):
                 if let card = data as? Card {
-//                    print(card)
-                    // 통신 성공
+                    self.serverCardsWithBack = card
                 }
             case .requestErr(let message):
                 print("cardDetailFetchWithAPI - requestErr: \(message)")
@@ -246,7 +247,7 @@ extension GroupViewController: UICollectionViewDataSource {
         case groupCollectionView:
             return serverGroups?.groups.count ?? 0
         case cardsCollectionView:
-            return 5
+            return serverCards?.cards.count ?? 0
         default:
             return 0
         }
@@ -270,6 +271,16 @@ extension GroupViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
+            cardCell.backgroundImageView.updateServerImage(serverCards?.cards[indexPath.row].background ?? "")
+            cardCell.cardId = serverCards?.cards[indexPath.row].cardID 
+            cardCell.titleLabel.text = serverCards?.cards[indexPath.row].title
+            cardCell.descriptionLabel.text = serverCards?.cards[indexPath.row].cardDescription
+            cardCell.userNameLabel.text = serverCards?.cards[indexPath.row].name
+            cardCell.birthLabel.text = serverCards?.cards[indexPath.row].birthDate
+            cardCell.mbtiLabel.text = serverCards?.cards[indexPath.row].mbti
+            cardCell.instagramIDLabel.text = serverCards?.cards[indexPath.row].instagram
+            cardCell.lineURLLabel.text = serverCards?.cards[indexPath.row].link
+            
             return cardCell
         default:
             return UICollectionViewCell()
@@ -279,10 +290,23 @@ extension GroupViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView {
         case groupCollectionView:
-            print(indexPath.row)
+            cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada", groupId: serverGroups?.groups[indexPath.row].groupID ?? 0, offset: 0))
         case cardsCollectionView:
+//            cardDetailFetchWithAPI(cardID: serverCards?.cards[indexPath.row].cardID ?? "")
             guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
-            
+
+//            nextVC.cardDataModel = Card(cardID: serverCards?.cards[indexPath.row].cardID ?? "" ,
+//                                        background: <#T##String#>,
+//                                        title: serverCards?.cards[indexPath.row].title ?? "",
+//                                        name: serverCards?.cards[indexPath.row].name ?? "",
+//                                        birthDate: serverCards?.cards[indexPath.row].birthDate ?? "",
+//                                        mbti: serverCards?.cards[indexPath.row].mbti ?? "",
+//                                        instagram: serverCards?.cards[indexPath.row].instagram ?? "",
+//                                        link: serverCards?.cards[indexPath.row].link ?? "",
+//                                        cardDescription: serverCards?.cards[indexPath.row].cardDescription ?? "",
+//                                        isMincho: serverCards?.cards[indexPath.row].,
+//                                        isSoju: <#T##Bool#>, isBoomuk: <#T##Bool#>, isSauced: <#T##Bool#>,
+//                                        oneTMI: <#T##String?#>, twoTMI: <#T##String?#>, thirdTMI: <#T##String?#>)
             navigationController?.pushViewController(nextVC, animated: true)
         default:
             print(indexPath.row)

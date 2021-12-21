@@ -105,7 +105,8 @@ extension BackCardCell {
                   _ isSauced: Bool,
                   _ firstTMI: String,
                   _ secondTMI: String,
-                  _ thirdTMI: String) {
+                  _ thirdTMI: String,
+                  isShareable: Bool) {
         backgroundImageView.image = backgroundImage ?? UIImage()
         mintImageView.image = isMint == true ?
         UIImage(named: "iconTasteOnMincho") : UIImage(named: "iconTasteOffMincho")

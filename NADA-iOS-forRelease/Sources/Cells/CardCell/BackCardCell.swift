@@ -90,9 +90,23 @@ extension BackCardCell {
         friedChickenImageView.image = isSauced == false ?
         UIImage(named: "iconTasteOnFried") : UIImage(named: "iconTasteOffFried")
         
-        firstTmiLabel.text = firstTMI
-        secondTmiLabel.text = secondTMI
-        thirdTmiLabel.text = thirdTMI
+        if !firstTMI.isEmpty {
+            firstTmiLabel.text = "•  " + firstTMI
+        } else {
+            firstTmiLabel.text = firstTMI
+        }
+        
+        if !secondTMI.isEmpty {
+            secondTmiLabel.text = "•  " + secondTMI
+        } else {
+            secondTmiLabel.text = secondTMI
+        }
+        
+        if !thirdTMI.isEmpty {
+            thirdTmiLabel.text = "•  " + thirdTMI
+        } else {
+            thirdTmiLabel.text = thirdTMI
+        }
         
         shareButton.isHidden = !isShareable
     }
@@ -128,9 +142,23 @@ extension BackCardCell {
         friedChickenImageView.image = isSauced == false ?
         UIImage(named: "iconTasteOnFried") : UIImage(named: "iconTasteOffFried")
         
-        firstTmiLabel.text = firstTMI
-        secondTmiLabel.text = secondTMI
-        thirdTmiLabel.text = thirdTMI
+        if !firstTMI.isEmpty {
+            firstTmiLabel.text = "● " + firstTMI
+        } else {
+            firstTmiLabel.text = firstTMI
+        }
+        
+        if !secondTMI.isEmpty {
+            secondTmiLabel.text = "● " + secondTMI
+        } else {
+            secondTmiLabel.text = secondTMI
+        }
+        
+        if !thirdTMI.isEmpty {
+            thirdTmiLabel.text = "● " + thirdTMI
+        } else {
+            thirdTmiLabel.text = thirdTMI
+        }
         
         shareButton.isHidden = !isShareable
     }

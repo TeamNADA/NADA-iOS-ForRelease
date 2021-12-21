@@ -89,9 +89,9 @@ extension MainCardCell {
                               cardDataModel.isSoju,
                               cardDataModel.isBoomuk,
                               cardDataModel.isSauced,
-                              cardDataModel.oneTMI ?? "",
-                              cardDataModel.twoTMI ?? "",
-                              cardDataModel.thirdTMI ?? "",
+                              cardDataModel.oneTmi ?? "",
+                              cardDataModel.twoTmi ?? "",
+                              cardDataModel.threeTmi ?? "",
                               isShareable: isShareable ?? false)
             
             contentView.addSubview(backCard)

@@ -36,6 +36,7 @@ class CardDetailViewController: UIViewController {
     @IBOutlet weak var optionButton: UIButton!
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var idLabel: UILabel!
     
     public var cardDataModel: Card?
     private var isShareable: Bool = false
@@ -61,6 +62,7 @@ extension CardDetailViewController {
         case .add:
             backButton.setImage(UIImage(named: "iconClear"), for: .normal)
         }
+        idLabel.text = cardDataModel?.cardID
     }
     private func setMenu() {
         let changeGroup = UIAction(title: "그룹 변경",

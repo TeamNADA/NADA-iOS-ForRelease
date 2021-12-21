@@ -202,8 +202,26 @@ extension GroupViewController {
         CardAPI.shared.cardDetailFetch(cardID: cardID) { response in
             switch response {
             case .success(let data):
-                if let card = data as? Card {
-                    self.serverCardsWithBack = card
+                if let card = data as? CardClass {
+                    guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
+                    
+                    nextVC.cardDataModel = Card(cardID: card.card.cardID,
+                                                background: card.card.background,
+                                                title: card.card.title,
+                                                name: card.card.name,
+                                                birthDate: card.card.birthDate,
+                                                mbti: card.card.mbti,
+                                                instagram: card.card.instagram,
+                                                link: card.card.link,
+                                                cardDescription: card.card.cardDescription,
+                                                isMincho: card.card.isMincho,
+                                                isSoju: card.card.isSoju,
+                                                isBoomuk: card.card.isBoomuk,
+                                                isSauced: card.card.isSauced,
+                                                oneTmi: card.card.oneTmi,
+                                                twoTmi: card.card.twoTmi,
+                                                threeTmi: card.card.threeTmi)
+                    self.navigationController?.pushViewController(nextVC, animated: true)
                 }
             case .requestErr(let message):
                 print("cardDetailFetchWithAPI - requestErr: \(message)")
@@ -292,22 +310,7 @@ extension GroupViewController: UICollectionViewDataSource {
         case groupCollectionView:
             cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada", groupId: serverGroups?.groups[indexPath.row].groupID ?? 0, offset: 0))
         case cardsCollectionView:
-//            cardDetailFetchWithAPI(cardID: serverCards?.cards[indexPath.row].cardID ?? "")
-            guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
-
-//            nextVC.cardDataModel = Card(cardID: serverCards?.cards[indexPath.row].cardID ?? "" ,
-//                                        background: <#T##String#>,
-//                                        title: serverCards?.cards[indexPath.row].title ?? "",
-//                                        name: serverCards?.cards[indexPath.row].name ?? "",
-//                                        birthDate: serverCards?.cards[indexPath.row].birthDate ?? "",
-//                                        mbti: serverCards?.cards[indexPath.row].mbti ?? "",
-//                                        instagram: serverCards?.cards[indexPath.row].instagram ?? "",
-//                                        link: serverCards?.cards[indexPath.row].link ?? "",
-//                                        cardDescription: serverCards?.cards[indexPath.row].cardDescription ?? "",
-//                                        isMincho: serverCards?.cards[indexPath.row].,
-//                                        isSoju: <#T##Bool#>, isBoomuk: <#T##Bool#>, isSauced: <#T##Bool#>,
-//                                        oneTMI: <#T##String?#>, twoTMI: <#T##String?#>, thirdTMI: <#T##String?#>)
-            navigationController?.pushViewController(nextVC, animated: true)
+            cardDetailFetchWithAPI(cardID: serverCards?.cards[indexPath.row].cardID ?? "")
         default:
             print(indexPath.row)
         }

@@ -21,6 +21,9 @@ class FrontCardCell: CardCell {
     @IBOutlet weak var linkURLLabel: UILabel!
     @IBOutlet weak var shareButton: UIButton!
     
+    @IBOutlet weak var instagramImageView: UIImageView!
+    @IBOutlet weak var linkURLImageView: UIImageView!
+    
     // MARK: - Life Cycle
     
     override func awakeFromNib() {
@@ -86,7 +89,13 @@ extension FrontCardCell {
     @objc
     private func tapLinkURLLabel() {
         let linkURL = linkURLLabel.text ?? ""
-        let webURL = URL(string: linkURL)!
+        let webURL: URL
+        
+        if linkURL.hasPrefix("https://") {
+            webURL = URL(string: linkURL)!
+        } else {
+            webURL = URL(string: "https://" + linkURL)!
+        }
         
         if UIApplication.shared.canOpenURL(webURL) {
             UIApplication.shared.open(webURL, options: [:], completionHandler: nil)
@@ -114,6 +123,13 @@ extension FrontCardCell {
         instagramIDLabel.text = instagramID
         linkURLLabel.text = linkURL
         
+        if instagramID.isEmpty {
+            instagramImageView.isHidden = true
+        }
+        if linkURL.isEmpty {
+            linkURLImageView.isHidden = true
+        }
+        
         shareButton.isHidden = !isShareable
     }
     
@@ -135,6 +151,13 @@ extension FrontCardCell {
         mbtiLabel.text = mbti
         instagramIDLabel.text = instagramID
         linkURLLabel.text = linkURL
+        
+        if instagramID.isEmpty {
+            instagramImageView.isHidden = true
+        }
+        if linkURL.isEmpty {
+            linkURLImageView.isHidden = true
+        }
         
         shareButton.isHidden = !isShareable
     }

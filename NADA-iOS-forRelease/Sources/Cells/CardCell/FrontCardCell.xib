@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -71,7 +71,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LqW-bV-yHr">
-                        <rect key="frame" x="53" y="472" width="41.5" height="21"/>
+                        <rect key="frame" x="53" y="469.5" width="41.5" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -110,13 +110,13 @@
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cO6-DY-EUn" secondAttribute="trailing" constant="27" id="7rI-g8-Ig7"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8oi-jO-fkf" secondAttribute="trailing" constant="36" id="9HM-25-0VI"/>
                 <constraint firstItem="LqW-bV-yHr" firstAttribute="leading" secondItem="el0-x0-WD9" secondAttribute="trailing" constant="5" id="A8j-k1-Zdw"/>
+                <constraint firstItem="el0-x0-WD9" firstAttribute="top" secondItem="eyB-c0-PQB" secondAttribute="bottom" constant="89" id="AzQ-Hm-97T"/>
                 <constraint firstItem="8oi-jO-fkf" firstAttribute="centerY" secondItem="TXF-fP-7YQ" secondAttribute="centerY" id="BNK-kd-R8I"/>
                 <constraint firstItem="aAt-PF-ce3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="CPV-z2-Q2H"/>
                 <constraint firstItem="D6t-Nc-4xH" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="DeT-lx-Vdm"/>
                 <constraint firstItem="aik-Vi-yux" firstAttribute="leading" secondItem="OeE-mZ-GcL" secondAttribute="leading" id="DzT-ZF-buY"/>
                 <constraint firstItem="eyB-c0-PQB" firstAttribute="top" secondItem="aik-Vi-yux" secondAttribute="bottom" constant="10" id="Ebd-SK-4i7"/>
                 <constraint firstAttribute="trailing" secondItem="D6t-Nc-4xH" secondAttribute="trailing" id="GGx-Tf-nEl"/>
-                <constraint firstItem="LqW-bV-yHr" firstAttribute="top" secondItem="8oi-jO-fkf" secondAttribute="bottom" constant="16" id="Hg4-24-oOy"/>
                 <constraint firstItem="TXF-fP-7YQ" firstAttribute="leading" secondItem="OeE-mZ-GcL" secondAttribute="leading" id="ITf-JC-Tm4"/>
                 <constraint firstItem="S8I-Fv-fkf" firstAttribute="bottom" secondItem="D6t-Nc-4xH" secondAttribute="bottom" id="N52-K9-r1O"/>
                 <constraint firstItem="aik-Vi-yux" firstAttribute="top" secondItem="cO6-DY-EUn" secondAttribute="bottom" constant="13" id="RLL-SV-ohE"/>
@@ -126,13 +126,13 @@
                 <constraint firstAttribute="trailing" secondItem="aAt-PF-ce3" secondAttribute="trailing" constant="24" id="WO7-2q-KoQ"/>
                 <constraint firstAttribute="bottom" secondItem="D6t-Nc-4xH" secondAttribute="bottom" id="g3O-ib-dRy"/>
                 <constraint firstItem="S8I-Fv-fkf" firstAttribute="trailing" secondItem="D6t-Nc-4xH" secondAttribute="trailing" id="gIl-Qp-bCT"/>
+                <constraint firstItem="LqW-bV-yHr" firstAttribute="centerY" secondItem="el0-x0-WD9" secondAttribute="centerY" id="h8s-tB-C8s"/>
                 <constraint firstItem="OeE-mZ-GcL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="24" id="kch-bF-wdy"/>
                 <constraint firstItem="el0-x0-WD9" firstAttribute="leading" secondItem="OeE-mZ-GcL" secondAttribute="leading" id="ks3-oC-rKr"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OeE-mZ-GcL" secondAttribute="trailing" constant="54" id="oi1-gH-AEU"/>
                 <constraint firstItem="D6t-Nc-4xH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="pVv-z5-cfR"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LqW-bV-yHr" secondAttribute="trailing" constant="16" id="rNN-Bn-HHJ"/>
                 <constraint firstItem="VDj-1w-jyf" firstAttribute="leading" secondItem="OeE-mZ-GcL" secondAttribute="leading" id="txG-gf-qMy"/>
-                <constraint firstItem="el0-x0-WD9" firstAttribute="top" secondItem="TXF-fP-7YQ" secondAttribute="bottom" constant="10" id="uLD-KR-vXa"/>
             </constraints>
             <size key="customSize" width="307" height="444"/>
             <connections>
@@ -140,6 +140,8 @@
                 <outlet property="birthLabel" destination="aik-Vi-yux" id="QTx-yd-LoY"/>
                 <outlet property="descriptionLabel" destination="VDj-1w-jyf" id="YqY-uP-XQV"/>
                 <outlet property="instagramIDLabel" destination="8oi-jO-fkf" id="eIE-ch-cCT"/>
+                <outlet property="instagramImageView" destination="TXF-fP-7YQ" id="CVp-bU-T3I"/>
+                <outlet property="linkURLImageView" destination="el0-x0-WD9" id="kWS-T3-Urt"/>
                 <outlet property="linkURLLabel" destination="LqW-bV-yHr" id="vD7-qs-hSc"/>
                 <outlet property="mbtiLabel" destination="eyB-c0-PQB" id="waJ-j4-tRM"/>
                 <outlet property="shareButton" destination="aAt-PF-ce3" id="tNu-aM-Dsc"/>

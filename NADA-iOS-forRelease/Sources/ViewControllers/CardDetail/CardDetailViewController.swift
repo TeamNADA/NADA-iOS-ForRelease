@@ -126,9 +126,9 @@ extension CardDetailViewController {
                               cardDataModel?.isSoju ?? true,
                               cardDataModel?.isBoomuk ?? true,
                               cardDataModel?.isSauced ?? true,
-                              cardDataModel?.oneTMI ?? "",
-                              cardDataModel?.twoTMI ?? "",
-                              cardDataModel?.thirdTMI ?? "",
+                              cardDataModel?.oneTmi ?? "",
+                              cardDataModel?.twoTmi ?? "",
+                              cardDataModel?.threeTmi ?? "",
                               isShareable: isShareable)
             
             cardView.addSubview(backCard)

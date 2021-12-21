@@ -26,9 +26,9 @@ class FrontViewController: UIViewController {
                                       isSoju: true,
                                       isBoomuk: true,
                                       isSauced: true,
-                                      oneTMI: "첫번째",
-                                      twoTMI: "두번째",
-                                      thirdTMI: "세번째세번째세번째"),
+                                      oneTmi: "첫번째",
+                                      twoTmi: "두번째",
+                                      threeTmi: "세번째세번째세번째"),
                                  Card(cardID: "card",
                                       background: "card",
                                       title: "SOPT 명함",
@@ -42,9 +42,9 @@ class FrontViewController: UIViewController {
                                       isSoju: true,
                                       isBoomuk: true,
                                       isSauced: true,
-                                      oneTMI: "첫번째",
-                                      twoTMI: "두번째",
-                                      thirdTMI: "세번째세번째세번째")]
+                                      oneTmi: "첫번째",
+                                      twoTmi: "두번째",
+                                      threeTmi: "세번째세번째세번째")]
     
     // var cardDataList: [Card]? = []
     

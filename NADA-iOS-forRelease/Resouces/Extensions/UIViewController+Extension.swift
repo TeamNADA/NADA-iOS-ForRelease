@@ -63,10 +63,29 @@ extension UIViewController {
     }
     
     func showToast(message: String,
-                   font: UIFont) {
-        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 85,
-                                               y: self.view.frame.size.height - 230,
-                                               width: 170, height: 35))
+                   font: UIFont,
+                   view: String) {
+        var toastLabel = UILabel()
+        
+        switch view {
+        case "QRScan":
+            toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 85,
+                                                   y: self.view.frame.size.height - 230,
+                                                   width: 170, height: 35))
+        case "copyID":
+            toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 110,
+                                                   y: self.view.frame.size.height/2,
+                                                   width: 230, height: 35))
+        case "saveImage":
+            toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 85,
+                                                   y: self.view.frame.size.height - 230,
+                                                   width: 170, height: 35))
+        default:
+            toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 85,
+                                                   y: self.view.frame.size.height - 230,
+                                                   width: 170, height: 35))
+        }
+        
         toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         toastLabel.textColor = UIColor.white
         toastLabel.font = font
@@ -76,7 +95,7 @@ extension UIViewController {
         toastLabel.layer.cornerRadius = 10
         toastLabel.clipsToBounds = true
         self.view.addSubview(toastLabel)
-        UIView.animate(withDuration: 1.0, delay: 0.1,
+        UIView.animate(withDuration: 2.0, delay: 0.1,
                        options: .curveEaseOut, animations: { toastLabel.alpha = 0.0 },
                        completion: {_ in toastLabel.removeFromSuperview() })
     }

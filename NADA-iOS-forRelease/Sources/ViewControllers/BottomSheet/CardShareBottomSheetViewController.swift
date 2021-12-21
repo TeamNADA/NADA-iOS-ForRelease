@@ -10,7 +10,7 @@ import UIKit
 class CardShareBottomSheetViewController: CommonBottomSheetViewController {
 
     // MARK: - Properties
-    var cardID: String?
+    var cardID: String? = "1D856A"
     
     private let qrImage: UIImageView = {
         // 여기를 만든 QR이미지로 바꿔주시면 됩니당
@@ -31,8 +31,6 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     
     private let idLabel: UILabel = {
         let label = UILabel()
-        // 여기를 cardID로 바꿔주시면 됩니당
-        label.text = "1D856A"
         label.textColor = .secondary
         label.font = .textRegular01
         
@@ -80,6 +78,8 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         view.addSubview(idStackView)
         view.addSubview(saveAsImageButton)
         
+        idLabel.text = cardID
+        
         setupLayout()
     }
     
@@ -108,7 +108,8 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     }
     
     @objc func copyId() {
-//        UIPasteboard.general.string = idStackView.
+        UIPasteboard.general.string = cardID
+        showToast(message: "명함 아이디가 복사되었습니다.", font: UIFont.button02, view: "copyID")
     }
     
     @objc func saveAsImage() {

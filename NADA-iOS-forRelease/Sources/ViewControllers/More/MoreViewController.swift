@@ -83,51 +83,9 @@ extension MoreViewController: UITableViewDelegate {
             }
         } else if indexPath.section == 1 {
             switch indexPath.row {
-            case 0:     // 로그아웃
-                makeOKCancelAlert(title: "", message: "로그아웃 하시겠습니까?", okAction: { _ in
-                    self.makeOKAlert(title: "", message: "로그아웃이 완료 되었습니다.") { _ in
-                        if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken) {
-                            self.logoutUserWithAPI(token: acToken)
-                            self.defaults.removeObject(forKey: Const.UserDefaults.accessToken)
-                            self.defaults.removeObject(forKey: Const.UserDefaults.darkModeState)
-                            let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
-                            nextVC.modalPresentationStyle = .overFullScreen
-                            self.present(nextVC, animated: true, completion: nil)
-                        }
-                    }
-                })
-            case 1:     // 받은 명함 초기화
-                makeOKCancelAlert(title: "", message: "받은 명함과 그룹이 모두 초기화됩니다. 정말 초기화하시겠습니까?", okAction: { _ in
-                    UserApi.shared.logout { (error) in
-                        if let error = error {
-                            print(error)
-                        } else {
-                            self.makeOKAlert(title: "", message: "받은 명함이 초기화 되었습니다.")
-                            if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken) {
-                                self.groupResetWithAPI(token: acToken)
-                            }
-                        }
-                    }
-                })
-            case 2:     // 모든 명함 삭제하기
-                makeOKCancelAlert(title: "", message: "내 명함과 받은 명함이 모두 삭제됩니다. 삭제 하시겠습니까?", okAction: { _ in
-                    UserApi.shared.logout { (error) in
-                        if let error = error {
-                            print(error)
-                        } else {
-                            self.makeOKAlert(title: "", message: "모든 명함이 삭제되었습니다.") { _ in
-                                if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken) {
-                                    self.deleteUserWithAPI(token: acToken)
-                                    self.defaults.removeObject(forKey: Const.UserDefaults.accessToken)
-                                    self.defaults.removeObject(forKey: Const.UserDefaults.darkModeState)
-                                    let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
-                                    nextVC.modalPresentationStyle = .overFullScreen
-                                    self.present(nextVC, animated: true, completion: nil)
-                                }
-                            }
-                        }
-                    }
-                })
+            case 0: setLogoutClicked()
+            case 1: setResetClicked()
+            case 2: setDeleteCicked()
             default: print("default!")
             }
         }
@@ -149,6 +107,56 @@ extension MoreViewController {
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
+    func setLogoutClicked() {
+        makeOKCancelAlert(title: "", message: "로그아웃 하시겠습니까?", okAction: { _ in
+            self.makeOKAlert(title: "", message: "로그아웃이 완료 되었습니다.") { _ in
+                if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken) {
+                    self.logoutUserWithAPI(token: acToken)
+                    self.defaults.removeObject(forKey: Const.UserDefaults.accessToken)
+                    self.defaults.removeObject(forKey: Const.UserDefaults.darkModeState)
+                    let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
+                    nextVC.modalPresentationStyle = .overFullScreen
+                    self.present(nextVC, animated: true, completion: nil)
+                }
+            }
+        })
+    }
+    
+    func setResetClicked() {
+        makeOKCancelAlert(title: "", message: "받은 명함과 그룹이 모두 초기화됩니다. 정말 초기화하시겠습니까?", okAction: { _ in
+            UserApi.shared.logout { (error) in
+                if let error = error {
+                    print(error)
+                } else {
+                    self.makeOKAlert(title: "", message: "받은 명함이 초기화 되었습니다.")
+                    if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken) {
+                        self.groupResetWithAPI(token: acToken)
+                    }
+                }
+            }
+        })
+    }
+    
+    func setDeleteCicked() {
+        makeOKCancelAlert(title: "", message: "내 명함과 받은 명함이 모두 삭제됩니다. 삭제 하시겠습니까?", okAction: { _ in
+            UserApi.shared.logout { (error) in
+                if let error = error {
+                    print(error)
+                } else {
+                    self.makeOKAlert(title: "", message: "모든 명함이 삭제되었습니다.") { _ in
+                        if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken) {
+                            self.deleteUserWithAPI(token: acToken)
+                            self.defaults.removeObject(forKey: Const.UserDefaults.accessToken)
+                            self.defaults.removeObject(forKey: Const.UserDefaults.darkModeState)
+                            let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
+                            nextVC.modalPresentationStyle = .overFullScreen
+                            self.present(nextVC, animated: true, completion: nil)
+                        }
+                    }
+                }
+            }
+        })
+    }
 }
 
 // MARK: - TableView DataSource

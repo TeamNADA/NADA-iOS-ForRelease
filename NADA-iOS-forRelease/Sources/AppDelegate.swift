@@ -36,10 +36,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            }
 //        }
         
-        NotificationCenter.default.addObserver(forName: ASAuthorizationAppleIDProvider.credentialRevokedNotification, object: nil, queue: nil) { (Notification) in
-            print("Revoked Notification")
-            // self.isLogin = false
-        }
+//        NotificationCenter.default.addObserver(forName: ASAuthorizationAppleIDProvider.credentialRevokedNotification, object: nil, queue: nil) { (Notification) in
+//            print("Revoked Notification")
+//            self.isLogin = false
+//        }
         
         return true
     }

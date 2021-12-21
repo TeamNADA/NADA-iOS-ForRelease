@@ -36,7 +36,10 @@ class CardCreationPreviewViewController: UIViewController {
     }
     @IBAction func touchCompleteButton(_ sender: Any) {
         guard let frontCardDataModel = frontCardDataModel, let backCardDataModel = backCardDataModel else { return }
-        cardCreationRequest = CardCreationRequest(frontCard: frontCardDataModel, backCard: backCardDataModel)
+        
+        guard let userID = UserDefaults.standard.string(forKey: Const.UserDefaults.userID) else { return }
+        
+        cardCreationRequest = CardCreationRequest(userID: userID, frontCard: frontCardDataModel, backCard: backCardDataModel)
         guard let cardCreationRequest = cardCreationRequest,
               let cardBackgroundImage = cardBackgroundImage else { return }
 
@@ -55,6 +58,13 @@ extension CardCreationPreviewViewController {
         
         noticeLabel.font = .textRegular04
         noticeLabel.textColor = .primary
+
+        // TODO: - 행간 설정
+//        let attributeString = NSMutableAttributedString(string: noticeLabel?.text ?? "")
+//        let paragraphStyle = NSMutableParagraphStyle()
+//        paragraphStyle.lineSpacing = 19
+//        attributeString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributeString.length))
+//        noticeLabel.attributedText = attributeString
         
         completeButton.titleLabel?.font = .button01
         // MARK: - #available(iOS 15.0, *)

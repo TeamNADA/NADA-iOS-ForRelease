@@ -113,7 +113,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     }
     
     @objc func saveAsImage() {
-        print("next bottomsheet")
+        showToast(message: "갤러리에 저장되었습니다.", font: UIFont.button02, view: "saveImage")
     }
 
 }

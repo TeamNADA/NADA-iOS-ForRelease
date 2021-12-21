@@ -21,15 +21,13 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         setUI()
-        // FIXME: - 서버 연결 테스트, 추후 위치 수정 필요
-        // getUserIDFetchWithAPI(userID: "nada")
-        // getUserTokenFetchWithAPI(userID: "nada")
     }
     
     // MARK: - Functions
     func setUI() {
         let kakaoButton = UIButton()
         kakaoButton.setImage(UIImage(named: "kakao_login_large_wide"), for: .normal)
+        kakaoButton.cornerRadius = 15
         kakaoButton.addTarget(self, action: #selector(kakaoSignInButtonPress), for: .touchUpInside)
         loginProviderStackView.addSubview(kakaoButton)
         
@@ -42,6 +40,8 @@ class LoginViewController: UIViewController {
         ])
         
         let authorizationButton = ASAuthorizationAppleIDButton(type: .signIn, style: .black)
+        // let authorizationButton = UIButton()
+        // authorizationButton.setImage(UIImage(named: "appleLogin"), for: .normal)
         authorizationButton.addTarget(self, action: #selector(appleSignInButtonPress), for: .touchUpInside)
         loginProviderStackView.addSubview(authorizationButton)
         
@@ -100,7 +100,7 @@ class LoginViewController: UIViewController {
 // MARK: - KakaoSignIn
 extension LoginViewController {
     func loginWithApp() {
-        UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+        UserApi.shared.loginWithKakaoTalk {(_, error) in
             if let error = error {
                 print(error)
             } else {
@@ -123,7 +123,7 @@ extension LoginViewController {
     }
     
     func loginWithWeb() {
-        UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
+        UserApi.shared.loginWithKakaoAccount {(_, error) in
             if let error = error {
                 print(error)
             } else {
@@ -166,17 +166,16 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
     // Apple ID 연동 성공 시
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         switch authorization.credential {
-            // Apple ID
+        // Apple ID
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
             
-            // 계정 정보 가져오기
             let userIdentifier = appleIDCredential.user
-            let fullName = appleIDCredential.fullName
-            let email = appleIDCredential.email
+            // let fullName = appleIDCredential.fullName
+            // let email = appleIDCredential.email
             
-            print("User ID : \(userIdentifier)")
-            print("User Email : \(email ?? "")")
-            print("User Name : \((fullName?.givenName ?? "") + (fullName?.familyName ?? ""))")
+            // print("User ID : \(userIdentifier)")
+            // print("User Email : \(email ?? "")")
+            // print("User Name : \((fullName?.givenName ?? "") + (fullName?.familyName ?? ""))")
             postUserSignUpWithAPI(request: userIdentifier)
             presentToMain()
             
@@ -193,47 +192,12 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
 
 // MARK: - Network
 extension LoginViewController {
-    func getUserIDFetchWithAPI(userID: String) {
-        UserAPI.shared.userIDFetch(userID: userID) { response in
-            switch response {
-            case .success(let data):
-                print(data)
-            case .requestErr(let message):
-                print("getUserIDFetchWithAPI - requestErr", message)
-            case .pathErr:
-                print("getUserIDFetchWithAPI - pathErr")
-            case .serverErr:
-                print("getUserIDFetchWithAPI - serverErr")
-            case .networkFail:
-                print("getUserIDFetchWithAPI - networkFail")
-            }
-        }
-    }
-    
-    func getUserTokenFetchWithAPI(userID: String) {
-        UserAPI.shared.userTokenFetch(userID: userID) { response in
-            switch response {
-            case .success(let data):
-                print(data)
-            case .requestErr(let message):
-                print("getUserTokenFetchWithAPI - requestErr", message)
-            case .pathErr:
-                print("getUserTokenFetchWithAPI - pathErr")
-            case .serverErr:
-                print("getUserTokenFetchWithAPI - serverErr")
-            case .networkFail:
-                print("getUserTokenFetchWithAPI - networkFail")
-            }
-        }
-    }
-    
     func postUserSignUpWithAPI(request: String) {
         UserAPI.shared.userSocialSignUp(request: request) { response in
             switch response {
             case .success(let loginData):
                 print("postUserSignUpWithAPI - success")
                 if let userData = loginData as? UserWithTokenRequest {
-                    print(userData.user.userID, "⭐️")
                     UserDefaults.standard.set(userData.user.userID, forKey: Const.UserDefaults.userID)
                     if let tokenData = userData.user.token as? Token {
                         UserDefaults.standard.set(tokenData.accessToken, forKey: Const.UserDefaults.accessToken)

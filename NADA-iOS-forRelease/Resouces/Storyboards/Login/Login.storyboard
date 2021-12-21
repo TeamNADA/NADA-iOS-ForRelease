@@ -22,6 +22,7 @@
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="Bjc-le-F1v">
                                 <rect key="frame" x="24" y="558" width="327" height="110"/>
+                                <color key="backgroundColor" name="background"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="zMJ-VE-Guw"/>
                                 </constraints>

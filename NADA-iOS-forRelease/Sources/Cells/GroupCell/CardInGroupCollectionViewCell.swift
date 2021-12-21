@@ -19,6 +19,9 @@ class CardInGroupCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var instagramIDLabel: UILabel!
     @IBOutlet weak var lineURLLabel: UILabel!
     
+    var groupId: Int?
+    var cardId: String?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setUI()

@@ -13,6 +13,9 @@
         <array key="Spoqa Han Sans Neo Bold.otf">
             <string>SpoqaHanSansNeo-Bold</string>
         </array>
+        <array key="Spoqa Han Sans Neo Regular.otf">
+            <string>SpoqaHanSansNeo-Regular</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Group View Controller-->
@@ -110,6 +113,33 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <view key="backgroundView" contentMode="scaleToFill" id="yJN-al-Akh">
+                                    <rect key="frame" x="0.0" y="0.0" width="327" height="519"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아직 추가된 명함이 없어요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcw-IQ-jq4">
+                                            <rect key="frame" x="85.666666666666686" y="218" width="156" height="17"/>
+                                            <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                            <color key="textColor" name="quaternary"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vTC-JP-OBt">
+                                            <rect key="frame" x="109.66666666666666" y="245" width="107.66666666666666" height="29"/>
+                                            <string key="text">ID, QR코드를 통해
+명함을 교환해 보세요.</string>
+                                            <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="12"/>
+                                            <color key="textColor" name="quaternary"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" name="background"/>
+                                    <constraints>
+                                        <constraint firstItem="vTC-JP-OBt" firstAttribute="centerX" secondItem="yJN-al-Akh" secondAttribute="centerX" id="1zb-2D-ffI"/>
+                                        <constraint firstItem="bcw-IQ-jq4" firstAttribute="centerX" secondItem="yJN-al-Akh" secondAttribute="centerX" id="KKl-Me-FBd"/>
+                                        <constraint firstItem="vTC-JP-OBt" firstAttribute="top" secondItem="bcw-IQ-jq4" secondAttribute="bottom" constant="10" id="eYN-x4-okj"/>
+                                        <constraint firstItem="vTC-JP-OBt" firstAttribute="centerY" secondItem="yJN-al-Akh" secondAttribute="centerY" id="i7b-4W-mQb"/>
+                                    </constraints>
+                                </view>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="PCp-H1-jI2">
                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
@@ -143,6 +173,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="cardsCollectionView" destination="khE-2k-qTd" id="0Og-Kl-bFs"/>
+                        <outlet property="emptyView" destination="yJN-al-Akh" id="qyN-1Y-XD0"/>
                         <outlet property="groupCollectionView" destination="fjf-wy-tr3" id="1IN-7c-Nph"/>
                     </connections>
                 </viewController>
@@ -178,6 +209,9 @@
         <image name="personAddAlt1" width="24" height="24"/>
         <namedColor name="background">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="quaternary">
+            <color red="0.6588235294117647" green="0.67450980392156867" blue="0.70196078431372544" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

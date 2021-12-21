@@ -94,6 +94,38 @@ public class UserAPI {
         }
     }
     
+    func userLogout(token: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        userProvider.request(.userLogout(token: token)) { (result) in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                let networkResult = self.judgeStatus(by: statusCode, data)
+                completion(networkResult)
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
+    func userTokenReissue(request: UserWithTokenRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
+        userProvider.request(.userTokenReissue(request: request)) { (result) in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                let networkResult = self.judgeStatus(by: statusCode, data)
+                completion(networkResult)
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
     private func judgeUserIDFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()

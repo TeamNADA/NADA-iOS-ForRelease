@@ -12,7 +12,7 @@ class MoreViewController: UIViewController {
     
     // MARK: - Properteis
     let defaults = UserDefaults.standard
-
+    
     var firstItems = ["개인정보 처리방침", "서비스 이용약관", "Team NADA", "오픈소스 라이브러리"]
     var secondItems = ["로그아웃", "받은 명함 초기화", "모든 명함 삭제하기"]
     
@@ -60,20 +60,6 @@ extension MoreViewController {
             }
         }
     }
-    
-    private func logout() {
-        // ✅ 로그아웃 : 로그아웃은 API 요청의 성공 여부와 관계없이 토큰을 삭제 처리한다는 점에 유의합니다.
-        UserApi.shared.logout {(error) in
-            if let error = error {
-                print(error)
-            } else {
-                print("logout() success.")
-                
-                // ✅ 로그아웃 시 메인으로 보냄
-                self.navigationController?.popViewController(animated: true)
-            }
-        }
-    }
 }
 
 // MARK: - TableView Delegate
@@ -100,23 +86,15 @@ extension MoreViewController: UITableViewDelegate {
             case 0:     // 로그아웃
                 makeOKCancelAlert(title: "", message: "로그아웃 하시겠습니까?", okAction: { _ in
                     self.makeOKAlert(title: "", message: "로그아웃이 완료 되었습니다.") { _ in
-                        self.dismiss(animated: true, completion: nil)
                         if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken) {
                             self.logoutUserWithAPI(token: acToken)
-                            // UserDefaults.standard.removeObject(forKey: Const.UserDefaults.accessToken)
+                            self.defaults.removeObject(forKey: Const.UserDefaults.accessToken)
+                            self.defaults.removeObject(forKey: Const.UserDefaults.darkModeState)
+                            let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
+                            nextVC.modalPresentationStyle = .overFullScreen
+                            self.present(nextVC, animated: true, completion: nil)
                         }
                     }
-                    
-//                    UserApi.shared.logout { (error) in
-//                        if let error = error {
-//                            print(error)
-//                        } else {
-//                            self.makeOKAlert(title: "", message: "로그아웃이 완료 되었습니다.") { _ in
-//                                self.dismiss(animated: true, completion: nil)
-//                                UserDefaults.standard.removeObject(forKey: Const.UserDefaults.accessToken)
-//                            }
-//                        }
-//                    }
                 })
             case 1:     // 받은 명함 초기화
                 makeOKCancelAlert(title: "", message: "받은 명함과 그룹이 모두 초기화됩니다. 정말 초기화하시겠습니까?", okAction: { _ in
@@ -137,9 +115,15 @@ extension MoreViewController: UITableViewDelegate {
                         if let error = error {
                             print(error)
                         } else {
-                            self.makeOKAlert(title: "", message: "모든 명함이 삭제되었습니다.")
-                            if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken) {
-                                self.deleteUserWithAPI(token: acToken)
+                            self.makeOKAlert(title: "", message: "모든 명함이 삭제되었습니다.") { _ in
+                                if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken) {
+                                    self.deleteUserWithAPI(token: acToken)
+                                    self.defaults.removeObject(forKey: Const.UserDefaults.accessToken)
+                                    self.defaults.removeObject(forKey: Const.UserDefaults.darkModeState)
+                                    let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
+                                    nextVC.modalPresentationStyle = .overFullScreen
+                                    self.present(nextVC, animated: true, completion: nil)
+                                }
                             }
                         }
                     }
@@ -156,12 +140,12 @@ extension MoreViewController {
     func openURL(link: URL) {
         if UIApplication.shared.canOpenURL(link) {
             UIApplication.shared.open(link, options: [:], completionHandler: nil)
-        } 
+        }
     }
     
     func pushView(nextSB: String, nextVC: String) {
         let nextVC = UIStoryboard(name: nextSB, bundle: nil).instantiateViewController(identifier: nextVC)
-            
+        
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     

@@ -22,9 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-         window?.rootViewController = UIStoryboard(name: Const.Storyboard.Name.tabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.tabBarViewController)
-//        window?.rootViewController = UIStoryboard(name: Const.Storyboard.Name.splash, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.splashViewController)
-        // window?.rootViewController = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
+        window?.rootViewController = UIStoryboard(name: Const.Storyboard.Name.splash, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.splashViewController)
         window?.makeKeyAndVisible()
         
         IQKeyboardManager.shared.enable = true
@@ -40,6 +38,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             } else {
                 window.overrideUserInterfaceStyle = .light
             }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+            var rootViewController = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil)
+                .instantiateViewController(identifier: Const.ViewController.Identifier.loginViewController)
+            if UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken) != nil {
+                rootViewController = UIStoryboard(name: Const.Storyboard.Name.tabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.tabBarViewController)
+            }
+            self.window?.rootViewController = rootViewController
+            self.window?.makeKeyAndVisible()
         }
     }
     

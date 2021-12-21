@@ -10,29 +10,45 @@ import UIKit
 class CardShareBottomSheetViewController: CommonBottomSheetViewController {
 
     // MARK: - Properties
+    var cardID: String?
+    
     private let qrImage: UIImageView = {
+        // 여기를 만든 QR이미지로 바꿔주시면 됩니당
         let imageView = UIImageView()
         imageView.image = UIImage(named: "qrCodeImg21")
         
         return imageView
     }()
     
+    private let idTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "ID"
+        label.textColor = .secondary
+        label.font = .title01
+        
+        return label
+    }()
+    
+    private let idLabel: UILabel = {
+        let label = UILabel()
+        // 여기를 cardID로 바꿔주시면 됩니당
+        label.text = "1D856A"
+        label.textColor = .secondary
+        label.font = .textRegular01
+        
+        return label
+    }()
+    
+    private let copyButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "iconCopy"), for: .normal)
+        button.addTarget(self, action: #selector(copyId), for: .touchUpInside)
+        
+        return button
+    }()
+    
     private let idStackView: UIStackView = {
-        let idTitlelabel = UILabel()
-        idTitlelabel.text = "ID"
-        idTitlelabel.textColor = .secondary
-        idTitlelabel.font = .title01
-        
-        let idLabel = UILabel()
-        idLabel.text = "1D856A"
-        idLabel.textColor = .secondary
-        idLabel.font = .textRegular01
-        
-        let copyButton = UIButton()
-        copyButton.setImage(UIImage(named: "iconCopy"), for: .normal)
-        copyButton.addTarget(self, action: #selector(copyId), for: .touchUpInside)
-        
-        let stackView = UIStackView(arrangedSubviews: [idTitlelabel, idLabel, copyButton])
+        let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 10
         stackView.distribution = .fill
@@ -56,9 +72,14 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     // MARK: - @Functions
     // UI 세팅 작업
     private func setupUI() {
+        idStackView.addArrangedSubview(idTitleLabel)
+        idStackView.addArrangedSubview(idLabel)
+        idStackView.addArrangedSubview(copyButton)
+        
         view.addSubview(qrImage)
         view.addSubview(idStackView)
         view.addSubview(saveAsImageButton)
+        
         setupLayout()
     }
     
@@ -87,7 +108,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     }
     
     @objc func copyId() {
-        print("next bottomsheet")
+//        UIPasteboard.general.string = idStackView.
     }
     
     @objc func saveAsImage() {

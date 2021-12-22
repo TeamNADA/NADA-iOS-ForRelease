@@ -96,9 +96,32 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
     }
     
     @objc func presentGroupSelectBottomSheet() {
-        let nextVC = SelectGroupBottomSheetViewController()
-        nextVC.status = .add
-        hideBottomSheetAndPresent(nextBottomSheet: nextVC, title: "그룹선택", height: 386)
+        groupListFetchWithAPI(userID: Const.UserDefaults.userID)
     }
 
+}
+
+extension CardResultBottomSheetViewController {
+    func groupListFetchWithAPI(userID: String) {
+        GroupAPI.shared.groupListFetch(userID: userID) { response in
+            switch response {
+            case .success(let data):
+                if let group = data as? Groups {
+                    let nextVC = SelectGroupBottomSheetViewController()
+                    nextVC.status = .add
+                    nextVC.cardDataModel = self.cardDataModel
+                    nextVC.serverGroups = group
+                    self.hideBottomSheetAndPresent(nextBottomSheet: nextVC, title: "그룹선택", height: 386)
+                }
+            case .requestErr(let message):
+                print("groupListFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("groupListFetchWithAPI - pathErr")
+            case .serverErr:
+                print("groupListFetchWithAPI - serverErr")
+            case .networkFail:
+                print("groupListFetchWithAPI - networkFail")
+            }
+        }
+    }
 }

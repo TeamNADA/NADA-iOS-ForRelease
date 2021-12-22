@@ -10,7 +10,8 @@ import UIKit
 class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
 
     // MARK: - Properties
-    var groupList = ["미분류", "SOPT", "동아리", "인하대학교"]
+    var cardDataModel: Card?
+    var serverGroups: Groups?
     var selectedGroup = ""
     enum Status {
         case detail
@@ -44,7 +45,7 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
     private func setupUI() {
         view.addSubview(groupPicker)
         view.addSubview(doneButton)
-        selectedGroup = groupList[0]
+        selectedGroup = serverGroups?.groups[0].groupName ?? ""
         groupPicker.delegate = self
         groupPicker.dataSource = self
         setupLayout()
@@ -80,6 +81,7 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
             
             guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
             nextVC.status = .add
+            nextVC.cardDataModel = self.cardDataModel
             hideBottomSheetAndPresentVC(nextViewController: nextVC)
         }
     }
@@ -92,7 +94,7 @@ extension SelectGroupBottomSheetViewController: UIPickerViewDelegate, UIPickerVi
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return groupList.count
+        return serverGroups?.groups.count ?? 1
     }
 
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
@@ -101,16 +103,16 @@ extension SelectGroupBottomSheetViewController: UIPickerViewDelegate, UIPickerVi
         label.textAlignment = .center
         
         if pickerView.selectedRow(inComponent: component) == row {
-            label.attributedText = NSAttributedString(string: groupList[row], attributes: [NSAttributedString.Key.font: UIFont.textBold01, NSAttributedString.Key.foregroundColor: UIColor.mainColorNadaMain])
+            label.attributedText = NSAttributedString(string: serverGroups?.groups[row].groupName ?? "", attributes: [NSAttributedString.Key.font: UIFont.textBold01, NSAttributedString.Key.foregroundColor: UIColor.mainColorNadaMain])
         } else {
-            label.attributedText = NSAttributedString(string: groupList[row], attributes: [NSAttributedString.Key.font: UIFont.textRegular03, NSAttributedString.Key.foregroundColor: UIColor.quaternary])
+            label.attributedText = NSAttributedString(string: serverGroups?.groups[row].groupName ?? "", attributes: [NSAttributedString.Key.font: UIFont.textRegular03, NSAttributedString.Key.foregroundColor: UIColor.quaternary])
         }
         
         return label
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedGroup = groupList[row]
+        selectedGroup = serverGroups?.groups[row].groupName ?? ""
         pickerView.reloadAllComponents()
     }
     

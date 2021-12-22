@@ -56,7 +56,6 @@ class CardDetailViewController: UIViewController {
 }
 
 extension CardDetailViewController {
-    // TODO: - group 서버통신. 위치변경.
     func cardDeleteInGroupWithAPI(groupID: Int, cardID: String) {
         GroupAPI.shared.cardDeleteInGroup(groupID: groupID, cardID: cardID) { response in
             switch response {

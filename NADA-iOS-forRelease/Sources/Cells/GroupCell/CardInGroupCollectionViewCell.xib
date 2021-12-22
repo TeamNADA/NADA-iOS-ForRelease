@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -152,9 +152,11 @@
                 <outlet property="birthLabel" destination="WCz-jU-GLW" id="JWN-qF-cmV"/>
                 <outlet property="descriptionLabel" destination="RM7-A9-SfR" id="Taf-hG-9yJ"/>
                 <outlet property="instagramIDLabel" destination="R2H-kH-GqM" id="gNa-to-IoK"/>
+                <outlet property="instagramIcon" destination="XFs-Sv-f0r" id="419-Xr-AxM"/>
                 <outlet property="lineURLLabel" destination="oO0-od-Oxm" id="Y5l-wc-JJu"/>
                 <outlet property="mbtiLabel" destination="Wwx-y2-tN3" id="TN4-Or-c2j"/>
                 <outlet property="titleLabel" destination="Rng-0l-SgL" id="9nl-nq-ggY"/>
+                <outlet property="urlIcon" destination="07x-TC-A3z" id="wNd-jb-LjS"/>
                 <outlet property="userNameLabel" destination="tBD-lZ-HlH" id="i74-Z7-zHd"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="78.348214285714278"/>

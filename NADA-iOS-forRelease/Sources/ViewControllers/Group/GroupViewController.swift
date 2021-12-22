@@ -297,6 +297,13 @@ extension GroupViewController: UICollectionViewDataSource {
             cardCell.instagramIDLabel.text = serverCards?.cards[indexPath.row].instagram
             cardCell.lineURLLabel.text = serverCards?.cards[indexPath.row].link
             
+            if serverCards?.cards[indexPath.row].instagram == "" {
+                cardCell.instagramIcon.isHidden = true
+            }
+            if serverCards?.cards[indexPath.row].link == "" {
+                cardCell.urlIcon.isHidden = true
+            }
+            
             return cardCell
         default:
             return UICollectionViewCell()

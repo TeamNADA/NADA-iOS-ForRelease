@@ -143,19 +143,19 @@ extension BackCardCell {
         UIImage(named: "iconTasteOnFried") : UIImage(named: "iconTasteOffFried")
         
         if !firstTMI.isEmpty {
-            firstTmiLabel.text = "● " + firstTMI
+            firstTmiLabel.text = "•  " + firstTMI
         } else {
             firstTmiLabel.text = firstTMI
         }
         
         if !secondTMI.isEmpty {
-            secondTmiLabel.text = "● " + secondTMI
+            secondTmiLabel.text = "•  " + secondTMI
         } else {
             secondTmiLabel.text = secondTMI
         }
         
         if !thirdTMI.isEmpty {
-            thirdTmiLabel.text = "● " + thirdTMI
+            thirdTmiLabel.text = "•  " + thirdTMI
         } else {
             thirdTmiLabel.text = thirdTMI
         }

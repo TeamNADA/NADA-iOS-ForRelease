@@ -60,11 +60,11 @@ extension CardCreationPreviewViewController {
         noticeLabel.textColor = .primary
 
         // TODO: - 행간 설정
-//        let attributeString = NSMutableAttributedString(string: noticeLabel?.text ?? "")
-//        let paragraphStyle = NSMutableParagraphStyle()
-//        paragraphStyle.lineSpacing = 19
-//        attributeString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributeString.length))
-//        noticeLabel.attributedText = attributeString
+        let attributeString = NSMutableAttributedString(string: noticeLabel?.text ?? "")
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 19
+        attributeString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributeString.length))
+        noticeLabel.attributedText = attributeString
         
         completeButton.titleLabel?.font = .button01
         // MARK: - #available(iOS 15.0, *)

@@ -77,8 +77,6 @@ class GroupViewController: UIViewController {
 //        groupAddWithAPI(groupRequest: GroupAddRequest(userId: "nada2", groupName: "대학교"))
 //         그룹 수정 서버 테스트
 //        groupEditWithAPI(groupRequest: GroupEditRequest(groupId: 5, groupName: "수정나다"))
-//         그룹 속 명함 추가 테스트
-//        cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardId: "cardA", userId: "nada2", groupId: 1))
 //         그룹 속 명함 조회 테스트
 //        cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada", groupId: 5, offset: 0))
 //         명함 검색 테스트
@@ -248,23 +246,6 @@ extension GroupViewController {
                 print("cardDetailFetchWithAPI - serverErr")
             case .networkFail:
                 print("cardDetailFetchWithAPI - networkFail")
-            }
-        }
-    }
-    
-    func cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest) {
-        GroupAPI.shared.cardAddInGroup(cardRequest: cardRequest) { response in
-            switch response {
-            case .success:
-                print("postCardAddInGroupWithAPI - success")
-            case .requestErr(let message):
-                print("postCardAddInGroupWithAPI - requestErr", message)
-            case .pathErr:
-                print("postCardAddInGroupWithAPI - pathErr")
-            case .serverErr:
-                print("postCardAddInGroupWithAPI - serverErr")
-            case .networkFail:
-                print("postCardAddInGroupWithAPI - networkFail")
             }
         }
     }

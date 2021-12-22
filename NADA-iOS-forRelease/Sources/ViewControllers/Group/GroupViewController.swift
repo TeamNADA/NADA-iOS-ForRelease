@@ -69,8 +69,6 @@ class GroupViewController: UIViewController {
         super.viewDidLoad()
         registerCell()
         setUI()
-        // 그룹 리스트 조회 서버 테스트
-        groupListFetchWithAPI(userID: "nada2")
 //        groupListFetchWithAPI(userID: Const.UserDefaults.userID)
 //         그룹 삭제 서버 테스트
 //        groupDeleteWithAPI(groupID: 1)
@@ -85,6 +83,11 @@ class GroupViewController: UIViewController {
 //         명함 검색 테스트
 //        cardDetailFetchWithAPI(cardID: "cardA")
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // 그룹 리스트 조회 서버 테스트
+        groupListFetchWithAPI(userID: "nada2")
     }
     
 }

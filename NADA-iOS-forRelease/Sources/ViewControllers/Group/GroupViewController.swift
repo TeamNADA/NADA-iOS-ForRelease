@@ -70,7 +70,7 @@ class GroupViewController: UIViewController {
         registerCell()
         setUI()
         // 그룹 리스트 조회 서버 테스트
-        groupListFetchWithAPI(userID: "nada")
+        groupListFetchWithAPI(userID: "nada2")
 //         그룹 삭제 서버 테스트
 //        groupDeleteWithAPI(groupID: 1)
 //         그룹 추가 서버 테스트

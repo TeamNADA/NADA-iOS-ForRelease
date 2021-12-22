@@ -11,16 +11,17 @@ import IQKeyboardManagerSwift
 class CardResultBottomSheetViewController: CommonBottomSheetViewController {
 
     // MARK: - Properties
+    var cardDataModel: Card?
+    
     private let groupLabel: UILabel = {
         let label = UILabel()
-        label.text = "어쩌구 동아리 명함"
         label.textColor = .secondary
         label.font = .textRegular03
         
         return label
     }()
     
-    private let cardView: UIView = {
+    private let cardView: CardView = {
         let view = CardView()
         return view
     }()
@@ -46,6 +47,8 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
         view.addSubview(cardView)
         view.addSubview(addButton)
         setupLayout()
+        
+        groupLabel.text = cardDataModel?.cardDescription
     }
     
     // 레이아웃 세팅
@@ -77,7 +80,6 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
         let nextVC = SelectGroupBottomSheetViewController()
         nextVC.status = .add
         hideBottomSheetAndPresent(nextBottomSheet: nextVC, title: "그룹선택", height: 386)
-        print("next bottomsheet")
     }
 
 }

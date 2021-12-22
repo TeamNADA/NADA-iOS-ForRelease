@@ -49,6 +49,25 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
         setupLayout()
         
         groupLabel.text = cardDataModel?.cardDescription
+        setCardView()
+    }
+    
+    private func setCardView() {
+        cardView.backgroundImageView.updateServerImage(cardDataModel?.background ?? "")
+        cardView.titleLabel.text = cardDataModel?.title ?? ""
+        cardView.descriptionLabel.text = cardDataModel?.cardDescription ?? ""
+        cardView.userNameLabel.text = cardDataModel?.name ?? ""
+        cardView.birthLabel.text = cardDataModel?.birthDate ?? ""
+        cardView.mbtiLabel.text = cardDataModel?.mbti ?? ""
+        cardView.instagramIDLabel.text = cardDataModel?.instagram ?? ""
+        cardView.lineURLLabel.text = cardDataModel?.link ?? ""
+        
+        if cardDataModel?.instagram == ""{
+            cardView.instagramIcon.isHidden = true
+        }
+        if cardDataModel?.link == ""{
+            cardView.urlIcon.isHidden = true
+        }
     }
     
     // 레이아웃 세팅

@@ -108,6 +108,7 @@ extension AddWithIdBottomSheetViewController {
             switch response {
             case .success(let data):
                 if let card = data as? CardClass {
+                    //TODO: 내가 쓴거 내가 추가 하면 예외처리 필요
                     let nextVC = CardResultBottomSheetViewController()
                     nextVC.cardDataModel = Card(cardID: card.card.cardID,
                                                 background: card.card.background,

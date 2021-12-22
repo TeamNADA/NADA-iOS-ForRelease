@@ -129,7 +129,6 @@ extension SelectGroupBottomSheetViewController {
         GroupAPI.shared.cardAddInGroup(cardRequest: cardRequest) { response in
             switch response {
             case .success:
-                print("postCardAddInGroupWithAPI - success")
                 guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
                 nextVC.status = .add
                 nextVC.cardDataModel = self.cardDataModel

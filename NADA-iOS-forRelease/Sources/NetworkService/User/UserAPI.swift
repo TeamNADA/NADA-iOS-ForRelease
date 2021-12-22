@@ -110,7 +110,7 @@ public class UserAPI {
         }
     }
     
-    func userTokenReissue(request: UserWithTokenRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func userTokenReissue(request: UserTokenReissueRequset, completion: @escaping (NetworkResult<Any>) -> Void) {
         userProvider.request(.userTokenReissue(request: request)) { (result) in
             switch result {
             case .success(let response):

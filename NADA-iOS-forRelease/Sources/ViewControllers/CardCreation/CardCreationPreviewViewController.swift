@@ -59,10 +59,10 @@ extension CardCreationPreviewViewController {
         noticeLabel.font = .textRegular04
         noticeLabel.textColor = .primary
 
-        // TODO: - 행간 설정
-        let attributeString = NSMutableAttributedString(string: noticeLabel?.text ?? "")
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 19
+        paragraphStyle.lineSpacing = 3
+        paragraphStyle.alignment = .center
+        let attributeString = NSMutableAttributedString(string: noticeLabel?.text ?? "")
         attributeString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributeString.length))
         noticeLabel.attributedText = attributeString
         

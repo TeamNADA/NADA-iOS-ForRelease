@@ -88,7 +88,7 @@ class GroupViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         // 그룹 리스트 조회 서버 테스트
-        groupListFetchWithAPI(userID: "nada2")
+        groupListFetchWithAPI(userID: Const.UserDefaults.userID)
     }
     
 }
@@ -122,8 +122,8 @@ extension GroupViewController {
                     self.groupCollectionView.reloadData()
                     self.groupId = group.groups[0].groupID
                     if !group.groups.isEmpty {
-                        self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada2", groupId: group.groups[0].groupID, offset: 0))
-//                        self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: Const.UserDefaults.userID, groupId: group.groups[0].groupID, offset: 0))
+//                        self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada2", groupId: group.groups[0].groupID, offset: 0))
+                        self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: Const.UserDefaults.userID, groupId: group.groups[0].groupID, offset: 0))
                     }
                 }
             case .requestErr(let message):

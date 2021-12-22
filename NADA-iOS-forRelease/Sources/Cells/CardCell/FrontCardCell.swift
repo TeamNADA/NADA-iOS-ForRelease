@@ -114,14 +114,8 @@ extension FrontCardCell {
                   _ instagramID: String,
                   _ linkURL: String,
                   isShareable: Bool) {
-        
-        if backgroundImage.hasPrefix("https://") {
-            self.backgroundImageView.updateServerImage(backgroundImage)
-        } else {
-            if let bgImage = UIImage(named: backgroundImage) {
-                self.backgroundImageView.image = bgImage
-            }
-        }
+
+        backgroundImageView.updateServerImage(backgroundImage)
         titleLabel.text = cardTitle
         descriptionLabel.text = cardDescription
         userNameLabel.text = userName

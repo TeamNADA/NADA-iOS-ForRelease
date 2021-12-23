@@ -59,7 +59,22 @@ class FrontViewController: UIViewController {
         setDelegate()
         setNotification()
         // TODO: - 서버 테스트
+        
 //        cardListFetchWithAPI(userID: "nada", isList: false, offset: 0)
+    }
+    
+    // FIXME: - qa테스트
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let nextVC = FirstCardAlertBottomSheetViewController()
+            .setTitle("""
+                      🎉
+                      첫 명함이 생성되었어요!
+                      """)
+            .setHeight(587)
+        nextVC.modalPresentationStyle = .overFullScreen
+        present(nextVC, animated: true, completion: nil)
     }
     
     // MARK: - @IBAction Properties
@@ -82,10 +97,7 @@ class FrontViewController: UIViewController {
 }
 
 // MARK: - Extensions
-extension FrontViewController {
-    private func setUI() {
-        
-    }
+extension FrontViewController {    
     private func setDelegate() {
         cardSwiper.delegate = self
         cardSwiper.datasource = self

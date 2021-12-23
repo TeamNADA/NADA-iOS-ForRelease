@@ -88,6 +88,7 @@
 		DBBB91E1639641F40C5B4416 /* Pods_NADA_iOS_forRelease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */; };
 		F811720027383097002742CF /* ChangeGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81171FF27383097002742CF /* ChangeGroupRequest.swift */; };
 		F822E7A92709CEB60020452C /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F822E7A82709CEB60020452C /* Notification.swift */; };
+		F8268DB927730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8268DB827730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift */; };
 		F82FEB4C27639F3100DA7847 /* MainCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FEB4A27639F3100DA7847 /* MainCardCell.swift */; };
 		F82FEB4D27639F3100DA7847 /* MainCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F82FEB4B27639F3100DA7847 /* MainCardCell.xib */; };
 		F82FF81D2701EBCE00E57F8B /* CardCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F82FF81C2701EBCE00E57F8B /* CardCreation.storyboard */; };
@@ -226,6 +227,7 @@
 		7F4EE1D042EC783FA8528743 /* Pods-NADA-iOS-forRelease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.debug.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.debug.xcconfig"; sourceTree = "<group>"; };
 		F81171FF27383097002742CF /* ChangeGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeGroupRequest.swift; sourceTree = "<group>"; };
 		F822E7A82709CEB60020452C /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		F8268DB827730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCardAlertBottomSheetViewController.swift; sourceTree = "<group>"; };
 		F82FEB4A27639F3100DA7847 /* MainCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardCell.swift; sourceTree = "<group>"; };
 		F82FEB4B27639F3100DA7847 /* MainCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCardCell.xib; sourceTree = "<group>"; };
 		F82FF81C2701EBCE00E57F8B /* CardCreation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardCreation.storyboard; sourceTree = "<group>"; };
@@ -502,6 +504,7 @@
 				F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */,
 				F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */,
 				7734D5A927719520004360E4 /* CardShareBottomSheetViewController.swift */,
+				F8268DB827730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift */,
 			);
 			path = BottomSheet;
 			sourceTree = "<group>";
@@ -1130,6 +1133,7 @@
 				F8C310C0273A7360008EC5BA /* FrontCardCreationDelegate.swift in Sources */,
 				F8C83FBF272FA0670009DF0D /* UserSevice.swift in Sources */,
 				39F5A3D0271461EA00191F94 /* BackCardCell.swift in Sources */,
+				F8268DB927730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift in Sources */,
 				F851805B275D047C006BD5ED /* OnboardingViewController.swift in Sources */,
 				39C1E88F270EC762006D2089 /* UIColor+Extension.swift in Sources */,
 				F8C83FC9272FA3190009DF0D /* GroupAPI.swift in Sources */,

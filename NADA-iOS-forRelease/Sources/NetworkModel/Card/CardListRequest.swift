@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - CardListRequest
 struct CardListRequest: Codable {
-    let cardList: [CardList]
+    let cardDates: [CardList]
 }
 
 // MARK: - CardList

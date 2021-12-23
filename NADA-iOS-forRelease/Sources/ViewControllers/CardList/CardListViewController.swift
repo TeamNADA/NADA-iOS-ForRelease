@@ -48,13 +48,12 @@ class CardListViewController: UIViewController {
     
     // MARK: - Functions
     func setCardList() {
-        cardItems.append(contentsOf: [
-            CardList(cardID: "nada1", title: "명함1"),
-            CardList(cardID: "nada2", title: "명함2"),
-            CardList(cardID: "nada3", title: "명함3"),
-            CardList(cardID: "nada4", title: "명함4")
-        ])
-        
+//        cardItems.append(contentsOf: [
+//            CardList(cardID: "nada1", title: "명함1"),
+//            CardList(cardID: "nada2", title: "명함2"),
+//            CardList(cardID: "nada3", title: "명함3"),
+//            CardList(cardID: "nada4", title: "명함4")
+//        ])
     }
     
     func setLongPressGesture() {
@@ -162,9 +161,10 @@ extension CardListViewController {
         CardAPI.shared.cardListFetch(userID: userID, isList: isList, offset: nil) { response in
             switch response {
             case .success(let data):
-                print(data, "⭐️")
                 if let card = data as? CardListRequest {
-                    
+                    self.cardItems = card.cardDates
+                    self.cardListTableView.reloadData()
+                    print(card, "⭐️")
                 }
             case .requestErr(let message):
                 print("getCardListFetchWithAPI - requestErr", message)

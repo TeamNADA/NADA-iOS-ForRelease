@@ -42,20 +42,29 @@ class FirstCardAlertBottomSheetViewController: CommonBottomSheetViewController {
 
     private let firstSubtitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "명함을 좌우로 스와이프하여\n 앞/뒷면을 확인할 수 있어요."
-        
-        
+        label.textAlignment = .center
+        label.numberOfLines = 2
+        let attributedString = NSMutableAttributedString(string: "명함을 좌우로 스와이프하여\n 앞/뒷면을 확인할 수 있어요.")
+        attributedString.addAttributes([.foregroundColor: UIColor.primary, .font: UIFont.textRegular03], range: NSRange(location: 0, length: 3))
+        attributedString.addAttributes([.foregroundColor: UIColor.mainColorNadaMain, .font: UIFont.textBold01], range: NSRange(location: 4, length: 8))
+        attributedString.addAttributes([.foregroundColor: UIColor.primary, .font: UIFont.textRegular03], range: NSRange(location: 14, length: 16))
+        label.attributedText = attributedString
+    
         return label
     }()
     
     private let secondSubtitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "우측 상단의 공유 버튼을 통해\n 친구에게 공유해 보세요."
+        label.textAlignment = .center
+        label.numberOfLines = 2
+        let attributedString = NSMutableAttributedString(string: "우측 상단의 공유 버튼을 통해\n 친구에게 공유해 보세요.")
+        attributedString.addAttributes([.foregroundColor: UIColor.mainColorNadaMain, .font: UIFont.textBold01], range: NSRange(location: 0, length: 12))
+        attributedString.addAttributes([.foregroundColor: UIColor.primary, .font: UIFont.textRegular03], range: NSRange(location: 13, length: 17))
+        label.attributedText = attributedString
         
         return label
     }()
 
-    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -68,6 +77,8 @@ class FirstCardAlertBottomSheetViewController: CommonBottomSheetViewController {
     
     // UI 세팅 작업
     private func setupUI() {
+        titleLabel.numberOfLines = 2
+        
         view.addSubview(cardImageView)
         view.addSubview(bgView)
         bgView.addSubview(firstHandIcon)
@@ -99,25 +110,25 @@ class FirstCardAlertBottomSheetViewController: CommonBottomSheetViewController {
         firstHandIcon.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             firstHandIcon.topAnchor.constraint(equalTo: bgView.topAnchor, constant: 16),
-            firstHandIcon.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor)
+            firstHandIcon.centerXAnchor.constraint(equalTo: bgView.centerXAnchor)
         ])
         
         secondHandIcon.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             secondHandIcon.topAnchor.constraint(equalTo: firstSubtitleLabel.bottomAnchor, constant: 16),
-            secondHandIcon.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor)
+            secondHandIcon.centerXAnchor.constraint(equalTo: bgView.centerXAnchor)
         ])
         
         firstSubtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             firstSubtitleLabel.topAnchor.constraint(equalTo: firstHandIcon.bottomAnchor, constant: 2),
-            firstSubtitleLabel.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor)
+            firstSubtitleLabel.centerXAnchor.constraint(equalTo: bgView.centerXAnchor)
         ])
         
         secondSubtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             secondSubtitleLabel.topAnchor.constraint(equalTo: secondHandIcon.bottomAnchor, constant: 2),
-            secondSubtitleLabel.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor)
+            secondSubtitleLabel.centerXAnchor.constraint(equalTo: bgView.centerXAnchor)
         ])
     }
 }

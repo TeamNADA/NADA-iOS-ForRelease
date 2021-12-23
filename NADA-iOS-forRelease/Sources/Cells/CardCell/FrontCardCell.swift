@@ -114,9 +114,8 @@ extension FrontCardCell {
                   _ instagramID: String,
                   _ linkURL: String,
                   isShareable: Bool) {
-        if let url = URL(string: backgroundImage) {
-            backgroundImageView.kf.setImage(with: url)
-        }
+
+        backgroundImageView.updateServerImage(backgroundImage)
         titleLabel.text = cardTitle
         descriptionLabel.text = cardDescription
         userNameLabel.text = userName

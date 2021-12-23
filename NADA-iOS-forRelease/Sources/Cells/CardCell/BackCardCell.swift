@@ -67,9 +67,9 @@ extension BackCardCell {
                   _ secondTMI: String,
                   _ thirdTMI: String,
                   isShareable: Bool) {
-        if let url = URL(string: backgroundImageString) {
-            backgroundImageView.kf.setImage(with: url)
-        }
+        
+        backgroundImageView.updateServerImage(backgroundImageString)
+        
         mintImageView.image = isMint == true ?
         UIImage(named: "iconTasteOnMincho") : UIImage(named: "iconTasteOffMincho")
         noMintImageView.image = isMint == false ?
@@ -143,19 +143,19 @@ extension BackCardCell {
         UIImage(named: "iconTasteOnFried") : UIImage(named: "iconTasteOffFried")
         
         if !firstTMI.isEmpty {
-            firstTmiLabel.text = "● " + firstTMI
+            firstTmiLabel.text = "•  " + firstTMI
         } else {
             firstTmiLabel.text = firstTMI
         }
         
         if !secondTMI.isEmpty {
-            secondTmiLabel.text = "● " + secondTMI
+            secondTmiLabel.text = "•  " + secondTMI
         } else {
             secondTmiLabel.text = secondTMI
         }
         
         if !thirdTMI.isEmpty {
-            thirdTmiLabel.text = "● " + thirdTMI
+            thirdTmiLabel.text = "•  " + thirdTMI
         } else {
             thirdTmiLabel.text = thirdTMI
         }

@@ -70,8 +70,6 @@ class GroupViewController: UIViewController {
         super.viewDidLoad()
         registerCell()
         setUI()
-        print(Const.UserDefaults.userID)
-//        groupListFetchWithAPI(userID: Const.UserDefaults.userID)
 //         그룹 삭제 서버 테스트
 //        groupDeleteWithAPI(groupID: 1)
 //         그룹 추가 서버 테스트
@@ -87,7 +85,9 @@ class GroupViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         // 그룹 리스트 조회 서버 테스트
-        groupListFetchWithAPI(userID: Const.UserDefaults.userID)
+//        groupListFetchWithAPI(userID: UserConst.UserDefaults.userID)
+        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "")
+
     }
     
 }
@@ -122,7 +122,7 @@ extension GroupViewController {
                     self.groupId = group.groups[0].groupID
                     if !group.groups.isEmpty {
 //                        self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada2", groupId: group.groups[0].groupID, offset: 0))
-                        self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: Const.UserDefaults.userID, groupId: group.groups[0].groupID, offset: 0))
+                        self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "", groupId: group.groups[0].groupID, offset: 0))
                     }
                 }
             case .requestErr(let message):

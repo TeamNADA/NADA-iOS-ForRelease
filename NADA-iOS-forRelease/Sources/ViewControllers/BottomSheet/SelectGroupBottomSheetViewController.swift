@@ -80,7 +80,7 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
             print(selectedGroup)
 //                     그룹 속 명함 추가 테스트
             cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardId: cardDataModel?.cardID ?? "",
-                                                                     userId: Const.UserDefaults.userID,
+                                                                     userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "",
                                                                      groupId: selectedGroup))
         }
     }

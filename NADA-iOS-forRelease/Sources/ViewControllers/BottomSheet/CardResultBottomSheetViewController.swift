@@ -96,7 +96,7 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
     }
     
     @objc func presentGroupSelectBottomSheet() {
-        groupListFetchWithAPI(userID: Const.UserDefaults.userID)
+        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "")
     }
 
 }

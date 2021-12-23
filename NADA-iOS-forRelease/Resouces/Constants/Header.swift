@@ -11,8 +11,8 @@ extension Const {
     struct Header {
 //        static let bearerHeader = ["Content-Type": "application/json",
 //                                   "Authorization": "Bearer " + Const.UserDefaults.accessToken]
-        static let bearerHeader = ["Authorization": "Bearer " + "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWRhMiIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE2NDAxMTAyNTB9.qH2fMkrtcVk9GtMEsBEWo0YFvIRTgKPVntBzpeGyyAe5POqnuKf3AtUTJE8yy6gPsAOl0bq8ChCn4RCL0fchpA"]
+        static let bearerHeader = ["Authorization": "Bearer " + "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWRhMiIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE2NDEwMDQ0ODJ9.qNYjBirHaJ03ST2vSKNDspzm7nDXuLdCkl6vxCQxC29W0yJgMvp14Wq2ATOR5mCBrIUAaP0w4c7qx7kXZ4U2Gg"]
         static let basicHeader = ["Content-Type": "application/json",
-                                   "Authorization": "Bearer " + "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWRhMiIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE2NDAxMTAyNTB9.qH2fMkrtcVk9GtMEsBEWo0YFvIRTgKPVntBzpeGyyAe5POqnuKf3AtUTJE8yy6gPsAOl0bq8ChCn4RCL0fchpA"]
+                                   "Authorization": "Bearer " + "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWRhMiIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE2NDEwMDQ0ODJ9.qNYjBirHaJ03ST2vSKNDspzm7nDXuLdCkl6vxCQxC29W0yJgMvp14Wq2ATOR5mCBrIUAaP0w4c7qx7kXZ4U2Gg"]
     }
 }

@@ -226,21 +226,4 @@ extension LoginViewController {
         }
     }
     
-    func postUserTokenReissue(request: UserWithTokenRequest) {
-        UserAPI.shared.userTokenReissue(request: request) { response in
-            switch response {
-            case .success(let data):
-                print("postUserTokenReissue - Success")
-            case .requestErr(let message):
-                print("postUserTokenReissue - requestErr: \(message)")
-            case .pathErr:
-                print("postUserTokenReissue - pathErr")
-            case .serverErr:
-                print("postUserTokenReissue - serverErr")
-            case .networkFail:
-                print("postUserTokenReissue - networkFail")
-            }
-        }
-    }
-    
 }

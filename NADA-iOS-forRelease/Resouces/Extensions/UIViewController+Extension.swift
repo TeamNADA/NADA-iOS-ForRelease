@@ -78,8 +78,12 @@ extension UIViewController {
                                                width: 200, height: 35))
         case "saveImage":
             toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 85,
-                                               y: self.view.frame.size.height/2,
-                                               width: 170, height: 35))
+                                                   y: self.view.frame.size.height/2,
+                                                   width: 170, height: 35))
+        case "wrongCard":
+            toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 120,
+                                                   y: self.view.frame.size.height/2,
+                                                   width: 240, height: 35))
         default:
             toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 85,
                                                y: self.view.frame.size.height - 230,
@@ -95,7 +99,7 @@ extension UIViewController {
         toastLabel.layer.cornerRadius = 10
         toastLabel.clipsToBounds = true
         self.view.addSubview(toastLabel)
-        UIView.animate(withDuration: 2.0, delay: 0.1,
+        UIView.animate(withDuration: 3.0, delay: 0.1,
                        options: .curveEaseOut, animations: { toastLabel.alpha = 0.0 },
                        completion: {_ in toastLabel.removeFromSuperview() })
     }

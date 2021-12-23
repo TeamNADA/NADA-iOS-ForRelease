@@ -97,7 +97,49 @@ extension AddWithIdBottomSheetViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         // 서버 연결과 더불어... 검색 결과가 없으면 bottomsheet dismiss 하지 말고 hidden 풀어주기
-        hideBottomSheetAndPresent(nextBottomSheet: CardResultBottomSheetViewController(), title: "이채연", height: 574)
+        cardDetailFetchWithAPI(cardID: textField.text ?? "")
         return true
     }
 }
+
+extension AddWithIdBottomSheetViewController {
+    func cardDetailFetchWithAPI(cardID: String) {
+        CardAPI.shared.cardDetailFetch(cardID: cardID) { response in
+            switch response {
+            case .success(let data):
+                if let card = data as? CardClass {
+                    //TODO: 내가 쓴거 내가 추가 하면 예외처리 필요
+                    let nextVC = CardResultBottomSheetViewController()
+                    nextVC.cardDataModel = Card(cardID: card.card.cardID,
+                                                background: card.card.background,
+                                                title: card.card.title,
+                                                name: card.card.name,
+                                                birthDate: card.card.birthDate,
+                                                mbti: card.card.mbti,
+                                                instagram: card.card.instagram,
+                                                link: card.card.link,
+                                                cardDescription: card.card.cardDescription,
+                                                isMincho: card.card.isMincho,
+                                                isSoju: card.card.isSoju,
+                                                isBoomuk: card.card.isBoomuk,
+                                                isSauced: card.card.isSauced,
+                                                oneTmi: card.card.oneTmi,
+                                                twoTmi: card.card.twoTmi,
+                                                threeTmi: card.card.threeTmi)
+                    self.hideBottomSheetAndPresent(nextBottomSheet: nextVC, title: card.card.name, height: 574)
+                }
+            case .requestErr(let message):
+                print("cardDetailFetchWithAPI - requestErr: \(message)")
+                self.errorImageView.isHidden = false
+                self.explainLabel.isHidden = false
+            case .pathErr:
+                print("cardDetailFetchWithAPI - pathErr")
+            case .serverErr:
+                print("cardDetailFetchWithAPI - serverErr")
+            case .networkFail:
+                print("cardDetailFetchWithAPI - networkFail")
+            }
+        }
+    }
+}
+

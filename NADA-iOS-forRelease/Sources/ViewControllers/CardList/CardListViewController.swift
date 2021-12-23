@@ -93,7 +93,6 @@ class CardListViewController: UIViewController {
             self.cardItems.insert(self.cardItems.remove(at: index!.row), at: 0)
             cardListTableView.reloadData()
             
-            // FIXME: - 카드 리스트 편집 서버 테스트
             self.cardListEditWithAPI(request: CardListEditRequest(ordered: [Ordered(cardID: cardItems[index!.row].cardID, priority: 1), Ordered(cardID: cardItems[index!.row].cardID, priority: 0)]))
         }
     }
@@ -114,9 +113,7 @@ extension CardListViewController: UITableViewDelegate {
                 self.makeCancelDeleteAlert(title: "명함 삭제", message: "명함을 정말 삭제하시겠습니까?\n공유된 명함일 경우, 친구의 명함 모음에서도 해당 명함이 삭제됩니다.", cancelAction: { _ in
                     // 취소 눌렀을 때 액션이 들어갈 부분
                 }, deleteAction: { _ in
-                    // FIXME: - 카드 삭제 서버 테스트
                     self.deleteCardWithAPI(cardID: self.cardItems[indexPath.row].cardID)
-                    self.cardListTableView.reloadData()
                 })
             })
             deleteAction.backgroundColor = .red
@@ -164,7 +161,6 @@ extension CardListViewController {
                 if let card = data as? CardListRequest {
                     self.cardItems = card.cardDates
                     self.cardListTableView.reloadData()
-                    print(card, "⭐️")
                 }
             case .requestErr(let message):
                 print("getCardListFetchWithAPI - requestErr", message)
@@ -200,6 +196,7 @@ extension CardListViewController {
             switch response {
             case .success(let data):
                 print(data)
+                self.cardListTableView.reloadData()
             case .requestErr(let message):
                 print("deleteGroupWithAPI - requestErr", message)
             case .pathErr:
@@ -306,12 +303,14 @@ extension CardListViewController {
                     
                 }, completion: { (finished) -> Void in
                     if finished {
+                        // FIXME: - 카드 리스트 편집 서버 테스트
+                        print(Initial.initialIndexPath, "⭐️")
+                        print(indexPath, "🤍")
+                        // self.cardListEditWithAPI(request: CardListEditRequest(ordered: [Ordered(cardID: cardItems[index].cardID, priority: 1), Ordered(cardID: cardItems[index].cardID, priority: 0)]))
+                        
                         Initial.initialIndexPath = nil
                         MyCell.cellSnapshot!.removeFromSuperview()
                         MyCell.cellSnapshot = nil
-                        
-                        // FIXME: - 카드 리스트 편집 서버 테스트
-                        self.cardListEditWithAPI(request: CardListEditRequest(ordered: [Ordered(cardID: "cardA", priority: 1), Ordered(cardID: "cardB", priority: 0)]))
                     }
                 })
             }

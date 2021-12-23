@@ -13,40 +13,40 @@ class FrontViewController: UIViewController {
     
     // MARK: - Properteis
 
-    var cardDataList: [Card] = [Card(cardID: "card",
-                                      background: "card",
-                                      title: "SOPT 명함",
-                                      name: "이채연",
-                                      birthDate: "1998.01.09 (24)",
-                                      mbti: "ENFP",
-                                      instagram: "chaens_",
-                                      link: "https://github.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADA",
-                                      cardDescription: "29기 디자인파트",
-                                      isMincho: true,
-                                      isSoju: true,
-                                      isBoomuk: true,
-                                      isSauced: true,
-                                      oneTmi: "첫번째",
-                                      twoTmi: "두번째",
-                                      threeTmi: "세번째세번째세번째"),
-                                 Card(cardID: "card",
-                                      background: "card",
-                                      title: "SOPT 명함",
-                                      name: "이채연",
-                                      birthDate: "1998.01.09 (24)",
-                                      mbti: "ENFP",
-                                      instagram: "minimin.0_0",
-                                      link: "https://www.naver.com",
-                                      cardDescription: "29기 디자인파트",
-                                      isMincho: true,
-                                      isSoju: true,
-                                      isBoomuk: true,
-                                      isSauced: true,
-                                      oneTmi: "첫번째",
-                                      twoTmi: "두번째",
-                                      threeTmi: "세번째세번째세번째")]
+//    var cardDataList: [Card] = [Card(cardID: "card",
+//                                      background: "card",
+//                                      title: "SOPT 명함",
+//                                      name: "이채연",
+//                                      birthDate: "1998.01.09 (24)",
+//                                      mbti: "ENFP",
+//                                      instagram: "chaens_",
+//                                      link: "https://github.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADA",
+//                                      cardDescription: "29기 디자인파트",
+//                                      isMincho: true,
+//                                      isSoju: true,
+//                                      isBoomuk: true,
+//                                      isSauced: true,
+//                                      oneTmi: "첫번째",
+//                                      twoTmi: "두번째",
+//                                      threeTmi: "세번째세번째세번째"),
+//                                 Card(cardID: "card",
+//                                      background: "card",
+//                                      title: "SOPT 명함",
+//                                      name: "이채연",
+//                                      birthDate: "1998.01.09 (24)",
+//                                      mbti: "ENFP",
+//                                      instagram: "minimin.0_0",
+//                                      link: "https://www.naver.com",
+//                                      cardDescription: "29기 디자인파트",
+//                                      isMincho: true,
+//                                      isSoju: true,
+//                                      isBoomuk: true,
+//                                      isSauced: true,
+//                                      oneTmi: "첫번째",
+//                                      twoTmi: "두번째",
+//                                      threeTmi: "세번째세번째세번째")]
     
-    // var cardDataList: [Card] = []
+    var cardDataList: [Card] = []
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var cardSwiper: VerticalCardSwiper!
@@ -58,7 +58,7 @@ class FrontViewController: UIViewController {
         setDelegate()
         setNotification()
         // TODO: - 서버 테스트
-//        cardListFetchWithAPI(userID: "nada", isList: false, offset: 0)
+        cardListFetchWithAPI(userID: "nada2", isList: false, offset: 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -99,7 +99,7 @@ extension FrontViewController {
     
     private func setMain() {
         if let userID = UserDefaults.standard.string(forKey: Const.UserDefaults.userID) {
-            cardListFetchWithAPI(userID: "nada2", isList: false, offset: 0)
+            cardListFetchWithAPI(userID: userID, isList: false, offset: 0)
         }
     }
     private func setNotification() {

@@ -12,7 +12,7 @@ import KakaoSDKCommon
 class CardListViewController: UIViewController {
         
     // MARK: - Properties
-    var cardItems: [CardListRequest] = []
+    var cardItems: [CardList] = []
     
     // MARK: - IBOutlet Properties
     @IBOutlet weak var cardListTableView: UITableView!
@@ -32,7 +32,7 @@ class CardListViewController: UIViewController {
         cardListTableView.dataSource = self
         
         // FIXME: - 카드 리스트 조회 서버 테스트
-        cardListFetchWithAPI(userID: "nada", isList: true)
+        cardListFetchWithAPI(userID: "nada2", isList: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

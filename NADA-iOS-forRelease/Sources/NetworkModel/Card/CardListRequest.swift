@@ -7,8 +7,13 @@
 
 import Foundation
 
-// MARK: - CardList
+// MARK: - CardListRequest
 struct CardListRequest: Codable {
+    let cardList: [CardList]
+}
+
+// MARK: - CardList
+struct CardList: Codable {
     let cardID, title: String
 
     enum CodingKeys: String, CodingKey {

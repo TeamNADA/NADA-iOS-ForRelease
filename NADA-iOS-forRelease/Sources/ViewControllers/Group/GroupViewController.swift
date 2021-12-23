@@ -70,6 +70,7 @@ class GroupViewController: UIViewController {
         super.viewDidLoad()
         registerCell()
         setUI()
+        print(Const.UserDefaults.userID)
 //        groupListFetchWithAPI(userID: Const.UserDefaults.userID)
 //         그룹 삭제 서버 테스트
 //        groupDeleteWithAPI(groupID: 1)

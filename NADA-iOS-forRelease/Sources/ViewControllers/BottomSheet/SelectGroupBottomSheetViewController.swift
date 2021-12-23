@@ -135,6 +135,7 @@ extension SelectGroupBottomSheetViewController {
                 self.hideBottomSheetAndPresentVC(nextViewController: nextVC)
             case .requestErr(let message):
                 print("postCardAddInGroupWithAPI - requestErr", message)
+                self.showToast(message: message as? String ?? "", font: UIFont.button03, view: "wrongCard")
             case .pathErr:
                 print("postCardAddInGroupWithAPI - pathErr")
             case .serverErr:

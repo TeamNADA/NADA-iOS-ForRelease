@@ -48,14 +48,12 @@ class CardListViewController: UIViewController {
     
     // MARK: - Functions
     func setCardList() {
-//        cardItems.append(contentsOf: [
-//            CardListDataModel(title: "SOPT 28기 명함"),
-//            CardListDataModel(title: "디자인 스터디 명함"),
-//            CardListDataModel(title: "아이스브레이킹"),
-//            CardListDataModel(title: "NADA 명함"),
-//            CardListDataModel(title: "NADA 명함"),
-//            CardListDataModel(title: "NADA 명함")
-//        ])
+        cardItems.append(contentsOf: [
+            CardList(cardID: "nada1", title: "명함1"),
+            CardList(cardID: "nada2", title: "명함2"),
+            CardList(cardID: "nada3", title: "명함3"),
+            CardList(cardID: "nada4", title: "명함4")
+        ])
         
     }
     
@@ -97,7 +95,7 @@ class CardListViewController: UIViewController {
             cardListTableView.reloadData()
             
             // FIXME: - 카드 리스트 편집 서버 테스트
-            // self.putCardListEditWithAPI(request: CardListEditRequest(ordered: [Ordered(cardID: "cardA", priority: 1), Ordered(cardID: "cardB", priority: 0)]))
+            self.cardListEditWithAPI(request: CardListEditRequest(ordered: [Ordered(cardID: cardItems[index!.row].cardID, priority: 1), Ordered(cardID: cardItems[index!.row].cardID, priority: 0)]))
         }
     }
 }
@@ -312,7 +310,7 @@ extension CardListViewController {
                         MyCell.cellSnapshot = nil
                         
                         // FIXME: - 카드 리스트 편집 서버 테스트
-                        // self.putCardListEditWithAPI(request: CardListEditRequest(ordered: [Ordered(cardID: "cardA", priority: 1), Ordered(cardID: "cardB", priority: 0)]))
+                        self.cardListEditWithAPI(request: CardListEditRequest(ordered: [Ordered(cardID: "cardA", priority: 1), Ordered(cardID: "cardB", priority: 0)]))
                     }
                 })
             }

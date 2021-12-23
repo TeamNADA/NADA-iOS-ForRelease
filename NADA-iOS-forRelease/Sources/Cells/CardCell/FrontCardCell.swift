@@ -115,7 +115,14 @@ extension FrontCardCell {
                   _ linkURL: String,
                   isShareable: Bool) {
 
-        backgroundImageView.updateServerImage(backgroundImage)
+        if backgroundImage.hasPrefix("https://") {
+            backgroundImageView.updateServerImage(backgroundImage)
+            
+        } else {
+            if let bgImage = UIImage(named: backgroundImage) {
+                self.backgroundImageView.image = bgImage
+            }
+        }
         titleLabel.text = cardTitle
         descriptionLabel.text = cardDescription
         userNameLabel.text = userName

@@ -12,40 +12,6 @@ import KakaoSDKCommon
 class FrontViewController: UIViewController {
     
     // MARK: - Properteis
-
-//    var cardDataList: [Card] = [Card(cardID: "card",
-//                                      background: "card",
-//                                      title: "SOPT 명함",
-//                                      name: "이채연",
-//                                      birthDate: "1998.01.09 (24)",
-//                                      mbti: "ENFP",
-//                                      instagram: "chaens_",
-//                                      link: "https://github.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADA",
-//                                      cardDescription: "29기 디자인파트",
-//                                      isMincho: true,
-//                                      isSoju: true,
-//                                      isBoomuk: true,
-//                                      isSauced: true,
-//                                      oneTmi: "첫번째",
-//                                      twoTmi: "두번째",
-//                                      threeTmi: "세번째세번째세번째"),
-//                                 Card(cardID: "card",
-//                                      background: "card",
-//                                      title: "SOPT 명함",
-//                                      name: "이채연",
-//                                      birthDate: "1998.01.09 (24)",
-//                                      mbti: "ENFP",
-//                                      instagram: "minimin.0_0",
-//                                      link: "https://www.naver.com",
-//                                      cardDescription: "29기 디자인파트",
-//                                      isMincho: true,
-//                                      isSoju: true,
-//                                      isBoomuk: true,
-//                                      isSauced: true,
-//                                      oneTmi: "첫번째",
-//                                      twoTmi: "두번째",
-//                                      threeTmi: "세번째세번째세번째")]
-    
     var cardDataList: [Card] = []
     
     // MARK: - @IBOutlet Properties
@@ -54,11 +20,10 @@ class FrontViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setCardDataModelList()
+
         setDelegate()
         setNotification()
-        // TODO: - 서버 테스트
-        cardListFetchWithAPI(userID: "nada2", isList: false, offset: 0)
+        setMain()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -99,7 +64,7 @@ extension FrontViewController {
     
     private func setMain() {
         if let userID = UserDefaults.standard.string(forKey: Const.UserDefaults.userID) {
-            cardListFetchWithAPI(userID: userID, isList: false, offset: 0)
+            cardListFetchWithAPI(userID: "nada2", isList: false, offset: 0)
         }
     }
     private func setNotification() {
@@ -113,43 +78,6 @@ extension FrontViewController {
         nextVC.modalPresentationStyle = .overFullScreen
         self.present(nextVC, animated: false, completion: nil)
     }
-    
-//    private func setCardDataModelList() {
-//        cardDataList?.append(contentsOf: [
-//            Card(cardID: "card",
-//                 background: "card",
-//                 title: "SOPT 명함",
-//                 name: "이채연",
-//                 birthDate: "1998.01.09 (24)",
-//                 mbti: "ENFP",
-//                 instagram: "chaens_",
-//                 link: "https://github.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADA",
-//                 cardDescription: "29기 디자인파트",
-//                 isMincho: true,
-//                 isSoju: true,
-//                 isBoomuk: true,
-//                 isSauced: true,
-//                 oneTMI: "첫번째",
-//                 twoTMI: "두번째",
-//                 thirdTMI: "세번째세번째세번째"),
-//            Card(cardID: "card",
-//                 background: "card",
-//                 title: "SOPT 명함",
-//                 name: "이채연",
-//                 birthDate: "1998.01.09 (24)",
-//                 mbti: "ENFP",
-//                 instagram: "minimin.0_0",
-//                 link: "https://www.naver.com",
-//                 cardDescription: "29기 디자인파트",
-//                 isMincho: true,
-//                 isSoju: true,
-//                 isBoomuk: true,
-//                 isSauced: true,
-//                 oneTMI: "첫번째",
-//                 twoTMI: "두번째",
-//                 thirdTMI: "세번째세번째세번째")
-//        ])
-//    }
 }
 
 // MARK: - VerticalCardSwiperDelegate

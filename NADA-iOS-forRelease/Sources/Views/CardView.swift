@@ -19,6 +19,9 @@ class CardView: UIView {
     @IBOutlet weak var instagramIDLabel: UILabel!
     @IBOutlet weak var lineURLLabel: UILabel!
     
+    @IBOutlet weak var instagramIcon: UIImageView!
+    @IBOutlet weak var urlIcon: UIImageView!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         xibSetup()

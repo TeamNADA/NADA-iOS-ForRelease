@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = UIStoryboard(name: Const.Storyboard.Name.splash, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.splashViewController)
+        window?.rootViewController = UIStoryboard(name: Const.Storyboard.Name.front, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.frontViewController)
         window?.makeKeyAndVisible()
         
         IQKeyboardManager.shared.enable = true

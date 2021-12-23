@@ -62,6 +62,12 @@ class FrontViewController: UIViewController {
 //        cardListFetchWithAPI(userID: "nada", isList: false, offset: 0)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setFirstCardAlert()
+    }
+    
     // MARK: - @IBAction Properties
     // 명함 생성 뷰로 화면 전환
     @IBAction func presentToCardCreationView(_ sender: Any) {
@@ -83,9 +89,17 @@ class FrontViewController: UIViewController {
 
 // MARK: - Extensions
 extension FrontViewController {
-    private func setUI() {
-        
+    private func setFirstCardAlert() {
+        let nextVC = FirstCardAlertBottomSheetViewController()
+            .setTitle("""
+                      🎉
+                      첫 명함이 생성되었어요!
+                      """)
+            .setHeight(587)
+        nextVC.modalPresentationStyle = .overFullScreen
+        present(nextVC, animated: false, completion: nil)
     }
+    
     private func setDelegate() {
         cardSwiper.delegate = self
         cardSwiper.datasource = self

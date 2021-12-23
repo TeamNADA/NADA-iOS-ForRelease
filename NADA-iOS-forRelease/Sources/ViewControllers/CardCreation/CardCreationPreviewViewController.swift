@@ -194,6 +194,22 @@ extension CardCreationPreviewViewController {
             case .success:
                 print("cardCreationWithAPI - success")
                 self.dismiss(animated: true, completion: nil)
+                // FIXME: - 초기에만등장
+//                if UserDefaults.standard.object(forKey: Const.UserDefaults.isFirstCard) == nil {
+//                    self.dismiss(animated: true) {
+//                        let nextVC = FirstCardAlertBottomSheetViewController()
+//                            .setTitle("""
+//                                      🎉
+//                                      첫 명함이 생성되었어요!
+//                                      """)
+//                            .setHeight(587)
+//                        nextVC.modalPresentationStyle = .overFullScreen
+//                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+//                            self.presentingViewController?.present(nextVC, animated: false, completion: nil)
+//                        }
+//                    }
+//                }
+//                UserDefaults.standard.set(false, forKey: Const.UserDefaults.isFirstCard)
             case .requestErr(let message):
                 print("cardCreationWithAPI - requestErr: \(message)")
             case .pathErr:

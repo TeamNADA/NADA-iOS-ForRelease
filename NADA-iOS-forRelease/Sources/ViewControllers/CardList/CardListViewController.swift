@@ -179,6 +179,7 @@ extension CardListViewController {
             switch response {
             case .success(let data):
                 print(data)
+                self.cardListTableView.reloadData()
             case .requestErr(let message):
                 print("putCardListEditWithAPI - requestErr", message)
             case .pathErr:

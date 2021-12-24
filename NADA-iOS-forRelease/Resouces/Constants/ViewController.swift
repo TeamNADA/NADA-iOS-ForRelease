@@ -33,6 +33,7 @@ extension Const {
             static let openSourceViewController = "OpenSourceViewController"
             static let teamNADAViewController = "TeamNADAViewController"
             static let groupNameEditBottomSheetViewController = "GroupNameEditBottomSheetViewController"
+            static let firstCardAlertBottomSheetViewController = "FirstCardAlertBottomSheetViewController"
         }
     }
 }

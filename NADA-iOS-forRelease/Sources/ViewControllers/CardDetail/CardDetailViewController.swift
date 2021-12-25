@@ -27,11 +27,9 @@ class CardDetailViewController: UIViewController {
     }
     
     @IBAction func presentHarmonyViewController(_ sender: Any) {
-        // TODO: 궁합 서버통신
-        guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardHarmony, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardHarmonyViewController) as? CardHarmonyViewController else { return }
-        
-        nextVC.modalPresentationStyle = .overFullScreen
-        self.present(nextVC, animated: false, completion: nil)
+        // FIXME: myCard 저장되어있는 값으로 바꾸기
+        cardHarmonyFetchWithAPI(myCard: "cardA", yourCard: cardDataModel?.cardID ?? "")
+
     }
     
     @IBOutlet weak var optionButton: UIButton!
@@ -77,6 +75,28 @@ extension CardDetailViewController {
                 print("cardDeleteInGroupWithAPI - networkFail")
             }
             
+        }
+    }
+    
+    func cardHarmonyFetchWithAPI(myCard: String, yourCard: String) {
+        UtilAPI.shared.cardHarmonyFetch(myCard: myCard, yourCard: yourCard) { response in
+            switch response {
+            case .success(let data):
+                if let harmony = data as? HarmonyResponse {
+                    guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardHarmony, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardHarmonyViewController) as? CardHarmonyViewController else { return }
+                    
+                    nextVC.modalPresentationStyle = .overFullScreen
+                    self.present(nextVC, animated: false, completion: nil)
+                }
+            case .requestErr(let message):
+                print("cardHarmonyFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("cardHarmonyFetchWithAPI - pathErr")
+            case .serverErr:
+                print("cardHarmonyFetchWithAPI - serverErr")
+            case .networkFail:
+                print("cardHarmonyFetchWithAPI - networkFail")
+            }
         }
     }
 }

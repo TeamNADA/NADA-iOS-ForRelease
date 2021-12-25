@@ -66,6 +66,8 @@ class GroupViewController: UIViewController {
     var serverCardsWithBack: Card?
     var groupId: Int?
     
+    var selectedRow = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCell()
@@ -120,9 +122,9 @@ extension GroupViewController {
                 if let group = data as? Groups {
                     self.serverGroups = group
                     self.groupCollectionView.reloadData()
-                    self.groupId = group.groups[0].groupID
+                    self.groupId = group.groups[self.selectedRow].groupID
                     if !group.groups.isEmpty {
-                        self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "", groupId: group.groups[0].groupID, offset: 0))
+                        self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "", groupId: group.groups[self.selectedRow].groupID, offset: 0))
                     }
                 }
             case .requestErr(let message):
@@ -280,7 +282,7 @@ extension GroupViewController: UICollectionViewDataSource {
             
             groupCell.groupName.text = serverGroups?.groups[indexPath.row].groupName
             
-            if indexPath.row == 0 {
+            if indexPath.row == selectedRow {
                 collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
             }
             return groupCell
@@ -315,6 +317,7 @@ extension GroupViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView {
         case groupCollectionView:
+            selectedRow = indexPath.row
             groupId = serverGroups?.groups[indexPath.row].groupID
             cardListInGroupWithAPI(cardListInGroupRequest:
                                     CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "",

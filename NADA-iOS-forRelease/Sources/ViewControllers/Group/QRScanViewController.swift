@@ -141,29 +141,32 @@ extension QRScanViewController {
             switch response {
             case .success(let data):
                 if let card = data as? CardClass {
-                    //TODO: 내가 쓴거 내가 추가 하면 예외처리 필요
-                    let nextVC = CardResultBottomSheetViewController()
-                        .setTitle(card.card.name)
-                        .setHeight(574)
-                    nextVC.cardDataModel = Card(cardID: card.card.cardID,
-                                                author: card.card.author,
-                                                background: card.card.background,
-                                                title: card.card.title,
-                                                name: card.card.name,
-                                                birthDate: card.card.birthDate,
-                                                mbti: card.card.mbti,
-                                                instagram: card.card.instagram,
-                                                link: card.card.link,
-                                                cardDescription: card.card.cardDescription,
-                                                isMincho: card.card.isMincho,
-                                                isSoju: card.card.isSoju,
-                                                isBoomuk: card.card.isBoomuk,
-                                                isSauced: card.card.isSauced,
-                                                oneTmi: card.card.oneTmi,
-                                                twoTmi: card.card.twoTmi,
-                                                threeTmi: card.card.threeTmi)
-                    nextVC.modalPresentationStyle = .overFullScreen
-                    self.present(nextVC, animated: false, completion: nil)
+                    if UserDefaults.standard.string(forKey: Const.UserDefaults.userID) == card.card.author {
+                        self.showToast(message: "자신의 명함은 추가할 수 없습니다.", font: UIFont.button02, view: "wrongCard")
+                    } else {
+                        let nextVC = CardResultBottomSheetViewController()
+                            .setTitle(card.card.name)
+                            .setHeight(574)
+                        nextVC.cardDataModel = Card(cardID: card.card.cardID,
+                                                    author: card.card.author,
+                                                    background: card.card.background,
+                                                    title: card.card.title,
+                                                    name: card.card.name,
+                                                    birthDate: card.card.birthDate,
+                                                    mbti: card.card.mbti,
+                                                    instagram: card.card.instagram,
+                                                    link: card.card.link,
+                                                    cardDescription: card.card.cardDescription,
+                                                    isMincho: card.card.isMincho,
+                                                    isSoju: card.card.isSoju,
+                                                    isBoomuk: card.card.isBoomuk,
+                                                    isSauced: card.card.isSauced,
+                                                    oneTmi: card.card.oneTmi,
+                                                    twoTmi: card.card.twoTmi,
+                                                    threeTmi: card.card.threeTmi)
+                        nextVC.modalPresentationStyle = .overFullScreen
+                        self.present(nextVC, animated: false, completion: nil)
+                    }
                 }
             case .requestErr(let message):
                 print("cardDetailFetchWithAPI - requestErr: \(message)")

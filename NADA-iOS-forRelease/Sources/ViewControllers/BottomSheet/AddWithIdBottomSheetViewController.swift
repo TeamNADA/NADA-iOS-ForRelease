@@ -34,7 +34,6 @@ class AddWithIdBottomSheetViewController: CommonBottomSheetViewController, UITex
     
     private let explainLabel: UILabel = {
         let label = UILabel()
-        label.text = "검색한 ID가 존재하지 않습니다."
         label.textColor = .stateColorError
         label.font = .textRegular05
         
@@ -108,32 +107,37 @@ extension AddWithIdBottomSheetViewController {
             switch response {
             case .success(let data):
                 if let card = data as? CardClass {
-                    //TODO: 내가 쓴거 내가 추가 하면 예외처리 필요
-                    print(card.card.author)
-                    let nextVC = CardResultBottomSheetViewController()
-                    nextVC.cardDataModel = Card(cardID: card.card.cardID,
-                                                author: card.card.author,
-                                                background: card.card.background,
-                                                title: card.card.title,
-                                                name: card.card.name,
-                                                birthDate: card.card.birthDate,
-                                                mbti: card.card.mbti,
-                                                instagram: card.card.instagram,
-                                                link: card.card.link,
-                                                cardDescription: card.card.cardDescription,
-                                                isMincho: card.card.isMincho,
-                                                isSoju: card.card.isSoju,
-                                                isBoomuk: card.card.isBoomuk,
-                                                isSauced: card.card.isSauced,
-                                                oneTmi: card.card.oneTmi,
-                                                twoTmi: card.card.twoTmi,
-                                                threeTmi: card.card.threeTmi)
-                    self.hideBottomSheetAndPresent(nextBottomSheet: nextVC, title: card.card.name, height: 574)
+                    if UserDefaults.standard.string(forKey: Const.UserDefaults.userID) == card.card.author {
+                        self.errorImageView.isHidden = false
+                        self.explainLabel.isHidden = false
+                        self.explainLabel.text = "자신의 명함은 추가할 수 없습니다."
+                    } else {
+                        let nextVC = CardResultBottomSheetViewController()
+                        nextVC.cardDataModel = Card(cardID: card.card.cardID,
+                                                    author: card.card.author,
+                                                    background: card.card.background,
+                                                    title: card.card.title,
+                                                    name: card.card.name,
+                                                    birthDate: card.card.birthDate,
+                                                    mbti: card.card.mbti,
+                                                    instagram: card.card.instagram,
+                                                    link: card.card.link,
+                                                    cardDescription: card.card.cardDescription,
+                                                    isMincho: card.card.isMincho,
+                                                    isSoju: card.card.isSoju,
+                                                    isBoomuk: card.card.isBoomuk,
+                                                    isSauced: card.card.isSauced,
+                                                    oneTmi: card.card.oneTmi,
+                                                    twoTmi: card.card.twoTmi,
+                                                    threeTmi: card.card.threeTmi)
+                        self.hideBottomSheetAndPresent(nextBottomSheet: nextVC, title: card.card.name, height: 574)
+                    }
                 }
             case .requestErr(let message):
                 print("cardDetailFetchWithAPI - requestErr: \(message)")
                 self.errorImageView.isHidden = false
                 self.explainLabel.isHidden = false
+                self.explainLabel.text = "검색한 ID가 존재하지 않습니다."
             case .pathErr:
                 print("cardDetailFetchWithAPI - pathErr")
             case .serverErr:

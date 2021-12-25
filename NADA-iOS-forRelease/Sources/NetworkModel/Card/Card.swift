@@ -14,7 +14,7 @@ struct CardClass: Codable {
 
 // MARK: - Card
 struct Card: Codable {
-    let cardID, background, title, name: String
+    let cardID, author, background, title, name: String
     let birthDate, mbti, instagram, link: String
     let cardDescription: String
     let isMincho, isSoju, isBoomuk, isSauced: Bool
@@ -22,7 +22,7 @@ struct Card: Codable {
 
     enum CodingKeys: String, CodingKey {
         case cardID = "cardId"
-        case background, title, name, birthDate, mbti, instagram, link
+        case author, background, title, name, birthDate, mbti, instagram, link
         case cardDescription = "description"
         case isMincho, isSoju, isBoomuk, isSauced, oneTmi, twoTmi, threeTmi
     }

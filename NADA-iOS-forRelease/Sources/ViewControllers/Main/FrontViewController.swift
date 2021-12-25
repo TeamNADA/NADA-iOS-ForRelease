@@ -13,7 +13,7 @@ class FrontViewController: UIViewController {
     
     // MARK: - Properteis
 
-    var cardDataList: [Card]? = [Card(cardID: "card",
+    var cardDataList: [Card]? = [Card(cardID: "card", author: "",
                                       background: "card",
                                       title: "SOPT 명함",
                                       name: "이채연",
@@ -29,7 +29,7 @@ class FrontViewController: UIViewController {
                                       oneTmi: "첫번째",
                                       twoTmi: "두번째",
                                       threeTmi: "세번째세번째세번째"),
-                                 Card(cardID: "card",
+                                 Card(cardID: "card", author: "",
                                       background: "card",
                                       title: "SOPT 명함",
                                       name: "이채연",

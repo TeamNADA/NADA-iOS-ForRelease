@@ -228,6 +228,7 @@ extension GroupViewController {
                     guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
                     
                     nextVC.cardDataModel = Card(cardID: card.card.cardID,
+                                                author: card.card.author,
                                                 background: card.card.background,
                                                 title: card.card.title,
                                                 name: card.card.name,

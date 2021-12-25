@@ -146,6 +146,7 @@ extension QRScanViewController {
                         .setTitle(card.card.name)
                         .setHeight(574)
                     nextVC.cardDataModel = Card(cardID: card.card.cardID,
+                                                author: card.card.author,
                                                 background: card.card.background,
                                                 title: card.card.title,
                                                 name: card.card.name,

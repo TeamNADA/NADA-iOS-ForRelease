@@ -63,20 +63,6 @@ class FrontViewController: UIViewController {
 //        cardListFetchWithAPI(userID: "nada", isList: false, offset: 0)
     }
     
-    // FIXME: - qa테스트
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let nextVC = FirstCardAlertBottomSheetViewController()
-            .setTitle("""
-                      🎉
-                      첫 명함이 생성되었어요!
-                      """)
-            .setHeight(587)
-        nextVC.modalPresentationStyle = .overFullScreen
-        present(nextVC, animated: true, completion: nil)
-    }
-    
     // MARK: - @IBAction Properties
     // 명함 생성 뷰로 화면 전환
     @IBAction func presentToCardCreationView(_ sender: Any) {

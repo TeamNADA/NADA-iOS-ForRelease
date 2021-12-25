@@ -125,15 +125,8 @@ extension CardDetailViewController {
         guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
         
         frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
-        frontCard.initCell(cardDataModel?.background ?? "",
-                           cardDataModel?.title ?? "",
-                           cardDataModel?.cardDescription ?? "",
-                           cardDataModel?.name ?? "",
-                           cardDataModel?.birthDate ?? "",
-                           cardDataModel?.mbti ?? "",
-                           cardDataModel?.instagram ?? "",
-                           cardDataModel?.link ?? "",
-                           isShareable: isShareable)
+        guard let cardDataModel = cardDataModel else { return }
+        frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
         
         cardView.addSubview(frontCard)
     }
@@ -158,15 +151,8 @@ extension CardDetailViewController {
         if isFront {
             guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return }
             backCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
-            backCard.initCell(cardDataModel?.background ?? "",
-                              cardDataModel?.isMincho ?? true,
-                              cardDataModel?.isSoju ?? true,
-                              cardDataModel?.isBoomuk ?? true,
-                              cardDataModel?.isSauced ?? true,
-                              cardDataModel?.oneTmi ?? "",
-                              cardDataModel?.twoTmi ?? "",
-                              cardDataModel?.threeTmi ?? "",
-                              isShareable: isShareable)
+            guard let cardDataModel = cardDataModel else { return }
+            backCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
             
             cardView.addSubview(backCard)
             isFront = false
@@ -174,15 +160,8 @@ extension CardDetailViewController {
             guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
             
             frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
-            frontCard.initCell(cardDataModel?.background ?? "",
-                               cardDataModel?.title ?? "",
-                               cardDataModel?.cardDescription ?? "",
-                               cardDataModel?.name ?? "",
-                               cardDataModel?.birthDate ?? "",
-                               cardDataModel?.mbti ?? "",
-                               cardDataModel?.instagram ?? "",
-                               cardDataModel?.link ?? "",
-                               isShareable: isShareable)
+            guard let cardDataModel = cardDataModel else { return }
+            frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
             
             cardView.addSubview(frontCard)
             isFront = true

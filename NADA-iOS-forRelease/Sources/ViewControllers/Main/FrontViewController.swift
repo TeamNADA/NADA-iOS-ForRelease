@@ -96,13 +96,18 @@ extension FrontViewController {
     }
     
     private func setNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(didRecievePresentCardShare(_:)), name: Notification.Name.presentCardShare, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didRecievePresentCardShare(_:)), name: .presentCardShare, object: nil)
     }
     
     @objc func didRecievePresentCardShare(_ notification: Notification) {
         let nextVC = CardShareBottomSheetViewController()
             .setTitle("명함공유")
             .setHeight(404)
+
+        if let cardData = notification.object as? Card {
+            nextVC.cardDataModel = cardData
+        }
+        
         nextVC.modalPresentationStyle = .overFullScreen
         self.present(nextVC, animated: false, completion: nil)
     }

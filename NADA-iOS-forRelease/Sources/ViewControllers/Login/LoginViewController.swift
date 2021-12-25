@@ -68,7 +68,9 @@ class LoginViewController: UIViewController {
     func presentToMain() {
         let nextVC = UIStoryboard(name: Const.Storyboard.Name.tabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.tabBarViewController)
         nextVC.modalPresentationStyle = .overFullScreen
-        self.present(nextVC, animated: true, completion: nil)
+        self.present(nextVC, animated: true) {
+            UserDefaults.standard.set(false, forKey: Const.UserDefaults.isOnboarding)
+        }
     }
     
     // 카카오 로그인 버튼 클릭 시

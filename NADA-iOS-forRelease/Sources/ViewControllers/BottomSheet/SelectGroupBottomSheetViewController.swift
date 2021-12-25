@@ -159,7 +159,6 @@ extension SelectGroupBottomSheetViewController {
             case .success:
                 print("changeGroupWithAPI - success")
                 self.hideBottomSheetAndGoBack()
-                // TODO: 그룹 뷰로 한번 더 pop 되게
             case .requestErr(let message):
                 print("changeGroupWithAPI - requestErr: \(message)")
             case .pathErr:

@@ -76,7 +76,7 @@ class GroupViewController: UIViewController {
 //        groupDeleteWithAPI(groupID: 1)
 //         그룹 추가 서버 테스트
 //        groupAddWithAPI(groupRequest: GroupAddRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "",
-//                                                      groupName: "대학교"))
+//                                                      groupName: "SOPT"))
 //         그룹 수정 서버 테스트
 //        groupEditWithAPI(groupRequest: GroupEditRequest(groupId: 5, groupName: "수정나다"))
 //         그룹 속 명함 조회 테스트

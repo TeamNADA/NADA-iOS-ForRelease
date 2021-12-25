@@ -46,7 +46,7 @@ extension UtilService: TargetType {
         switch self {
         case .cardHarmonyFetch(let myCard, let yourCard):
             return .requestParameters(parameters: ["myCard": myCard,
-                                                   "youCard": yourCard],
+                                                   "yourCard": yourCard],
                                                    encoding: URLEncoding.queryString)
         }
     }

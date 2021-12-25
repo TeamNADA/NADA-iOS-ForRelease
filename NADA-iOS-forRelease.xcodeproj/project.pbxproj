@@ -68,6 +68,7 @@
 		7713E8482752E2A900724C8B /* SelectGroupBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7713E8472752E2A900724C8B /* SelectGroupBottomSheetViewController.swift */; };
 		7729171F2743D604001593E0 /* CardsInGroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7729171E2743D604001593E0 /* CardsInGroupResponse.swift */; };
 		7734D5AA27719520004360E4 /* CardShareBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7734D5A927719520004360E4 /* CardShareBottomSheetViewController.swift */; };
+		7734D5B427778EFB004360E4 /* HarmonyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7734D5B327778EFB004360E4 /* HarmonyResponse.swift */; };
 		77607EDA274A68BE00204CD2 /* GroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77607ED8274A68BD00204CD2 /* GroupCollectionViewCell.swift */; };
 		77607EDB274A68BE00204CD2 /* GroupCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77607ED9274A68BD00204CD2 /* GroupCollectionViewCell.xib */; };
 		7766A40F274FEBE200714912 /* CardInGroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766A40D274FEBE200714912 /* CardInGroupCollectionViewCell.swift */; };
@@ -207,6 +208,7 @@
 		7713E8472752E2A900724C8B /* SelectGroupBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGroupBottomSheetViewController.swift; sourceTree = "<group>"; };
 		7729171E2743D604001593E0 /* CardsInGroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsInGroupResponse.swift; sourceTree = "<group>"; };
 		7734D5A927719520004360E4 /* CardShareBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardShareBottomSheetViewController.swift; sourceTree = "<group>"; };
+		7734D5B327778EFB004360E4 /* HarmonyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmonyResponse.swift; sourceTree = "<group>"; };
 		77607ED8274A68BD00204CD2 /* GroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewCell.swift; sourceTree = "<group>"; };
 		77607ED9274A68BD00204CD2 /* GroupCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCollectionViewCell.xib; sourceTree = "<group>"; };
 		7766A40D274FEBE200714912 /* CardInGroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInGroupCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -529,6 +531,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7734D5B027778EC8004360E4 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				7734D5B327778EFB004360E4 /* HarmonyResponse.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		77607ED7274A689300204CD2 /* GroupCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -744,6 +754,7 @@
 				3981148A273BEB7200E28630 /* User */,
 				F87122722733032300A24E74 /* Card */,
 				777FF89927359B1000BF69D3 /* Group */,
+				7734D5B027778EC8004360E4 /* Util */,
 			);
 			path = NetworkModel;
 			sourceTree = "<group>";
@@ -1194,6 +1205,7 @@
 				F8C83FB8272F9E3F0009DF0D /* UtilAPI.swift in Sources */,
 				F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */,
 				39288E12273F52B20072F403 /* CardListLookUpRequest.swift in Sources */,
+				7734D5B427778EFB004360E4 /* HarmonyResponse.swift in Sources */,
 				397B75132763A916004AEB03 /* OpenSourceTableViewCell.swift in Sources */,
 				F811720027383097002742CF /* ChangeGroupRequest.swift in Sources */,
 			);

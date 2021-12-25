@@ -68,7 +68,12 @@ extension BackCardCell {
                   _ thirdTMI: String,
                   isShareable: Bool) {
         
-        backgroundImageView.updateServerImage(backgroundImageString)
+        if backgroundImageString.hasPrefix("https://") {
+            self.backgroundImageView.updateServerImage(backgroundImageString)
+        } else {
+            if let bgImage = UIImage(named: backgroundImageString) {
+                self.backgroundImageView.image = bgImage
+            }
         
         mintImageView.image = isMint == true ?
         UIImage(named: "iconTasteOnMincho") : UIImage(named: "iconTasteOffMincho")

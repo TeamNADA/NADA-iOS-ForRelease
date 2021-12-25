@@ -54,6 +54,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
     
+    // MARK: - Network
+    
     func postUserTokenReissue(request: UserTokenReissueRequset) {
         UserAPI.shared.userTokenReissue(request: request) { response in
             switch response {
@@ -70,9 +72,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 self.window?.makeKeyAndVisible()
             case .requestErr(let message):
                 print("postUserTokenReissue - requestErr: \(message)")
-                let rootViewController = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(identifier: Const.ViewController.Identifier.loginViewController)
-                self.window?.rootViewController = rootViewController
-                self.window?.makeKeyAndVisible()
+                
+                self.presentToLoginViewController()
             case .pathErr:
                 print("postUserTokenReissue - pathErr")
             case .serverErr:
@@ -80,6 +81,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             case .networkFail:
                 print("postUserTokenReissue - networkFail")
             }
+        }
+    }
+    
+    // MARK: - Methods
+    
+    private func presentToLoginViewController() {
+        if UserDefaults.standard.object(forKey: Const.UserDefaults.isOnboarding) != nil {
+            let rootViewController = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(identifier: Const.ViewController.Identifier.loginViewController)
+            self.window?.rootViewController = rootViewController
+            self.window?.makeKeyAndVisible()
+        } else {
+            let rootViewController = UIStoryboard(name: Const.Storyboard.Name.onboarding, bundle: nil).instantiateViewController(identifier: Const.ViewController.Identifier.onboardingViewController)
+            self.window?.rootViewController = rootViewController
+            self.window?.makeKeyAndVisible()
         }
     }
     

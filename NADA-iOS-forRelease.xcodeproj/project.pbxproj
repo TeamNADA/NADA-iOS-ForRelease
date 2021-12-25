@@ -68,6 +68,7 @@
 		7713E8482752E2A900724C8B /* SelectGroupBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7713E8472752E2A900724C8B /* SelectGroupBottomSheetViewController.swift */; };
 		7729171F2743D604001593E0 /* CardsInGroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7729171E2743D604001593E0 /* CardsInGroupResponse.swift */; };
 		7734D5AA27719520004360E4 /* CardShareBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7734D5A927719520004360E4 /* CardShareBottomSheetViewController.swift */; };
+		7734D5B627779EF0004360E4 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7734D5B527779EF0004360E4 /* QRCodeView.swift */; };
 		77607EDA274A68BE00204CD2 /* GroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77607ED8274A68BD00204CD2 /* GroupCollectionViewCell.swift */; };
 		77607EDB274A68BE00204CD2 /* GroupCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77607ED9274A68BD00204CD2 /* GroupCollectionViewCell.xib */; };
 		7766A40F274FEBE200714912 /* CardInGroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766A40D274FEBE200714912 /* CardInGroupCollectionViewCell.swift */; };
@@ -134,7 +135,6 @@
 		F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC438726C01CDD0033E151 /* SceneDelegate.swift */; };
 		F8FC438F26C01CDE0033E151 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8FC438E26C01CDE0033E151 /* Assets.xcassets */; };
 		F8FC439226C01CDE0033E151 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8FC439026C01CDE0033E151 /* LaunchScreen.storyboard */; };
-		F8FC43AD26C020940033E151 /* TempClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43AC26C020940033E151 /* TempClass.swift */; };
 		F8FC43B326C020B90033E151 /* BackCardCreationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43B226C020B90033E151 /* BackCardCreationDelegate.swift */; };
 		F8FC43B826C0227D0033E151 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43B726C0227D0033E151 /* Const.swift */; };
 		F8FC43BA26C022900033E151 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43B926C022900033E151 /* ViewController.swift */; };
@@ -207,6 +207,7 @@
 		7713E8472752E2A900724C8B /* SelectGroupBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGroupBottomSheetViewController.swift; sourceTree = "<group>"; };
 		7729171E2743D604001593E0 /* CardsInGroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsInGroupResponse.swift; sourceTree = "<group>"; };
 		7734D5A927719520004360E4 /* CardShareBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardShareBottomSheetViewController.swift; sourceTree = "<group>"; };
+		7734D5B527779EF0004360E4 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		77607ED8274A68BD00204CD2 /* GroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewCell.swift; sourceTree = "<group>"; };
 		77607ED9274A68BD00204CD2 /* GroupCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCollectionViewCell.xib; sourceTree = "<group>"; };
 		7766A40D274FEBE200714912 /* CardInGroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInGroupCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -275,7 +276,6 @@
 		F8FC438E26C01CDE0033E151 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F8FC439126C01CDE0033E151 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F8FC439326C01CDE0033E151 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F8FC43AC26C020940033E151 /* TempClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempClass.swift; sourceTree = "<group>"; };
 		F8FC43B226C020B90033E151 /* BackCardCreationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackCardCreationDelegate.swift; sourceTree = "<group>"; };
 		F8FC43B726C0227D0033E151 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		F8FC43B926C022900033E151 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -825,7 +825,7 @@
 		F8FC439C26C01EC90033E151 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				F8FC43AC26C020940033E151 /* TempClass.swift */,
+				7734D5B527779EF0004360E4 /* QRCodeView.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1161,12 +1161,12 @@
 				397B751A2763B5F1004AEB03 /* TeamNADAViewController.swift in Sources */,
 				3981148E273BEBB300E28630 /* CardListEditRequest.swift in Sources */,
 				39D88B6B274600B100A72164 /* CommonBottomSheetViewController.swift in Sources */,
+				7734D5B627779EF0004360E4 /* QRCodeView.swift in Sources */,
 				3918F66727719C4B00984648 /* UserTokenReissueRequset.swift in Sources */,
 				7705CF3E2752C7DB005195DF /* CardView.swift in Sources */,
 				F8FC43BA26C022900033E151 /* ViewController.swift in Sources */,
 				39523E5F2701AA9000536900 /* CardListDataModel.swift in Sources */,
 				39D13568273FDCB800B1A148 /* UserWithTokenRequest.swift in Sources */,
-				F8FC43AD26C020940033E151 /* TempClass.swift in Sources */,
 				F84BAFB126FDB552004CA335 /* BackCardCreationCollectionViewCell.swift in Sources */,
 				39811490273BEBCE00E28630 /* CardListRequest.swift in Sources */,
 				F8FC43BC26C022A20033E151 /* Storyboard.swift in Sources */,

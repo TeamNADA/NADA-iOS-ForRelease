@@ -11,6 +11,10 @@ import Kingfisher
 
 class FrontCardCell: CardCell {
     
+    // MARK: - Properties
+    
+    var userID: String?
+    
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!

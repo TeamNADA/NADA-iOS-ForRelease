@@ -55,6 +55,9 @@ class CardDetailViewController: UIViewController {
         setGestureRecognizer()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(didRecieveDataNotification(_:)), name: Notification.Name.passDataToDetail, object: nil)
+    }
 }
 
 extension CardDetailViewController {
@@ -145,6 +148,10 @@ extension CardDetailViewController {
     }
     
     // MARK: - @objc Methods
+    
+    @objc func didRecieveDataNotification(_ notification: Notification) {
+        groupId = notification.object as? Int ?? 0
+    }
     
     @objc
     private func transitionCardWithAnimation(_ swipeGesture: UISwipeGestureRecognizer) {

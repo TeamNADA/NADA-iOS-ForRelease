@@ -17,4 +17,5 @@ extension Notification.Name {
     static let cancelImagePicker = Notification.Name("cancelImagePicker")
     static let presentCardShare = Notification.Name("presentCardShare")
     static let passDataToGroup = Notification.Name("passDataToGroup")
+    static let passDataToDetail = Notification.Name("passDataToDetail")
 }

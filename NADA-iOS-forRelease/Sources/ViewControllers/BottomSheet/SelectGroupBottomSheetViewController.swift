@@ -76,15 +76,11 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
     @objc func presentCardInfoViewController() {
         switch status {
         case .detail:
-            //                     그룹 변경 서버통신
-            print(selectedGroup)
             changeGroupWithAPI(request: ChangeGroupRequest(cardID: cardDataModel?.cardID ?? "",
                                                            userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "",
                                                            groupID: groupId ?? 0,
                                                            newGroupID: selectedGroup))
         case .add:
-            print(selectedGroup)
-//                     그룹 속 명함 추가 테스트
             cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardId: cardDataModel?.cardID ?? "",
                                                                      userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "",
                                                                      groupId: selectedGroup))
@@ -139,7 +135,7 @@ extension SelectGroupBottomSheetViewController {
                 guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
                 nextVC.status = .add
                 nextVC.cardDataModel = self.cardDataModel
-                nextVC.groupId = self.groupId
+                nextVC.groupId = self.selectedGroup
                 nextVC.serverGroups = self.serverGroups
                 NotificationCenter.default.post(name: Notification.Name.passDataToGroup, object: self.selectedGroupIndex, userInfo: nil)
                 self.hideBottomSheetAndPresentVC(nextViewController: nextVC)
@@ -160,8 +156,8 @@ extension SelectGroupBottomSheetViewController {
         GroupAPI.shared.changeCardGroup(request: request) { response in
             switch response {
             case .success:
-                print("changeGroupWithAPI - success")
                 NotificationCenter.default.post(name: Notification.Name.passDataToGroup, object: self.selectedGroupIndex, userInfo: nil)
+                NotificationCenter.default.post(name: Notification.Name.passDataToDetail, object: self.selectedGroup, userInfo: nil)
                 self.hideBottomSheetAndGoBack()
             case .requestErr(let message):
                 print("changeGroupWithAPI - requestErr: \(message)")

@@ -7,6 +7,7 @@
 
 import UIKit
 import VerticalCardSwiper
+import Kingfisher
 
 class BackCardCell: CardCell {
     
@@ -74,6 +75,7 @@ extension BackCardCell {
             if let bgImage = UIImage(named: backgroundImageString) {
                 self.backgroundImageView.image = bgImage
             }
+        }
         
         mintImageView.image = isMint == true ?
         UIImage(named: "iconTasteOnMincho") : UIImage(named: "iconTasteOffMincho")

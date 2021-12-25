@@ -13,6 +13,7 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
     var cardDataModel: Card?
     var serverGroups: Groups?
     var selectedGroup = 0
+    var selectedGroupIndex = 0
     var groupId: Int?
     enum Status {
         case detail
@@ -117,6 +118,7 @@ extension SelectGroupBottomSheetViewController: UIPickerViewDelegate, UIPickerVi
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedGroup = serverGroups?.groups[row].groupID ?? 0
+        selectedGroupIndex = row
         pickerView.reloadAllComponents()
     }
     
@@ -139,6 +141,7 @@ extension SelectGroupBottomSheetViewController {
                 nextVC.cardDataModel = self.cardDataModel
                 nextVC.groupId = self.groupId
                 nextVC.serverGroups = self.serverGroups
+                NotificationCenter.default.post(name: Notification.Name.passDataToGroup, object: self.selectedGroupIndex, userInfo: nil)
                 self.hideBottomSheetAndPresentVC(nextViewController: nextVC)
             case .requestErr(let message):
                 print("postCardAddInGroupWithAPI - requestErr", message)
@@ -158,6 +161,7 @@ extension SelectGroupBottomSheetViewController {
             switch response {
             case .success:
                 print("changeGroupWithAPI - success")
+                NotificationCenter.default.post(name: Notification.Name.passDataToGroup, object: self.selectedGroupIndex, userInfo: nil)
                 self.hideBottomSheetAndGoBack()
             case .requestErr(let message):
                 print("changeGroupWithAPI - requestErr: \(message)")

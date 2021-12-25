@@ -44,6 +44,7 @@ class CardDetailViewController: UIViewController {
     
     private var isFront = true
     var status: Status = .group
+    var serverGroups: Groups?
     var groupId: Int?
     
     override func viewDidLoad() {
@@ -54,6 +55,9 @@ class CardDetailViewController: UIViewController {
         setGestureRecognizer()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(didRecieveDataNotification(_:)), name: Notification.Name.passDataToDetail, object: nil)
+    }
 }
 
 extension CardDetailViewController {
@@ -94,6 +98,9 @@ extension CardDetailViewController {
                         .setTitle("그룹선택")
                         .setHeight(386)
             nextVC.status = .detail
+            nextVC.groupId = self.groupId
+            nextVC.serverGroups = self.serverGroups
+            nextVC.cardDataModel = self.cardDataModel
             nextVC.modalPresentationStyle = .overFullScreen
             self.present(nextVC, animated: false, completion: nil)
         })
@@ -141,6 +148,10 @@ extension CardDetailViewController {
     }
     
     // MARK: - @objc Methods
+    
+    @objc func didRecieveDataNotification(_ notification: Notification) {
+        groupId = notification.object as? Int ?? 0
+    }
     
     @objc
     private func transitionCardWithAnimation(_ swipeGesture: UISwipeGestureRecognizer) {

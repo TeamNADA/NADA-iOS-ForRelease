@@ -73,7 +73,8 @@ class GroupViewController: UIViewController {
 //         그룹 삭제 서버 테스트
 //        groupDeleteWithAPI(groupID: 1)
 //         그룹 추가 서버 테스트
-//        groupAddWithAPI(groupRequest: GroupAddRequest(userId: "nada2", groupName: "대학교"))
+//        groupAddWithAPI(groupRequest: GroupAddRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "",
+//                                                      groupName: "대학교"))
 //         그룹 수정 서버 테스트
 //        groupEditWithAPI(groupRequest: GroupEditRequest(groupId: 5, groupName: "수정나다"))
 //         그룹 속 명함 조회 테스트
@@ -85,7 +86,7 @@ class GroupViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         // 그룹 리스트 조회 서버 테스트
-//        groupListFetchWithAPI(userID: UserConst.UserDefaults.userID)
+        print("viewWillAppear")
         groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "")
 
     }
@@ -121,7 +122,6 @@ extension GroupViewController {
                     self.groupCollectionView.reloadData()
                     self.groupId = group.groups[0].groupID
                     if !group.groups.isEmpty {
-//                        self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada2", groupId: group.groups[0].groupID, offset: 0))
                         self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "", groupId: group.groups[0].groupID, offset: 0))
                     }
                 }
@@ -237,6 +237,7 @@ extension GroupViewController {
                                                 twoTmi: card.card.twoTmi,
                                                 threeTmi: card.card.threeTmi)
                     nextVC.groupId = self.groupId
+                    nextVC.serverGroups = self.serverGroups
                     self.navigationController?.pushViewController(nextVC, animated: true)
                 }
             case .requestErr(let message):
@@ -315,7 +316,10 @@ extension GroupViewController: UICollectionViewDataSource {
         switch collectionView {
         case groupCollectionView:
             groupId = serverGroups?.groups[indexPath.row].groupID
-            cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada2", groupId: serverGroups?.groups[indexPath.row].groupID ?? 0, offset: 0))
+            cardListInGroupWithAPI(cardListInGroupRequest:
+                                    CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "",
+                                                           groupId: serverGroups?.groups[indexPath.row].groupID ?? 0,
+                                                           offset: 0))
         case cardsCollectionView:
             cardDetailFetchWithAPI(cardID: serverCards?.cards[indexPath.row].cardID ?? "")
         default:

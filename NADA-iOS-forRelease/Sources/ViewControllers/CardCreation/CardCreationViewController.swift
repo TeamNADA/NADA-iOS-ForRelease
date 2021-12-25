@@ -245,23 +245,6 @@ extension CardCreationViewController {
 //    }
 
     // TODO: - group 서버통신. 위치변경.
-//    func changeGroupWithAPI(request: ChangeGroupRequest) {
-//        GroupAPI.shared.changeCardGroup(request: request) { response in
-//            switch response {
-//            case .success:
-//                print("changeGroupWithAPI - success")
-//            case .requestErr(let message):
-//                print("changeGroupWithAPI - requestErr: \(message)")
-//            case .pathErr:
-//                print("changeGroupWithAPI - pathErr")
-//            case .serverErr:
-//                print("changeGroupWithAPI - serverErr")
-//            case .networkFail:
-//                print("changeGroupWithAPI - networkFail")
-//            }
-//        }
-//    }
-    // TODO: - group 서버통신. 위치변경.
 //    func cardDeleteInGroupWithAPI(groupID: Int, cardID: String) {
 //        GroupAPI.shared.cardDeleteInGroup(groupID: groupID, cardID: cardID) { response in
 //            switch response {

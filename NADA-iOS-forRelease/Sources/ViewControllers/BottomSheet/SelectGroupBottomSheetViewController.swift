@@ -13,6 +13,7 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
     var cardDataModel: Card?
     var serverGroups: Groups?
     var selectedGroup = 0
+    var groupId: Int?
     enum Status {
         case detail
         case add
@@ -74,8 +75,12 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
     @objc func presentCardInfoViewController() {
         switch status {
         case .detail:
-            // TODO: 그룹 변경 서버통신
-            hideBottomSheetAndGoBack()
+            //                     그룹 변경 서버통신
+            print(selectedGroup)
+            changeGroupWithAPI(request: ChangeGroupRequest(cardID: cardDataModel?.cardID ?? "",
+                                                           userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "",
+                                                           groupID: groupId ?? 0,
+                                                           newGroupID: selectedGroup))
         case .add:
             print(selectedGroup)
 //                     그룹 속 명함 추가 테스트
@@ -132,6 +137,8 @@ extension SelectGroupBottomSheetViewController {
                 guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
                 nextVC.status = .add
                 nextVC.cardDataModel = self.cardDataModel
+                nextVC.groupId = self.groupId
+                nextVC.serverGroups = self.serverGroups
                 self.hideBottomSheetAndPresentVC(nextViewController: nextVC)
             case .requestErr(let message):
                 print("postCardAddInGroupWithAPI - requestErr", message)
@@ -142,6 +149,25 @@ extension SelectGroupBottomSheetViewController {
                 print("postCardAddInGroupWithAPI - serverErr")
             case .networkFail:
                 print("postCardAddInGroupWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func changeGroupWithAPI(request: ChangeGroupRequest) {
+        GroupAPI.shared.changeCardGroup(request: request) { response in
+            switch response {
+            case .success:
+                print("changeGroupWithAPI - success")
+                self.hideBottomSheetAndGoBack()
+                // TODO: 그룹 뷰로 한번 더 pop 되게
+            case .requestErr(let message):
+                print("changeGroupWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("changeGroupWithAPI - pathErr")
+            case .serverErr:
+                print("changeGroupWithAPI - serverErr")
+            case .networkFail:
+                print("changeGroupWithAPI - networkFail")
             }
         }
     }

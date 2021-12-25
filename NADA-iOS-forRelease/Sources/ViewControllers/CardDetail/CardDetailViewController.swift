@@ -44,6 +44,7 @@ class CardDetailViewController: UIViewController {
     
     private var isFront = true
     var status: Status = .group
+    var serverGroups: Groups?
     var groupId: Int?
     
     override func viewDidLoad() {
@@ -94,6 +95,9 @@ extension CardDetailViewController {
                         .setTitle("그룹선택")
                         .setHeight(386)
             nextVC.status = .detail
+            nextVC.groupId = self.groupId
+            nextVC.serverGroups = self.serverGroups
+            nextVC.cardDataModel = self.cardDataModel
             nextVC.modalPresentationStyle = .overFullScreen
             self.present(nextVC, animated: false, completion: nil)
         })

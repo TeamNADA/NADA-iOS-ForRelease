@@ -39,6 +39,7 @@ class QRScanViewController: UIViewController {
 extension QRScanViewController {
     @objc func dismissQRScanViewController() {
         self.dismiss(animated: true, completion: nil)
+        presentingViewController?.viewWillAppear(true)
     }
 }
 
@@ -120,19 +121,59 @@ extension QRScanViewController: AVCaptureMetadataOutputObjectsDelegate {
             }
 
             // ✅ qr코드가 가진 문자열이 URL 형태를 띈다면 출력.(아무런 qr코드나 찍는다고 출력시키면 안되니까 여기서 분기처리 가능. )
-            if stringValue.hasPrefix("http://") {
+            if stringValue.hasPrefix("ThisIsTeamNADAQrCode") {
                 print(stringValue)
 
                 self.captureSession.stopRunning()
                 // TODO: 여기서 QR에 있는 ID값으로 명함검색 API통신
-                let nextVC = CardResultBottomSheetViewController()
-                    .setTitle("이채연")
-                    .setHeight(574)
-                nextVC.modalPresentationStyle = .overFullScreen
-                self.present(nextVC, animated: false, completion: nil)
+                cardDetailFetchWithAPI(cardID: stringValue.deletingPrefix("ThisIsTeamNADAQrCode"))
+                
             } else {
                 showToast(message: "유효하지 않은 QR입니다.", font: UIFont.button02, view: "QRScan")
             }
         }
     }
 }
+
+extension QRScanViewController {
+    func cardDetailFetchWithAPI(cardID: String) {
+        CardAPI.shared.cardDetailFetch(cardID: cardID) { response in
+            switch response {
+            case .success(let data):
+                if let card = data as? CardClass {
+                    //TODO: 내가 쓴거 내가 추가 하면 예외처리 필요
+                    let nextVC = CardResultBottomSheetViewController()
+                        .setTitle(card.card.name)
+                        .setHeight(574)
+                    nextVC.cardDataModel = Card(cardID: card.card.cardID,
+                                                background: card.card.background,
+                                                title: card.card.title,
+                                                name: card.card.name,
+                                                birthDate: card.card.birthDate,
+                                                mbti: card.card.mbti,
+                                                instagram: card.card.instagram,
+                                                link: card.card.link,
+                                                cardDescription: card.card.cardDescription,
+                                                isMincho: card.card.isMincho,
+                                                isSoju: card.card.isSoju,
+                                                isBoomuk: card.card.isBoomuk,
+                                                isSauced: card.card.isSauced,
+                                                oneTmi: card.card.oneTmi,
+                                                twoTmi: card.card.twoTmi,
+                                                threeTmi: card.card.threeTmi)
+                    nextVC.modalPresentationStyle = .overFullScreen
+                    self.present(nextVC, animated: false, completion: nil)
+                }
+            case .requestErr(let message):
+                print("cardDetailFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("cardDetailFetchWithAPI - pathErr")
+            case .serverErr:
+                print("cardDetailFetchWithAPI - serverErr")
+            case .networkFail:
+                print("cardDetailFetchWithAPI - networkFail")
+            }
+        }
+    }
+}
+

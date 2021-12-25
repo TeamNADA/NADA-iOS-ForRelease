@@ -84,7 +84,7 @@ extension CardDetailViewController {
             case .success(let data):
                 if let harmony = data as? HarmonyResponse {
                     guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardHarmony, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardHarmonyViewController) as? CardHarmonyViewController else { return }
-                    
+                    nextVC.harmonyData = self.updateHarmony(percentage: harmony.harmony)
                     nextVC.modalPresentationStyle = .overFullScreen
                     self.present(nextVC, animated: false, completion: nil)
                 }
@@ -165,6 +165,29 @@ extension CardDetailViewController {
         let swipeRightGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(transitionCardWithAnimation(_:)))
         swipeRightGestureRecognizer.direction = .right
         self.cardView.addGestureRecognizer(swipeRightGestureRecognizer)
+    }
+    private func updateHarmony(percentage: Int) -> HarmonyData {
+        switch percentage {
+        case 0 ... 20:
+            return HarmonyData(icon: "icnHarmonyRed", percentage: "\(String(percentage))%",
+                               color: .harmonyRed, description: "좀 더 친해지길 바라..😅")
+        case 21 ... 40:
+            return HarmonyData(icon: "icnHarmonyOrange", percentage: "\(String(percentage))%",
+                               color: .harmonyOrange, description: "마음만은 찰떡궁합!🙃")
+        case 41 ... 60:
+            return HarmonyData(icon: "icnHarmonyGreen", percentage: "\(String(percentage))%",
+                               color: .harmonyGreen, description: "이 정도면 제법 친한 사이😛")
+        case 61 ... 80:
+            return HarmonyData(icon: "icnHarmonyYellow", percentage: "\(String(percentage))%",
+                               color: .harmonyYellow, description: "우리 사이 척하면 척!😝")
+        case 81 ... 100:
+            return HarmonyData(icon: "icnHarmonyPurple", percentage: "\(String(percentage))%",
+                               color: .harmonyPurple, description: "더할 나위 없이 완벽한 사이!😍")
+        default:
+            return HarmonyData(icon: "icnHarmonyRed", percentage: "\(String(percentage))%",
+                               color: .harmonyRed, description: "")
+        }
+   
     }
     
     // MARK: - @objc Methods

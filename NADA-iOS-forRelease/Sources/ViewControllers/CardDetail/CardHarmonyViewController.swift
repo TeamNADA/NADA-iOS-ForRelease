@@ -28,7 +28,7 @@ class CardHarmonyViewController: UIViewController {
         })
     }
     
-    var percentageColor: UIColor?
+    var harmonyData: HarmonyData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,9 +39,9 @@ class CardHarmonyViewController: UIViewController {
 
 extension CardHarmonyViewController {
     private func setUI() {
-        harmonyImageView.image = UIImage(named: "icnHarmonyRed")
-        harmonyPercentLabel.text = "10%"
-        harmonyPercentLabel.textColor = percentageColor
-        harmonyDescriptionLabel.text = "좀 더 친해지길 바라..😅"
+        harmonyImageView.image = UIImage(named: harmonyData?.icon ?? "icnHarmonyRed")
+        harmonyPercentLabel.text = harmonyData?.percentage ?? ""
+        harmonyPercentLabel.textColor = harmonyData?.color ?? .harmonyRed
+        harmonyDescriptionLabel.text = harmonyData?.description ?? ""
     }
 }

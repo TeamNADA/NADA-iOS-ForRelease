@@ -6,8 +6,16 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: - HarmonyResponse
 struct HarmonyResponse: Codable {
     let harmony: Int
+}
+
+struct HarmonyData {
+    let icon: String
+    let percentage: String
+    let color: UIColor
+    let description: String
 }

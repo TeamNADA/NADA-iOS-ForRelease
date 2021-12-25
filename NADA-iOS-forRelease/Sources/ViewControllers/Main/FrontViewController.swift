@@ -104,23 +104,10 @@ extension FrontViewController {
             .setTitle("명함공유")
             .setHeight(404)
 
-//        nextVC.cardDataModel =
-        nextVC.cardDataModel = Card(cardID: "card",
-                                    background: "card",
-                                    title: "SOPT 명함",
-                                    name: "이채연",
-                                    birthDate: "1998.01.09 (24)",
-                                    mbti: "ENFP",
-                                    instagram: "minimin.0_0",
-                                    link: "https://www.naver.com",
-                                    cardDescription: "29기 디자인파트",
-                                    isMincho: true,
-                                    isSoju: true,
-                                    isBoomuk: true,
-                                    isSauced: true,
-                                    oneTmi: "첫번째",
-                                    twoTmi: "두번째",
-                                    threeTmi: "세번째세번째세번째")
+        if let cardData = notification.object as? Card {
+            nextVC.cardDataModel = cardData
+        }
+        
         nextVC.modalPresentationStyle = .overFullScreen
         self.present(nextVC, animated: false, completion: nil)
     }

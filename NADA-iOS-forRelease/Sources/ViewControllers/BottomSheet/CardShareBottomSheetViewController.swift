@@ -118,6 +118,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         UIImageWriteToSavedPhotosAlbum(backCardImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
     }
     
+    // FIXME: - 명함 저장시에도 테두리 둥글게 가능한가 찾기
     private func setFrontCardImage() -> UIImage {
         guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return UIImage() }
         
@@ -133,7 +134,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
                            cardDataModel.link,
                            isShareable: isShareable)
         
-        let frontCardView = UIView()
+        let frontCardView = UIView(frame: CGRect(x: 0, y: 0, width: 327, height: 540))
         frontCardView.addSubview(frontCard)
         
         let renderer = UIGraphicsImageRenderer(size: frontCardView.bounds.size)
@@ -157,7 +158,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
                           cardDataModel.threeTmi,
                           isShareable: isShareable)
 
-        let backCardView = UIView()
+        let backCardView = UIView(frame: CGRect(x: 0, y: 0, width: 327, height: 540))
         backCardView.addSubview(backCard)
         
         let renderer = UIGraphicsImageRenderer(size: backCardView.bounds.size)
@@ -176,7 +177,6 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     }
     
     @objc func saveAsImage() {
-//        showToast(message: "갤러리에 저장되었습니다.", font: UIFont.button02, view: "saveImage")
         setImageWriteToSavedPhotosAlbum()
     }
 
@@ -185,7 +185,6 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         if let error = error {
             print(error.localizedDescription)
         } else {
-            print("🪓success")
             showToast(message: "갤러리에 저장되었습니다.", font: UIFont.button02, view: "saveImage")
         }
     }

@@ -10,8 +10,9 @@ import UIKit
 class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
 
     // MARK: - Properties
-    var groupList = ["미분류", "SOPT", "동아리", "인하대학교"]
-    var selectedGroup = ""
+    var cardDataModel: Card?
+    var serverGroups: Groups?
+    var selectedGroup = 0
     enum Status {
         case detail
         case add
@@ -44,7 +45,7 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
     private func setupUI() {
         view.addSubview(groupPicker)
         view.addSubview(doneButton)
-        selectedGroup = groupList[0]
+        selectedGroup = serverGroups?.groups[0].groupID ?? 0
         groupPicker.delegate = self
         groupPicker.dataSource = self
         setupLayout()
@@ -77,10 +78,10 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
             hideBottomSheetAndGoBack()
         case .add:
             print(selectedGroup)
-            
-            guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
-            nextVC.status = .add
-            hideBottomSheetAndPresentVC(nextViewController: nextVC)
+//                     그룹 속 명함 추가 테스트
+            cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardId: cardDataModel?.cardID ?? "",
+                                                                     userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "",
+                                                                     groupId: selectedGroup))
         }
     }
 
@@ -92,7 +93,7 @@ extension SelectGroupBottomSheetViewController: UIPickerViewDelegate, UIPickerVi
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return groupList.count
+        return serverGroups?.groups.count ?? 1
     }
 
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
@@ -101,16 +102,16 @@ extension SelectGroupBottomSheetViewController: UIPickerViewDelegate, UIPickerVi
         label.textAlignment = .center
         
         if pickerView.selectedRow(inComponent: component) == row {
-            label.attributedText = NSAttributedString(string: groupList[row], attributes: [NSAttributedString.Key.font: UIFont.textBold01, NSAttributedString.Key.foregroundColor: UIColor.mainColorNadaMain])
+            label.attributedText = NSAttributedString(string: serverGroups?.groups[row].groupName ?? "", attributes: [NSAttributedString.Key.font: UIFont.textBold01, NSAttributedString.Key.foregroundColor: UIColor.mainColorNadaMain])
         } else {
-            label.attributedText = NSAttributedString(string: groupList[row], attributes: [NSAttributedString.Key.font: UIFont.textRegular03, NSAttributedString.Key.foregroundColor: UIColor.quaternary])
+            label.attributedText = NSAttributedString(string: serverGroups?.groups[row].groupName ?? "", attributes: [NSAttributedString.Key.font: UIFont.textRegular03, NSAttributedString.Key.foregroundColor: UIColor.quaternary])
         }
         
         return label
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedGroup = groupList[row]
+        selectedGroup = serverGroups?.groups[row].groupID ?? 0
         pickerView.reloadAllComponents()
     }
     
@@ -120,5 +121,28 @@ extension SelectGroupBottomSheetViewController: UIPickerViewDelegate, UIPickerVi
     
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
         return 200
+    }
+}
+
+extension SelectGroupBottomSheetViewController {
+    func cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest) {
+        GroupAPI.shared.cardAddInGroup(cardRequest: cardRequest) { response in
+            switch response {
+            case .success:
+                guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
+                nextVC.status = .add
+                nextVC.cardDataModel = self.cardDataModel
+                self.hideBottomSheetAndPresentVC(nextViewController: nextVC)
+            case .requestErr(let message):
+                print("postCardAddInGroupWithAPI - requestErr", message)
+                self.showToast(message: message as? String ?? "", font: UIFont.button03, view: "wrongCard")
+            case .pathErr:
+                print("postCardAddInGroupWithAPI - pathErr")
+            case .serverErr:
+                print("postCardAddInGroupWithAPI - serverErr")
+            case .networkFail:
+                print("postCardAddInGroupWithAPI - networkFail")
+            }
+        }
     }
 }

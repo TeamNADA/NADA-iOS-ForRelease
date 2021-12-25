@@ -26,9 +26,9 @@ class FrontViewController: UIViewController {
                                       isSoju: true,
                                       isBoomuk: true,
                                       isSauced: true,
-                                      oneTMI: "첫번째",
-                                      twoTMI: "두번째",
-                                      thirdTMI: "세번째세번째세번째"),
+                                      oneTmi: "첫번째",
+                                      twoTmi: "두번째",
+                                      threeTmi: "세번째세번째세번째"),
                                  Card(cardID: "card",
                                       background: "card",
                                       title: "SOPT 명함",
@@ -42,9 +42,9 @@ class FrontViewController: UIViewController {
                                       isSoju: true,
                                       isBoomuk: true,
                                       isSauced: true,
-                                      oneTMI: "첫번째",
-                                      twoTMI: "두번째",
-                                      thirdTMI: "세번째세번째세번째")]
+                                      oneTmi: "첫번째",
+                                      twoTmi: "두번째",
+                                      threeTmi: "세번째세번째세번째")]
     
     // var cardDataList: [Card]? = []
     
@@ -57,7 +57,9 @@ class FrontViewController: UIViewController {
         
 //        setCardDataModelList()
         setDelegate()
+        setNotification()
         // TODO: - 서버 테스트
+        
 //        cardListFetchWithAPI(userID: "nada", isList: false, offset: 0)
     }
     
@@ -81,10 +83,7 @@ class FrontViewController: UIViewController {
 }
 
 // MARK: - Extensions
-extension FrontViewController {
-    private func setUI() {
-        
-    }
+extension FrontViewController {    
     private func setDelegate() {
         cardSwiper.delegate = self
         cardSwiper.datasource = self
@@ -93,6 +92,19 @@ extension FrontViewController {
         
         cardSwiper.register(nib: MainCardCell.nib(), forCellWithReuseIdentifier: Const.Xib.mainCardCell)
         cardSwiper.register(nib: EmptyCardCell.nib(), forCellWithReuseIdentifier: Const.Xib.emptyCardCell)
+        
+    }
+    
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didRecievePresentCardShare(_:)), name: Notification.Name.presentCardShare, object: nil)
+    }
+    
+    @objc func didRecievePresentCardShare(_ notification: Notification) {
+        let nextVC = CardShareBottomSheetViewController()
+            .setTitle("명함공유")
+            .setHeight(404)
+        nextVC.modalPresentationStyle = .overFullScreen
+        self.present(nextVC, animated: false, completion: nil)
     }
     
 //    private func setCardDataModelList() {

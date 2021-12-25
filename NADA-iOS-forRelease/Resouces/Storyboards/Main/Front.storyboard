@@ -32,10 +32,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Mt-Gu-dQt">
-                                        <rect key="frame" x="321" y="12" width="30" height="30"/>
+                                        <rect key="frame" x="327" y="16" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="0Mt-Gu-dQt" secondAttribute="height" multiplier="1:1" id="EVQ-c4-h5G"/>
-                                            <constraint firstAttribute="width" constant="30" id="R1B-w4-ZOH"/>
+                                            <constraint firstAttribute="width" constant="24" id="R1B-w4-ZOH"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="iconList"/>
@@ -44,7 +44,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6su-gs-zmp">
-                                        <rect key="frame" x="281" y="12" width="30" height="30"/>
+                                        <rect key="frame" x="293" y="16" width="24" height="24"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="iconAdd"/>
                                         <connections>
@@ -55,7 +55,7 @@
                                 <color key="backgroundColor" name="background"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="0Mt-Gu-dQt" secondAttribute="trailing" constant="24" id="AGE-s5-ahl"/>
-                                    <constraint firstItem="0Mt-Gu-dQt" firstAttribute="top" secondItem="FvW-XO-xRq" secondAttribute="top" constant="12" id="CCu-gm-wvy"/>
+                                    <constraint firstItem="0Mt-Gu-dQt" firstAttribute="top" secondItem="FvW-XO-xRq" secondAttribute="top" constant="16" id="CCu-gm-wvy"/>
                                     <constraint firstItem="6su-gs-zmp" firstAttribute="width" secondItem="0Mt-Gu-dQt" secondAttribute="width" id="V7m-aU-6bW"/>
                                     <constraint firstItem="fmx-Ie-VCf" firstAttribute="top" secondItem="FvW-XO-xRq" secondAttribute="top" constant="18" id="Vwd-wJ-6A1"/>
                                     <constraint firstItem="0Mt-Gu-dQt" firstAttribute="leading" secondItem="6su-gs-zmp" secondAttribute="trailing" constant="10" id="jC0-d9-1y9"/>
@@ -127,10 +127,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="iconAdd" width="30" height="30"/>
+        <image name="iconAdd" width="24" height="24"/>
         <image name="iconHome" width="30" height="30"/>
         <image name="iconHomeSelected" width="30" height="35"/>
-        <image name="iconList" width="30" height="30"/>
+        <image name="iconList" width="24" height="24"/>
         <namedColor name="background">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

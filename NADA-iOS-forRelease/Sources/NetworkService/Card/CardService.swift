@@ -112,9 +112,9 @@ extension CardService: TargetType {
     var headers: [String: String]? {
         switch self {
         case .cardDetailFetch, .cardListFetch, .cardDelete:
-            return .none
+            return Const.Header.bearerHeader
         case .cardCreation:
-            return ["Content-Type": "multipart/form-data"]
+            return Const.Header.basicHeader
         case .cardListEdit:
             return ["Content-Type": "application/json"]
         }

@@ -12,6 +12,7 @@
 		3903CC212769F4F40094C458 /* EmptyCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3903CC1F2769F4F40094C458 /* EmptyCardCell.xib */; };
 		390515B82706CEBB00C5F7A5 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 390515B72706CEBB00C5F7A5 /* Colors.xcassets */; };
 		3909242F26FA15E800236C51 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909242E26FA15E800236C51 /* UIView+Extension.swift */; };
+		3918F66727719C4B00984648 /* UserTokenReissueRequset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3918F66627719C4B00984648 /* UserTokenReissueRequset.swift */; };
 		3927A7D7275F2A9B008BCD2A /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3927A7D6275F2A9B008BCD2A /* UserDefaults.swift */; };
 		39288E12273F52B20072F403 /* CardListLookUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39288E11273F52B20072F403 /* CardListLookUpRequest.swift */; };
 		392F7FB4274621F1008CDBF5 /* MoreListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392F7FB2274621F1008CDBF5 /* MoreListTableViewCell.swift */; };
@@ -66,6 +67,7 @@
 		7705CF402752C844005195DF /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7705CF3F2752C844005195DF /* CardView.xib */; };
 		7713E8482752E2A900724C8B /* SelectGroupBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7713E8472752E2A900724C8B /* SelectGroupBottomSheetViewController.swift */; };
 		7729171F2743D604001593E0 /* CardsInGroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7729171E2743D604001593E0 /* CardsInGroupResponse.swift */; };
+		7734D5AA27719520004360E4 /* CardShareBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7734D5A927719520004360E4 /* CardShareBottomSheetViewController.swift */; };
 		77607EDA274A68BE00204CD2 /* GroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77607ED8274A68BD00204CD2 /* GroupCollectionViewCell.swift */; };
 		77607EDB274A68BE00204CD2 /* GroupCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77607ED9274A68BD00204CD2 /* GroupCollectionViewCell.xib */; };
 		7766A40F274FEBE200714912 /* CardInGroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766A40D274FEBE200714912 /* CardInGroupCollectionViewCell.swift */; };
@@ -82,9 +84,11 @@
 		77DFB871274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFB870274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift */; };
 		77F2C0EB27632A91007641E3 /* CardHarmonyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */; };
 		77F2C0ED27632AA7007641E3 /* CardHarmony.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */; };
+		77F47D93276C79B600414659 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F47D92276C79B600414659 /* Header.swift */; };
 		DBBB91E1639641F40C5B4416 /* Pods_NADA_iOS_forRelease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */; };
 		F811720027383097002742CF /* ChangeGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81171FF27383097002742CF /* ChangeGroupRequest.swift */; };
 		F822E7A92709CEB60020452C /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F822E7A82709CEB60020452C /* Notification.swift */; };
+		F8268DB927730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8268DB827730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift */; };
 		F82FEB4C27639F3100DA7847 /* MainCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FEB4A27639F3100DA7847 /* MainCardCell.swift */; };
 		F82FEB4D27639F3100DA7847 /* MainCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F82FEB4B27639F3100DA7847 /* MainCardCell.xib */; };
 		F82FF81D2701EBCE00E57F8B /* CardCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F82FF81C2701EBCE00E57F8B /* CardCreation.storyboard */; };
@@ -124,6 +128,7 @@
 		F8C83FC7272FA2A20009DF0D /* CardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FC6272FA2A20009DF0D /* CardService.swift */; };
 		F8C83FC9272FA3190009DF0D /* GroupAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FC8272FA3190009DF0D /* GroupAPI.swift */; };
 		F8C83FCB272FA32C0009DF0D /* GroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FCA272FA32C0009DF0D /* GroupService.swift */; };
+		F8D74DD8276C7FB60071E5FC /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D74DD7276C7FB60071E5FC /* UIImageView+Extension.swift */; };
 		F8F5D0AA270800FD00D99D2E /* Xib.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F5D0A9270800FD00D99D2E /* Xib.swift */; };
 		F8FC438626C01CDD0033E151 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC438526C01CDD0033E151 /* AppDelegate.swift */; };
 		F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC438726C01CDD0033E151 /* SceneDelegate.swift */; };
@@ -144,6 +149,8 @@
 		3903CC1F2769F4F40094C458 /* EmptyCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyCardCell.xib; sourceTree = "<group>"; };
 		390515B72706CEBB00C5F7A5 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		3909242E26FA15E800236C51 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		3918F6652771682F00984648 /* NADA-iOS-forRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NADA-iOS-forRelease.entitlements"; sourceTree = "<group>"; };
+		3918F66627719C4B00984648 /* UserTokenReissueRequset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTokenReissueRequset.swift; sourceTree = "<group>"; };
 		3927A7D6275F2A9B008BCD2A /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		39288E11273F52B20072F403 /* CardListLookUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListLookUpRequest.swift; sourceTree = "<group>"; };
 		392F7FB2274621F1008CDBF5 /* MoreListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreListTableViewCell.swift; sourceTree = "<group>"; };
@@ -199,6 +206,7 @@
 		7705CF3F2752C844005195DF /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
 		7713E8472752E2A900724C8B /* SelectGroupBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGroupBottomSheetViewController.swift; sourceTree = "<group>"; };
 		7729171E2743D604001593E0 /* CardsInGroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsInGroupResponse.swift; sourceTree = "<group>"; };
+		7734D5A927719520004360E4 /* CardShareBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardShareBottomSheetViewController.swift; sourceTree = "<group>"; };
 		77607ED8274A68BD00204CD2 /* GroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewCell.swift; sourceTree = "<group>"; };
 		77607ED9274A68BD00204CD2 /* GroupCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCollectionViewCell.xib; sourceTree = "<group>"; };
 		7766A40D274FEBE200714912 /* CardInGroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInGroupCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -215,9 +223,11 @@
 		77DFB870274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWithIdBottomSheetViewController.swift; sourceTree = "<group>"; };
 		77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHarmonyViewController.swift; sourceTree = "<group>"; };
 		77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardHarmony.storyboard; sourceTree = "<group>"; };
+		77F47D92276C79B600414659 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		7F4EE1D042EC783FA8528743 /* Pods-NADA-iOS-forRelease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.debug.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.debug.xcconfig"; sourceTree = "<group>"; };
 		F81171FF27383097002742CF /* ChangeGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeGroupRequest.swift; sourceTree = "<group>"; };
 		F822E7A82709CEB60020452C /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		F8268DB827730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCardAlertBottomSheetViewController.swift; sourceTree = "<group>"; };
 		F82FEB4A27639F3100DA7847 /* MainCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardCell.swift; sourceTree = "<group>"; };
 		F82FEB4B27639F3100DA7847 /* MainCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCardCell.xib; sourceTree = "<group>"; };
 		F82FF81C2701EBCE00E57F8B /* CardCreation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardCreation.storyboard; sourceTree = "<group>"; };
@@ -257,6 +267,7 @@
 		F8C83FC6272FA2A20009DF0D /* CardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardService.swift; sourceTree = "<group>"; };
 		F8C83FC8272FA3190009DF0D /* GroupAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAPI.swift; sourceTree = "<group>"; };
 		F8C83FCA272FA32C0009DF0D /* GroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupService.swift; sourceTree = "<group>"; };
+		F8D74DD7276C7FB60071E5FC /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		F8F5D0A9270800FD00D99D2E /* Xib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Xib.swift; sourceTree = "<group>"; };
 		F8FC438226C01CDD0033E151 /* NADA-iOS-forRelease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NADA-iOS-forRelease.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8FC438526C01CDD0033E151 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -450,6 +461,7 @@
 			children = (
 				39D13564273FDB9C00B1A148 /* User.swift */,
 				39D13567273FDCB800B1A148 /* UserWithTokenRequest.swift */,
+				3918F66627719C4B00984648 /* UserTokenReissueRequset.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -491,6 +503,8 @@
 				7713E8472752E2A900724C8B /* SelectGroupBottomSheetViewController.swift */,
 				F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */,
 				F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */,
+				7734D5A927719520004360E4 /* CardShareBottomSheetViewController.swift */,
+				F8268DB827730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift */,
 			);
 			path = BottomSheet;
 			sourceTree = "<group>";
@@ -535,6 +549,7 @@
 				F8A9FE192743DC6B00BC60CE /* CardListInGroupRequest.swift */,
 				77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */,
 				7729171E2743D604001593E0 /* CardsInGroupResponse.swift */,
+				F81171FF27383097002742CF /* ChangeGroupRequest.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -555,14 +570,6 @@
 				77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */,
 			);
 			path = CardDetail;
-			sourceTree = "<group>";
-		};
-		F81171FE27383077002742CF /* Group */ = {
-			isa = PBXGroup;
-			children = (
-				F81171FF27383097002742CF /* ChangeGroupRequest.swift */,
-			);
-			path = Group;
 			sourceTree = "<group>";
 		};
 		F82FF8222701FFE300E57F8B /* RequiredFlavor */ = {
@@ -735,7 +742,6 @@
 				F8C83FBA272F9F370009DF0D /* NetworkResult.swift */,
 				F8C83FBC272F9F430009DF0D /* GenericResponse.swift */,
 				3981148A273BEB7200E28630 /* User */,
-				F81171FE27383077002742CF /* Group */,
 				F87122722733032300A24E74 /* Card */,
 				777FF89927359B1000BF69D3 /* Group */,
 			);
@@ -764,6 +770,7 @@
 		F8FC438426C01CDD0033E151 /* NADA-iOS-forRelease */ = {
 			isa = PBXGroup;
 			children = (
+				3918F6652771682F00984648 /* NADA-iOS-forRelease.entitlements */,
 				F8FC439326C01CDE0033E151 /* Info.plist */,
 				F8FC439926C01E2B0033E151 /* Resouces */,
 				F8FC439A26C01EA90033E151 /* Sources */,
@@ -908,6 +915,7 @@
 				F822E7A82709CEB60020452C /* Notification.swift */,
 				F8C83FC2272FA17B0009DF0D /* URL.swift */,
 				3927A7D6275F2A9B008BCD2A /* UserDefaults.swift */,
+				77F47D92276C79B600414659 /* Header.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -922,6 +930,7 @@
 				39C1E88E270EC762006D2089 /* UIColor+Extension.swift */,
 				399C55DE2711949D00845A54 /* CGPoint+Distance.swift */,
 				F8719DDA274F92E90081AD51 /* UITextField+Extension.swift */,
+				F8D74DD7276C7FB60071E5FC /* UIImageView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1112,6 +1121,7 @@
 				39523E09270184A700536900 /* CardListViewController.swift in Sources */,
 				F85711A5274A6B2200F59F0B /* CardCreationPreviewViewController.swift in Sources */,
 				777FF89B27359B7800BF69D3 /* Groups.swift in Sources */,
+				77F47D93276C79B600414659 /* Header.swift in Sources */,
 				397B75102763A5F5004AEB03 /* OpenSourceViewController.swift in Sources */,
 				777FF89F27364B7B00BF69D3 /* GroupEditRequest.swift in Sources */,
 				399C55DF2711949D00845A54 /* CGPoint+Distance.swift in Sources */,
@@ -1123,12 +1133,14 @@
 				F8C310C0273A7360008EC5BA /* FrontCardCreationDelegate.swift in Sources */,
 				F8C83FBF272FA0670009DF0D /* UserSevice.swift in Sources */,
 				39F5A3D0271461EA00191F94 /* BackCardCell.swift in Sources */,
+				F8268DB927730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift in Sources */,
 				F851805B275D047C006BD5ED /* OnboardingViewController.swift in Sources */,
 				39C1E88F270EC762006D2089 /* UIColor+Extension.swift in Sources */,
 				F8C83FC9272FA3190009DF0D /* GroupAPI.swift in Sources */,
 				F8FC43B826C0227D0033E151 /* Const.swift in Sources */,
 				394F314C27081B3A00C83291 /* FrontViewController.swift in Sources */,
 				777FF89D2735B16B00BF69D3 /* GroupAddRequest.swift in Sources */,
+				7734D5AA27719520004360E4 /* CardShareBottomSheetViewController.swift in Sources */,
 				F8F5D0AA270800FD00D99D2E /* Xib.swift in Sources */,
 				F82FF8252702000000E57F8B /* RequiredFlavorCollectionViewCell.swift in Sources */,
 				F8C83FC7272FA2A20009DF0D /* CardService.swift in Sources */,
@@ -1149,6 +1161,7 @@
 				397B751A2763B5F1004AEB03 /* TeamNADAViewController.swift in Sources */,
 				3981148E273BEBB300E28630 /* CardListEditRequest.swift in Sources */,
 				39D88B6B274600B100A72164 /* CommonBottomSheetViewController.swift in Sources */,
+				3918F66727719C4B00984648 /* UserTokenReissueRequset.swift in Sources */,
 				7705CF3E2752C7DB005195DF /* CardView.swift in Sources */,
 				F8FC43BA26C022900033E151 /* ViewController.swift in Sources */,
 				39523E5F2701AA9000536900 /* CardListDataModel.swift in Sources */,
@@ -1168,6 +1181,7 @@
 				F84BAFAD26FDB543004CA335 /* FrontCardCreationCollectionViewCell.swift in Sources */,
 				F8518054275D040C006BD5ED /* OnboardingCollectionViewCell.swift in Sources */,
 				77703157275005AA002CBD19 /* CardResultBottomSheetViewController.swift in Sources */,
+				F8D74DD8276C7FB60071E5FC /* UIImageView+Extension.swift in Sources */,
 				39D13565273FDB9C00B1A148 /* User.swift in Sources */,
 				77812947275F6EA3004B34F4 /* CardDetailViewController.swift in Sources */,
 				F822E7A92709CEB60020452C /* Notification.swift in Sources */,
@@ -1321,6 +1335,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "NADA-iOS-forRelease/NADA-iOS-forRelease.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T3VFJ764ZC;
 				INFOPLIST_FILE = "NADA-iOS-forRelease/Info.plist";
@@ -1341,6 +1356,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "NADA-iOS-forRelease/NADA-iOS-forRelease.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T3VFJ764ZC;
 				INFOPLIST_FILE = "NADA-iOS-forRelease/Info.plist";

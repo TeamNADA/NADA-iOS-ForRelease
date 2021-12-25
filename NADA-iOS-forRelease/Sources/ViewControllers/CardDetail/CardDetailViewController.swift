@@ -22,6 +22,7 @@ class CardDetailViewController: UIViewController {
             self.navigationController?.popViewController(animated: true)
         case .add:
             self.dismiss(animated: true, completion: nil)
+            presentingViewController?.viewWillAppear(true)
         }
     }
     
@@ -36,12 +37,14 @@ class CardDetailViewController: UIViewController {
     @IBOutlet weak var optionButton: UIButton!
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var idLabel: UILabel!
     
     public var cardDataModel: Card?
     private var isShareable: Bool = false
     
     private var isFront = true
     var status: Status = .group
+    var groupId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +57,27 @@ class CardDetailViewController: UIViewController {
 }
 
 extension CardDetailViewController {
+    func cardDeleteInGroupWithAPI(groupID: Int, cardID: String) {
+        GroupAPI.shared.cardDeleteInGroup(groupID: groupID, cardID: cardID) { response in
+            switch response {
+            case .success:
+                print("cardDeleteInGroupWithAPI - success")
+                self.navigationController?.popViewController(animated: true)
+            case .requestErr(let message):
+                print("cardDeleteInGroupWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("cardDeleteInGroupWithAPI - pathErr")
+            case .serverErr:
+                print("cardDeleteInGroupWithAPI - serverErr")
+            case .networkFail:
+                print("cardDeleteInGroupWithAPI - networkFail")
+            }
+            
+        }
+    }
+}
+
+extension CardDetailViewController {
     private func setUI() {
         switch status {
         case .group:
@@ -61,6 +85,7 @@ extension CardDetailViewController {
         case .add:
             backButton.setImage(UIImage(named: "iconClear"), for: .normal)
         }
+        idLabel.text = cardDataModel?.cardID
     }
     private func setMenu() {
         let changeGroup = UIAction(title: "그룹 변경",
@@ -77,7 +102,8 @@ extension CardDetailViewController {
             self.makeCancelDeleteAlert(title: "명함 삭제",
                                        message: "명함을 정말 삭제하시겠습니까?",
                                        deleteAction: { _ in
-                // TODO: 명함 삭제 서버통신
+                // 명함 삭제 서버통신
+                self.cardDeleteInGroupWithAPI(groupID: self.groupId ?? 0, cardID: self.cardDataModel?.cardID ?? "")
             }) })
         let options = UIMenu(title: "options", options: .displayInline, children: [changeGroup, deleteCard])
         
@@ -126,9 +152,9 @@ extension CardDetailViewController {
                               cardDataModel?.isSoju ?? true,
                               cardDataModel?.isBoomuk ?? true,
                               cardDataModel?.isSauced ?? true,
-                              cardDataModel?.oneTMI ?? "",
-                              cardDataModel?.twoTMI ?? "",
-                              cardDataModel?.thirdTMI ?? "",
+                              cardDataModel?.oneTmi ?? "",
+                              cardDataModel?.twoTmi ?? "",
+                              cardDataModel?.threeTmi ?? "",
                               isShareable: isShareable)
             
             cardView.addSubview(backCard)
@@ -151,11 +177,11 @@ extension CardDetailViewController {
             isFront = true
         }
         if swipeGesture.direction == .right {
-            UIView.transition(with: cardView, duration: 1, options: .transitionFlipFromLeft, animations: nil) { _ in
+            UIView.transition(with: cardView, duration: 0.5, options: .transitionFlipFromLeft, animations: nil) { _ in
                 self.cardView.subviews[0].removeFromSuperview()
             }
         } else {
-            UIView.transition(with: cardView, duration: 1, options: .transitionFlipFromRight, animations: nil) { _ in
+            UIView.transition(with: cardView, duration: 0.5, options: .transitionFlipFromRight, animations: nil) { _ in
                 self.cardView.subviews[0].removeFromSuperview()
             }
         }

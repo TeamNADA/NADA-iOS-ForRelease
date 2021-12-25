@@ -7,6 +7,7 @@
 
 import Photos
 import UIKit
+import Kingfisher
 
 class GroupViewController: UIViewController {
     
@@ -57,29 +58,36 @@ class GroupViewController: UIViewController {
     // collectionview
     @IBOutlet weak var groupCollectionView: UICollectionView!
     @IBOutlet weak var cardsCollectionView: UICollectionView!
+    @IBOutlet weak var emptyView: UIView!
     
     // 그룹 이름들을 담을 변수 생성
-    var groups = ["미분류", "SOPT", "그룹명엄청길어요이거", "인하대학교"]
+    var serverGroups: Groups?
+    var serverCards: CardsInGroupResponse?
+    var serverCardsWithBack: Card?
+    var groupId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCell()
         setUI()
-        // 그룹 리스트 조회 서버 테스트
-//        groupListFetchWithAPI(userID: "nada")
 //         그룹 삭제 서버 테스트
 //        groupDeleteWithAPI(groupID: 1)
 //         그룹 추가 서버 테스트
-//        groupAddWithAPI(groupRequest: GroupAddRequest(userId: "nada", groupName: "나다나다"))
+//        groupAddWithAPI(groupRequest: GroupAddRequest(userId: "nada2", groupName: "대학교"))
 //         그룹 수정 서버 테스트
 //        groupEditWithAPI(groupRequest: GroupEditRequest(groupId: 5, groupName: "수정나다"))
-//         그룹 속 명함 추가 테스트
-//        cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardId: "cardA", userId: "nada", groupId: 1))
 //         그룹 속 명함 조회 테스트
-//        cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada2", groupId: 3, offset: 0))
+//        cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada", groupId: 5, offset: 0))
 //         명함 검색 테스트
 //        cardDetailFetchWithAPI(cardID: "cardA")
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // 그룹 리스트 조회 서버 테스트
+//        groupListFetchWithAPI(userID: UserConst.UserDefaults.userID)
+        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "")
+
     }
     
 }
@@ -96,6 +104,7 @@ extension GroupViewController {
     }
     
     private func setUI() {
+        emptyView.isHidden = true
         navigationController?.navigationBar.isHidden = true
     }
 }
@@ -108,8 +117,13 @@ extension GroupViewController {
             switch response {
             case .success(let data):
                 if let group = data as? Groups {
-//                    print(group)
-                    // 그룹 리스트 조회 서버통신 성공했을때
+                    self.serverGroups = group
+                    self.groupCollectionView.reloadData()
+                    self.groupId = group.groups[0].groupID
+                    if !group.groups.isEmpty {
+//                        self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada2", groupId: group.groups[0].groupID, offset: 0))
+                        self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "", groupId: group.groups[0].groupID, offset: 0))
+                    }
                 }
             case .requestErr(let message):
                 print("groupListFetchWithAPI - requestErr: \(message)")
@@ -126,11 +140,8 @@ extension GroupViewController {
     func groupDeleteWithAPI(groupID: Int) {
         GroupAPI.shared.groupDelete(groupID: groupID) { response in
             switch response {
-            case .success(let data):
-                if let group = data as? Groups {
-//                    print(group)
-                    // 그룹 삭제 서버 통신 성공했을 떄
-                }
+            case .success:
+                print("groupDeleteWithAPI - success")
             case .requestErr(let message):
                 print("groupDeleteWithAPI - requestErr: \(message)")
             case .pathErr:
@@ -146,11 +157,8 @@ extension GroupViewController {
     func groupAddWithAPI(groupRequest: GroupAddRequest) {
         GroupAPI.shared.groupAdd(groupRequest: groupRequest) { response in
             switch response {
-            case .success(let data):
-                if let group = data as? Groups {
-//                    print(group)
-                    // 그룹 추가 서버 통신 성공했을 떄
-                }
+            case .success:
+                print("groupAddWithAPI - success")
             case .requestErr(let message):
                 print("groupAddWithAPI - requestErr: \(message)")
             case .pathErr:
@@ -166,11 +174,8 @@ extension GroupViewController {
     func groupEditWithAPI(groupRequest: GroupEditRequest) {
         GroupAPI.shared.groupEdit(groupRequest: groupRequest) { response in
             switch response {
-            case .success(let data):
-                if let group = data as? Groups {
-//                    print(group)
-                    // 그룹 추가 서버 통신 성공했을 떄
-                }
+            case .success:
+                print("groupEditWithAPI - success")
             case .requestErr(let message):
                 print("groupEditWithAPI - requestErr: \(message)")
             case .pathErr:
@@ -188,9 +193,13 @@ extension GroupViewController {
             switch response {
             case .success(let data):
                 if let cards = data as? CardsInGroupResponse {
-//                    print(group)
-                    // 그룹 추가 서버 통신 성공했을 떄
-                    print(cards)
+                    self.serverCards = cards
+                    if cards.cards.count == 0 {
+                        self.emptyView.isHidden = false
+                    } else {
+                        self.emptyView.isHidden = true
+                    }
+                    self.cardsCollectionView.reloadData()
                 }
             case .requestErr(let message):
                 print("cardListInGroupWithAPI - requestErr: \(message)")
@@ -208,9 +217,27 @@ extension GroupViewController {
         CardAPI.shared.cardDetailFetch(cardID: cardID) { response in
             switch response {
             case .success(let data):
-                if let card = data as? Card {
-//                    print(card)
-                    // 통신 성공
+                if let card = data as? CardClass {
+                    guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
+                    
+                    nextVC.cardDataModel = Card(cardID: card.card.cardID,
+                                                background: card.card.background,
+                                                title: card.card.title,
+                                                name: card.card.name,
+                                                birthDate: card.card.birthDate,
+                                                mbti: card.card.mbti,
+                                                instagram: card.card.instagram,
+                                                link: card.card.link,
+                                                cardDescription: card.card.cardDescription,
+                                                isMincho: card.card.isMincho,
+                                                isSoju: card.card.isSoju,
+                                                isBoomuk: card.card.isBoomuk,
+                                                isSauced: card.card.isSauced,
+                                                oneTmi: card.card.oneTmi,
+                                                twoTmi: card.card.twoTmi,
+                                                threeTmi: card.card.threeTmi)
+                    nextVC.groupId = self.groupId
+                    self.navigationController?.pushViewController(nextVC, animated: true)
                 }
             case .requestErr(let message):
                 print("cardDetailFetchWithAPI - requestErr: \(message)")
@@ -235,9 +262,9 @@ extension GroupViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case groupCollectionView:
-            return groups.count
+            return serverGroups?.groups.count ?? 0
         case cardsCollectionView:
-            return 5
+            return serverCards?.cards.count ?? 0
         default:
             return 0
         }
@@ -250,7 +277,8 @@ extension GroupViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            groupCell.groupName.text = groups[indexPath.row]
+            groupCell.groupName.text = serverGroups?.groups[indexPath.row].groupName
+            
             if indexPath.row == 0 {
                 collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
             }
@@ -258,6 +286,23 @@ extension GroupViewController: UICollectionViewDataSource {
         case cardsCollectionView:
             guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.cardInGroupCollectionViewCell, for: indexPath) as? CardInGroupCollectionViewCell else {
                 return UICollectionViewCell()
+            }
+            
+            cardCell.backgroundImageView.updateServerImage(serverCards?.cards[indexPath.row].background ?? "")
+            cardCell.cardId = serverCards?.cards[indexPath.row].cardID 
+            cardCell.titleLabel.text = serverCards?.cards[indexPath.row].title
+            cardCell.descriptionLabel.text = serverCards?.cards[indexPath.row].cardDescription
+            cardCell.userNameLabel.text = serverCards?.cards[indexPath.row].name
+            cardCell.birthLabel.text = serverCards?.cards[indexPath.row].birthDate
+            cardCell.mbtiLabel.text = serverCards?.cards[indexPath.row].mbti
+            cardCell.instagramIDLabel.text = serverCards?.cards[indexPath.row].instagram
+            cardCell.lineURLLabel.text = serverCards?.cards[indexPath.row].link
+            
+            if serverCards?.cards[indexPath.row].instagram == "" {
+                cardCell.instagramIcon.isHidden = true
+            }
+            if serverCards?.cards[indexPath.row].link == "" {
+                cardCell.urlIcon.isHidden = true
             }
             
             return cardCell
@@ -269,11 +314,10 @@ extension GroupViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView {
         case groupCollectionView:
-            print(indexPath.row)
+            groupId = serverGroups?.groups[indexPath.row].groupID
+            cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada2", groupId: serverGroups?.groups[indexPath.row].groupID ?? 0, offset: 0))
         case cardsCollectionView:
-            guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
-            
-            navigationController?.pushViewController(nextVC, animated: true)
+            cardDetailFetchWithAPI(cardID: serverCards?.cards[indexPath.row].cardID ?? "")
         default:
             print(indexPath.row)
         }
@@ -289,8 +333,8 @@ extension GroupViewController: UICollectionViewDelegateFlowLayout {
         
         switch collectionView {
         case groupCollectionView:
-            if groups[indexPath.row].count > 4 {
-                width = CGFloat(groups[indexPath.row].count) * 16
+            if serverGroups?.groups[indexPath.row].groupName.count ?? 0 > 4 {
+                width = CGFloat(serverGroups?.groups[indexPath.row].groupName.count ?? 0) * 16
             } else {
                 width = 62
             }
@@ -316,8 +360,6 @@ extension GroupViewController: UICollectionViewDelegateFlowLayout {
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         switch collectionView {
-        case groupCollectionView:
-            return 5
         case cardsCollectionView:
             return collectionView.frame.size.width * 15/327
         default:
@@ -326,6 +368,8 @@ extension GroupViewController: UICollectionViewDelegateFlowLayout {
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         switch collectionView {
+        case groupCollectionView:
+            return 5
         case cardsCollectionView:
             return collectionView.frame.size.width * 15/327
         default:

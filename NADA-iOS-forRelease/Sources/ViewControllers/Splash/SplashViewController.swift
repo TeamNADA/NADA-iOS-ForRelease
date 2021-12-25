@@ -21,23 +21,7 @@ class SplashViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-            self.setIsLogin()
-        }
-    }
-    
     // MARK: - Functions
-    private func setIsLogin() {
-        if appDelegate?.isLogin == true {
-            presentToMain()
-        } else {
-            presentToLogin()
-        }
-    }
-    
     private func presentToMain() {
         guard let mainVC = UIStoryboard(name: Const.Storyboard.Name.tabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.tabBarViewController) as? TabBarViewController else { return }
         mainVC.modalPresentationStyle = .fullScreen

@@ -12,26 +12,21 @@ import KakaoSDKAuth
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-    
+    let defaults = UserDefaults.standard
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-         window?.rootViewController = UIStoryboard(name: Const.Storyboard.Name.tabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.tabBarViewController)
-//        window?.rootViewController = UIStoryboard(name: Const.Storyboard.Name.splash, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.splashViewController)
-        // window?.rootViewController = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
+        window?.rootViewController = UIStoryboard(name: Const.Storyboard.Name.splash, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.splashViewController)
         window?.makeKeyAndVisible()
         
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         
-        let isDark = UserDefaults.standard.bool(forKey: Const.UserDefaults.darkModeState)
+        let isDark = defaults.bool(forKey: Const.UserDefaults.darkModeState)
         
         // 시스템 무시하고 UserDefault 상태에 따라 화면 전체에 다크/라이트 모드를 결정
         if let window = UIApplication.shared.windows.first {
@@ -41,12 +36,49 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 window.overrideUserInterfaceStyle = .light
             }
         }
+        
+        // 스플래시 지연시간동안 자동 로그인 작업처리
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+            let acToken = self.defaults.string(forKey: Const.UserDefaults.accessToken)
+            let rfToken = self.defaults.string(forKey: Const.UserDefaults.refreshToken)
+            
+            self.postUserTokenReissue(request: UserTokenReissueRequset(accessToken: acToken ?? "", refreshToken: rfToken ?? ""))
+        }
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         if let url = URLContexts.first?.url {
             if (AuthApi.isKakaoTalkLoginUrl(url)) {
                 _ = AuthController.handleOpenUrl(url: url)
+            }
+        }
+    }
+    
+    func postUserTokenReissue(request: UserTokenReissueRequset) {
+        UserAPI.shared.userTokenReissue(request: request) { response in
+            switch response {
+            case .success:
+                print("postUserTokenReissue - Success")
+
+                var rootViewController = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil)
+                    .instantiateViewController(identifier: Const.ViewController.Identifier.loginViewController)
+                
+                if self.defaults.string(forKey: Const.UserDefaults.accessToken) != "" {
+                    rootViewController = UIStoryboard(name: Const.Storyboard.Name.tabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.tabBarViewController)
+                }
+                self.window?.rootViewController = rootViewController
+                self.window?.makeKeyAndVisible()
+            case .requestErr(let message):
+                print("postUserTokenReissue - requestErr: \(message)")
+                let rootViewController = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(identifier: Const.ViewController.Identifier.loginViewController)
+                self.window?.rootViewController = rootViewController
+                self.window?.makeKeyAndVisible()
+            case .pathErr:
+                print("postUserTokenReissue - pathErr")
+            case .serverErr:
+                print("postUserTokenReissue - serverErr")
+            case .networkFail:
+                print("postUserTokenReissue - networkFail")
             }
         }
     }

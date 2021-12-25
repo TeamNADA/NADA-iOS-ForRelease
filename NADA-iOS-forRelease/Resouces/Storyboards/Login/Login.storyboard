@@ -8,11 +8,6 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="NotoSansCJKkr-Regular.otf">
-            <string>NotoSansCJKkr-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Login View Controller-->
         <scene sceneID="s0d-6b-0kx">
@@ -27,51 +22,10 @@
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="Bjc-le-F1v">
                                 <rect key="frame" x="24" y="558" width="327" height="110"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5pM-UL-MTg">
-                                        <rect key="frame" x="0.0" y="0.0" width="327" height="48"/>
-                                        <color key="backgroundColor" name="background"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="48" id="3RT-Mz-xhr"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="14"/>
-                                        <state key="normal" image="kakao_login_large_wide">
-                                            <color key="titleColor" name="primary"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="15"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="kakaoLoginButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="w4Z-RF-HNP"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CFr-2z-xuP">
-                                        <rect key="frame" x="0.0" y="62" width="327" height="48"/>
-                                        <color key="backgroundColor" name="background"/>
-                                        <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="14"/>
-                                        <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="150" maxY="0.0"/>
-                                        <state key="normal" title="Apple로 로그인" image="icnApple">
-                                            <color key="titleColor" name="primary"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="15"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" name="primary"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="appleLoginButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="iBn-nD-f6a"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
+                                <color key="backgroundColor" name="background"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="zMJ-VE-Guw"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -87,8 +41,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="FOs-Km-lor"/>
                     <connections>
-                        <outlet property="appleLogin" destination="CFr-2z-xuP" id="VGd-Su-LvK"/>
-                        <outlet property="kakaoLogin" destination="5pM-UL-MTg" id="z8o-2L-Hda"/>
+                        <outlet property="loginProviderStackView" destination="Bjc-le-F1v" id="xpW-XR-iPZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -97,14 +50,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icnApple" width="20" height="20"/>
-        <image name="kakao_login_large_wide" width="600" height="90"/>
         <image name="logoNadaTxt2" width="99" height="136"/>
         <namedColor name="background">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="primary">
-            <color red="0.074509803921568626" green="0.078431372549019607" blue="0.086274509803921567" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

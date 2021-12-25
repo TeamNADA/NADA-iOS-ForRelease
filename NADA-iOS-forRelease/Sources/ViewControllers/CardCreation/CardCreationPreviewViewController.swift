@@ -36,7 +36,10 @@ class CardCreationPreviewViewController: UIViewController {
     }
     @IBAction func touchCompleteButton(_ sender: Any) {
         guard let frontCardDataModel = frontCardDataModel, let backCardDataModel = backCardDataModel else { return }
-        cardCreationRequest = CardCreationRequest(userID: "", frontCard: frontCardDataModel, backCard: backCardDataModel)
+        
+        guard let userID = UserDefaults.standard.string(forKey: Const.UserDefaults.userID) else { return }
+        
+        cardCreationRequest = CardCreationRequest(userID: userID, frontCard: frontCardDataModel, backCard: backCardDataModel)
         guard let cardCreationRequest = cardCreationRequest,
               let cardBackgroundImage = cardBackgroundImage else { return }
 
@@ -55,6 +58,13 @@ extension CardCreationPreviewViewController {
         
         noticeLabel.font = .textRegular04
         noticeLabel.textColor = .primary
+
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 3
+        paragraphStyle.alignment = .center
+        let attributeString = NSMutableAttributedString(string: noticeLabel?.text ?? "")
+        attributeString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributeString.length))
+        noticeLabel.attributedText = attributeString
         
         completeButton.titleLabel?.font = .button01
         // MARK: - #available(iOS 15.0, *)
@@ -141,7 +151,8 @@ extension CardCreationPreviewViewController {
                               backCardDataModel.isSauced,
                               backCardDataModel.firstTMI,
                               backCardDataModel.secondTMI,
-                              backCardDataModel.thirdTMI)
+                              backCardDataModel.thirdTMI,
+                              isShareable: isShareable)
             
             cardView.addSubview(backCard)
             isFront = false
@@ -164,11 +175,11 @@ extension CardCreationPreviewViewController {
             isFront = true
         }
         if swipeGesture.direction == .right {
-            UIView.transition(with: cardView, duration: 1, options: .transitionFlipFromLeft, animations: nil) { _ in
+            UIView.transition(with: cardView, duration: 0.5, options: .transitionFlipFromLeft, animations: nil) { _ in
                 self.cardView.subviews[0].removeFromSuperview()
             }
         } else {
-            UIView.transition(with: cardView, duration: 1, options: .transitionFlipFromRight, animations: nil) { _ in
+            UIView.transition(with: cardView, duration: 0.5, options: .transitionFlipFromRight, animations: nil) { _ in
                 self.cardView.subviews[0].removeFromSuperview()
             }
         }
@@ -182,6 +193,23 @@ extension CardCreationPreviewViewController {
             switch response {
             case .success:
                 print("cardCreationWithAPI - success")
+                
+                guard let presentingVC = self.presentingViewController else { return }
+                
+                self.dismiss(animated: true) {
+                    if UserDefaults.standard.object(forKey: Const.UserDefaults.isFirstCard) == nil {
+                        let nextVC = FirstCardAlertBottomSheetViewController()
+                            .setTitle("""
+                                      🎉
+                                      첫 명함이 생성되었어요!
+                                      """)
+                            .setHeight(587)
+                        nextVC.modalPresentationStyle = .overFullScreen
+                        presentingVC.present(nextVC, animated: true) {
+                            UserDefaults.standard.set(false, forKey: Const.UserDefaults.isFirstCard)
+                        }
+                    }
+                }
             case .requestErr(let message):
                 print("cardCreationWithAPI - requestErr: \(message)")
             case .pathErr:

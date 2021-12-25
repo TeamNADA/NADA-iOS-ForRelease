@@ -7,19 +7,40 @@
 
 import UIKit
 import KakaoSDKCommon
+import AuthenticationServices
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var isLogin = false
+    
+    // var isLogin = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        // removeKeychainAtFirstLaunch()
         KakaoSDKCommon.initSDK(appKey: "5b8dd8cc878344bb7532eeca4365a4aa")
         
-        if UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken) != nil {
-            isLogin = true
-        }
+//        let appleIDProvider = ASAuthorizationAppleIDProvider()
+//        appleIDProvider.getCredentialState(forUserID: Const.UserDefaults.userID) { (credentialState, error) in
+//            switch credentialState {
+//            case .authorized:
+//                print("해당 ID는 연동되어있습니다.")
+//                self.isLogin = true
+//            case .revoked:
+//                print("해당 ID는 연동되어있지않습니다.")
+//                self.isLogin = false
+//            case .notFound:
+//                print("해당 ID를 찾을 수 없습니다.")
+//                self.isLogin = false
+//            default:
+//                break
+//            }
+//        }
+        
+//        NotificationCenter.default.addObserver(forName: ASAuthorizationAppleIDProvider.credentialRevokedNotification, object: nil, queue: nil) { (Notification) in
+//            print("Revoked Notification")
+//            self.isLogin = false
+//        }
+        
         return true
     }
     

@@ -7,27 +7,27 @@
 
 import Foundation
 
-// MARK: - DataClass
+// MARK: - CardClass
 struct CardClass: Codable {
     let card: Card
 }
 
 // MARK: - Card
 struct Card: Codable {
-    let cardID, background, title, name: String
-    let birthDate, mbti, instagram, link: String
-    let cardDescription: String
+    let cardID: String
+    let author: String? = ""
+    let background, title, name, birthDate, mbti: String
+    let instagram, link, cardDescription: String?
     let isMincho, isSoju, isBoomuk, isSauced: Bool
-    let oneTmi, twoTmi, threeTmi: String
+    let oneTmi, twoTmi, threeTmi: String?
 
     enum CodingKeys: String, CodingKey {
         case cardID = "cardId"
-        case background, title, name, birthDate, mbti, instagram, link
+        case author, background, title, name, birthDate, mbti, instagram, link
         case cardDescription = "description"
         case isMincho, isSoju, isBoomuk, isSauced, oneTmi, twoTmi, threeTmi
     }
-}
-    // FIXME: - 메인에서 카드 정보 정적으로 생성하기 위한 주석
+    // TODO: - 쓰게 될줄 알았는데 안써서 일단 보류
 //    init(from decoder: Decoder) throws {
 //        let values = try decoder.container(keyedBy: CodingKeys.self)
 //        cardID = (try? values.decode(String.self, forKey: .cardID)) ?? ""
@@ -43,8 +43,8 @@ struct Card: Codable {
 //        isSoju = (try? values.decode(Bool.self, forKey: .isSoju)) ?? false
 //        isBoomuk = (try? values.decode(Bool.self, forKey: .isBoomuk)) ?? false
 //        isSauced = (try? values.decode(Bool.self, forKey: .isSauced)) ?? false
-//        oneTMI = (try? values.decode(String.self, forKey: .oneTMI))
-//        twoTMI = (try? values.decode(String.self, forKey: .twoTMI))
-//        thirdTMI = (try? values.decode(String.self, forKey: .thirdTMI))
+//        oneTmi = (try? values.decode(String.self, forKey: .oneTmi))
+//        twoTmi = (try? values.decode(String.self, forKey: .twoTmi))
+//        threeTmi = (try? values.decode(String.self, forKey: .threeTmi))
 //    }
-//}
+}

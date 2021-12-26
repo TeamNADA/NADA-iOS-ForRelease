@@ -6,17 +6,18 @@
 //
 
 import UIKit
+import Photos
 
 class CardShareBottomSheetViewController: CommonBottomSheetViewController {
 
     // MARK: - Properties
-    var cardID: String? = "1D856A"
-    
+
+    var isShareable = false
+    var cardDataModel: Card?
+
     private let qrImage: UIImageView = {
-        // 여기를 만든 QR이미지로 바꿔주시면 됩니당
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "qrCodeImg21")
-        
+        imageView.frame = CGRect(x: 0, y: 0, width: 160, height: 160)
         return imageView
     }()
     
@@ -78,9 +79,10 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         view.addSubview(idStackView)
         view.addSubview(saveAsImageButton)
         
-        idLabel.text = cardID
+        idLabel.text = cardDataModel?.cardID ?? ""
         
         setupLayout()
+        setQRImage()
     }
     
     // 레이아웃 세팅
@@ -107,13 +109,99 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         ])
     }
     
+    private func setQRImage() {
+        let frame = CGRect(origin: .zero, size: qrImage.frame.size)
+        print("TeamNADA\(cardDataModel?.cardID ?? "")")
+        let qrcode = QRCodeView(frame: frame)
+        qrcode.generateCode("ThisIsTeamNADAQrCode\(cardDataModel?.cardID ?? "")",
+                            foregroundColor: .primary,
+                            backgroundColor: .background)
+        qrImage.addSubview(qrcode)
+    }
+    
+    private func setImageWriteToSavedPhotosAlbum() {
+        let frontCardImage = setFrontCardImage()
+        let backCardImage = setBackCardImage()
+        
+        switch PHPhotoLibrary.authorizationStatus() {
+        case .authorized:
+            UIImageWriteToSavedPhotosAlbum(frontCardImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+            UIImageWriteToSavedPhotosAlbum(backCardImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+        case .denied:
+            makeOKCancelAlert(title: "갤러리 권한이 허용되어 있지 않아요.",
+                        message: "명함 이미지 저장을 위해 갤러리 권한이 필요합니다. 앱 설정으로 이동해 허용해 주세요.",
+                        okAction: { _ in UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)},
+                        cancelAction: nil,
+                        completion: nil)
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization({state in
+                if state == .authorized {
+                    UIImageWriteToSavedPhotosAlbum(frontCardImage, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
+                    UIImageWriteToSavedPhotosAlbum(backCardImage, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
+                } else {
+                    DispatchQueue.main.async {
+                        self.hideBottomSheetAndGoBack()
+                    }
+                }
+            })
+        default:
+            break
+        }
+        
+    }
+    
+    // FIXME: - 명함 저장시에도 테두리 둥글게 가능한가 찾기
+    private func setFrontCardImage() -> UIImage {
+        guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return UIImage() }
+        
+        frontCard.frame = CGRect(x: 0, y: 0, width: 327, height: 540)
+        guard let cardDataModel = cardDataModel else { return UIImage() }
+        frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
+        
+        let frontCardView = UIView(frame: CGRect(x: 0, y: 0, width: 327, height: 540))
+        frontCardView.addSubview(frontCard)
+        
+        let renderer = UIGraphicsImageRenderer(size: frontCardView.bounds.size)
+        let frontImage = renderer.image { _ in
+            frontCardView.drawHierarchy(in: frontCardView.bounds, afterScreenUpdates: true)
+        }
+        
+        return frontImage
+    }
+    private func setBackCardImage() -> UIImage {
+        guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return UIImage() }
+        backCard.frame = CGRect(x: 0, y: 0, width: 327, height: 540)
+        guard let cardDataModel = cardDataModel else { return UIImage() }
+        backCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
+
+        let backCardView = UIView(frame: CGRect(x: 0, y: 0, width: 327, height: 540))
+        backCardView.addSubview(backCard)
+        
+        let renderer = UIGraphicsImageRenderer(size: backCardView.bounds.size)
+        let backImage = renderer.image { _ in
+            backCardView.drawHierarchy(in: backCardView.bounds, afterScreenUpdates: true)
+        }
+        
+        return backImage
+    }
+    
+    // MARK: - @objc Methods
+    
     @objc func copyId() {
-        UIPasteboard.general.string = cardID
+        UIPasteboard.general.string = cardDataModel?.cardID ?? ""
         showToast(message: "명함 아이디가 복사되었습니다.", font: UIFont.button02, view: "copyID")
     }
     
     @objc func saveAsImage() {
-        showToast(message: "갤러리에 저장되었습니다.", font: UIFont.button02, view: "saveImage")
+        setImageWriteToSavedPhotosAlbum()
     }
 
+    @objc
+    private func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeMutableRawPointer) {
+        if let error = error {
+            print(error.localizedDescription)
+        } else {
+            showToast(message: "갤러리에 저장되었습니다.", font: UIFont.button02, view: "saveImage")
+        }
+    }
 }

@@ -11,7 +11,7 @@ import Moya
 enum CardService {
     case cardDetailFetch(cardID: String)
     case cardCreation(request: CardCreationRequest, image: UIImage)
-    case cardListFetch(userID: String, isList: Bool?, offset: Int?)
+    case cardListFetch(userID: String, isList: Bool, offset: Int?)
     case cardListEdit(request: CardListEditRequest)
     case cardDelete(cardID: String)
 }
@@ -101,9 +101,9 @@ extension CardService: TargetType {
             return .uploadMultipart(multiPartData)
         case .cardListFetch(let userID, let isList, let offset):
             return .requestParameters(parameters: ["userId": userID,
-                                                   "list": isList ?? false,
-                                                   "offset": offset ?? ""
-            ], encoding: URLEncoding.queryString)
+                                                   "list": isList,
+                                                   "offset": offset ?? ""],
+                                      encoding: URLEncoding.queryString)
         case .cardListEdit(let requestModel):
             return .requestJSONEncodable(requestModel)
         }
@@ -111,12 +111,10 @@ extension CardService: TargetType {
     
     var headers: [String: String]? {
         switch self {
-        case .cardDetailFetch, .cardListFetch, .cardDelete:
-            return Const.Header.bearerHeader
+        case .cardDetailFetch, .cardListFetch, .cardDelete, .cardListEdit:
+            return Const.Header.basicHeader
         case .cardCreation:
             return Const.Header.basicHeader
-        case .cardListEdit:
-            return ["Content-Type": "application/json"]
         }
     }
 }

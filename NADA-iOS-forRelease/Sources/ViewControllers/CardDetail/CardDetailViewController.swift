@@ -11,27 +11,24 @@ class CardDetailViewController: UIViewController {
     
     // MARK: - Properties
     // 네비게이션 바
-    enum Status {
-        case group
-        case add
-    }
-    
     @IBAction func touchBackButton(_ sender: Any) {
         switch status {
         case .group:
             self.navigationController?.popViewController(animated: true)
         case .add:
             self.dismiss(animated: true, completion: nil)
-            presentingViewController?.viewWillAppear(true)
+        case .addWithQR:
+            self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+
+        case .detail:
+            return
         }
     }
     
     @IBAction func presentHarmonyViewController(_ sender: Any) {
-        // TODO: 궁합 서버통신
-        guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardHarmony, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardHarmonyViewController) as? CardHarmonyViewController else { return }
-        
-        nextVC.modalPresentationStyle = .overFullScreen
-        self.present(nextVC, animated: false, completion: nil)
+        cardHarmonyFetchWithAPI(myCard: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.firstCardID) ?? "",
+                                yourCard: cardDataModel?.cardID ?? "")
+
     }
     
     @IBOutlet weak var optionButton: UIButton!
@@ -44,6 +41,7 @@ class CardDetailViewController: UIViewController {
     
     private var isFront = true
     var status: Status = .group
+    var serverGroups: Groups?
     var groupId: Int?
     
     override func viewDidLoad() {
@@ -54,6 +52,9 @@ class CardDetailViewController: UIViewController {
         setGestureRecognizer()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(didRecieveDataNotification(_:)), name: Notification.Name.passDataToDetail, object: nil)
+    }
 }
 
 extension CardDetailViewController {
@@ -75,6 +76,28 @@ extension CardDetailViewController {
             
         }
     }
+    
+    func cardHarmonyFetchWithAPI(myCard: String, yourCard: String) {
+        UtilAPI.shared.cardHarmonyFetch(myCard: myCard, yourCard: yourCard) { response in
+            switch response {
+            case .success(let data):
+                if let harmony = data as? HarmonyResponse {
+                    guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardHarmony, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardHarmonyViewController) as? CardHarmonyViewController else { return }
+                    nextVC.harmonyData = self.updateHarmony(percentage: harmony.harmony)
+                    nextVC.modalPresentationStyle = .overFullScreen
+                    self.present(nextVC, animated: false, completion: nil)
+                }
+            case .requestErr(let message):
+                print("cardHarmonyFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("cardHarmonyFetchWithAPI - pathErr")
+            case .serverErr:
+                print("cardHarmonyFetchWithAPI - serverErr")
+            case .networkFail:
+                print("cardHarmonyFetchWithAPI - networkFail")
+            }
+        }
+    }
 }
 
 extension CardDetailViewController {
@@ -82,8 +105,10 @@ extension CardDetailViewController {
         switch status {
         case .group:
             backButton.setImage(UIImage(named: "iconArrow"), for: .normal)
-        case .add:
+        case .add, .addWithQR:
             backButton.setImage(UIImage(named: "iconClear"), for: .normal)
+        case .detail:
+            return 
         }
         idLabel.text = cardDataModel?.cardID
     }
@@ -94,6 +119,9 @@ extension CardDetailViewController {
                         .setTitle("그룹선택")
                         .setHeight(386)
             nextVC.status = .detail
+            nextVC.groupId = self.groupId
+            nextVC.serverGroups = self.serverGroups
+            nextVC.cardDataModel = self.cardDataModel
             nextVC.modalPresentationStyle = .overFullScreen
             self.present(nextVC, animated: false, completion: nil)
         })
@@ -118,15 +146,8 @@ extension CardDetailViewController {
         guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
         
         frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
-        frontCard.initCell(cardDataModel?.background ?? "",
-                           cardDataModel?.title ?? "",
-                           cardDataModel?.cardDescription ?? "",
-                           cardDataModel?.name ?? "",
-                           cardDataModel?.birthDate ?? "",
-                           cardDataModel?.mbti ?? "",
-                           cardDataModel?.instagram ?? "",
-                           cardDataModel?.link ?? "",
-                           isShareable: isShareable)
+        guard let cardDataModel = cardDataModel else { return }
+        frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
         
         cardView.addSubview(frontCard)
     }
@@ -139,23 +160,43 @@ extension CardDetailViewController {
         swipeRightGestureRecognizer.direction = .right
         self.cardView.addGestureRecognizer(swipeRightGestureRecognizer)
     }
+    private func updateHarmony(percentage: Int) -> HarmonyData {
+        switch percentage {
+        case 0 ... 20:
+            return HarmonyData(icon: "icnHarmonyRed", percentage: "\(String(percentage))%",
+                               color: .harmonyRed, description: "좀 더 친해지길 바라..😅")
+        case 21 ... 40:
+            return HarmonyData(icon: "icnHarmonyOrange", percentage: "\(String(percentage))%",
+                               color: .harmonyOrange, description: "마음만은 찰떡궁합!🙃")
+        case 41 ... 60:
+            return HarmonyData(icon: "icnHarmonyGreen", percentage: "\(String(percentage))%",
+                               color: .harmonyGreen, description: "이 정도면 제법 친한 사이😛")
+        case 61 ... 80:
+            return HarmonyData(icon: "icnHarmonyYellow", percentage: "\(String(percentage))%",
+                               color: .harmonyYellow, description: "우리 사이 척하면 척!😝")
+        case 81 ... 100:
+            return HarmonyData(icon: "icnHarmonyPurple", percentage: "\(String(percentage))%",
+                               color: .harmonyPurple, description: "더할 나위 없이 완벽한 사이!😍")
+        default:
+            return HarmonyData(icon: "icnHarmonyRed", percentage: "\(String(percentage))%",
+                               color: .harmonyRed, description: "")
+        }
+   
+    }
     
     // MARK: - @objc Methods
+    
+    @objc func didRecieveDataNotification(_ notification: Notification) {
+        groupId = notification.object as? Int ?? 0
+    }
     
     @objc
     private func transitionCardWithAnimation(_ swipeGesture: UISwipeGestureRecognizer) {
         if isFront {
             guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return }
             backCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
-            backCard.initCell(cardDataModel?.background ?? "",
-                              cardDataModel?.isMincho ?? true,
-                              cardDataModel?.isSoju ?? true,
-                              cardDataModel?.isBoomuk ?? true,
-                              cardDataModel?.isSauced ?? true,
-                              cardDataModel?.oneTmi ?? "",
-                              cardDataModel?.twoTmi ?? "",
-                              cardDataModel?.threeTmi ?? "",
-                              isShareable: isShareable)
+            guard let cardDataModel = cardDataModel else { return }
+            backCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
             
             cardView.addSubview(backCard)
             isFront = false
@@ -163,15 +204,8 @@ extension CardDetailViewController {
             guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
             
             frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
-            frontCard.initCell(cardDataModel?.background ?? "",
-                               cardDataModel?.title ?? "",
-                               cardDataModel?.cardDescription ?? "",
-                               cardDataModel?.name ?? "",
-                               cardDataModel?.birthDate ?? "",
-                               cardDataModel?.mbti ?? "",
-                               cardDataModel?.instagram ?? "",
-                               cardDataModel?.link ?? "",
-                               isShareable: isShareable)
+            guard let cardDataModel = cardDataModel else { return }
+            frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
             
             cardView.addSubview(frontCard)
             isFront = true

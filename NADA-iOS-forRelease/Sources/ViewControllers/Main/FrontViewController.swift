@@ -12,41 +12,11 @@ import KakaoSDKCommon
 class FrontViewController: UIViewController {
     
     // MARK: - Properteis
-
-    var cardDataList: [Card]? = [Card(cardID: "card",
-                                      background: "card",
-                                      title: "SOPT 명함",
-                                      name: "이채연",
-                                      birthDate: "1998.01.09 (24)",
-                                      mbti: "ENFP",
-                                      instagram: "chaens_",
-                                      link: "https://github.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADA",
-                                      cardDescription: "29기 디자인파트",
-                                      isMincho: true,
-                                      isSoju: true,
-                                      isBoomuk: true,
-                                      isSauced: true,
-                                      oneTmi: "첫번째",
-                                      twoTmi: "두번째",
-                                      threeTmi: "세번째세번째세번째"),
-                                 Card(cardID: "card",
-                                      background: "card",
-                                      title: "SOPT 명함",
-                                      name: "이채연",
-                                      birthDate: "1998.01.09 (24)",
-                                      mbti: "ENFP",
-                                      instagram: "minimin.0_0",
-                                      link: "https://www.naver.com",
-                                      cardDescription: "29기 디자인파트",
-                                      isMincho: true,
-                                      isSoju: true,
-                                      isBoomuk: true,
-                                      isSauced: true,
-                                      oneTmi: "첫번째",
-                                      twoTmi: "두번째",
-                                      threeTmi: "세번째세번째세번째")]
     
-    // var cardDataList: [Card]? = []
+    private var offset = 0
+    private var isInfiniteScroll = true
+    private var cardDataList: [Card]? = []
+    private var userID: String?
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var cardSwiper: VerticalCardSwiper!
@@ -55,12 +25,17 @@ class FrontViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        setCardDataModelList()
+        setUserID()
         setDelegate()
         setNotification()
-        // TODO: - 서버 테스트
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-//        cardListFetchWithAPI(userID: "nada", isList: false, offset: 0)
+        cardDataList?.removeAll()
+        offset = 0
+        cardListFetchWithAPI(userID: userID, isList: false, offset: offset)
     }
     
     // MARK: - @IBAction Properties
@@ -68,7 +43,8 @@ class FrontViewController: UIViewController {
     @IBAction func presentToCardCreationView(_ sender: Any) {
         let nextVC = UIStoryboard(name: Const.Storyboard.Name.cardCreation, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardCreationViewController)
         let navigationController = UINavigationController(rootViewController: nextVC)
-        navigationController.modalPresentationStyle = .overFullScreen
+        navigationController.modalPresentationStyle = .fullScreen
+        
         self.present(navigationController, animated: true, completion: nil)
     }
     
@@ -92,57 +68,31 @@ extension FrontViewController {
         
         cardSwiper.register(nib: MainCardCell.nib(), forCellWithReuseIdentifier: Const.Xib.mainCardCell)
         cardSwiper.register(nib: EmptyCardCell.nib(), forCellWithReuseIdentifier: Const.Xib.emptyCardCell)
-        
     }
-    
+
     private func setNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(didRecievePresentCardShare(_:)), name: Notification.Name.presentCardShare, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didRecievePresentCardShare(_:)), name: .presentCardShare, object: nil)
     }
     
-    @objc func didRecievePresentCardShare(_ notification: Notification) {
+    private func setUserID() {
+        userID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID)
+    }
+    
+    // MARK: - @objc Methods
+    
+    @objc
+    private func didRecievePresentCardShare(_ notification: Notification) {
         let nextVC = CardShareBottomSheetViewController()
             .setTitle("명함공유")
             .setHeight(404)
+
+        if let cardData = notification.object as? Card {
+            nextVC.cardDataModel = cardData
+        }
+        
         nextVC.modalPresentationStyle = .overFullScreen
         self.present(nextVC, animated: false, completion: nil)
     }
-    
-//    private func setCardDataModelList() {
-//        cardDataList?.append(contentsOf: [
-//            Card(cardID: "card",
-//                 background: "card",
-//                 title: "SOPT 명함",
-//                 name: "이채연",
-//                 birthDate: "1998.01.09 (24)",
-//                 mbti: "ENFP",
-//                 instagram: "chaens_",
-//                 link: "https://github.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADA",
-//                 cardDescription: "29기 디자인파트",
-//                 isMincho: true,
-//                 isSoju: true,
-//                 isBoomuk: true,
-//                 isSauced: true,
-//                 oneTMI: "첫번째",
-//                 twoTMI: "두번째",
-//                 thirdTMI: "세번째세번째세번째"),
-//            Card(cardID: "card",
-//                 background: "card",
-//                 title: "SOPT 명함",
-//                 name: "이채연",
-//                 birthDate: "1998.01.09 (24)",
-//                 mbti: "ENFP",
-//                 instagram: "minimin.0_0",
-//                 link: "https://www.naver.com",
-//                 cardDescription: "29기 디자인파트",
-//                 isMincho: true,
-//                 isSoju: true,
-//                 isBoomuk: true,
-//                 isSauced: true,
-//                 oneTMI: "첫번째",
-//                 twoTMI: "두번째",
-//                 thirdTMI: "세번째세번째세번째")
-//        ])
-//    }
 }
 
 // MARK: - VerticalCardSwiperDelegate
@@ -150,12 +100,24 @@ extension FrontViewController: VerticalCardSwiperDelegate {
     func sizeForItem(verticalCardSwiperView: VerticalCardSwiperView, index: Int) -> CGSize {
         return CGSize(width: 375, height: 630)
     }
+    
+    func didScroll(verticalCardSwiperView: VerticalCardSwiperView) {
+        if verticalCardSwiperView.contentOffset.y > verticalCardSwiperView.contentSize.height - verticalCardSwiperView.bounds.height {
+            if isInfiniteScroll {
+                isInfiniteScroll = false
+                offset += 1
+                guard let userID = userID else { return }
+                cardListFetchWithAPI(userID: userID, isList: false, offset: offset)
+            }
+        }
+    }
 }
 
 // MARK: - VerticalCardSwiperDatasource
 extension FrontViewController: VerticalCardSwiperDatasource {
     func numberOfCards(verticalCardSwiperView: VerticalCardSwiperView) -> Int {
-        guard let count = cardDataList?.count else { return 0 }
+        guard let cardDataList = cardDataList else { return 0 }
+        let count = cardDataList.count
         return count == 0 ? 1 : count
     }
     
@@ -163,6 +125,7 @@ extension FrontViewController: VerticalCardSwiperDatasource {
         if cardDataList?.count != 0 {
             guard let cell = verticalCardSwiperView.dequeueReusableCell(withReuseIdentifier: Const.Xib.mainCardCell, for: index) as? MainCardCell else { return CardCell() }
             guard let cardDataList = cardDataList else { return CardCell() }
+            UserDefaults.standard.set(cardDataList[0].cardID, forKey: Const.UserDefaultsKey.firstCardID)
             cell.initCell(cardDataModel: cardDataList[index])
             cell.isShareable = true
             cell.setFrontCard()
@@ -173,16 +136,21 @@ extension FrontViewController: VerticalCardSwiperDatasource {
             return cell
         }
     }
+    
 }
 
 // MARK: - Network
 extension FrontViewController {
-    func cardListFetchWithAPI(userID: String, isList: Bool, offset: Int) {
+    func cardListFetchWithAPI(userID: String?, isList: Bool, offset: Int) {
+        guard let userID = userID else { return }
         CardAPI.shared.cardListFetch(userID: userID, isList: isList, offset: offset) { response in
             switch response {
             case .success(let data):
-                if let card = data as? CardListRequest {
-                    print(card)
+                self.isInfiniteScroll = true
+                
+                if let cardListLookUp = data as? CardListLookUp {
+                    self.cardDataList?.append(contentsOf: cardListLookUp.cards)
+                    self.cardSwiper.reloadData()
                 }
             case .requestErr(let message):
                 print("cardListFetchWithAPI - requestErr: \(message)")

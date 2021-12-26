@@ -46,7 +46,7 @@ extension MoreViewController {
     }
     
     private func setModeSwitch() {
-        modeSwitch.isOn = defaults.bool(forKey: Const.UserDefaults.darkModeState)
+        modeSwitch.isOn = defaults.bool(forKey: Const.UserDefaultsKey.darkModeState)
         changeInterfaceStyle()
     }
     
@@ -54,7 +54,7 @@ extension MoreViewController {
         if let window = UIApplication.shared.windows.first {
             if #available(iOS 13.0, *) {
                 window.overrideUserInterfaceStyle = modeSwitch.isOn == true ? .dark : .light
-                defaults.set(modeSwitch.isOn, forKey: Const.UserDefaults.darkModeState)
+                defaults.set(modeSwitch.isOn, forKey: Const.UserDefaultsKey.darkModeState)
             } else {
                 window.overrideUserInterfaceStyle = .light
             }
@@ -110,13 +110,13 @@ extension MoreViewController {
     func setLogoutClicked() {
         makeOKCancelAlert(title: "", message: "로그아웃 하시겠습니까?", okAction: { _ in
             self.makeOKAlert(title: "", message: "로그아웃이 완료 되었습니다.") { _ in
-                if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken) {
+                if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) {
                     self.logoutUserWithAPI(token: acToken)
-                    self.defaults.removeObject(forKey: Const.UserDefaults.accessToken)
-                    self.defaults.removeObject(forKey: Const.UserDefaults.darkModeState)
+                    self.defaults.removeObject(forKey: Const.UserDefaultsKey.accessToken)
+                    self.defaults.removeObject(forKey: Const.UserDefaultsKey.darkModeState)
                     let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
                     nextVC.modalPresentationStyle = .overFullScreen
-                    self.present(nextVC, animated: true, completion: nil)
+                    self.navigationController?.changeRootViewController(nextVC)
                 }
             }
         })
@@ -129,7 +129,7 @@ extension MoreViewController {
                     print(error)
                 } else {
                     self.makeOKAlert(title: "", message: "받은 명함이 초기화 되었습니다.")
-                    if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken) {
+                    if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) {
                         self.groupResetWithAPI(token: acToken)
                     }
                 }
@@ -144,13 +144,13 @@ extension MoreViewController {
                     print(error)
                 } else {
                     self.makeOKAlert(title: "", message: "모든 명함이 삭제되었습니다.") { _ in
-                        if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken) {
+                        if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) {
                             self.deleteUserWithAPI(token: acToken)
-                            self.defaults.removeObject(forKey: Const.UserDefaults.accessToken)
-                            self.defaults.removeObject(forKey: Const.UserDefaults.darkModeState)
+                            self.defaults.removeObject(forKey: Const.UserDefaultsKey.accessToken)
+                            self.defaults.removeObject(forKey: Const.UserDefaultsKey.darkModeState)
                             let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
                             nextVC.modalPresentationStyle = .overFullScreen
-                            self.present(nextVC, animated: true, completion: nil)
+                            self.navigationController?.changeRootViewController(nextVC)
                         }
                     }
                 }

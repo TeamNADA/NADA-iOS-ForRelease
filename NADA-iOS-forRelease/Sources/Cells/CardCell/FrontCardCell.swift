@@ -11,6 +11,10 @@ import Kingfisher
 
 class FrontCardCell: CardCell {
     
+    // MARK: - Properties
+    
+    private var cardData: Card?
+    
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -34,7 +38,7 @@ class FrontCardCell: CardCell {
         setTapGesture()
     }
     @IBAction func touchShareButton(_ sender: Any) {
-        NotificationCenter.default.post(name: Notification.Name.presentCardShare, object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: Notification.Name.presentCardShare, object: cardData, userInfo: nil)
     }
     
     static func nib() -> UINib {
@@ -105,29 +109,29 @@ extension FrontCardCell {
     }
     
     /// 서버에서 image 를 URL 로 가져올 경우 사용.
-    func initCell(_ backgroundImage: String,
-                  _ cardTitle: String,
-                  _ cardDescription: String,
-                  _ userName: String,
-                  _ birth: String,
-                  _ mbti: String,
-                  _ instagramID: String,
-                  _ linkURL: String,
-                  isShareable: Bool) {
-
-        backgroundImageView.updateServerImage(backgroundImage)
-        titleLabel.text = cardTitle
-        descriptionLabel.text = cardDescription
-        userNameLabel.text = userName
-        birthLabel.text = birth
-        mbtiLabel.text = mbti
-        instagramIDLabel.text = instagramID
-        linkURLLabel.text = linkURL
+    func initCellFromServer(cardData: Card, isShareable: Bool) {
+        self.cardData = cardData
         
-        if instagramID.isEmpty {
+        if cardData.background.hasPrefix("https://") {
+            self.backgroundImageView.updateServerImage(cardData.background)
+        } else {
+            if let bgImage = UIImage(named: cardData.background) {
+                self.backgroundImageView.image = bgImage
+            }
+        }
+            
+        titleLabel.text = cardData.title
+        descriptionLabel.text = cardData.cardDescription
+        userNameLabel.text = cardData.name
+        birthLabel.text = cardData.birthDate
+        mbtiLabel.text = cardData.mbti
+        instagramIDLabel.text = cardData.instagram
+        linkURLLabel.text = cardData.link
+        
+        if let instagram = cardData.instagram, instagram.isEmpty {
             instagramImageView.isHidden = true
         }
-        if linkURL.isEmpty {
+        if let link = cardData.link, link.isEmpty {
             linkURLImageView.isHidden = true
         }
         

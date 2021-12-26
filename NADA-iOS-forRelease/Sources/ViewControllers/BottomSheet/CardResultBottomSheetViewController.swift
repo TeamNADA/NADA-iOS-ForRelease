@@ -13,6 +13,8 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
     // MARK: - Properties
     var cardDataModel: Card?
     
+    var status: Status = .add
+    
     private let groupLabel: UILabel = {
         let label = UILabel()
         label.textColor = .secondary
@@ -96,7 +98,7 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
     }
     
     @objc func presentGroupSelectBottomSheet() {
-        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "")
+        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
     }
 
 }
@@ -108,7 +110,7 @@ extension CardResultBottomSheetViewController {
             case .success(let data):
                 if let group = data as? Groups {
                     let nextVC = SelectGroupBottomSheetViewController()
-                    nextVC.status = .add
+                    nextVC.status = self.status
                     nextVC.cardDataModel = self.cardDataModel
                     nextVC.serverGroups = group
                     self.hideBottomSheetAndPresent(nextBottomSheet: nextVC, title: "그룹선택", height: 386)

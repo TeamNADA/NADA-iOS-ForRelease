@@ -11,6 +11,8 @@ import IQKeyboardManagerSwift
 class AddGroupBottomSheetViewController: CommonBottomSheetViewController, UITextFieldDelegate {
     
     // MARK: - Properties
+    var returnToGroupEditViewController: (() -> Void)?
+    
     // 그룹 추가 텍스트 필드
     private let addGroupTextField: UITextField = {
         let textField = UITextField()
@@ -97,29 +99,28 @@ extension AddGroupBottomSheetViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         hideBottomSheetAndGoBack()
+        groupAddWithAPI(groupRequest: GroupAddRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "", groupName: addGroupTextField.text ?? ""))
+        returnToGroupEditViewController?()
+        
         return true
     }
 }
 
 // MARK: - Network
 extension AddGroupBottomSheetViewController {
-    
-    func cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest) {
-        GroupAPI.shared.cardAddInGroup(cardRequest: cardRequest) { response in
+    func groupAddWithAPI(groupRequest: GroupAddRequest) {
+        GroupAPI.shared.groupAdd(groupRequest: groupRequest) { response in
             switch response {
-            case .success(let data):
-                if let group = data as? Groups {
-//                    print(group)
-                    // 그룹 추가 서버 통신 성공했을 떄
-                }
+            case .success:
+                print("groupAddWithAPI - success")
             case .requestErr(let message):
-                print("cardAddInGroupWithAPI - requestErr: \(message)")
+                print("groupAddWithAPI - requestErr: \(message)")
             case .pathErr:
-                print("cardAddInGroupWithAPI - pathErr")
+                print("groupAddWithAPI - pathErr")
             case .serverErr:
-                print("cardAddInGroupWithAPI - serverErr")
+                print("groupAddWithAPI - serverErr")
             case .networkFail:
-                print("cardAddInGroupWithAPI - networkFail")
+                print("groupAddWithAPI - networkFail")
             }
         }
     }

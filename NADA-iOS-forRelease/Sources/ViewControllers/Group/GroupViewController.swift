@@ -51,6 +51,7 @@ class GroupViewController: UIViewController {
     // 중간 그룹 이름들 나열된 뷰
     @IBAction func pushToGroupEdit(_ sender: Any) {
         guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.groupEdit, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.groupEditViewController) as? GroupEditViewController else { return }
+        nextVC.serverGroups = self.serverGroups
         
         navigationController?.pushViewController(nextVC, animated: true)
     }
@@ -66,16 +67,13 @@ class GroupViewController: UIViewController {
     var serverCardsWithBack: Card?
     var groupId: Int?
     
+    var selectedRow = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCell()
         setUI()
-//         그룹 삭제 서버 테스트
-//        groupDeleteWithAPI(groupID: 1)
-//         그룹 추가 서버 테스트
-//        groupAddWithAPI(groupRequest: GroupAddRequest(userId: "nada2", groupName: "대학교"))
-//         그룹 수정 서버 테스트
-//        groupEditWithAPI(groupRequest: GroupEditRequest(groupId: 5, groupName: "수정나다"))
+
 //         그룹 속 명함 조회 테스트
 //        cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada", groupId: 5, offset: 0))
 //         명함 검색 테스트
@@ -85,8 +83,9 @@ class GroupViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         // 그룹 리스트 조회 서버 테스트
-//        groupListFetchWithAPI(userID: UserConst.UserDefaults.userID)
-        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "")
+        super.viewWillAppear(true)
+        NotificationCenter.default.addObserver(self, selector: #selector(didRecieveDataNotification(_:)), name: Notification.Name.passDataToGroup, object: nil)
+        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
 
     }
     
@@ -107,6 +106,10 @@ extension GroupViewController {
         emptyView.isHidden = true
         navigationController?.navigationBar.isHidden = true
     }
+    
+    @objc func didRecieveDataNotification(_ notification: Notification) {
+        selectedRow = notification.object as? Int ?? 0
+    }
 }
 
 // MARK: - Network
@@ -119,10 +122,9 @@ extension GroupViewController {
                 if let group = data as? Groups {
                     self.serverGroups = group
                     self.groupCollectionView.reloadData()
-                    self.groupId = group.groups[0].groupID
+                    self.groupId = group.groups[self.selectedRow].groupID
                     if !group.groups.isEmpty {
-//                        self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada2", groupId: group.groups[0].groupID, offset: 0))
-                        self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "", groupId: group.groups[0].groupID, offset: 0))
+                        self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "", groupId: group.groups[self.selectedRow].groupID, offset: 0))
                     }
                 }
             case .requestErr(let message):
@@ -133,57 +135,6 @@ extension GroupViewController {
                 print("groupListFetchWithAPI - serverErr")
             case .networkFail:
                 print("groupListFetchWithAPI - networkFail")
-            }
-        }
-    }
-    
-    func groupDeleteWithAPI(groupID: Int) {
-        GroupAPI.shared.groupDelete(groupID: groupID) { response in
-            switch response {
-            case .success:
-                print("groupDeleteWithAPI - success")
-            case .requestErr(let message):
-                print("groupDeleteWithAPI - requestErr: \(message)")
-            case .pathErr:
-                print("groupDeleteWithAPI - pathErr")
-            case .serverErr:
-                print("groupDeleteWithAPI - serverErr")
-            case .networkFail:
-                print("groupDeleteWithAPI - networkFail")
-            }
-        }
-    }
-    
-    func groupAddWithAPI(groupRequest: GroupAddRequest) {
-        GroupAPI.shared.groupAdd(groupRequest: groupRequest) { response in
-            switch response {
-            case .success:
-                print("groupAddWithAPI - success")
-            case .requestErr(let message):
-                print("groupAddWithAPI - requestErr: \(message)")
-            case .pathErr:
-                print("groupAddWithAPI - pathErr")
-            case .serverErr:
-                print("groupAddWithAPI - serverErr")
-            case .networkFail:
-                print("groupAddWithAPI - networkFail")
-            }
-        }
-    }
-    
-    func groupEditWithAPI(groupRequest: GroupEditRequest) {
-        GroupAPI.shared.groupEdit(groupRequest: groupRequest) { response in
-            switch response {
-            case .success:
-                print("groupEditWithAPI - success")
-            case .requestErr(let message):
-                print("groupEditWithAPI - requestErr: \(message)")
-            case .pathErr:
-                print("groupEditWithAPI - pathErr")
-            case .serverErr:
-                print("groupEditWithAPI - serverErr")
-            case .networkFail:
-                print("groupEditWithAPI - networkFail")
             }
         }
     }
@@ -220,23 +171,9 @@ extension GroupViewController {
                 if let card = data as? CardClass {
                     guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
                     
-                    nextVC.cardDataModel = Card(cardID: card.card.cardID,
-                                                background: card.card.background,
-                                                title: card.card.title,
-                                                name: card.card.name,
-                                                birthDate: card.card.birthDate,
-                                                mbti: card.card.mbti,
-                                                instagram: card.card.instagram,
-                                                link: card.card.link,
-                                                cardDescription: card.card.cardDescription,
-                                                isMincho: card.card.isMincho,
-                                                isSoju: card.card.isSoju,
-                                                isBoomuk: card.card.isBoomuk,
-                                                isSauced: card.card.isSauced,
-                                                oneTmi: card.card.oneTmi,
-                                                twoTmi: card.card.twoTmi,
-                                                threeTmi: card.card.threeTmi)
+                    nextVC.cardDataModel = card.card
                     nextVC.groupId = self.groupId
+                    nextVC.serverGroups = self.serverGroups
                     self.navigationController?.pushViewController(nextVC, animated: true)
                 }
             case .requestErr(let message):
@@ -279,7 +216,7 @@ extension GroupViewController: UICollectionViewDataSource {
             
             groupCell.groupName.text = serverGroups?.groups[indexPath.row].groupName
             
-            if indexPath.row == 0 {
+            if indexPath.row == selectedRow {
                 collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
             }
             return groupCell
@@ -314,8 +251,12 @@ extension GroupViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView {
         case groupCollectionView:
+            selectedRow = indexPath.row
             groupId = serverGroups?.groups[indexPath.row].groupID
-            cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada2", groupId: serverGroups?.groups[indexPath.row].groupID ?? 0, offset: 0))
+            cardListInGroupWithAPI(cardListInGroupRequest:
+                                    CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "",
+                                                           groupId: serverGroups?.groups[indexPath.row].groupID ?? 0,
+                                                           offset: 0))
         case cardsCollectionView:
             cardDetailFetchWithAPI(cardID: serverCards?.cards[indexPath.row].cardID ?? "")
         default:

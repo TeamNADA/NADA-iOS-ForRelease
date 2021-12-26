@@ -11,15 +11,12 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
 
     // MARK: - Properties
 
-    var cardID: String? = "1D856A"
     var isShareable = false
     var cardDataModel: Card?
 
     private let qrImage: UIImageView = {
-        // 여기를 만든 QR이미지로 바꿔주시면 됩니당
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "qrCodeImg21")
-        
+        imageView.frame = CGRect(x: 0, y: 0, width: 160, height: 160)
         return imageView
     }()
     
@@ -81,9 +78,10 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         view.addSubview(idStackView)
         view.addSubview(saveAsImageButton)
         
-        idLabel.text = cardID
+        idLabel.text = cardDataModel?.cardID ?? ""
         
         setupLayout()
+        setQRImage()
     }
     
     // 레이아웃 세팅
@@ -110,6 +108,16 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         ])
     }
     
+    private func setQRImage() {
+        let frame = CGRect(origin: .zero, size: qrImage.frame.size)
+        print("TeamNADA\(cardDataModel?.cardID ?? "")")
+        let qrcode = QRCodeView(frame: frame)
+        qrcode.generateCode("ThisIsTeamNADAQrCode\(cardDataModel?.cardID ?? "")",
+                            foregroundColor: .primary,
+                            backgroundColor: .background)
+        qrImage.addSubview(qrcode)
+    }
+    
     private func setImageWriteToSavedPhotosAlbum() {
         let frontCardImage = setFrontCardImage()
         let backCardImage = setBackCardImage()
@@ -126,12 +134,12 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         guard let cardDataModel = cardDataModel else { return UIImage() }
         frontCard.initCell(UIImage(named: cardDataModel.background),
                            cardDataModel.title,
-                           cardDataModel.cardDescription,
+                           cardDataModel.cardDescription ?? "",
                            cardDataModel.name,
                            cardDataModel.birthDate,
                            cardDataModel.mbti,
-                           cardDataModel.instagram ,
-                           cardDataModel.link,
+                           cardDataModel.instagram ?? "",
+                           cardDataModel.link ?? "",
                            isShareable: isShareable)
         
         let frontCardView = UIView(frame: CGRect(x: 0, y: 0, width: 327, height: 540))
@@ -153,9 +161,9 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
                           cardDataModel.isSoju,
                           cardDataModel.isBoomuk,
                           cardDataModel.isSauced,
-                          cardDataModel.oneTmi,
-                          cardDataModel.twoTmi,
-                          cardDataModel.threeTmi,
+                          cardDataModel.oneTmi ?? "",
+                          cardDataModel.twoTmi ?? "",
+                          cardDataModel.threeTmi ?? "",
                           isShareable: isShareable)
 
         let backCardView = UIView(frame: CGRect(x: 0, y: 0, width: 327, height: 540))
@@ -172,7 +180,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     // MARK: - @objc Methods
     
     @objc func copyId() {
-        UIPasteboard.general.string = cardID
+        UIPasteboard.general.string = cardDataModel?.cardID ?? ""
         showToast(message: "명함 아이디가 복사되었습니다.", font: UIFont.button02, view: "copyID")
     }
     

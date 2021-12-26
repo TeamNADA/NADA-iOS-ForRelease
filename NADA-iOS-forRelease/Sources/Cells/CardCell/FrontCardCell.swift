@@ -129,10 +129,10 @@ extension FrontCardCell {
         instagramIDLabel.text = cardData.instagram
         linkURLLabel.text = cardData.link
         
-        if cardData.instagram.isEmpty {
+        if let instagram = cardData.instagram, instagram.isEmpty {
             instagramImageView.isHidden = true
         }
-        if cardData.link.isEmpty {
+        if let link = cardData.link, link.isEmpty {
             linkURLImageView.isHidden = true
         }
         

@@ -12,8 +12,11 @@ import KakaoSDKCommon
 class FrontViewController: UIViewController {
     
     // MARK: - Properteis
-    var cardDataList: [Card] = []
-    var offset = 0
+    
+    private var offset = 0
+    private var isInfiniteScroll = true
+    private var cardDataList: [Card]? = []
+    private var userID: String?
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var cardSwiper: VerticalCardSwiper!
@@ -21,12 +24,16 @@ class FrontViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        setUserID()
         setDelegate()
         setNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setCardDataModelList()
         cardListFetchWithAPI(userID: "nada2", isList: false, offset: offset)
     }
     
@@ -78,6 +85,16 @@ extension FrontViewController {
         nextVC.modalPresentationStyle = .overFullScreen
         self.present(nextVC, animated: false, completion: nil)
     }
+    
+    private func setUserID() {
+        userID = UserDefaults.standard.string(forKey: Const.UserDefaults.userID)
+    }
+    
+    private func setCardDataModelList() {
+//        guard let userID = userID else { return }
+//        cardListFetchWithAPI(userID: userID, isList: false, offset: offset)
+        cardListFetchWithAPI(userID: "nada2", isList: false, offset: offset)
+    }
 }
 
 // MARK: - VerticalCardSwiperDelegate
@@ -85,19 +102,31 @@ extension FrontViewController: VerticalCardSwiperDelegate {
     func sizeForItem(verticalCardSwiperView: VerticalCardSwiperView, index: Int) -> CGSize {
         return CGSize(width: 375, height: 630)
     }
+    
+    func didScroll(verticalCardSwiperView: VerticalCardSwiperView) {
+        if verticalCardSwiperView.contentOffset.y > verticalCardSwiperView.contentSize.height - verticalCardSwiperView.bounds.height {
+            if isInfiniteScroll {
+                isInfiniteScroll = false
+                offset += 1
+                guard let userID = userID else { return }
+                cardListFetchWithAPI(userID: userID, isList: false, offset: offset)
+            }
+        }
+    }
 }
 
 // MARK: - VerticalCardSwiperDatasource
 extension FrontViewController: VerticalCardSwiperDatasource {
     func numberOfCards(verticalCardSwiperView: VerticalCardSwiperView) -> Int {
+        guard let cardDataList = cardDataList else { return 0 }
         let count = cardDataList.count
         return count == 0 ? 1 : count
     }
     
     func cardForItemAt(verticalCardSwiperView: VerticalCardSwiperView, cardForItemAt index: Int) -> CardCell {
-        if cardDataList.count != 0 {
+        if cardDataList?.count != 0 {
             guard let cell = verticalCardSwiperView.dequeueReusableCell(withReuseIdentifier: Const.Xib.mainCardCell, for: index) as? MainCardCell else { return CardCell() }
-            let cardDataList = cardDataList
+            guard let cardDataList = cardDataList else { return CardCell() }
             UserDefaults.standard.set(cardDataList[0].cardID, forKey: Const.UserDefaults.firstCardID)
             cell.initCell(cardDataModel: cardDataList[index])
             cell.isShareable = true
@@ -115,11 +144,16 @@ extension FrontViewController: VerticalCardSwiperDatasource {
 // MARK: - Network
 extension FrontViewController {
     func cardListFetchWithAPI(userID: String, isList: Bool, offset: Int) {
-        CardAPI.shared.cardListFetch(userID: userID, isList: isList, offset: offset) { response in
+        CardAPI.shared.cardListFetch(userID: "nada2", isList: isList, offset: offset) { response in
             switch response {
             case .success(let data):
-                if let card = data as? CardListLookUp {
-                    self.cardDataList = card.cards
+                self.isInfiniteScroll = true
+                
+                if let cardListLookUpRequest = data as? CardListLookUpRequest {
+                    // FIXME: - 로그 확인용.
+//                    print("✅cardListLookUpRequest", cardListLookUpRequest)
+                    self.cardDataList?.append(contentsOf: cardListLookUpRequest.cards)
+                    
                     self.cardSwiper.reloadData()
                 }
             case .requestErr(let message):

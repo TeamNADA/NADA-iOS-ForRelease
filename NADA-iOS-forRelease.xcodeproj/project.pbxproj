@@ -69,7 +69,7 @@
 		7729171F2743D604001593E0 /* CardsInGroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7729171E2743D604001593E0 /* CardsInGroupResponse.swift */; };
 		7734D5AA27719520004360E4 /* CardShareBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7734D5A927719520004360E4 /* CardShareBottomSheetViewController.swift */; };
 		7734D5B627779EF0004360E4 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7734D5B527779EF0004360E4 /* QRCodeView.swift */; };
-		7734D5B82777A8E8004360E4 /* UIString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7734D5B72777A8E8004360E4 /* UIString+Extension.swift */; };
+		7734D5B82777A8E8004360E4 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7734D5B72777A8E8004360E4 /* String+Extension.swift */; };
 		77607EDA274A68BE00204CD2 /* GroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77607ED8274A68BD00204CD2 /* GroupCollectionViewCell.swift */; };
 		77607EDB274A68BE00204CD2 /* GroupCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77607ED9274A68BD00204CD2 /* GroupCollectionViewCell.xib */; };
 		7766A40F274FEBE200714912 /* CardInGroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766A40D274FEBE200714912 /* CardInGroupCollectionViewCell.swift */; };
@@ -209,7 +209,7 @@
 		7729171E2743D604001593E0 /* CardsInGroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsInGroupResponse.swift; sourceTree = "<group>"; };
 		7734D5A927719520004360E4 /* CardShareBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardShareBottomSheetViewController.swift; sourceTree = "<group>"; };
 		7734D5B527779EF0004360E4 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
-		7734D5B72777A8E8004360E4 /* UIString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIString+Extension.swift"; sourceTree = "<group>"; };
+		7734D5B72777A8E8004360E4 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		77607ED8274A68BD00204CD2 /* GroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewCell.swift; sourceTree = "<group>"; };
 		77607ED9274A68BD00204CD2 /* GroupCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCollectionViewCell.xib; sourceTree = "<group>"; };
 		7766A40D274FEBE200714912 /* CardInGroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInGroupCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -933,7 +933,7 @@
 				399C55DE2711949D00845A54 /* CGPoint+Distance.swift */,
 				F8719DDA274F92E90081AD51 /* UITextField+Extension.swift */,
 				F8D74DD7276C7FB60071E5FC /* UIImageView+Extension.swift */,
-				7734D5B72777A8E8004360E4 /* UIString+Extension.swift */,
+				7734D5B72777A8E8004360E4 /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1176,7 +1176,7 @@
 				F8C83FC1272FA06E0009DF0D /* UserAPI.swift in Sources */,
 				7766A40F274FEBE200714912 /* CardInGroupCollectionViewCell.swift in Sources */,
 				3927A7D7275F2A9B008BCD2A /* UserDefaults.swift in Sources */,
-				7734D5B82777A8E8004360E4 /* UIString+Extension.swift in Sources */,
+				7734D5B82777A8E8004360E4 /* String+Extension.swift in Sources */,
 				F8C83FC3272FA17B0009DF0D /* URL.swift in Sources */,
 				392F7FB4274621F1008CDBF5 /* MoreListTableViewCell.swift in Sources */,
 				77AA68EA273E0EC4009C89B0 /* CardAddInGroupRequest.swift in Sources */,

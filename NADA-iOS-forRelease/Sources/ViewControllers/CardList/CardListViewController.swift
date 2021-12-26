@@ -300,8 +300,12 @@ extension CardListViewController {
                     
                 }, completion: { (finished) -> Void in
                     if finished {
-                        // FIXME: - 카드 리스트 편집 서버 테스트
-                        self.cardListEditWithAPI(request: CardListEditRequest(ordered: [Ordered(cardID: self.cardItems[Initial.tabIndex!.row].cardID, priority: indexPath!.row), Ordered(cardID: self.cardItems[indexPath!.row].cardID, priority: indexPath!.row + 1)]))
+                        var count = 0
+                        while self.cardItems.count > count {
+                            self.newCardItems.append(Ordered(cardID: self.cardItems[count].cardID, priority: count))
+                            count += 1
+                        }
+                        self.cardListEditWithAPI(request: CardListEditRequest(ordered: self.newCardItems))
                         
                         Initial.initialIndexPath = nil
                         MyCell.cellSnapshot!.removeFromSuperview()

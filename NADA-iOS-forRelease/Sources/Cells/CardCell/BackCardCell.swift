@@ -63,8 +63,7 @@ extension BackCardCell {
     }
     
     /// 서버에서 image 를 URL 로 가져올 경우 사용.
-    func initCellFromServer(cardData: Card,
-                  isShareable: Bool) {
+    func initCellFromServer(cardData: Card, isShareable: Bool) {
         self.cardData = cardData
         
         if cardData.background.hasPrefix("https://") {

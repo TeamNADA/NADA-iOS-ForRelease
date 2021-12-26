@@ -13,7 +13,7 @@ class CardListViewController: UIViewController {
         
     // MARK: - Properties
     var cardItems: [CardList] = []
-    var newCardItems: CardListEditRequest?
+    var newCardItems: [Ordered] = []
     
     // MARK: - IBOutlet Properties
     @IBOutlet weak var cardListTableView: UITableView!
@@ -78,17 +78,16 @@ class CardListViewController: UIViewController {
         let index = cardListTableView.indexPath(for: cell)
         
         if index!.row > 0 {
-            print(cardItems, "🤍")
-            cardListTableView.moveRow(at: index!, to: IndexPath(row: 0, section: 0))
             self.cardItems.insert(self.cardItems.remove(at: index!.row), at: 0)
             cardListTableView.reloadData()
-            print(cardItems, "🌴")
+            cardListTableView.moveRow(at: index!, to: IndexPath(row: 0, section: 0))
             
-//            let count = 0
-//            while cardItems.count > count {
-//                newCardItems?.ordered.append(Ordered(cardID: cardItems[count].cardID, priority: count))
-//            }
-//            cardListEditWithAPI(request: newCardItems)
+            var count = 0
+            while cardItems.count > count {
+                newCardItems.append(Ordered(cardID: cardItems[count].cardID, priority: count))
+                count += 1
+            }
+            cardListEditWithAPI(request: CardListEditRequest(ordered: newCardItems))
         }
     }
 }

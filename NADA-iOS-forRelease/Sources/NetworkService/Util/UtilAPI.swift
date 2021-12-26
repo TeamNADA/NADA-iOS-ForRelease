@@ -11,9 +11,8 @@ import Moya
 public class UtilAPI {
 
     static let shared = UtilAPI()
-//    var utilProvider = MoyaProvider<UtilService>(plugins: [MoyaLoggerPlugin()])
-    var utilProvider = MoyaProvider<UtilService>()
-
+    var utilProvider = MoyaProvider<UtilService>(plugins: [MoyaLoggerPlugin()])
+    
     public init() { }
     
     func cardHarmonyFetch(myCard: String, yourCard: String, completion: @escaping (NetworkResult<Any>) -> Void) {

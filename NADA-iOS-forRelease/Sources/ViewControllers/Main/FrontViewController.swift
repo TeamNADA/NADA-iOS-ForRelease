@@ -25,6 +25,7 @@ class FrontViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUserID()
         setDelegate()
         setNotification()
     }
@@ -32,7 +33,8 @@ class FrontViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        setCardDataModelList()
+        cardDataList?.removeAll()
+        offset = 0
         cardListFetchWithAPI(userID: userID, isList: false, offset: offset)
     }
     
@@ -41,7 +43,8 @@ class FrontViewController: UIViewController {
     @IBAction func presentToCardCreationView(_ sender: Any) {
         let nextVC = UIStoryboard(name: Const.Storyboard.Name.cardCreation, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardCreationViewController)
         let navigationController = UINavigationController(rootViewController: nextVC)
-        navigationController.modalPresentationStyle = .overFullScreen
+        navigationController.modalPresentationStyle = .fullScreen
+        
         self.present(navigationController, animated: true, completion: nil)
     }
     
@@ -71,7 +74,14 @@ extension FrontViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(didRecievePresentCardShare(_:)), name: .presentCardShare, object: nil)
     }
     
-    @objc func didRecievePresentCardShare(_ notification: Notification) {
+    private func setUserID() {
+        userID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID)
+    }
+    
+    // MARK: - @objc Methods
+    
+    @objc
+    private func didRecievePresentCardShare(_ notification: Notification) {
         let nextVC = CardShareBottomSheetViewController()
             .setTitle("명함공유")
             .setHeight(404)
@@ -82,11 +92,6 @@ extension FrontViewController {
         
         nextVC.modalPresentationStyle = .overFullScreen
         self.present(nextVC, animated: false, completion: nil)
-    }
-    
-    private func setCardDataModelList() {
-        guard let userID = userID else { return }
-        cardListFetchWithAPI(userID: userID, isList: false, offset: offset)
     }
 }
 

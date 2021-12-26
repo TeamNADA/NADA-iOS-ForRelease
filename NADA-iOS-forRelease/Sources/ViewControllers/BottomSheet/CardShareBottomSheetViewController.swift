@@ -156,15 +156,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         
         frontCard.frame = CGRect(x: 0, y: 0, width: 327, height: 540)
         guard let cardDataModel = cardDataModel else { return UIImage() }
-        frontCard.initCell(UIImage(named: cardDataModel.background),
-                           cardDataModel.title,
-                           cardDataModel.cardDescription ?? "",
-                           cardDataModel.name,
-                           cardDataModel.birthDate,
-                           cardDataModel.mbti,
-                           cardDataModel.instagram ?? "",
-                           cardDataModel.link ?? "",
-                           isShareable: isShareable)
+        frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
         
         let frontCardView = UIView(frame: CGRect(x: 0, y: 0, width: 327, height: 540))
         frontCardView.addSubview(frontCard)
@@ -180,15 +172,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return UIImage() }
         backCard.frame = CGRect(x: 0, y: 0, width: 327, height: 540)
         guard let cardDataModel = cardDataModel else { return UIImage() }
-        backCard.initCell(UIImage(named: cardDataModel.background),
-                          cardDataModel.isMincho,
-                          cardDataModel.isSoju,
-                          cardDataModel.isBoomuk,
-                          cardDataModel.isSauced,
-                          cardDataModel.oneTmi ?? "",
-                          cardDataModel.twoTmi ?? "",
-                          cardDataModel.threeTmi ?? "",
-                          isShareable: isShareable)
+        backCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
 
         let backCardView = UIView(frame: CGRect(x: 0, y: 0, width: 327, height: 540))
         backCardView.addSubview(backCard)

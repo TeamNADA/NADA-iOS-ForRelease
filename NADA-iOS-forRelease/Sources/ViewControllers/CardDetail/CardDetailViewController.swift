@@ -26,7 +26,7 @@ class CardDetailViewController: UIViewController {
     }
     
     @IBAction func presentHarmonyViewController(_ sender: Any) {
-        cardHarmonyFetchWithAPI(myCard: UserDefaults.standard.string(forKey: Const.UserDefaults.firstCardID) ?? "",
+        cardHarmonyFetchWithAPI(myCard: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.firstCardID) ?? "",
                                 yourCard: cardDataModel?.cardID ?? "")
 
     }

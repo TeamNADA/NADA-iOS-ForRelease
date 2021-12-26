@@ -113,7 +113,7 @@ extension CardService: TargetType {
         switch self {
         case .cardDetailFetch, .cardListFetch, .cardDelete, .cardListEdit:
             return ["Content-Type": "application/json",
-                    "Authorization": "Bearer " + UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken)!]
+                    "Authorization": "Bearer " + UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken)!]
         case .cardCreation:
             return Const.Header.basicHeader
         }

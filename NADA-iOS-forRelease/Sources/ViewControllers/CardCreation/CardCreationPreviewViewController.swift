@@ -37,7 +37,7 @@ class CardCreationPreviewViewController: UIViewController {
     @IBAction func touchCompleteButton(_ sender: Any) {
         guard let frontCardDataModel = frontCardDataModel, let backCardDataModel = backCardDataModel else { return }
         
-        guard let userID = UserDefaults.standard.string(forKey: Const.UserDefaults.userID) else { return }
+        guard let userID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) else { return }
         
         cardCreationRequest = CardCreationRequest(userID: userID, frontCard: frontCardDataModel, backCard: backCardDataModel)
         guard let cardCreationRequest = cardCreationRequest,
@@ -197,7 +197,7 @@ extension CardCreationPreviewViewController {
                 guard let presentingVC = self.presentingViewController else { return }
                 
                 self.dismiss(animated: true) {
-                    if UserDefaults.standard.object(forKey: Const.UserDefaults.isFirstCard) == nil {
+                    if UserDefaults.standard.object(forKey: Const.UserDefaultsKey.isFirstCard) == nil {
                         let nextVC = FirstCardAlertBottomSheetViewController()
                             .setTitle("""
                                       🎉
@@ -206,7 +206,7 @@ extension CardCreationPreviewViewController {
                             .setHeight(587)
                         nextVC.modalPresentationStyle = .overFullScreen
                         presentingVC.present(nextVC, animated: true) {
-                            UserDefaults.standard.set(false, forKey: Const.UserDefaults.isFirstCard)
+                            UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isFirstCard)
                         }
                     }
                 }

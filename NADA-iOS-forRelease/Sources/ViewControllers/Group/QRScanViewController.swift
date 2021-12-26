@@ -141,7 +141,7 @@ extension QRScanViewController {
             switch response {
             case .success(let data):
                 if let card = data as? CardClass {
-                    if UserDefaults.standard.string(forKey: Const.UserDefaults.userID) == card.card.author {
+                    if UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) == card.card.author {
                         self.showToast(message: "자신의 명함은 추가할 수 없습니다.", font: UIFont.button02, view: "wrongCard")
                     } else {
                         let nextVC = CardResultBottomSheetViewController()

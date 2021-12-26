@@ -30,7 +30,7 @@ class CardListViewController: UIViewController {
         cardListTableView.delegate = self
         cardListTableView.dataSource = self
         
-        cardListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "", isList: true)
+        cardListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "", isList: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -191,7 +191,7 @@ extension CardListViewController {
             switch response {
             case .success(let data):
                 print(data)
-                self.cardListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "", isList: true)
+                self.cardListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "", isList: true)
                 self.cardListTableView.reloadData()
             case .requestErr(let message):
                 print("deleteGroupWithAPI - requestErr", message)

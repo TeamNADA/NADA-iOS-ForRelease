@@ -85,7 +85,7 @@ class GroupViewController: UIViewController {
         // 그룹 리스트 조회 서버 테스트
         super.viewWillAppear(true)
         NotificationCenter.default.addObserver(self, selector: #selector(didRecieveDataNotification(_:)), name: Notification.Name.passDataToGroup, object: nil)
-        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "")
+        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
 
     }
     
@@ -124,7 +124,7 @@ extension GroupViewController {
                     self.groupCollectionView.reloadData()
                     self.groupId = group.groups[self.selectedRow].groupID
                     if !group.groups.isEmpty {
-                        self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "", groupId: group.groups[self.selectedRow].groupID, offset: 0))
+                        self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "", groupId: group.groups[self.selectedRow].groupID, offset: 0))
                     }
                 }
             case .requestErr(let message):
@@ -254,7 +254,7 @@ extension GroupViewController: UICollectionViewDataSource {
             selectedRow = indexPath.row
             groupId = serverGroups?.groups[indexPath.row].groupID
             cardListInGroupWithAPI(cardListInGroupRequest:
-                                    CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "",
+                                    CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "",
                                                            groupId: serverGroups?.groups[indexPath.row].groupID ?? 0,
                                                            offset: 0))
         case cardsCollectionView:

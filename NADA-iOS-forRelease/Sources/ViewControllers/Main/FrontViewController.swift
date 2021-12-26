@@ -34,6 +34,7 @@ class FrontViewController: UIViewController {
         super.viewWillAppear(animated)
         
         setCardDataModelList()
+        cardListFetchWithAPI(userID: "nada2", isList: false, offset: offset)
     }
     
     // MARK: - @IBAction Properties
@@ -126,6 +127,7 @@ extension FrontViewController: VerticalCardSwiperDatasource {
         if cardDataList?.count != 0 {
             guard let cell = verticalCardSwiperView.dequeueReusableCell(withReuseIdentifier: Const.Xib.mainCardCell, for: index) as? MainCardCell else { return CardCell() }
             guard let cardDataList = cardDataList else { return CardCell() }
+            UserDefaults.standard.set(cardDataList[0].cardID, forKey: Const.UserDefaults.firstCardID)
             cell.initCell(cardDataModel: cardDataList[index])
             cell.isShareable = true
             cell.setFrontCard()
@@ -147,10 +149,10 @@ extension FrontViewController {
             case .success(let data):
                 self.isInfiniteScroll = true
                 
-                if let cardListLookUpRequest = data as? CardListLookUpRequest {
+                if let cardListLookUp = data as? CardListLookUp {
                     // FIXME: - 로그 확인용.
 //                    print("✅cardListLookUpRequest", cardListLookUpRequest)
-                    self.cardDataList?.append(contentsOf: cardListLookUpRequest.cards)
+                    self.cardDataList?.append(contentsOf: cardListLookUp.cards)
                     
                     self.cardSwiper.reloadData()
                 }

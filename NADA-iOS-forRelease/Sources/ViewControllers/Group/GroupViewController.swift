@@ -51,6 +51,7 @@ class GroupViewController: UIViewController {
     // 중간 그룹 이름들 나열된 뷰
     @IBAction func pushToGroupEdit(_ sender: Any) {
         guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.groupEdit, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.groupEditViewController) as? GroupEditViewController else { return }
+        nextVC.serverGroups = self.serverGroups
         
         navigationController?.pushViewController(nextVC, animated: true)
     }
@@ -72,13 +73,7 @@ class GroupViewController: UIViewController {
         super.viewDidLoad()
         registerCell()
         setUI()
-//         그룹 삭제 서버 테스트
-//        groupDeleteWithAPI(groupID: 1)
-//         그룹 추가 서버 테스트
-//        groupAddWithAPI(groupRequest: GroupAddRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "",
-//                                                      groupName: "SOPT"))
-//         그룹 수정 서버 테스트
-//        groupEditWithAPI(groupRequest: GroupEditRequest(groupId: 5, groupName: "수정나다"))
+
 //         그룹 속 명함 조회 테스트
 //        cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada", groupId: 5, offset: 0))
 //         명함 검색 테스트
@@ -140,57 +135,6 @@ extension GroupViewController {
                 print("groupListFetchWithAPI - serverErr")
             case .networkFail:
                 print("groupListFetchWithAPI - networkFail")
-            }
-        }
-    }
-    
-    func groupDeleteWithAPI(groupID: Int) {
-        GroupAPI.shared.groupDelete(groupID: groupID) { response in
-            switch response {
-            case .success:
-                print("groupDeleteWithAPI - success")
-            case .requestErr(let message):
-                print("groupDeleteWithAPI - requestErr: \(message)")
-            case .pathErr:
-                print("groupDeleteWithAPI - pathErr")
-            case .serverErr:
-                print("groupDeleteWithAPI - serverErr")
-            case .networkFail:
-                print("groupDeleteWithAPI - networkFail")
-            }
-        }
-    }
-    
-    func groupAddWithAPI(groupRequest: GroupAddRequest) {
-        GroupAPI.shared.groupAdd(groupRequest: groupRequest) { response in
-            switch response {
-            case .success:
-                print("groupAddWithAPI - success")
-            case .requestErr(let message):
-                print("groupAddWithAPI - requestErr: \(message)")
-            case .pathErr:
-                print("groupAddWithAPI - pathErr")
-            case .serverErr:
-                print("groupAddWithAPI - serverErr")
-            case .networkFail:
-                print("groupAddWithAPI - networkFail")
-            }
-        }
-    }
-    
-    func groupEditWithAPI(groupRequest: GroupEditRequest) {
-        GroupAPI.shared.groupEdit(groupRequest: groupRequest) { response in
-            switch response {
-            case .success:
-                print("groupEditWithAPI - success")
-            case .requestErr(let message):
-                print("groupEditWithAPI - requestErr: \(message)")
-            case .pathErr:
-                print("groupEditWithAPI - pathErr")
-            case .serverErr:
-                print("groupEditWithAPI - serverErr")
-            case .networkFail:
-                print("groupEditWithAPI - networkFail")
             }
         }
     }

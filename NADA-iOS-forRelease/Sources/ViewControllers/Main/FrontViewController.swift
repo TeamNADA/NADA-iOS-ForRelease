@@ -12,41 +12,11 @@ import KakaoSDKCommon
 class FrontViewController: UIViewController {
     
     // MARK: - Properteis
-
-    var cardDataList: [Card]? = [Card(cardID: "card",
-                                      background: "card",
-                                      title: "SOPT 명함",
-                                      name: "이채연",
-                                      birthDate: "1998.01.09 (24)",
-                                      mbti: "ENFP",
-                                      instagram: "chaens_",
-                                      link: "https://github.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADA",
-                                      cardDescription: "29기 디자인파트",
-                                      isMincho: true,
-                                      isSoju: true,
-                                      isBoomuk: true,
-                                      isSauced: true,
-                                      oneTmi: "첫번째",
-                                      twoTmi: "두번째",
-                                      threeTmi: "세번째세번째세번째"),
-                                 Card(cardID: "card",
-                                      background: "card",
-                                      title: "SOPT 명함",
-                                      name: "이채연",
-                                      birthDate: "1998.01.09 (24)",
-                                      mbti: "ENFP",
-                                      instagram: "minimin.0_0",
-                                      link: "https://www.naver.com",
-                                      cardDescription: "29기 디자인파트",
-                                      isMincho: true,
-                                      isSoju: true,
-                                      isBoomuk: true,
-                                      isSauced: true,
-                                      oneTmi: "첫번째",
-                                      twoTmi: "두번째",
-                                      threeTmi: "세번째세번째세번째")]
     
-    // var cardDataList: [Card]? = []
+    private var offset = 0
+    private var isInfiniteScroll = true
+    private var cardDataList: [Card]? = []
+    private var userID: String?
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var cardSwiper: VerticalCardSwiper!
@@ -55,12 +25,10 @@ class FrontViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        setCardDataModelList()
+        setUserID()
+        setCardDataModelList()
         setDelegate()
         setNotification()
-        // TODO: - 서버 테스트
-        
-//        cardListFetchWithAPI(userID: "nada", isList: false, offset: 0)
     }
     
     // MARK: - @IBAction Properties
@@ -112,48 +80,32 @@ extension FrontViewController {
         self.present(nextVC, animated: false, completion: nil)
     }
     
-//    private func setCardDataModelList() {
-//        cardDataList?.append(contentsOf: [
-//            Card(cardID: "card",
-//                 background: "card",
-//                 title: "SOPT 명함",
-//                 name: "이채연",
-//                 birthDate: "1998.01.09 (24)",
-//                 mbti: "ENFP",
-//                 instagram: "chaens_",
-//                 link: "https://github.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADA",
-//                 cardDescription: "29기 디자인파트",
-//                 isMincho: true,
-//                 isSoju: true,
-//                 isBoomuk: true,
-//                 isSauced: true,
-//                 oneTMI: "첫번째",
-//                 twoTMI: "두번째",
-//                 thirdTMI: "세번째세번째세번째"),
-//            Card(cardID: "card",
-//                 background: "card",
-//                 title: "SOPT 명함",
-//                 name: "이채연",
-//                 birthDate: "1998.01.09 (24)",
-//                 mbti: "ENFP",
-//                 instagram: "minimin.0_0",
-//                 link: "https://www.naver.com",
-//                 cardDescription: "29기 디자인파트",
-//                 isMincho: true,
-//                 isSoju: true,
-//                 isBoomuk: true,
-//                 isSauced: true,
-//                 oneTMI: "첫번째",
-//                 twoTMI: "두번째",
-//                 thirdTMI: "세번째세번째세번째")
-//        ])
-//    }
+    private func setUserID() {
+        userID = UserDefaults.standard.string(forKey: Const.UserDefaults.userID)
+    }
+    
+    private func setCardDataModelList() {
+//        guard let userID = userID else { return }
+//        cardListFetchWithAPI(userID: userID, isList: false, offset: offset)
+        cardListFetchWithAPI(userID: "NADA2", isList: false, offset: offset)
+    }
 }
 
 // MARK: - VerticalCardSwiperDelegate
 extension FrontViewController: VerticalCardSwiperDelegate {
     func sizeForItem(verticalCardSwiperView: VerticalCardSwiperView, index: Int) -> CGSize {
         return CGSize(width: 375, height: 630)
+    }
+    
+    func didScroll(verticalCardSwiperView: VerticalCardSwiperView) {
+        if verticalCardSwiperView.contentOffset.y > verticalCardSwiperView.contentSize.height - verticalCardSwiperView.bounds.height {
+            if isInfiniteScroll {
+                isInfiniteScroll = false
+                offset += 1
+                guard let userID = userID else { return }
+                cardListFetchWithAPI(userID: userID, isList: false, offset: offset)
+            }
+        }
     }
 }
 
@@ -183,11 +135,15 @@ extension FrontViewController: VerticalCardSwiperDatasource {
 // MARK: - Network
 extension FrontViewController {
     func cardListFetchWithAPI(userID: String, isList: Bool, offset: Int) {
-        CardAPI.shared.cardListFetch(userID: userID, isList: isList, offset: offset) { response in
+        CardAPI.shared.cardListFetch(userID: "NADA2", isList: isList, offset: offset) { response in
             switch response {
             case .success(let data):
-                if let card = data as? CardListRequest {
-                    print(card)
+                if let cardListLookUpRequest = data as? CardListLookUpRequest {
+                    print("✅cardListLookUpRequest", cardListLookUpRequest)
+                    self.cardDataList?.append(contentsOf: cardListLookUpRequest.cards)
+                    
+                    self.cardSwiper.reloadData()
+                    self.isInfiniteScroll = true
                 }
             case .requestErr(let message):
                 print("cardListFetchWithAPI - requestErr: \(message)")

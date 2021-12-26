@@ -126,12 +126,12 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         guard let cardDataModel = cardDataModel else { return UIImage() }
         frontCard.initCell(UIImage(named: cardDataModel.background),
                            cardDataModel.title,
-                           cardDataModel.cardDescription,
+                           cardDataModel.cardDescription ?? "",
                            cardDataModel.name,
                            cardDataModel.birthDate,
                            cardDataModel.mbti,
-                           cardDataModel.instagram ,
-                           cardDataModel.link,
+                           cardDataModel.instagram ?? "",
+                           cardDataModel.link ?? "",
                            isShareable: isShareable)
         
         let frontCardView = UIView(frame: CGRect(x: 0, y: 0, width: 327, height: 540))
@@ -153,9 +153,9 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
                           cardDataModel.isSoju,
                           cardDataModel.isBoomuk,
                           cardDataModel.isSauced,
-                          cardDataModel.oneTmi,
-                          cardDataModel.twoTmi,
-                          cardDataModel.threeTmi,
+                          cardDataModel.oneTmi ?? "",
+                          cardDataModel.twoTmi ?? "",
+                          cardDataModel.threeTmi ?? "",
                           isShareable: isShareable)
 
         let backCardView = UIView(frame: CGRect(x: 0, y: 0, width: 327, height: 540))

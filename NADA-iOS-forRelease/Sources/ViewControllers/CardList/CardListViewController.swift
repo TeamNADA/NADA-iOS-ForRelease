@@ -23,7 +23,6 @@ class CardListViewController: UIViewController {
         
         navigationBackSwipeMotion()
         
-        setCardList()
         setLongPressGesture()
         
         cardListTableView.register(CardListTableViewCell.nib(), forCellReuseIdentifier: "CardListTableViewCell")
@@ -31,7 +30,6 @@ class CardListViewController: UIViewController {
         cardListTableView.delegate = self
         cardListTableView.dataSource = self
         
-        // FIXME: - 카드 리스트 조회 서버 테스트
         cardListFetchWithAPI(userID: "nada2", isList: true)
     }
     
@@ -47,15 +45,6 @@ class CardListViewController: UIViewController {
     }
     
     // MARK: - Functions
-    func setCardList() {
-//        cardItems.append(contentsOf: [
-//            CardList(cardID: "nada1", title: "명함1"),
-//            CardList(cardID: "nada2", title: "명함2"),
-//            CardList(cardID: "nada3", title: "명함3"),
-//            CardList(cardID: "nada4", title: "명함4")
-//        ])
-    }
-    
     func setLongPressGesture() {
         self.cardListTableView.allowsSelection = false
         
@@ -114,6 +103,7 @@ extension CardListViewController: UITableViewDelegate {
                     // 취소 눌렀을 때 액션이 들어갈 부분
                 }, deleteAction: { _ in
                     self.deleteCardWithAPI(cardID: self.cardItems[indexPath.row].cardID)
+                    self.cardListTableView.reloadData()
                 })
             })
             deleteAction.backgroundColor = .red
@@ -197,6 +187,7 @@ extension CardListViewController {
             switch response {
             case .success(let data):
                 print(data)
+                self.cardListFetchWithAPI(userID: "nada2", isList: true)
                 self.cardListTableView.reloadData()
             case .requestErr(let message):
                 print("deleteGroupWithAPI - requestErr", message)

@@ -13,6 +13,7 @@ class FrontViewController: UIViewController {
     
     // MARK: - Properteis
     var cardDataList: [Card] = []
+    var offset = 0
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var cardSwiper: VerticalCardSwiper!
@@ -26,7 +27,7 @@ class FrontViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        cardListFetchWithAPI(userID: "nada2", isList: false, offset: 0)
+        cardListFetchWithAPI(userID: "nada2", isList: false, offset: offset)
 
     }
     
@@ -61,12 +62,7 @@ extension FrontViewController {
         cardSwiper.register(nib: EmptyCardCell.nib(), forCellWithReuseIdentifier: Const.Xib.emptyCardCell)
         
     }
-    
-    private func setMain() {
-        if let userID = UserDefaults.standard.string(forKey: Const.UserDefaults.userID) {
-            cardListFetchWithAPI(userID: "nada2", isList: false, offset: 0)
-        }
-    }
+
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(didRecievePresentCardShare(_:)), name: .presentCardShare, object: nil)
     }
@@ -91,9 +87,10 @@ extension FrontViewController: VerticalCardSwiperDelegate {
         return CGSize(width: 375, height: 630)
     }
     
-    func didDragCard(card: CardCell, index: Int, swipeDirection: SwipeDirection) {
-        cardListFetchWithAPI(userID: "nada2", isList: false, offset: index)
-    }
+//    func didScroll(verticalCardSwiperView: VerticalCardSwiperView) {
+//        cardListFetchWithAPI(userID: "nada2", isList: false, offset: offset+1)
+//        verticalCardSwiperView.reloadData()
+//    }
 }
 
 // MARK: - VerticalCardSwiperDatasource

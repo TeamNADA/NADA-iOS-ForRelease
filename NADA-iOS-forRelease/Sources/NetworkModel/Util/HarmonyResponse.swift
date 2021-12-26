@@ -11,6 +11,10 @@ import UIKit
 // MARK: - HarmonyResponse
 struct HarmonyResponse: Codable {
     let harmony: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case harmony
+    }
 }
 
 struct HarmonyData {

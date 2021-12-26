@@ -10,7 +10,8 @@ import UIKit
 class GroupEditViewController: UIViewController {
     
     // MARK: - Properties
-    var cardItems = ["SOPT", "동아리", "학교", "NADA NADA NADA NADA NADA"]
+    // var cardItems = ["SOPT", "동아리", "학교", "NADA NADA NADA NADA NADA"]
+    var serverGroups: Groups?
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var groupEditTableView: UITableView!
@@ -23,6 +24,7 @@ class GroupEditViewController: UIViewController {
         
         groupEditTableView.delegate = self
         groupEditTableView.dataSource = self
+        serverGroupList()
     }
     
     // MARK: - @IBAction Properties
@@ -31,8 +33,7 @@ class GroupEditViewController: UIViewController {
     }
     
     @IBAction func presentToAddGroupBottom(_ sender: UIButton) {
-        // FIXME: - 서버 통신 시, cardItems에 GroupVC에서 통신했던 서버 내용을 담는 것으로 로직 수정
-        if cardItems.count == 4 {
+        if serverGroups?.groups.count == 5 {
             makeOKAlert(title: "", message: "새로운 그룹은 최대 4개까지만 등록 가능합니다.")
         } else {
             let nextVC = AddGroupBottomSheetViewController()
@@ -72,7 +73,7 @@ extension GroupEditViewController: UITableViewDelegate {
             .setTitle("그룹명 변경")
             .setHeight(184)
         nextVC.modalPresentationStyle = .overFullScreen
-        nextVC.text = cardItems[indexPath.row]
+        nextVC.text = serverGroups?.groups[indexPath.row].groupName ?? ""
         
         self.present(nextVC, animated: false, completion: nil)
     }
@@ -82,14 +83,20 @@ extension GroupEditViewController: UITableViewDelegate {
 // MARK: - TableView DataSource
 extension GroupEditViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cardItems.count
+        return serverGroups?.groups.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.groupEditTableViewCell, for: indexPath) as? GroupEditTableViewCell else { return UITableViewCell() }
         
-        serviceCell.initData(title: cardItems[indexPath.row])
+        serviceCell.initData(title: serverGroups?.groups[indexPath.row].groupName ?? "")
         
         return serviceCell
+    }
+}
+
+extension GroupEditViewController {
+    func serverGroupList() {
+        serverGroups?.groups.remove(at: 0)
     }
 }

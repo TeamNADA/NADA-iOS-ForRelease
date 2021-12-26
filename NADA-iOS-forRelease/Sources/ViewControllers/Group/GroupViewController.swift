@@ -224,10 +224,10 @@ extension GroupViewController {
         CardAPI.shared.cardDetailFetch(cardID: cardID) { response in
             switch response {
             case .success(let data):
-                if let card = data as? Card {
+                if let card = data as? CardClass {
                     guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
                     
-                    nextVC.cardDataModel = card
+                    nextVC.cardDataModel = card.card
                     nextVC.groupId = self.groupId
                     nextVC.serverGroups = self.serverGroups
                     self.navigationController?.pushViewController(nextVC, animated: true)

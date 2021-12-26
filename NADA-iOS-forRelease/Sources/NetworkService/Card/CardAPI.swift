@@ -132,7 +132,7 @@ public class CardAPI {
     private func judgeMainListFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<CardListLookUpRequest>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<CardListLookUp>.self, from: data)
         else {
             return .pathErr
         }

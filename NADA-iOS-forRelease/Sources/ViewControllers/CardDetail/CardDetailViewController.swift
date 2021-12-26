@@ -26,8 +26,8 @@ class CardDetailViewController: UIViewController {
     }
     
     @IBAction func presentHarmonyViewController(_ sender: Any) {
-        // FIXME: myCard 저장되어있는 값으로 바꾸기
-        cardHarmonyFetchWithAPI(myCard: "cardA", yourCard: cardDataModel?.cardID ?? "")
+        cardHarmonyFetchWithAPI(myCard: UserDefaults.standard.string(forKey: Const.UserDefaults.firstCardID) ?? "",
+                                yourCard: cardDataModel?.cardID ?? "")
 
     }
     

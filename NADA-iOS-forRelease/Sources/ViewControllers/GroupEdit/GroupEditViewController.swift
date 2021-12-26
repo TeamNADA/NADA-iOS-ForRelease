@@ -84,7 +84,10 @@ extension GroupEditViewController: UITableViewDelegate {
             .setHeight(184)
         nextVC.modalPresentationStyle = .overFullScreen
         nextVC.text = serverGroups?.groups[indexPath.row].groupName ?? ""
-        
+        nextVC.returnToGroupEditViewController = {
+            self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "")
+        }
+        nextVC.nowGroup = serverGroups?.groups[indexPath.row]
         self.present(nextVC, animated: false, completion: nil)
     }
     
@@ -150,24 +153,6 @@ extension GroupEditViewController {
                 print("groupDeleteWithAPI - serverErr")
             case .networkFail:
                 print("groupDeleteWithAPI - networkFail")
-            }
-        }
-    }
-    
-    func groupEditWithAPI(groupRequest: GroupEditRequest) {
-        GroupAPI.shared.groupEdit(groupRequest: groupRequest) { response in
-            switch response {
-            case .success:
-                print("groupEditWithAPI - success")
-                self.groupEditTableView.reloadData()
-            case .requestErr(let message):
-                print("groupEditWithAPI - requestErr: \(message)")
-            case .pathErr:
-                print("groupEditWithAPI - pathErr")
-            case .serverErr:
-                print("groupEditWithAPI - serverErr")
-            case .networkFail:
-                print("groupEditWithAPI - networkFail")
             }
         }
     }

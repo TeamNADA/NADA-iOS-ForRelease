@@ -116,7 +116,7 @@ extension MoreViewController {
                     self.defaults.removeObject(forKey: Const.UserDefaults.darkModeState)
                     let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
                     nextVC.modalPresentationStyle = .overFullScreen
-                    self.present(nextVC, animated: true, completion: nil)
+                    self.navigationController?.changeRootViewController(nextVC)
                 }
             }
         })
@@ -150,7 +150,7 @@ extension MoreViewController {
                             self.defaults.removeObject(forKey: Const.UserDefaults.darkModeState)
                             let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
                             nextVC.modalPresentationStyle = .overFullScreen
-                            self.present(nextVC, animated: true, completion: nil)
+                            self.navigationController?.changeRootViewController(nextVC)
                         }
                     }
                 }

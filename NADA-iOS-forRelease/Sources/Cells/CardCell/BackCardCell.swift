@@ -11,6 +11,10 @@ import Kingfisher
 
 class BackCardCell: CardCell {
     
+    // MARK: - Properties
+    
+    private var cardData: Card?
+    
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var tasteTitleLabel: UILabel!
@@ -34,7 +38,7 @@ class BackCardCell: CardCell {
         setUI()
     }
     @IBAction func touchShareButton(_ sender: Any) {
-        NotificationCenter.default.post(name: Notification.Name.presentCardShare, object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: Notification.Name.presentCardShare, object: cardData, userInfo: nil)
     }
     
     // MARK: - Functions
@@ -59,60 +63,54 @@ extension BackCardCell {
     }
     
     /// 서버에서 image 를 URL 로 가져올 경우 사용.
-    func initCell(_ backgroundImageString: String,
-                  _ isMint: Bool,
-                  _ isSoju: Bool,
-                  _ isBoomuk: Bool,
-                  _ isSauced: Bool,
-                  _ firstTMI: String,
-                  _ secondTMI: String,
-                  _ thirdTMI: String,
+    func initCellFromServer(cardData: Card,
                   isShareable: Bool) {
+        self.cardData = cardData
         
-        if backgroundImageString.hasPrefix("https://") {
-            self.backgroundImageView.updateServerImage(backgroundImageString)
+        if cardData.background.hasPrefix("https://") {
+            self.backgroundImageView.updateServerImage(cardData.background)
         } else {
-            if let bgImage = UIImage(named: backgroundImageString) {
+            if let bgImage = UIImage(named: cardData.background) {
                 self.backgroundImageView.image = bgImage
             }
         }
         
-        mintImageView.image = isMint == true ?
+        mintImageView.image = cardData.isMincho == true ?
         UIImage(named: "iconTasteOnMincho") : UIImage(named: "iconTasteOffMincho")
-        noMintImageView.image = isMint == false ?
+        noMintImageView.image = cardData.isMincho == false ?
         UIImage(named: "iconTasteOnBanmincho") : UIImage(named: "iconTasteOffBanmincho")
         
-        sojuImageView.image = isSoju == true ?
+        sojuImageView.image = cardData.isSoju == true ?
         UIImage(named: "iconTasteOnSoju") : UIImage(named: "iconTasteOffSoju")
-        beerImageView.image = isSoju == false ?
+        beerImageView.image = cardData.isSoju == false ?
         UIImage(named: "iconTasteOnBeer") : UIImage(named: "iconTasteOffBeer")
         
-        pourEatImageView.image = isBoomuk == true ?
+        pourEatImageView.image = cardData.isBoomuk == true ?
         UIImage(named: "iconTasteOnBumeok") : UIImage(named: "iconTasteOffBumeok")
-        putSauceEatImageView.image = isBoomuk == false ?
+        putSauceEatImageView.image = cardData.isBoomuk == false ?
         UIImage(named: "iconTasteOnZzik") : UIImage(named: "iconTasteOffZzik")
         
-        sauceChickenImageView.image = isSauced == true ?
+        sauceChickenImageView.image = cardData.isSauced == true ?
         UIImage(named: "iconTasteOnSeasoned") : UIImage(named: "iconTasteOffSeasoned")
-        friedChickenImageView.image = isSauced == false ?
+        friedChickenImageView.image = cardData.isSauced == false ?
         UIImage(named: "iconTasteOnFried") : UIImage(named: "iconTasteOffFried")
         
-        if !firstTMI.isEmpty {
-            firstTmiLabel.text = "•  " + firstTMI
+        if let oneTmi = cardData.oneTmi, !oneTmi.isEmpty {
+            firstTmiLabel.text = "•  " + oneTmi
         } else {
-            firstTmiLabel.text = firstTMI
+            firstTmiLabel.text = cardData.oneTmi
         }
         
-        if !secondTMI.isEmpty {
-            secondTmiLabel.text = "•  " + secondTMI
+        if let twoTmi = cardData.twoTmi, !twoTmi.isEmpty {
+            secondTmiLabel.text = "•  " + twoTmi
         } else {
-            secondTmiLabel.text = secondTMI
+            secondTmiLabel.text = cardData.twoTmi
         }
         
-        if !thirdTMI.isEmpty {
-            thirdTmiLabel.text = "•  " + thirdTMI
+        if let threeTmi = cardData.threeTmi, !threeTmi.isEmpty {
+            thirdTmiLabel.text = "•  " + threeTmi
         } else {
-            thirdTmiLabel.text = thirdTMI
+            thirdTmiLabel.text = cardData.threeTmi
         }
         
         shareButton.isHidden = !isShareable

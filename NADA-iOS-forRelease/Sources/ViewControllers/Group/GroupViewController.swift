@@ -88,8 +88,8 @@ class GroupViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         // 그룹 리스트 조회 서버 테스트
+        super.viewWillAppear(true)
         NotificationCenter.default.addObserver(self, selector: #selector(didRecieveDataNotification(_:)), name: Notification.Name.passDataToGroup, object: nil)
-        print("viewWillAppear")
         groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "")
 
     }
@@ -227,22 +227,7 @@ extension GroupViewController {
                 if let card = data as? CardClass {
                     guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
                     
-                    nextVC.cardDataModel = Card(cardID: card.card.cardID,
-                                                background: card.card.background,
-                                                title: card.card.title,
-                                                name: card.card.name,
-                                                birthDate: card.card.birthDate,
-                                                mbti: card.card.mbti,
-                                                instagram: card.card.instagram,
-                                                link: card.card.link,
-                                                cardDescription: card.card.cardDescription,
-                                                isMincho: card.card.isMincho,
-                                                isSoju: card.card.isSoju,
-                                                isBoomuk: card.card.isBoomuk,
-                                                isSauced: card.card.isSauced,
-                                                oneTmi: card.card.oneTmi,
-                                                twoTmi: card.card.twoTmi,
-                                                threeTmi: card.card.threeTmi)
+                    nextVC.cardDataModel = card.card
                     nextVC.groupId = self.groupId
                     nextVC.serverGroups = self.serverGroups
                     self.navigationController?.pushViewController(nextVC, animated: true)

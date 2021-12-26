@@ -19,6 +19,7 @@ class SplashViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        // postUserTokenReissue(request: UserTokenReissueRequset(accessToken: UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken)!, refreshToken: UserDefaults.standard.string(forKey: Const.UserDefaults.refreshToken)!))
     }
     
     // MARK: - Functions
@@ -36,4 +37,26 @@ class SplashViewController: UIViewController {
         self.present(loginVC, animated: true, completion: nil)
     }
     
+}
+
+// MARK: - Networks
+extension SplashViewController {
+    
+    func postUserTokenReissue(request: UserTokenReissueRequset) {
+        UserAPI.shared.userTokenReissue(request: request) { response in
+            switch response {
+            case .success:
+                print("postUserTokenReissue - Success")
+            case .requestErr(let message):
+                print("postUserTokenReissue - requestErr: \(message)")
+                self.presentToLogin()
+            case .pathErr:
+                print("postUserTokenReissue - pathErr")
+            case .serverErr:
+                print("postUserTokenReissue - serverErr")
+            case .networkFail:
+                print("postUserTokenReissue - networkFail")
+            }
+        }
+    }
 }

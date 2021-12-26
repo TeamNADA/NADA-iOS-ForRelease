@@ -12,7 +12,8 @@ import KakaoSDKCommon
 class CardListViewController: UIViewController {
         
     // MARK: - Properties
-    var cardItems: [CardListDataModel] = []
+    var cardItems: [CardList] = []
+    var newCardItems: [Ordered] = []
     
     // MARK: - IBOutlet Properties
     @IBOutlet weak var cardListTableView: UITableView!
@@ -22,8 +23,6 @@ class CardListViewController: UIViewController {
         super.viewDidLoad()
         
         navigationBackSwipeMotion()
-        
-        setCardList()
         setLongPressGesture()
         
         cardListTableView.register(CardListTableViewCell.nib(), forCellReuseIdentifier: "CardListTableViewCell")
@@ -31,8 +30,7 @@ class CardListViewController: UIViewController {
         cardListTableView.delegate = self
         cardListTableView.dataSource = self
         
-        // FIXME: - 카드 리스트 조회 서버 테스트
-//        cardListFetchWithAPI(userID: "nada", isList: true, offset: 0)
+        cardListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "", isList: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,17 +45,6 @@ class CardListViewController: UIViewController {
     }
     
     // MARK: - Functions
-    func setCardList() {
-        cardItems.append(contentsOf: [
-            CardListDataModel(title: "SOPT 28기 명함"),
-            CardListDataModel(title: "디자인 스터디 명함"),
-            CardListDataModel(title: "아이스브레이킹"),
-            CardListDataModel(title: "NADA 명함"),
-            CardListDataModel(title: "NADA 명함"),
-            CardListDataModel(title: "NADA 명함")
-        ])
-    }
-    
     func setLongPressGesture() {
         self.cardListTableView.allowsSelection = false
         
@@ -91,12 +78,16 @@ class CardListViewController: UIViewController {
         let index = cardListTableView.indexPath(for: cell)
         
         if index!.row > 0 {
-            cardListTableView.moveRow(at: index!, to: IndexPath(row: 0, section: 0))
             self.cardItems.insert(self.cardItems.remove(at: index!.row), at: 0)
             cardListTableView.reloadData()
+            cardListTableView.moveRow(at: index!, to: IndexPath(row: 0, section: 0))
             
-            // FIXME: - 카드 리스트 편집 서버 테스트
-            // self.putCardListEditWithAPI(request: CardListEditRequest(ordered: [Ordered(cardID: "cardA", priority: 1), Ordered(cardID: "cardB", priority: 0)]))
+            var count = 0
+            while cardItems.count > count {
+                newCardItems.append(Ordered(cardID: cardItems[count].cardID, priority: count))
+                count += 1
+            }
+            cardListEditWithAPI(request: CardListEditRequest(ordered: newCardItems))
         }
     }
 }
@@ -109,20 +100,24 @@ extension CardListViewController: UITableViewDelegate {
     
     // Swipe Action
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .normal, title: "삭제", handler: { (_ action, _ view, _ success) in
-            self.makeCancelDeleteAlert(title: "명함 삭제", message: "명함을 정말 삭제하시겠습니까?\n공유된 명함일 경우, 친구의 명함 모음에서도 해당 명함이 삭제됩니다.", cancelAction: { _ in
-                // 취소 눌렀을 때 액션이 들어갈 부분
-            }, deleteAction: { _ in
-                // FIXME: - 카드 삭제 서버 테스트
-                // self.deleteCardWithAPI(cardID: "cardA")
+        if indexPath.row == 0 {
+            return nil
+        } else {
+            let deleteAction = UIContextualAction(style: .normal, title: "삭제", handler: { (_ action, _ view, _ success) in
+                self.makeCancelDeleteAlert(title: "명함 삭제", message: "명함을 정말 삭제하시겠습니까?\n공유된 명함일 경우, 친구의 명함 모음에서도 해당 명함이 삭제됩니다.", cancelAction: { _ in
+                    // 취소 눌렀을 때 액션이 들어갈 부분
+                }, deleteAction: { _ in
+                    self.deleteCardWithAPI(cardID: self.cardItems[indexPath.row].cardID)
+                    self.cardListTableView.reloadData()
+                })
             })
-        })
-        deleteAction.backgroundColor = .red
-        
-        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
-        swipeActions.performsFirstActionWithFullSwipe = false
-        
-        return swipeActions
+            deleteAction.backgroundColor = .red
+            
+            let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
+            swipeActions.performsFirstActionWithFullSwipe = false
+            
+            return swipeActions
+        }
     }
 }
 
@@ -154,12 +149,13 @@ extension CardListViewController: UITableViewDataSource {
 
 // MARK: - Network
 extension CardListViewController {
-    func cardListFetchWithAPI(userID: String, isList: Bool, offset: Int) {
-        CardAPI.shared.cardListFetch(userID: userID, isList: isList, offset: offset) { response in
+    func cardListFetchWithAPI(userID: String, isList: Bool) {
+        CardAPI.shared.cardListFetch(userID: userID, isList: isList, offset: nil) { response in
             switch response {
             case .success(let data):
                 if let card = data as? CardListRequest {
-                    print(card)
+                    self.cardItems = card.cardDates
+                    self.cardListTableView.reloadData()
                 }
             case .requestErr(let message):
                 print("getCardListFetchWithAPI - requestErr", message)
@@ -195,6 +191,8 @@ extension CardListViewController {
             switch response {
             case .success(let data):
                 print(data)
+                self.cardListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "", isList: true)
+                self.cardListTableView.reloadData()
             case .requestErr(let message):
                 print("deleteGroupWithAPI - requestErr", message)
             case .pathErr:
@@ -211,7 +209,6 @@ extension CardListViewController {
 
 // MARK: - Extension: 테이블 뷰 Drag & Drop 기능
 extension CardListViewController {
-    // FIX: cyclomatic_complexity 워닝 발생 -> decision이 복잡해서라는데...일단 보류...
     @objc func longPressCalled(gestureRecognizer: UIGestureRecognizer) {
         guard let longPress = gestureRecognizer as? UILongPressGestureRecognizer else { return }
         let state = longPress.state
@@ -221,6 +218,7 @@ extension CardListViewController {
         // 최초 indexPath 변수
         struct Initial {
             static var initialIndexPath: IndexPath?
+            static var tabIndex: IndexPath?
         }
         
         // 스냅샷
@@ -237,6 +235,7 @@ extension CardListViewController {
         case UIGestureRecognizer.State.began:
             if indexPath!.row != 0 {
                 Initial.initialIndexPath = indexPath
+                Initial.tabIndex = indexPath
                 var cell: UITableViewCell? = UITableViewCell()
                 cell = cardListTableView.cellForRow(at: indexPath!)
                 
@@ -301,12 +300,16 @@ extension CardListViewController {
                     
                 }, completion: { (finished) -> Void in
                     if finished {
+                        var count = 0
+                        while self.cardItems.count > count {
+                            self.newCardItems.append(Ordered(cardID: self.cardItems[count].cardID, priority: count))
+                            count += 1
+                        }
+                        self.cardListEditWithAPI(request: CardListEditRequest(ordered: self.newCardItems))
+                        
                         Initial.initialIndexPath = nil
                         MyCell.cellSnapshot!.removeFromSuperview()
                         MyCell.cellSnapshot = nil
-                        
-                        // FIXME: - 카드 리스트 편집 서버 테스트
-                        // self.putCardListEditWithAPI(request: CardListEditRequest(ordered: [Ordered(cardID: "cardA", priority: 1), Ordered(cardID: "cardB", priority: 0)]))
                     }
                 })
             }

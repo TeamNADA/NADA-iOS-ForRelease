@@ -115,9 +115,6 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         qrcode.generateCode("ThisIsTeamNADAQrCode\(cardDataModel?.cardID ?? "")",
                             foregroundColor: .primary,
                             backgroundColor: .background)
-//        qrcode.generateCode("ThisIsTeamNADAQrCodeCardE",
-//                            foregroundColor: .primary,
-//                            backgroundColor: .background)
         qrImage.addSubview(qrcode)
     }
     

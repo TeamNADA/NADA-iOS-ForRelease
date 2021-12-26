@@ -45,6 +45,9 @@ class GroupEditViewController: UIViewController {
             let nextVC = AddGroupBottomSheetViewController()
                 .setTitle("그룹 추가")
                 .setHeight(184)
+            nextVC.returnToGroupEditViewController = {
+                self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "")
+            }
             nextVC.modalPresentationStyle = .overFullScreen
             self.present(nextVC, animated: false, completion: nil)
         }

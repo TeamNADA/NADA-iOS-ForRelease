@@ -101,6 +101,8 @@ extension AddGroupBottomSheetViewController {
         hideBottomSheetAndGoBack()
         groupAddWithAPI(groupRequest: GroupAddRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "", groupName: addGroupTextField.text ?? ""))
         
+        returnToGroupEditViewController?()
+        
         return true
     }
 }

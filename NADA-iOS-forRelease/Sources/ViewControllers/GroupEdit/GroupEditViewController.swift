@@ -10,7 +10,6 @@ import UIKit
 class GroupEditViewController: UIViewController {
     
     // MARK: - Properties
-    // var cardItems = ["SOPT", "동아리", "학교", "NADA NADA NADA NADA NADA"]
     var serverGroups: Groups?
     
     // MARK: - @IBOutlet Properties
@@ -25,6 +24,16 @@ class GroupEditViewController: UIViewController {
         groupEditTableView.delegate = self
         groupEditTableView.dataSource = self
         serverGroupList()
+        
+        // 그룹 삭제 서버 테스트
+        //        groupDeleteWithAPI(groupID: 1)
+        //                                                      groupName: "SOPT"))
+        //         그룹 수정 서버 테스트
+        //        groupEditWithAPI(groupRequest: GroupEditRequest(groupId: 5, groupName: "수정나다"))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "")
     }
     
     // MARK: - @IBAction Properties
@@ -33,7 +42,7 @@ class GroupEditViewController: UIViewController {
     }
     
     @IBAction func presentToAddGroupBottom(_ sender: UIButton) {
-        if serverGroups?.groups.count == 5 {
+        if serverGroups?.groups.count == 4 {
             makeOKAlert(title: "", message: "새로운 그룹은 최대 4개까지만 등록 가능합니다.")
         } else {
             let nextVC = AddGroupBottomSheetViewController()
@@ -57,7 +66,8 @@ extension GroupEditViewController: UITableViewDelegate {
             self.makeCancelDeleteAlert(title: "그룹 삭제", message: "해당 그룹에 있던 명함은\n미분류 그룹으로 이동합니다.", cancelAction: { _ in
                 // 취소 눌렀을 때 액션이 들어갈 부분
             }, deleteAction: { _ in
-                //
+                self.groupDeleteWithAPI(groupID: self.serverGroups?.groups[indexPath.row].groupID ?? 0)
+                self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "")
             })
         })
         deleteAction.backgroundColor = .red
@@ -95,8 +105,66 @@ extension GroupEditViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - Extensions
 extension GroupEditViewController {
     func serverGroupList() {
         serverGroups?.groups.remove(at: 0)
     }
+}
+
+// MARK: - Network
+extension GroupEditViewController {
+    func groupListFetchWithAPI(userID: String) {
+        GroupAPI.shared.groupListFetch(userID: userID) { response in
+            switch response {
+            case .success(let data):
+                if let group = data as? Groups {
+                    self.serverGroups = group
+                    self.groupEditTableView.reloadData()
+                }
+            case .requestErr(let message):
+                print("groupListFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("groupListFetchWithAPI - pathErr")
+            case .serverErr:
+                print("groupListFetchWithAPI - serverErr")
+            case .networkFail:
+                print("groupListFetchWithAPI - networkFail")
+            }
+        }
+    }
+    func groupDeleteWithAPI(groupID: Int) {
+        GroupAPI.shared.groupDelete(groupID: groupID) { response in
+            switch response {
+            case .success:
+                print("groupDeleteWithAPI - success")
+            case .requestErr(let message):
+                print("groupDeleteWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("groupDeleteWithAPI - pathErr")
+            case .serverErr:
+                print("groupDeleteWithAPI - serverErr")
+            case .networkFail:
+                print("groupDeleteWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func groupEditWithAPI(groupRequest: GroupEditRequest) {
+        GroupAPI.shared.groupEdit(groupRequest: groupRequest) { response in
+            switch response {
+            case .success:
+                print("groupEditWithAPI - success")
+            case .requestErr(let message):
+                print("groupEditWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("groupEditWithAPI - pathErr")
+            case .serverErr:
+                print("groupEditWithAPI - serverErr")
+            case .networkFail:
+                print("groupEditWithAPI - networkFail")
+            }
+        }
+    }
+    
 }

@@ -14,7 +14,6 @@
 		3909242F26FA15E800236C51 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909242E26FA15E800236C51 /* UIView+Extension.swift */; };
 		3918F66727719C4B00984648 /* UserTokenReissueRequset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3918F66627719C4B00984648 /* UserTokenReissueRequset.swift */; };
 		3927A7D7275F2A9B008BCD2A /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3927A7D6275F2A9B008BCD2A /* UserDefaults.swift */; };
-		39288E12273F52B20072F403 /* CardListLookUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39288E11273F52B20072F403 /* CardListLookUpRequest.swift */; };
 		392F7FB4274621F1008CDBF5 /* MoreListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392F7FB2274621F1008CDBF5 /* MoreListTableViewCell.swift */; };
 		392F7FB5274621F1008CDBF5 /* MoreListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 392F7FB3274621F1008CDBF5 /* MoreListTableViewCell.xib */; };
 		39317D2227646F8E00D87166 /* GroupNameEditBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39317D2127646F8E00D87166 /* GroupNameEditBottomSheetViewController.swift */; };
@@ -61,6 +60,7 @@
 		39D88B642745FDD400A72164 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39D88B632745FDD400A72164 /* TabBar.storyboard */; };
 		39D88B662745FE5F00A72164 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D88B652745FE5F00A72164 /* TabBarViewController.swift */; };
 		39D88B6B274600B100A72164 /* CommonBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D88B6A274600B100A72164 /* CommonBottomSheetViewController.swift */; };
+		39DC069A2778BEFB00C8ECCC /* CardListLookUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DC06992778BEFB00C8ECCC /* CardListLookUp.swift */; };
 		39F5A3D0271461EA00191F94 /* BackCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5A3CE271461EA00191F94 /* BackCardCell.swift */; };
 		39F5A3D1271461EA00191F94 /* BackCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39F5A3CF271461EA00191F94 /* BackCardCell.xib */; };
 		7705CF3E2752C7DB005195DF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7705CF3D2752C7DB005195DF /* CardView.swift */; };
@@ -152,7 +152,6 @@
 		3918F6652771682F00984648 /* NADA-iOS-forRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NADA-iOS-forRelease.entitlements"; sourceTree = "<group>"; };
 		3918F66627719C4B00984648 /* UserTokenReissueRequset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTokenReissueRequset.swift; sourceTree = "<group>"; };
 		3927A7D6275F2A9B008BCD2A /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
-		39288E11273F52B20072F403 /* CardListLookUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListLookUpRequest.swift; sourceTree = "<group>"; };
 		392F7FB2274621F1008CDBF5 /* MoreListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreListTableViewCell.swift; sourceTree = "<group>"; };
 		392F7FB3274621F1008CDBF5 /* MoreListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreListTableViewCell.xib; sourceTree = "<group>"; };
 		39317D2127646F8E00D87166 /* GroupNameEditBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNameEditBottomSheetViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +198,7 @@
 		39D88B632745FDD400A72164 /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		39D88B652745FE5F00A72164 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		39D88B6A274600B100A72164 /* CommonBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonBottomSheetViewController.swift; sourceTree = "<group>"; };
+		39DC06992778BEFB00C8ECCC /* CardListLookUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListLookUp.swift; sourceTree = "<group>"; };
 		39F5A3CE271461EA00191F94 /* BackCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackCardCell.swift; sourceTree = "<group>"; };
 		39F5A3CF271461EA00191F94 /* BackCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackCardCell.xib; sourceTree = "<group>"; };
 		4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NADA_iOS_forRelease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -678,7 +678,7 @@
 				3981148D273BEBB300E28630 /* CardListEditRequest.swift */,
 				3981148F273BEBCE00E28630 /* CardListRequest.swift */,
 				39584580273E951C009CC6B9 /* MainListRequest.swift */,
-				39288E11273F52B20072F403 /* CardListLookUpRequest.swift */,
+				39DC06992778BEFB00C8ECCC /* CardListLookUp.swift */,
 			);
 			path = Card;
 			sourceTree = "<group>";
@@ -1120,6 +1120,7 @@
 				3909242F26FA15E800236C51 /* UIView+Extension.swift in Sources */,
 				39523E09270184A700536900 /* CardListViewController.swift in Sources */,
 				F85711A5274A6B2200F59F0B /* CardCreationPreviewViewController.swift in Sources */,
+				39DC069A2778BEFB00C8ECCC /* CardListLookUp.swift in Sources */,
 				777FF89B27359B7800BF69D3 /* Groups.swift in Sources */,
 				77F47D93276C79B600414659 /* Header.swift in Sources */,
 				397B75102763A5F5004AEB03 /* OpenSourceViewController.swift in Sources */,
@@ -1193,7 +1194,6 @@
 				393E3345275F69EE00965BBF /* SplashViewController.swift in Sources */,
 				F8C83FB8272F9E3F0009DF0D /* UtilAPI.swift in Sources */,
 				F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */,
-				39288E12273F52B20072F403 /* CardListLookUpRequest.swift in Sources */,
 				397B75132763A916004AEB03 /* OpenSourceTableViewCell.swift in Sources */,
 				F811720027383097002742CF /* ChangeGroupRequest.swift in Sources */,
 			);

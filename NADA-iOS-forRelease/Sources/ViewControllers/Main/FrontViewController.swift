@@ -118,7 +118,7 @@ extension FrontViewController {
         CardAPI.shared.cardListFetch(userID: userID, isList: isList, offset: offset) { response in
             switch response {
             case .success(let data):
-                if let card = data as? CardListLookUpRequest {
+                if let card = data as? CardListLookUp {
                     print(card.cards, "⭐️")
                     self.cardDataList = card.cards
                     self.cardSwiper.reloadData()

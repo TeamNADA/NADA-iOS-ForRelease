@@ -165,6 +165,7 @@ extension QRScanViewController {
                                                     twoTmi: card.card.twoTmi,
                                                     threeTmi: card.card.threeTmi)
                         nextVC.modalPresentationStyle = .overFullScreen
+                        nextVC.status = .addWithQR
                         self.present(nextVC, animated: false, completion: nil)
                     }
                 }

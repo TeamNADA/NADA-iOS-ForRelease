@@ -66,6 +66,8 @@ class GroupViewController: UIViewController {
     var serverCardsWithBack: Card?
     var groupId: Int?
     
+    var selectedRow = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCell()
@@ -73,7 +75,8 @@ class GroupViewController: UIViewController {
 //         그룹 삭제 서버 테스트
 //        groupDeleteWithAPI(groupID: 1)
 //         그룹 추가 서버 테스트
-//        groupAddWithAPI(groupRequest: GroupAddRequest(userId: "nada2", groupName: "대학교"))
+//        groupAddWithAPI(groupRequest: GroupAddRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "",
+//                                                      groupName: "SOPT"))
 //         그룹 수정 서버 테스트
 //        groupEditWithAPI(groupRequest: GroupEditRequest(groupId: 5, groupName: "수정나다"))
 //         그룹 속 명함 조회 테스트
@@ -85,7 +88,8 @@ class GroupViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         // 그룹 리스트 조회 서버 테스트
-//        groupListFetchWithAPI(userID: UserConst.UserDefaults.userID)
+        NotificationCenter.default.addObserver(self, selector: #selector(didRecieveDataNotification(_:)), name: Notification.Name.passDataToGroup, object: nil)
+        print("viewWillAppear")
         groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "")
 
     }
@@ -107,6 +111,10 @@ extension GroupViewController {
         emptyView.isHidden = true
         navigationController?.navigationBar.isHidden = true
     }
+    
+    @objc func didRecieveDataNotification(_ notification: Notification) {
+        selectedRow = notification.object as? Int ?? 0
+    }
 }
 
 // MARK: - Network
@@ -119,10 +127,9 @@ extension GroupViewController {
                 if let group = data as? Groups {
                     self.serverGroups = group
                     self.groupCollectionView.reloadData()
-                    self.groupId = group.groups[0].groupID
+                    self.groupId = group.groups[self.selectedRow].groupID
                     if !group.groups.isEmpty {
-//                        self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada2", groupId: group.groups[0].groupID, offset: 0))
-                        self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "", groupId: group.groups[0].groupID, offset: 0))
+                        self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "", groupId: group.groups[self.selectedRow].groupID, offset: 0))
                     }
                 }
             case .requestErr(let message):
@@ -237,6 +244,7 @@ extension GroupViewController {
                                                 twoTmi: card.card.twoTmi,
                                                 threeTmi: card.card.threeTmi)
                     nextVC.groupId = self.groupId
+                    nextVC.serverGroups = self.serverGroups
                     self.navigationController?.pushViewController(nextVC, animated: true)
                 }
             case .requestErr(let message):
@@ -279,7 +287,7 @@ extension GroupViewController: UICollectionViewDataSource {
             
             groupCell.groupName.text = serverGroups?.groups[indexPath.row].groupName
             
-            if indexPath.row == 0 {
+            if indexPath.row == selectedRow {
                 collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
             }
             return groupCell
@@ -314,8 +322,12 @@ extension GroupViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView {
         case groupCollectionView:
+            selectedRow = indexPath.row
             groupId = serverGroups?.groups[indexPath.row].groupID
-            cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada2", groupId: serverGroups?.groups[indexPath.row].groupID ?? 0, offset: 0))
+            cardListInGroupWithAPI(cardListInGroupRequest:
+                                    CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "",
+                                                           groupId: serverGroups?.groups[indexPath.row].groupID ?? 0,
+                                                           offset: 0))
         case cardsCollectionView:
             cardDetailFetchWithAPI(cardID: serverCards?.cards[indexPath.row].cardID ?? "")
         default:

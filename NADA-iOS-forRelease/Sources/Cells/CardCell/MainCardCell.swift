@@ -52,15 +52,7 @@ extension MainCardCell {
         
         frontCard.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
         guard let cardDataModel = cardDataModel else { return }
-        frontCard.initCell(UIImage(named: cardDataModel.background),
-                           cardDataModel.title,
-                           cardDataModel.cardDescription ?? "",
-                           cardDataModel.name,
-                           cardDataModel.birthDate,
-                           cardDataModel.mbti,
-                           cardDataModel.instagram ?? "",
-                           cardDataModel.link ?? "",
-                           isShareable: isShareable ?? false)
+        frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable ?? false)
         
         contentView.addSubview(frontCard)
     }
@@ -84,15 +76,7 @@ extension MainCardCell {
             guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return }
             backCard.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
             guard let cardDataModel = cardDataModel else { return }
-            backCard.initCell(UIImage(named: cardDataModel.background),
-                              cardDataModel.isMincho,
-                              cardDataModel.isSoju,
-                              cardDataModel.isBoomuk,
-                              cardDataModel.isSauced,
-                              cardDataModel.oneTmi ?? "",
-                              cardDataModel.twoTmi ?? "",
-                              cardDataModel.threeTmi ?? "",
-                              isShareable: isShareable ?? false)
+            backCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable ?? false)
             
             contentView.addSubview(backCard)
             isFront = false
@@ -101,15 +85,7 @@ extension MainCardCell {
             
             frontCard.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
             guard let cardDataModel = cardDataModel else { return }
-            frontCard.initCell(UIImage(named: cardDataModel.background),
-                               cardDataModel.title,
-                               cardDataModel.cardDescription ?? "",
-                               cardDataModel.name,
-                               cardDataModel.birthDate,
-                               cardDataModel.mbti,
-                               cardDataModel.instagram ?? "",
-                               cardDataModel.link ?? "",
-                               isShareable: isShareable ?? false)
+            frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable ?? false)
             
             contentView.addSubview(frontCard)
             isFront = true

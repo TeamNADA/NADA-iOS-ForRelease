@@ -10,8 +10,11 @@ import UIKit
 class CardShareBottomSheetViewController: CommonBottomSheetViewController {
 
     // MARK: - Properties
+
     var cardID: String? = "1D856A"
-    
+    var isShareable = false
+    var cardDataModel: Card?
+
     private let qrImage: UIImageView = {
         // 여기를 만든 QR이미지로 바꿔주시면 됩니당
         let imageView = UIImageView()
@@ -107,13 +110,82 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         ])
     }
     
+    private func setImageWriteToSavedPhotosAlbum() {
+        let frontCardImage = setFrontCardImage()
+        let backCardImage = setBackCardImage()
+        
+        UIImageWriteToSavedPhotosAlbum(frontCardImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+        UIImageWriteToSavedPhotosAlbum(backCardImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
+    
+    // FIXME: - 명함 저장시에도 테두리 둥글게 가능한가 찾기
+    private func setFrontCardImage() -> UIImage {
+        guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return UIImage() }
+        
+        frontCard.frame = CGRect(x: 0, y: 0, width: 327, height: 540)
+        guard let cardDataModel = cardDataModel else { return UIImage() }
+        frontCard.initCell(UIImage(named: cardDataModel.background),
+                           cardDataModel.title,
+                           cardDataModel.cardDescription,
+                           cardDataModel.name,
+                           cardDataModel.birthDate,
+                           cardDataModel.mbti,
+                           cardDataModel.instagram ,
+                           cardDataModel.link,
+                           isShareable: isShareable)
+        
+        let frontCardView = UIView(frame: CGRect(x: 0, y: 0, width: 327, height: 540))
+        frontCardView.addSubview(frontCard)
+        
+        let renderer = UIGraphicsImageRenderer(size: frontCardView.bounds.size)
+        let frontImage = renderer.image { _ in
+            frontCardView.drawHierarchy(in: frontCardView.bounds, afterScreenUpdates: true)
+        }
+        
+        return frontImage
+    }
+    private func setBackCardImage() -> UIImage {
+        guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return UIImage() }
+        backCard.frame = CGRect(x: 0, y: 0, width: 327, height: 540)
+        guard let cardDataModel = cardDataModel else { return UIImage() }
+        backCard.initCell(UIImage(named: cardDataModel.background),
+                          cardDataModel.isMincho,
+                          cardDataModel.isSoju,
+                          cardDataModel.isBoomuk,
+                          cardDataModel.isSauced,
+                          cardDataModel.oneTmi,
+                          cardDataModel.twoTmi,
+                          cardDataModel.threeTmi,
+                          isShareable: isShareable)
+
+        let backCardView = UIView(frame: CGRect(x: 0, y: 0, width: 327, height: 540))
+        backCardView.addSubview(backCard)
+        
+        let renderer = UIGraphicsImageRenderer(size: backCardView.bounds.size)
+        let backImage = renderer.image { _ in
+            backCardView.drawHierarchy(in: backCardView.bounds, afterScreenUpdates: true)
+        }
+        
+        return backImage
+    }
+    
+    // MARK: - @objc Methods
+    
     @objc func copyId() {
         UIPasteboard.general.string = cardID
         showToast(message: "명함 아이디가 복사되었습니다.", font: UIFont.button02, view: "copyID")
     }
     
     @objc func saveAsImage() {
-        showToast(message: "갤러리에 저장되었습니다.", font: UIFont.button02, view: "saveImage")
+        setImageWriteToSavedPhotosAlbum()
     }
 
+    @objc
+    private func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeMutableRawPointer) {
+        if let error = error {
+            print(error.localizedDescription)
+        } else {
+            showToast(message: "갤러리에 저장되었습니다.", font: UIFont.button02, view: "saveImage")
+        }
+    }
 }

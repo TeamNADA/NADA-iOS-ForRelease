@@ -44,6 +44,7 @@ class CardDetailViewController: UIViewController {
     
     private var isFront = true
     var status: Status = .group
+    var serverGroups: Groups?
     var groupId: Int?
     
     override func viewDidLoad() {
@@ -54,6 +55,9 @@ class CardDetailViewController: UIViewController {
         setGestureRecognizer()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(didRecieveDataNotification(_:)), name: Notification.Name.passDataToDetail, object: nil)
+    }
 }
 
 extension CardDetailViewController {
@@ -94,6 +98,9 @@ extension CardDetailViewController {
                         .setTitle("그룹선택")
                         .setHeight(386)
             nextVC.status = .detail
+            nextVC.groupId = self.groupId
+            nextVC.serverGroups = self.serverGroups
+            nextVC.cardDataModel = self.cardDataModel
             nextVC.modalPresentationStyle = .overFullScreen
             self.present(nextVC, animated: false, completion: nil)
         })
@@ -118,15 +125,8 @@ extension CardDetailViewController {
         guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
         
         frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
-        frontCard.initCell(cardDataModel?.background ?? "",
-                           cardDataModel?.title ?? "",
-                           cardDataModel?.cardDescription ?? "",
-                           cardDataModel?.name ?? "",
-                           cardDataModel?.birthDate ?? "",
-                           cardDataModel?.mbti ?? "",
-                           cardDataModel?.instagram ?? "",
-                           cardDataModel?.link ?? "",
-                           isShareable: isShareable)
+        guard let cardDataModel = cardDataModel else { return }
+        frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
         
         cardView.addSubview(frontCard)
     }
@@ -142,20 +142,17 @@ extension CardDetailViewController {
     
     // MARK: - @objc Methods
     
+    @objc func didRecieveDataNotification(_ notification: Notification) {
+        groupId = notification.object as? Int ?? 0
+    }
+    
     @objc
     private func transitionCardWithAnimation(_ swipeGesture: UISwipeGestureRecognizer) {
         if isFront {
             guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return }
             backCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
-            backCard.initCell(cardDataModel?.background ?? "",
-                              cardDataModel?.isMincho ?? true,
-                              cardDataModel?.isSoju ?? true,
-                              cardDataModel?.isBoomuk ?? true,
-                              cardDataModel?.isSauced ?? true,
-                              cardDataModel?.oneTmi ?? "",
-                              cardDataModel?.twoTmi ?? "",
-                              cardDataModel?.threeTmi ?? "",
-                              isShareable: isShareable)
+            guard let cardDataModel = cardDataModel else { return }
+            backCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
             
             cardView.addSubview(backCard)
             isFront = false
@@ -163,15 +160,8 @@ extension CardDetailViewController {
             guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
             
             frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
-            frontCard.initCell(cardDataModel?.background ?? "",
-                               cardDataModel?.title ?? "",
-                               cardDataModel?.cardDescription ?? "",
-                               cardDataModel?.name ?? "",
-                               cardDataModel?.birthDate ?? "",
-                               cardDataModel?.mbti ?? "",
-                               cardDataModel?.instagram ?? "",
-                               cardDataModel?.link ?? "",
-                               isShareable: isShareable)
+            guard let cardDataModel = cardDataModel else { return }
+            frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
             
             cardView.addSubview(frontCard)
             isFront = true

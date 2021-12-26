@@ -28,21 +28,6 @@ class FrontViewController: UIViewController {
 //        cardListFetchWithAPI(userID: "nada", isList: false, offset: 0)
     }
     
-    // FIXME: - qa테스트
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let nextVC = FirstCardAlertBottomSheetViewController()
-            .setTitle("""
-                      🎉
-                      첫 명함이 생성되었어요!
-                      """)
-            .setHeight(587)
-        nextVC.modalPresentationStyle = .overFullScreen
-        present(nextVC, animated: true, completion: nil)
-        setMain()
-    }
-    
     // MARK: - @IBAction Properties
     // 명함 생성 뷰로 화면 전환
     @IBAction func presentToCardCreationView(_ sender: Any) {
@@ -81,13 +66,18 @@ extension FrontViewController {
         }
     }
     private func setNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(didRecievePresentCardShare(_:)), name: Notification.Name.presentCardShare, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didRecievePresentCardShare(_:)), name: .presentCardShare, object: nil)
     }
     
     @objc func didRecievePresentCardShare(_ notification: Notification) {
         let nextVC = CardShareBottomSheetViewController()
             .setTitle("명함공유")
             .setHeight(404)
+
+        if let cardData = notification.object as? Card {
+            nextVC.cardDataModel = cardData
+        }
+        
         nextVC.modalPresentationStyle = .overFullScreen
         self.present(nextVC, animated: false, completion: nil)
     }

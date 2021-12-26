@@ -14,5 +14,6 @@ extension Const {
         static let refreshToken = "refreshToken"
         static let userID = "userID"
         static let isFirstCard = "isFirstCard"
+        static let isOnboarding = "isOnboarding"
     }
 }

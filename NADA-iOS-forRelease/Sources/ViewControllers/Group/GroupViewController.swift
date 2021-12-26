@@ -224,26 +224,10 @@ extension GroupViewController {
         CardAPI.shared.cardDetailFetch(cardID: cardID) { response in
             switch response {
             case .success(let data):
-                if let card = data as? CardClass {
+                if let card = data as? Card {
                     guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
                     
-                    nextVC.cardDataModel = Card(cardID: card.card.cardID,
-                                                author: card.card.author,
-                                                background: card.card.background,
-                                                title: card.card.title,
-                                                name: card.card.name,
-                                                birthDate: card.card.birthDate,
-                                                mbti: card.card.mbti,
-                                                instagram: card.card.instagram,
-                                                link: card.card.link,
-                                                cardDescription: card.card.cardDescription,
-                                                isMincho: card.card.isMincho,
-                                                isSoju: card.card.isSoju,
-                                                isBoomuk: card.card.isBoomuk,
-                                                isSauced: card.card.isSauced,
-                                                oneTmi: card.card.oneTmi,
-                                                twoTmi: card.card.twoTmi,
-                                                threeTmi: card.card.threeTmi)
+                    nextVC.cardDataModel = card
                     nextVC.groupId = self.groupId
                     nextVC.serverGroups = self.serverGroups
                     self.navigationController?.pushViewController(nextVC, animated: true)

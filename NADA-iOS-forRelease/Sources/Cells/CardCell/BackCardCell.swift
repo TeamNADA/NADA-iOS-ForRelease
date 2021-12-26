@@ -95,20 +95,20 @@ extension BackCardCell {
         friedChickenImageView.image = cardData.isSauced == false ?
         UIImage(named: "iconTasteOnFried") : UIImage(named: "iconTasteOffFried")
         
-        if !cardData.oneTmi.isEmpty {
-            firstTmiLabel.text = "•  " + cardData.oneTmi
+        if let oneTmi = cardData.oneTmi, !oneTmi.isEmpty {
+            firstTmiLabel.text = "•  " + oneTmi
         } else {
             firstTmiLabel.text = cardData.oneTmi
         }
         
-        if !cardData.twoTmi.isEmpty {
-            secondTmiLabel.text = "•  " + cardData.twoTmi
+        if let twoTmi = cardData.twoTmi, !twoTmi.isEmpty {
+            secondTmiLabel.text = "•  " + twoTmi
         } else {
             secondTmiLabel.text = cardData.twoTmi
         }
         
-        if !cardData.threeTmi.isEmpty {
-            thirdTmiLabel.text = "•  " + cardData.threeTmi
+        if let threeTmi = cardData.threeTmi, !threeTmi.isEmpty {
+            thirdTmiLabel.text = "•  " + threeTmi
         } else {
             thirdTmiLabel.text = cardData.threeTmi
         }

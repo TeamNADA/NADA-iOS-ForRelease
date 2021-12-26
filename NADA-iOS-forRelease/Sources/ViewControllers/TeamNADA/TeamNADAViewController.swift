@@ -11,7 +11,6 @@ import VerticalCardSwiper
 class TeamNADAViewController: UIViewController {
     
     // MARK: - Properteis
-    
     var cardDataList: [Card]? = [Card(cardID: "card",
                                       author: "",
                                       background: "imgYun",
@@ -123,9 +122,7 @@ class TeamNADAViewController: UIViewController {
         super.viewDidLoad()
         
         navigationBackSwipeMotion()
-        setUI()
         setDelegate()
-        
     }
     
     // MARK: - @IBAction Properties
@@ -137,11 +134,6 @@ class TeamNADAViewController: UIViewController {
 
 // MARK: - Extensions
 extension TeamNADAViewController {
-    
-    private func setUI() {
-        
-    }
-    
     func navigationBackSwipeMotion() {
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }

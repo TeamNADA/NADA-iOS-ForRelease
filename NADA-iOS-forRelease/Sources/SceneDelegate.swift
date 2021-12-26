@@ -67,6 +67,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 
                 if self.defaults.string(forKey: Const.UserDefaults.accessToken) != "" {
                     rootViewController = UIStoryboard(name: Const.Storyboard.Name.tabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.tabBarViewController)
+                } else {
+                    rootViewController = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil)
+                        .instantiateViewController(identifier: Const.ViewController.Identifier.loginViewController)
                 }
                 self.window?.rootViewController = rootViewController
                 self.window?.makeKeyAndVisible()

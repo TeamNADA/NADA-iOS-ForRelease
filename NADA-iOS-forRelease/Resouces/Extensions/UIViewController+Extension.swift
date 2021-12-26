@@ -70,12 +70,12 @@ extension UIViewController {
         switch view {
         case "QRScan":
             toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 85,
-                                                   y: self.view.frame.size.height - 230,
-                                                   width: 170, height: 35))
+                                               y: self.view.frame.size.height - 230,
+                                               width: 170, height: 35))
         case "copyID":
             toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 100,
-                                                   y: self.view.frame.size.height/2,
-                                                   width: 200, height: 35))
+                                               y: self.view.frame.size.height/2,
+                                               width: 200, height: 35))
         case "saveImage":
             toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 85,
                                                    y: self.view.frame.size.height/2,
@@ -86,8 +86,8 @@ extension UIViewController {
                                                    width: 240, height: 35))
         default:
             toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 85,
-                                                   y: self.view.frame.size.height - 230,
-                                                   width: 170, height: 35))
+                                               y: self.view.frame.size.height - 230,
+                                               width: 170, height: 35))
         }
         
         toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
@@ -103,4 +103,16 @@ extension UIViewController {
                        options: .curveEaseOut, animations: { toastLabel.alpha = 0.0 },
                        completion: {_ in toastLabel.removeFromSuperview() })
     }
+    
+    // MARK: UIWindow의 rootViewController를 변경하여 화면전환
+    func changeRootViewController(_ viewControllerToPresent: UIViewController) {
+        if let window = UIApplication.shared.windows.first {
+            window.rootViewController = viewControllerToPresent
+            UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil)
+        } else {
+            viewControllerToPresent.modalPresentationStyle = .overFullScreen
+            self.present(viewControllerToPresent, animated: true, completion: nil)
+        }
+    }
+    
 }

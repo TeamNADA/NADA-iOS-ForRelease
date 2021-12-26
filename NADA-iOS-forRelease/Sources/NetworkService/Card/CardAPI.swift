@@ -47,18 +47,32 @@ public class CardAPI {
         }
     }
     
-    func cardListFetch(userID: String, isList: Bool, offset: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func cardListFetch(userID: String, isList: Bool, offset: Int?, completion: @escaping (NetworkResult<Any>) -> Void) {
         cardProvider.request(.cardListFetch(userID: userID, isList: isList, offset: offset)) { (result) in
-            switch result {
-            case .success(let response):
-                let statusCode = response.statusCode
-                let data = response.data
-                
-                let networkResult = self.judgeCardListFetchStatus(by: statusCode, data)
-                completion(networkResult)
-                
-            case .failure(let err):
-                print(err)
+            if isList == true {
+                switch result {
+                case .success(let response):
+                    let statusCode = response.statusCode
+                    let data = response.data
+                    
+                    let networkResult = self.judgeCardListFetchStatus(by: statusCode, data)
+                    completion(networkResult)
+                    
+                case .failure(let err):
+                    print(err)
+                }
+            } else {
+                switch result {
+                case .success(let response):
+                    let statusCode = response.statusCode
+                    let data = response.data
+                    
+                    let networkResult = self.judgeMainListFetchStatus(by: statusCode, data)
+                    completion(networkResult)
+                    
+                case .failure(let err):
+                    print(err)
+                }
             }
         }
     }
@@ -98,7 +112,27 @@ public class CardAPI {
     private func judgeCardDetailFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<CardClass>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<Card>.self, from: data)
+        else {
+            return .pathErr
+        }
+        
+        switch statusCode {
+        case 200:
+            return .success(decodedData.data ?? "None-Data")
+        case 400..<500:
+            return .requestErr(decodedData.msg)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    private func judgeMainListFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
+        
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(GenericResponse<CardListLookUpRequest>.self, from: data)
         else {
             return .pathErr
         }
@@ -118,7 +152,7 @@ public class CardAPI {
     private func judgeCardListFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<CardListLookUpRequest>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<CardListRequest>.self, from: data)
         else {
             return .pathErr
         }

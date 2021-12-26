@@ -7,12 +7,17 @@
 
 import Foundation
 
-// MARK: - CardList
+// MARK: - CardListRequest
 struct CardListRequest: Codable {
-    let cardID, title, createDate: String
+    let cardDates: [CardList]
+}
+
+// MARK: - CardList
+struct CardList: Codable {
+    let cardID, title: String
 
     enum CodingKeys: String, CodingKey {
         case cardID = "cardId"
-        case title, createDate
+        case title
     }
 }

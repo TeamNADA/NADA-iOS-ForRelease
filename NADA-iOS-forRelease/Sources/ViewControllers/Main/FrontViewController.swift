@@ -92,7 +92,7 @@ extension FrontViewController {
     private func setCardDataModelList() {
 //        guard let userID = userID else { return }
 //        cardListFetchWithAPI(userID: userID, isList: false, offset: offset)
-        cardListFetchWithAPI(userID: "NADA2", isList: false, offset: offset)
+        cardListFetchWithAPI(userID: "nada2", isList: false, offset: offset)
     }
 }
 
@@ -140,15 +140,16 @@ extension FrontViewController: VerticalCardSwiperDatasource {
 // MARK: - Network
 extension FrontViewController {
     func cardListFetchWithAPI(userID: String, isList: Bool, offset: Int) {
-        CardAPI.shared.cardListFetch(userID: "NADA2", isList: isList, offset: offset) { response in
+        CardAPI.shared.cardListFetch(userID: "nada2", isList: isList, offset: offset) { response in
             switch response {
             case .success(let data):
+                self.isInfiniteScroll = true
+                
                 if let cardListLookUpRequest = data as? CardListLookUpRequest {
                     print("✅cardListLookUpRequest", cardListLookUpRequest)
                     self.cardDataList?.append(contentsOf: cardListLookUpRequest.cards)
                     
                     self.cardSwiper.reloadData()
-                    self.isInfiniteScroll = true
                 }
             case .requestErr(let message):
                 print("cardListFetchWithAPI - requestErr: \(message)")

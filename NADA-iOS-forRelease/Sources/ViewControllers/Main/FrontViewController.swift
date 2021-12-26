@@ -120,7 +120,7 @@ extension FrontViewController: VerticalCardSwiperDatasource {
         if cardDataList?.count != 0 {
             guard let cell = verticalCardSwiperView.dequeueReusableCell(withReuseIdentifier: Const.Xib.mainCardCell, for: index) as? MainCardCell else { return CardCell() }
             guard let cardDataList = cardDataList else { return CardCell() }
-            UserDefaults.standard.set(cardDataList[0].cardID, forKey: Const.UserDefaults.firstCardID)
+            UserDefaults.standard.set(cardDataList[0].cardID, forKey: Const.UserDefaultsKey.firstCardID)
             cell.initCell(cardDataModel: cardDataList[index])
             cell.isShareable = true
             cell.setFrontCard()

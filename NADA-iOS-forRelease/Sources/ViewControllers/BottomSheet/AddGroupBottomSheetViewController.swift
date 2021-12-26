@@ -99,7 +99,7 @@ extension AddGroupBottomSheetViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         hideBottomSheetAndGoBack()
-        groupAddWithAPI(groupRequest: GroupAddRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "", groupName: addGroupTextField.text ?? ""))
+        groupAddWithAPI(groupRequest: GroupAddRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "", groupName: addGroupTextField.text ?? ""))
         returnToGroupEditViewController?()
         
         return true

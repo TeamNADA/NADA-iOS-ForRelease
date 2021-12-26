@@ -46,7 +46,7 @@ class GroupEditViewController: UIViewController {
                 .setTitle("그룹 추가")
                 .setHeight(184)
             nextVC.returnToGroupEditViewController = {
-                self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "")
+                self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
             }
             nextVC.modalPresentationStyle = .overFullScreen
             self.present(nextVC, animated: false, completion: nil)
@@ -85,7 +85,7 @@ extension GroupEditViewController: UITableViewDelegate {
         nextVC.modalPresentationStyle = .overFullScreen
         nextVC.text = serverGroups?.groups[indexPath.row].groupName ?? ""
         nextVC.returnToGroupEditViewController = {
-            self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "")
+            self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
         }
         nextVC.nowGroup = serverGroups?.groups[indexPath.row]
         self.present(nextVC, animated: false, completion: nil)
@@ -143,7 +143,7 @@ extension GroupEditViewController {
             switch response {
             case .success:
                 print("groupDeleteWithAPI - success")
-                self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "")
+                self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
                 self.groupEditTableView.reloadData()
             case .requestErr(let message):
                 print("groupDeleteWithAPI - requestErr: \(message)")

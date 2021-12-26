@@ -53,7 +53,7 @@ class LoginViewController: UIViewController {
             authorizationButton.heightAnchor.constraint(equalToConstant: 48)
         ])
         
-        let isDark = UserDefaults.standard.bool(forKey: Const.UserDefaults.darkModeState)
+        let isDark = UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.darkModeState)
         
         if let window = UIApplication.shared.windows.first {
             if #available(iOS 13.0, *) {
@@ -69,7 +69,7 @@ class LoginViewController: UIViewController {
         let nextVC = UIStoryboard(name: Const.Storyboard.Name.tabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.tabBarViewController)
         nextVC.modalPresentationStyle = .overFullScreen
         self.present(nextVC, animated: true) {
-            UserDefaults.standard.set(false, forKey: Const.UserDefaults.isOnboarding)
+            UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isOnboarding)
         }
     }
     
@@ -210,10 +210,10 @@ extension LoginViewController {
             case .success(let loginData):
                 print("postUserSignUpWithAPI - success")
                 if let userData = loginData as? UserWithTokenRequest {
-                    UserDefaults.standard.set(userData.user.userID, forKey: Const.UserDefaults.userID)
+                    UserDefaults.standard.set(userData.user.userID, forKey: Const.UserDefaultsKey.userID)
                     if let tokenData = userData.user.token as? Token {
-                        UserDefaults.standard.set(tokenData.accessToken, forKey: Const.UserDefaults.accessToken)
-                        UserDefaults.standard.set(tokenData.refreshToken, forKey: Const.UserDefaults.refreshToken)
+                        UserDefaults.standard.set(tokenData.accessToken, forKey: Const.UserDefaultsKey.accessToken)
+                        UserDefaults.standard.set(tokenData.refreshToken, forKey: Const.UserDefaultsKey.refreshToken)
                     }
                 }
             case .requestErr(let message):

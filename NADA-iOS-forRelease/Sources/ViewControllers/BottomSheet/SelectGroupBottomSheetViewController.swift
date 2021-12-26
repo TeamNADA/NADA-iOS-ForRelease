@@ -73,12 +73,12 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
         switch status {
         case .detail:
             changeGroupWithAPI(request: ChangeGroupRequest(cardID: cardDataModel?.cardID ?? "",
-                                                           userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "",
+                                                           userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "",
                                                            groupID: groupId ?? 0,
                                                            newGroupID: selectedGroup))
         case .add, .addWithQR:
             cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardId: cardDataModel?.cardID ?? "",
-                                                                     userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "",
+                                                                     userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "",
                                                                      groupId: selectedGroup))
         case .group:
             return

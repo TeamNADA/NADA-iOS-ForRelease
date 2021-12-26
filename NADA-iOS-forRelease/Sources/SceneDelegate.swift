@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         
-        let isDark = defaults.bool(forKey: Const.UserDefaults.darkModeState)
+        let isDark = defaults.bool(forKey: Const.UserDefaultsKey.darkModeState)
         
         // 시스템 무시하고 UserDefault 상태에 따라 화면 전체에 다크/라이트 모드를 결정
         if let window = UIApplication.shared.windows.first {
@@ -39,8 +39,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // 스플래시 지연시간동안 자동 로그인 작업처리
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-            let acToken = self.defaults.string(forKey: Const.UserDefaults.accessToken)
-            let rfToken = self.defaults.string(forKey: Const.UserDefaults.refreshToken)
+            let acToken = self.defaults.string(forKey: Const.UserDefaultsKey.accessToken)
+            let rfToken = self.defaults.string(forKey: Const.UserDefaultsKey.refreshToken)
             
             self.postUserTokenReissue(request: UserTokenReissueRequset(accessToken: acToken ?? "", refreshToken: rfToken ?? ""))
         }
@@ -65,7 +65,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 var rootViewController = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil)
                     .instantiateViewController(identifier: Const.ViewController.Identifier.loginViewController)
                 
-                if self.defaults.string(forKey: Const.UserDefaults.accessToken) != "" {
+                if self.defaults.string(forKey: Const.UserDefaultsKey.accessToken) != "" {
                     rootViewController = UIStoryboard(name: Const.Storyboard.Name.tabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.tabBarViewController)
                 } else {
                     rootViewController = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil)
@@ -90,7 +90,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // MARK: - Methods
     
     private func presentToLoginViewController() {
-        if UserDefaults.standard.object(forKey: Const.UserDefaults.isOnboarding) != nil {
+        if UserDefaults.standard.object(forKey: Const.UserDefaultsKey.isOnboarding) != nil {
             let rootViewController = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(identifier: Const.ViewController.Identifier.loginViewController)
             self.window?.rootViewController = rootViewController
             self.window?.makeKeyAndVisible()

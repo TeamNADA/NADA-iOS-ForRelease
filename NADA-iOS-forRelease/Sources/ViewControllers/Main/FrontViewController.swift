@@ -67,7 +67,7 @@ extension FrontViewController {
         cardSwiper.register(nib: EmptyCardCell.nib(), forCellWithReuseIdentifier: Const.Xib.emptyCardCell)
         
     }
-    
+
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(didRecievePresentCardShare(_:)), name: .presentCardShare, object: nil)
     }
@@ -117,14 +117,14 @@ extension FrontViewController: VerticalCardSwiperDelegate {
 // MARK: - VerticalCardSwiperDatasource
 extension FrontViewController: VerticalCardSwiperDatasource {
     func numberOfCards(verticalCardSwiperView: VerticalCardSwiperView) -> Int {
-        guard let count = cardDataList?.count else { return 0 }
+        let count = cardDataList.count
         return count == 0 ? 1 : count
     }
     
     func cardForItemAt(verticalCardSwiperView: VerticalCardSwiperView, cardForItemAt index: Int) -> CardCell {
-        if cardDataList?.count != 0 {
+        if cardDataList.count != 0 {
             guard let cell = verticalCardSwiperView.dequeueReusableCell(withReuseIdentifier: Const.Xib.mainCardCell, for: index) as? MainCardCell else { return CardCell() }
-            guard let cardDataList = cardDataList else { return CardCell() }
+            let cardDataList = cardDataList
             cell.initCell(cardDataModel: cardDataList[index])
             cell.isShareable = true
             cell.setFrontCard()
@@ -135,6 +135,7 @@ extension FrontViewController: VerticalCardSwiperDatasource {
             return cell
         }
     }
+    
 }
 
 // MARK: - Network
@@ -146,7 +147,8 @@ extension FrontViewController {
                 self.isInfiniteScroll = true
                 
                 if let cardListLookUpRequest = data as? CardListLookUpRequest {
-                    print("✅cardListLookUpRequest", cardListLookUpRequest)
+                    // FIXME: - 로그 확인용.
+//                    print("✅cardListLookUpRequest", cardListLookUpRequest)
                     self.cardDataList?.append(contentsOf: cardListLookUpRequest.cards)
                     
                     self.cardSwiper.reloadData()

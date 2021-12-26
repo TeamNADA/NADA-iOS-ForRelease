@@ -191,7 +191,7 @@ extension CardListViewController {
             switch response {
             case .success(let data):
                 print(data)
-                self.cardListFetchWithAPI(userID: "nada2", isList: true)
+                self.cardListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "", isList: true)
                 self.cardListTableView.reloadData()
             case .requestErr(let message):
                 print("deleteGroupWithAPI - requestErr", message)

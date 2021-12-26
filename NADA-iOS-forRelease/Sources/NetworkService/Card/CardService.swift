@@ -11,7 +11,7 @@ import Moya
 enum CardService {
     case cardDetailFetch(cardID: String)
     case cardCreation(request: CardCreationRequest, image: UIImage)
-    case cardListFetch(userID: String, isList: Bool, offset: Int)
+    case cardListFetch(userID: String, isList: Bool, offset: Int?)
     case cardListEdit(request: CardListEditRequest)
     case cardDelete(cardID: String)
 }
@@ -102,8 +102,8 @@ extension CardService: TargetType {
         case .cardListFetch(let userID, let isList, let offset):
             return .requestParameters(parameters: ["userId": userID,
                                                    "list": isList,
-                                                   "offset": offset
-            ], encoding: URLEncoding.queryString)
+                                                   "offset": offset ?? ""],
+                                      encoding: URLEncoding.queryString)
         case .cardListEdit(let requestModel):
             return .requestJSONEncodable(requestModel)
         }

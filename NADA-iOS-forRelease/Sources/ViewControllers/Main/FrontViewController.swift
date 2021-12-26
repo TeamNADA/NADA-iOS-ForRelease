@@ -117,14 +117,15 @@ extension FrontViewController: VerticalCardSwiperDelegate {
 // MARK: - VerticalCardSwiperDatasource
 extension FrontViewController: VerticalCardSwiperDatasource {
     func numberOfCards(verticalCardSwiperView: VerticalCardSwiperView) -> Int {
+        guard let cardDataList = cardDataList else { return 0 }
         let count = cardDataList.count
         return count == 0 ? 1 : count
     }
     
     func cardForItemAt(verticalCardSwiperView: VerticalCardSwiperView, cardForItemAt index: Int) -> CardCell {
-        if cardDataList.count != 0 {
+        if cardDataList?.count != 0 {
             guard let cell = verticalCardSwiperView.dequeueReusableCell(withReuseIdentifier: Const.Xib.mainCardCell, for: index) as? MainCardCell else { return CardCell() }
-            let cardDataList = cardDataList
+            guard let cardDataList = cardDataList else { return CardCell() }
             cell.initCell(cardDataModel: cardDataList[index])
             cell.isShareable = true
             cell.setFrontCard()

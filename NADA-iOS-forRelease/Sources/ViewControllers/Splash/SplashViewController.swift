@@ -19,7 +19,7 @@ class SplashViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        postUserTokenReissue(request: UserTokenReissueRequset(accessToken: UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken)!, refreshToken: UserDefaults.standard.string(forKey: Const.UserDefaults.refreshToken)!))
+        // postUserTokenReissue(request: UserTokenReissueRequset(accessToken: UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken)!, refreshToken: UserDefaults.standard.string(forKey: Const.UserDefaults.refreshToken)!))
     }
     
     // MARK: - Functions

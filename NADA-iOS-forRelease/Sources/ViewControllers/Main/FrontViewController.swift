@@ -23,9 +23,11 @@ class FrontViewController: UIViewController {
 
         setDelegate()
         setNotification()
-        // TODO: - 서버 테스트
-        
-//        cardListFetchWithAPI(userID: "nada", isList: false, offset: 0)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        cardListFetchWithAPI(userID: "nada2", isList: false, offset: 0)
+
     }
     
     // MARK: - @IBAction Properties
@@ -88,6 +90,10 @@ extension FrontViewController: VerticalCardSwiperDelegate {
     func sizeForItem(verticalCardSwiperView: VerticalCardSwiperView, index: Int) -> CGSize {
         return CGSize(width: 375, height: 630)
     }
+    
+    func didDragCard(card: CardCell, index: Int, swipeDirection: SwipeDirection) {
+        cardListFetchWithAPI(userID: "nada2", isList: false, offset: index)
+    }
 }
 
 // MARK: - VerticalCardSwiperDatasource
@@ -111,6 +117,7 @@ extension FrontViewController: VerticalCardSwiperDatasource {
             return cell
         }
     }
+    
 }
 
 // MARK: - Network

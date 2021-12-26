@@ -24,16 +24,13 @@ class GroupEditViewController: UIViewController {
         groupEditTableView.delegate = self
         groupEditTableView.dataSource = self
         serverGroupList()
-        
-        // 그룹 삭제 서버 테스트
-        //        groupDeleteWithAPI(groupID: 1)
-        //                                                      groupName: "SOPT"))
-        //         그룹 수정 서버 테스트
-        //        groupEditWithAPI(groupRequest: GroupEditRequest(groupId: 5, groupName: "수정나다"))
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "")
+        super.viewWillAppear(animated)
+        
+        self.groupEditTableView.reloadData()
+        
     }
     
     // MARK: - @IBAction Properties
@@ -67,7 +64,7 @@ extension GroupEditViewController: UITableViewDelegate {
                 // 취소 눌렀을 때 액션이 들어갈 부분
             }, deleteAction: { _ in
                 self.groupDeleteWithAPI(groupID: self.serverGroups?.groups[indexPath.row].groupID ?? 0)
-                self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "")
+                self.groupEditTableView.reloadData()
             })
         })
         deleteAction.backgroundColor = .red
@@ -120,6 +117,7 @@ extension GroupEditViewController {
             case .success(let data):
                 if let group = data as? Groups {
                     self.serverGroups = group
+                    self.serverGroups?.groups.remove(at: 0)
                     self.groupEditTableView.reloadData()
                 }
             case .requestErr(let message):
@@ -133,11 +131,14 @@ extension GroupEditViewController {
             }
         }
     }
+    
     func groupDeleteWithAPI(groupID: Int) {
         GroupAPI.shared.groupDelete(groupID: groupID) { response in
             switch response {
             case .success:
                 print("groupDeleteWithAPI - success")
+                self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "")
+                self.groupEditTableView.reloadData()
             case .requestErr(let message):
                 print("groupDeleteWithAPI - requestErr: \(message)")
             case .pathErr:
@@ -155,6 +156,7 @@ extension GroupEditViewController {
             switch response {
             case .success:
                 print("groupEditWithAPI - success")
+                self.groupEditTableView.reloadData()
             case .requestErr(let message):
                 print("groupEditWithAPI - requestErr: \(message)")
             case .pathErr:

@@ -51,6 +51,7 @@ class GroupViewController: UIViewController {
     // 중간 그룹 이름들 나열된 뷰
     @IBAction func pushToGroupEdit(_ sender: Any) {
         guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.groupEdit, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.groupEditViewController) as? GroupEditViewController else { return }
+        nextVC.serverGroups = self.serverGroups
         
         navigationController?.pushViewController(nextVC, animated: true)
     }
@@ -159,26 +160,6 @@ extension GroupViewController {
                 print("cardListInGroupWithAPI - serverErr")
             case .networkFail:
                 print("cardListInGroupWithAPI - networkFail")
-            }
-        }
-    }
-    
-    func cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest) {
-        GroupAPI.shared.cardAddInGroup(cardRequest: cardRequest) { response in
-            switch response {
-            case .success(let data):
-                if let group = data as? Groups {
-//                    print(group)
-                    // 그룹 추가 서버 통신 성공했을 떄
-                }
-            case .requestErr(let message):
-                print("cardAddInGroupWithAPI - requestErr: \(message)")
-            case .pathErr:
-                print("cardAddInGroupWithAPI - pathErr")
-            case .serverErr:
-                print("cardAddInGroupWithAPI - serverErr")
-            case .networkFail:
-                print("cardAddInGroupWithAPI - networkFail")
             }
         }
     }

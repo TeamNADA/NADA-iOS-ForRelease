@@ -149,10 +149,10 @@ extension FrontViewController {
             case .success(let data):
                 self.isInfiniteScroll = true
                 
-                if let cardListLookUpRequest = data as? CardListLookUpRequest {
+                if let cardListLookUp = data as? CardListLookUp {
                     // FIXME: - 로그 확인용.
 //                    print("✅cardListLookUpRequest", cardListLookUpRequest)
-                    self.cardDataList?.append(contentsOf: cardListLookUpRequest.cards)
+                    self.cardDataList?.append(contentsOf: cardListLookUp.cards)
                     
                     self.cardSwiper.reloadData()
                 }

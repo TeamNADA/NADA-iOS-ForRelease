@@ -25,7 +25,6 @@ class FrontViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUserID()
         setDelegate()
         setNotification()
     }
@@ -34,7 +33,7 @@ class FrontViewController: UIViewController {
         super.viewWillAppear(animated)
         
         setCardDataModelList()
-        cardListFetchWithAPI(userID: "nada2", isList: false, offset: offset)
+        cardListFetchWithAPI(userID: userID, isList: false, offset: offset)
     }
     
     // MARK: - @IBAction Properties
@@ -66,7 +65,6 @@ extension FrontViewController {
         
         cardSwiper.register(nib: MainCardCell.nib(), forCellWithReuseIdentifier: Const.Xib.mainCardCell)
         cardSwiper.register(nib: EmptyCardCell.nib(), forCellWithReuseIdentifier: Const.Xib.emptyCardCell)
-        
     }
 
     private func setNotification() {
@@ -86,14 +84,9 @@ extension FrontViewController {
         self.present(nextVC, animated: false, completion: nil)
     }
     
-    private func setUserID() {
-        userID = UserDefaults.standard.string(forKey: Const.UserDefaults.userID)
-    }
-    
     private func setCardDataModelList() {
-//        guard let userID = userID else { return }
-//        cardListFetchWithAPI(userID: userID, isList: false, offset: offset)
-        cardListFetchWithAPI(userID: "nada2", isList: false, offset: offset)
+        guard let userID = userID else { return }
+        cardListFetchWithAPI(userID: userID, isList: false, offset: offset)
     }
 }
 
@@ -143,17 +136,15 @@ extension FrontViewController: VerticalCardSwiperDatasource {
 
 // MARK: - Network
 extension FrontViewController {
-    func cardListFetchWithAPI(userID: String, isList: Bool, offset: Int) {
-        CardAPI.shared.cardListFetch(userID: "nada2", isList: isList, offset: offset) { response in
+    func cardListFetchWithAPI(userID: String?, isList: Bool, offset: Int) {
+        guard let userID = userID else { return }
+        CardAPI.shared.cardListFetch(userID: userID, isList: isList, offset: offset) { response in
             switch response {
             case .success(let data):
                 self.isInfiniteScroll = true
                 
                 if let cardListLookUp = data as? CardListLookUp {
-                    // FIXME: - 로그 확인용.
-//                    print("✅cardListLookUpRequest", cardListLookUpRequest)
                     self.cardDataList?.append(contentsOf: cardListLookUp.cards)
-                    
                     self.cardSwiper.reloadData()
                 }
             case .requestErr(let message):

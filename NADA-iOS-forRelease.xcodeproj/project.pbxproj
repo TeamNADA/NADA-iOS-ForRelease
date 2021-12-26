@@ -689,8 +689,6 @@
 				F871227727330A3800A24E74 /* CardCreationRequest.swift */,
 				3981148D273BEBB300E28630 /* CardListEditRequest.swift */,
 				3981148F273BEBCE00E28630 /* CardListRequest.swift */,
-				39288E11273F52B20072F403 /* CardListLookUpRequest.swift */,
-				39584580273E951C009CC6B9 /* MainListRequest.swift */,
 				39DC06992778BEFB00C8ECCC /* CardListLookUp.swift */,
 			);
 			path = Card;
@@ -1211,7 +1209,6 @@
 				393E3345275F69EE00965BBF /* SplashViewController.swift in Sources */,
 				F8C83FB8272F9E3F0009DF0D /* UtilAPI.swift in Sources */,
 				F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */,
-				39288E12273F52B20072F403 /* CardListLookUpRequest.swift in Sources */,
 				7734D5B427778EFB004360E4 /* HarmonyResponse.swift in Sources */,
 				397B75132763A916004AEB03 /* OpenSourceTableViewCell.swift in Sources */,
 				F811720027383097002742CF /* ChangeGroupRequest.swift in Sources */,
@@ -1356,7 +1353,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "NADA-iOS-forRelease/NADA-iOS-forRelease.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = T3VFJ764ZC;
 				INFOPLIST_FILE = "NADA-iOS-forRelease/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1378,7 +1375,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "NADA-iOS-forRelease/NADA-iOS-forRelease.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = T3VFJ764ZC;
 				INFOPLIST_FILE = "NADA-iOS-forRelease/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

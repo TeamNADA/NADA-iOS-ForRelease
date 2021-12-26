@@ -7,16 +7,23 @@
 
 import Foundation
 
+// MARK: - CardClass
+struct CardClass: Codable {
+    let card: Card
+}
+
 // MARK: - Card
 struct Card: Codable {
-    let cardID, background, title, name, birthDate, mbti: String
+    let cardID: String
+    let author: String? = ""
+    let background, title, name, birthDate, mbti: String
     let instagram, link, cardDescription: String?
     let isMincho, isSoju, isBoomuk, isSauced: Bool
     let oneTmi, twoTmi, threeTmi: String?
 
     enum CodingKeys: String, CodingKey {
         case cardID = "cardId"
-        case background, title, name, birthDate, mbti, instagram, link
+        case author, background, title, name, birthDate, mbti, instagram, link
         case cardDescription = "description"
         case isMincho, isSoju, isBoomuk, isSauced, oneTmi, twoTmi, threeTmi
     }

@@ -11,18 +11,17 @@ class CardDetailViewController: UIViewController {
     
     // MARK: - Properties
     // 네비게이션 바
-    enum Status {
-        case group
-        case add
-    }
-    
     @IBAction func touchBackButton(_ sender: Any) {
         switch status {
         case .group:
             self.navigationController?.popViewController(animated: true)
         case .add:
             self.dismiss(animated: true, completion: nil)
-            presentingViewController?.viewWillAppear(true)
+        case .addWithQR:
+            self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+
+        case .detail:
+            return
         }
     }
     
@@ -86,8 +85,10 @@ extension CardDetailViewController {
         switch status {
         case .group:
             backButton.setImage(UIImage(named: "iconArrow"), for: .normal)
-        case .add:
+        case .add, .addWithQR:
             backButton.setImage(UIImage(named: "iconClear"), for: .normal)
+        case .detail:
+            return 
         }
         idLabel.text = cardDataModel?.cardID
     }

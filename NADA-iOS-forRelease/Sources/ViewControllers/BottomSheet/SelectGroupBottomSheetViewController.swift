@@ -15,10 +15,6 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
     var selectedGroup = 0
     var selectedGroupIndex = 0
     var groupId: Int?
-    enum Status {
-        case detail
-        case add
-    }
     
     var status: Status = .add
     
@@ -80,10 +76,12 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
                                                            userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "",
                                                            groupID: groupId ?? 0,
                                                            newGroupID: selectedGroup))
-        case .add:
+        case .add, .addWithQR:
             cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardId: cardDataModel?.cardID ?? "",
                                                                      userId: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "",
                                                                      groupId: selectedGroup))
+        case .group:
+            return
         }
     }
 
@@ -133,7 +131,7 @@ extension SelectGroupBottomSheetViewController {
             switch response {
             case .success:
                 guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
-                nextVC.status = .add
+                nextVC.status = self.status
                 nextVC.cardDataModel = self.cardDataModel
                 nextVC.groupId = self.selectedGroup
                 nextVC.serverGroups = self.serverGroups

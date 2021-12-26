@@ -34,7 +34,6 @@ class AddWithIdBottomSheetViewController: CommonBottomSheetViewController, UITex
     
     private let explainLabel: UILabel = {
         let label = UILabel()
-        label.text = "검색한 ID가 존재하지 않습니다."
         label.textColor = .stateColorError
         label.font = .textRegular05
         
@@ -107,16 +106,22 @@ extension AddWithIdBottomSheetViewController {
         CardAPI.shared.cardDetailFetch(cardID: cardID) { response in
             switch response {
             case .success(let data):
-                if let card = data as? Card {
-                    //TODO: 내가 쓴거 내가 추가 하면 예외처리 필요
-                    let nextVC = CardResultBottomSheetViewController()
-                    nextVC.cardDataModel = card
-                    self.hideBottomSheetAndPresent(nextBottomSheet: nextVC, title: card.name, height: 574)
+                if let card = data as? CardClass {
+                    if UserDefaults.standard.string(forKey: Const.UserDefaults.userID) == card.card.author {
+                        self.errorImageView.isHidden = false
+                        self.explainLabel.isHidden = false
+                        self.explainLabel.text = "자신의 명함은 추가할 수 없습니다."
+                    } else {
+                        let nextVC = CardResultBottomSheetViewController()
+                        nextVC.cardDataModel = card.card
+                        self.hideBottomSheetAndPresent(nextBottomSheet: nextVC, title: card.card.name, height: 574)
+                    }
                 }
             case .requestErr(let message):
                 print("cardDetailFetchWithAPI - requestErr: \(message)")
                 self.errorImageView.isHidden = false
                 self.explainLabel.isHidden = false
+                self.explainLabel.text = "검색한 ID가 존재하지 않습니다."
             case .pathErr:
                 print("cardDetailFetchWithAPI - pathErr")
             case .serverErr:
@@ -127,4 +132,3 @@ extension AddWithIdBottomSheetViewController {
         }
     }
 }
-

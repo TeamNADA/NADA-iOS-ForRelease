@@ -107,26 +107,11 @@ extension AddWithIdBottomSheetViewController {
         CardAPI.shared.cardDetailFetch(cardID: cardID) { response in
             switch response {
             case .success(let data):
-                if let card = data as? CardClass {
+                if let card = data as? Card {
                     //TODO: 내가 쓴거 내가 추가 하면 예외처리 필요
                     let nextVC = CardResultBottomSheetViewController()
-                    nextVC.cardDataModel = Card(cardID: card.card.cardID,
-                                                background: card.card.background,
-                                                title: card.card.title,
-                                                name: card.card.name,
-                                                birthDate: card.card.birthDate,
-                                                mbti: card.card.mbti,
-                                                instagram: card.card.instagram,
-                                                link: card.card.link,
-                                                cardDescription: card.card.cardDescription,
-                                                isMincho: card.card.isMincho,
-                                                isSoju: card.card.isSoju,
-                                                isBoomuk: card.card.isBoomuk,
-                                                isSauced: card.card.isSauced,
-                                                oneTmi: card.card.oneTmi,
-                                                twoTmi: card.card.twoTmi,
-                                                threeTmi: card.card.threeTmi)
-                    self.hideBottomSheetAndPresent(nextBottomSheet: nextVC, title: card.card.name, height: 574)
+                    nextVC.cardDataModel = card
+                    self.hideBottomSheetAndPresent(nextBottomSheet: nextVC, title: card.name, height: 574)
                 }
             case .requestErr(let message):
                 print("cardDetailFetchWithAPI - requestErr: \(message)")

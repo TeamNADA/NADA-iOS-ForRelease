@@ -48,7 +48,7 @@ class QRCodeView: UIView {
         }
 
         // ❗️ 이렇게 끝내면 qr code 가 선명하지 않게 나온다.
-        //imageView.image = UIImage(ciImage: ciImage, scale: 2.0, orientation: .up)
+        // imageView.image = UIImage(ciImage: ciImage, scale: 2.0, orientation: .up)
         
         // ✅ 다음은 이미지 선명하게 변환하는 과정이다.
         // ✅ 원래 이미지에 affine transform(by 파라미터를 의미.) 을 적용한 새 이미지를 반환. 이미지의 넓이와 높이를 10배 증가시킴.

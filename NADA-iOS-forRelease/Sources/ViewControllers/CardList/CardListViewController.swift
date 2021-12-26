@@ -30,7 +30,7 @@ class CardListViewController: UIViewController {
         cardListTableView.delegate = self
         cardListTableView.dataSource = self
         
-        cardListFetchWithAPI(userID: "nada2", isList: true)
+        cardListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaults.userID) ?? "", isList: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

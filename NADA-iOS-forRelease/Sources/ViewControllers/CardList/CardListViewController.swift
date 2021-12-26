@@ -13,6 +13,7 @@ class CardListViewController: UIViewController {
         
     // MARK: - Properties
     var cardItems: [CardList] = []
+    var newCardItems: CardListEditRequest?
     
     // MARK: - IBOutlet Properties
     @IBOutlet weak var cardListTableView: UITableView!
@@ -22,7 +23,6 @@ class CardListViewController: UIViewController {
         super.viewDidLoad()
         
         navigationBackSwipeMotion()
-        
         setLongPressGesture()
         
         cardListTableView.register(CardListTableViewCell.nib(), forCellReuseIdentifier: "CardListTableViewCell")
@@ -78,11 +78,17 @@ class CardListViewController: UIViewController {
         let index = cardListTableView.indexPath(for: cell)
         
         if index!.row > 0 {
+            print(cardItems, "🤍")
             cardListTableView.moveRow(at: index!, to: IndexPath(row: 0, section: 0))
             self.cardItems.insert(self.cardItems.remove(at: index!.row), at: 0)
             cardListTableView.reloadData()
+            print(cardItems, "🌴")
             
-            self.cardListEditWithAPI(request: CardListEditRequest(ordered: [Ordered(cardID: cardItems[index!.row].cardID, priority: 1), Ordered(cardID: cardItems[index!.row].cardID, priority: 0)]))
+//            let count = 0
+//            while cardItems.count > count {
+//                newCardItems?.ordered.append(Ordered(cardID: cardItems[count].cardID, priority: count))
+//            }
+//            cardListEditWithAPI(request: newCardItems)
         }
     }
 }
@@ -169,7 +175,6 @@ extension CardListViewController {
             switch response {
             case .success(let data):
                 print(data)
-                self.cardListTableView.reloadData()
             case .requestErr(let message):
                 print("putCardListEditWithAPI - requestErr", message)
             case .pathErr:
@@ -205,7 +210,6 @@ extension CardListViewController {
 
 // MARK: - Extension: 테이블 뷰 Drag & Drop 기능
 extension CardListViewController {
-    // FIX: cyclomatic_complexity 워닝 발생 -> decision이 복잡해서라는데...일단 보류...
     @objc func longPressCalled(gestureRecognizer: UIGestureRecognizer) {
         guard let longPress = gestureRecognizer as? UILongPressGestureRecognizer else { return }
         let state = longPress.state
@@ -215,6 +219,7 @@ extension CardListViewController {
         // 최초 indexPath 변수
         struct Initial {
             static var initialIndexPath: IndexPath?
+            static var tabIndex: IndexPath?
         }
         
         // 스냅샷
@@ -231,6 +236,7 @@ extension CardListViewController {
         case UIGestureRecognizer.State.began:
             if indexPath!.row != 0 {
                 Initial.initialIndexPath = indexPath
+                Initial.tabIndex = indexPath
                 var cell: UITableViewCell? = UITableViewCell()
                 cell = cardListTableView.cellForRow(at: indexPath!)
                 
@@ -296,9 +302,7 @@ extension CardListViewController {
                 }, completion: { (finished) -> Void in
                     if finished {
                         // FIXME: - 카드 리스트 편집 서버 테스트
-                        print(Initial.initialIndexPath, "⭐️")
-                        print(indexPath, "🤍")
-                        // self.cardListEditWithAPI(request: CardListEditRequest(ordered: [Ordered(cardID: cardItems[index].cardID, priority: 1), Ordered(cardID: cardItems[index].cardID, priority: 0)]))
+                        self.cardListEditWithAPI(request: CardListEditRequest(ordered: [Ordered(cardID: self.cardItems[Initial.tabIndex!.row].cardID, priority: indexPath!.row), Ordered(cardID: self.cardItems[indexPath!.row].cardID, priority: indexPath!.row + 1)]))
                         
                         Initial.initialIndexPath = nil
                         MyCell.cellSnapshot!.removeFromSuperview()

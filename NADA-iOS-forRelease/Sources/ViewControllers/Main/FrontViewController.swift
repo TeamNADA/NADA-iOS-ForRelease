@@ -86,11 +86,6 @@ extension FrontViewController: VerticalCardSwiperDelegate {
     func sizeForItem(verticalCardSwiperView: VerticalCardSwiperView, index: Int) -> CGSize {
         return CGSize(width: 375, height: 630)
     }
-    
-//    func didScroll(verticalCardSwiperView: VerticalCardSwiperView) {
-//        cardListFetchWithAPI(userID: "nada2", isList: false, offset: offset+1)
-//        verticalCardSwiperView.reloadData()
-//    }
 }
 
 // MARK: - VerticalCardSwiperDatasource

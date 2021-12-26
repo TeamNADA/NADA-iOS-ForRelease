@@ -26,9 +26,14 @@ class FrontViewController: UIViewController {
         super.viewDidLoad()
         
         setUserID()
-        setCardDataModelList()
         setDelegate()
         setNotification()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setCardDataModelList()
     }
     
     // MARK: - @IBAction Properties

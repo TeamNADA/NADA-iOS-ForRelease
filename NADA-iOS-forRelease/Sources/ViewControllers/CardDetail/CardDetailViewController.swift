@@ -17,7 +17,6 @@ class CardDetailViewController: UIViewController {
             self.navigationController?.popViewController(animated: true)
         case .add:
             self.dismiss(animated: true, completion: nil)
-            presentingViewController?.viewWillAppear(true)
         case .addWithQR:
             self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
 

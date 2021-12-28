@@ -96,8 +96,8 @@ extension GroupService: TargetType {
             return Const.Header.bearerHeader
         case .groupAdd, .groupEdit, .cardAddInGroup, .changeCardGroup:
             return Const.Header.bearerHeader
-        case .groupReset(let token):
-            return ["Content-Type": "application/json", "Authorization": "Bearer " + token]
+        case .groupReset:
+            return Const.Header.basicHeader
         }
     }
 }

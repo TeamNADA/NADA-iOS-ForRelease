@@ -77,10 +77,8 @@ extension UserSevice: TargetType {
             return Const.Header.bearerHeader
         case .userSignUp, .userSocialSignUp, .userTokenReissue:
             return ["Content-Type": "application/json"]
-        case .userDelete(let token):
-            return ["Content-Type": "application/json", "Authorization": "Bearer " + token]
-        case .userLogout(let token):
-            return ["Content-Type": "application/json", "Authorization": "Bearer " + token]
+        case .userDelete, .userLogout:
+            return Const.Header.basicHeader
         }
     }
 }

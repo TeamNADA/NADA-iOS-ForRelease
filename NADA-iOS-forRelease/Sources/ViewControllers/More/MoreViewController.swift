@@ -112,7 +112,7 @@ extension MoreViewController {
             self.makeOKAlert(title: "", message: "로그아웃이 완료 되었습니다.") { _ in
                 if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) {
                     self.logoutUserWithAPI(token: acToken)
-                    self.defaults.removeObject(forKey: Const.UserDefaultsKey.accessToken)
+                    self.defaults.set(false, forKey: Const.UserDefaultsKey.hasBeenLaunchedBeforeFlag)
                     self.defaults.removeObject(forKey: Const.UserDefaultsKey.darkModeState)
                     let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
                     nextVC.modalPresentationStyle = .overFullScreen
@@ -146,7 +146,7 @@ extension MoreViewController {
                     self.makeOKAlert(title: "", message: "모든 명함이 삭제되었습니다.") { _ in
                         if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) {
                             self.deleteUserWithAPI(token: acToken)
-                            self.defaults.removeObject(forKey: Const.UserDefaultsKey.accessToken)
+                            self.defaults.set(false, forKey: Const.UserDefaultsKey.hasBeenLaunchedBeforeFlag)
                             self.defaults.removeObject(forKey: Const.UserDefaultsKey.darkModeState)
                             let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
                             nextVC.modalPresentationStyle = .overFullScreen

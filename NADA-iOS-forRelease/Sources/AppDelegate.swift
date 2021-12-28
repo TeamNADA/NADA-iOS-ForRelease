@@ -46,6 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.accessToken)
         UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.refreshToken)
+        UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.isKakaoLogin)
+        UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.isAppleLogin)
     }
     
     // MARK: UISceneSession Lifecycle

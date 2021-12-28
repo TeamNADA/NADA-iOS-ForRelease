@@ -72,9 +72,6 @@ class LoginViewController: UIViewController {
     }
     
     // 카카오 로그인 버튼 클릭 시
-//    @objc
-
-    
     @objc
     func kakaoSignInButtonPress() {
         // 카카오톡 설치 여부 확인
@@ -204,7 +201,6 @@ extension LoginViewController {
                     UserDefaults.standard.set(userData.user.userID, forKey: Const.UserDefaultsKey.userID)
                     UserDefaults.standard.set(userData.user.token.accessToken, forKey: Const.UserDefaultsKey.accessToken)
                     UserDefaults.standard.set(userData.user.token.refreshToken, forKey: Const.UserDefaultsKey.refreshToken)
-                    
                 }
             case .requestErr(let message):
                 print("postUserSignUpWithAPI - requestErr: \(message)")

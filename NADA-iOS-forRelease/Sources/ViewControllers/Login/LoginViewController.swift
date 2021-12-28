@@ -209,9 +209,8 @@ extension LoginViewController {
                     let tokenData = userData.user.token
                     UserDefaults.standard.set(tokenData.accessToken, forKey: Const.UserDefaultsKey.accessToken)
                     UserDefaults.standard.set(tokenData.refreshToken, forKey: Const.UserDefaultsKey.refreshToken)
-                    
+
                     self.presentToMain()
-                }
                 }
             case .requestErr(let message):
                 print("postUserSignUpWithAPI - requestErr: \(message)")

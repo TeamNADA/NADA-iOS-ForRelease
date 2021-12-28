@@ -119,7 +119,6 @@ extension LoginViewController {
                         }
                     }
                 }
-                self.presentToMain()
             }
         }
         
@@ -143,7 +142,6 @@ extension LoginViewController {
                         }
                     }
                 }
-                self.presentToMain()
             }
         }
     }
@@ -177,7 +175,6 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
             postUserSignUpWithAPI(request: userIdentifier)
             UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.isAppleLogin)
             UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isKakaoLogin)
-            presentToMain()
             
         default:
             break
@@ -201,6 +198,7 @@ extension LoginViewController {
                     UserDefaults.standard.set(userData.user.userID, forKey: Const.UserDefaultsKey.userID)
                     UserDefaults.standard.set(userData.user.token.accessToken, forKey: Const.UserDefaultsKey.accessToken)
                     UserDefaults.standard.set(userData.user.token.refreshToken, forKey: Const.UserDefaultsKey.refreshToken)
+                    self.presentToMain()
                 }
             case .requestErr(let message):
                 print("postUserSignUpWithAPI - requestErr: \(message)")

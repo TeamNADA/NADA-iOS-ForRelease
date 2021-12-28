@@ -18,6 +18,5 @@ extension Const {
         static let firstCardID = "firstCardID"
         static let isAppleLogin = "isAppleLogin"
         static let isKakaoLogin = "isKakaoLogin"
-        static let hasBeenLaunchedBeforeFlag = "hasBeenLaunchedBeforeFlag"
     }
 }

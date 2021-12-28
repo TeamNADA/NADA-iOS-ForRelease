@@ -85,14 +85,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 }
-
-extension UserDefaults {
-    public static func isFirstLaunch() -> Bool {
-        let isFirstLaunch = !UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.hasBeenLaunchedBeforeFlag)
-        if isFirstLaunch {
-            UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.hasBeenLaunchedBeforeFlag)
-            UserDefaults.standard.synchronize()
-        }
-        return isFirstLaunch
-    }
-}

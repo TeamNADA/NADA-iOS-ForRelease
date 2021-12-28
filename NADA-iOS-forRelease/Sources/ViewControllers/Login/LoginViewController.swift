@@ -127,8 +127,6 @@ extension LoginViewController {
                         }
                     }
                 }
-                
-                self.presentToMain()
             }
         }
         
@@ -150,8 +148,6 @@ extension LoginViewController {
                         }
                     }
                 }
-                
-                self.presentToMain()
             }
         }
     }
@@ -189,7 +185,6 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
             // print("User Email : \(email ?? "")")
             // print("User Name : \((fullName?.givenName ?? "") + (fullName?.familyName ?? ""))")
             postUserSignUpWithAPI(request: userIdentifier)
-            presentToMain()
             
         default:
             break
@@ -211,10 +206,11 @@ extension LoginViewController {
                 print("postUserSignUpWithAPI - success")
                 if let userData = loginData as? UserWithTokenRequest {
                     UserDefaults.standard.set(userData.user.userID, forKey: Const.UserDefaultsKey.userID)
-                    if let tokenData = userData.user.token as? Token {
-                        UserDefaults.standard.set(tokenData.accessToken, forKey: Const.UserDefaultsKey.accessToken)
-                        UserDefaults.standard.set(tokenData.refreshToken, forKey: Const.UserDefaultsKey.refreshToken)
-                    }
+                    let tokenData = userData.user.token
+                    UserDefaults.standard.set(tokenData.accessToken, forKey: Const.UserDefaultsKey.accessToken)
+                    UserDefaults.standard.set(tokenData.refreshToken, forKey: Const.UserDefaultsKey.refreshToken)
+
+                    self.presentToMain()
                 }
             case .requestErr(let message):
                 print("postUserSignUpWithAPI - requestErr: \(message)")

@@ -185,7 +185,6 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
             // print("User Email : \(email ?? "")")
             // print("User Name : \((fullName?.givenName ?? "") + (fullName?.familyName ?? ""))")
             postUserSignUpWithAPI(request: userIdentifier)
-            presentToMain()
             
         default:
             break
@@ -212,6 +211,7 @@ extension LoginViewController {
                     UserDefaults.standard.set(tokenData.refreshToken, forKey: Const.UserDefaultsKey.refreshToken)
                     
                     self.presentToMain()
+                }
                 }
             case .requestErr(let message):
                 print("postUserSignUpWithAPI - requestErr: \(message)")

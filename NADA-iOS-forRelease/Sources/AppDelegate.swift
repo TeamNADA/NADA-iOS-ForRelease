@@ -7,41 +7,45 @@
 
 import UIKit
 import KakaoSDKCommon
+import KakaoSDKAuth
+import KakaoSDKUser
 import AuthenticationServices
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    // var isLogin = false
+    var isLogin = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        // removeKeychainAtFirstLaunch()
+
+        removeTokenAtFirstLaunch()
         KakaoSDKCommon.initSDK(appKey: "5b8dd8cc878344bb7532eeca4365a4aa")
         
-//        let appleIDProvider = ASAuthorizationAppleIDProvider()
-//        appleIDProvider.getCredentialState(forUserID: Const.UserDefaults.userID) { (credentialState, error) in
-//            switch credentialState {
-//            case .authorized:
-//                print("해당 ID는 연동되어있습니다.")
-//                self.isLogin = true
-//            case .revoked:
-//                print("해당 ID는 연동되어있지않습니다.")
-//                self.isLogin = false
-//            case .notFound:
-//                print("해당 ID를 찾을 수 없습니다.")
-//                self.isLogin = false
-//            default:
-//                break
-//            }
-//        }
+        let acToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken)
+        let rfToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.refreshToken)
         
-//        NotificationCenter.default.addObserver(forName: ASAuthorizationAppleIDProvider.credentialRevokedNotification, object: nil, queue: nil) { (Notification) in
-//            print("Revoked Notification")
-//            self.isLogin = false
-//        }
+        if acToken != "" {
+            postUserTokenReissue(request: UserTokenReissueRequset(accessToken: acToken ?? "", refreshToken: rfToken ?? ""))
+        } else {
+            self.isLogin = false
+        }
+
+        // 앱 실행 중 애플 ID 강제로 연결 취소 시
+        NotificationCenter.default.addObserver(forName: ASAuthorizationAppleIDProvider.credentialRevokedNotification, object: nil, queue: nil) { (Notification) in
+            print("Revoked Notification")
+            self.isLogin = false
+        }
         
         return true
+    }
+    
+    private func removeTokenAtFirstLaunch() {
+        guard UserDefaults.isFirstLaunch() else {
+            return
+        }
+        UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.accessToken)
+        UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.refreshToken)
     }
     
     // MARK: UISceneSession Lifecycle
@@ -58,6 +62,67 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
     
-    
+    private func postUserTokenReissue(request: UserTokenReissueRequset) {
+        UserAPI.shared.userTokenReissue(request: request) { response in
+            switch response {
+            case .success:
+                print("postUserTokenReissue - Success")
+                if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.isAppleLogin) {
+                    // 애플 로그인으로 연동되어 있을 때, -> 애플 ID와의 연동상태 확인 로직
+                    let appleIDProvider = ASAuthorizationAppleIDProvider()
+                    appleIDProvider.getCredentialState(forUserID: Const.UserDefaultsKey.userID) { (credentialState, error) in
+                        switch credentialState {
+                        case .authorized:
+                            print("해당 ID는 연동되어있습니다.")
+                            self.isLogin = true
+                        case .revoked:
+                            print("해당 ID는 연동되어있지않습니다.")
+                            self.isLogin = false
+                        case .notFound:
+                            print("해당 ID를 찾을 수 없습니다.")
+                            self.isLogin = false
+                        default:
+                            break
+                        }
+                    }
+                } else {
+                    if AuthApi.hasToken() {     // 유효한 토큰 존재
+                        UserApi.shared.accessTokenInfo { (_, error) in
+                            if let error = error {
+                                if let sdkError = error as? SdkError, sdkError.isInvalidTokenError() == true {
+                                    self.isLogin = false
+                                }
+                            } else {
+                                // 토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
+                                self.isLogin = true
+                            }
+                        }
+                    } else {
+                        // 카카오 토큰 없음 -> 로그인 필요
+                        self.isLogin = false
+                    }
+                }
+            case .requestErr(let message):
+                print("postUserTokenReissue - requestErr: \(message)")
+                self.isLogin = false
+            case .pathErr:
+                print("postUserTokenReissue - pathErr")
+            case .serverErr:
+                print("postUserTokenReissue - serverErr")
+            case .networkFail:
+                print("postUserTokenReissue - networkFail")
+            }
+        }
+    }
 }
 
+extension UserDefaults {
+    public static func isFirstLaunch() -> Bool {
+        let isFirstLaunch = !UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.hasBeenLaunchedBeforeFlag)
+        if isFirstLaunch {
+            UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.hasBeenLaunchedBeforeFlag)
+            UserDefaults.standard.synchronize()
+        }
+        return isFirstLaunch
+    }
+}

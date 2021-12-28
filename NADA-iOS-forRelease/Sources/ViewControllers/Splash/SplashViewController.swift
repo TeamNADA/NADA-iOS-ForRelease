@@ -11,15 +11,24 @@ class SplashViewController: UIViewController {
 
     // MARK: - Properties
     private weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
-
-    // MARK: - @IBOutlet Properties
-    
+    let defaults = UserDefaults.standard
+ 
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+         super.viewWillAppear(animated)
         
-        // Do any additional setup after loading the view.
-        // postUserTokenReissue(request: UserTokenReissueRequset(accessToken: UserDefaults.standard.string(forKey: Const.UserDefaults.accessToken)!, refreshToken: UserDefaults.standard.string(forKey: Const.UserDefaults.refreshToken)!))
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+            if self.appDelegate?.isLogin == true {
+                self.presentToMain()
+            } else {
+                self.presentToLogin()
+            }
+        }
     }
     
     // MARK: - Functions
@@ -37,26 +46,4 @@ class SplashViewController: UIViewController {
         self.present(loginVC, animated: true, completion: nil)
     }
     
-}
-
-// MARK: - Networks
-extension SplashViewController {
-    
-    func postUserTokenReissue(request: UserTokenReissueRequset) {
-        UserAPI.shared.userTokenReissue(request: request) { response in
-            switch response {
-            case .success:
-                print("postUserTokenReissue - Success")
-            case .requestErr(let message):
-                print("postUserTokenReissue - requestErr: \(message)")
-                self.presentToLogin()
-            case .pathErr:
-                print("postUserTokenReissue - pathErr")
-            case .serverErr:
-                print("postUserTokenReissue - serverErr")
-            case .networkFail:
-                print("postUserTokenReissue - networkFail")
-            }
-        }
-    }
 }

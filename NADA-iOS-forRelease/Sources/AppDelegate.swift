@@ -19,16 +19,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        removeTokenAtFirstLaunch()
         KakaoSDKCommon.initSDK(appKey: "5b8dd8cc878344bb7532eeca4365a4aa")
-        
         let acToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken)
-        let rfToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.refreshToken)
         
-        if acToken != "" {
-            postUserTokenReissue(request: UserTokenReissueRequset(accessToken: acToken ?? "", refreshToken: rfToken ?? ""))
+        if acToken != nil {
+            if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.isAppleLogin) {
+                // 애플 로그인으로 연동되어 있을 때, -> 애플 ID와의 연동상태 확인 로직
+                let appleIDProvider = ASAuthorizationAppleIDProvider()
+                appleIDProvider.getCredentialState(forUserID: Const.UserDefaultsKey.userID) { (credentialState, error) in
+                    switch credentialState {
+                    case .authorized:
+                        print("해당 ID는 연동되어있습니다.")
+                        self.isLogin = true
+                    case .revoked:
+                        print("해당 ID는 연동되어있지않습니다.")
+                        self.isLogin = false
+                    case .notFound:
+                        print("해당 ID를 찾을 수 없습니다.")
+                        self.isLogin = false
+                    default:
+                        break
+                    }
+                }
+            } else {
+                if AuthApi.hasToken() {     // 유효한 토큰 존재
+                    UserApi.shared.accessTokenInfo { (_, error) in
+                        if let error = error {
+                            if let sdkError = error as? SdkError, sdkError.isInvalidTokenError() == true {
+                                self.isLogin = false
+                            }
+                        } else {
+                            // 토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
+                            self.isLogin = true
+                        }
+                    }
+                } else {
+                    // 카카오 토큰 없음 -> 로그인 필요
+                    self.isLogin = false
+                }
+            }
         } else {
-            self.isLogin = false
+            self.isLogin = false    // acToken 값이 nil일 때 -> 로그인 뷰로
         }
 
         // 앱 실행 중 애플 ID 강제로 연결 취소 시
@@ -38,16 +69,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return true
-    }
-    
-    private func removeTokenAtFirstLaunch() {
-        guard UserDefaults.isFirstLaunch() else {
-            return
-        }
-        UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.accessToken)
-        UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.refreshToken)
-        UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.isKakaoLogin)
-        UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.isAppleLogin)
     }
     
     // MARK: UISceneSession Lifecycle
@@ -62,59 +83,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-    }
-    
-    private func postUserTokenReissue(request: UserTokenReissueRequset) {
-        UserAPI.shared.userTokenReissue(request: request) { response in
-            switch response {
-            case .success:
-                print("postUserTokenReissue - Success")
-                if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.isAppleLogin) {
-                    // 애플 로그인으로 연동되어 있을 때, -> 애플 ID와의 연동상태 확인 로직
-                    let appleIDProvider = ASAuthorizationAppleIDProvider()
-                    appleIDProvider.getCredentialState(forUserID: Const.UserDefaultsKey.userID) { (credentialState, error) in
-                        switch credentialState {
-                        case .authorized:
-                            print("해당 ID는 연동되어있습니다.")
-                            self.isLogin = true
-                        case .revoked:
-                            print("해당 ID는 연동되어있지않습니다.")
-                            self.isLogin = false
-                        case .notFound:
-                            print("해당 ID를 찾을 수 없습니다.")
-                            self.isLogin = false
-                        default:
-                            break
-                        }
-                    }
-                } else {
-                    if AuthApi.hasToken() {     // 유효한 토큰 존재
-                        UserApi.shared.accessTokenInfo { (_, error) in
-                            if let error = error {
-                                if let sdkError = error as? SdkError, sdkError.isInvalidTokenError() == true {
-                                    self.isLogin = false
-                                }
-                            } else {
-                                // 토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
-                                self.isLogin = true
-                            }
-                        }
-                    } else {
-                        // 카카오 토큰 없음 -> 로그인 필요
-                        self.isLogin = false
-                    }
-                }
-            case .requestErr(let message):
-                print("postUserTokenReissue - requestErr: \(message)")
-                self.isLogin = false
-            case .pathErr:
-                print("postUserTokenReissue - pathErr")
-            case .serverErr:
-                print("postUserTokenReissue - serverErr")
-            case .networkFail:
-                print("postUserTokenReissue - networkFail")
-            }
-        }
     }
 }
 

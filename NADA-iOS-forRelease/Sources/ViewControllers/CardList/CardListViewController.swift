@@ -41,6 +41,7 @@ class CardListViewController: UIViewController {
     
     // MARK: - IBAction Properties
     @IBAction func dismissToPreviousView(_ sender: UIButton) {
+        NotificationCenter.default.post(name: .reloadMainCardSwiper, object: nil)
         self.navigationController?.popViewController(animated: true)
     }
     

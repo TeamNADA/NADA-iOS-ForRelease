@@ -196,7 +196,7 @@ extension CardCreationPreviewViewController {
                 
                 guard let presentingVC = self.presentingViewController else { return }
                 
-                NotificationCenter.default.post(name: .reloadMainCardSwiper, object: nil)
+                NotificationCenter.default.post(name: .creationReloadMainCardSwiper, object: nil)
                 
                 self.dismiss(animated: true) {
                     if UserDefaults.standard.object(forKey: Const.UserDefaultsKey.isFirstCard) == nil {

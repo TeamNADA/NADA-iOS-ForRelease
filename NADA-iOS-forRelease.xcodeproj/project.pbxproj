@@ -51,6 +51,8 @@
 		398413B7274A7A1E005550BC /* AddGroupBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398413B6274A7A1E005550BC /* AddGroupBottomSheetViewController.swift */; };
 		399C55DF2711949D00845A54 /* CGPoint+Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399C55DE2711949D00845A54 /* CGPoint+Distance.swift */; };
 		39C1E88F270EC762006D2089 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C1E88E270EC762006D2089 /* UIColor+Extension.swift */; };
+		39C394D0277CCFD500DBA566 /* EmptyGroupEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C394CE277CCFD400DBA566 /* EmptyGroupEditTableViewCell.swift */; };
+		39C394D1277CCFD500DBA566 /* EmptyGroupEditTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39C394CF277CCFD400DBA566 /* EmptyGroupEditTableViewCell.xib */; };
 		39D13565273FDB9C00B1A148 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D13564273FDB9C00B1A148 /* User.swift */; };
 		39D13568273FDCB800B1A148 /* UserWithTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D13567273FDCB800B1A148 /* UserWithTokenRequest.swift */; };
 		39D2E130270B43DA00AD0889 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D2E12F270B43DA00AD0889 /* UIFont+Extension.swift */; };
@@ -191,6 +193,8 @@
 		398413B6274A7A1E005550BC /* AddGroupBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupBottomSheetViewController.swift; sourceTree = "<group>"; };
 		399C55DE2711949D00845A54 /* CGPoint+Distance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Distance.swift"; sourceTree = "<group>"; };
 		39C1E88E270EC762006D2089 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		39C394CE277CCFD400DBA566 /* EmptyGroupEditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyGroupEditTableViewCell.swift; sourceTree = "<group>"; };
+		39C394CF277CCFD400DBA566 /* EmptyGroupEditTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyGroupEditTableViewCell.xib; sourceTree = "<group>"; };
 		39D13564273FDB9C00B1A148 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		39D13567273FDCB800B1A148 /* UserWithTokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWithTokenRequest.swift; sourceTree = "<group>"; };
 		39D2E12F270B43DA00AD0889 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
@@ -330,6 +334,8 @@
 			children = (
 				39369942274A568900684420 /* GroupEditTableViewCell.swift */,
 				39369943274A568900684420 /* GroupEditTableViewCell.xib */,
+				39C394CE277CCFD400DBA566 /* EmptyGroupEditTableViewCell.swift */,
+				39C394CF277CCFD400DBA566 /* EmptyGroupEditTableViewCell.xib */,
 			);
 			path = GroupEdit;
 			sourceTree = "<group>";
@@ -1044,6 +1050,7 @@
 				39369939274A4FCB00684420 /* Spoqa Han Sans Neo Regular.otf in Resources */,
 				39369938274A4FCB00684420 /* Spoqa Han Sans Neo Bold.otf in Resources */,
 				7781294A275F6ED7004B34F4 /* CardDetail.storyboard in Resources */,
+				39C394D1277CCFD500DBA566 /* EmptyGroupEditTableViewCell.xib in Resources */,
 				39523E0B270184B100536900 /* CardList.storyboard in Resources */,
 				F82FF81D2701EBCE00E57F8B /* CardCreation.storyboard in Resources */,
 				39369937274A4FCB00684420 /* NotoSansCJKkr-Medium.otf in Resources */,
@@ -1138,6 +1145,7 @@
 				777FF89B27359B7800BF69D3 /* Groups.swift in Sources */,
 				77F47D93276C79B600414659 /* Header.swift in Sources */,
 				397B75102763A5F5004AEB03 /* OpenSourceViewController.swift in Sources */,
+				39C394D0277CCFD500DBA566 /* EmptyGroupEditTableViewCell.swift in Sources */,
 				777FF89F27364B7B00BF69D3 /* GroupEditRequest.swift in Sources */,
 				399C55DF2711949D00845A54 /* CGPoint+Distance.swift in Sources */,
 				77F2C0EB27632A91007641E3 /* CardHarmonyViewController.swift in Sources */,

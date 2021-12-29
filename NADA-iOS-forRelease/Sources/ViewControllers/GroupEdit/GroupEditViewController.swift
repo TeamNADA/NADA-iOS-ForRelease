@@ -21,6 +21,7 @@ class GroupEditViewController: UIViewController {
         super.viewDidLoad()
         
         groupEditTableView.register(GroupEditTableViewCell.nib(), forCellReuseIdentifier: Const.Xib.groupEditTableViewCell)
+        groupEditTableView.register(EmptyGroupEditTableViewCell.nib(), forCellReuseIdentifier: Const.Xib.EmptyGroupEditTableViewCell)
         
         groupEditTableView.delegate = self
         groupEditTableView.dataSource = self
@@ -54,7 +55,11 @@ class GroupEditViewController: UIViewController {
 // MARK: - TableView Delegate
 extension GroupEditViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 59
+        if serverGroups?.groups.isEmpty == true {
+            return 674
+        } else {
+            return 59
+        }
     }
     
     // Swipe Action
@@ -95,15 +100,24 @@ extension GroupEditViewController: UITableViewDelegate {
 // MARK: - TableView DataSource
 extension GroupEditViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return serverGroups?.groups.count ?? 0
+        let count = serverGroups?.groups.count
+        if count == 0 {
+            return 1
+        } else {
+            return count ?? 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.groupEditTableViewCell, for: indexPath) as? GroupEditTableViewCell else { return UITableViewCell() }
-        
-        serviceCell.initData(title: serverGroups?.groups[indexPath.row].groupName ?? "")
-        
-        return serviceCell
+        if serverGroups?.groups.isEmpty == true {
+            guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.EmptyGroupEditTableViewCell, for: indexPath) as? EmptyGroupEditTableViewCell else { return UITableViewCell() }
+            return serviceCell
+        } else {
+            guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.groupEditTableViewCell, for: indexPath) as? GroupEditTableViewCell else { return UITableViewCell() }
+            
+            serviceCell.initData(title: serverGroups?.groups[indexPath.row].groupName ?? "")
+            return serviceCell
+        }
     }
 }
 

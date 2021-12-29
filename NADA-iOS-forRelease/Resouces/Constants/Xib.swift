@@ -25,5 +25,7 @@ extension Const {
         static let mainCardCell = "MainCardCell"
         static let openSourceTableViewCell = "OpenSourceTableViewCell"
         static let emptyCardCell = "EmptyCardCell"
+        static let EmptyGroupEditTableViewCell = "EmptyGroupEditTableViewCell"
+        static let EmptyCardListTableViewCell = "EmptyCardListTableViewCell"
     }
 }

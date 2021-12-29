@@ -169,7 +169,7 @@ class CommonBottomSheetViewController: UIViewController {
         bottomSheetViewTopConstraint.constant = (safeAreaHeight + bottomPadding) - bottomHeight
         
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
-            self.dimmedBackView.alpha = 0.5
+            self.dimmedBackView.alpha = 1.0
             self.view.layoutIfNeeded()
         }, completion: { _ in
             self.bottomSheetCoverView.isHidden = true

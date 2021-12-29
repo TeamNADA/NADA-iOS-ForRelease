@@ -31,7 +31,9 @@ class QRScanViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         basicSetting()
+        setNotification()
     }
 }
 
@@ -65,7 +67,7 @@ extension QRScanViewController {
             setGuideLineView(rectOfInterest: rectOfInterest)
             captureSession.startRunning()
         } catch {
-            print("error")
+            print("QRScanViewController - AVCaptureDevice error")
         }
     }
     
@@ -104,6 +106,15 @@ extension QRScanViewController {
             guideImage.heightAnchor.constraint(equalToConstant: 327)
         ])
     }
+    
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(captureSessionStartRunning), name: .dismissQRCodeCardResult, object: nil)
+    }
+    
+    @objc
+    private func captureSessionStartRunning() {
+        captureSession.startRunning()
+    }
 }
 
 extension QRScanViewController: AVCaptureMetadataOutputObjectsDelegate {
@@ -120,8 +131,6 @@ extension QRScanViewController: AVCaptureMetadataOutputObjectsDelegate {
 
             // ✅ qr코드가 가진 문자열이 URL 형태를 띈다면 출력.(아무런 qr코드나 찍는다고 출력시키면 안되니까 여기서 분기처리 가능. )
             if stringValue.hasPrefix("ThisIsTeamNADAQrCode") {
-                print(stringValue)
-
                 self.captureSession.stopRunning()
                 // TODO: 여기서 QR에 있는 ID값으로 명함검색 API통신
                 cardDetailFetchWithAPI(cardID: stringValue.deletingPrefix("ThisIsTeamNADAQrCode"))

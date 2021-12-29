@@ -39,8 +39,8 @@ class CardInGroupCollectionViewCell: UICollectionViewCell {
         mbtiLabel.text = ""
         instagramIDLabel.text = ""
         mbtiLabel.text = ""
-        instagramIcon.image = UIImage()
-        urlIcon.image = UIImage()
+        instagramIcon.isHidden = false
+        urlIcon.isHidden = false
     }
     
     static func nib() -> UINib {

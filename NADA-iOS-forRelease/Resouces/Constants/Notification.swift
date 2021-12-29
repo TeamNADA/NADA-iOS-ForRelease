@@ -18,6 +18,7 @@ extension Notification.Name {
     static let presentCardShare = Notification.Name("presentCardShare")
     static let passDataToGroup = Notification.Name("passDataToGroup")
     static let passDataToDetail = Notification.Name("passDataToDetail")
-    static let listReloadMainCardSwiper = Notification.Name("listReloadMainCardSwiper")
+    static let reloadGroupViewController = Notification.Name("reloadGroupViewController")
     static let creationReloadMainCardSwiper = Notification.Name("creationReloadMainCardSwiper")
+    static let listReloadMainCardSwiper = Notification.Name("listReloadMainCardSwiper")
 }

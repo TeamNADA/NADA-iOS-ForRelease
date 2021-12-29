@@ -33,13 +33,12 @@ class QRScanViewController: UIViewController {
         super.viewDidLoad()
         basicSetting()
     }
-    
 }
 
 extension QRScanViewController {
     @objc func dismissQRScanViewController() {
+        NotificationCenter.default.post(name: .reloadGroupViewController, object: nil)
         self.dismiss(animated: true, completion: nil)
-        presentingViewController?.viewWillAppear(true)
     }
 }
 

@@ -26,18 +26,25 @@ class CardInGroupCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setUI()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        backgroundImageView.image = UIImage()
+        titleLabel.text = ""
+        descriptionLabel.text = ""
+        userNameLabel.text = ""
+        birthLabel.text = ""
+        mbtiLabel.text = ""
+        instagramIDLabel.text = ""
+        mbtiLabel.text = ""
+        instagramIcon.image = UIImage()
+        urlIcon.image = UIImage()
     }
     
     static func nib() -> UINib {
         return UINib(nibName: Const.Xib.cardInGroupCollectionViewCell, bundle: Bundle(for: CardInGroupCollectionViewCell.self))
     }
 
-}
-
-extension CardInGroupCollectionViewCell {
-    private func setUI() {
-        
-//        backgroundImageView.alpha = 0.4
-    }
 }

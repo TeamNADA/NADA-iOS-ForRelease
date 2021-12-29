@@ -72,11 +72,13 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
     @objc func presentCardInfoViewController() {
         switch status {
         case .detail:
+            NotificationCenter.default.post(name: .reloadGroupViewController, object: nil)
             changeGroupWithAPI(request: ChangeGroupRequest(cardID: cardDataModel?.cardID ?? "",
                                                            userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "",
                                                            groupID: groupId ?? 0,
                                                            newGroupID: selectedGroup))
         case .add, .addWithQR:
+            NotificationCenter.default.post(name: .reloadGroupViewController, object: nil)
             cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardId: cardDataModel?.cardID ?? "",
                                                                      userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "",
                                                                      groupId: selectedGroup))

@@ -11,6 +11,7 @@ class GroupEditViewController: UIViewController {
     
     // MARK: - Properties
     var serverGroups: Groups?
+    var unClass: Int?
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var groupEditTableView: UITableView!
@@ -26,12 +27,6 @@ class GroupEditViewController: UIViewController {
         serverGroupList()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.groupEditTableView.reloadData()
-    }
-    
     // MARK: - @IBAction Properties
     @IBAction func dismissToPreviousView(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
@@ -45,12 +40,15 @@ class GroupEditViewController: UIViewController {
                 .setTitle("그룹 추가")
                 .setHeight(184)
             nextVC.returnToGroupEditViewController = {
-                self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
+                self.makeOKAlert(title: "", message: "그룹이 추가되었습니다.", okAction: {_ in
+                    self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
+                }, completion: nil)
             }
             nextVC.modalPresentationStyle = .overFullScreen
             self.present(nextVC, animated: false, completion: nil)
         }
     }
+    
 }
 
 // MARK: - TableView Delegate
@@ -65,7 +63,9 @@ extension GroupEditViewController: UITableViewDelegate {
             self.makeCancelDeleteAlert(title: "그룹 삭제", message: "해당 그룹에 있던 명함은\n미분류 그룹으로 이동합니다.", cancelAction: { _ in
                 // 취소 눌렀을 때 액션이 들어갈 부분
             }, deleteAction: { _ in
-                self.groupDeleteWithAPI(groupID: self.serverGroups?.groups[indexPath.row].groupID ?? 0)
+                self.groupDeleteWithAPI(
+                    groupID: self.serverGroups?.groups[indexPath.row].groupID ?? 0,
+                    defaultGroupId: self.unClass ?? 0)
                 self.groupEditTableView.reloadData()
             })
         })
@@ -110,6 +110,7 @@ extension GroupEditViewController: UITableViewDataSource {
 // MARK: - Extensions
 extension GroupEditViewController {
     func serverGroupList() {
+        self.unClass = serverGroups?.groups[0].groupID
         serverGroups?.groups.remove(at: 0)
     }
 }
@@ -122,6 +123,7 @@ extension GroupEditViewController {
             case .success(let data):
                 if let group = data as? Groups {
                     self.serverGroups = group
+                    self.unClass = self.serverGroups?.groups[0].groupID
                     self.serverGroups?.groups.remove(at: 0)
                     self.groupEditTableView.reloadData()
                 }
@@ -137,8 +139,8 @@ extension GroupEditViewController {
         }
     }
     
-    func groupDeleteWithAPI(groupID: Int) {
-        GroupAPI.shared.groupDelete(groupID: groupID) { response in
+    func groupDeleteWithAPI(groupID: Int, defaultGroupId: Int) {
+        GroupAPI.shared.groupDelete(groupID: groupID, defaultGroupId: defaultGroupId) { response in
             switch response {
             case .success:
                 print("groupDeleteWithAPI - success")

@@ -63,8 +63,8 @@ public class GroupAPI {
         }
     }
     
-    func groupDelete(groupID: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
-        groupProvider.request(.groupDelete(groupID: groupID)) { (result) in
+    func groupDelete(groupID: Int, defaultGroupId: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
+        groupProvider.request(.groupDelete(groupID: groupID, defaultGroupId: defaultGroupId)) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode

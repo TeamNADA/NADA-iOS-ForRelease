@@ -16,8 +16,10 @@ class CardDetailViewController: UIViewController {
         case .group:
             self.navigationController?.popViewController(animated: true)
         case .add:
+            NotificationCenter.default.post(name: .reloadGroupViewController, object: nil)
             self.dismiss(animated: true, completion: nil)
         case .addWithQR:
+            NotificationCenter.default.post(name: .reloadGroupViewController, object: nil)
             self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
 
         case .detail:
@@ -28,12 +30,12 @@ class CardDetailViewController: UIViewController {
     @IBAction func presentHarmonyViewController(_ sender: Any) {
         cardHarmonyFetchWithAPI(myCard: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.firstCardID) ?? "",
                                 yourCard: cardDataModel?.cardID ?? "")
-
     }
     
     @IBOutlet weak var optionButton: UIButton!
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var idStackView: UIStackView!
     @IBOutlet weak var idLabel: UILabel!
     
     public var cardDataModel: Card?
@@ -110,6 +112,7 @@ extension CardDetailViewController {
         case .detail:
             return 
         }
+        idStackView.isHidden = true
         idLabel.text = cardDataModel?.cardID
     }
     private func setMenu() {
@@ -130,6 +133,7 @@ extension CardDetailViewController {
             self.makeCancelDeleteAlert(title: "명함 삭제",
                                        message: "명함을 정말 삭제하시겠습니까?",
                                        deleteAction: { _ in
+                NotificationCenter.default.post(name: .reloadGroupViewController, object: nil)
                 // 명함 삭제 서버통신
                 self.cardDeleteInGroupWithAPI(groupID: self.groupId ?? 0, cardID: self.cardDataModel?.cardID ?? "")
             }) })

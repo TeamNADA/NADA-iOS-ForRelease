@@ -26,6 +26,7 @@ class CardListViewController: UIViewController {
         setLongPressGesture()
         
         cardListTableView.register(CardListTableViewCell.nib(), forCellReuseIdentifier: "CardListTableViewCell")
+        cardListTableView.register(EmptyCardListTableViewCell.nib(), forCellReuseIdentifier: "EmptyCardListTableViewCell")
         
         cardListTableView.delegate = self
         cardListTableView.dataSource = self
@@ -41,6 +42,7 @@ class CardListViewController: UIViewController {
     
     // MARK: - IBAction Properties
     @IBAction func dismissToPreviousView(_ sender: UIButton) {
+        NotificationCenter.default.post(name: .listReloadMainCardSwiper, object: nil)
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -95,7 +97,11 @@ class CardListViewController: UIViewController {
 // MARK: - UITableViewDelegate
 extension CardListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 58
+        if cardItems.isEmpty {
+            return 670
+        } else {
+            return 58
+        }
     }
     
     // Swipe Action
@@ -124,26 +130,37 @@ extension CardListViewController: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 extension CardListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cardItems.count
+        let count = cardItems.count
+        if count == 0 {
+            return 1
+        } else {
+            return count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.cardListTableViewCell, for: indexPath) as? CardListTableViewCell else { return UITableViewCell() }
-        
-        serviceCell.initData(title: cardItems[indexPath.row].title)
-        serviceCell.pinButton.addTarget(self, action: #selector(pinButtonClicked(_:)), for: .touchUpInside)
-        
-        if indexPath.row == 0 {
-            serviceCell.pinButton.imageView?.image = UIImage(named: "iconPin")
-            serviceCell.pinButton.isEnabled = false
-            serviceCell.reorderButton.isHidden = true
+        if cardItems.isEmpty {
+            guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.EmptyCardListTableViewCell, for: indexPath) as? EmptyCardListTableViewCell else { return UITableViewCell() }
+            
+            return serviceCell
         } else {
-            serviceCell.pinButton.imageView?.image = UIImage(named: "iconPinInactive")
-            serviceCell.pinButton.isEnabled = true
-            serviceCell.reorderButton.isHidden = false
+            guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.cardListTableViewCell, for: indexPath) as? CardListTableViewCell else { return UITableViewCell() }
+            
+            serviceCell.initData(title: cardItems[indexPath.row].title)
+            serviceCell.pinButton.addTarget(self, action: #selector(pinButtonClicked(_:)), for: .touchUpInside)
+            
+            if indexPath.row == 0 {
+                serviceCell.pinButton.imageView?.image = UIImage(named: "iconPin")
+                serviceCell.pinButton.isEnabled = false
+                serviceCell.reorderButton.isHidden = true
+            } else {
+                serviceCell.pinButton.imageView?.image = UIImage(named: "iconPinInactive")
+                serviceCell.pinButton.isEnabled = true
+                serviceCell.reorderButton.isHidden = false
+            }
+            
+            return serviceCell
         }
-        
-        return serviceCell
     }
 }
 

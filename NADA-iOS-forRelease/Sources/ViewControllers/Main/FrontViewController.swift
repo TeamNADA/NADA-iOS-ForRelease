@@ -28,13 +28,6 @@ class FrontViewController: UIViewController {
         setUserID()
         setDelegate()
         setNotification()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        cardDataList?.removeAll()
-        offset = 0
         cardListFetchWithAPI(userID: userID, isList: false, offset: offset)
     }
     
@@ -72,6 +65,8 @@ extension FrontViewController {
 
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(didRecievePresentCardShare(_:)), name: .presentCardShare, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setCreationReloadMainCardSwiper), name: .creationReloadMainCardSwiper, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setListReloadMainCardSwiper), name: .listReloadMainCardSwiper, object: nil)
     }
     
     private func setUserID() {
@@ -92,6 +87,22 @@ extension FrontViewController {
         
         nextVC.modalPresentationStyle = .overFullScreen
         self.present(nextVC, animated: false, completion: nil)
+    }
+    
+    @objc
+    private func setCreationReloadMainCardSwiper() {
+        cardDataList?.removeAll()
+        offset = 0
+        _ = cardSwiper.scrollToCard(at: 1, animated: false)
+        cardListFetchWithAPI(userID: userID, isList: false, offset: offset)
+    }
+    
+    @objc
+    private func setListReloadMainCardSwiper() {
+        cardDataList?.removeAll()
+        offset = 0
+        _ = cardSwiper.scrollToCard(at: 0, animated: false)
+        cardListFetchWithAPI(userID: userID, isList: false, offset: offset)
     }
 }
 

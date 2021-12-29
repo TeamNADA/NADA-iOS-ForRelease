@@ -77,7 +77,7 @@ extension CardService: TargetType {
             let instagramIDData = request.frontCard.instagramID.data(using: .utf8) ?? Data()
             multiPartData.append(MultipartFormData(provider: .data(instagramIDData), name: "card.instagram"))
             let linkURLData = request.frontCard.linkURL.data(using: .utf8) ?? Data()
-            multiPartData.append(MultipartFormData(provider: .data(linkURLData), name: "card.linkName"))
+            multiPartData.append(MultipartFormData(provider: .data(linkURLData), name: "card.link"))
             let descriptionData = request.frontCard.description.data(using: .utf8) ?? Data()
             multiPartData.append(MultipartFormData(provider: .data(descriptionData), name: "card.description"))
             let isMinchoData = Bool(request.backCard.isMincho).description.data(using: .utf8) ?? Data()

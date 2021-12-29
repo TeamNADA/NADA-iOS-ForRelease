@@ -12,7 +12,8 @@ class AddGroupBottomSheetViewController: CommonBottomSheetViewController, UIText
     
     // MARK: - Properties
     var returnToGroupEditViewController: (() -> Void)?
-    
+    private var bottomSheetViewTopConstraint: NSLayoutConstraint?
+
     // 그룹 추가 텍스트 필드
     private let addGroupTextField: UITextField = {
         let textField = UITextField()
@@ -92,15 +93,29 @@ class AddGroupBottomSheetViewController: CommonBottomSheetViewController, UIText
             explainLabel.leadingAnchor.constraint(equalTo: checkImageView.trailingAnchor, constant: 5)
         ])
     }
+    
+    private func nowHideBottomSheetAndGoBack() {
+        let safeAreaHeight = view.safeAreaLayoutGuide.layoutFrame.height
+        let bottomPadding = view.safeAreaInsets.bottom
+        bottomSheetViewTopConstraint?.constant = safeAreaHeight + bottomPadding
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+            self.dimmedBackView.alpha = 0.0
+            self.view.layoutIfNeeded()
+            self.bottomSheetCoverView.isHidden = false
+        }, completion: { _ in
+            if self.presentingViewController != nil {
+                self.dismiss(animated: false) {
+                    self.returnToGroupEditViewController?()
+                }
+            }
+        })
+    }
 }
 
 // MARK: - Extensions
 extension AddGroupBottomSheetViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        hideBottomSheetAndGoBack()
         groupAddWithAPI(groupRequest: GroupAddRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "", groupName: addGroupTextField.text ?? ""))
-        returnToGroupEditViewController?()
         
         return true
     }
@@ -113,8 +128,11 @@ extension AddGroupBottomSheetViewController {
             switch response {
             case .success:
                 print("groupAddWithAPI - success")
+                self.addGroupTextField.becomeFirstResponder()
+                self.nowHideBottomSheetAndGoBack()
             case .requestErr(let message):
                 print("groupAddWithAPI - requestErr: \(message)")
+                self.makeOKAlert(title: "", message: "이미 존재하는 그룹명입니다.")
             case .pathErr:
                 print("groupAddWithAPI - pathErr")
             case .serverErr:

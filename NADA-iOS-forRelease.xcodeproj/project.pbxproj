@@ -51,6 +51,10 @@
 		398413B7274A7A1E005550BC /* AddGroupBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398413B6274A7A1E005550BC /* AddGroupBottomSheetViewController.swift */; };
 		399C55DF2711949D00845A54 /* CGPoint+Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399C55DE2711949D00845A54 /* CGPoint+Distance.swift */; };
 		39C1E88F270EC762006D2089 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C1E88E270EC762006D2089 /* UIColor+Extension.swift */; };
+		39C394D0277CCFD500DBA566 /* EmptyGroupEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C394CE277CCFD400DBA566 /* EmptyGroupEditTableViewCell.swift */; };
+		39C394D1277CCFD500DBA566 /* EmptyGroupEditTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39C394CF277CCFD400DBA566 /* EmptyGroupEditTableViewCell.xib */; };
+		39C394D4277CD33500DBA566 /* EmptyCardListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C394D2277CD33500DBA566 /* EmptyCardListTableViewCell.swift */; };
+		39C394D5277CD33500DBA566 /* EmptyCardListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39C394D3277CD33500DBA566 /* EmptyCardListTableViewCell.xib */; };
 		39D13565273FDB9C00B1A148 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D13564273FDB9C00B1A148 /* User.swift */; };
 		39D13568273FDCB800B1A148 /* UserWithTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D13567273FDCB800B1A148 /* UserWithTokenRequest.swift */; };
 		39D2E130270B43DA00AD0889 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D2E12F270B43DA00AD0889 /* UIFont+Extension.swift */; };
@@ -191,6 +195,10 @@
 		398413B6274A7A1E005550BC /* AddGroupBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupBottomSheetViewController.swift; sourceTree = "<group>"; };
 		399C55DE2711949D00845A54 /* CGPoint+Distance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Distance.swift"; sourceTree = "<group>"; };
 		39C1E88E270EC762006D2089 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		39C394CE277CCFD400DBA566 /* EmptyGroupEditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyGroupEditTableViewCell.swift; sourceTree = "<group>"; };
+		39C394CF277CCFD400DBA566 /* EmptyGroupEditTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyGroupEditTableViewCell.xib; sourceTree = "<group>"; };
+		39C394D2277CD33500DBA566 /* EmptyCardListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCardListTableViewCell.swift; sourceTree = "<group>"; };
+		39C394D3277CD33500DBA566 /* EmptyCardListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyCardListTableViewCell.xib; sourceTree = "<group>"; };
 		39D13564273FDB9C00B1A148 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		39D13567273FDCB800B1A148 /* UserWithTokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWithTokenRequest.swift; sourceTree = "<group>"; };
 		39D2E12F270B43DA00AD0889 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
@@ -330,6 +338,8 @@
 			children = (
 				39369942274A568900684420 /* GroupEditTableViewCell.swift */,
 				39369943274A568900684420 /* GroupEditTableViewCell.xib */,
+				39C394CE277CCFD400DBA566 /* EmptyGroupEditTableViewCell.swift */,
+				39C394CF277CCFD400DBA566 /* EmptyGroupEditTableViewCell.xib */,
 			);
 			path = GroupEdit;
 			sourceTree = "<group>";
@@ -380,6 +390,8 @@
 			children = (
 				39523E592701A48900536900 /* CardListTableViewCell.swift */,
 				39523E5A2701A48900536900 /* CardListTableViewCell.xib */,
+				39C394D2277CD33500DBA566 /* EmptyCardListTableViewCell.swift */,
+				39C394D3277CD33500DBA566 /* EmptyCardListTableViewCell.xib */,
 			);
 			path = CardList;
 			sourceTree = "<group>";
@@ -689,8 +701,6 @@
 				F871227727330A3800A24E74 /* CardCreationRequest.swift */,
 				3981148D273BEBB300E28630 /* CardListEditRequest.swift */,
 				3981148F273BEBCE00E28630 /* CardListRequest.swift */,
-				39288E11273F52B20072F403 /* CardListLookUpRequest.swift */,
-				39584580273E951C009CC6B9 /* MainListRequest.swift */,
 				39DC06992778BEFB00C8ECCC /* CardListLookUp.swift */,
 			);
 			path = Card;
@@ -1029,6 +1039,7 @@
 				F82FEB4D27639F3100DA7847 /* MainCardCell.xib in Resources */,
 				39369945274A568900684420 /* GroupEditTableViewCell.xib in Resources */,
 				77F2C0ED27632AA7007641E3 /* CardHarmony.storyboard in Resources */,
+				39C394D5277CD33500DBA566 /* EmptyCardListTableViewCell.xib in Resources */,
 				F84BAFB226FDB552004CA335 /* BackCardCreationCollectionViewCell.xib in Resources */,
 				397B75172763B5B7004AEB03 /* TeamNADA.storyboard in Resources */,
 				3936993B274A53C600684420 /* GroupEdit.storyboard in Resources */,
@@ -1046,6 +1057,7 @@
 				39369939274A4FCB00684420 /* Spoqa Han Sans Neo Regular.otf in Resources */,
 				39369938274A4FCB00684420 /* Spoqa Han Sans Neo Bold.otf in Resources */,
 				7781294A275F6ED7004B34F4 /* CardDetail.storyboard in Resources */,
+				39C394D1277CCFD500DBA566 /* EmptyGroupEditTableViewCell.xib in Resources */,
 				39523E0B270184B100536900 /* CardList.storyboard in Resources */,
 				F82FF81D2701EBCE00E57F8B /* CardCreation.storyboard in Resources */,
 				39369937274A4FCB00684420 /* NotoSansCJKkr-Medium.otf in Resources */,
@@ -1140,6 +1152,7 @@
 				777FF89B27359B7800BF69D3 /* Groups.swift in Sources */,
 				77F47D93276C79B600414659 /* Header.swift in Sources */,
 				397B75102763A5F5004AEB03 /* OpenSourceViewController.swift in Sources */,
+				39C394D0277CCFD500DBA566 /* EmptyGroupEditTableViewCell.swift in Sources */,
 				777FF89F27364B7B00BF69D3 /* GroupEditRequest.swift in Sources */,
 				399C55DF2711949D00845A54 /* CGPoint+Distance.swift in Sources */,
 				77F2C0EB27632A91007641E3 /* CardHarmonyViewController.swift in Sources */,
@@ -1211,7 +1224,7 @@
 				393E3345275F69EE00965BBF /* SplashViewController.swift in Sources */,
 				F8C83FB8272F9E3F0009DF0D /* UtilAPI.swift in Sources */,
 				F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */,
-				39288E12273F52B20072F403 /* CardListLookUpRequest.swift in Sources */,
+				39C394D4277CD33500DBA566 /* EmptyCardListTableViewCell.swift in Sources */,
 				7734D5B427778EFB004360E4 /* HarmonyResponse.swift in Sources */,
 				397B75132763A916004AEB03 /* OpenSourceTableViewCell.swift in Sources */,
 				F811720027383097002742CF /* ChangeGroupRequest.swift in Sources */,
@@ -1356,7 +1369,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "NADA-iOS-forRelease/NADA-iOS-forRelease.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = T3VFJ764ZC;
 				INFOPLIST_FILE = "NADA-iOS-forRelease/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1378,7 +1391,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "NADA-iOS-forRelease/NADA-iOS-forRelease.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = T3VFJ764ZC;
 				INFOPLIST_FILE = "NADA-iOS-forRelease/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -113,6 +113,7 @@ extension MoreViewController {
                 if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) {
                     self.logoutUserWithAPI(token: acToken)
                     self.defaults.removeObject(forKey: Const.UserDefaultsKey.accessToken)
+                    self.defaults.removeObject(forKey: Const.UserDefaultsKey.refreshToken)
                     self.defaults.removeObject(forKey: Const.UserDefaultsKey.darkModeState)
                     let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
                     nextVC.modalPresentationStyle = .overFullScreen
@@ -147,6 +148,7 @@ extension MoreViewController {
                         if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) {
                             self.deleteUserWithAPI(token: acToken)
                             self.defaults.removeObject(forKey: Const.UserDefaultsKey.accessToken)
+                            self.defaults.removeObject(forKey: Const.UserDefaultsKey.refreshToken)
                             self.defaults.removeObject(forKey: Const.UserDefaultsKey.darkModeState)
                             let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
                             nextVC.modalPresentationStyle = .overFullScreen

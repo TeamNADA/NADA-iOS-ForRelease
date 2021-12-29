@@ -36,14 +36,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 window.overrideUserInterfaceStyle = .light
             }
         }
-        
-        // 스플래시 지연시간동안 자동 로그인 작업처리
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-            let acToken = self.defaults.string(forKey: Const.UserDefaultsKey.accessToken)
-            let rfToken = self.defaults.string(forKey: Const.UserDefaultsKey.refreshToken)
-            
-            self.postUserTokenReissue(request: UserTokenReissueRequset(accessToken: acToken ?? "", refreshToken: rfToken ?? ""))
-        }
+
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
@@ -54,52 +47,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
     
-    // MARK: - Network
-    
-    func postUserTokenReissue(request: UserTokenReissueRequset) {
-        UserAPI.shared.userTokenReissue(request: request) { response in
-            switch response {
-            case .success:
-                print("postUserTokenReissue - Success")
-
-                var rootViewController = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil)
-                    .instantiateViewController(identifier: Const.ViewController.Identifier.loginViewController)
-                
-                if self.defaults.string(forKey: Const.UserDefaultsKey.accessToken) != "" {
-                    rootViewController = UIStoryboard(name: Const.Storyboard.Name.tabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.tabBarViewController)
-                } else {
-                    rootViewController = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil)
-                        .instantiateViewController(identifier: Const.ViewController.Identifier.loginViewController)
-                }
-                self.window?.rootViewController = rootViewController
-                self.window?.makeKeyAndVisible()
-            case .requestErr(let message):
-                print("postUserTokenReissue - requestErr: \(message)")
-                
-                self.presentToLoginViewController()
-            case .pathErr:
-                print("postUserTokenReissue - pathErr")
-            case .serverErr:
-                print("postUserTokenReissue - serverErr")
-            case .networkFail:
-                print("postUserTokenReissue - networkFail")
-            }
-        }
-    }
-    
     // MARK: - Methods
-    
-    private func presentToLoginViewController() {
-        if UserDefaults.standard.object(forKey: Const.UserDefaultsKey.isOnboarding) != nil {
-            let rootViewController = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(identifier: Const.ViewController.Identifier.loginViewController)
-            self.window?.rootViewController = rootViewController
-            self.window?.makeKeyAndVisible()
-        } else {
-            let rootViewController = UIStoryboard(name: Const.Storyboard.Name.onboarding, bundle: nil).instantiateViewController(identifier: Const.ViewController.Identifier.onboardingViewController)
-            self.window?.rootViewController = rootViewController
-            self.window?.makeKeyAndVisible()
-        }
-    }
     
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

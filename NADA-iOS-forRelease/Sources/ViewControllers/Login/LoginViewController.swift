@@ -40,8 +40,6 @@ class LoginViewController: UIViewController {
         ])
         
         let authorizationButton = ASAuthorizationAppleIDButton(type: .signIn, style: .black)
-        // let authorizationButton = UIButton()
-        // authorizationButton.setImage(UIImage(named: "appleLogin"), for: .normal)
         authorizationButton.addTarget(self, action: #selector(appleSignInButtonPress), for: .touchUpInside)
         loginProviderStackView.addSubview(authorizationButton)
         
@@ -76,24 +74,16 @@ class LoginViewController: UIViewController {
     // 카카오 로그인 버튼 클릭 시
     @objc
     func kakaoSignInButtonPress() {
-        if AuthApi.hasToken() {     // 유효한 토큰 존재
-            UserApi.shared.accessTokenInfo { (_, error) in
-                if let error = error {
-                    if let sdkError = error as? SdkError, sdkError.isInvalidTokenError() == true {
-                        // 로그인 필요
-                        self.signUp()
-                    }
-                } else {
-                    // 토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
-                    self.signUp()
-                }
-            }
+        // 카카오톡 설치 여부 확인
+        if UserApi.isKakaoTalkLoginAvailable() {
+            // 카카오톡 로그인. api 호출 결과를 클로저로 전달.
+            loginWithApp()
         } else {
-            // 카카오 토큰 없음 -> 로그인 필요
-            self.signUp()
+            // 만약, 카카오톡이 깔려있지 않을 경우에는 웹 브라우저로 카카오 로그인함.
+            loginWithWeb()
         }
     }
-    
+        
     // 애플 로그인 버튼 클릭 시
     @objc
     func appleSignInButtonPress() {
@@ -112,18 +102,20 @@ class LoginViewController: UIViewController {
 // MARK: - KakaoSignIn
 extension LoginViewController {
     func loginWithApp() {
-        UserApi.shared.loginWithKakaoTalk {(_, error) in
+        UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
             if let error = error {
                 print(error)
             } else {
                 print("loginWithKakaoTalk() success.")
                 
-                UserApi.shared.me {(user, error) in
+                UserApi.shared.me {(_, error) in
                     if let error = error {
                         print(error)
                     } else {
-                        if let email = user?.kakaoAccount?.email {
-                            self.postUserSignUpWithAPI(request: email)
+                        if let token = oauthToken?.accessToken {
+                            self.postUserSignUpWithAPI(request: token)
+                            UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isAppleLogin)
+                            UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.isKakaoLogin)
                         }
                     }
                 }
@@ -133,18 +125,20 @@ extension LoginViewController {
     }
     
     func loginWithWeb() {
-        UserApi.shared.loginWithKakaoAccount {(_, error) in
+        UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
             if let error = error {
                 print(error)
             } else {
                 print("loginWithKakaoAccount() success.")
                 
-                UserApi.shared.me {(user, error) in
+                UserApi.shared.me {(_, error) in
                     if let error = error {
                         print(error)
                     } else {
-                        if let email = user?.kakaoAccount?.email {
-                            self.postUserSignUpWithAPI(request: email)
+                        if let token = oauthToken?.accessToken {
+                            self.postUserSignUpWithAPI(request: token)
+                            UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isAppleLogin)
+                            UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.isKakaoLogin)
                         }
                     }
                 }
@@ -174,17 +168,13 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
     // Apple ID 연동 성공 시
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         switch authorization.credential {
-        // Apple ID
+            // Apple ID
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
             
             let userIdentifier = appleIDCredential.user
-            // let fullName = appleIDCredential.fullName
-            // let email = appleIDCredential.email
-            
-            // print("User ID : \(userIdentifier)")
-            // print("User Email : \(email ?? "")")
-            // print("User Name : \((fullName?.givenName ?? "") + (fullName?.familyName ?? ""))")
             postUserSignUpWithAPI(request: userIdentifier)
+            UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.isAppleLogin)
+            UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isKakaoLogin)
             
         default:
             break
@@ -206,10 +196,8 @@ extension LoginViewController {
                 print("postUserSignUpWithAPI - success")
                 if let userData = loginData as? UserWithTokenRequest {
                     UserDefaults.standard.set(userData.user.userID, forKey: Const.UserDefaultsKey.userID)
-                    let tokenData = userData.user.token
-                    UserDefaults.standard.set(tokenData.accessToken, forKey: Const.UserDefaultsKey.accessToken)
-                    UserDefaults.standard.set(tokenData.refreshToken, forKey: Const.UserDefaultsKey.refreshToken)
-
+                    UserDefaults.standard.set(userData.user.token.accessToken, forKey: Const.UserDefaultsKey.accessToken)
+                    UserDefaults.standard.set(userData.user.token.refreshToken, forKey: Const.UserDefaultsKey.refreshToken)
                     self.presentToMain()
                 }
             case .requestErr(let message):

@@ -126,7 +126,7 @@ extension UIColor {
                 if traitCollection.userInterfaceStyle == .light {
                     return UIColor(white: 0.0, alpha: 0.4)
                 } else {
-                    return UIColor(white: 0.0, alpha: 0.6)
+                    return UIColor(white: 0.0, alpha: 0.8)
                 }
             }
         } else {

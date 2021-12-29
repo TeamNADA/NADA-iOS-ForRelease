@@ -350,9 +350,9 @@ extension CardCreationViewController: BackCardCreationDelegate {
                                      isSoju: requiredInfo["isSoju"] ?? false,
                                      isBoomuk: requiredInfo["isBoomuk"] ?? false,
                                      isSauced: requiredInfo["isSauced"] ?? false,
-                                     firstTMI: optionalInfo["firstTMI"] ?? "",
-                                     secondTMI: optionalInfo["secondTMI"] ?? "",
-                                     thirdTMI: optionalInfo["thirdTMI"] ?? "")
+                                     oneTMI: optionalInfo["firstTMI"] ?? "",
+                                     twoTMI: optionalInfo["secondTMI"] ?? "",
+                                     threeTMI: optionalInfo["thirdTMI"] ?? "")
     }
 }
 

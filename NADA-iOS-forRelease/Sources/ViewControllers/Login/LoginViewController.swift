@@ -102,18 +102,18 @@ class LoginViewController: UIViewController {
 // MARK: - KakaoSignIn
 extension LoginViewController {
     func loginWithApp() {
-        UserApi.shared.loginWithKakaoTalk {(_, error) in
+        UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
             if let error = error {
                 print(error)
             } else {
                 print("loginWithKakaoTalk() success.")
                 
-                UserApi.shared.me {(user, error) in
+                UserApi.shared.me {(_, error) in
                     if let error = error {
                         print(error)
                     } else {
-                        if let email = user?.kakaoAccount?.email {
-                            self.postUserSignUpWithAPI(request: email)
+                        if let token = oauthToken?.accessToken {
+                            self.postUserSignUpWithAPI(request: token)
                             UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isAppleLogin)
                             UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.isKakaoLogin)
                         }

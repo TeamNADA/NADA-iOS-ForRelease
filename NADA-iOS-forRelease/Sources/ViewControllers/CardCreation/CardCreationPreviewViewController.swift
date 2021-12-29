@@ -149,9 +149,9 @@ extension CardCreationPreviewViewController {
                               backCardDataModel.isSoju,
                               backCardDataModel.isBoomuk,
                               backCardDataModel.isSauced,
-                              backCardDataModel.firstTMI,
-                              backCardDataModel.secondTMI,
-                              backCardDataModel.thirdTMI,
+                              backCardDataModel.oneTMI,
+                              backCardDataModel.twoTMI,
+                              backCardDataModel.threeTMI,
                               isShareable: isShareable)
             
             cardView.addSubview(backCard)

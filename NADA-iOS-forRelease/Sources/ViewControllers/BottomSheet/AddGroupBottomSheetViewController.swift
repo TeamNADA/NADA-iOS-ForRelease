@@ -115,9 +115,7 @@ class AddGroupBottomSheetViewController: CommonBottomSheetViewController, UIText
 // MARK: - Extensions
 extension AddGroupBottomSheetViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
         groupAddWithAPI(groupRequest: GroupAddRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "", groupName: addGroupTextField.text ?? ""))
-        nowHideBottomSheetAndGoBack()
         
         return true
     }
@@ -130,8 +128,11 @@ extension AddGroupBottomSheetViewController {
             switch response {
             case .success:
                 print("groupAddWithAPI - success")
+                self.addGroupTextField.becomeFirstResponder()
+                self.nowHideBottomSheetAndGoBack()
             case .requestErr(let message):
                 print("groupAddWithAPI - requestErr: \(message)")
+                self.makeOKAlert(title: "", message: "이미 존재하는 그룹명입니다.")
             case .pathErr:
                 print("groupAddWithAPI - pathErr")
             case .serverErr:

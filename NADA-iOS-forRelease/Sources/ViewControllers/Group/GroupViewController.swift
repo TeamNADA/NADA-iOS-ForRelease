@@ -63,32 +63,29 @@ class GroupViewController: UIViewController {
     
     // 그룹 이름들을 담을 변수 생성
     var serverGroups: Groups?
-    var serverCards: CardsInGroupResponse?
+    var frontCards: [FrontCard]? = []
     var serverCardsWithBack: Card?
     var groupId: Int?
     
     var selectedRow = 0
+    private var offset = 0
+    private var isInfiniteScroll = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerCell()
-        setUI()
-
-//         그룹 속 명함 조회 테스트
-//        cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: "nada", groupId: 5, offset: 0))
-//         명함 검색 테스트
-//        cardDetailFetchWithAPI(cardID: "cardA")
         
+        registerCell()
+        setNotification()
+        setUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // 그룹 리스트 조회 서버 테스트
-        super.viewWillAppear(true)
-        NotificationCenter.default.addObserver(self, selector: #selector(didRecieveDataNotification(_:)), name: Notification.Name.passDataToGroup, object: nil)
+        super.viewWillAppear(animated)
+        
+        offset = 0
+        frontCards?.removeAll()
         groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
-
     }
-    
 }
 
 extension GroupViewController {
@@ -107,8 +104,31 @@ extension GroupViewController {
         navigationController?.navigationBar.isHidden = true
     }
     
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didRecieveDataNotification(_:)), name: Notification.Name.passDataToGroup, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(relaodCardCollection), name: .reloadGroupViewController, object: nil)
+    }
+    // FIXME: - 스크롤탑
+    private func scrollToTop(completion: () -> Void) {
+        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
+        completion()
+    }
+    
     @objc func didRecieveDataNotification(_ notification: Notification) {
         selectedRow = notification.object as? Int ?? 0
+    }
+    
+    @objc
+    private func relaodCardCollection() {
+        offset = 0
+        frontCards?.removeAll()
+        
+        // FIXME: - 스크롤 탑
+//        scrollToTop {
+//            self.cardsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+//        }
+        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
+//        cardsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
     }
 }
 
@@ -123,9 +143,7 @@ extension GroupViewController {
                     self.serverGroups = group
                     self.groupCollectionView.reloadData()
                     self.groupId = group.groups[self.selectedRow].groupID
-                    if !group.groups.isEmpty {
-                        self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "", groupId: group.groups[self.selectedRow].groupID, offset: 0))
-                    }
+                    self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "", groupId: group.groups[self.selectedRow].groupID, offset: 0))
                 }
             case .requestErr(let message):
                 print("groupListFetchWithAPI - requestErr: \(message)")
@@ -143,9 +161,11 @@ extension GroupViewController {
         GroupAPI.shared.cardListFetchInGroup(cardListInGroupRequest: cardListInGroupRequest) { response in
             switch response {
             case .success(let data):
+                self.isInfiniteScroll = true
+                
                 if let cards = data as? CardsInGroupResponse {
-                    self.serverCards = cards
-                    if cards.cards.count == 0 {
+                    self.frontCards?.append(contentsOf: cards.cards)
+                    if self.frontCards?.count == 0 {
                         self.emptyView.isHidden = false
                     } else {
                         self.emptyView.isHidden = true
@@ -191,7 +211,16 @@ extension GroupViewController {
 
 // MARK: - UICollectionViewDelegate
 extension GroupViewController: UICollectionViewDelegate {
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if cardsCollectionView.contentOffset.y > cardsCollectionView.contentSize.height - cardsCollectionView.bounds.height {
+            if isInfiniteScroll {
+                isInfiniteScroll = false
+                offset += 1
+                
+                cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "", groupId: serverGroups?.groups[self.selectedRow].groupID ?? -1, offset: offset))
+            }
+        }
+    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -201,7 +230,7 @@ extension GroupViewController: UICollectionViewDataSource {
         case groupCollectionView:
             return serverGroups?.groups.count ?? 0
         case cardsCollectionView:
-            return serverCards?.cards.count ?? 0
+            return frontCards?.count ?? 0
         default:
             return 0
         }
@@ -224,21 +253,21 @@ extension GroupViewController: UICollectionViewDataSource {
             guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.cardInGroupCollectionViewCell, for: indexPath) as? CardInGroupCollectionViewCell else {
                 return UICollectionViewCell()
             }
+            guard let frontCards = frontCards else { return UICollectionViewCell() }
+            cardCell.backgroundImageView.updateServerImage(frontCards[indexPath.row].background)
+            cardCell.cardId = frontCards[indexPath.row].cardID
+            cardCell.titleLabel.text = frontCards[indexPath.row].title
+            cardCell.descriptionLabel.text = frontCards[indexPath.row].cardDescription
+            cardCell.userNameLabel.text = frontCards[indexPath.row].name
+            cardCell.birthLabel.text = frontCards[indexPath.row].birthDate
+            cardCell.mbtiLabel.text = frontCards[indexPath.row].mbti
+            cardCell.instagramIDLabel.text = frontCards[indexPath.row].instagram
+            cardCell.lineURLLabel.text = frontCards[indexPath.row].link
             
-            cardCell.backgroundImageView.updateServerImage(serverCards?.cards[indexPath.row].background ?? "")
-            cardCell.cardId = serverCards?.cards[indexPath.row].cardID 
-            cardCell.titleLabel.text = serverCards?.cards[indexPath.row].title
-            cardCell.descriptionLabel.text = serverCards?.cards[indexPath.row].cardDescription
-            cardCell.userNameLabel.text = serverCards?.cards[indexPath.row].name
-            cardCell.birthLabel.text = serverCards?.cards[indexPath.row].birthDate
-            cardCell.mbtiLabel.text = serverCards?.cards[indexPath.row].mbti
-            cardCell.instagramIDLabel.text = serverCards?.cards[indexPath.row].instagram
-            cardCell.lineURLLabel.text = serverCards?.cards[indexPath.row].link
-            
-            if serverCards?.cards[indexPath.row].instagram == "" {
+            if frontCards[indexPath.row].instagram == "" {
                 cardCell.instagramIcon.isHidden = true
             }
-            if serverCards?.cards[indexPath.row].link == "" {
+            if frontCards[indexPath.row].link == "" {
                 cardCell.urlIcon.isHidden = true
             }
             
@@ -253,14 +282,16 @@ extension GroupViewController: UICollectionViewDataSource {
         case groupCollectionView:
             selectedRow = indexPath.row
             groupId = serverGroups?.groups[indexPath.row].groupID
+            offset = 0
+            frontCards?.removeAll()
             cardListInGroupWithAPI(cardListInGroupRequest:
                                     CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "",
                                                            groupId: serverGroups?.groups[indexPath.row].groupID ?? 0,
                                                            offset: 0))
         case cardsCollectionView:
-            cardDetailFetchWithAPI(cardID: serverCards?.cards[indexPath.row].cardID ?? "")
+            cardDetailFetchWithAPI(cardID: frontCards?[indexPath.row].cardID ?? "")
         default:
-            print(indexPath.row)
+            return
         }
     }
 }
@@ -301,6 +332,8 @@ extension GroupViewController: UICollectionViewDelegateFlowLayout {
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         switch collectionView {
+        case groupCollectionView:
+            return 5
         case cardsCollectionView:
             return collectionView.frame.size.width * 15/327
         default:

@@ -156,7 +156,9 @@ extension SelectGroupBottomSheetViewController {
             case .success:
                 NotificationCenter.default.post(name: Notification.Name.passDataToGroup, object: self.selectedGroupIndex, userInfo: nil)
                 NotificationCenter.default.post(name: Notification.Name.passDataToDetail, object: self.selectedGroup, userInfo: nil)
-                self.hideBottomSheetAndGoBack()
+                self.makeOKAlert(title: "", message: "그룹이 변경되었습니다.") { _ in
+                    self.hideBottomSheetAndGoBack()
+                }
             case .requestErr(let message):
                 print("changeGroupWithAPI - requestErr: \(message)")
             case .pathErr:

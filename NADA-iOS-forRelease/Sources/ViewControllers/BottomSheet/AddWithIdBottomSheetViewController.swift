@@ -94,8 +94,6 @@ class AddWithIdBottomSheetViewController: CommonBottomSheetViewController, UITex
 
 extension AddWithIdBottomSheetViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        // 서버 연결과 더불어... 검색 결과가 없으면 bottomsheet dismiss 하지 말고 hidden 풀어주기
         cardDetailFetchWithAPI(cardID: textField.text ?? "")
         return true
     }
@@ -112,6 +110,7 @@ extension AddWithIdBottomSheetViewController {
                         self.explainLabel.isHidden = false
                         self.explainLabel.text = "자신의 명함은 추가할 수 없습니다."
                     } else {
+                        self.addWithIdTextField.resignFirstResponder()
                         let nextVC = CardResultBottomSheetViewController()
                         nextVC.cardDataModel = card.card
                         self.hideBottomSheetAndPresent(nextBottomSheet: nextVC, title: card.card.name, height: 574)

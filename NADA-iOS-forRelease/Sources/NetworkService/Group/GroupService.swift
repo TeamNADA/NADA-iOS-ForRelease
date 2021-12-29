@@ -10,7 +10,7 @@ import Moya
 
 enum GroupService {
     case groupListFetch(userID: String)
-    case groupDelete(groupID: Int)
+    case groupDelete(groupID: Int, defaultGroupId: Int)
     case groupAdd(groupRequest: GroupAddRequest)
     case groupEdit(groupRequest: GroupEditRequest)
     case cardAddInGroup(cardRequest: CardAddInGroupRequest)
@@ -38,7 +38,7 @@ extension GroupService: TargetType {
         switch self {
         case .groupListFetch, .groupReset:
             return "/groups"
-        case .groupDelete(let groupID):
+        case .groupDelete(let groupID, _):
             return "/group/\(groupID)"
         case .groupAdd, .groupEdit:
             return "/group"
@@ -73,8 +73,11 @@ extension GroupService: TargetType {
         case .groupListFetch(let userID):
             return .requestParameters(parameters: ["userId": userID],
                                       encoding: URLEncoding.queryString)
-        case .groupDelete, .cardDeleteInGroup, .groupReset:
+        case .cardDeleteInGroup, .groupReset:
             return .requestPlain
+        case .groupDelete(_, let defaultGroupId):
+            return .requestParameters(parameters: ["defaultGroupId": defaultGroupId],
+                                      encoding: URLEncoding.queryString)
         case .groupAdd(let groupRequest):
             return .requestJSONEncodable(groupRequest)
         case .groupEdit(let groupRequest):

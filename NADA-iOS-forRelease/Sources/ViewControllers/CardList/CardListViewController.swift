@@ -97,7 +97,7 @@ class CardListViewController: UIViewController {
 // MARK: - UITableViewDelegate
 extension CardListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if cardItems.isEmpty == true {
+        if cardItems.isEmpty {
             return 670
         } else {
             return 58
@@ -139,7 +139,7 @@ extension CardListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if cardItems.isEmpty == true {
+        if cardItems.isEmpty {
             guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.EmptyCardListTableViewCell, for: indexPath) as? EmptyCardListTableViewCell else { return UITableViewCell() }
             
             return serviceCell

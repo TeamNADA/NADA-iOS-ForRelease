@@ -50,13 +50,6 @@ class GroupEditViewController: UIViewController {
         }
     }
     
-    // MARK: - @objc Methods
-//    @objc
-//    func setGroupEditReload() {
-//        serverGroups?.groups.removeAll()
-//        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
-//    }
-    
 }
 
 // MARK: - TableView Delegate
@@ -118,10 +111,6 @@ extension GroupEditViewController {
     func serverGroupList() {
         serverGroups?.groups.remove(at: 0)
     }
-//
-//    private func setNotification() {
-//        NotificationCenter.default.addObserver(self, selector: #selector(setGroupEditReload), name: .groupEditReload, object: nil)
-//    }
 }
 
 // MARK: - Network

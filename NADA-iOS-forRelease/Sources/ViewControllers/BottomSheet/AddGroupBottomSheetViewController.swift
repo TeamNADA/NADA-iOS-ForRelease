@@ -117,7 +117,6 @@ extension AddGroupBottomSheetViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         groupAddWithAPI(groupRequest: GroupAddRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "", groupName: addGroupTextField.text ?? ""))
-        NotificationCenter.default.post(name: .groupEditReload, object: nil)
         nowHideBottomSheetAndGoBack()
         
         return true

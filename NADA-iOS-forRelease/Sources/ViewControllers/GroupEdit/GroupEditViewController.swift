@@ -24,13 +24,8 @@ class GroupEditViewController: UIViewController {
         groupEditTableView.delegate = self
         groupEditTableView.dataSource = self
         serverGroupList()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.groupEditTableView.reloadData()
-        
+        // setNotification()
+
     }
     
     // MARK: - @IBAction Properties
@@ -46,7 +41,7 @@ class GroupEditViewController: UIViewController {
                 .setTitle("그룹 추가")
                 .setHeight(184)
             nextVC.returnToGroupEditViewController = {
-                self.makeOKAlert(title: "", message: "그룹이 추가되었습니다.", okAction: {_ in 
+                self.makeOKAlert(title: "", message: "그룹이 추가되었습니다.", okAction: {_ in
                     self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
                 }, completion: nil)
             }
@@ -54,6 +49,14 @@ class GroupEditViewController: UIViewController {
             self.present(nextVC, animated: false, completion: nil)
         }
     }
+    
+    // MARK: - @objc Methods
+//    @objc
+//    func setGroupEditReload() {
+//        serverGroups?.groups.removeAll()
+//        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
+//    }
+    
 }
 
 // MARK: - TableView Delegate
@@ -115,6 +118,10 @@ extension GroupEditViewController {
     func serverGroupList() {
         serverGroups?.groups.remove(at: 0)
     }
+//
+//    private func setNotification() {
+//        NotificationCenter.default.addObserver(self, selector: #selector(setGroupEditReload), name: .groupEditReload, object: nil)
+//    }
 }
 
 // MARK: - Network

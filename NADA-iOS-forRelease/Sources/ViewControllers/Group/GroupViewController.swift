@@ -332,6 +332,8 @@ extension GroupViewController: UICollectionViewDelegateFlowLayout {
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         switch collectionView {
+        case groupCollectionView:
+            return 5
         case cardsCollectionView:
             return collectionView.frame.size.width * 15/327
         default:

@@ -33,13 +33,11 @@ class QRScanViewController: UIViewController {
         super.viewDidLoad()
         basicSetting()
     }
-    
 }
 
 extension QRScanViewController {
     @objc func dismissQRScanViewController() {
         self.dismiss(animated: true, completion: nil)
-        presentingViewController?.viewWillAppear(true)
     }
 }
 

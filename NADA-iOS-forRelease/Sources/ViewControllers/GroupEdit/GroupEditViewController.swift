@@ -30,7 +30,6 @@ class GroupEditViewController: UIViewController {
         super.viewWillAppear(animated)
         
         self.groupEditTableView.reloadData()
-        
     }
     
     // MARK: - @IBAction Properties

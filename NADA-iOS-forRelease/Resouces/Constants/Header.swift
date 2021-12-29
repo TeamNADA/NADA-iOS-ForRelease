@@ -10,7 +10,7 @@ import Foundation
 extension Const {
     
     struct Header {
-        static var bearerHeader = ["Authorization": "Bearer " + UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken)!]
+        static var bearerHeader = ["Authorization": "Bearer " + headerToken]
         
         static var basicHeader = ["Content-Type": "application/json",
                                   "Authorization": "Bearer " + headerToken]

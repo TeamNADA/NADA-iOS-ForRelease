@@ -46,7 +46,9 @@ class GroupEditViewController: UIViewController {
                 .setTitle("그룹 추가")
                 .setHeight(184)
             nextVC.returnToGroupEditViewController = {
-                self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
+                self.makeOKAlert(title: "", message: "그룹이 추가되었습니다.", okAction: {_ in 
+                    self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
+                }, completion: nil)
             }
             nextVC.modalPresentationStyle = .overFullScreen
             self.present(nextVC, animated: false, completion: nil)

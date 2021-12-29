@@ -21,6 +21,7 @@ class GroupEditViewController: UIViewController {
         super.viewDidLoad()
         
         groupEditTableView.register(GroupEditTableViewCell.nib(), forCellReuseIdentifier: Const.Xib.groupEditTableViewCell)
+        groupEditTableView.register(EmptyGroupEditTableViewCell.nib(), forCellReuseIdentifier: Const.Xib.EmptyGroupEditTableViewCell)
         
         groupEditTableView.delegate = self
         groupEditTableView.dataSource = self
@@ -54,56 +55,74 @@ class GroupEditViewController: UIViewController {
 // MARK: - TableView Delegate
 extension GroupEditViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 59
+        if serverGroups?.groups.isEmpty == true {
+            return 674
+        } else {
+            return 59
+        }
     }
     
     // Swipe Action
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .normal, title: "삭제", handler: { (_ action, _ view, _ success) in
-            self.makeCancelDeleteAlert(title: "그룹 삭제", message: "해당 그룹에 있던 명함은\n미분류 그룹으로 이동합니다.", cancelAction: { _ in
-                // 취소 눌렀을 때 액션이 들어갈 부분
-            }, deleteAction: { _ in
-                self.groupDeleteWithAPI(
-                    groupID: self.serverGroups?.groups[indexPath.row].groupID ?? 0,
-                    defaultGroupId: self.unClass ?? 0)
-                self.groupEditTableView.reloadData()
+        if serverGroups?.groups.isEmpty == true {
+            return nil
+        } else {
+            let deleteAction = UIContextualAction(style: .normal, title: "삭제", handler: { (_ action, _ view, _ success) in
+                self.makeCancelDeleteAlert(title: "그룹 삭제", message: "해당 그룹에 있던 명함은\n미분류 그룹으로 이동합니다.", cancelAction: { _ in
+                    // 취소 눌렀을 때 액션이 들어갈 부분
+                }, deleteAction: { _ in
+                    self.groupDeleteWithAPI(
+                        groupID: self.serverGroups?.groups[indexPath.row].groupID ?? 0,
+                        defaultGroupId: self.unClass ?? 0)
+                    self.groupEditTableView.reloadData()
+                })
             })
-        })
-        deleteAction.backgroundColor = .red
-        
-        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
-        swipeActions.performsFirstActionWithFullSwipe = false
-        
-        return swipeActions
+            deleteAction.backgroundColor = .red
+            
+            let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
+            swipeActions.performsFirstActionWithFullSwipe = false
+            
+            return swipeActions
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let nextVC = GroupNameEditBottomSheetViewController()
-            .setTitle("그룹명 변경")
-            .setHeight(184)
-        nextVC.modalPresentationStyle = .overFullScreen
-        nextVC.text = serverGroups?.groups[indexPath.row].groupName ?? ""
-        nextVC.returnToGroupEditViewController = {
-            self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
+        if serverGroups?.groups.isEmpty == false {
+            let nextVC = GroupNameEditBottomSheetViewController()
+                .setTitle("그룹명 변경")
+                .setHeight(184)
+            nextVC.modalPresentationStyle = .overFullScreen
+            nextVC.text = serverGroups?.groups[indexPath.row].groupName ?? ""
+            nextVC.returnToGroupEditViewController = {
+                self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
+            }
+            nextVC.nowGroup = serverGroups?.groups[indexPath.row]
+            self.present(nextVC, animated: false, completion: nil)
         }
-        nextVC.nowGroup = serverGroups?.groups[indexPath.row]
-        self.present(nextVC, animated: false, completion: nil)
     }
-    
 }
 
 // MARK: - TableView DataSource
 extension GroupEditViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return serverGroups?.groups.count ?? 0
+        let count = serverGroups?.groups.count
+        if count == 0 {
+            return 1
+        } else {
+            return count ?? 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.groupEditTableViewCell, for: indexPath) as? GroupEditTableViewCell else { return UITableViewCell() }
-        
-        serviceCell.initData(title: serverGroups?.groups[indexPath.row].groupName ?? "")
-        
-        return serviceCell
+        if serverGroups?.groups.isEmpty == true {
+            guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.EmptyGroupEditTableViewCell, for: indexPath) as? EmptyGroupEditTableViewCell else { return UITableViewCell() }
+            return serviceCell
+        } else {
+            guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.groupEditTableViewCell, for: indexPath) as? GroupEditTableViewCell else { return UITableViewCell() }
+            
+            serviceCell.initData(title: serverGroups?.groups[indexPath.row].groupName ?? "")
+            return serviceCell
+        }
     }
 }
 

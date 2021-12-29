@@ -34,7 +34,6 @@ class GroupEditViewController: UIViewController {
     
     // MARK: - @IBAction Properties
     @IBAction func dismissToPreviousView(_ sender: UIButton) {
-        NotificationCenter.default.post(name: .reloadGroupViewController, object: nil)
         self.navigationController?.popViewController(animated: true)
     }
     

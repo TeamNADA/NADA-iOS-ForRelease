@@ -16,8 +16,10 @@ class CardDetailViewController: UIViewController {
         case .group:
             self.navigationController?.popViewController(animated: true)
         case .add:
+            NotificationCenter.default.post(name: .reloadGroupViewController, object: nil)
             self.dismiss(animated: true, completion: nil)
         case .addWithQR:
+            NotificationCenter.default.post(name: .reloadGroupViewController, object: nil)
             self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
 
         case .detail:
@@ -28,7 +30,6 @@ class CardDetailViewController: UIViewController {
     @IBAction func presentHarmonyViewController(_ sender: Any) {
         cardHarmonyFetchWithAPI(myCard: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.firstCardID) ?? "",
                                 yourCard: cardDataModel?.cardID ?? "")
-
     }
     
     @IBOutlet weak var optionButton: UIButton!

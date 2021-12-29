@@ -77,6 +77,13 @@ class GroupViewController: UIViewController {
         registerCell()
         setNotification()
         setUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        offset = 0
+        frontCards?.removeAll()
         groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
     }
 }
@@ -99,7 +106,12 @@ extension GroupViewController {
     
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(didRecieveDataNotification(_:)), name: Notification.Name.passDataToGroup, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(scrollToTop), name: .reloadGroupViewController, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(relaodCardCollection), name: .reloadGroupViewController, object: nil)
+    }
+    // FIXME: - 스크롤탑
+    private func scrollToTop(completion: () -> Void) {
+        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
+        completion()
     }
     
     @objc func didRecieveDataNotification(_ notification: Notification) {
@@ -107,14 +119,15 @@ extension GroupViewController {
     }
     
     @objc
-    private func scrollToTop() {
+    private func relaodCardCollection() {
         offset = 0
         frontCards?.removeAll()
-        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
+        
         // FIXME: - 스크롤 탑
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.cardsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
-        }
+//        scrollToTop {
+//            self.cardsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+//        }
+        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
 //        cardsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
     }
 }

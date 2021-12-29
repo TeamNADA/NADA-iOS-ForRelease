@@ -34,6 +34,7 @@ class CardDetailViewController: UIViewController {
     @IBOutlet weak var optionButton: UIButton!
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var idStackView: UIStackView!
     @IBOutlet weak var idLabel: UILabel!
     
     public var cardDataModel: Card?
@@ -110,6 +111,7 @@ extension CardDetailViewController {
         case .detail:
             return 
         }
+        idStackView.isHidden = true
         idLabel.text = cardDataModel?.cardID
     }
     private func setMenu() {

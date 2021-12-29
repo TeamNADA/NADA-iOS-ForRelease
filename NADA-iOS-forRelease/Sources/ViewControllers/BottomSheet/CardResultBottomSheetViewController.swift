@@ -42,6 +42,12 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
         setupUI()
     }
     
+    override func hideBottomSheetAndGoBack() {
+        super.hideBottomSheetAndGoBack()
+        
+        NotificationCenter.default.post(name: .dismissQRCodeCardResult, object: nil)
+    }
+    
     // MARK: - @Functions
     // UI 세팅 작업
     private func setupUI() {

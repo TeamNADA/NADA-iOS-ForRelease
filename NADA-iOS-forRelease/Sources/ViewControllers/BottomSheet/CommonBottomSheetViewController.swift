@@ -157,7 +157,6 @@ class CommonBottomSheetViewController: UIViewController {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: dismissIndicatorView.bottomAnchor, constant: 28),
-//            titleLabel.widthAnchor.constraint(equalToConstant: 100),
             titleLabel.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor)
         ])
     }

@@ -38,6 +38,17 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
         setupUI()
     }
     
+    override func hideBottomSheetAndGoBack() {
+        super.hideBottomSheetAndGoBack()
+        
+        switch status {
+        case .addWithQR:
+            NotificationCenter.default.post(name: .dismissQRCodeCardResult, object: nil)
+        default:
+            return
+        }
+    }
+    
     // MARK: - @Functions
     // UI 세팅 작업
     private func setupUI() {

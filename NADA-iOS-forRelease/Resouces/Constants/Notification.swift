@@ -21,4 +21,5 @@ extension Notification.Name {
     static let reloadGroupViewController = Notification.Name("reloadGroupViewController")
     static let creationReloadMainCardSwiper = Notification.Name("creationReloadMainCardSwiper")
     static let listReloadMainCardSwiper = Notification.Name("listReloadMainCardSwiper")
+    static let dismissQRCodeCardResult = Notification.Name("dismissQRCodeCardResult")
 }

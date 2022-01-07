@@ -254,12 +254,16 @@ extension GroupViewController {
 // MARK: - UICollectionViewDelegate
 extension GroupViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if cardsCollectionView.contentOffset.y > cardsCollectionView.contentSize.height - cardsCollectionView.bounds.height {
-            if isInfiniteScroll {
-                isInfiniteScroll = false
-                offset += 1
-                
-                cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "", groupId: serverGroups?.groups[self.selectedRow].groupID ?? -1, offset: offset))
+        if scrollView == cardsCollectionView {
+            if cardsCollectionView.contentOffset.y > cardsCollectionView.contentSize.height - cardsCollectionView.bounds.height {
+                if isInfiniteScroll {
+                    isInfiniteScroll = false
+                    offset += 1
+                    
+                    cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "", groupId: serverGroups?.groups[self.selectedRow].groupID ?? -1, offset: offset)) {
+                        self.isInfiniteScroll = true
+                    }
+                }
             }
         }
     }

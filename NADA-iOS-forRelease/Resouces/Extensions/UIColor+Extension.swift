@@ -134,6 +134,20 @@ extension UIColor {
         }
     }
     
+    @nonobjc class var loadingBackground: UIColor {
+        if #available(iOS 13, *) {
+            return UIColor { (traitCollection: UITraitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .light {
+                    return UIColor(white: 0, alpha: 0.2)
+                } else {
+                    return UIColor(white: 0, alpha: 0.8)
+                }
+            }
+        } else {
+            return UIColor(white: 0, alpha: 0.2)
+        }
+    }
+    
     @nonobjc class var harmonyRed: UIColor {
       return UIColor(red: 239.0 / 255.0, green: 115.0 / 255.0, blue: 115.0 / 255.0, alpha: 1.0)
     }

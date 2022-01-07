@@ -22,7 +22,7 @@ class CardCreationPreviewViewController: UIViewController {
     
     lazy var loadingBgView: UIView = {
         let bgView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        bgView.backgroundColor = .bottomDimmedBackground
+        bgView.backgroundColor = .loadingBackground
         
         return bgView
     }()
@@ -246,6 +246,7 @@ extension CardCreationPreviewViewController {
                                       """)
                             .setHeight(587)
                         nextVC.modalPresentationStyle = .overFullScreen
+                        
                         presentingVC.present(nextVC, animated: true) {
                             UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isFirstCard)
                         }

@@ -14,7 +14,7 @@ import AuthenticationServices
 class LoginViewController: UIViewController {
     
     // MARK: - IBOutlet Properties
-    @IBOutlet weak var loginProviderStackView: UIStackView!
+    @IBOutlet weak var nadaImageView: UIImageView!
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -26,28 +26,28 @@ class LoginViewController: UIViewController {
     // MARK: - Functions
     func setUI() {
         let kakaoButton = UIButton()
-        kakaoButton.setImage(UIImage(named: "kakao_login_large_wide"), for: .normal)
+        kakaoButton.setImage(UIImage(named: "btn_kakaologin"), for: .normal)
         kakaoButton.cornerRadius = 15
         kakaoButton.addTarget(self, action: #selector(kakaoSignInButtonPress), for: .touchUpInside)
-        loginProviderStackView.addSubview(kakaoButton)
+        view.addSubview(kakaoButton)
         
         kakaoButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            kakaoButton.topAnchor.constraint(equalTo: loginProviderStackView.topAnchor),
-            kakaoButton.leadingAnchor.constraint(equalTo: loginProviderStackView.leadingAnchor),
-            kakaoButton.trailingAnchor.constraint(equalTo: loginProviderStackView.trailingAnchor),
+            kakaoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            kakaoButton.topAnchor.constraint(equalTo: nadaImageView.bottomAnchor, constant: 122),
+            kakaoButton.widthAnchor.constraint(equalToConstant: 327),
             kakaoButton.heightAnchor.constraint(equalToConstant: 48)
         ])
         
         let authorizationButton = ASAuthorizationAppleIDButton(type: .signIn, style: .black)
         authorizationButton.addTarget(self, action: #selector(appleSignInButtonPress), for: .touchUpInside)
-        loginProviderStackView.addSubview(authorizationButton)
+        view.addSubview(authorizationButton)
         
         authorizationButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            authorizationButton.leadingAnchor.constraint(equalTo: loginProviderStackView.leadingAnchor),
-            authorizationButton.trailingAnchor.constraint(equalTo: loginProviderStackView.trailingAnchor),
-            authorizationButton.bottomAnchor.constraint(equalTo: loginProviderStackView.bottomAnchor),
+            authorizationButton.topAnchor.constraint(equalTo: kakaoButton.bottomAnchor, constant: 14),
+            authorizationButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            authorizationButton.widthAnchor.constraint(equalToConstant: 327),
             authorizationButton.heightAnchor.constraint(equalToConstant: 48)
         ])
         

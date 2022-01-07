@@ -19,5 +19,6 @@ extension Const {
         static let kakaoURL = "https://developers.kakao.com/sdk/reference/ios/release/KakaoSDKCommon/index.html"
         static let keyboardURL = "https://github.com/hackiftekhar/IQKeyboardManager"
         static let kingfisherURL = "https://github.com/onevcat/Kingfisher"
+        static let indicatorURL = "https://github.com/ninjaprox/NVActivityIndicatorView"
     }
 }

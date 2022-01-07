@@ -351,11 +351,12 @@ extension GroupViewController: UICollectionViewDelegateFlowLayout {
         
         switch collectionView {
         case groupCollectionView:
-            if serverGroups?.groups[indexPath.row].groupName.count ?? 0 > 4 {
-                width = CGFloat(serverGroups?.groups[indexPath.row].groupName.count ?? 0) * 16
-            } else {
-                width = 62
+            guard let cell = groupCollectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.groupCollectionViewCell, for: indexPath) as? GroupCollectionViewCell else {
+                return .zero
             }
+            cell.groupName.text = serverGroups?.groups[indexPath.row].groupName
+            cell.groupName.sizeToFit()
+            width = cell.groupName.frame.width + 30
             height = collectionView.frame.size.height
         case cardsCollectionView:
             width = collectionView.frame.size.width/2 - collectionView.frame.size.width * 8/327

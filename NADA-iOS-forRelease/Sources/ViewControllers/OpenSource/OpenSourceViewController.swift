@@ -10,7 +10,7 @@ import UIKit
 class OpenSourceViewController: UIViewController {
 
     // MARK: - Properteis
-    var openSourceList = ["Moya", "SkeletonView", "SwiftLint", "VerticalCardSwiper", "KakaoSDK", "IQKeyboardManagerSwift", "Kingfisher"]
+    var openSourceList = ["Moya", "SkeletonView", "SwiftLint", "VerticalCardSwiper", "KakaoSDK", "IQKeyboardManagerSwift", "Kingfisher", "NVActivityIndicatorView"]
 
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var openSourceTableView: UITableView!
@@ -68,6 +68,7 @@ extension OpenSourceViewController: UITableViewDelegate {
         case 4: openURL(link: URL(string: Const.URL.kakaoURL)!)
         case 5: openURL(link: URL(string: Const.URL.keyboardURL)!)
         case 6: openURL(link: URL(string: Const.URL.kingfisherURL)!)
+        case 7: openURL(link: URL(string: Const.URL.indicatorURL)!)
         default: print("default!")
             
         }

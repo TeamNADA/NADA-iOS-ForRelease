@@ -26,7 +26,11 @@ class SplashViewController: UIViewController {
             if self.appDelegate?.isLogin == true {
                 self.presentToMain()
             } else {
-                self.presentToLogin()
+                if UserDefaults.standard.object(forKey: Const.UserDefaultsKey.isOnboarding) != nil {
+                    self.presentToLogin()
+                } else {
+                    self.presentToOnboarding()
+                }
             }
         }
     }
@@ -44,6 +48,13 @@ class SplashViewController: UIViewController {
         loginVC.modalPresentationStyle = .fullScreen
         loginVC.modalTransitionStyle = .crossDissolve
         self.present(loginVC, animated: true, completion: nil)
+    }
+    
+    private func presentToOnboarding() {
+        guard let onboardingVC = UIStoryboard(name: Const.Storyboard.Name.onboarding, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.onboardingViewController) as? OnboardingViewController else { return }
+        onboardingVC.modalPresentationStyle = .fullScreen
+        onboardingVC.modalTransitionStyle = .crossDissolve
+        self.present(onboardingVC, animated: true, completion: nil)
     }
     
 }

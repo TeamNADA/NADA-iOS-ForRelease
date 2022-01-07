@@ -11,16 +11,19 @@ import IQKeyboardManagerSwift
 class CardResultBottomSheetViewController: CommonBottomSheetViewController {
 
     // MARK: - Properties
+    var cardDataModel: Card?
+    
+    var status: Status = .add
+    
     private let groupLabel: UILabel = {
         let label = UILabel()
-        label.text = "어쩌구 동아리 명함"
         label.textColor = .secondary
         label.font = .textRegular03
         
         return label
     }()
     
-    private let cardView: UIView = {
+    private let cardView: CardView = {
         let view = CardView()
         return view
     }()
@@ -39,6 +42,12 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
         setupUI()
     }
     
+    override func hideBottomSheetAndGoBack() {
+        super.hideBottomSheetAndGoBack()
+        
+        NotificationCenter.default.post(name: .dismissQRCodeCardResult, object: nil)
+    }
+    
     // MARK: - @Functions
     // UI 세팅 작업
     private func setupUI() {
@@ -46,6 +55,27 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
         view.addSubview(cardView)
         view.addSubview(addButton)
         setupLayout()
+        
+        groupLabel.text = cardDataModel?.cardDescription
+        setCardView()
+    }
+    
+    private func setCardView() {
+        cardView.backgroundImageView.updateServerImage(cardDataModel?.background ?? "")
+        cardView.titleLabel.text = cardDataModel?.title ?? ""
+        cardView.descriptionLabel.text = cardDataModel?.cardDescription ?? ""
+        cardView.userNameLabel.text = cardDataModel?.name ?? ""
+        cardView.birthLabel.text = cardDataModel?.birthDate ?? ""
+        cardView.mbtiLabel.text = cardDataModel?.mbti ?? ""
+        cardView.instagramIDLabel.text = cardDataModel?.instagram ?? ""
+        cardView.lineURLLabel.text = cardDataModel?.link ?? ""
+        
+        if cardDataModel?.instagram == ""{
+            cardView.instagramIcon.isHidden = true
+        }
+        if cardDataModel?.link == ""{
+            cardView.urlIcon.isHidden = true
+        }
     }
     
     // 레이아웃 세팅
@@ -74,10 +104,32 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
     }
     
     @objc func presentGroupSelectBottomSheet() {
-        let nextVC = SelectGroupBottomSheetViewController()
-        nextVC.status = .add
-        hideBottomSheetAndPresent(nextBottomSheet: nextVC, title: "그룹선택", height: 386)
-        print("next bottomsheet")
+        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
     }
 
+}
+
+extension CardResultBottomSheetViewController {
+    func groupListFetchWithAPI(userID: String) {
+        GroupAPI.shared.groupListFetch(userID: userID) { response in
+            switch response {
+            case .success(let data):
+                if let group = data as? Groups {
+                    let nextVC = SelectGroupBottomSheetViewController()
+                    nextVC.status = self.status
+                    nextVC.cardDataModel = self.cardDataModel
+                    nextVC.serverGroups = group
+                    self.hideBottomSheetAndPresent(nextBottomSheet: nextVC, title: "그룹선택", height: 386)
+                }
+            case .requestErr(let message):
+                print("groupListFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("groupListFetchWithAPI - pathErr")
+            case .serverErr:
+                print("groupListFetchWithAPI - serverErr")
+            case .networkFail:
+                print("groupListFetchWithAPI - networkFail")
+            }
+        }
+    }
 }

@@ -21,9 +21,11 @@
                 <outlet property="birthLabel" destination="bKT-Iy-Vgq" id="6Hc-yn-esH"/>
                 <outlet property="descriptionLabel" destination="ODd-rW-HN9" id="kCD-Cv-Tok"/>
                 <outlet property="instagramIDLabel" destination="tmB-6S-myw" id="Qnd-JG-X8v"/>
+                <outlet property="instagramIcon" destination="IMZ-cI-mgN" id="cbv-Wj-HUF"/>
                 <outlet property="lineURLLabel" destination="a7e-eY-RKP" id="lp5-qw-hfu"/>
                 <outlet property="mbtiLabel" destination="d9j-mu-jog" id="p9v-KB-doC"/>
                 <outlet property="titleLabel" destination="Swh-6B-eGz" id="XOc-XI-iVf"/>
+                <outlet property="urlIcon" destination="rDx-zx-jkd" id="Kw6-Ur-f78"/>
                 <outlet property="userNameLabel" destination="Jlf-bz-O5n" id="SID-U2-JeG"/>
             </connections>
         </placeholder>
@@ -32,8 +34,13 @@
             <rect key="frame" x="0.0" y="0.0" width="201" height="331"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card" translatesAutoresizingMaskIntoConstraints="NO" id="BM7-of-ZP2">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card" translatesAutoresizingMaskIntoConstraints="NO" id="BM7-of-ZP2">
                     <rect key="frame" x="0.0" y="0.0" width="201" height="331"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SOPT 명함" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Swh-6B-eGz">
                     <rect key="frame" x="16" y="33" width="57" height="14"/>

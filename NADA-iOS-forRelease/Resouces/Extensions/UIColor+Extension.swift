@@ -126,11 +126,25 @@ extension UIColor {
                 if traitCollection.userInterfaceStyle == .light {
                     return UIColor(white: 0.0, alpha: 0.4)
                 } else {
-                    return UIColor(white: 0.0, alpha: 0.6)
+                    return UIColor(white: 0.0, alpha: 0.8)
                 }
             }
         } else {
             return UIColor(white: 0.0, alpha: 0.4)
+        }
+    }
+    
+    @nonobjc class var loadingBackground: UIColor {
+        if #available(iOS 13, *) {
+            return UIColor { (traitCollection: UITraitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .light {
+                    return UIColor(white: 0, alpha: 0.2)
+                } else {
+                    return UIColor(white: 0, alpha: 0.8)
+                }
+            }
+        } else {
+            return UIColor(white: 0, alpha: 0.2)
         }
     }
     

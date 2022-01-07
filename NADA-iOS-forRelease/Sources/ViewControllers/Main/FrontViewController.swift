@@ -6,47 +6,40 @@
 //
 
 import UIKit
-import VerticalCardSwiper
+
 import KakaoSDKCommon
+import NVActivityIndicatorView
+import VerticalCardSwiper
 
 class FrontViewController: UIViewController {
     
     // MARK: - Properteis
-
-    var cardDataList: [Card]? = [Card(cardID: "card",
-                                      background: "card",
-                                      title: "SOPT 명함",
-                                      name: "이채연",
-                                      birthDate: "1998.01.09 (24)",
-                                      mbti: "ENFP",
-                                      instagram: "chaens_",
-                                      link: "https://github.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADA",
-                                      cardDescription: "29기 디자인파트",
-                                      isMincho: true,
-                                      isSoju: true,
-                                      isBoomuk: true,
-                                      isSauced: true,
-                                      oneTMI: "첫번째",
-                                      twoTMI: "두번째",
-                                      thirdTMI: "세번째세번째세번째"),
-                                 Card(cardID: "card",
-                                      background: "card",
-                                      title: "SOPT 명함",
-                                      name: "이채연",
-                                      birthDate: "1998.01.09 (24)",
-                                      mbti: "ENFP",
-                                      instagram: "minimin.0_0",
-                                      link: "https://www.naver.com",
-                                      cardDescription: "29기 디자인파트",
-                                      isMincho: true,
-                                      isSoju: true,
-                                      isBoomuk: true,
-                                      isSauced: true,
-                                      oneTMI: "첫번째",
-                                      twoTMI: "두번째",
-                                      thirdTMI: "세번째세번째세번째")]
     
-    // var cardDataList: [Card]? = []
+    private var offset = 0
+    private var isInfiniteScroll = true
+    private var cardDataList: [Card]? = []
+    private var userID: String?
+    
+    var isAfterCreation = false
+    
+    // MARK: - Components
+    
+    lazy var loadingBgView: UIView = {
+        let bgView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        bgView.backgroundColor = .loadingBackground
+        
+        return bgView
+    }()
+    
+    lazy var activityIndicator: NVActivityIndicatorView = {
+        let activityIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40),
+                                                        type: .ballBeat,
+                                                        color: .mainColorNadaMain,
+                                                        padding: .zero)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        return activityIndicator
+    }()
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var cardSwiper: VerticalCardSwiper!
@@ -55,10 +48,31 @@ class FrontViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        setCardDataModelList()
+        setUserID()
         setDelegate()
-        // TODO: - 서버 테스트
-//        cardListFetchWithAPI(userID: "nada", isList: false, offset: 0)
+        setNotification()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if !self.isAfterCreation {
+            DispatchQueue.main.async {
+                
+                self.setActivityIndicator()
+                
+                self.offset = 0
+                self.cardDataList?.removeAll()
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.cardListFetchWithAPI(userID: self.userID, isList: false, offset: self.offset) {
+                    _ = self.cardSwiper.scrollToCard(at: 0, animated: false)
+                    self.activityIndicator.stopAnimating()
+                    self.loadingBgView.removeFromSuperview()
+                }
+            }
+        }
     }
     
     // MARK: - @IBAction Properties
@@ -66,7 +80,8 @@ class FrontViewController: UIViewController {
     @IBAction func presentToCardCreationView(_ sender: Any) {
         let nextVC = UIStoryboard(name: Const.Storyboard.Name.cardCreation, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardCreationViewController)
         let navigationController = UINavigationController(rootViewController: nextVC)
-        navigationController.modalPresentationStyle = .overFullScreen
+        navigationController.modalPresentationStyle = .fullScreen
+        
         self.present(navigationController, animated: true, completion: nil)
     }
     
@@ -81,10 +96,7 @@ class FrontViewController: UIViewController {
 }
 
 // MARK: - Extensions
-extension FrontViewController {
-    private func setUI() {
-        
-    }
+extension FrontViewController {    
     private func setDelegate() {
         cardSwiper.delegate = self
         cardSwiper.datasource = self
@@ -94,43 +106,56 @@ extension FrontViewController {
         cardSwiper.register(nib: MainCardCell.nib(), forCellWithReuseIdentifier: Const.Xib.mainCardCell)
         cardSwiper.register(nib: EmptyCardCell.nib(), forCellWithReuseIdentifier: Const.Xib.emptyCardCell)
     }
+
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didRecievePresentCardShare(_:)), name: .presentCardShare, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setCreationReloadMainCardSwiper), name: .creationReloadMainCardSwiper, object: nil)
+    }
     
-//    private func setCardDataModelList() {
-//        cardDataList?.append(contentsOf: [
-//            Card(cardID: "card",
-//                 background: "card",
-//                 title: "SOPT 명함",
-//                 name: "이채연",
-//                 birthDate: "1998.01.09 (24)",
-//                 mbti: "ENFP",
-//                 instagram: "chaens_",
-//                 link: "https://github.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADAgithub.com/TeamNADA",
-//                 cardDescription: "29기 디자인파트",
-//                 isMincho: true,
-//                 isSoju: true,
-//                 isBoomuk: true,
-//                 isSauced: true,
-//                 oneTMI: "첫번째",
-//                 twoTMI: "두번째",
-//                 thirdTMI: "세번째세번째세번째"),
-//            Card(cardID: "card",
-//                 background: "card",
-//                 title: "SOPT 명함",
-//                 name: "이채연",
-//                 birthDate: "1998.01.09 (24)",
-//                 mbti: "ENFP",
-//                 instagram: "minimin.0_0",
-//                 link: "https://www.naver.com",
-//                 cardDescription: "29기 디자인파트",
-//                 isMincho: true,
-//                 isSoju: true,
-//                 isBoomuk: true,
-//                 isSauced: true,
-//                 oneTMI: "첫번째",
-//                 twoTMI: "두번째",
-//                 thirdTMI: "세번째세번째세번째")
-//        ])
-//    }
+    private func setUserID() {
+        userID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID)
+    }
+    
+    private func setActivityIndicator() {
+        view.addSubview(loadingBgView)
+        loadingBgView.addSubview(activityIndicator)
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        
+        activityIndicator.startAnimating()
+    }
+    
+    // MARK: - @objc Methods
+    
+    @objc
+    private func didRecievePresentCardShare(_ notification: Notification) {
+        let nextVC = CardShareBottomSheetViewController()
+            .setTitle("명함공유")
+            .setHeight(404)
+
+        if let cardData = notification.object as? Card {
+            nextVC.cardDataModel = cardData
+        }
+        
+        nextVC.modalPresentationStyle = .overFullScreen
+        self.present(nextVC, animated: false, completion: nil)
+    }
+    
+    @objc
+    private func setCreationReloadMainCardSwiper() {
+        isAfterCreation = true
+        
+        cardDataList?.removeAll()
+        offset = 0
+        
+        cardListFetchWithAPI(userID: userID, isList: false, offset: offset) {
+            _ = self.cardSwiper.scrollToCard(at: 1, animated: false)
+            self.isAfterCreation = false
+        }
+    }
 }
 
 // MARK: - VerticalCardSwiperDelegate
@@ -138,12 +163,26 @@ extension FrontViewController: VerticalCardSwiperDelegate {
     func sizeForItem(verticalCardSwiperView: VerticalCardSwiperView, index: Int) -> CGSize {
         return CGSize(width: 375, height: 630)
     }
+    
+    func didScroll(verticalCardSwiperView: VerticalCardSwiperView) {
+        if verticalCardSwiperView.contentOffset.y > verticalCardSwiperView.contentSize.height - verticalCardSwiperView.bounds.height {
+            if isInfiniteScroll {
+                isInfiniteScroll = false
+                offset += 1
+                guard let userID = userID else { return }
+                cardListFetchWithAPI(userID: userID, isList: false, offset: offset) {
+                    self.isInfiniteScroll = true
+                }
+            }
+        }
+    }
 }
 
 // MARK: - VerticalCardSwiperDatasource
 extension FrontViewController: VerticalCardSwiperDatasource {
     func numberOfCards(verticalCardSwiperView: VerticalCardSwiperView) -> Int {
-        guard let count = cardDataList?.count else { return 0 }
+        guard let cardDataList = cardDataList else { return 0 }
+        let count = cardDataList.count
         return count == 0 ? 1 : count
     }
     
@@ -151,6 +190,7 @@ extension FrontViewController: VerticalCardSwiperDatasource {
         if cardDataList?.count != 0 {
             guard let cell = verticalCardSwiperView.dequeueReusableCell(withReuseIdentifier: Const.Xib.mainCardCell, for: index) as? MainCardCell else { return CardCell() }
             guard let cardDataList = cardDataList else { return CardCell() }
+            UserDefaults.standard.set(cardDataList[0].cardID, forKey: Const.UserDefaultsKey.firstCardID)
             cell.initCell(cardDataModel: cardDataList[index])
             cell.isShareable = true
             cell.setFrontCard()
@@ -161,17 +201,21 @@ extension FrontViewController: VerticalCardSwiperDatasource {
             return cell
         }
     }
+    
 }
 
 // MARK: - Network
 extension FrontViewController {
-    func cardListFetchWithAPI(userID: String, isList: Bool, offset: Int) {
+    func cardListFetchWithAPI(userID: String?, isList: Bool, offset: Int, completion: @escaping () -> Void = { }) {
+        guard let userID = userID else { return }
         CardAPI.shared.cardListFetch(userID: userID, isList: isList, offset: offset) { response in
             switch response {
             case .success(let data):
-                if let card = data as? CardListRequest {
-                    print(card)
+                if let cardListLookUp = data as? CardListLookUp {
+                    self.cardDataList?.append(contentsOf: cardListLookUp.cards)
+                    self.cardSwiper.reloadData()
                 }
+                completion()
             case .requestErr(let message):
                 print("cardListFetchWithAPI - requestErr: \(message)")
             case .pathErr:

@@ -12,26 +12,21 @@ import KakaoSDKAuth
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-    
+    let defaults = UserDefaults.standard
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-         window?.rootViewController = UIStoryboard(name: Const.Storyboard.Name.tabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.tabBarViewController)
-//        window?.rootViewController = UIStoryboard(name: Const.Storyboard.Name.splash, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.splashViewController)
-        // window?.rootViewController = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
+        window?.rootViewController = UIStoryboard(name: Const.Storyboard.Name.splash, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.splashViewController)
         window?.makeKeyAndVisible()
         
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         
-        let isDark = UserDefaults.standard.bool(forKey: Const.UserDefaults.darkModeState)
+        let isDark = defaults.bool(forKey: Const.UserDefaultsKey.darkModeState)
         
         // 시스템 무시하고 UserDefault 상태에 따라 화면 전체에 다크/라이트 모드를 결정
         if let window = UIApplication.shared.windows.first {
@@ -41,6 +36,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 window.overrideUserInterfaceStyle = .light
             }
         }
+
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
@@ -50,6 +46,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         }
     }
+    
+    // MARK: - Methods
     
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

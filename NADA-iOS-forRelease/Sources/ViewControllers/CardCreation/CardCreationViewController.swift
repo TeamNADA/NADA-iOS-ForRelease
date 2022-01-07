@@ -222,72 +222,13 @@ extension CardCreationViewController {
     }
 }
 
-// MARK: - Network
-extension CardCreationViewController {
-    // TODO: - card 서버통신. 위치변경.
-//    func cardDetailFetchWithAPI(cardID: String) {
-//        CardAPI.shared.cardDetailFetch(cardID: cardID) { response in
-//            switch response {
-//            case .success(let data):
-//                if let card = data as? Card {
-//                    self.cardData = card
-//                }
-//            case .requestErr(let message):
-//                print("cardDetailFetchWithAPI - requestErr: \(message)")
-//            case .pathErr:
-//                print("cardDetailFetchWithAPI - pathErr")
-//            case .serverErr:
-//                print("cardDetailFetchWithAPI - serverErr")
-//            case .networkFail:
-//                print("cardDetailFetchWithAPI - networkFail")
-//            }
-//        }
-//    }
-
-    // TODO: - group 서버통신. 위치변경.
-//    func changeGroupWithAPI(request: ChangeGroupRequest) {
-//        GroupAPI.shared.changeCardGroup(request: request) { response in
-//            switch response {
-//            case .success:
-//                print("changeGroupWithAPI - success")
-//            case .requestErr(let message):
-//                print("changeGroupWithAPI - requestErr: \(message)")
-//            case .pathErr:
-//                print("changeGroupWithAPI - pathErr")
-//            case .serverErr:
-//                print("changeGroupWithAPI - serverErr")
-//            case .networkFail:
-//                print("changeGroupWithAPI - networkFail")
-//            }
-//        }
-//    }
-    // TODO: - group 서버통신. 위치변경.
-//    func cardDeleteInGroupWithAPI(groupID: Int, cardID: String) {
-//        GroupAPI.shared.cardDeleteInGroup(groupID: groupID, cardID: cardID) { response in
-//            switch response {
-//            case .success:
-//                print("cardDeleteInGroupWithAPI - success")
-//            case .requestErr(let message):
-//                print("cardDeleteInGroupWithAPI - requestErr: \(message)")
-//            case .pathErr:
-//                print("cardDeleteInGroupWithAPI - pathErr")
-//            case .serverErr:
-//                print("cardDeleteInGroupWithAPI - serverErr")
-//            case .networkFail:
-//                print("cardDeleteInGroupWithAPI - networkFail")
-//            }
-//
-//        }
-//    }
-}
-
 // MARK: - UICollectionViewDelegate
 extension CardCreationViewController: UICollectionViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let targetIndex = targetContentOffset.pointee.x / scrollView.frame.size.width
         if targetIndex == 1 && currentIndex == 0 {
-            UIView.animate(withDuration: 0.2) {
-                self.statusMovedView.transform = CGAffineTransform(translationX: self.backTextLabel.frame.origin.x - self.statusMovedView.frame.origin.x + 5, y: 0)
+            UIView.animate(withDuration: 0.3) {
+                self.statusMovedView.transform = CGAffineTransform(translationX: self.backTextLabel.frame.origin.x - self.statusMovedView.frame.origin.x - 5, y: 0)
             }
             currentIndex = 1
              self.frontTextLabel.textColor = .quaternary
@@ -409,9 +350,9 @@ extension CardCreationViewController: BackCardCreationDelegate {
                                      isSoju: requiredInfo["isSoju"] ?? false,
                                      isBoomuk: requiredInfo["isBoomuk"] ?? false,
                                      isSauced: requiredInfo["isSauced"] ?? false,
-                                     firstTMI: optionalInfo["firstTMI"] ?? "",
-                                     secondTMI: optionalInfo["secondTMI"] ?? "",
-                                     thirdTMI: optionalInfo["thirdTMI"] ?? "")
+                                     oneTMI: optionalInfo["firstTMI"] ?? "",
+                                     twoTMI: optionalInfo["secondTMI"] ?? "",
+                                     threeTMI: optionalInfo["thirdTMI"] ?? "")
     }
 }
 

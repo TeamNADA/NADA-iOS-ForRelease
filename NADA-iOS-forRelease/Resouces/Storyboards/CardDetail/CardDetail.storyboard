@@ -118,6 +118,8 @@
                     <connections>
                         <outlet property="backButton" destination="ppy-17-v7q" id="mdc-dd-yGB"/>
                         <outlet property="cardView" destination="0P6-1k-dQm" id="qGN-9y-K4Y"/>
+                        <outlet property="idLabel" destination="J0e-kR-6Zc" id="4il-d0-UMv"/>
+                        <outlet property="idStackView" destination="yM7-jk-cSi" id="W9m-Jo-mDr"/>
                         <outlet property="optionButton" destination="YU7-vs-utH" id="Jg4-K3-dTV"/>
                     </connections>
                 </viewController>

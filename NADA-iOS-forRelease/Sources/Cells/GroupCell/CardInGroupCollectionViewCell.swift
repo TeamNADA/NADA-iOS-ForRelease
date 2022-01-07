@@ -19,20 +19,32 @@ class CardInGroupCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var instagramIDLabel: UILabel!
     @IBOutlet weak var lineURLLabel: UILabel!
     
+    @IBOutlet weak var instagramIcon: UIImageView!
+    @IBOutlet weak var urlIcon: UIImageView!
+    var groupId: Int?
+    var cardId: String?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        setUI()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        backgroundImageView.image = UIImage()
+        titleLabel.text = ""
+        descriptionLabel.text = ""
+        userNameLabel.text = ""
+        birthLabel.text = ""
+        mbtiLabel.text = ""
+        instagramIDLabel.text = ""
+        mbtiLabel.text = ""
+        instagramIcon.isHidden = false
+        urlIcon.isHidden = false
     }
     
     static func nib() -> UINib {
         return UINib(nibName: Const.Xib.cardInGroupCollectionViewCell, bundle: Bundle(for: CardInGroupCollectionViewCell.self))
     }
 
-}
-
-extension CardInGroupCollectionViewCell {
-    private func setUI() {
-        
-//        backgroundImageView.alpha = 0.4
-    }
 }

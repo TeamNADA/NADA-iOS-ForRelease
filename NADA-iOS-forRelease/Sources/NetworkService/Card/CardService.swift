@@ -11,7 +11,7 @@ import Moya
 enum CardService {
     case cardDetailFetch(cardID: String)
     case cardCreation(request: CardCreationRequest, image: UIImage)
-    case cardListFetch(userID: String, isList: Bool?, offset: Int?)
+    case cardListFetch(userID: String, isList: Bool, offset: Int?)
     case cardListEdit(request: CardListEditRequest)
     case cardDelete(cardID: String)
 }
@@ -77,7 +77,7 @@ extension CardService: TargetType {
             let instagramIDData = request.frontCard.instagramID.data(using: .utf8) ?? Data()
             multiPartData.append(MultipartFormData(provider: .data(instagramIDData), name: "card.instagram"))
             let linkURLData = request.frontCard.linkURL.data(using: .utf8) ?? Data()
-            multiPartData.append(MultipartFormData(provider: .data(linkURLData), name: "card.linkName"))
+            multiPartData.append(MultipartFormData(provider: .data(linkURLData), name: "card.link"))
             let descriptionData = request.frontCard.description.data(using: .utf8) ?? Data()
             multiPartData.append(MultipartFormData(provider: .data(descriptionData), name: "card.description"))
             let isMinchoData = Bool(request.backCard.isMincho).description.data(using: .utf8) ?? Data()
@@ -88,12 +88,12 @@ extension CardService: TargetType {
             multiPartData.append(MultipartFormData(provider: .data(isBoomukData), name: "card.isBoomuk"))
             let isSaucedData = Bool(request.backCard.isSauced).description.data(using: .utf8) ?? Data()
             multiPartData.append(MultipartFormData(provider: .data(isSaucedData), name: "card.isSauced"))
-            let firstTMI = request.backCard.firstTMI.data(using: .utf8) ?? Data()
-            multiPartData.append(MultipartFormData(provider: .data(firstTMI), name: "card.firstTMI"))
-            let secondTMI = request.backCard.secondTMI.data(using: .utf8) ?? Data()
-            multiPartData.append(MultipartFormData(provider: .data(secondTMI), name: "card.secondTMI"))
-            let thirdTMI = request.backCard.thirdTMI.data(using: .utf8) ?? Data()
-            multiPartData.append(MultipartFormData(provider: .data(thirdTMI), name: "card.thirdTMI"))
+            let oneTMI = request.backCard.oneTMI.data(using: .utf8) ?? Data()
+            multiPartData.append(MultipartFormData(provider: .data(oneTMI), name: "card.oneTmi"))
+            let twoTMI = request.backCard.twoTMI.data(using: .utf8) ?? Data()
+            multiPartData.append(MultipartFormData(provider: .data(twoTMI), name: "card.twoTmi"))
+            let threeTMI = request.backCard.threeTMI.data(using: .utf8) ?? Data()
+            multiPartData.append(MultipartFormData(provider: .data(threeTMI), name: "card.threeTmi"))
             
             let imageData = MultipartFormData(provider: .data(image.pngData() ?? Data()), name: "image", fileName: "image", mimeType: "image/png")
             multiPartData.append(imageData)
@@ -101,9 +101,9 @@ extension CardService: TargetType {
             return .uploadMultipart(multiPartData)
         case .cardListFetch(let userID, let isList, let offset):
             return .requestParameters(parameters: ["userId": userID,
-                                                   "list": isList ?? false,
-                                                   "offset": offset ?? ""
-            ], encoding: URLEncoding.queryString)
+                                                   "list": isList,
+                                                   "offset": offset ?? ""],
+                                      encoding: URLEncoding.queryString)
         case .cardListEdit(let requestModel):
             return .requestJSONEncodable(requestModel)
         }
@@ -111,12 +111,10 @@ extension CardService: TargetType {
     
     var headers: [String: String]? {
         switch self {
-        case .cardDetailFetch, .cardListFetch, .cardDelete:
-            return .none
+        case .cardDetailFetch, .cardListFetch, .cardDelete, .cardListEdit:
+            return Const.Header.basicHeader
         case .cardCreation:
-            return ["Content-Type": "multipart/form-data"]
-        case .cardListEdit:
-            return ["Content-Type": "application/json"]
+            return Const.Header.basicHeader
         }
     }
 }

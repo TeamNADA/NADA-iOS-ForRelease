@@ -14,6 +14,9 @@ class GroupNameEditBottomSheetViewController: CommonBottomSheetViewController, U
     
     // 넘어온 그룹 이름 데이터를 받는 변수 선언
     var text: String = ""
+    var returnToGroupEditViewController: (() -> Void)?
+    var nowGroup: Group?
+    private var bottomSheetViewTopConstraint: NSLayoutConstraint?
     
     // 그룹 추가 텍스트 필드
     private let addGroupTextField: UITextField = {
@@ -50,7 +53,6 @@ class GroupNameEditBottomSheetViewController: CommonBottomSheetViewController, U
         view.addSubview(addGroupTextField)
         
         setupLayout()
-        
         addGroupTextField.text = text
     }
     
@@ -64,12 +66,52 @@ class GroupNameEditBottomSheetViewController: CommonBottomSheetViewController, U
             addGroupTextField.heightAnchor.constraint(equalToConstant: 45)
         ])
     }
+    
+    private func nowHideBottomSheetAndGoBack() {
+        let safeAreaHeight = view.safeAreaLayoutGuide.layoutFrame.height
+        let bottomPadding = view.safeAreaInsets.bottom
+        bottomSheetViewTopConstraint?.constant = safeAreaHeight + bottomPadding
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+            self.dimmedBackView.alpha = 0.0
+            self.view.layoutIfNeeded()
+            self.bottomSheetCoverView.isHidden = false
+        }, completion: { _ in
+            if self.presentingViewController != nil {
+                self.dismiss(animated: false) {
+                    self.returnToGroupEditViewController?()
+                }
+            }
+        })
+    }
 }
 
+// MARK: - Extensions
 extension GroupNameEditBottomSheetViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        hideBottomSheetAndGoBack()
+        groupEditWithAPI(groupRequest: GroupEditRequest(groupId: nowGroup?.groupID ?? 0, groupName: addGroupTextField.text ?? ""))
+        nowHideBottomSheetAndGoBack()
+        
         return true
+    }
+}
+
+// MARK: - Network
+extension GroupNameEditBottomSheetViewController {
+    func groupEditWithAPI(groupRequest: GroupEditRequest) {
+        GroupAPI.shared.groupEdit(groupRequest: groupRequest) { response in
+            switch response {
+            case .success:
+                print("groupEditWithAPI - success")
+            case .requestErr(let message):
+                print("groupEditWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("groupEditWithAPI - pathErr")
+            case .serverErr:
+                print("groupEditWithAPI - serverErr")
+            case .networkFail:
+                print("groupEditWithAPI - networkFail")
+            }
+        }
     }
 }

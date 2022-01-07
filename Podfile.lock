@@ -12,10 +12,14 @@ PODS:
     - KakaoSDKCommon/Common (= 2.5.6)
   - KakaoSDKUser (2.5.6):
     - KakaoSDKAuth (= 2.5.6)
+  - Kingfisher (7.1.1)
   - Moya (14.0.0):
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
   - SkeletonView (1.21.2)
   - SwiftLint (0.43.1)
   - VerticalCardSwiper (2.3.1)
@@ -25,7 +29,9 @@ DEPENDENCIES:
   - KakaoSDKAuth
   - KakaoSDKCommon
   - KakaoSDKUser
+  - Kingfisher (~> 7.0)
   - Moya (~> 14.0)
+  - NVActivityIndicatorView
   - SkeletonView
   - SwiftLint
   - VerticalCardSwiper
@@ -37,7 +43,9 @@ SPEC REPOS:
     - KakaoSDKAuth
     - KakaoSDKCommon
     - KakaoSDKUser
+    - Kingfisher
     - Moya
+    - NVActivityIndicatorView
     - SkeletonView
     - SwiftLint
     - VerticalCardSwiper
@@ -48,11 +56,13 @@ SPEC CHECKSUMS:
   KakaoSDKAuth: 1e1fa737e78eed3f301ab5c164526781a37a42f9
   KakaoSDKCommon: cdf340a8f671eef75f4ca012003cb350af3c4b6d
   KakaoSDKUser: f488aa4699b3fd3a836ab5c7e25e2cb4cea190c1
+  Kingfisher: f738f9c4a3415823b8e2985d10aa2d6a9f37bc4d
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   SkeletonView: a085533443fed0198309f1979780afb6e80eaedd
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   VerticalCardSwiper: 68df635b354500f86934ea044ade37a264c044c6
 
-PODFILE CHECKSUM: 6a31cd7bb220f2d3023d8f8d8cbc676e47f4ea89
+PODFILE CHECKSUM: ee00f6411308bc32732ea2efc98ad9cb9bd27f5d
 
 COCOAPODS: 1.11.2

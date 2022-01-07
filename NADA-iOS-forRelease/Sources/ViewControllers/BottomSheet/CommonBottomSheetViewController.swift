@@ -28,7 +28,7 @@ class CommonBottomSheetViewController: UIViewController {
     private var bottomSheetViewTopConstraint: NSLayoutConstraint!
     
     // 기존 화면을 흐려지게 만들기 위한 뷰
-    private let dimmedBackView: UIView = {
+    let dimmedBackView: UIView = {
         let view = UIView()
         view.backgroundColor = .bottomDimmedBackground
         return view
@@ -157,7 +157,6 @@ class CommonBottomSheetViewController: UIViewController {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: dismissIndicatorView.bottomAnchor, constant: 28),
-//            titleLabel.widthAnchor.constraint(equalToConstant: 100),
             titleLabel.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor)
         ])
     }
@@ -170,7 +169,7 @@ class CommonBottomSheetViewController: UIViewController {
         bottomSheetViewTopConstraint.constant = (safeAreaHeight + bottomPadding) - bottomHeight
         
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
-            self.dimmedBackView.alpha = 0.5
+            self.dimmedBackView.alpha = 1.0
             self.view.layoutIfNeeded()
         }, completion: { _ in
             self.bottomSheetCoverView.isHidden = true

@@ -10,7 +10,7 @@ import Moya
 
 enum GroupService {
     case groupListFetch(userID: String)
-    case groupDelete(groupID: Int)
+    case groupDelete(groupID: Int, defaultGroupId: Int)
     case groupAdd(groupRequest: GroupAddRequest)
     case groupEdit(groupRequest: GroupEditRequest)
     case cardAddInGroup(cardRequest: CardAddInGroupRequest)
@@ -25,11 +25,20 @@ extension GroupService: TargetType {
         return URL(string: Const.URL.baseURL)!
     }
     
+    var authorizationType: AuthorizationType? {
+        switch self {
+        case .groupListFetch, .cardListFetchInGroup, .groupDelete, .cardDeleteInGroup:
+            return .bearer
+        case .groupAdd, .groupEdit, .cardAddInGroup, .changeCardGroup, .groupReset:
+            return .bearer
+        }
+    }
+    
     var path: String {
         switch self {
         case .groupListFetch, .groupReset:
             return "/groups"
-        case .groupDelete(let groupID):
+        case .groupDelete(let groupID, _):
             return "/group/\(groupID)"
         case .groupAdd, .groupEdit:
             return "/group"
@@ -64,8 +73,11 @@ extension GroupService: TargetType {
         case .groupListFetch(let userID):
             return .requestParameters(parameters: ["userId": userID],
                                       encoding: URLEncoding.queryString)
-        case .groupDelete, .cardDeleteInGroup, .groupReset:
+        case .cardDeleteInGroup, .groupReset:
             return .requestPlain
+        case .groupDelete(_, let defaultGroupId):
+            return .requestParameters(parameters: ["defaultGroupId": defaultGroupId],
+                                      encoding: URLEncoding.queryString)
         case .groupAdd(let groupRequest):
             return .requestJSONEncodable(groupRequest)
         case .groupEdit(let groupRequest):
@@ -84,11 +96,11 @@ extension GroupService: TargetType {
     var headers: [String: String]? {
         switch self {
         case .groupListFetch, .cardListFetchInGroup, .groupDelete, .cardDeleteInGroup:
-            return .none
+            return Const.Header.bearerHeader
         case .groupAdd, .groupEdit, .cardAddInGroup, .changeCardGroup:
-            return ["Content-Type": "application/json"]
-        case .groupReset(let token):
-            return ["Content-Type": "application/json", "Authorization": "Bearer " + token]
+            return Const.Header.bearerHeader
+        case .groupReset:
+            return Const.Header.basicHeader
         }
     }
 }

@@ -7,6 +7,8 @@
 
 import UIKit
 
+import NVActivityIndicatorView
+
 class CardCreationPreviewViewController: UIViewController {
     
     public var frontCardDataModel: FrontCardDataModel?
@@ -17,6 +19,23 @@ class CardCreationPreviewViewController: UIViewController {
     private var isFront = true
     private var cardCreationRequest: CardCreationRequest?
     private var isShareable = false
+    
+    lazy var loadingBgView: UIView = {
+        let bgView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        bgView.backgroundColor = .loadingBackground
+        
+        return bgView
+    }()
+    
+    lazy var activityIndicator: NVActivityIndicatorView = {
+        let activityIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40),
+                                                        type: .ballBeat,
+                                                        color: .mainColorNadaMain,
+                                                        padding: .zero)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        return activityIndicator
+    }()
     
     // MARK: - @IBOutlet Properties
     
@@ -36,11 +55,20 @@ class CardCreationPreviewViewController: UIViewController {
     }
     @IBAction func touchCompleteButton(_ sender: Any) {
         guard let frontCardDataModel = frontCardDataModel, let backCardDataModel = backCardDataModel else { return }
-        cardCreationRequest = CardCreationRequest(userID: "", frontCard: frontCardDataModel, backCard: backCardDataModel)
+        
+        guard let userID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) else { return }
+        
+        cardCreationRequest = CardCreationRequest(userID: userID, frontCard: frontCardDataModel, backCard: backCardDataModel)
         guard let cardCreationRequest = cardCreationRequest,
               let cardBackgroundImage = cardBackgroundImage else { return }
 
-        cardCreationWithAPI(request: cardCreationRequest, image: cardBackgroundImage)
+        DispatchQueue.main.async {
+            self.setActivityIndicator()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.cardCreationWithAPI(request: cardCreationRequest, image: cardBackgroundImage)
+        }
     }
     @IBAction func touchBackButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
@@ -55,6 +83,13 @@ extension CardCreationPreviewViewController {
         
         noticeLabel.font = .textRegular04
         noticeLabel.textColor = .primary
+
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 3
+        paragraphStyle.alignment = .center
+        let attributeString = NSMutableAttributedString(string: noticeLabel?.text ?? "")
+        attributeString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributeString.length))
+        noticeLabel.attributedText = attributeString
         
         completeButton.titleLabel?.font = .button01
         // MARK: - #available(iOS 15.0, *)
@@ -125,6 +160,17 @@ extension CardCreationPreviewViewController {
             cardBackgroundImage = UIImage(named: "imgCardBg07")
         }
     }
+    private func setActivityIndicator() {
+        view.addSubview(loadingBgView)
+        loadingBgView.addSubview(activityIndicator)
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        
+        activityIndicator.startAnimating()
+    }
 
     // MARK: - @objc Methods
     
@@ -139,9 +185,10 @@ extension CardCreationPreviewViewController {
                               backCardDataModel.isSoju,
                               backCardDataModel.isBoomuk,
                               backCardDataModel.isSauced,
-                              backCardDataModel.firstTMI,
-                              backCardDataModel.secondTMI,
-                              backCardDataModel.thirdTMI)
+                              backCardDataModel.oneTMI,
+                              backCardDataModel.twoTMI,
+                              backCardDataModel.threeTMI,
+                              isShareable: isShareable)
             
             cardView.addSubview(backCard)
             isFront = false
@@ -164,11 +211,11 @@ extension CardCreationPreviewViewController {
             isFront = true
         }
         if swipeGesture.direction == .right {
-            UIView.transition(with: cardView, duration: 1, options: .transitionFlipFromLeft, animations: nil) { _ in
+            UIView.transition(with: cardView, duration: 0.5, options: .transitionFlipFromLeft, animations: nil) { _ in
                 self.cardView.subviews[0].removeFromSuperview()
             }
         } else {
-            UIView.transition(with: cardView, duration: 1, options: .transitionFlipFromRight, animations: nil) { _ in
+            UIView.transition(with: cardView, duration: 0.5, options: .transitionFlipFromRight, animations: nil) { _ in
                 self.cardView.subviews[0].removeFromSuperview()
             }
         }
@@ -182,6 +229,29 @@ extension CardCreationPreviewViewController {
             switch response {
             case .success:
                 print("cardCreationWithAPI - success")
+                
+                guard let presentingVC = self.presentingViewController else { return }
+                
+                NotificationCenter.default.post(name: .creationReloadMainCardSwiper, object: nil)
+                
+                self.dismiss(animated: true) {
+                    self.activityIndicator.stopAnimating()
+                    self.loadingBgView.removeFromSuperview()
+                    
+                    if UserDefaults.standard.object(forKey: Const.UserDefaultsKey.isFirstCard) == nil {
+                        let nextVC = FirstCardAlertBottomSheetViewController()
+                            .setTitle("""
+                                      🎉
+                                      첫 명함이 생성되었어요!
+                                      """)
+                            .setHeight(587)
+                        nextVC.modalPresentationStyle = .overFullScreen
+                        
+                        presentingVC.present(nextVC, animated: true) {
+                            UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isFirstCard)
+                        }
+                    }
+                }
             case .requestErr(let message):
                 print("cardCreationWithAPI - requestErr: \(message)")
             case .pathErr:

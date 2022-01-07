@@ -26,5 +26,5 @@ struct FrontCardDataModel: Codable {
 
 struct BackCardDataModel: Codable {
     let isMincho, isSoju, isBoomuk, isSauced: Bool
-    let firstTMI, secondTMI, thirdTMI: String
+    let oneTMI, twoTMI, threeTMI: String
 }

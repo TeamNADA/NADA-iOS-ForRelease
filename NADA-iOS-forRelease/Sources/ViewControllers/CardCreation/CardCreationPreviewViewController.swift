@@ -246,6 +246,7 @@ extension CardCreationPreviewViewController {
                                       """)
                             .setHeight(587)
                         nextVC.modalPresentationStyle = .overFullScreen
+                        
                         presentingVC.present(nextVC, animated: true) {
                             UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isFirstCard)
                         }

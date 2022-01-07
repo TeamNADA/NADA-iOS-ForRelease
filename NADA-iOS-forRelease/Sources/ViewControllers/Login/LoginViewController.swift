@@ -19,10 +19,6 @@ class LoginViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // FIXME: - 서버 연결 테스트, 추후 위치 수정 필요
-        // getUserIDFetchWithAPI(userID: "nada")
-        // getUserTokenFetchWithAPI(userID: "nada")
     }
     
     // MARK: - IBAction Properties

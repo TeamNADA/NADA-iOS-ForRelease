@@ -26,7 +26,7 @@ class LoginViewController: UIViewController {
     // MARK: - Functions
     func setUI() {
         let kakaoButton = UIButton()
-        kakaoButton.setImage(UIImage(named: "kakao_login_large_wide"), for: .normal)
+        kakaoButton.setImage(UIImage(named: "btn_kakaologin"), for: .normal)
         kakaoButton.cornerRadius = 15
         kakaoButton.addTarget(self, action: #selector(kakaoSignInButtonPress), for: .touchUpInside)
         view.addSubview(kakaoButton)

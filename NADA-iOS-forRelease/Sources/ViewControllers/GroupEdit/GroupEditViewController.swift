@@ -75,6 +75,7 @@ extension GroupEditViewController: UITableViewDelegate {
                         groupID: self.serverGroups?.groups[indexPath.row].groupID ?? 0,
                         defaultGroupId: self.unClass ?? 0)
                     self.groupEditTableView.reloadData()
+                    NotificationCenter.default.post(name: Notification.Name.passDataToGroup, object: 0, userInfo: nil)
                 })
             })
             deleteAction.backgroundColor = .red

@@ -7,7 +7,9 @@
 
 import Photos
 import UIKit
+
 import Kingfisher
+import NVActivityIndicatorView
 
 class GroupViewController: UIViewController {
     
@@ -56,6 +58,25 @@ class GroupViewController: UIViewController {
         navigationController?.pushViewController(nextVC, animated: true)
     }
     
+    // MARK: - Components
+    
+    lazy var loadingBgView: UIView = {
+        let bgView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        bgView.backgroundColor = .bottomDimmedBackground
+        
+        return bgView
+    }()
+    
+    lazy var activityIndicator: NVActivityIndicatorView = {
+        let activityIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40),
+                                                        type: .ballBeat,
+                                                        color: .mainColorNadaMain,
+                                                        padding: .zero)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        return activityIndicator
+    }()
+    
     // collectionview
     @IBOutlet weak var groupCollectionView: UICollectionView!
     @IBOutlet weak var cardsCollectionView: UICollectionView!
@@ -84,9 +105,12 @@ class GroupViewController: UIViewController {
         
         offset = 0
         frontCards?.removeAll()
+
         groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
     }
 }
+
+// MARK: - Extensions
 
 extension GroupViewController {
     private func registerCell() {
@@ -108,12 +132,21 @@ extension GroupViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(didRecieveDataNotification(_:)), name: Notification.Name.passDataToGroup, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(relaodCardCollection), name: .reloadGroupViewController, object: nil)
     }
-    // FIXME: - 스크롤탑
-    private func scrollToTop(completion: () -> Void) {
-        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
-        completion()
+    
+    private func setActivityIndicator() {
+        view.addSubview(loadingBgView)
+        loadingBgView.addSubview(activityIndicator)
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        
+        activityIndicator.startAnimating()
     }
     
+    // MARK: - @objc Methods
+
     @objc func didRecieveDataNotification(_ notification: Notification) {
         selectedRow = notification.object as? Int ?? 0
     }
@@ -122,13 +155,8 @@ extension GroupViewController {
     private func relaodCardCollection() {
         offset = 0
         frontCards?.removeAll()
-        
-        // FIXME: - 스크롤 탑
-//        scrollToTop {
-//            self.cardsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
-//        }
+
         groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
-//        cardsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
     }
 }
 
@@ -143,7 +171,9 @@ extension GroupViewController {
                     self.serverGroups = group
                     self.groupCollectionView.reloadData()
                     self.groupId = group.groups[self.selectedRow].groupID
-                    self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "", groupId: group.groups[self.selectedRow].groupID, offset: 0))
+                    self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "", groupId: group.groups[self.selectedRow].groupID, offset: 0)) {
+                        self.cardsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+                    }
                 }
             case .requestErr(let message):
                 print("groupListFetchWithAPI - requestErr: \(message)")
@@ -157,29 +187,41 @@ extension GroupViewController {
         }
     }
     
-    func cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest) {
-        GroupAPI.shared.cardListFetchInGroup(cardListInGroupRequest: cardListInGroupRequest) { response in
-            switch response {
-            case .success(let data):
-                self.isInfiniteScroll = true
-                
-                if let cards = data as? CardsInGroupResponse {
-                    self.frontCards?.append(contentsOf: cards.cards)
-                    if self.frontCards?.count == 0 {
-                        self.emptyView.isHidden = false
-                    } else {
-                        self.emptyView.isHidden = true
+    func cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest, completion: @escaping () -> Void = { }) {
+        DispatchQueue.main.async {
+            self.setActivityIndicator()
+        }
+        
+        DispatchQueue.main.async {
+            GroupAPI.shared.cardListFetchInGroup(cardListInGroupRequest: cardListInGroupRequest) { response in
+                switch response {
+                case .success(let data):
+                    self.activityIndicator.stopAnimating()
+                    self.loadingBgView.removeFromSuperview()
+                    
+                    self.isInfiniteScroll = true
+                    
+                    if let cards = data as? CardsInGroupResponse {
+                        self.frontCards?.append(contentsOf: cards.cards)
+                        if self.frontCards?.count == 0 {
+                            self.emptyView.isHidden = false
+                        } else {
+                            self.emptyView.isHidden = true
+                        }
+                        self.cardsCollectionView.reloadData()
                     }
-                    self.cardsCollectionView.reloadData()
+                case .requestErr(let message):
+                    print("cardListInGroupWithAPI - requestErr: \(message)")
+                case .pathErr:
+                    print("cardListInGroupWithAPI - pathErr")
+                case .serverErr:
+                    print("cardListInGroupWithAPI - serverErr")
+                case .networkFail:
+                    print("cardListInGroupWithAPI - networkFail")
                 }
-            case .requestErr(let message):
-                print("cardListInGroupWithAPI - requestErr: \(message)")
-            case .pathErr:
-                print("cardListInGroupWithAPI - pathErr")
-            case .serverErr:
-                print("cardListInGroupWithAPI - serverErr")
-            case .networkFail:
-                print("cardListInGroupWithAPI - networkFail")
+                if self.frontCards?.count != 0 {
+                    completion()
+                }
             }
         }
     }

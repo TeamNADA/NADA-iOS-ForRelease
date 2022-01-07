@@ -7,6 +7,8 @@
 
 import UIKit
 
+import NVActivityIndicatorView
+
 class CardCreationPreviewViewController: UIViewController {
     
     public var frontCardDataModel: FrontCardDataModel?
@@ -17,6 +19,23 @@ class CardCreationPreviewViewController: UIViewController {
     private var isFront = true
     private var cardCreationRequest: CardCreationRequest?
     private var isShareable = false
+    
+    lazy var loadingBgView: UIView = {
+        let bgView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        bgView.backgroundColor = .bottomDimmedBackground
+        
+        return bgView
+    }()
+    
+    lazy var activityIndicator: NVActivityIndicatorView = {
+        let activityIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40),
+                                                        type: .ballBeat,
+                                                        color: .mainColorNadaMain,
+                                                        padding: .zero)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        return activityIndicator
+    }()
     
     // MARK: - @IBOutlet Properties
     
@@ -43,7 +62,13 @@ class CardCreationPreviewViewController: UIViewController {
         guard let cardCreationRequest = cardCreationRequest,
               let cardBackgroundImage = cardBackgroundImage else { return }
 
-        cardCreationWithAPI(request: cardCreationRequest, image: cardBackgroundImage)
+        DispatchQueue.main.async {
+            self.setActivityIndicator()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.cardCreationWithAPI(request: cardCreationRequest, image: cardBackgroundImage)
+        }
     }
     @IBAction func touchBackButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
@@ -135,6 +160,17 @@ extension CardCreationPreviewViewController {
             cardBackgroundImage = UIImage(named: "imgCardBg07")
         }
     }
+    private func setActivityIndicator() {
+        view.addSubview(loadingBgView)
+        loadingBgView.addSubview(activityIndicator)
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        
+        activityIndicator.startAnimating()
+    }
 
     // MARK: - @objc Methods
     
@@ -149,9 +185,9 @@ extension CardCreationPreviewViewController {
                               backCardDataModel.isSoju,
                               backCardDataModel.isBoomuk,
                               backCardDataModel.isSauced,
-                              backCardDataModel.firstTMI,
-                              backCardDataModel.secondTMI,
-                              backCardDataModel.thirdTMI,
+                              backCardDataModel.oneTMI,
+                              backCardDataModel.twoTMI,
+                              backCardDataModel.threeTMI,
                               isShareable: isShareable)
             
             cardView.addSubview(backCard)
@@ -199,6 +235,9 @@ extension CardCreationPreviewViewController {
                 NotificationCenter.default.post(name: .creationReloadMainCardSwiper, object: nil)
                 
                 self.dismiss(animated: true) {
+                    self.activityIndicator.stopAnimating()
+                    self.loadingBgView.removeFromSuperview()
+                    
                     if UserDefaults.standard.object(forKey: Const.UserDefaultsKey.isFirstCard) == nil {
                         let nextVC = FirstCardAlertBottomSheetViewController()
                             .setTitle("""

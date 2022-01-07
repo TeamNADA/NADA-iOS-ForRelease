@@ -15,4 +15,5 @@ pod 'KakaoSDKUser'
 pod 'KakaoSDKAuth'
 pod 'IQKeyboardManagerSwift'
 pod 'Kingfisher', '~> 7.0'
+pod 'NVActivityIndicatorView'
 end

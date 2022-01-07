@@ -102,18 +102,18 @@ class LoginViewController: UIViewController {
 // MARK: - KakaoSignIn
 extension LoginViewController {
     func loginWithApp() {
-        UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+        UserApi.shared.loginWithKakaoTalk {(_, error) in
             if let error = error {
                 print(error)
             } else {
                 print("loginWithKakaoTalk() success.")
                 
-                UserApi.shared.me {(_, error) in
+                UserApi.shared.me {(user, error) in
                     if let error = error {
                         print(error)
                     } else {
-                        if let token = oauthToken?.accessToken {
-                            self.postUserSignUpWithAPI(request: token)
+                        if let userID = user?.kakaoAccount?.email {
+                            self.postUserSignUpWithAPI(request: userID)
                             UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isAppleLogin)
                             UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.isKakaoLogin)
                         }
@@ -125,18 +125,18 @@ extension LoginViewController {
     }
     
     func loginWithWeb() {
-        UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
+        UserApi.shared.loginWithKakaoAccount {(_, error) in
             if let error = error {
                 print(error)
             } else {
                 print("loginWithKakaoAccount() success.")
                 
-                UserApi.shared.me {(_, error) in
+                UserApi.shared.me {(user, error) in
                     if let error = error {
                         print(error)
                     } else {
-                        if let token = oauthToken?.accessToken {
-                            self.postUserSignUpWithAPI(request: token)
+                        if let userID = user?.kakaoAccount?.email {
+                            self.postUserSignUpWithAPI(request: userID)
                             UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isAppleLogin)
                             UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.isKakaoLogin)
                         }

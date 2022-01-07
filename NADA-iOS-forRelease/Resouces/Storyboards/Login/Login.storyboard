@@ -20,28 +20,18 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoNadaTxt2" translatesAutoresizingMaskIntoConstraints="NO" id="pLu-66-zQ4">
                                 <rect key="frame" x="138" y="300" width="99" height="136"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="Bjc-le-F1v">
-                                <rect key="frame" x="24" y="558" width="327" height="110"/>
-                                <color key="backgroundColor" name="background"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="110" id="zMJ-VE-Guw"/>
-                                </constraints>
-                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="background"/>
                         <constraints>
-                            <constraint firstItem="Bjc-le-F1v" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="6Nz-5o-UZe"/>
                             <constraint firstItem="pLu-66-zQ4" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="256" id="Dv0-cl-BrI"/>
-                            <constraint firstItem="Bjc-le-F1v" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="GgP-M2-9Iy"/>
                             <constraint firstItem="pLu-66-zQ4" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="NiW-DB-igj"/>
                             <constraint firstItem="pLu-66-zQ4" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="138" id="OP8-Rs-X3g"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Bjc-le-F1v" secondAttribute="bottom" constant="110" id="oqH-i3-LWh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FOs-Km-lor"/>
                     <connections>
-                        <outlet property="loginProviderStackView" destination="Bjc-le-F1v" id="xpW-XR-iPZ"/>
+                        <outlet property="nadaImageView" destination="pLu-66-zQ4" id="zXX-8P-gdw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

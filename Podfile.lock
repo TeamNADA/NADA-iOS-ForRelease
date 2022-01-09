@@ -1,30 +1,68 @@
 PODS:
   - Alamofire (5.4.3)
+  - IQKeyboardManagerSwift (6.5.6)
+  - KakaoSDKAuth (2.5.6):
+    - KakaoSDKCommon (= 2.5.6)
+  - KakaoSDKCommon (2.5.6):
+    - KakaoSDKCommon/Common (= 2.5.6)
+    - KakaoSDKCommon/Network (= 2.5.6)
+  - KakaoSDKCommon/Common (2.5.6)
+  - KakaoSDKCommon/Network (2.5.6):
+    - Alamofire (~> 5.1)
+    - KakaoSDKCommon/Common (= 2.5.6)
+  - KakaoSDKUser (2.5.6):
+    - KakaoSDKAuth (= 2.5.6)
+  - Kingfisher (7.1.1)
   - Moya (14.0.0):
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
   - SkeletonView (1.21.2)
   - SwiftLint (0.43.1)
+  - VerticalCardSwiper (2.3.1)
 
 DEPENDENCIES:
+  - IQKeyboardManagerSwift
+  - KakaoSDKAuth
+  - KakaoSDKCommon
+  - KakaoSDKUser
+  - Kingfisher (~> 7.0)
   - Moya (~> 14.0)
+  - NVActivityIndicatorView
   - SkeletonView
   - SwiftLint
+  - VerticalCardSwiper
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - IQKeyboardManagerSwift
+    - KakaoSDKAuth
+    - KakaoSDKCommon
+    - KakaoSDKUser
+    - Kingfisher
     - Moya
+    - NVActivityIndicatorView
     - SkeletonView
     - SwiftLint
+    - VerticalCardSwiper
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  KakaoSDKAuth: 1e1fa737e78eed3f301ab5c164526781a37a42f9
+  KakaoSDKCommon: cdf340a8f671eef75f4ca012003cb350af3c4b6d
+  KakaoSDKUser: f488aa4699b3fd3a836ab5c7e25e2cb4cea190c1
+  Kingfisher: f738f9c4a3415823b8e2985d10aa2d6a9f37bc4d
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   SkeletonView: a085533443fed0198309f1979780afb6e80eaedd
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
+  VerticalCardSwiper: 68df635b354500f86934ea044ade37a264c044c6
 
-PODFILE CHECKSUM: b1e689d6b19d4b6aa66498bfb1b6700c63197564
+PODFILE CHECKSUM: ee00f6411308bc32732ea2efc98ad9cb9bd27f5d
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2

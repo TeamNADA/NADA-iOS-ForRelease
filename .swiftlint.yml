@@ -2,8 +2,12 @@ disabled_rules:
 - line_length
 - trailing_whitespace
 - nesting
+- function_parameter_count
+- function_body_length
+- cyclomatic_complexity
+- file_length
 excluded:
 - Pods
-- NADA-iOS-forRelease/AppDelegate.swift
-- NADA-iOS-forRelease/SceneDelegate.swift
+- NADA-iOS-forRelease/Sources/AppDelegate.swift
+- NADA-iOS-forRelease/Sources/SceneDelegate.swift
 

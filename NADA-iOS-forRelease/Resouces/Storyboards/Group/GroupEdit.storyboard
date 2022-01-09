@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Spoqa Han Sans Neo Bold.otf">
+            <string>SpoqaHanSansNeo-Bold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Group Edit View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="GroupEditViewController" hidesBottomBarWhenPushed="YES" id="Y6W-OH-hqX" customClass="GroupEditViewController" customModule="NADA_iOS_forRelease" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eav-KN-kMH">
+                                <rect key="frame" x="0.0" y="44" width="375" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mXl-nw-qPB">
+                                        <rect key="frame" x="24" y="13" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="Tuc-Hc-SdN"/>
+                                            <constraint firstAttribute="width" secondItem="mXl-nw-qPB" secondAttribute="height" multiplier="1:1" id="yE2-Ir-oYM"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="iconArrow"/>
+                                        <connections>
+                                            <action selector="dismissToPreviousView:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="NY5-pa-mGi"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="그룹 편집" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tEu-WC-9Nx">
+                                        <rect key="frame" x="152.33333333333334" y="17" width="70.333333333333343" height="22"/>
+                                        <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="18"/>
+                                        <color key="textColor" name="secondary"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EdE-VZ-O7Z">
+                                        <rect key="frame" x="327" y="13" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="EdE-VZ-O7Z" secondAttribute="height" multiplier="1:1" id="3fi-BP-w3d"/>
+                                            <constraint firstAttribute="height" constant="24" id="wnf-Wl-2EY"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="iconAdd"/>
+                                        <connections>
+                                            <action selector="presentToAddGroupBottom:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="8zs-Eg-Rk1"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="background"/>
+                                <constraints>
+                                    <constraint firstItem="mXl-nw-qPB" firstAttribute="centerY" secondItem="eav-KN-kMH" secondAttribute="centerY" id="4S4-cU-g9Y"/>
+                                    <constraint firstAttribute="bottom" secondItem="tEu-WC-9Nx" secondAttribute="bottom" constant="11" id="6C5-Bp-ykI"/>
+                                    <constraint firstItem="tEu-WC-9Nx" firstAttribute="centerX" secondItem="eav-KN-kMH" secondAttribute="centerX" id="8pP-nd-eeQ"/>
+                                    <constraint firstItem="mXl-nw-qPB" firstAttribute="leading" secondItem="eav-KN-kMH" secondAttribute="leading" constant="24" id="AFh-9v-ptd"/>
+                                    <constraint firstItem="tEu-WC-9Nx" firstAttribute="top" secondItem="eav-KN-kMH" secondAttribute="top" constant="17" id="Plg-8j-bGi"/>
+                                    <constraint firstItem="mXl-nw-qPB" firstAttribute="top" secondItem="eav-KN-kMH" secondAttribute="top" constant="13" id="Wmv-YK-Vh3"/>
+                                    <constraint firstItem="EdE-VZ-O7Z" firstAttribute="centerY" secondItem="eav-KN-kMH" secondAttribute="centerY" id="ajI-79-fCD"/>
+                                    <constraint firstItem="EdE-VZ-O7Z" firstAttribute="top" secondItem="eav-KN-kMH" secondAttribute="top" constant="13" id="h5n-3y-OVg"/>
+                                    <constraint firstAttribute="trailing" secondItem="EdE-VZ-O7Z" secondAttribute="trailing" constant="24" id="uEd-Pp-dwc"/>
+                                    <constraint firstAttribute="height" constant="50" id="y97-5C-m9g"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8fV-n9-E62">
+                                <rect key="frame" x="0.0" y="104" width="375" height="674"/>
+                                <color key="backgroundColor" name="background"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" name="background"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="eav-KN-kMH" secondAttribute="trailing" id="a6h-10-vxg"/>
+                            <constraint firstItem="8fV-n9-E62" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ifP-wA-ht6"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8fV-n9-E62" secondAttribute="trailing" id="q9e-BT-RIc"/>
+                            <constraint firstItem="eav-KN-kMH" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="rmQ-3D-3Q0"/>
+                            <constraint firstItem="eav-KN-kMH" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="wHJ-Lx-daB"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="8fV-n9-E62" secondAttribute="bottom" id="x4s-dT-S3Q"/>
+                            <constraint firstItem="8fV-n9-E62" firstAttribute="top" secondItem="eav-KN-kMH" secondAttribute="bottom" constant="10" id="zlo-Ik-6zN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="groupEditTableView" destination="8fV-n9-E62" id="nkr-82-gBu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="45" y="60"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="iconAdd" width="30" height="30"/>
+        <image name="iconArrow" width="24" height="24"/>
+        <namedColor name="background">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="secondary">
+            <color red="0.16862745098039217" green="0.17647058823529413" blue="0.19215686274509805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Spoqa Han Sans Neo Bold.otf">
+            <string>SpoqaHanSansNeo-Bold</string>
+        </array>
+        <array key="Spoqa Han Sans Neo Regular.otf">
+            <string>SpoqaHanSansNeo-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardView" customModule="NADA_iOS_forRelease" customModuleProvider="target">
+            <connections>
+                <outlet property="backgroundImageView" destination="BM7-of-ZP2" id="g74-QI-agN"/>
+                <outlet property="birthLabel" destination="bKT-Iy-Vgq" id="6Hc-yn-esH"/>
+                <outlet property="descriptionLabel" destination="ODd-rW-HN9" id="kCD-Cv-Tok"/>
+                <outlet property="instagramIDLabel" destination="tmB-6S-myw" id="Qnd-JG-X8v"/>
+                <outlet property="instagramIcon" destination="IMZ-cI-mgN" id="cbv-Wj-HUF"/>
+                <outlet property="lineURLLabel" destination="a7e-eY-RKP" id="lp5-qw-hfu"/>
+                <outlet property="mbtiLabel" destination="d9j-mu-jog" id="p9v-KB-doC"/>
+                <outlet property="titleLabel" destination="Swh-6B-eGz" id="XOc-XI-iVf"/>
+                <outlet property="urlIcon" destination="rDx-zx-jkd" id="Kw6-Ur-f78"/>
+                <outlet property="userNameLabel" destination="Jlf-bz-O5n" id="SID-U2-JeG"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="201" height="331"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card" translatesAutoresizingMaskIntoConstraints="NO" id="BM7-of-ZP2">
+                    <rect key="frame" x="0.0" y="0.0" width="201" height="331"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SOPT 명함" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Swh-6B-eGz">
+                    <rect key="frame" x="16" y="33" width="57" height="14"/>
+                    <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="12"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이채연" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jlf-bz-O5n">
+                    <rect key="frame" x="16" y="175" width="36" height="16"/>
+                    <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="13"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1998.01.09" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKT-Iy-Vgq">
+                    <rect key="frame" x="16" y="200" width="63" height="14"/>
+                    <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="12"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="29기 디자인파트" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ODd-rW-HN9">
+                    <rect key="frame" x="16" y="52" width="76.5" height="13"/>
+                    <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="11"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ENFP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9j-mu-jog">
+                    <rect key="frame" x="16" y="221" width="30" height="14"/>
+                    <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="12"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="chaens_" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tmB-6S-myw">
+                    <rect key="frame" x="35" y="270" width="39" height="12"/>
+                    <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="10"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconInstagram" translatesAutoresizingMaskIntoConstraints="NO" id="IMZ-cI-mgN">
+                    <rect key="frame" x="16" y="268" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="SIS-Jn-HJk"/>
+                        <constraint firstAttribute="width" constant="16" id="h0D-2t-tu1"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconUrl" translatesAutoresizingMaskIntoConstraints="NO" id="rDx-zx-jkd">
+                    <rect key="frame" x="16" y="290" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="O8l-os-wSk"/>
+                        <constraint firstAttribute="width" constant="16" id="Ro6-qS-GYY"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="https://github.com/TeamNADA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a7e-eY-RKP">
+                    <rect key="frame" x="35" y="292" width="143" height="12"/>
+                    <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="10"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="d9j-mu-jog" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="6FI-k7-EPh"/>
+                <constraint firstItem="IMZ-cI-mgN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="8ns-fg-evM"/>
+                <constraint firstItem="Jlf-bz-O5n" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Boz-gf-ElK"/>
+                <constraint firstItem="BM7-of-ZP2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Df7-tV-PZs"/>
+                <constraint firstItem="bKT-Iy-Vgq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="FhG-ND-qIG"/>
+                <constraint firstItem="rDx-zx-jkd" firstAttribute="top" secondItem="IMZ-cI-mgN" secondAttribute="bottom" constant="6" id="J6S-Bh-HXT"/>
+                <constraint firstItem="ODd-rW-HN9" firstAttribute="top" secondItem="Swh-6B-eGz" secondAttribute="bottom" constant="5" id="JnA-Zu-IOh"/>
+                <constraint firstItem="a7e-eY-RKP" firstAttribute="leading" secondItem="rDx-zx-jkd" secondAttribute="trailing" constant="3" id="N4B-7M-qEi"/>
+                <constraint firstItem="BM7-of-ZP2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="UWg-he-KMv"/>
+                <constraint firstAttribute="bottom" secondItem="rDx-zx-jkd" secondAttribute="bottom" constant="25" id="YGl-qu-XCT"/>
+                <constraint firstItem="ODd-rW-HN9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="ZfN-hf-Zie"/>
+                <constraint firstAttribute="trailing" secondItem="BM7-of-ZP2" secondAttribute="trailing" id="b4v-dl-1kw"/>
+                <constraint firstItem="d9j-mu-jog" firstAttribute="top" secondItem="bKT-Iy-Vgq" secondAttribute="bottom" constant="7" id="boH-QN-NGV"/>
+                <constraint firstItem="tmB-6S-myw" firstAttribute="centerY" secondItem="IMZ-cI-mgN" secondAttribute="centerY" id="cXH-iT-2hR"/>
+                <constraint firstItem="Swh-6B-eGz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="k0a-so-s3p"/>
+                <constraint firstItem="bKT-Iy-Vgq" firstAttribute="top" secondItem="Jlf-bz-O5n" secondAttribute="bottom" constant="9" id="kJW-AS-DI6"/>
+                <constraint firstItem="Jlf-bz-O5n" firstAttribute="top" secondItem="ODd-rW-HN9" secondAttribute="bottom" constant="110" id="kNK-BT-vKN"/>
+                <constraint firstItem="Swh-6B-eGz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="33" id="mRA-pL-F7F"/>
+                <constraint firstItem="rDx-zx-jkd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="rSa-uL-8NG"/>
+                <constraint firstItem="tmB-6S-myw" firstAttribute="leading" secondItem="IMZ-cI-mgN" secondAttribute="trailing" constant="3" id="s8c-nf-1od"/>
+                <constraint firstAttribute="bottom" secondItem="BM7-of-ZP2" secondAttribute="bottom" id="sNl-9R-LLu"/>
+                <constraint firstItem="a7e-eY-RKP" firstAttribute="centerY" secondItem="rDx-zx-jkd" secondAttribute="centerY" id="u6h-89-htR"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="168.84057971014494" y="58.59375"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="card" width="327" height="540"/>
+        <image name="iconInstagram" width="24" height="24"/>
+        <image name="iconUrl" width="24" height="24"/>
+    </resources>
+</document>

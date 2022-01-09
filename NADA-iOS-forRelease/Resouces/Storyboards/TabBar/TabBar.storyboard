@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dON-DK-imU">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar View Controller-->
+        <scene sceneID="XbW-tS-xAy">
+            <objects>
+                <tabBarController storyboardIdentifier="TabBarViewController" automaticallyAdjustsScrollViewInsets="NO" id="dON-DK-imU" customClass="TabBarViewController" customModule="NADA_iOS_forRelease" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="centered" id="Z0p-nO-Xws">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="nadaMain"/>
+                        <color key="barTintColor" name="background"/>
+                        <color key="selectedImageTintColor" name="nadaMain"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Y0f-TL-Qou" kind="relationship" relationship="viewControllers" id="xtb-Wr-bBd"/>
+                        <segue destination="evy-di-fSx" kind="relationship" relationship="viewControllers" id="tyc-kH-qiJ"/>
+                        <segue destination="ZNs-Z4-6he" kind="relationship" relationship="viewControllers" id="dF9-eI-4Td"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mDe-Ej-VHL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="44.927536231884062" y="63.616071428571423"/>
+        </scene>
+        <!--Front-->
+        <scene sceneID="TU9-Cl-iIw">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Front" id="Y0f-TL-Qou" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="iconHome" selectedImage="iconHomeSelected" id="hSy-di-0lN"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hen-qi-9Az" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="572" y="-12"/>
+        </scene>
+        <!--Group-->
+        <scene sceneID="FYI-nl-Pwy">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Group" id="evy-di-fSx" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="iconCards" selectedImage="iconCardsSelected" id="zXu-f9-6Nh"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ERd-4w-5Mg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="578" y="64"/>
+        </scene>
+        <!--More-->
+        <scene sceneID="DZi-1z-PXd">
+            <objects>
+                <viewControllerPlaceholder storyboardName="More" id="ZNs-Z4-6he" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="iconMoreHoriz" selectedImage="iconMoreHorizSelected" id="WOV-tX-41n"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gv1-3g-Gc5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="573" y="161"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="iconCards" width="30" height="30"/>
+        <image name="iconCardsSelected" width="30" height="35"/>
+        <image name="iconHome" width="30" height="30"/>
+        <image name="iconHomeSelected" width="30" height="35"/>
+        <image name="iconMoreHoriz" width="30" height="30"/>
+        <image name="iconMoreHorizSelected" width="30" height="35"/>
+        <namedColor name="background">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="nadaMain">
+            <color red="0.96470588235294119" green="0.4392156862745098" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

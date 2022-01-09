@@ -8,5 +8,5 @@
 import Foundation
 
 struct Const {
-    
+    static let headerToken: String = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) ?? ""
 }

@@ -14,6 +14,7 @@
 		3909242F26FA15E800236C51 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909242E26FA15E800236C51 /* UIView+Extension.swift */; };
 		3918F66727719C4B00984648 /* UserTokenReissueRequset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3918F66627719C4B00984648 /* UserTokenReissueRequset.swift */; };
 		3927A7D7275F2A9B008BCD2A /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3927A7D6275F2A9B008BCD2A /* UserDefaults.swift */; };
+		392BAF792793BAF80013DCB3 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392BAF782793BAF80013DCB3 /* KeyChain.swift */; };
 		392F7FB4274621F1008CDBF5 /* MoreListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392F7FB2274621F1008CDBF5 /* MoreListTableViewCell.swift */; };
 		392F7FB5274621F1008CDBF5 /* MoreListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 392F7FB3274621F1008CDBF5 /* MoreListTableViewCell.xib */; };
 		39317D2227646F8E00D87166 /* GroupNameEditBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39317D2127646F8E00D87166 /* GroupNameEditBottomSheetViewController.swift */; };
@@ -157,6 +158,7 @@
 		3918F6652771682F00984648 /* NADA-iOS-forRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NADA-iOS-forRelease.entitlements"; sourceTree = "<group>"; };
 		3918F66627719C4B00984648 /* UserTokenReissueRequset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTokenReissueRequset.swift; sourceTree = "<group>"; };
 		3927A7D6275F2A9B008BCD2A /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		392BAF782793BAF80013DCB3 /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
 		392F7FB2274621F1008CDBF5 /* MoreListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreListTableViewCell.swift; sourceTree = "<group>"; };
 		392F7FB3274621F1008CDBF5 /* MoreListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreListTableViewCell.xib; sourceTree = "<group>"; };
 		39317D2127646F8E00D87166 /* GroupNameEditBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNameEditBottomSheetViewController.swift; sourceTree = "<group>"; };
@@ -754,6 +756,7 @@
 			children = (
 				F8C83FBA272F9F370009DF0D /* NetworkResult.swift */,
 				F8C83FBC272F9F430009DF0D /* GenericResponse.swift */,
+				392BAF782793BAF80013DCB3 /* KeyChain.swift */,
 				3981148A273BEB7200E28630 /* User */,
 				F87122722733032300A24E74 /* Card */,
 				777FF89927359B1000BF69D3 /* Group */,
@@ -1181,6 +1184,7 @@
 				39811490273BEBCE00E28630 /* CardListRequest.swift in Sources */,
 				F8FC43BC26C022A20033E151 /* Storyboard.swift in Sources */,
 				F8C83FC1272FA06E0009DF0D /* UserAPI.swift in Sources */,
+				392BAF792793BAF80013DCB3 /* KeyChain.swift in Sources */,
 				7766A40F274FEBE200714912 /* CardInGroupCollectionViewCell.swift in Sources */,
 				3927A7D7275F2A9B008BCD2A /* UserDefaults.swift in Sources */,
 				7734D5B82777A8E8004360E4 /* String+Extension.swift in Sources */,

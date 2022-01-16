@@ -15,6 +15,7 @@
 		3918F66727719C4B00984648 /* UserTokenReissueRequset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3918F66627719C4B00984648 /* UserTokenReissueRequset.swift */; };
 		3927A7D7275F2A9B008BCD2A /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3927A7D6275F2A9B008BCD2A /* UserDefaults.swift */; };
 		392BAF792793BAF80013DCB3 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392BAF782793BAF80013DCB3 /* KeyChain.swift */; };
+		392BAF7B2793E90D0013DCB3 /* KeyChainKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392BAF7A2793E90D0013DCB3 /* KeyChainKey.swift */; };
 		392F7FB4274621F1008CDBF5 /* MoreListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392F7FB2274621F1008CDBF5 /* MoreListTableViewCell.swift */; };
 		392F7FB5274621F1008CDBF5 /* MoreListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 392F7FB3274621F1008CDBF5 /* MoreListTableViewCell.xib */; };
 		39317D2227646F8E00D87166 /* GroupNameEditBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39317D2127646F8E00D87166 /* GroupNameEditBottomSheetViewController.swift */; };
@@ -159,6 +160,7 @@
 		3918F66627719C4B00984648 /* UserTokenReissueRequset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTokenReissueRequset.swift; sourceTree = "<group>"; };
 		3927A7D6275F2A9B008BCD2A /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		392BAF782793BAF80013DCB3 /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
+		392BAF7A2793E90D0013DCB3 /* KeyChainKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainKey.swift; sourceTree = "<group>"; };
 		392F7FB2274621F1008CDBF5 /* MoreListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreListTableViewCell.swift; sourceTree = "<group>"; };
 		392F7FB3274621F1008CDBF5 /* MoreListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreListTableViewCell.xib; sourceTree = "<group>"; };
 		39317D2127646F8E00D87166 /* GroupNameEditBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNameEditBottomSheetViewController.swift; sourceTree = "<group>"; };
@@ -925,6 +927,7 @@
 				3927A7D6275F2A9B008BCD2A /* UserDefaults.swift */,
 				77F47D92276C79B600414659 /* Header.swift */,
 				770E58852778A78900498C2E /* Status.swift */,
+				392BAF7A2793E90D0013DCB3 /* KeyChainKey.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1150,6 +1153,7 @@
 				F8268DB927730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift in Sources */,
 				770E58862778A78900498C2E /* Status.swift in Sources */,
 				F851805B275D047C006BD5ED /* OnboardingViewController.swift in Sources */,
+				392BAF7B2793E90D0013DCB3 /* KeyChainKey.swift in Sources */,
 				39C1E88F270EC762006D2089 /* UIColor+Extension.swift in Sources */,
 				F8C83FC9272FA3190009DF0D /* GroupAPI.swift in Sources */,
 				F8FC43B826C0227D0033E151 /* Const.swift in Sources */,

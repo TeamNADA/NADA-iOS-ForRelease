@@ -10,14 +10,14 @@ import Security
 
 class KeyChain {
     // Create
-    class func create(key: String, data: Data) {
+    class func create(key: String, token: String) {
         let query: NSDictionary = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrAccount: key,   // 저장할 Account
-            kSecValueData: data     // 저장할 Data
+            kSecValueData: token.data(using: .utf8, allowLossyConversion: false) as Any   // 저장할 Token
         ]
         SecItemDelete(query)    // Keychain은 Key값에 중복이 생기면, 저장할 수 없기 때문에 먼저 Delete해줌
-        
+
         let status = SecItemAdd(query, nil)
         assert(status == noErr, "failed to save Token")
     }
@@ -35,9 +35,10 @@ class KeyChain {
         let status = SecItemCopyMatching(query, &dataTypeRef)
         
         if status == errSecSuccess {
-            let retrievedData = dataTypeRef as! Data
-            let value = String(data: retrievedData, encoding: String.Encoding.utf8)
-            return value
+            if let retrievedData: Data = dataTypeRef as? Data {
+                let value = String(data: retrievedData, encoding: String.Encoding.utf8)
+                return value
+            } else { return nil }
         } else {
             print("failed to loading, status code = \(status)")
             return nil

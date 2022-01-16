@@ -20,7 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 
         KakaoSDKCommon.initSDK(appKey: "5b8dd8cc878344bb7532eeca4365a4aa")
-        let acToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken)
+        
+        // 기존 사용자 로그아웃 인식을 위한 부분
+        if UserDefaults.standard.string(forKey: "accessToken") != nil {
+            KeyChain.create(key: Const.KeyChainKey.accessToken, token: UserDefaults.standard.string(forKey: "accessToken") ?? "")
+            KeyChain.create(key: Const.KeyChainKey.refreshToken, token: UserDefaults.standard.string(forKey: "refreshToken") ?? "")
+        }
+        let acToken = KeyChain.read(key: Const.KeyChainKey.accessToken)
         
         if acToken != nil {
             if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.isAppleLogin) {

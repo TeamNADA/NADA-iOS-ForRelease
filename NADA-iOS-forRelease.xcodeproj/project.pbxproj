@@ -35,7 +35,6 @@
 		39523E0B270184B100536900 /* CardList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39523E0A270184B100536900 /* CardList.storyboard */; };
 		39523E5B2701A48900536900 /* CardListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39523E592701A48900536900 /* CardListTableViewCell.swift */; };
 		39523E5C2701A48900536900 /* CardListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39523E5A2701A48900536900 /* CardListTableViewCell.xib */; };
-		39523E5F2701AA9000536900 /* CardListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39523E5E2701AA9000536900 /* CardListDataModel.swift */; };
 		3958F239270FFBBF00B100B2 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3958F238270FFBBF00B100B2 /* GroupViewController.swift */; };
 		3958F23C270FFBD500B100B2 /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3958F23B270FFBD500B100B2 /* Group.storyboard */; };
 		3979709626FA0BE5003FB4F5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3979709526FA0BE5003FB4F5 /* LoginViewController.swift */; };
@@ -179,7 +178,6 @@
 		39523E0A270184B100536900 /* CardList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardList.storyboard; sourceTree = "<group>"; };
 		39523E592701A48900536900 /* CardListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListTableViewCell.swift; sourceTree = "<group>"; };
 		39523E5A2701A48900536900 /* CardListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardListTableViewCell.xib; sourceTree = "<group>"; };
-		39523E5E2701AA9000536900 /* CardListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListDataModel.swift; sourceTree = "<group>"; };
 		3958F238270FFBBF00B100B2 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		3958F23B270FFBD500B100B2 /* Group.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
 		3979709526FA0BE5003FB4F5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -392,14 +390,6 @@
 				39523E5A2701A48900536900 /* CardListTableViewCell.xib */,
 				39C394D2277CD33500DBA566 /* EmptyCardListTableViewCell.swift */,
 				39C394D3277CD33500DBA566 /* EmptyCardListTableViewCell.xib */,
-			);
-			path = CardList;
-			sourceTree = "<group>";
-		};
-		39523E5D2701AA5700536900 /* CardList */ = {
-			isa = PBXGroup;
-			children = (
-				39523E5E2701AA9000536900 /* CardListDataModel.swift */,
 			);
 			path = CardList;
 			sourceTree = "<group>";
@@ -821,7 +811,6 @@
 				F8FC438726C01CDD0033E151 /* SceneDelegate.swift */,
 				F8FC439B26C01EC30033E151 /* Cells */,
 				F8FC439C26C01EC90033E151 /* Classes */,
-				F8FC439D26C01EEC0033E151 /* AppModel */,
 				F8C83FB9272F9F030009DF0D /* NetworkModel */,
 				F8FC439E26C01EF70033E151 /* NetworkService */,
 				F8FC439F26C01EFC0033E151 /* Protocols */,
@@ -852,14 +841,6 @@
 				7734D5B527779EF0004360E4 /* QRCodeView.swift */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		F8FC439D26C01EEC0033E151 /* AppModel */ = {
-			isa = PBXGroup;
-			children = (
-				39523E5D2701AA5700536900 /* CardList */,
-			);
-			path = AppModel;
 			sourceTree = "<group>";
 		};
 		F8FC439E26C01EF70033E151 /* NetworkService */ = {
@@ -1195,7 +1176,6 @@
 				3918F66727719C4B00984648 /* UserTokenReissueRequset.swift in Sources */,
 				7705CF3E2752C7DB005195DF /* CardView.swift in Sources */,
 				F8FC43BA26C022900033E151 /* ViewController.swift in Sources */,
-				39523E5F2701AA9000536900 /* CardListDataModel.swift in Sources */,
 				39D13568273FDCB800B1A148 /* UserWithTokenRequest.swift in Sources */,
 				F84BAFB126FDB552004CA335 /* BackCardCreationCollectionViewCell.swift in Sources */,
 				39811490273BEBCE00E28630 /* CardListRequest.swift in Sources */,

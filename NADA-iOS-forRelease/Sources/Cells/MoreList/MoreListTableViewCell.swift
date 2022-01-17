@@ -18,7 +18,7 @@ class MoreListTableViewCell: UITableViewCell {
     }
     
     static func nib() -> UINib {
-        return UINib(nibName: "MoreListTableViewCell", bundle: nil)
+        return UINib(nibName: Const.Xib.moreListTableViewCell, bundle: nil)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

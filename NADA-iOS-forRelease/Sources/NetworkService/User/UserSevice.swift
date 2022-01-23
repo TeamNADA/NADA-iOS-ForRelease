@@ -9,9 +9,6 @@ import Foundation
 import Moya
 
 enum UserSevice {
-    case userIDFetch(userID: String)
-    case userTokenFetch(userID: String)
-    case userSignUp(request: User)
     case userDelete(token: String)
     case userSocialSignUp(userID: String)
     case userLogout(token: String)
@@ -26,12 +23,6 @@ extension UserSevice: TargetType {
     
     var path: String {
         switch self {
-        case .userIDFetch(let userID):
-            return "/\(userID)/login"
-        case .userTokenFetch(let userID):
-            return "/auth/\(userID)/login"
-        case .userSignUp:
-            return "/register"
         case .userDelete:
             return "/user"
         case .userSocialSignUp:
@@ -45,9 +36,7 @@ extension UserSevice: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .userIDFetch, .userTokenFetch:
-            return .get
-        case .userSignUp, .userSocialSignUp, .userTokenReissue:
+        case .userSocialSignUp, .userTokenReissue:
             return .post
         case .userDelete, .userLogout:
             return .delete
@@ -60,10 +49,8 @@ extension UserSevice: TargetType {
     
     var task: Task {
         switch self {
-        case .userIDFetch, .userTokenFetch, .userDelete, .userLogout:
+        case .userDelete, .userLogout:
             return .requestPlain
-        case .userSignUp(let request):
-            return .requestJSONEncodable(request)
         case .userSocialSignUp(let userID):
             return .requestParameters(parameters: ["userId": userID], encoding: JSONEncoding.default)
         case .userTokenReissue(let request):
@@ -73,9 +60,7 @@ extension UserSevice: TargetType {
     
     var headers: [String: String]? {
         switch self {
-        case .userIDFetch, .userTokenFetch:
-            return Const.Header.bearerHeader
-        case .userSignUp, .userSocialSignUp, .userTokenReissue:
+        case .userSocialSignUp, .userTokenReissue:
             return ["Content-Type": "application/json"]
         case .userDelete, .userLogout:
             return Const.Header.basicHeader

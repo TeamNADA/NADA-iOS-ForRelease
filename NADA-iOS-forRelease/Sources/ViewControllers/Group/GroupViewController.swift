@@ -7,7 +7,6 @@
 
 import Photos
 import UIKit
-
 import Kingfisher
 import NVActivityIndicatorView
 
@@ -287,7 +286,6 @@ extension GroupViewController: UICollectionViewDataSource {
             guard let groupCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.groupCollectionViewCell, for: indexPath) as? GroupCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            
             groupCell.groupName.text = serverGroups?.groups[indexPath.row].groupName
             
             if indexPath.row == selectedRow {

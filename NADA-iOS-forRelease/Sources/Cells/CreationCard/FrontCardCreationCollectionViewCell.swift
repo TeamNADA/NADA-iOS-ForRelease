@@ -222,7 +222,6 @@ extension FrontCardCreationCollectionViewCell {
     private func setBirthText(notification: NSNotification) {
         birthLabel.text = notification.object as? String
         birthLabel.textColor = .primary
-        
         birthView.borderWidth = 0
         
         checkFrontCradStatus()
@@ -286,7 +285,6 @@ extension FrontCardCreationCollectionViewCell {
         presentingBirthBottomVCClosure?()
         birthView.layer.borderColor = UIColor.tertiary.cgColor
         birthView.layer.borderWidth = 1
-        
     }
     @objc
     private func touchMBTIView() {
@@ -323,20 +321,13 @@ extension FrontCardCreationCollectionViewCell: UICollectionViewDelegate {
             } else {
                 defaultImageIndex = 0
             }
-        case 1:
-            defaultImageIndex = 1
-        case 2:
-            defaultImageIndex = 2
-        case 3:
-            defaultImageIndex = 3
-        case 4:
-            defaultImageIndex = 4
-        case 5:
-            defaultImageIndex = 5
-        case 6:
-            defaultImageIndex = 6
-        case 7:
-            defaultImageIndex = 7
+        case 1: defaultImageIndex = 1
+        case 2: defaultImageIndex = 2
+        case 3: defaultImageIndex = 3
+        case 4: defaultImageIndex = 4
+        case 5: defaultImageIndex = 5
+        case 6: defaultImageIndex = 6
+        case 7: defaultImageIndex = 7
         default:
             return
         }

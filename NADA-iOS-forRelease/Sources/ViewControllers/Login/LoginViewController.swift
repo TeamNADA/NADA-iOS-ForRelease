@@ -196,8 +196,12 @@ extension LoginViewController {
                 print("postUserSignUpWithAPI - success")
                 if let userData = loginData as? UserWithTokenRequest {
                     UserDefaults.standard.set(userData.user.userID, forKey: Const.UserDefaultsKey.userID)
-                    KeyChain.create(key: Const.KeyChainKey.accessToken, token: userData.user.token.accessToken)
-                    KeyChain.create(key: Const.KeyChainKey.refreshToken, token: userData.user.token.refreshToken)
+                    
+                    // TODO: - KeyChain 적용
+                    UserDefaults.standard.set(userData.user.token.accessToken, forKey: Const.UserDefaultsKey.accessToken)
+                    UserDefaults.standard.set(userData.user.token.refreshToken, forKey: Const.UserDefaultsKey.refreshToken)
+                    //                    KeyChain.create(key: Const.KeyChainKey.accessToken, token: userData.user.token.accessToken)
+                    //                    KeyChain.create(key: Const.KeyChainKey.refreshToken, token: userData.user.token.refreshToken)
                     self.presentToMain()
                 }
             case .requestErr(let message):

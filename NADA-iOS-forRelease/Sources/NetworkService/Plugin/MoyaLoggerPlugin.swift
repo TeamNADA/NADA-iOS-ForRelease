@@ -45,16 +45,26 @@ final class MoyaLoggerPlugin: PluginType {
     let url = request?.url?.absoluteString ?? "nil"
     let statusCode = response.statusCode
     var log = "------------------- 네트워크 통신 성공(isFromError: \(isFromError)) -------------------"
-    log.append("\n[\(statusCode)] \(url)\n----------------------------------------------------\n")
-    log.append("API: \(target)\n")
-    response.response?.allHeaderFields.forEach {
-      log.append("\($0): \($1)\n")
-    }
-    if let reString = String(bytes: response.data, encoding: String.Encoding.utf8) {
-      log.append("\(reString)\n")
-    }
-    log.append("------------------- END HTTP (\(response.data.count)-byte body) -------------------")
-    print(log)
+      switch statusCode {
+      case 401:
+          log.append("메롱 401이지롱")
+          userTokenReissueWithAPI(request: UserTokenReissueRequset(accessToken: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) ?? "",
+                                                                   refreshToken: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.refreshToken) ?? ""))
+      default:
+          log.append("메롱 \(statusCode)이지롱")
+      print(log)
+      
+//    log.append("\n[\(statusCode)] \(url)\n----------------------------------------------------\n")
+//    log.append("API: \(target)\n")
+//    response.response?.allHeaderFields.forEach {
+//      log.append("\($0): \($1)\n")
+//    }
+//    if let reString = String(bytes: response.data, encoding: String.Encoding.utf8) {
+//      log.append("\(reString)\n")
+//    }
+//    log.append("------------------- END HTTP (\(response.data.count)-byte body) -------------------")
+//    print(log)
+      }
   }
     
   func onFail(_ error: MoyaError, target: TargetType) {
@@ -68,4 +78,33 @@ final class MoyaLoggerPlugin: PluginType {
     log.append("<-- END HTTP")
     print(log)
   }
+}
+
+extension MoyaLoggerPlugin {
+    func userTokenReissueWithAPI(request: UserTokenReissueRequset) {
+        UserAPI.shared.userTokenReissue(request: request) { response in
+            switch response {
+            case .success(let loginData):
+//                print("userTokenReissueWithAPI - success")
+//                if let userData = loginData as? UserWithTokenRequest {
+//                    UserDefaults.standard.set(userData.user.userID, forKey: Const.UserDefaultsKey.userID)
+//                    UserDefaults.standard.set(userData.user.token.accessToken, forKey: Const.UserDefaultsKey.accessToken)
+//                    UserDefaults.standard.set(userData.user.token.refreshToken, forKey: Const.UserDefaultsKey.refreshToken)
+                print("asdfasd", loginData)
+            case .requestErr(let message):
+                print("userTokenReissueWithAPI - requestErr: \(message)")
+                if message as? String == "리프레시 토큰이 만료되었습니다." {
+                    print("유저 디폴트 삭제")
+                    UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.accessToken)
+                    UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.refreshToken)
+                }
+            case .pathErr:
+                print("userTokenReissueWithAPI - pathErr")
+            case .serverErr:
+                print("userTokenReissueWithAPI - serverErr")
+            case .networkFail:
+                print("userTokenReissueWithAPI - networkFail")
+            }
+        }
+    }
 }

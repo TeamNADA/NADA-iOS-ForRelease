@@ -48,22 +48,24 @@ final class MoyaLoggerPlugin: PluginType {
       switch statusCode {
       case 401:
           log.append("메롱 401이지롱")
-          userTokenReissueWithAPI(request: UserTokenReissueRequset(accessToken: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) ?? "",
-                                                                   refreshToken: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.refreshToken) ?? ""))
+          let acessToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken)
+          let refreshToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.refreshToken)
+          userTokenReissueWithAPI(request: UserReissueToken(accessToken: acessToken ?? "",
+                                                                   refreshToken: refreshToken ?? ""))
       default:
-          log.append("메롱 \(statusCode)이지롱")
+          log.append("메롱 \(statusCode) \(statusCode)이지롱")
       print(log)
       
-//    log.append("\n[\(statusCode)] \(url)\n----------------------------------------------------\n")
-//    log.append("API: \(target)\n")
-//    response.response?.allHeaderFields.forEach {
-//      log.append("\($0): \($1)\n")
-//    }
-//    if let reString = String(bytes: response.data, encoding: String.Encoding.utf8) {
-//      log.append("\(reString)\n")
-//    }
-//    log.append("------------------- END HTTP (\(response.data.count)-byte body) -------------------")
-//    print(log)
+    log.append("\n[\(statusCode)] \(url)\n----------------------------------------------------\n")
+    log.append("API: \(target)\n")
+    response.response?.allHeaderFields.forEach {
+      log.append("\($0): \($1)\n")
+    }
+    if let reString = String(bytes: response.data, encoding: String.Encoding.utf8) {
+      log.append("\(reString)\n")
+    }
+    log.append("------------------- END HTTP (\(response.data.count)-byte body) -------------------")
+    print(log)
       }
   }
     
@@ -81,23 +83,27 @@ final class MoyaLoggerPlugin: PluginType {
 }
 
 extension MoyaLoggerPlugin {
-    func userTokenReissueWithAPI(request: UserTokenReissueRequset) {
+    func userTokenReissueWithAPI(request: UserReissueToken) {
         UserAPI.shared.userTokenReissue(request: request) { response in
             switch response {
-            case .success(let loginData):
-//                print("userTokenReissueWithAPI - success")
-//                if let userData = loginData as? UserWithTokenRequest {
-//                    UserDefaults.standard.set(userData.user.userID, forKey: Const.UserDefaultsKey.userID)
-//                    UserDefaults.standard.set(userData.user.token.accessToken, forKey: Const.UserDefaultsKey.accessToken)
-//                    UserDefaults.standard.set(userData.user.token.refreshToken, forKey: Const.UserDefaultsKey.refreshToken)
-                print("asdfasd", loginData)
-            case .requestErr(let message):
-                print("userTokenReissueWithAPI - requestErr: \(message)")
-                if message as? String == "리프레시 토큰이 만료되었습니다." {
+            case .success(let data):
+                if let tokenData = data as? UserReissueToken {
+                    UserDefaults.standard.set(tokenData.accessToken, forKey: Const.UserDefaultsKey.accessToken)
+                    UserDefaults.standard.set(tokenData.refreshToken, forKey: Const.UserDefaultsKey.refreshToken)
+                    
+                    print("userTokenReissueWithAPI - success")
+                }
+            case .requestErr(let statusCode):
+                if let statusCode = statusCode as? Int, statusCode == 401 {
                     print("유저 디폴트 삭제")
+                    print("로그인 뷰로 보내기")
+                    // root view controller 를 바꾸자
+                    // changeRootViewController
                     UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.accessToken)
                     UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.refreshToken)
+                    UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.userID)
                 }
+                print("userTokenReissueWithAPI - requestErr: \(statusCode)")
             case .pathErr:
                 print("userTokenReissueWithAPI - pathErr")
             case .serverErr:

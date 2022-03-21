@@ -12,7 +12,7 @@ enum UserSevice {
     case userDelete(token: String)
     case userSocialSignUp(userID: String)
     case userLogout(token: String)
-    case userTokenReissue(request: UserTokenReissueRequset)
+    case userTokenReissue(request: UserReissueToken)
 }
 
 extension UserSevice: TargetType {

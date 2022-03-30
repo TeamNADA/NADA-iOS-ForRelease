@@ -99,8 +99,7 @@ extension MoyaLoggerPlugin {
                     print("userTokenReissueWithAPI - success")
                 }
             case .requestErr(let statusCode):
-                // FIXME: - 예원이가 상태코드 정해주면 변경
-                if let statusCode = statusCode as? Int, statusCode == 402 {
+                if let statusCode = statusCode as? Int, statusCode == 406 {
                     print("유저 디폴트 삭제")
                     print("로그인 뷰로 보내기")
                     

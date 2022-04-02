@@ -95,12 +95,10 @@ extension GroupService: TargetType {
     
     var headers: [String: String]? {
         switch self {
-        case .groupListFetch, .cardListFetchInGroup, .groupDelete, .cardDeleteInGroup:
-            return Const.Header.bearerHeader
+        case .groupListFetch, .cardListFetchInGroup, .groupReset, .groupDelete, .cardDeleteInGroup:
+            return Const.Header.bearerHeader()
         case .groupAdd, .groupEdit, .cardAddInGroup, .changeCardGroup:
-            return Const.Header.bearerHeader
-        case .groupReset:
-            return Const.Header.basicHeader
+            return Const.Header.basicHeader()
         }
     }
 }

@@ -10,9 +10,22 @@ import Foundation
 extension Const {
     
     struct Header {
-        static var bearerHeader = ["Authorization": "Bearer " + headerToken]
+        static func applicationJsonHeader() -> [String: String] {
+            ["Content-Type": "application/json"]
+        }
         
-        static var basicHeader = ["Content-Type": "application/json",
-                                  "Authorization": "Bearer " + headerToken]
+        static func multipartFormHeader() -> [String: String] {
+            ["Content-Type": "application/json",
+             "Authorization": "Bearer \(UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) ?? "")"]
+        }
+        
+        static func bearerHeader() -> [String: String] {
+            ["Authorization": "Bearer \(UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) ?? "")"]
+        }
+        
+        static func basicHeader() -> [String: String] {
+            ["Content-Type": "application/json",
+             "Authorization": "Bearer \(UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) ?? "")"]
+        }
     }
 }

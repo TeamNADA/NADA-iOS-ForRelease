@@ -61,9 +61,9 @@ extension UserSevice: TargetType {
     var headers: [String: String]? {
         switch self {
         case .userSocialSignUp, .userTokenReissue:
-            return ["Content-Type": "application/json"]
+            return Const.Header.applicationJsonHeader()
         case .userDelete, .userLogout:
-            return Const.Header.basicHeader
+            return Const.Header.bearerHeader()()
         }
     }
 }

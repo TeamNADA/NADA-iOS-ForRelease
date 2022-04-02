@@ -54,7 +54,7 @@ extension UtilService: TargetType {
     var headers: [String: String]? {
         switch self {
         case .cardHarmonyFetch:
-            return Const.Header.bearerHeader
+            return Const.Header.bearerHeader()
         }
     }
 }

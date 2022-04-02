@@ -63,7 +63,7 @@ extension UserSevice: TargetType {
         case .userSocialSignUp, .userTokenReissue:
             return Const.Header.applicationJsonHeader()
         case .userDelete, .userLogout:
-            return Const.Header.bearerHeader()()
+            return Const.Header.bearerHeader()
         }
     }
 }

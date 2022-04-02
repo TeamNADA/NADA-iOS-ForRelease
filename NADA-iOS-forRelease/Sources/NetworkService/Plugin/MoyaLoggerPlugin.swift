@@ -9,13 +9,6 @@ import Foundation
 import Moya
 
 final class MoyaLoggerPlugin: PluginType {
-    
-//    private let viewController: UIViewController
-    
-//    init(viewController: UIViewController) {
-//        self.viewController = viewController
-//    }
-
     // Request를 보낼 때 호출
     func willSend(_ request: RequestType, target: TargetType) {
         guard let httpRequest = request.request else {
@@ -100,10 +93,6 @@ extension MoyaLoggerPlugin {
                 }
             case .requestErr(let statusCode):
                 if let statusCode = statusCode as? Int, statusCode == 406 {
-                    print("유저 디폴트 삭제")
-                    print("로그인 뷰로 보내기")
-                    
-                    // root view controller 를 바꾸자
                     let loginVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
                     UIApplication.shared.windows.first {$0.isKeyWindow}?.rootViewController = loginVC
                     

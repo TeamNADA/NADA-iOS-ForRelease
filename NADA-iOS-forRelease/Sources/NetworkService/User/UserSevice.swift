@@ -12,7 +12,7 @@ enum UserSevice {
     case userDelete(token: String)
     case userSocialSignUp(userID: String)
     case userLogout(token: String)
-    case userTokenReissue(request: UserTokenReissueRequset)
+    case userTokenReissue(request: UserReissueToken)
 }
 
 extension UserSevice: TargetType {
@@ -61,9 +61,9 @@ extension UserSevice: TargetType {
     var headers: [String: String]? {
         switch self {
         case .userSocialSignUp, .userTokenReissue:
-            return ["Content-Type": "application/json"]
+            return Const.Header.applicationJsonHeader()
         case .userDelete, .userLogout:
-            return Const.Header.basicHeader
+            return Const.Header.bearerHeader()
         }
     }
 }

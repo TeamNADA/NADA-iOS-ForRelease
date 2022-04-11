@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserTokenReissueRequset: Codable {
+struct UserReissueToken: Codable {
     var accessToken: String
     var refreshToken: String
 }

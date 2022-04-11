@@ -62,7 +62,7 @@ public class UserAPI {
         }
     }
     
-    func userTokenReissue(request: UserTokenReissueRequset, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func userTokenReissue(request: UserReissueToken, completion: @escaping (NetworkResult<Any>) -> Void) {
         userProvider.request(.userTokenReissue(request: request)) { (result) in
             switch result {
             case .success(let response):
@@ -101,7 +101,7 @@ public class UserAPI {
     private func judgeUserTokenReissueStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<UserWithTokenRequest>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<UserReissueToken>.self, from: data)
         else {
             return .pathErr
         }
@@ -110,7 +110,7 @@ public class UserAPI {
         case 200:
             return .success(decodedData.data ?? "None-Data")
         case 400..<500:
-            return .requestErr(decodedData.msg)
+            return .requestErr(statusCode)
         case 500:
             return .serverErr
         default:

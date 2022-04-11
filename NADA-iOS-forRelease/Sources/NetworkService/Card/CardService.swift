@@ -111,10 +111,12 @@ extension CardService: TargetType {
     
     var headers: [String: String]? {
         switch self {
-        case .cardDetailFetch, .cardListFetch, .cardDelete, .cardListEdit:
-            return Const.Header.basicHeader
+        case .cardDetailFetch, .cardListFetch, .cardDelete:
+            return Const.Header.bearerHeader()
+        case .cardListEdit:
+            return Const.Header.basicHeader()
         case .cardCreation:
-            return Const.Header.basicHeader
+            return Const.Header.multipartFormHeader()
         }
     }
 }

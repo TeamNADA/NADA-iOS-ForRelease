@@ -10,13 +10,14 @@ import Foundation
 extension Const {
     struct UserDefaultsKey {
         static let darkModeState = "darkModeState"
-        static let accessToken = "accessToken"
-        static let refreshToken = "refreshToken"
         static let userID = "userID"
         static let isFirstCard = "isFirstCard"
         static let isOnboarding = "isOnboarding"
         static let firstCardID = "firstCardID"
         static let isAppleLogin = "isAppleLogin"
         static let isKakaoLogin = "isKakaoLogin"
+        // TODO: - KeyChain 적용
+        static let accessToken = "accessToken"
+        static let refreshToken = "refreshToken"
     }
 }

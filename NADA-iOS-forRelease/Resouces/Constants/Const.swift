@@ -8,5 +8,6 @@
 import Foundation
 
 struct Const {
-    static let headerToken: String = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) ?? ""
+    // TODO: - KeyChain 적용
+    //    static var headerToken: String = KeyChain.read(key: Const.KeyChainKey.accessToken) ?? ""
 }

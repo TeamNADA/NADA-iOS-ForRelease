@@ -19,7 +19,7 @@ class CardListTableViewCell: UITableViewCell {
     }
     
     static func nib() -> UINib {
-        return UINib(nibName: "CardListTableViewCell", bundle: nil)
+        return UINib(nibName: Const.Xib.cardListTableViewCell, bundle: nil)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

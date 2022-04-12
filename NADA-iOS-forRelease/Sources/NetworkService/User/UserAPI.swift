@@ -15,54 +15,6 @@ public class UserAPI {
     
     public init() { }
     
-    func userIDFetch(userID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        userProvider.request(.userIDFetch(userID: userID)) { (result) in
-            switch result {
-            case .success(let response):
-                let statusCode = response.statusCode
-                let data = response.data
-
-                let networkResult = self.judgeUserIDFetchStatus(by: statusCode, data)
-                completion(networkResult)
-
-            case .failure(let err):
-                print(err)
-            }
-        }
-    }
-    
-    func userTokenFetch(userID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        userProvider.request(.userTokenFetch(userID: userID)) { (result) in
-            switch result {
-            case .success(let response):
-                let statusCode = response.statusCode
-                let data = response.data
-
-                let networkResult = self.judgeUserTokenFetchStatus(by: statusCode, data)
-                completion(networkResult)
-
-            case .failure(let err):
-                print(err)
-            }
-        }
-    }
-    
-    func userSignUp(request: User, completion: @escaping (NetworkResult<Any>) -> Void) {
-        userProvider.request(.userSignUp(request: request)) { (result) in
-            switch result {
-            case .success(let response):
-                let statusCode = response.statusCode
-                let data = response.data
-
-                let networkResult = self.judgeUserIDFetchStatus(by: statusCode, data)
-                completion(networkResult)
-
-            case .failure(let err):
-                print(err)
-            }
-        }
-    }
-    
     func userDelete(token: String, completion: @escaping (NetworkResult<Any>) -> Void) {
         userProvider.request(.userDelete(token: token)) { (result) in
             switch result {
@@ -110,7 +62,7 @@ public class UserAPI {
         }
     }
     
-    func userTokenReissue(request: UserTokenReissueRequset, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func userTokenReissue(request: UserReissueToken, completion: @escaping (NetworkResult<Any>) -> Void) {
         userProvider.request(.userTokenReissue(request: request)) { (result) in
             switch result {
             case .success(let response):
@@ -123,26 +75,6 @@ public class UserAPI {
             case .failure(let err):
                 print(err)
             }
-        }
-    }
-    
-    private func judgeUserIDFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
-        
-        let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<User>.self, from: data)
-        else {
-            return .pathErr
-        }
-        
-        switch statusCode {
-        case 200:
-            return .success(decodedData.data ?? "None-Data")
-        case 400..<500:
-            return .requestErr(decodedData.msg)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
         }
     }
     
@@ -169,7 +101,7 @@ public class UserAPI {
     private func judgeUserTokenReissueStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<UserWithTokenRequest>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<UserReissueToken>.self, from: data)
         else {
             return .pathErr
         }
@@ -178,7 +110,7 @@ public class UserAPI {
         case 200:
             return .success(decodedData.data ?? "None-Data")
         case 400..<500:
-            return .requestErr(decodedData.msg)
+            return .requestErr(statusCode)
         case 500:
             return .serverErr
         default:

@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        KakaoSDKCommon.initSDK(appKey: "5b8dd8cc878344bb7532eeca4365a4aa")
+        KakaoSDK.initSDK(appKey: "5b8dd8cc878344bb7532eeca4365a4aa")
         
         // 기존 사용자 로그아웃 인식을 위한 부분
         if UserDefaults.standard.string(forKey: "accessToken") != nil {

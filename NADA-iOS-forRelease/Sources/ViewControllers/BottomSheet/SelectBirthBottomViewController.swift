@@ -13,6 +13,7 @@ class SelectBirthBottomSheetViewController: CommonBottomSheetViewController {
     
     private let monthList: [String] = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"]
     private let dayList: [String] = ["1일", "2일", "3일", "4일", "5일", "6일", "7일", "8일", "9일", "10일", "11일", "12일", "13일", "14일", "15일", "16일", "17일", "18일", "19일", "20일", "21일", "22일", "23일", "24일", "25일", "26일", "27일", "28일", "29일", "30일", "31일"]
+    private let pickerViewRowHeight: CGFloat = 44.0
     private var month = String()
     private var day = String()
     private var selectedBirth = String()
@@ -155,6 +156,6 @@ extension SelectBirthBottomSheetViewController: UIPickerViewDelegate, UIPickerVi
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 44
+        return pickerViewRowHeight
     }
 }

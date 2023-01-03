@@ -63,13 +63,14 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     }()
     
     // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
     
     // MARK: - @Functions
-    // UI 세팅 작업
+    
     private func setupUI() {
         idStackView.addArrangedSubview(idTitleLabel)
         idStackView.addArrangedSubview(idLabel)
@@ -85,7 +86,6 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         setQRImage()
     }
     
-    // 레이아웃 세팅
     private func setupLayout() {
         qrImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -168,6 +168,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         
         return frontImage
     }
+    
     private func setBackCardImage() -> UIImage {
         guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return UIImage() }
         backCard.frame = CGRect(x: 0, y: 0, width: 327, height: 540)

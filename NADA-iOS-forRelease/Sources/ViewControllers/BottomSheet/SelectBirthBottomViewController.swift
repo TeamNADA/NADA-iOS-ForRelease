@@ -30,7 +30,7 @@ class SelectBirthBottomSheetViewController: CommonBottomSheetViewController {
     private let doneButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "btnMainDone"), for: .normal)
-        button.addTarget(self, action: #selector(dismissToCardCreationViewController), for: .touchUpInside)
+        button.addTarget(SelectBirthBottomSheetViewController.self, action: #selector(dismissToCardCreationViewController), for: .touchUpInside)
         
         return button
     }()

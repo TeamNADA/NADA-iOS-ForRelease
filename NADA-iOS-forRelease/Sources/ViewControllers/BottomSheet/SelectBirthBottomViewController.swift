@@ -18,6 +18,12 @@ class SelectBirthBottomSheetViewController: CommonBottomSheetViewController {
     private var day = String()
     private var selectedBirth = String()
     
+    @frozen
+    private enum Column: Int, CaseIterable {
+        case month = 0
+        case day = 1
+    }
+    
     // MARK: - Components
     
     private let birthPicker: UIPickerView = {
@@ -95,15 +101,16 @@ extension SelectBirthBottomSheetViewController {
 
 extension SelectBirthBottomSheetViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 3
+        return Column.allCases.count
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if component == 0 {
-            return yearList.count
-        } else if component == 1 {
+        guard let row = Column(rawValue: component) else { return 0 }
+        
+        switch row {
+        case .month:
             return monthList.count
-        } else {
+        case .day:
             return dayList.count
         }
     }
@@ -113,21 +120,17 @@ extension SelectBirthBottomSheetViewController: UIPickerViewDelegate, UIPickerVi
 
         label.textAlignment = .center
 
-        if component == 0 {
-            if pickerView.selectedRow(inComponent: component) == row {
-                label.attributedText = NSAttributedString(string: yearList[row], attributes: [NSAttributedString.Key.font: UIFont.textBold01, NSAttributedString.Key.foregroundColor: UIColor.mainColorNadaMain])
-
-            } else {
-                label.attributedText = NSAttributedString(string: yearList[row], attributes: [NSAttributedString.Key.font: UIFont.textRegular03, NSAttributedString.Key.foregroundColor: UIColor.quaternary])
-            }
-        } else if component == 1 {
+        guard let colum = Column(rawValue: component) else { return label }
+        
+        switch colum {
+        case .month:
             if pickerView.selectedRow(inComponent: component) == row {
                 label.attributedText = NSAttributedString(string: monthList[row], attributes: [NSAttributedString.Key.font: UIFont.textBold01, NSAttributedString.Key.foregroundColor: UIColor.mainColorNadaMain])
 
             } else {
                 label.attributedText = NSAttributedString(string: monthList[row], attributes: [NSAttributedString.Key.font: UIFont.textRegular03, NSAttributedString.Key.foregroundColor: UIColor.quaternary])
             }
-        } else if component == 2 {
+        case .day:
             if pickerView.selectedRow(inComponent: component) == row {
                 label.attributedText = NSAttributedString(string: dayList[row], attributes: [NSAttributedString.Key.font: UIFont.textBold01, NSAttributedString.Key.foregroundColor: UIColor.mainColorNadaMain])
 
@@ -142,17 +145,18 @@ extension SelectBirthBottomSheetViewController: UIPickerViewDelegate, UIPickerVi
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickerView.reloadAllComponents()
         
-        if component == 0 {
-            year = yearList[row]
-        } else if component == 1 {
+        guard let colum = Column(rawValue: component) else { return }
+        
+        switch colum {
+        case .month:
             month = monthList[row]
-        } else if component == 2 {
+        case .day:
             day = dayList[row]
         }
-        year = year.isEmpty ? yearList[0] : year
+        
         month = month.isEmpty ? monthList[0] : month
         day = day.isEmpty ? dayList[0] : day
-        selectedBirth = year + "." + month + "." + day
+        selectedBirth = month + " " + day
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {

@@ -5,11 +5,13 @@
 //  Created by kimhyungyu on 2021/08/08.
 //
 
+import AuthenticationServices
 import UIKit
+
+import Firebase
 import KakaoSDKCommon
 import KakaoSDKAuth
 import KakaoSDKUser
-import AuthenticationServices
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        FirebaseApp.configure()
 
         KakaoSDK.initSDK(appKey: "5b8dd8cc878344bb7532eeca4365a4aa")
         

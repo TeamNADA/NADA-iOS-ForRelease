@@ -259,7 +259,7 @@ extension CardCreationViewController: UICollectionViewDataSource {
                 frontCreationCell.frontCardCreationDelegate = self
                 frontCreationCell.presentingBirthBottomVCClosure = {
                     let nextVC = SelectBirthBottomSheetViewController()
-                                .setTitle("생년월일")
+                                .setTitle("날짜")
                                 .setHeight(355)
                     nextVC.modalPresentationStyle = .overFullScreen
                     self.present(nextVC, animated: false, completion: nil)

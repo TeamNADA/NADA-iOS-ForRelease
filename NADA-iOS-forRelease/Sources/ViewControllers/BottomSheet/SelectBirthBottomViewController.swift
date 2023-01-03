@@ -16,6 +16,7 @@ class SelectBirthBottomSheetViewController: CommonBottomSheetViewController {
     private let pickerViewRowHeight: CGFloat = 44.0
     private var month = String()
     private var day = String()
+    // FIXME: - 명함생성뷰에서 날짜를 넘길때 에러.(0.0.0 이 아닌 0월 0일로 반영)
     private var selectedBirth = String()
     
     @frozen
@@ -64,7 +65,7 @@ extension SelectBirthBottomSheetViewController {
         view.addSubview(birthPicker)
         view.addSubview(doneButton)
         
-        selectedBirth = yearList[0] + "." + monthList[0] + "." + dayList[0]
+        selectedBirth = monthList[0] + " " + dayList[0]
         
         birthPicker.delegate = self
         birthPicker.dataSource = self

@@ -11,10 +11,8 @@ class SelectBirthBottomSheetViewController: CommonBottomSheetViewController {
 
     // MARK: - Properties
     
-    private let yearList: [String] = [Int](1950...2022).map { String($0) }.reversed()
-    private let monthList: [String] = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
-    private let dayList: [String] = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"]
-    private var year = String()
+    private let monthList: [String] = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"]
+    private let dayList: [String] = ["1일", "2일", "3일", "4일", "5일", "6일", "7일", "8일", "9일", "10일", "11일", "12일", "13일", "14일", "15일", "16일", "17일", "18일", "19일", "20일", "21일", "22일", "23일", "24일", "25일", "26일", "27일", "28일", "29일", "30일", "31일"]
     private var month = String()
     private var day = String()
     private var selectedBirth = String()

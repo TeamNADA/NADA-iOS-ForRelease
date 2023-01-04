@@ -6,6 +6,8 @@
 //
 
 import UIKit
+
+import FirebaseDynamicLinks
 import IQKeyboardManagerSwift
 import KakaoSDKAuth
 
@@ -36,13 +38,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 window.overrideUserInterfaceStyle = .light
             }
         }
-
+        
+        if let userActivity = connectionOptions.userActivities.first {
+            self.scene(scene, continue: userActivity)
+        }
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         if let url = URLContexts.first?.url {
             if (AuthApi.isKakaoTalkLoginUrl(url)) {
                 _ = AuthController.handleOpenUrl(url: url)
+            }
+        }
+    }
+    
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        if let url = userActivity.webpageURL {
+            let handled = DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, error in
+                if self.handleDynamicLink(dynamicLink) {
+                    // TODO: - 앱이 실행중에 명함 조회 뷰 띄우기
+                }
             }
         }
     }
@@ -76,7 +91,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-    
-    
 }
 
+// MARK: - Extensions
+
+extension SceneDelegate {
+    private func handleDynamicLink(_ dynamicLink: DynamicLink?) -> Bool {
+        guard let dynamicLink = dynamicLink, let link = dynamicLink.url else { return false }
+        
+        let queryItems = URLComponents(url: link, resolvingAgainstBaseURL: true)?.queryItems
+        
+        let cardID = queryItems?.filter { $0.name == "cardID" }.first?.value
+        print("✅", cardID ?? "")
+        
+        return true
+    }
+}

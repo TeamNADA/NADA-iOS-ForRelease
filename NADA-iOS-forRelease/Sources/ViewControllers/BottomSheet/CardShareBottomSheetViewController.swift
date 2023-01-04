@@ -129,11 +129,12 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         guard let link = URL(string: Const.URL.opendDynamicLinkOnWebURL + "/?id=" + cardID),
               let bundleID = Bundle.main.infoDictionary?["CFBundleIdentifier"] as? String else { return }
         let domainURLPrefix = Const.URL.dynamicLinkURLPrefix
+        let appStoreID = "1600711887"
         
         let linkBuilder = DynamicLinkComponents(link: link, domainURIPrefix: domainURLPrefix)
         
         linkBuilder?.iOSParameters = DynamicLinkIOSParameters(bundleID: bundleID)
-        linkBuilder?.iOSParameters?.appStoreID = "1600711887"
+        linkBuilder?.iOSParameters?.appStoreID = appStoreID
         linkBuilder?.navigationInfoParameters = DynamicLinkNavigationInfoParameters()
         linkBuilder?.navigationInfoParameters?.isForcedRedirectEnabled = true
         

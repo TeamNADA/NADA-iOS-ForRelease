@@ -129,10 +129,10 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
             UIImageWriteToSavedPhotosAlbum(backCardImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
         case .denied:
             makeOKCancelAlert(title: "갤러리 권한이 허용되어 있지 않아요.",
-                        message: "명함 이미지 저장을 위해 갤러리 권한이 필요합니다. 앱 설정으로 이동해 허용해 주세요.",
-                        okAction: { _ in UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)},
-                        cancelAction: nil,
-                        completion: nil)
+                              message: "명함 이미지 저장을 위해 갤러리 권한이 필요합니다. 앱 설정으로 이동해 허용해 주세요.",
+                              okAction: { _ in UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)},
+                              cancelAction: nil,
+                              completion: nil)
         case .notDetermined:
             PHPhotoLibrary.requestAuthorization({state in
                 if state == .authorized {

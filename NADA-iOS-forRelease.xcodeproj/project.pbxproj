@@ -104,6 +104,7 @@
 		F82FF8262702000000E57F8B /* RequiredFlavorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F82FF8242702000000E57F8B /* RequiredFlavorCollectionViewCell.xib */; };
 		F83206AA26F61E3700D61711 /* FrontCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83206A826F61E3700D61711 /* FrontCardCell.swift */; };
 		F83206AB26F61E3700D61711 /* FrontCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F83206A926F61E3700D61711 /* FrontCardCell.xib */; };
+		F837AB7D2965582C00A8804A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F837AB7C2965582C00A8804A /* GoogleService-Info.plist */; };
 		F84BAF9D26FDB417004CA335 /* CardCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84BAF9C26FDB417004CA335 /* CardCreationViewController.swift */; };
 		F84BAFAD26FDB543004CA335 /* FrontCardCreationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84BAFAB26FDB543004CA335 /* FrontCardCreationCollectionViewCell.swift */; };
 		F84BAFAE26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F84BAFAC26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib */; };
@@ -250,6 +251,7 @@
 		F82FF8242702000000E57F8B /* RequiredFlavorCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequiredFlavorCollectionViewCell.xib; sourceTree = "<group>"; };
 		F83206A826F61E3700D61711 /* FrontCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontCardCell.swift; sourceTree = "<group>"; };
 		F83206A926F61E3700D61711 /* FrontCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FrontCardCell.xib; sourceTree = "<group>"; };
+		F837AB7C2965582C00A8804A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F84BAF9C26FDB417004CA335 /* CardCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreationViewController.swift; sourceTree = "<group>"; };
 		F84BAFAB26FDB543004CA335 /* FrontCardCreationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontCardCreationCollectionViewCell.swift; sourceTree = "<group>"; };
 		F84BAFAC26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FrontCardCreationCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -800,6 +802,7 @@
 		F8FC439926C01E2B0033E151 /* Resouces */ = {
 			isa = PBXGroup;
 			children = (
+				F837AB7C2965582C00A8804A /* GoogleService-Info.plist */,
 				F857FC8A26C03A5C00A48D01 /* Assets */,
 				39DA4D7B2747D7060082D572 /* Font */,
 				F8FC43A326C01F420033E151 /* Constants */,
@@ -1049,6 +1052,7 @@
 				F82FF81D2701EBCE00E57F8B /* CardCreation.storyboard in Resources */,
 				39369937274A4FCB00684420 /* NotoSansCJKkr-Medium.otf in Resources */,
 				392F7FB5274621F1008CDBF5 /* MoreListTableViewCell.xib in Resources */,
+				F837AB7D2965582C00A8804A /* GoogleService-Info.plist in Resources */,
 				7770315927500C49002CBD19 /* QRScan.storyboard in Resources */,
 				390515B82706CEBB00C5F7A5 /* Colors.xcassets in Resources */,
 			);

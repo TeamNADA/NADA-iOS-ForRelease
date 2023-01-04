@@ -8,6 +8,8 @@
 import UIKit
 import Photos
 
+import FirebaseDynamicLinks
+
 class CardShareBottomSheetViewController: CommonBottomSheetViewController {
 
     // MARK: - Properties
@@ -111,12 +113,42 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     
     private func setQRImage() {
         let frame = CGRect(origin: .zero, size: qrImage.frame.size)
-        print("TeamNADA\(cardDataModel?.cardID ?? "")")
         let qrcode = QRCodeView(frame: frame)
-        qrcode.generateCode("ThisIsTeamNADAQrCode\(cardDataModel?.cardID ?? "")",
-                            foregroundColor: .primary,
-                            backgroundColor: .background)
-        qrImage.addSubview(qrcode)
+        generateDynamicLink(with: cardDataModel?.cardID ?? "") { dynamicLink in
+            
+            // FIXME: - ThisIsTeamNADAQrCode 로 나다에서 prefix 파악하는데 수정하기
+            
+            qrcode.generateCode(dynamicLink,
+                                foregroundColor: .primary,
+                                backgroundColor: .background)
+            self.qrImage.addSubview(qrcode)
+        }
+    }
+    
+    private func generateDynamicLink(with cardID: String, completion: @escaping ((String) -> Void)) {
+        guard let link = URL(string: Const.URL.opendDynamicLinkOnWebURL + "/?id=" + cardID),
+              let bundleID = Bundle.main.infoDictionary?["CFBundleIdentifier"] as? String else { return }
+        let domainURLPrefix = Const.URL.dynamicLinkURLPrefix
+        
+        let linkBuilder = DynamicLinkComponents(link: link, domainURIPrefix: domainURLPrefix)
+        
+        linkBuilder?.iOSParameters = DynamicLinkIOSParameters(bundleID: bundleID)
+        linkBuilder?.iOSParameters?.appStoreID = "1600711887"
+        linkBuilder?.navigationInfoParameters = DynamicLinkNavigationInfoParameters()
+        linkBuilder?.navigationInfoParameters?.isForcedRedirectEnabled = true
+        
+        var dynamicLink: String = ""
+        
+        linkBuilder?.options = DynamicLinkComponentsOptions()
+        linkBuilder?.options?.pathLength = .short
+        
+        linkBuilder?.shorten { url, warnings, error in
+            if let url {
+                dynamicLink = "\(url)"
+            }
+            
+            completion(dynamicLink)
+        }
     }
     
     private func setImageWriteToSavedPhotosAlbum() {

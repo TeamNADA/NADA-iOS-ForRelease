@@ -102,6 +102,8 @@ extension SceneDelegate {
         let queryItems = URLComponents(url: link, resolvingAgainstBaseURL: true)?.queryItems
         
         let cardID = queryItems?.filter { $0.name == "cardID" }.first?.value
+        
+        print("✅", link)
         print("✅", cardID ?? "")
         
         return true

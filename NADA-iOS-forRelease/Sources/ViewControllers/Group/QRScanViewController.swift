@@ -129,12 +129,14 @@ extension QRScanViewController: AVCaptureMetadataOutputObjectsDelegate {
                 return
             }
 
-            // ✅ qr코드가 가진 문자열이 URL 형태를 띈다면 출력.(아무런 qr코드나 찍는다고 출력시키면 안되니까 여기서 분기처리 가능. )
-            if stringValue.hasPrefix("ThisIsTeamNADAQrCode") {
+            if stringValue.hasPrefix(Const.URL.dynamicLinkURLPrefix) {
                 self.captureSession.stopRunning()
-                // TODO: 여기서 QR에 있는 ID값으로 명함검색 API통신
-                cardDetailFetchWithAPI(cardID: stringValue.deletingPrefix("ThisIsTeamNADAQrCode"))
                 
+                guard let url = URL(string: stringValue) else { return }
+                let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: true)?.queryItems
+                let cardID = queryItems?.filter { $0.name == "cardID" }.first?.value
+                
+                cardDetailFetchWithAPI(cardID: cardID ?? "")
             } else {
                 showToast(message: "유효하지 않은 QR입니다.", font: UIFont.button02, view: "QRScan")
             }

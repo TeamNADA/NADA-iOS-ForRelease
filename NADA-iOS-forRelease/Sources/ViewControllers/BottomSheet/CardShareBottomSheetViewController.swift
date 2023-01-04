@@ -41,7 +41,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     private let copyButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "iconCopy"), for: .normal)
-        button.addTarget(CardShareBottomSheetViewController.self, action: #selector(copyId), for: .touchUpInside)
+        button.addTarget(self, action: #selector(copyId), for: .touchUpInside)
         
         return button
     }()
@@ -57,7 +57,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     private let saveAsImageButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "buttonShareImg"), for: .normal)
-        button.addTarget(CardShareBottomSheetViewController.self, action: #selector(saveAsImage), for: .touchUpInside)
+        button.addTarget(self, action: #selector(saveAsImage), for: .touchUpInside)
         
         return button
     }()

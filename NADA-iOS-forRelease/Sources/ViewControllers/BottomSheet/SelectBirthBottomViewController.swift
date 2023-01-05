@@ -19,15 +19,15 @@ class SelectBirthBottomSheetViewController: CommonBottomSheetViewController {
     // FIXME: - 명함생성뷰에서 날짜를 넘길때 에러.(0.0.0 이 아닌 0월 0일로 반영)
     private var selectedBirth = String()
     
-    @frozen
-    private enum Column: Int, CaseIterable {
-        case month = 0
-        case day = 1
-    }
-    
     // MARK: - Components
     
-    private let birthPicker: UIPickerView = {
+    private let monthPicker: UIPickerView = {
+        let pickerView = UIPickerView()
+        
+        return pickerView
+    }()
+    
+    private let dayPicker: UIPickerView = {
         let pickerView = UIPickerView()
         
         return pickerView
@@ -36,7 +36,7 @@ class SelectBirthBottomSheetViewController: CommonBottomSheetViewController {
     private let doneButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "btnMainDone"), for: .normal)
-        button.addTarget(SelectBirthBottomSheetViewController.self, action: #selector(dismissToCardCreationViewController), for: .touchUpInside)
+        button.addTarget(self, action: #selector(dismissToCardCreationViewController), for: .touchUpInside)
         
         return button
     }()
@@ -62,13 +62,16 @@ class SelectBirthBottomSheetViewController: CommonBottomSheetViewController {
 
 extension SelectBirthBottomSheetViewController {
     private func setupUI() {
-        view.addSubview(birthPicker)
+        view.addSubview(monthPicker)
+        view.addSubview(dayPicker)
         view.addSubview(doneButton)
         
         selectedBirth = monthList[0] + " " + dayList[0]
         
-        birthPicker.delegate = self
-        birthPicker.dataSource = self
+        monthPicker.delegate = self
+        monthPicker.dataSource = self
+        dayPicker.delegate = self
+        dayPicker.dataSource = self
         
         setupLayout()
     }
@@ -97,21 +100,17 @@ extension SelectBirthBottomSheetViewController {
         NotificationCenter.default.post(name: .completeFrontCardBirth, object: selectedBirth)
         hideBottomSheetAndGoBack()
     }
-
 }
 
 extension SelectBirthBottomSheetViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return Column.allCases.count
+        return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        guard let row = Column(rawValue: component) else { return 0 }
-        
-        switch row {
-        case .month:
+        if pickerView == monthPicker {
             return monthList.count
-        case .day:
+        } else {
             return dayList.count
         }
     }
@@ -123,38 +122,32 @@ extension SelectBirthBottomSheetViewController: UIPickerViewDelegate, UIPickerVi
         let label = (view as? UILabel) ?? UILabel()
 
         label.textAlignment = .center
-
-        guard let colum = Column(rawValue: component) else { return label }
         
-        switch colum {
-        case .month:
+        if pickerView == monthPicker {
             if pickerView.selectedRow(inComponent: component) == row {
                 label.attributedText = NSAttributedString(string: monthList[row], attributes: [NSAttributedString.Key.font: UIFont.textBold01, NSAttributedString.Key.foregroundColor: UIColor.mainColorNadaMain])
-
+                
             } else {
                 label.attributedText = NSAttributedString(string: monthList[row], attributes: [NSAttributedString.Key.font: UIFont.textRegular03, NSAttributedString.Key.foregroundColor: UIColor.quaternary])
             }
-        case .day:
+        } else {
             if pickerView.selectedRow(inComponent: component) == row {
                 label.attributedText = NSAttributedString(string: dayList[row], attributes: [NSAttributedString.Key.font: UIFont.textBold01, NSAttributedString.Key.foregroundColor: UIColor.mainColorNadaMain])
-
+                
             } else {
                 label.attributedText = NSAttributedString(string: dayList[row], attributes: [NSAttributedString.Key.font: UIFont.textRegular03, NSAttributedString.Key.foregroundColor: UIColor.quaternary])
             }
         }
-        
-        return label
-    }
+    
+    return label
+}
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickerView.reloadAllComponents()
         
-        guard let colum = Column(rawValue: component) else { return }
-        
-        switch colum {
-        case .month:
+        if pickerView == monthPicker {
             month = monthList[row]
-        case .day:
+        } else {
             day = dayList[row]
         }
         

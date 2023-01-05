@@ -28,6 +28,16 @@
 				<string>kakao5b8dd8cc878344bb7532eeca4365a4aa</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>dynamic link</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>YJC.NADA-iOS-forRelease</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>

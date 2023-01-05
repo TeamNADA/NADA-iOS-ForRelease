@@ -126,7 +126,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     }
     
     private func generateDynamicLink(with cardID: String, completion: @escaping ((String) -> Void)) {
-        guard let link = URL(string: Const.URL.opendDynamicLinkOnWebURL + "/?id=" + cardID),
+        guard let link = URL(string: Const.URL.opendDynamicLinkOnWebURL + "/?cardID=" + cardID),
               let bundleID = Bundle.main.infoDictionary?["CFBundleIdentifier"] as? String else { return }
         let domainURLPrefix = Const.URL.dynamicLinkURLPrefix
         let appStoreID = "1600711887"

@@ -1,17 +1,17 @@
 PODS:
-  - Alamofire (5.6.2)
+  - Alamofire (5.6.4)
   - IQKeyboardManagerSwift (6.5.10)
-  - KakaoSDKAuth (2.11.3):
-    - KakaoSDKCommon (= 2.11.3)
-  - KakaoSDKCommon (2.11.3):
-    - KakaoSDKCommon/Common (= 2.11.3)
-    - KakaoSDKCommon/Network (= 2.11.3)
-  - KakaoSDKCommon/Common (2.11.3)
-  - KakaoSDKCommon/Network (2.11.3):
+  - KakaoSDKAuth (2.13.1):
+    - KakaoSDKCommon (= 2.13.1)
+  - KakaoSDKCommon (2.13.1):
+    - KakaoSDKCommon/Common (= 2.13.1)
+    - KakaoSDKCommon/Network (= 2.13.1)
+  - KakaoSDKCommon/Common (2.13.1)
+  - KakaoSDKCommon/Network (2.13.1):
     - Alamofire (~> 5.1)
-    - KakaoSDKCommon/Common (= 2.11.3)
-  - KakaoSDKUser (2.11.3):
-    - KakaoSDKAuth (= 2.11.3)
+    - KakaoSDKCommon/Common (= 2.13.1)
+  - KakaoSDKUser (2.13.1):
+    - KakaoSDKAuth (= 2.13.1)
   - Kingfisher (7.4.1)
   - Moya (14.0.0):
     - Moya/Core (= 14.0.0)
@@ -21,7 +21,7 @@ PODS:
     - NVActivityIndicatorView/Base (= 5.1.1)
   - NVActivityIndicatorView/Base (5.1.1)
   - SkeletonView (1.30.4)
-  - SwiftLint (0.49.1)
+  - SwiftLint (0.50.3)
   - VerticalCardSwiper (2.3.1)
 
 DEPENDENCIES:
@@ -51,16 +51,16 @@ SPEC REPOS:
     - VerticalCardSwiper
 
 SPEC CHECKSUMS:
-  Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
+  Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
   IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
-  KakaoSDKAuth: a64dde90516e18fdfc35b83bbad2677c3675c329
-  KakaoSDKCommon: b4235203f67a5b6ee2df75eaf9bbc863c6d92e09
-  KakaoSDKUser: 9a42e9b74855ce876b071c841418aa6726534010
+  KakaoSDKAuth: d9de0cb0c723441ced3616d481952bde34438dcb
+  KakaoSDKCommon: a16807e19984a0a208c3117c7ef117f101a9a128
+  KakaoSDKUser: 92d34cf6af7b123c22a7ee44424332123e356901
   Kingfisher: cd762a593a61b2fbecf7645c00f9a801a3ebfc9c
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   SkeletonView: 5a050f6411e697abd4cda0a8d767013399dccd69
-  SwiftLint: 32ee33ded0636d0905ef6911b2b67bbaeeedafa5
+  SwiftLint: 77f7cb2b9bb81ab4a12fcc86448ba3f11afa50c6
   VerticalCardSwiper: 68df635b354500f86934ea044ade37a264c044c6
 
 PODFILE CHECKSUM: ee00f6411308bc32732ea2efc98ad9cb9bd27f5d

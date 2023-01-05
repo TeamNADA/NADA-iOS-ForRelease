@@ -75,19 +75,27 @@ extension SelectBirthBottomSheetViewController {
         
         setupLayout()
     }
+    
     private func setupLayout() {
-        birthPicker.selectedRow(inComponent: 0)
-        birthPicker.translatesAutoresizingMaskIntoConstraints = false
+        monthPicker.selectedRow(inComponent: 0)
+        monthPicker.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            birthPicker.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: -20),
-            birthPicker.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor),
-            birthPicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            birthPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            monthPicker.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: -20),
+            monthPicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            monthPicker.widthAnchor.constraint(equalToConstant: (view.frame.width - 32) / 2)
+        ])
+        
+        dayPicker.selectedRow(inComponent: 0)
+        dayPicker.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            dayPicker.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: -20),
+            dayPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            dayPicker.widthAnchor.constraint(equalToConstant: (view.frame.width - 32) / 2)
         ])
         
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            doneButton.topAnchor.constraint(equalTo: birthPicker.bottomAnchor, constant: 0),
+            doneButton.topAnchor.constraint(equalTo: monthPicker.bottomAnchor, constant: 0),
             doneButton.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor),
             doneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24)

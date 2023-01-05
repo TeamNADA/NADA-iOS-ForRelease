@@ -124,8 +124,9 @@ extension SelectBirthBottomSheetViewController: UIPickerViewDelegate, UIPickerVi
     }
 
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        // TODO: - 피커뷰를 두개를 만들고 각각의 subviews[1] 을 투명하게 만들고 uiview 를 얹어서 둥글기와 색을 커스텀하기.
-        pickerView.subviews[1].backgroundColor = .clear
+        let backgroundView = pickerView.subviews[1]
+        backgroundView.cornerRadius = 23
+        backgroundView.frame = CGRect(x: backgroundView.frame.minX, y: backgroundView.frame.minY, width: backgroundView.frame.width, height: 44)
         
         let label = (view as? UILabel) ?? UILabel()
 

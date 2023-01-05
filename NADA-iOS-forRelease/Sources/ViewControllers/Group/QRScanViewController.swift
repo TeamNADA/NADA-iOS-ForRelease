@@ -8,6 +8,8 @@
 import UIKit
 import AVFoundation
 
+import FirebaseDynamicLinks
+
 class QRScanViewController: UIViewController {
 
     // MARK: - Properties
@@ -118,27 +120,27 @@ extension QRScanViewController {
 }
 
 extension QRScanViewController: AVCaptureMetadataOutputObjectsDelegate {
-
     func metadataOutput(_ captureOutput: AVCaptureMetadataOutput,
                         didOutput metadataObjects: [AVMetadataObject],
                         from connection: AVCaptureConnection) {
 
         if let metadataObject = metadataObjects.first {
-
-            guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject, let stringValue = readableObject.stringValue else {
-                return
-            }
-
+            guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject,
+                  let stringValue = readableObject.stringValue,
+                  let stringValueURL = URL(string: stringValue) else { return }
+            
             if stringValue.hasPrefix(Const.URL.dynamicLinkURLPrefix) {
                 self.captureSession.stopRunning()
                 
-                guard let url = URL(string: stringValue) else { return }
-                let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: true)?.queryItems
-                let cardID = queryItems?.filter { $0.name == "cardID" }.first?.value
-                
-                cardDetailFetchWithAPI(cardID: cardID ?? "")
+                DynamicLinks.dynamicLinks().handleUniversalLink(stringValueURL) { dynamicLink, error in
+                    guard let url = dynamicLink?.url else { return }
+                    let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: true)?.queryItems
+                    let cardID = queryItems?.filter { $0.name == "cardID" }.first?.value
+                    
+                    self.cardDetailFetchWithAPI(cardID: cardID ?? "")
+                }
             } else {
-                showToast(message: "유효하지 않은 QR입니다.", font: UIFont.button02, view: "QRScan")
+                self.showToast(message: "유효하지 않은 QR입니다.", font: UIFont.button02, view: "QRScan")
             }
         }
     }

@@ -77,6 +77,12 @@ final class MoyaLoggerPlugin: PluginType {
         log.append("\(error.failureReason ?? error.errorDescription ?? "unknown error")\n")
         log.append("<-- END HTTP")
         print(log)
+        
+        let alertViewController = UIAlertController(title: "네트워크 연결 실패", message: "네트워크 환경을 한번 더 확인해주세요.", preferredStyle: .alert)
+        alertViewController.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+        
+        let rootViewController = UIApplication.getMostTopViewController()
+        rootViewController?.present(alertViewController, animated: true)
     }
 }
 

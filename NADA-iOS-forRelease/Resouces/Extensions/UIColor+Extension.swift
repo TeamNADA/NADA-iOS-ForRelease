@@ -148,6 +148,20 @@ extension UIColor {
         }
     }
     
+    @nonobjc class var card: UIColor {
+        if #available(iOS 13, *) {
+            return UIColor { (traitCollection: UITraitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .light {
+                    return UIColor(red: 246.0 / 255.0, green: 247 / 255.0, blue: 249 / 255.0, alpha: 1.0)
+                } else {
+                    return UIColor(red: 36.0 / 255.0, green: 40 / 255.0, blue: 45 / 255.0, alpha: 1.0)
+                }
+            }
+        } else {
+            return UIColor(red: 246.0 / 255.0, green: 247 / 255.0, blue: 249 / 255.0, alpha: 1.0)
+        }
+    }
+    
     @nonobjc class var harmonyRed: UIColor {
       return UIColor(red: 239.0 / 255.0, green: 115.0 / 255.0, blue: 115.0 / 255.0, alpha: 1.0)
     }

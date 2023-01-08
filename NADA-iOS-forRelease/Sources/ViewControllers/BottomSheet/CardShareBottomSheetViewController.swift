@@ -8,6 +8,8 @@
 import UIKit
 import Photos
 
+import FirebaseDynamicLinks
+
 class CardShareBottomSheetViewController: CommonBottomSheetViewController {
 
     // MARK: - Properties
@@ -63,13 +65,14 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     }()
     
     // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
     
     // MARK: - @Functions
-    // UI 세팅 작업
+    
     private func setupUI() {
         idStackView.addArrangedSubview(idTitleLabel)
         idStackView.addArrangedSubview(idLabel)
@@ -85,7 +88,6 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         setQRImage()
     }
     
-    // 레이아웃 세팅
     private func setupLayout() {
         qrImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -111,12 +113,43 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     
     private func setQRImage() {
         let frame = CGRect(origin: .zero, size: qrImage.frame.size)
-        print("TeamNADA\(cardDataModel?.cardID ?? "")")
         let qrcode = QRCodeView(frame: frame)
-        qrcode.generateCode("ThisIsTeamNADAQrCode\(cardDataModel?.cardID ?? "")",
-                            foregroundColor: .primary,
-                            backgroundColor: .background)
-        qrImage.addSubview(qrcode)
+        generateDynamicLink(with: cardDataModel?.cardID ?? "") { dynamicLink in
+            
+            // FIXME: - ThisIsTeamNADAQrCode 로 나다에서 prefix 파악하는데 수정하기
+            
+            qrcode.generateCode(dynamicLink,
+                                foregroundColor: .primary,
+                                backgroundColor: .background)
+            self.qrImage.addSubview(qrcode)
+        }
+    }
+    
+    private func generateDynamicLink(with cardID: String, completion: @escaping ((String) -> Void)) {
+        guard let link = URL(string: Const.URL.opendDynamicLinkOnWebURL + "/?cardID=" + cardID),
+              let bundleID = Bundle.main.infoDictionary?["CFBundleIdentifier"] as? String else { return }
+        let domainURLPrefix = Const.URL.dynamicLinkURLPrefix
+        let appStoreID = "1600711887"
+        
+        let linkBuilder = DynamicLinkComponents(link: link, domainURIPrefix: domainURLPrefix)
+        
+        linkBuilder?.iOSParameters = DynamicLinkIOSParameters(bundleID: bundleID)
+        linkBuilder?.iOSParameters?.appStoreID = appStoreID
+        linkBuilder?.navigationInfoParameters = DynamicLinkNavigationInfoParameters()
+        linkBuilder?.navigationInfoParameters?.isForcedRedirectEnabled = true
+        
+        var dynamicLink: String = ""
+        
+        linkBuilder?.options = DynamicLinkComponentsOptions()
+        linkBuilder?.options?.pathLength = .short
+        
+        linkBuilder?.shorten { url, warnings, error in
+            if let url {
+                dynamicLink = "\(url)"
+            }
+            
+            completion(dynamicLink)
+        }
     }
     
     private func setImageWriteToSavedPhotosAlbum() {
@@ -129,10 +162,10 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
             UIImageWriteToSavedPhotosAlbum(backCardImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
         case .denied:
             makeOKCancelAlert(title: "갤러리 권한이 허용되어 있지 않아요.",
-                        message: "명함 이미지 저장을 위해 갤러리 권한이 필요합니다. 앱 설정으로 이동해 허용해 주세요.",
-                        okAction: { _ in UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)},
-                        cancelAction: nil,
-                        completion: nil)
+                              message: "명함 이미지 저장을 위해 갤러리 권한이 필요합니다. 앱 설정으로 이동해 허용해 주세요.",
+                              okAction: { _ in UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)},
+                              cancelAction: nil,
+                              completion: nil)
         case .notDetermined:
             PHPhotoLibrary.requestAuthorization({state in
                 if state == .authorized {
@@ -168,6 +201,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         
         return frontImage
     }
+    
     private func setBackCardImage() -> UIImage {
         guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return UIImage() }
         backCard.frame = CGRect(x: 0, y: 0, width: 327, height: 540)

@@ -16,6 +16,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
 
     public var isShareable = false
     public var cardDataModel: Card?
+    public var isActivate: Bool?
 
     private let cardBackgroundView: UIView = {
         let view = UIView()
@@ -130,6 +131,15 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         
         idLabel.text = cardDataModel?.cardID ?? ""
         
+        guard let isActivate else { return }
+        
+        nearByBackgroundView.backgroundColor = isActivate ? .mainColorNadaMain.withAlphaComponent(0.15) : .card
+        
+        nearByImage.image = isActivate ? UIImage(named: "icnNearbyOn") : UIImage(named: "icnNearbyOff")
+        
+        nearByLabel.text = isActivate ? "내 근처의 명함 ON" : "내 근처의 명함 OFF"
+        nearByLabel.textColor = isActivate ? .mainColorNadaMain : .tertiary
+
         setupLayout()
         setQRImage()
     }

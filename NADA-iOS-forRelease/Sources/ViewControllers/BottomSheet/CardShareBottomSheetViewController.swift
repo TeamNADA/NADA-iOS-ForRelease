@@ -171,9 +171,6 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         let frame = CGRect(origin: .zero, size: qrImage.frame.size)
         let qrcode = QRCodeView(frame: frame)
         generateDynamicLink(with: cardDataModel?.cardID ?? "") { dynamicLink in
-            
-            // FIXME: - ThisIsTeamNADAQrCode 로 나다에서 prefix 파악하는데 수정하기
-            
             qrcode.generateCode(dynamicLink,
                                 foregroundColor: .primary,
                                 backgroundColor: .background)

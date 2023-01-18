@@ -17,6 +17,50 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     public var isShareable = false
     public var cardDataModel: Card?
 
+    private let cardBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .card
+        view.layer.cornerRadius = 10.0
+        
+        return view
+    }()
+    
+    private let nearByBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .card
+        view.layer.cornerRadius = 10.0
+        
+        return view
+    }()
+    
+    private let nadaLogoImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "nadaLogoTxt")
+        
+        return imageView
+    }()
+    
+    private let nearByImage: UIImageView = {
+        let imageView = UIImageView()
+        
+        return imageView
+    }()
+    
+    private let nearByLabel: UILabel = {
+        let label = UILabel()
+        label.font = .button02
+        
+        return label
+    }()
+    
+    private let nearBySwitch: UISwitch = {
+        let nearBySwitch = UISwitch()
+        nearBySwitch.onTintColor = .mainColorNadaMain
+        nearBySwitch.addTarget(self, action: #selector(touchSwitch), for: .valueChanged)
+        
+        return nearBySwitch
+    }()
+    
     private let qrImage: UIImageView = {
         let imageView = UIImageView()
         imageView.frame = CGRect(x: 0, y: 0, width: 160, height: 160)

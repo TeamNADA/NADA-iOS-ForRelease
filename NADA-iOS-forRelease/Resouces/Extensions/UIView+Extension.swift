@@ -50,6 +50,12 @@ extension UIView {
 }
 
 extension UIView {
+    func addSubviews(_ views: [UIView]) {
+        views.forEach { view in
+            self.addSubview(view)
+        }
+    }
+    
     func pinToSafeArea(top: CGFloat? = 0, left: CGFloat? = 0, bottom: CGFloat? = 0, right: CGFloat? = 0) {
         guard let superview = self.superview else { return }
         

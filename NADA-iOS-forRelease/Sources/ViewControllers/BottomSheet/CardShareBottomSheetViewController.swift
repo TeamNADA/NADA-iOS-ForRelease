@@ -337,4 +337,22 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
             showToast(message: "갤러리에 저장되었습니다.", font: UIFont.button02, view: "saveImage")
         }
     }
+    
+    @objc func touchSwitch(_ sender: UISwitch) {
+        if sender.isOn {
+            nearByBackgroundView.backgroundColor = .mainColorNadaMain.withAlphaComponent(0.15)
+            
+            nearByImage.image = UIImage(named: "icnNearbyOn")
+            
+            nearByLabel.text = "내 근처의 명함 ON"
+            nearByLabel.textColor = .mainColorNadaMain
+        } else {
+            nearByBackgroundView.backgroundColor = .card
+            
+            nearByImage.image = UIImage(named: "icnNearbyOff")
+            
+            nearByLabel.text = "내 근처의 명함 OFF"
+            nearByLabel.textColor = .tertiary
+        }
+    }
 }

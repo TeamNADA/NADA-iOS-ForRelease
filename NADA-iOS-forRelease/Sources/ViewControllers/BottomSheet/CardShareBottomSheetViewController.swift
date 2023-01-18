@@ -145,25 +145,69 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     }
     
     private func setupLayout() {
+        cardBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            cardBackgroundView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20.0),
+            cardBackgroundView.leadingAnchor.constraint(equalTo: bottomSheetView.leadingAnchor, constant: 24.0),
+            cardBackgroundView.trailingAnchor.constraint(equalTo: bottomSheetView.trailingAnchor, constant: -24.0),
+            cardBackgroundView.heightAnchor.constraint(equalToConstant: 384.0)
+        ])
+        
+        nadaLogoImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nadaLogoImage.topAnchor.constraint(equalTo: cardBackgroundView.topAnchor, constant: 18.0),
+            nadaLogoImage.leadingAnchor.constraint(equalTo: cardBackgroundView.leadingAnchor, constant: 18.0),
+            nadaLogoImage.widthAnchor.constraint(equalToConstant: 84.0),
+            nadaLogoImage.heightAnchor.constraint(equalToConstant: 30.0)
+        ])
+        
         qrImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            qrImage.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-            qrImage.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor),
-            qrImage.widthAnchor.constraint(equalToConstant: 160),
-            qrImage.heightAnchor.constraint(equalToConstant: 160)
+            qrImage.topAnchor.constraint(equalTo: cardBackgroundView.topAnchor, constant: 64.0),
+            qrImage.centerXAnchor.constraint(equalTo: cardBackgroundView.centerXAnchor),
+            qrImage.widthAnchor.constraint(equalToConstant: 189.0),
+            qrImage.heightAnchor.constraint(equalToConstant: 189.0)
         ])
         
         idStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            idStackView.topAnchor.constraint(equalTo: qrImage.bottomAnchor, constant: 9),
-            idStackView.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor)
+            idStackView.topAnchor.constraint(equalTo: qrImage.bottomAnchor, constant: 15.0),
+            idStackView.centerXAnchor.constraint(equalTo: cardBackgroundView.centerXAnchor)
         ])
         
         saveAsImageButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            saveAsImageButton.topAnchor.constraint(equalTo: idStackView.bottomAnchor, constant: 32),
-            saveAsImageButton.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor),
-            saveAsImageButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 107)
+            saveAsImageButton.topAnchor.constraint(equalTo: idStackView.bottomAnchor, constant: 20.0),
+            saveAsImageButton.centerXAnchor.constraint(equalTo: cardBackgroundView.centerXAnchor)
+        ])
+        
+        nearByBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nearByBackgroundView.topAnchor.constraint(equalTo: cardBackgroundView.bottomAnchor, constant: 12.0),
+            nearByBackgroundView.leadingAnchor.constraint(equalTo: bottomSheetView.leadingAnchor, constant: 24.0),
+            nearByBackgroundView.trailingAnchor.constraint(equalTo: bottomSheetView.trailingAnchor, constant: -24.0),
+            nearByBackgroundView.heightAnchor.constraint(equalToConstant: 60.0)
+        ])
+        
+        nearByImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nearByImage.centerYAnchor.constraint(equalTo: nearByBackgroundView.centerYAnchor),
+            nearByImage.heightAnchor.constraint(equalToConstant: 54.0),
+            nearByImage.widthAnchor.constraint(equalToConstant: 54.0)
+        ])
+        
+        nearByLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nearByLabel.centerYAnchor.constraint(equalTo: nearByBackgroundView.centerYAnchor),
+            nearByLabel.leadingAnchor.constraint(equalTo: nearByImage.trailingAnchor)
+        ])
+        
+        nearBySwitch.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nearBySwitch.centerYAnchor.constraint(equalTo: nearByBackgroundView.centerYAnchor),
+            nearBySwitch.trailingAnchor.constraint(equalTo: nearByBackgroundView.trailingAnchor, constant: -20.0),
+            nearBySwitch.heightAnchor.constraint(equalToConstant: 31.0),
+            nearBySwitch.widthAnchor.constraint(equalToConstant: 51.0)
         ])
     }
     

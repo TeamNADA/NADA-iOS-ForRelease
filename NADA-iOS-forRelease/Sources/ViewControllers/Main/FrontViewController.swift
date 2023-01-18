@@ -140,6 +140,9 @@ extension FrontViewController {
             nextVC.cardDataModel = cardData
         }
         
+        // FIXME: - 명함 공유 활성화여부 넘기기(서버 혹은 multipeer connectivity 로)
+        nextVC.isActivate = false
+        
         nextVC.modalPresentationStyle = .overFullScreen
         self.present(nextVC, animated: false, completion: nil)
     }

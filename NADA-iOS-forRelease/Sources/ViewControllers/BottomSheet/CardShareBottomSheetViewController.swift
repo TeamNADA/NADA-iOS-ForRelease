@@ -173,7 +173,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         generateDynamicLink(with: cardDataModel?.cardID ?? "") { dynamicLink in
             qrcode.generateCode(dynamicLink,
                                 foregroundColor: .primary,
-                                backgroundColor: .background)
+                                backgroundColor: .card)
             self.qrImage.addSubview(qrcode)
         }
     }

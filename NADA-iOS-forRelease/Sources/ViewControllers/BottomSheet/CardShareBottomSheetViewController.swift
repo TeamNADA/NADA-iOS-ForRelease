@@ -339,20 +339,11 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     }
     
     @objc func touchSwitch(_ sender: UISwitch) {
-        if sender.isOn {
-            nearByBackgroundView.backgroundColor = .mainColorNadaMain.withAlphaComponent(0.15)
-            
-            nearByImage.image = UIImage(named: "icnNearbyOn")
-            
-            nearByLabel.text = "내 근처의 명함 ON"
-            nearByLabel.textColor = .mainColorNadaMain
-        } else {
-            nearByBackgroundView.backgroundColor = .card
-            
-            nearByImage.image = UIImage(named: "icnNearbyOff")
-            
-            nearByLabel.text = "내 근처의 명함 OFF"
-            nearByLabel.textColor = .tertiary
-        }
+        nearByBackgroundView.backgroundColor = sender.isOn ? .mainColorNadaMain.withAlphaComponent(0.15) : .card
+        
+        nearByImage.image = sender.isOn ? UIImage(named: "icnNearbyOn") : UIImage(named: "icnNearbyOff")
+        
+        nearByLabel.text = sender.isOn ? "내 근처의 명함 ON" : "내 근처의 명함 OFF"
+        nearByLabel.textColor = sender.isOn ? .mainColorNadaMain : .tertiary
     }
 }

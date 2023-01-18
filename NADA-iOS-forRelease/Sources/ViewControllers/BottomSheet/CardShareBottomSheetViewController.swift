@@ -74,13 +74,15 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     // MARK: - @Functions
     
     private func setupUI() {
+        view.addSubviews([cardBackgroundView, nearByBackgroundView])
+        
         idStackView.addArrangedSubview(idTitleLabel)
         idStackView.addArrangedSubview(idLabel)
         idStackView.addArrangedSubview(copyButton)
         
-        view.addSubview(qrImage)
-        view.addSubview(idStackView)
-        view.addSubview(saveAsImageButton)
+        cardBackgroundView.addSubviews([nadaLogoImage, qrImage, idStackView, saveAsImageButton])
+        
+        nearByBackgroundView.addSubviews([nearByImage, nearByLabel, nearBySwitch])
         
         idLabel.text = cardDataModel?.cardID ?? ""
         

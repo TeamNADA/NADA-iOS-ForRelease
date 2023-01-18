@@ -134,7 +134,7 @@ extension FrontViewController {
     private func didRecievePresentCardShare(_ notification: Notification) {
         let nextVC = CardShareBottomSheetViewController()
             .setTitle("명함공유")
-            .setHeight(404)
+            .setHeight(606.0)
 
         if let cardData = notification.object as? Card {
             nextVC.cardDataModel = cardData

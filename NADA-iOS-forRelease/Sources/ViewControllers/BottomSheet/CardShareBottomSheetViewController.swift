@@ -9,6 +9,7 @@ import UIKit
 import Photos
 
 import FirebaseDynamicLinks
+import Lottie
 
 class CardShareBottomSheetViewController: CommonBottomSheetViewController {
 

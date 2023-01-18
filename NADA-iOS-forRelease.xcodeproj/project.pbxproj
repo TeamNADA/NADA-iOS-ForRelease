@@ -114,6 +114,8 @@
 		F8518055275D040C006BD5ED /* OnboardingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8518053275D040C006BD5ED /* OnboardingCollectionViewCell.xib */; };
 		F8518058275D042B006BD5ED /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8518057275D042B006BD5ED /* Onboarding.storyboard */; };
 		F851805B275D047C006BD5ED /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F851805A275D047C006BD5ED /* OnboardingViewController.swift */; };
+		F8562C96296ADD1000DA1109 /* nearby.json in Resources */ = {isa = PBXBuildFile; fileRef = F8562C95296ADD1000DA1109 /* nearby.json */; };
+		F8562C98296ADD6700DA1109 /* Lottie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8562C97296ADD6700DA1109 /* Lottie.swift */; };
 		F85711A5274A6B2200F59F0B /* CardCreationPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85711A4274A6B2200F59F0B /* CardCreationPreviewViewController.swift */; };
 		F85711A7274A6B3400F59F0B /* CardCreationPreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F85711A6274A6B3400F59F0B /* CardCreationPreview.storyboard */; };
 		F858079E2700354E00872484 /* BackgroundCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858079C2700354E00872484 /* BackgroundCollectionViewCell.swift */; };
@@ -261,6 +263,8 @@
 		F8518053275D040C006BD5ED /* OnboardingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingCollectionViewCell.xib; sourceTree = "<group>"; };
 		F8518057275D042B006BD5ED /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		F851805A275D047C006BD5ED /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		F8562C95296ADD1000DA1109 /* nearby.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nearby.json; sourceTree = "<group>"; };
+		F8562C97296ADD6700DA1109 /* Lottie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lottie.swift; sourceTree = "<group>"; };
 		F85711A4274A6B2200F59F0B /* CardCreationPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreationPreviewViewController.swift; sourceTree = "<group>"; };
 		F85711A6274A6B3400F59F0B /* CardCreationPreview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardCreationPreview.storyboard; sourceTree = "<group>"; };
 		F858079C2700354E00872484 /* BackgroundCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -672,6 +676,14 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		F8562C94296ADC0A00DA1109 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				F8562C95296ADD1000DA1109 /* nearby.json */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
 		F857FC8A26C03A5C00A48D01 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -805,6 +817,7 @@
 				F837AB7C2965582C00A8804A /* GoogleService-Info.plist */,
 				F857FC8A26C03A5C00A48D01 /* Assets */,
 				39DA4D7B2747D7060082D572 /* Font */,
+				F8562C94296ADC0A00DA1109 /* Lottie */,
 				F8FC43A326C01F420033E151 /* Constants */,
 				F8FC43A426C01F5B0033E151 /* Extensions */,
 				F8FC43A226C01F2B0033E151 /* Storyboards */,
@@ -931,6 +944,7 @@
 				77F47D92276C79B600414659 /* Header.swift */,
 				770E58852778A78900498C2E /* Status.swift */,
 				392BAF7A2793E90D0013DCB3 /* KeyChainKey.swift */,
+				F8562C97296ADD6700DA1109 /* Lottie.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1035,6 +1049,7 @@
 				3936993B274A53C600684420 /* GroupEdit.storyboard in Resources */,
 				3903CC212769F4F40094C458 /* EmptyCardCell.xib in Resources */,
 				39D88B642745FDD400A72164 /* TabBar.storyboard in Resources */,
+				F8562C96296ADD1000DA1109 /* nearby.json in Resources */,
 				7766A410274FEBE200714912 /* CardInGroupCollectionViewCell.xib in Resources */,
 				7705CF402752C844005195DF /* CardView.xib in Resources */,
 				397B750D2763A5AF004AEB03 /* OpenSource.storyboard in Resources */,
@@ -1155,6 +1170,7 @@
 				F8C83FBF272FA0670009DF0D /* UserSevice.swift in Sources */,
 				39F5A3D0271461EA00191F94 /* BackCardCell.swift in Sources */,
 				F8268DB927730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift in Sources */,
+				F8562C98296ADD6700DA1109 /* Lottie.swift in Sources */,
 				770E58862778A78900498C2E /* Status.swift in Sources */,
 				F851805B275D047C006BD5ED /* OnboardingViewController.swift in Sources */,
 				392BAF7B2793E90D0013DCB3 /* KeyChainKey.swift in Sources */,

@@ -64,7 +64,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     
     private let qrImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.frame = CGRect(x: 0, y: 0, width: 160, height: 160)
+        imageView.frame = CGRect(x: 0, y: 0, width: 189, height: 189)
         return imageView
     }()
     

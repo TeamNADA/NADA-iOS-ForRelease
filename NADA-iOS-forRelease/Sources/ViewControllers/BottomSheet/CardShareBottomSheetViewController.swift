@@ -14,8 +14,8 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
 
     // MARK: - Properties
 
-    var isShareable = false
-    var cardDataModel: Card?
+    public var isShareable = false
+    public var cardDataModel: Card?
 
     private let qrImage: UIImageView = {
         let imageView = UIImageView()
@@ -223,12 +223,14 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     
     // MARK: - @objc Methods
     
-    @objc func copyId() {
+    @objc
+    private func copyId() {
         UIPasteboard.general.string = cardDataModel?.cardID ?? ""
         showToast(message: "명함 아이디가 복사되었습니다.", font: UIFont.button02, view: "copyID")
     }
     
-    @objc func saveAsImage() {
+    @objc
+    private func saveAsImage() {
         setImageWriteToSavedPhotosAlbum()
     }
 

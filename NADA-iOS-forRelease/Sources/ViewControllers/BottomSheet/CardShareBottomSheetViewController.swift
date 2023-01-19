@@ -110,6 +110,14 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         return button
     }()
     
+    lazy
+    private var lottieImage: LottieAnimationView = {
+        let view = LottieAnimationView(name: Const.Lottie.nearby)
+        view.loopMode = .loop
+        
+        return view
+    }()
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {

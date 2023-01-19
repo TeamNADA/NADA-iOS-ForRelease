@@ -143,8 +143,13 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         
         idLabel.text = cardDataModel?.cardID ?? ""
         
-        guard let isActivate else { return }
+        setCardActivationUI(with: isActivate ?? false)
         
+        setupLayout()
+        setQRImage()
+    }
+    
+    private func setCardActivationUI(with isActivate: Bool) {
         nearByBackgroundView.backgroundColor = isActivate ? .mainColorNadaMain.withAlphaComponent(0.15) : .card
         
         nearByImage.image = isActivate ? UIImage(named: "icnNearbyOn") : UIImage(named: "icnNearbyOff")
@@ -156,9 +161,6 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         
         lottieImage.isHidden = isActivate ? false : true
         _ = isActivate ? lottieImage.play() : lottieImage.stop()
-        
-        setupLayout()
-        setQRImage()
     }
     
     private func setupLayout() {
@@ -361,14 +363,6 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     }
     
     @objc func touchSwitch(_ sender: UISwitch) {
-        nearByBackgroundView.backgroundColor = sender.isOn ? .mainColorNadaMain.withAlphaComponent(0.15) : .card
-        
-        nearByImage.image = sender.isOn ? UIImage(named: "icnNearbyOn") : UIImage(named: "icnNearbyOff")
-        
-        nearByLabel.text = sender.isOn ? "내 근처의 명함 ON" : "내 근처의 명함 OFF"
-        nearByLabel.textColor = sender.isOn ? .mainColorNadaMain : .tertiary
-        
-        lottieImage.isHidden = sender.isOn ? false : true
-        _ = sender.isOn ? lottieImage.play() : lottieImage.stop()
+        setCardActivationUI(with: sender.isOn)
     }
 }

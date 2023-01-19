@@ -136,7 +136,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         
         cardBackgroundView.addSubviews([nadaLogoImage, qrImage, idStackView, saveAsImageButton])
         
-        nearByBackgroundView.addSubviews([nearByImage, nearByLabel, nearBySwitch])
+        nearByBackgroundView.addSubviews([nearByImage, nearByLabel, nearBySwitch, lottieImage])
         
         idLabel.text = cardDataModel?.cardID ?? ""
         
@@ -218,6 +218,12 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
             nearBySwitch.heightAnchor.constraint(equalToConstant: 31.0),
             nearBySwitch.widthAnchor.constraint(equalToConstant: 51.0)
         ])
+        
+        lottieImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            lottieImage.centerXAnchor.constraint(equalTo: nearByImage.centerXAnchor),
+            lottieImage.centerYAnchor.constraint(equalTo: nearByImage.centerYAnchor)
+        ])
     }
     
     private func setQRImage() {
@@ -286,7 +292,6 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         default:
             break
         }
-        
     }
     
     // FIXME: - 명함 저장시에도 테두리 둥글게 가능한가 찾기

@@ -364,5 +364,8 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         
         nearByLabel.text = sender.isOn ? "내 근처의 명함 ON" : "내 근처의 명함 OFF"
         nearByLabel.textColor = sender.isOn ? .mainColorNadaMain : .tertiary
+        
+        lottieImage.isHidden = sender.isOn ? false : true
+        _ = sender.isOn ? lottieImage.play() : lottieImage.stop()
     }
 }

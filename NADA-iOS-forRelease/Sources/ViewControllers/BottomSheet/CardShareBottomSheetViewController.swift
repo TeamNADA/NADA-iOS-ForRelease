@@ -55,7 +55,8 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         return label
     }()
     
-    private let nearBySwitch: UISwitch = {
+    lazy
+    private var nearBySwitch: UISwitch = {
         let nearBySwitch = UISwitch()
         nearBySwitch.onTintColor = .mainColorNadaMain
         nearBySwitch.addTarget(self, action: #selector(touchSwitch), for: .valueChanged)
@@ -86,7 +87,8 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         return label
     }()
     
-    private let copyButton: UIButton = {
+    lazy
+    private var copyButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "iconCopy"), for: .normal)
         button.addTarget(self, action: #selector(copyId), for: .touchUpInside)
@@ -102,7 +104,8 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         return stackView
     }()
     
-    private let saveAsImageButton: UIButton = {
+    lazy
+    private var saveAsImageButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "buttonShareImg"), for: .normal)
         button.addTarget(self, action: #selector(saveAsImage), for: .touchUpInside)

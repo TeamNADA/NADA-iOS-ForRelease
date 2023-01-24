@@ -1,5 +1,23 @@
 PODS:
   - Alamofire (5.6.4)
+  - Firebase/CoreOnly (10.3.0):
+    - FirebaseCore (= 10.3.0)
+  - Firebase/DynamicLinks (10.3.0):
+    - Firebase/CoreOnly
+    - FirebaseDynamicLinks (~> 10.3.0)
+  - FirebaseCore (10.3.0):
+    - FirebaseCoreInternal (~> 10.0)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GoogleUtilities/Logger (~> 7.8)
+  - FirebaseCoreInternal (10.3.0):
+    - "GoogleUtilities/NSData+zlib (~> 7.8)"
+  - FirebaseDynamicLinks (10.3.0):
+    - FirebaseCore (~> 10.0)
+  - GoogleUtilities/Environment (7.10.0):
+    - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUtilities/Logger (7.10.0):
+    - GoogleUtilities/Environment
+  - "GoogleUtilities/NSData+zlib (7.10.0)"
   - IQKeyboardManagerSwift (6.5.10)
   - KakaoSDKAuth (2.13.1):
     - KakaoSDKCommon (= 2.13.1)
@@ -20,11 +38,13 @@ PODS:
   - NVActivityIndicatorView (5.1.1):
     - NVActivityIndicatorView/Base (= 5.1.1)
   - NVActivityIndicatorView/Base (5.1.1)
+  - PromisesObjC (2.1.1)
   - SkeletonView (1.30.4)
   - SwiftLint (0.50.3)
   - VerticalCardSwiper (2.3.1)
 
 DEPENDENCIES:
+  - Firebase/DynamicLinks
   - IQKeyboardManagerSwift
   - KakaoSDKAuth
   - KakaoSDKCommon
@@ -39,6 +59,11 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Firebase
+    - FirebaseCore
+    - FirebaseCoreInternal
+    - FirebaseDynamicLinks
+    - GoogleUtilities
     - IQKeyboardManagerSwift
     - KakaoSDKAuth
     - KakaoSDKCommon
@@ -46,12 +71,18 @@ SPEC REPOS:
     - Kingfisher
     - Moya
     - NVActivityIndicatorView
+    - PromisesObjC
     - SkeletonView
     - SwiftLint
     - VerticalCardSwiper
 
 SPEC CHECKSUMS:
   Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
+  Firebase: f92fc551ead69c94168d36c2b26188263860acd9
+  FirebaseCore: 988754646ab3bd4bdcb740f1bfe26b9f6c0d5f2a
+  FirebaseCoreInternal: 29b76f784d607df8b2a1259d73c3f04f1210137b
+  FirebaseDynamicLinks: 51c81d07bd63155bb56d76b0abdda79c8a3d8d02
+  GoogleUtilities: bad72cb363809015b1f7f19beb1f1cd23c589f95
   IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
   KakaoSDKAuth: d9de0cb0c723441ced3616d481952bde34438dcb
   KakaoSDKCommon: a16807e19984a0a208c3117c7ef117f101a9a128
@@ -59,10 +90,11 @@ SPEC CHECKSUMS:
   Kingfisher: cd762a593a61b2fbecf7645c00f9a801a3ebfc9c
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
+  PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   SkeletonView: 5a050f6411e697abd4cda0a8d767013399dccd69
   SwiftLint: 77f7cb2b9bb81ab4a12fcc86448ba3f11afa50c6
   VerticalCardSwiper: 68df635b354500f86934ea044ade37a264c044c6
 
-PODFILE CHECKSUM: ee00f6411308bc32732ea2efc98ad9cb9bd27f5d
+PODFILE CHECKSUM: c2806e5fc7a2f444149e3dd0951fc9023f05df90
 
 COCOAPODS: 1.11.3

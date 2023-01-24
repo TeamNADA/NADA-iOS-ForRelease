@@ -16,4 +16,5 @@ pod 'KakaoSDKAuth'
 pod 'IQKeyboardManagerSwift'
 pod 'Kingfisher', '~> 7.0'
 pod 'NVActivityIndicatorView'
+pod 'Firebase/DynamicLinks'
 end

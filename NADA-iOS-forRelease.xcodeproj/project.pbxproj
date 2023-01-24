@@ -104,7 +104,7 @@
 		F82FF8262702000000E57F8B /* RequiredFlavorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F82FF8242702000000E57F8B /* RequiredFlavorCollectionViewCell.xib */; };
 		F83206AA26F61E3700D61711 /* FrontCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83206A826F61E3700D61711 /* FrontCardCell.swift */; };
 		F83206AB26F61E3700D61711 /* FrontCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F83206A926F61E3700D61711 /* FrontCardCell.xib */; };
-		F837AB7D2965582C00A8804A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F837AB7C2965582C00A8804A /* GoogleService-Info.plist */; };
+		F835EF6F29800F51001ABAAF /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F835EF6E29800F51001ABAAF /* UIApplication+Extension.swift */; };
 		F84BAF9D26FDB417004CA335 /* CardCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84BAF9C26FDB417004CA335 /* CardCreationViewController.swift */; };
 		F84BAFAD26FDB543004CA335 /* FrontCardCreationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84BAFAB26FDB543004CA335 /* FrontCardCreationCollectionViewCell.swift */; };
 		F84BAFAE26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F84BAFAC26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib */; };
@@ -251,7 +251,7 @@
 		F82FF8242702000000E57F8B /* RequiredFlavorCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequiredFlavorCollectionViewCell.xib; sourceTree = "<group>"; };
 		F83206A826F61E3700D61711 /* FrontCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontCardCell.swift; sourceTree = "<group>"; };
 		F83206A926F61E3700D61711 /* FrontCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FrontCardCell.xib; sourceTree = "<group>"; };
-		F837AB7C2965582C00A8804A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F835EF6E29800F51001ABAAF /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		F84BAF9C26FDB417004CA335 /* CardCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreationViewController.swift; sourceTree = "<group>"; };
 		F84BAFAB26FDB543004CA335 /* FrontCardCreationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontCardCreationCollectionViewCell.swift; sourceTree = "<group>"; };
 		F84BAFAC26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FrontCardCreationCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -947,6 +947,7 @@
 				F8719DDA274F92E90081AD51 /* UITextField+Extension.swift */,
 				F8D74DD7276C7FB60071E5FC /* UIImageView+Extension.swift */,
 				7734D5B72777A8E8004360E4 /* String+Extension.swift */,
+				F835EF6E29800F51001ABAAF /* UIApplication+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1130,6 +1131,7 @@
 				F8C83FCB272FA32C0009DF0D /* GroupService.swift in Sources */,
 				F858079E2700354E00872484 /* BackgroundCollectionViewCell.swift in Sources */,
 				F8C83FBD272F9F430009DF0D /* GenericResponse.swift in Sources */,
+				F835EF6F29800F51001ABAAF /* UIApplication+Extension.swift in Sources */,
 				398413B7274A7A1E005550BC /* AddGroupBottomSheetViewController.swift in Sources */,
 				77DFB871274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift in Sources */,
 				7713E8482752E2A900724C8B /* SelectGroupBottomSheetViewController.swift in Sources */,

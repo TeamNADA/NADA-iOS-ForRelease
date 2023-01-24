@@ -81,7 +81,7 @@ final class MoyaLoggerPlugin: PluginType {
         let alertViewController = UIAlertController(title: "네트워크 연결 실패", message: "네트워크 환경을 한번 더 확인해주세요.", preferredStyle: .alert)
         alertViewController.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
         
-        let rootViewController = UIApplication.getMostTopViewController()
+        let rootViewController = UIApplication.mostTopViewController()
         rootViewController?.present(alertViewController, animated: true)
     }
 }

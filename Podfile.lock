@@ -30,7 +30,8 @@ PODS:
     - KakaoSDKCommon/Common (= 2.13.1)
   - KakaoSDKUser (2.13.1):
     - KakaoSDKAuth (= 2.13.1)
-  - Kingfisher (7.4.1)
+  - Kingfisher (7.5.0)
+  - lottie-ios (4.0.1)
   - Moya (14.0.0):
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
@@ -50,6 +51,7 @@ DEPENDENCIES:
   - KakaoSDKCommon
   - KakaoSDKUser
   - Kingfisher (~> 7.0)
+  - lottie-ios
   - Moya (~> 14.0)
   - NVActivityIndicatorView
   - SkeletonView
@@ -69,6 +71,7 @@ SPEC REPOS:
     - KakaoSDKCommon
     - KakaoSDKUser
     - Kingfisher
+    - lottie-ios
     - Moya
     - NVActivityIndicatorView
     - PromisesObjC
@@ -87,7 +90,8 @@ SPEC CHECKSUMS:
   KakaoSDKAuth: d9de0cb0c723441ced3616d481952bde34438dcb
   KakaoSDKCommon: a16807e19984a0a208c3117c7ef117f101a9a128
   KakaoSDKUser: 92d34cf6af7b123c22a7ee44424332123e356901
-  Kingfisher: cd762a593a61b2fbecf7645c00f9a801a3ebfc9c
+  Kingfisher: b9c2a4a4af2990a768445c277359b27bde287d71
+  lottie-ios: 54d22edf55b839f0929cabbfe609c9aa548b1145
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
@@ -95,6 +99,6 @@ SPEC CHECKSUMS:
   SwiftLint: 77f7cb2b9bb81ab4a12fcc86448ba3f11afa50c6
   VerticalCardSwiper: 68df635b354500f86934ea044ade37a264c044c6
 
-PODFILE CHECKSUM: c2806e5fc7a2f444149e3dd0951fc9023f05df90
+PODFILE CHECKSUM: 77369aa0dd29c6f58c0bba7ac4391df0cdca3f56
 
 COCOAPODS: 1.11.3

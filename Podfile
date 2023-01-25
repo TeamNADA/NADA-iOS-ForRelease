@@ -17,4 +17,5 @@ pod 'IQKeyboardManagerSwift'
 pod 'Kingfisher', '~> 7.0'
 pod 'NVActivityIndicatorView'
 pod 'Firebase/DynamicLinks'
+pod 'lottie-ios'
 end

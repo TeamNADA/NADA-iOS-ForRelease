@@ -204,18 +204,15 @@ extension FrontCardCreationCollectionViewCell {
             frontCardCreationDelegate?.frontCardCreation(requiredInfo: false)
         }
         if let defaultImageIndex = defaultImageIndex {
-            frontCardCreationDelegate?.frontCardCreation(withRequired: [
-                "defaultImageIndex": String(defaultImageIndex),
-                "title": cardTitleTextField.text ?? "",
-                "name": userNameTextField.text ?? "",
-                "birthDate": birthLabel.text ?? "",
-                "mbti": mbtiLabel.text ?? ""
-            ], withOptional: [
-                "instagram": instagramIDTextField.text ?? "",
-                "linkURL": linkURLTextField.text ?? "",
-                "description": descriptionTextField.text ?? "",
-                "phoneNumber": phoneNumberTextField.text ?? ""
-            ])
+            frontCardCreationDelegate?.frontCardCreation(with: FrontCardDataModel(defaultImage: defaultImageIndex,
+                                                                                 title: cardTitleTextField.text ?? "",
+                                                                                 name: userNameTextField.text ?? "",
+                                                                                 birthDate: birthLabel.text ?? "",
+                                                                                 mbti: mbtiLabel.text ?? "",
+                                                                                 instagramID: instagramIDTextField.text ?? "",
+                                                                                 linkURL: linkURLTextField.text ?? "",
+                                                                                 description: descriptionTextField.text ?? "",
+                                                                                 phoneNumber: phoneNumberTextField.text ?? ""))
         }
     }
     static func nib() -> UINib {

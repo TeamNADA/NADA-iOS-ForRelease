@@ -129,7 +129,7 @@ extension FrontCardCreationCollectionViewCell {
         linkURLTextField.attributedPlaceholder = NSAttributedString(string: "URL (Github, Blog 등)", attributes: [
             NSAttributedString.Key.foregroundColor: UIColor.quaternary
         ])
-        descriptionTextField.attributedPlaceholder = NSAttributedString(string: "동아리 기수 / 파트 (15자)", attributes: [
+        descriptionTextField.attributedPlaceholder = NSAttributedString(string: "학교 전공/동아리 기수 등 (15자)", attributes: [
             NSAttributedString.Key.foregroundColor: UIColor.quaternary
         ])
         phoneNumberTextField.attributedPlaceholder = NSAttributedString(string: "전화번호", attributes: [

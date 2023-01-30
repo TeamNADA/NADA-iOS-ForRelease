@@ -115,7 +115,7 @@ extension FrontCardCreationCollectionViewCell {
         birthView.backgroundColor = .textBox
         birthLabel.font = .textRegular04
         birthLabel.textColor = .quaternary
-        birthLabel.text = "생년월일"
+        birthLabel.text = "생일"
         
         mbtiView.layer.cornerRadius = 10
         mbtiView.backgroundColor = .textBox

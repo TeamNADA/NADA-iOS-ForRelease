@@ -327,7 +327,8 @@ extension CardCreationViewController: FrontCardCreationDelegate {
                                        mbti: requiredInfo["mbti"] ?? "",
                                        instagramID: optionalInfo["instagram"] ?? "",
                                        linkURL: optionalInfo["linkURL"] ?? "",
-                                       description: optionalInfo["description"] ?? "")
+                                       description: optionalInfo["description"] ?? "",
+                                       phoneNumber: optionalInfo["phoneNumber"] ?? "")
     }
 }
 

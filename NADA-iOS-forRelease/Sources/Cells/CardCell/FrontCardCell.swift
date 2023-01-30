@@ -23,11 +23,18 @@ class FrontCardCell: CardCell {
     @IBOutlet weak var birthLabel: UILabel!
     @IBOutlet weak var mbtiLabel: UILabel!
     @IBOutlet weak var instagramIDLabel: UILabel!
+    @IBOutlet weak var phoneNumberLabel: UILabel!
     @IBOutlet weak var linkURLLabel: UILabel!
     @IBOutlet weak var shareButton: UIButton!
     
     @IBOutlet weak var instagramImageView: UIImageView!
+    @IBOutlet weak var phoneNumberImageView: UIImageView!
     @IBOutlet weak var linkURLImageView: UIImageView!
+    
+    @IBOutlet weak var instagramStackView: UIStackView!
+    @IBOutlet weak var phoneNumberStackView: UIStackView!
+    @IBOutlet weak var linkURLStackView: UIStackView!
+    @IBOutlet weak var totalStackView: UIStackView!
     
     // MARK: - Life Cycle
     
@@ -63,6 +70,9 @@ extension FrontCardCell {
         instagramIDLabel.font = .textRegular03
         instagramIDLabel.textColor = .white
         instagramIDLabel.lineBreakMode = .byTruncatingTail
+        phoneNumberLabel.font = .textRegular03
+        phoneNumberLabel.textColor = .white
+        phoneNumberLabel.lineBreakMode = .byTruncatingTail
         linkURLLabel.font = .textRegular04
         linkURLLabel.textColor = .white
         linkURLLabel.numberOfLines = 1
@@ -106,6 +116,7 @@ extension FrontCardCell {
         if UIApplication.shared.canOpenURL(webURL) {
             UIApplication.shared.open(webURL, options: [:], completionHandler: nil)
         }
+        // TODO: - instagram 없다면 웹으로 보여주는 것도 방법.
     }
     
     /// 서버에서 image 를 URL 로 가져올 경우 사용.
@@ -126,13 +137,18 @@ extension FrontCardCell {
         birthLabel.text = cardData.birthDate
         mbtiLabel.text = cardData.mbti
         instagramIDLabel.text = cardData.instagram
+        phoneNumberLabel.text = cardData.phoneNumber
         linkURLLabel.text = cardData.link
         
+        // FIXME: - 서버 API 에서 빈 데이터를 보내주지 않는다면, Card 데이터 모델에서 nil 이 넘어온다. 빈문자열인지 nil인지 확인하고 수정하자.(현재 홈에서 서버로부터 nil 을 받아서 전화번호가 보임)
         if let instagram = cardData.instagram, instagram.isEmpty {
-            instagramImageView.isHidden = true
+            instagramStackView.isHidden = true
+        }
+        if let phoneNumber = cardData.phoneNumber, phoneNumber.isEmpty {
+            phoneNumberStackView.isHidden = true
         }
         if let link = cardData.link, link.isEmpty {
-            linkURLImageView.isHidden = true
+            linkURLStackView.isHidden = true
         }
         
         shareButton.isHidden = !isShareable
@@ -146,6 +162,7 @@ extension FrontCardCell {
                   _ birth: String,
                   _ mbti: String,
                   _ instagramID: String,
+                  _ phoneNumber: String,
                   _ linkURL: String,
                   isShareable: Bool) {
         backgroundImageView.image = backgroundImage ?? UIImage()
@@ -155,13 +172,17 @@ extension FrontCardCell {
         birthLabel.text = birth
         mbtiLabel.text = mbti
         instagramIDLabel.text = instagramID
+        phoneNumberLabel.text = phoneNumber
         linkURLLabel.text = linkURL
         
         if instagramID.isEmpty {
-            instagramImageView.isHidden = true
+            instagramStackView.isHidden = true
+        }
+        if phoneNumber.isEmpty {
+            phoneNumberStackView.isHidden = true
         }
         if linkURL.isEmpty {
-            linkURLImageView.isHidden = true
+            linkURLStackView.isHidden = true
         }
         
         shareButton.isHidden = !isShareable

@@ -45,9 +45,10 @@ class FrontCardCreationCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var mbtiLabel: UILabel!
     @IBOutlet weak var mbtiView: UIView!
 
-    @IBOutlet weak var instagramIDTextField: UITextField!
-    @IBOutlet weak var linkURLTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var instagramIDTextField: UITextField!
+    @IBOutlet weak var phoneNumberTextField: UITextField!
+    @IBOutlet weak var linkURLTextField: UITextField!
     
     @IBOutlet weak var bgView: UIView!
     
@@ -131,6 +132,9 @@ extension FrontCardCreationCollectionViewCell {
         descriptionTextField.attributedPlaceholder = NSAttributedString(string: "동아리 기수 / 파트 (15자)", attributes: [
             NSAttributedString.Key.foregroundColor: UIColor.quaternary
         ])
+        phoneNumberTextField.attributedPlaceholder = NSAttributedString(string: "전화번호", attributes: [
+        NSAttributedString.Key.foregroundColor: UIColor.quaternary
+        ])
         
         _ = requiredTextFieldList.map {
             $0.font = .textRegular04
@@ -164,7 +168,8 @@ extension FrontCardCreationCollectionViewCell {
         optionalTextFieldList.append(contentsOf: [
             instagramIDTextField,
             linkURLTextField,
-            descriptionTextField
+            descriptionTextField,
+            phoneNumberTextField
         ])
     }
     private func registerCell() {
@@ -208,7 +213,8 @@ extension FrontCardCreationCollectionViewCell {
             ], withOptional: [
                 "instagram": instagramIDTextField.text ?? "",
                 "linkURL": linkURLTextField.text ?? "",
-                "description": descriptionTextField.text ?? ""
+                "description": descriptionTextField.text ?? "",
+                "phoneNumber": phoneNumberTextField.text ?? ""
             ])
         }
     }
@@ -268,6 +274,14 @@ extension FrontCardCreationCollectionViewCell {
                         let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
                         let newString = String(text[text.startIndex..<maxIndex])
                         descriptionTextField.text = newString
+                    }
+                }
+            case phoneNumberTextField:
+                if let text = phoneNumberTextField.text {
+                    if text.count > maxLength {
+                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
+                        let newString = String(text[text.startIndex..<maxIndex])
+                        phoneNumberTextField.text = newString
                     }
                 }
             default:

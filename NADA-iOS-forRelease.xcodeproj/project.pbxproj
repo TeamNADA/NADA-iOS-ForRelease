@@ -123,6 +123,7 @@
 		F87122762733046300A24E74 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87122752733046300A24E74 /* Card.swift */; };
 		F871227827330A3800A24E74 /* CardCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F871227727330A3800A24E74 /* CardCreationRequest.swift */; };
 		F8719DDB274F92E90081AD51 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8719DDA274F92E90081AD51 /* UITextField+Extension.swift */; };
+		F8810203298826FC007266B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8810202298826FC007266B5 /* GoogleService-Info.plist */; };
 		F8915A22275728F20013D609 /* SelectBirthBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */; };
 		F8915A23275728F20013D609 /* SelectMBTIBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */; };
 		F8A9FE1A2743DC6B00BC60CE /* CardListInGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A9FE192743DC6B00BC60CE /* CardListInGroupRequest.swift */; };
@@ -272,6 +273,7 @@
 		F87122752733046300A24E74 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		F871227727330A3800A24E74 /* CardCreationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreationRequest.swift; sourceTree = "<group>"; };
 		F8719DDA274F92E90081AD51 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		F8810202298826FC007266B5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectBirthBottomViewController.swift; sourceTree = "<group>"; };
 		F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMBTIBottomViewController.swift; sourceTree = "<group>"; };
 		F8A9FE192743DC6B00BC60CE /* CardListInGroupRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListInGroupRequest.swift; sourceTree = "<group>"; };
@@ -814,7 +816,7 @@
 		F8FC439926C01E2B0033E151 /* Resouces */ = {
 			isa = PBXGroup;
 			children = (
-				F837AB7C2965582C00A8804A /* GoogleService-Info.plist */,
+				F8810202298826FC007266B5 /* GoogleService-Info.plist */,
 				F857FC8A26C03A5C00A48D01 /* Assets */,
 				39DA4D7B2747D7060082D572 /* Font */,
 				F8562C94296ADC0A00DA1109 /* Lottie */,
@@ -1028,6 +1030,7 @@
 			files = (
 				F8518058275D042B006BD5ED /* Onboarding.storyboard in Resources */,
 				F8FC43BF26C025180033E151 /* .swiftlint.yml in Resources */,
+				F8810203298826FC007266B5 /* GoogleService-Info.plist in Resources */,
 				397B75142763A916004AEB03 /* OpenSourceTableViewCell.xib in Resources */,
 				F85711A7274A6B3400F59F0B /* CardCreationPreview.storyboard in Resources */,
 				77607EDB274A68BE00204CD2 /* GroupCollectionViewCell.xib in Resources */,
@@ -1068,7 +1071,6 @@
 				F82FF81D2701EBCE00E57F8B /* CardCreation.storyboard in Resources */,
 				39369937274A4FCB00684420 /* NotoSansCJKkr-Medium.otf in Resources */,
 				392F7FB5274621F1008CDBF5 /* MoreListTableViewCell.xib in Resources */,
-				F837AB7D2965582C00A8804A /* GoogleService-Info.plist in Resources */,
 				7770315927500C49002CBD19 /* QRScan.storyboard in Resources */,
 				390515B82706CEBB00C5F7A5 /* Colors.xcassets in Resources */,
 			);

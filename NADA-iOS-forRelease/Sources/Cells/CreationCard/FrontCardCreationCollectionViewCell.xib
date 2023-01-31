@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,17 +12,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="FrontCardCreationCollectionViewCell" customModule="NADA_iOS_forRelease" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="353" height="678"/>
+            <rect key="frame" x="0.0" y="0.0" width="353" height="711"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="353" height="678"/>
+                <rect key="frame" x="0.0" y="0.0" width="353" height="711"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMJ-HM-pPN">
-                        <rect key="frame" x="0.0" y="0.0" width="353" height="678"/>
+                        <rect key="frame" x="0.0" y="0.0" width="353" height="711"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rtM-7c-eeD">
-                                <rect key="frame" x="0.0" y="0.0" width="353" height="660"/>
+                                <rect key="frame" x="0.0" y="0.0" width="353" height="714"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ij6-4i-oGx">
                                         <rect key="frame" x="24" y="23" width="42" height="21"/>
@@ -133,15 +133,24 @@
                                             <constraint firstItem="xuR-Ne-hLd" firstAttribute="centerY" secondItem="XZy-Ne-utd" secondAttribute="centerY" id="dJ3-gW-4i6"/>
                                         </constraints>
                                     </view>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Pi-Bo-aPf">
+                                        <rect key="frame" x="24" y="656" width="305" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="T0U-dk-NHX"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="hYQ-8Z-Bod" firstAttribute="top" secondItem="Ki8-qn-Bo1" secondAttribute="bottom" constant="30" id="0rN-Ck-PwW"/>
                                     <constraint firstItem="d1H-pL-FAS" firstAttribute="top" secondItem="hYQ-8Z-Bod" secondAttribute="bottom" constant="10" id="2uL-Wi-fyP"/>
-                                    <constraint firstAttribute="bottom" secondItem="mxK-gN-Nz2" secondAttribute="bottom" constant="14" id="4Dp-gY-Uak"/>
                                     <constraint firstItem="bnb-dB-y9j" firstAttribute="top" secondItem="VfE-eb-mbT" secondAttribute="bottom" constant="10" id="9EU-Px-08f"/>
                                     <constraint firstItem="ZK4-3D-SM0" firstAttribute="top" secondItem="ldM-3t-32q" secondAttribute="bottom" constant="10" id="9pH-EC-W5x"/>
                                     <constraint firstAttribute="trailing" secondItem="d1H-pL-FAS" secondAttribute="trailing" constant="24" id="BFd-eV-ue0"/>
+                                    <constraint firstItem="8Pi-Bo-aPf" firstAttribute="trailing" secondItem="mxK-gN-Nz2" secondAttribute="trailing" id="BHr-1F-lwd"/>
+                                    <constraint firstItem="8Pi-Bo-aPf" firstAttribute="top" secondItem="mxK-gN-Nz2" secondAttribute="bottom" constant="10" id="ERv-8k-oOm"/>
                                     <constraint firstItem="Ij6-4i-oGx" firstAttribute="top" secondItem="rtM-7c-eeD" secondAttribute="top" constant="23" id="Iog-P0-VBi"/>
                                     <constraint firstItem="l0G-Oe-aZm" firstAttribute="leading" secondItem="hYQ-8Z-Bod" secondAttribute="leading" id="KAR-CA-812"/>
                                     <constraint firstItem="VfE-eb-mbT" firstAttribute="trailing" secondItem="d1H-pL-FAS" secondAttribute="trailing" id="KUY-9m-Aqe"/>
@@ -151,6 +160,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Ki8-qn-Bo1" secondAttribute="trailing" id="NV0-oS-82P"/>
                                     <constraint firstItem="l0G-Oe-aZm" firstAttribute="top" secondItem="d1H-pL-FAS" secondAttribute="bottom" constant="30" id="NnQ-Hr-KPD"/>
                                     <constraint firstItem="bnb-dB-y9j" firstAttribute="trailing" secondItem="VfE-eb-mbT" secondAttribute="trailing" id="TDV-as-jo2"/>
+                                    <constraint firstItem="8Pi-Bo-aPf" firstAttribute="leading" secondItem="mxK-gN-Nz2" secondAttribute="leading" id="WcV-jq-vbK"/>
                                     <constraint firstItem="VfE-eb-mbT" firstAttribute="top" secondItem="l0G-Oe-aZm" secondAttribute="bottom" constant="10" id="Wm7-Xp-BAw"/>
                                     <constraint firstItem="XZy-Ne-utd" firstAttribute="leading" secondItem="VfE-eb-mbT" secondAttribute="leading" id="ZtX-yr-VQj"/>
                                     <constraint firstItem="VfE-eb-mbT" firstAttribute="leading" secondItem="d1H-pL-FAS" secondAttribute="leading" id="bXt-8y-Bv4"/>
@@ -168,6 +178,7 @@
                                     <constraint firstItem="ZK4-3D-SM0" firstAttribute="trailing" secondItem="ldM-3t-32q" secondAttribute="trailing" id="s06-4b-wVs"/>
                                     <constraint firstItem="FC8-TR-MGL" firstAttribute="leading" secondItem="hYQ-8Z-Bod" secondAttribute="leading" id="uFU-Z7-VnJ"/>
                                     <constraint firstItem="XZy-Ne-utd" firstAttribute="top" secondItem="bnb-dB-y9j" secondAttribute="bottom" constant="10" id="unY-Qm-9bx"/>
+                                    <constraint firstAttribute="bottom" secondItem="8Pi-Bo-aPf" secondAttribute="bottom" constant="14" id="vY2-mH-fje"/>
                                     <constraint firstItem="FC8-TR-MGL" firstAttribute="top" secondItem="XZy-Ne-utd" secondAttribute="bottom" constant="30" id="vqH-bf-2fK"/>
                                     <constraint firstItem="ZK4-3D-SM0" firstAttribute="leading" secondItem="ldM-3t-32q" secondAttribute="leading" id="wHb-zY-tv5"/>
                                     <constraint firstItem="mxK-gN-Nz2" firstAttribute="top" secondItem="ZK4-3D-SM0" secondAttribute="bottom" constant="10" id="zxl-yQ-SlX"/>
@@ -192,7 +203,7 @@
                 <constraint firstAttribute="trailing" secondItem="EMJ-HM-pPN" secondAttribute="trailing" id="XhP-5c-TFW"/>
                 <constraint firstItem="EMJ-HM-pPN" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="YLS-ch-6UP"/>
             </constraints>
-            <size key="customSize" width="353" height="678"/>
+            <size key="customSize" width="353" height="711"/>
             <connections>
                 <outlet property="backgroundSettingCollectionView" destination="Ki8-qn-Bo1" id="ztC-tg-hsZ"/>
                 <outlet property="bgView" destination="rtM-7c-eeD" id="z4A-CV-rwk"/>
@@ -200,18 +211,19 @@
                 <outlet property="birthView" destination="bnb-dB-y9j" id="cdd-wn-YbP"/>
                 <outlet property="cardTitleInfoTextLabel" destination="hYQ-8Z-Bod" id="fpo-bj-GPa"/>
                 <outlet property="cardTitleTextField" destination="d1H-pL-FAS" id="bO6-Y8-SBy"/>
-                <outlet property="descriptionTextField" destination="mxK-gN-Nz2" id="dBV-rM-2Gz"/>
-                <outlet property="instagramIDTextField" destination="ldM-3t-32q" id="QNp-NA-Xir"/>
-                <outlet property="linkURLTextField" destination="ZK4-3D-SM0" id="LTF-ja-WmF"/>
+                <outlet property="descriptionTextField" destination="ldM-3t-32q" id="hsk-sg-fvq"/>
+                <outlet property="instagramIDTextField" destination="ZK4-3D-SM0" id="yjI-cq-xWr"/>
+                <outlet property="linkURLTextField" destination="8Pi-Bo-aPf" id="aQL-Hd-HyX"/>
                 <outlet property="mbtiLabel" destination="xuR-Ne-hLd" id="lw4-FA-En4"/>
                 <outlet property="mbtiView" destination="XZy-Ne-utd" id="KTF-cd-oSt"/>
                 <outlet property="optionalInfoTextLabel" destination="FC8-TR-MGL" id="RnF-6K-xml"/>
+                <outlet property="phoneNumberTextField" destination="mxK-gN-Nz2" id="NGX-My-GCa"/>
                 <outlet property="requiredInfoTextLabel" destination="l0G-Oe-aZm" id="7Nt-UG-Ag5"/>
                 <outlet property="scrollView" destination="EMJ-HM-pPN" id="ftT-Ax-WnF"/>
                 <outlet property="setBackgroundTextLabel" destination="Ij6-4i-oGx" id="zfm-hA-GzT"/>
                 <outlet property="userNameTextField" destination="VfE-eb-mbT" id="3lH-L0-Ibv"/>
             </connections>
-            <point key="canvasLocation" x="268.84057971014494" y="180.80357142857142"/>
+            <point key="canvasLocation" x="268.84057971014494" y="191.85267857142856"/>
         </collectionViewCell>
     </objects>
     <resources>

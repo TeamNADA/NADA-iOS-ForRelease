@@ -134,11 +134,14 @@ extension FrontViewController {
     private func didRecievePresentCardShare(_ notification: Notification) {
         let nextVC = CardShareBottomSheetViewController()
             .setTitle("명함공유")
-            .setHeight(404)
+            .setHeight(606.0)
 
         if let cardData = notification.object as? Card {
             nextVC.cardDataModel = cardData
         }
+        
+        // FIXME: - 명함 공유 활성화여부 넘기기(서버 혹은 multipeer connectivity 로)
+        nextVC.isActivate = false
         
         nextVC.modalPresentationStyle = .overFullScreen
         self.present(nextVC, animated: false, completion: nil)

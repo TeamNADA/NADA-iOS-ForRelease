@@ -9,17 +9,64 @@ import UIKit
 import Photos
 
 import FirebaseDynamicLinks
+import Lottie
 
 class CardShareBottomSheetViewController: CommonBottomSheetViewController {
 
     // MARK: - Properties
 
-    var isShareable = false
-    var cardDataModel: Card?
+    public var isShareable = false
+    public var cardDataModel: Card?
+    public var isActivate: Bool?
 
+    private let cardBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .card
+        view.layer.cornerRadius = 10.0
+        
+        return view
+    }()
+    
+    private let nearByBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .card
+        view.layer.cornerRadius = 10.0
+        
+        return view
+    }()
+    
+    private let nadaLogoImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "nadaLogoTxt")
+        
+        return imageView
+    }()
+    
+    private let nearByImage: UIImageView = {
+        let imageView = UIImageView()
+        
+        return imageView
+    }()
+    
+    private let nearByLabel: UILabel = {
+        let label = UILabel()
+        label.font = .button02
+        
+        return label
+    }()
+    
+    lazy
+    private var nearBySwitch: UISwitch = {
+        let nearBySwitch = UISwitch()
+        nearBySwitch.onTintColor = .mainColorNadaMain
+        nearBySwitch.addTarget(self, action: #selector(touchSwitch), for: .valueChanged)
+        
+        return nearBySwitch
+    }()
+    
     private let qrImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.frame = CGRect(x: 0, y: 0, width: 160, height: 160)
+        imageView.frame = CGRect(x: 0, y: 0, width: 189, height: 189)
         return imageView
     }()
     
@@ -40,7 +87,8 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         return label
     }()
     
-    private let copyButton: UIButton = {
+    lazy
+    private var copyButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "iconCopy"), for: .normal)
         button.addTarget(self, action: #selector(copyId), for: .touchUpInside)
@@ -56,12 +104,21 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         return stackView
     }()
     
-    private let saveAsImageButton: UIButton = {
+    lazy
+    private var saveAsImageButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "buttonShareImg"), for: .normal)
         button.addTarget(self, action: #selector(saveAsImage), for: .touchUpInside)
         
         return button
+    }()
+    
+    lazy
+    private var lottieImage: LottieAnimationView = {
+        let view = LottieAnimationView(name: Const.Lottie.nearby)
+        view.loopMode = .loop
+        
+        return view
     }()
     
     // MARK: - View Life Cycle
@@ -74,40 +131,108 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     // MARK: - @Functions
     
     private func setupUI() {
+        view.addSubviews([cardBackgroundView, nearByBackgroundView])
+        
         idStackView.addArrangedSubview(idTitleLabel)
         idStackView.addArrangedSubview(idLabel)
         idStackView.addArrangedSubview(copyButton)
         
-        view.addSubview(qrImage)
-        view.addSubview(idStackView)
-        view.addSubview(saveAsImageButton)
+        cardBackgroundView.addSubviews([nadaLogoImage, qrImage, idStackView, saveAsImageButton])
+        
+        nearByBackgroundView.addSubviews([nearByImage, nearByLabel, nearBySwitch, lottieImage])
         
         idLabel.text = cardDataModel?.cardID ?? ""
+        
+        setCardActivationUI(with: isActivate ?? false)
         
         setupLayout()
         setQRImage()
     }
     
+    private func setCardActivationUI(with isActivate: Bool) {
+        nearByBackgroundView.backgroundColor = isActivate ? .mainColorNadaMain.withAlphaComponent(0.15) : .card
+        
+        nearByImage.image = isActivate ? UIImage(named: "icnNearbyOn") : UIImage(named: "icnNearbyOff")
+        
+        nearByLabel.text = isActivate ? "내 근처의 명함 ON" : "내 근처의 명함 OFF"
+        nearByLabel.textColor = isActivate ? .mainColorNadaMain : .tertiary
+        
+        nearBySwitch.setOn(isActivate, animated: false)
+        
+        lottieImage.isHidden = isActivate ? false : true
+        _ = isActivate ? lottieImage.play() : lottieImage.stop()
+    }
+    
     private func setupLayout() {
+        cardBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            cardBackgroundView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20.0),
+            cardBackgroundView.leadingAnchor.constraint(equalTo: bottomSheetView.leadingAnchor, constant: 24.0),
+            cardBackgroundView.trailingAnchor.constraint(equalTo: bottomSheetView.trailingAnchor, constant: -24.0),
+            cardBackgroundView.heightAnchor.constraint(equalToConstant: 384.0)
+        ])
+        
+        nadaLogoImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nadaLogoImage.topAnchor.constraint(equalTo: cardBackgroundView.topAnchor, constant: 18.0),
+            nadaLogoImage.leadingAnchor.constraint(equalTo: cardBackgroundView.leadingAnchor, constant: 18.0),
+            nadaLogoImage.widthAnchor.constraint(equalToConstant: 84.0),
+            nadaLogoImage.heightAnchor.constraint(equalToConstant: 30.0)
+        ])
+        
         qrImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            qrImage.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-            qrImage.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor),
-            qrImage.widthAnchor.constraint(equalToConstant: 160),
-            qrImage.heightAnchor.constraint(equalToConstant: 160)
+            qrImage.topAnchor.constraint(equalTo: cardBackgroundView.topAnchor, constant: 64.0),
+            qrImage.centerXAnchor.constraint(equalTo: cardBackgroundView.centerXAnchor),
+            qrImage.widthAnchor.constraint(equalToConstant: 189.0),
+            qrImage.heightAnchor.constraint(equalToConstant: 189.0)
         ])
         
         idStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            idStackView.topAnchor.constraint(equalTo: qrImage.bottomAnchor, constant: 9),
-            idStackView.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor)
+            idStackView.topAnchor.constraint(equalTo: qrImage.bottomAnchor, constant: 15.0),
+            idStackView.centerXAnchor.constraint(equalTo: cardBackgroundView.centerXAnchor)
         ])
         
         saveAsImageButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            saveAsImageButton.topAnchor.constraint(equalTo: idStackView.bottomAnchor, constant: 32),
-            saveAsImageButton.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor),
-            saveAsImageButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 107)
+            saveAsImageButton.topAnchor.constraint(equalTo: idStackView.bottomAnchor, constant: 20.0),
+            saveAsImageButton.centerXAnchor.constraint(equalTo: cardBackgroundView.centerXAnchor)
+        ])
+        
+        nearByBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nearByBackgroundView.topAnchor.constraint(equalTo: cardBackgroundView.bottomAnchor, constant: 12.0),
+            nearByBackgroundView.leadingAnchor.constraint(equalTo: bottomSheetView.leadingAnchor, constant: 24.0),
+            nearByBackgroundView.trailingAnchor.constraint(equalTo: bottomSheetView.trailingAnchor, constant: -24.0),
+            nearByBackgroundView.heightAnchor.constraint(equalToConstant: 60.0)
+        ])
+        
+        nearByImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nearByImage.centerYAnchor.constraint(equalTo: nearByBackgroundView.centerYAnchor),
+            nearByImage.heightAnchor.constraint(equalToConstant: 54.0),
+            nearByImage.widthAnchor.constraint(equalToConstant: 54.0)
+        ])
+        
+        nearByLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nearByLabel.centerYAnchor.constraint(equalTo: nearByBackgroundView.centerYAnchor),
+            nearByLabel.leadingAnchor.constraint(equalTo: nearByImage.trailingAnchor)
+        ])
+        
+        nearBySwitch.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nearBySwitch.centerYAnchor.constraint(equalTo: nearByBackgroundView.centerYAnchor),
+            nearBySwitch.trailingAnchor.constraint(equalTo: nearByBackgroundView.trailingAnchor, constant: -20.0),
+            nearBySwitch.heightAnchor.constraint(equalToConstant: 31.0),
+            nearBySwitch.widthAnchor.constraint(equalToConstant: 51.0)
+        ])
+        
+        lottieImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            lottieImage.centerXAnchor.constraint(equalTo: nearByImage.centerXAnchor),
+            lottieImage.centerYAnchor.constraint(equalTo: nearByImage.centerYAnchor)
         ])
     }
     
@@ -115,12 +240,9 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         let frame = CGRect(origin: .zero, size: qrImage.frame.size)
         let qrcode = QRCodeView(frame: frame)
         generateDynamicLink(with: cardDataModel?.cardID ?? "") { dynamicLink in
-            
-            // FIXME: - ThisIsTeamNADAQrCode 로 나다에서 prefix 파악하는데 수정하기
-            
             qrcode.generateCode(dynamicLink,
                                 foregroundColor: .primary,
-                                backgroundColor: .background)
+                                backgroundColor: .card)
             self.qrImage.addSubview(qrcode)
         }
     }
@@ -180,7 +302,6 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         default:
             break
         }
-        
     }
     
     // FIXME: - 명함 저장시에도 테두리 둥글게 가능한가 찾기
@@ -221,12 +342,14 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     
     // MARK: - @objc Methods
     
-    @objc func copyId() {
+    @objc
+    private func copyId() {
         UIPasteboard.general.string = cardDataModel?.cardID ?? ""
         showToast(message: "명함 아이디가 복사되었습니다.", font: UIFont.button02, view: "copyID")
     }
     
-    @objc func saveAsImage() {
+    @objc
+    private func saveAsImage() {
         setImageWriteToSavedPhotosAlbum()
     }
 
@@ -237,5 +360,9 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         } else {
             showToast(message: "갤러리에 저장되었습니다.", font: UIFont.button02, view: "saveImage")
         }
+    }
+    
+    @objc func touchSwitch(_ sender: UISwitch) {
+        setCardActivationUI(with: sender.isOn)
     }
 }

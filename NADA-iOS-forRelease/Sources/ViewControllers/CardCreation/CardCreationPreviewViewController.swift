@@ -127,6 +127,7 @@ extension CardCreationPreviewViewController {
                            frontCardDataModel.birthDate,
                            frontCardDataModel.mbti,
                            frontCardDataModel.instagramID,
+                           frontCardDataModel.phoneNumber,
                            frontCardDataModel.linkURL,
                            isShareable: isShareable)
         
@@ -204,6 +205,7 @@ extension CardCreationPreviewViewController {
                                frontCardDataModel.birthDate,
                                frontCardDataModel.mbti,
                                frontCardDataModel.instagramID,
+                               frontCardDataModel.phoneNumber,
                                frontCardDataModel.linkURL,
                                isShareable: isShareable)
             

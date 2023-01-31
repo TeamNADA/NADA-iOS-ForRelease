@@ -45,9 +45,10 @@ class FrontCardCreationCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var mbtiLabel: UILabel!
     @IBOutlet weak var mbtiView: UIView!
 
-    @IBOutlet weak var instagramIDTextField: UITextField!
-    @IBOutlet weak var linkURLTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var instagramIDTextField: UITextField!
+    @IBOutlet weak var phoneNumberTextField: UITextField!
+    @IBOutlet weak var linkURLTextField: UITextField!
     
     @IBOutlet weak var bgView: UIView!
     
@@ -114,7 +115,7 @@ extension FrontCardCreationCollectionViewCell {
         birthView.backgroundColor = .textBox
         birthLabel.font = .textRegular04
         birthLabel.textColor = .quaternary
-        birthLabel.text = "생년월일"
+        birthLabel.text = "생일"
         
         mbtiView.layer.cornerRadius = 10
         mbtiView.backgroundColor = .textBox
@@ -128,8 +129,11 @@ extension FrontCardCreationCollectionViewCell {
         linkURLTextField.attributedPlaceholder = NSAttributedString(string: "URL (Github, Blog 등)", attributes: [
             NSAttributedString.Key.foregroundColor: UIColor.quaternary
         ])
-        descriptionTextField.attributedPlaceholder = NSAttributedString(string: "동아리 기수 / 파트 (15자)", attributes: [
+        descriptionTextField.attributedPlaceholder = NSAttributedString(string: "학교 전공/동아리 기수 등 (15자)", attributes: [
             NSAttributedString.Key.foregroundColor: UIColor.quaternary
+        ])
+        phoneNumberTextField.attributedPlaceholder = NSAttributedString(string: "전화번호", attributes: [
+        NSAttributedString.Key.foregroundColor: UIColor.quaternary
         ])
         
         _ = requiredTextFieldList.map {
@@ -164,7 +168,8 @@ extension FrontCardCreationCollectionViewCell {
         optionalTextFieldList.append(contentsOf: [
             instagramIDTextField,
             linkURLTextField,
-            descriptionTextField
+            descriptionTextField,
+            phoneNumberTextField
         ])
     }
     private func registerCell() {
@@ -199,17 +204,15 @@ extension FrontCardCreationCollectionViewCell {
             frontCardCreationDelegate?.frontCardCreation(requiredInfo: false)
         }
         if let defaultImageIndex = defaultImageIndex {
-            frontCardCreationDelegate?.frontCardCreation(withRequired: [
-                "defaultImageIndex": String(defaultImageIndex),
-                "title": cardTitleTextField.text ?? "",
-                "name": userNameTextField.text ?? "",
-                "birthDate": birthLabel.text ?? "",
-                "mbti": mbtiLabel.text ?? ""
-            ], withOptional: [
-                "instagram": instagramIDTextField.text ?? "",
-                "linkURL": linkURLTextField.text ?? "",
-                "description": descriptionTextField.text ?? ""
-            ])
+            frontCardCreationDelegate?.frontCardCreation(with: FrontCardDataModel(defaultImage: defaultImageIndex,
+                                                                                 title: cardTitleTextField.text ?? "",
+                                                                                 name: userNameTextField.text ?? "",
+                                                                                 birthDate: birthLabel.text ?? "",
+                                                                                 mbti: mbtiLabel.text ?? "",
+                                                                                 instagramID: instagramIDTextField.text ?? "",
+                                                                                 linkURL: linkURLTextField.text ?? "",
+                                                                                 description: descriptionTextField.text ?? "",
+                                                                                 phoneNumber: phoneNumberTextField.text ?? ""))
         }
     }
     static func nib() -> UINib {
@@ -268,6 +271,14 @@ extension FrontCardCreationCollectionViewCell {
                         let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
                         let newString = String(text[text.startIndex..<maxIndex])
                         descriptionTextField.text = newString
+                    }
+                }
+            case phoneNumberTextField:
+                if let text = phoneNumberTextField.text {
+                    if text.count > maxLength {
+                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
+                        let newString = String(text[text.startIndex..<maxIndex])
+                        phoneNumberTextField.text = newString
                     }
                 }
             default:

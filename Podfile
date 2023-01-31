@@ -6,7 +6,7 @@ target 'NADA-iOS-forRelease' do
   use_frameworks!
 
   # Pods for NADA-iOS-forRelease
-pod 'Moya', '~> 14.0'
+pod 'Moya'
 pod 'SkeletonView'
 pod 'SwiftLint'
 pod 'VerticalCardSwiper'
@@ -14,7 +14,7 @@ pod 'KakaoSDKCommon'
 pod 'KakaoSDKUser'
 pod 'KakaoSDKAuth'
 pod 'IQKeyboardManagerSwift'
-pod 'Kingfisher', '~> 7.0'
+pod 'Kingfisher'
 pod 'NVActivityIndicatorView'
 pod 'Firebase/DynamicLinks'
 pod 'lottie-ios'

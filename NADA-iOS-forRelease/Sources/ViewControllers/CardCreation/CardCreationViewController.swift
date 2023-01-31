@@ -145,7 +145,6 @@ extension CardCreationViewController {
             }
             completeButton.configurationUpdateHandler = configHandler
         } else {
-            // TODO: - QA/iOS 13 테스트. selected 설정.
             completeButton.layer.cornerRadius = 15
             
             completeButton.setTitle("완료", for: .normal)
@@ -319,15 +318,8 @@ extension CardCreationViewController: FrontCardCreationDelegate {
     func frontCardCreation(endEditing valid: Bool) {
         isEditingMode = valid
     }
-    func frontCardCreation(withRequired requiredInfo: [String: String], withOptional optionalInfo: [String: String]) {
-        frontCard = FrontCardDataModel(defaultImage: Int(requiredInfo["defaultImageIndex"] ?? "-1") ?? -1,
-                                       title: requiredInfo["title"] ?? "",
-                                       name: requiredInfo["name"] ?? "",
-                                       birthDate: requiredInfo["birthDate"] ?? "",
-                                       mbti: requiredInfo["mbti"] ?? "",
-                                       instagramID: optionalInfo["instagram"] ?? "",
-                                       linkURL: optionalInfo["linkURL"] ?? "",
-                                       description: optionalInfo["description"] ?? "")
+    func frontCardCreation(with frontCardDataModel: FrontCardDataModel) {
+        frontCard = frontCardDataModel
     }
 }
 

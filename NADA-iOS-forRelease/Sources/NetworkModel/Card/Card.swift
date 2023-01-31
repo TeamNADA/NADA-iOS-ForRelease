@@ -17,13 +17,13 @@ struct Card: Codable {
     let cardID: String
     let author: String? = ""
     let background, title, name, birthDate, mbti: String
-    let instagram, link, cardDescription: String?
+    let instagram, link, cardDescription, phoneNumber: String?
     let isMincho, isSoju, isBoomuk, isSauced: Bool
     let oneTmi, twoTmi, threeTmi: String?
 
     enum CodingKeys: String, CodingKey {
         case cardID = "cardId"
-        case author, background, title, name, birthDate, mbti, instagram, link
+        case author, background, title, name, birthDate, mbti, instagram, link, phoneNumber
         case cardDescription = "description"
         case isMincho, isSoju, isBoomuk, isSauced, oneTmi, twoTmi, threeTmi
     }

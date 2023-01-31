@@ -10,5 +10,5 @@ import Foundation
 protocol FrontCardCreationDelegate: AnyObject {
     func frontCardCreation(requiredInfo valid: Bool)
     func frontCardCreation(endEditing valid: Bool)
-    func frontCardCreation(withRequired requiredInfo: [String: String], withOptional optionalInfo: [String: String] )
+    func frontCardCreation(with frontCardDataModel: FrontCardDataModel)
 }

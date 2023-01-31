@@ -19,15 +19,15 @@ class SelectBirthBottomSheetViewController: CommonBottomSheetViewController {
     // FIXME: - 명함생성뷰에서 날짜를 넘길때 에러.(0.0.0 이 아닌 0월 0일로 반영)
     private var selectedBirth = String()
     
-    @frozen
-    private enum Column: Int, CaseIterable {
-        case month = 0
-        case day = 1
-    }
-    
     // MARK: - Components
     
-    private let birthPicker: UIPickerView = {
+    private let monthPicker: UIPickerView = {
+        let pickerView = UIPickerView()
+        
+        return pickerView
+    }()
+    
+    private let dayPicker: UIPickerView = {
         let pickerView = UIPickerView()
         
         return pickerView
@@ -62,29 +62,40 @@ class SelectBirthBottomSheetViewController: CommonBottomSheetViewController {
 
 extension SelectBirthBottomSheetViewController {
     private func setupUI() {
-        view.addSubview(birthPicker)
+        view.addSubview(monthPicker)
+        view.addSubview(dayPicker)
         view.addSubview(doneButton)
         
         selectedBirth = monthList[0] + " " + dayList[0]
         
-        birthPicker.delegate = self
-        birthPicker.dataSource = self
+        monthPicker.delegate = self
+        monthPicker.dataSource = self
+        dayPicker.delegate = self
+        dayPicker.dataSource = self
         
         setupLayout()
     }
+    
     private func setupLayout() {
-        birthPicker.selectedRow(inComponent: 0)
-        birthPicker.translatesAutoresizingMaskIntoConstraints = false
+        monthPicker.selectedRow(inComponent: 0)
+        monthPicker.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            birthPicker.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: -20),
-            birthPicker.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor),
-            birthPicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            birthPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            monthPicker.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: -20),
+            monthPicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            monthPicker.widthAnchor.constraint(equalToConstant: (view.frame.width - 32) / 2)
+        ])
+        
+        dayPicker.selectedRow(inComponent: 0)
+        dayPicker.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            dayPicker.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: -20),
+            dayPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            dayPicker.widthAnchor.constraint(equalToConstant: (view.frame.width - 32) / 2)
         ])
         
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            doneButton.topAnchor.constraint(equalTo: birthPicker.bottomAnchor, constant: 0),
+            doneButton.topAnchor.constraint(equalTo: monthPicker.bottomAnchor, constant: 0),
             doneButton.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor),
             doneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24)
@@ -97,61 +108,55 @@ extension SelectBirthBottomSheetViewController {
         NotificationCenter.default.post(name: .completeFrontCardBirth, object: selectedBirth)
         hideBottomSheetAndGoBack()
     }
-
 }
 
 extension SelectBirthBottomSheetViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return Column.allCases.count
+        return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        guard let row = Column(rawValue: component) else { return 0 }
-        
-        switch row {
-        case .month:
+        if pickerView == monthPicker {
             return monthList.count
-        case .day:
+        } else {
             return dayList.count
         }
     }
 
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let backgroundView = pickerView.subviews[1]
+        backgroundView.cornerRadius = 23
+        backgroundView.frame = CGRect(x: backgroundView.frame.minX, y: backgroundView.frame.minY, width: backgroundView.frame.width, height: 44)
+        
         let label = (view as? UILabel) ?? UILabel()
 
         label.textAlignment = .center
-
-        guard let colum = Column(rawValue: component) else { return label }
         
-        switch colum {
-        case .month:
+        if pickerView == monthPicker {
             if pickerView.selectedRow(inComponent: component) == row {
                 label.attributedText = NSAttributedString(string: monthList[row], attributes: [NSAttributedString.Key.font: UIFont.textBold01, NSAttributedString.Key.foregroundColor: UIColor.mainColorNadaMain])
-
+                
             } else {
                 label.attributedText = NSAttributedString(string: monthList[row], attributes: [NSAttributedString.Key.font: UIFont.textRegular03, NSAttributedString.Key.foregroundColor: UIColor.quaternary])
             }
-        case .day:
+        } else {
             if pickerView.selectedRow(inComponent: component) == row {
                 label.attributedText = NSAttributedString(string: dayList[row], attributes: [NSAttributedString.Key.font: UIFont.textBold01, NSAttributedString.Key.foregroundColor: UIColor.mainColorNadaMain])
-
+                
             } else {
                 label.attributedText = NSAttributedString(string: dayList[row], attributes: [NSAttributedString.Key.font: UIFont.textRegular03, NSAttributedString.Key.foregroundColor: UIColor.quaternary])
             }
         }
-        
-        return label
-    }
+    
+    return label
+}
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickerView.reloadAllComponents()
         
-        guard let colum = Column(rawValue: component) else { return }
-        
-        switch colum {
-        case .month:
+        if pickerView == monthPicker {
             month = monthList[row]
-        case .day:
+        } else {
             day = dayList[row]
         }
         

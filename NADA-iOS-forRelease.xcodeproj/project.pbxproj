@@ -132,6 +132,7 @@
 		F87122762733046300A24E74 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87122752733046300A24E74 /* Card.swift */; };
 		F871227827330A3800A24E74 /* CardCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F871227727330A3800A24E74 /* CardCreationRequest.swift */; };
 		F8719DDB274F92E90081AD51 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8719DDA274F92E90081AD51 /* UITextField+Extension.swift */; };
+		F87D2223298EA616001A882B /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87D2222298EA616001A882B /* Color+Extension.swift */; };
 		F88101F92987CBAF007266B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F88101F82987CBAF007266B5 /* GoogleService-Info.plist */; };
 		F8915A22275728F20013D609 /* SelectBirthBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */; };
 		F8915A23275728F20013D609 /* SelectMBTIBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */; };
@@ -315,6 +316,7 @@
 		F87122752733046300A24E74 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		F871227727330A3800A24E74 /* CardCreationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreationRequest.swift; sourceTree = "<group>"; };
 		F8719DDA274F92E90081AD51 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		F87D2222298EA616001A882B /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		F88101F82987CBAF007266B5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectBirthBottomViewController.swift; sourceTree = "<group>"; };
 		F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMBTIBottomViewController.swift; sourceTree = "<group>"; };
@@ -678,12 +680,11 @@
 		F838B663298E5C5300D84340 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				F87D2220298EA5E5001A882B /* Resource */,
 				F838B664298E5C5300D84340 /* WidgetsBundle.swift */,
 				F838B666298E5C5300D84340 /* WidgetsLiveActivity.swift */,
 				F838B668298E5C5300D84340 /* Widgets.swift */,
 				F838B66A298E5C5300D84340 /* Widgets.intentdefinition */,
-				F838B66B298E5C5400D84340 /* Assets.xcassets */,
-				F838B66D298E5C5400D84340 /* Info.plist */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -780,6 +781,24 @@
 				39DC06992778BEFB00C8ECCC /* CardListLookUp.swift */,
 			);
 			path = Card;
+			sourceTree = "<group>";
+		};
+		F87D2220298EA5E5001A882B /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				F838B66D298E5C5400D84340 /* Info.plist */,
+				F838B66B298E5C5400D84340 /* Assets.xcassets */,
+				F87D2221298EA606001A882B /* Extension */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		F87D2221298EA606001A882B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F87D2222298EA616001A882B /* Color+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		F8915A1F275713A10013D609 /* CardCreation */ = {
@@ -1303,6 +1322,7 @@
 				F871227827330A3800A24E74 /* CardCreationRequest.swift in Sources */,
 				39D88B5F2745FB7E00A72164 /* MoreViewController.swift in Sources */,
 				F8FC43B326C020B90033E151 /* BackCardCreationDelegate.swift in Sources */,
+				F87D2223298EA616001A882B /* Color+Extension.swift in Sources */,
 				39369944274A568900684420 /* GroupEditTableViewCell.swift in Sources */,
 				F8C83FBB272F9F370009DF0D /* NetworkResult.swift in Sources */,
 				39D2E130270B43DA00AD0889 /* UIFont+Extension.swift in Sources */,
@@ -1387,7 +1407,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Widgets/Info.plist;
+				INFOPLIST_FILE = Widgets/Resource/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Widgets;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
@@ -1419,7 +1439,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Widgets/Info.plist;
+				INFOPLIST_FILE = Widgets/Resource/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Widgets;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;

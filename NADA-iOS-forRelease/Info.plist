@@ -52,6 +52,10 @@
 	<string>명함을 이미지로 저장하기 위해 갤러리 권한 허용이 필요해요.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>명함 배경을 설정하기 위해 갤러리 권한 허용이 필요해요.</string>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>MyCardIntent</string>
+	</array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>NotoSansCJKkr-Bold.otf</string>

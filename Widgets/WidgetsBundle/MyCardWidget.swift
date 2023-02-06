@@ -11,15 +11,15 @@ import Intents
 
 struct MyCardProvider: IntentTimelineProvider {
     func placeholder(in context: Context) -> MyCardEntry {
-        MyCardEntry(date: Date(), configuration: ConfigurationIntent())
+        MyCardEntry(date: Date(), configuration: MyCardIntent())
     }
 
-    func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (MyCardEntry) -> Void) {
+    func getSnapshot(for configuration: MyCardIntent, in context: Context, completion: @escaping (MyCardEntry) -> Void) {
         let entry = MyCardEntry(date: Date(), configuration: configuration)
         completion(entry)
     }
 
-    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
+    func getTimeline(for configuration: MyCardIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
         var entries: [MyCardEntry] = []
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
@@ -37,7 +37,7 @@ struct MyCardProvider: IntentTimelineProvider {
 
 struct MyCardEntry: TimelineEntry {
     let date: Date
-    let configuration: ConfigurationIntent
+    let configuration: MyCardIntent
 }
 
 struct MyCardEntryView: View {
@@ -52,7 +52,7 @@ struct MyCardWidget: Widget {
     let kind: String = "Widgets"
 
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: MyCardProvider()) { entry in
+        IntentConfiguration(kind: kind, intent: MyCardIntent.self, provider: MyCardProvider()) { entry in
             MyCardEntryView(entry: entry)
         }
         .configurationDisplayName("My Widget")
@@ -62,7 +62,7 @@ struct MyCardWidget: Widget {
 
 struct MyCardWidget_Previews: PreviewProvider {
     static var previews: some View {
-        MyCardEntryView(entry: MyCardEntry(date: Date(), configuration: ConfigurationIntent()))
+        MyCardEntryView(entry: MyCardEntry(date: Date(), configuration: MyCardIntent()))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

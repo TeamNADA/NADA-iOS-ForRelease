@@ -1431,6 +1431,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F80975EA2990A27900075B93 /* Widgets.intentdefinition in Sources */,
 				F87D2238298ECAFB001A882B /* IntentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

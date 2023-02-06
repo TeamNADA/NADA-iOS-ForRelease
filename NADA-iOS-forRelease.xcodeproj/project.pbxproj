@@ -216,6 +216,7 @@
 		39DC06992778BEFB00C8ECCC /* CardListLookUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListLookUp.swift; sourceTree = "<group>"; };
 		39F5A3CE271461EA00191F94 /* BackCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackCardCell.swift; sourceTree = "<group>"; };
 		39F5A3CF271461EA00191F94 /* BackCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackCardCell.xib; sourceTree = "<group>"; };
+		3C14FF1DC641D872C3FDD637 /* Pods-NADA-iOS-forRelease.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.beta.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.beta.xcconfig"; sourceTree = "<group>"; };
 		4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NADA_iOS_forRelease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7705CF3D2752C7DB005195DF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		7705CF3F2752C844005195DF /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
@@ -325,6 +326,7 @@
 			children = (
 				7F4EE1D042EC783FA8528743 /* Pods-NADA-iOS-forRelease.debug.xcconfig */,
 				1E770167DDA25A2CE063AA5C /* Pods-NADA-iOS-forRelease.release.xcconfig */,
+				3C14FF1DC641D872C3FDD637 /* Pods-NADA-iOS-forRelease.beta.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";

@@ -43,6 +43,13 @@ struct QRCodeEntryView: View {
     
     var body: some View {
         switch widgetFamily {
+        case .accessoryCircular:
+            ZStack {
+                AccessoryWidgetBackground()
+                Image("widgetQrLockscreenWhite")
+                    .resizable()
+                    .widgetURL(URL(string: "openQRCodeWidget"))
+            }
         default:
             Image("widgetQr")
                 .resizable()
@@ -62,6 +69,7 @@ struct QRCodeWidget: Widget {
         }
         .configurationDisplayName("QR Code 위젯")
         .description("QR Code 를 인식할 수 있도록 카메라로 빠르게 접근합니다.")
+        .supportedFamilies([.systemSmall, .accessoryCircular])
     }
 }
 
@@ -69,5 +77,7 @@ struct QRCodeWidget_Previews: PreviewProvider {
     static var previews: some View {
         QRCodeEntryView(entry: QRCodeEntry(date: Date()))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
+        QRCodeEntryView(entry: QRCodeEntry(date: Date()))
+            .previewContext(WidgetPreviewContext(family: .accessoryCircular))
     }
 }

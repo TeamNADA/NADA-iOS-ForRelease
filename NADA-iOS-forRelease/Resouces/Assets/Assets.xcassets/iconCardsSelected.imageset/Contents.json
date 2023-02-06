@@ -2,13 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "iconCardsSelected.png"
+      "filename" : "iconCardsSelected.png",
+      "scale" : "1x"
     },
     {
-      "scale" : "2x",
       "idiom" : "universal",
-      "filename" : "iconCardsSelected@2x.png"
+      "filename" : "iconCardsSelected@2x.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",

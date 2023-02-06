@@ -36,6 +36,25 @@ struct OpenAppLockScreenProvider: TimelineProvider {
 struct OpenAppLockScreenEntry: TimelineEntry {
     let date: Date
 }
+
+struct OpenAppLockScreenEntryView: View {
+    var entry: OpenAppLockScreenProvider.Entry
+    @Environment(\.widgetFamily) var widgetFamily
+    
+    var body: some View {
+        switch widgetFamily {
+        case .accessoryCircular:
+            ZStack {
+                AccessoryWidgetBackground()
+                Image("widgetLogoWhite")
+                    .resizable()
+            }
+        default:
+            Image("widgetLogoWhite")
+        }
+    }
+}
+
 struct OpenAppLockScreenWidget: Widget {
     let kind: String = "OpenAppLockScreen"
     
@@ -44,6 +63,8 @@ struct OpenAppLockScreenWidget: Widget {
                             provider: OpenAppLockScreenProvider()) { entry in
             OpenAppLockScreenEntryView(entry: entry)
         }
+        .configurationDisplayName("나다 NADA")
+        .description("나다 NADA를 실행합니다.")
         .supportedFamilies([.accessoryCircular])
     }
 }

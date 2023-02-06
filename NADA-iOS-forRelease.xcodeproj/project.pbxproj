@@ -239,6 +239,9 @@
 		77812946275F6EA3004B34F4 /* CardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
 		77812949275F6ED7004B34F4 /* CardDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardDetail.storyboard; sourceTree = "<group>"; };
 		77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddInGroupRequest.swift; sourceTree = "<group>"; };
+		77B4E7422990E00B006098DC /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		77B4E7432990E015006098DC /* Beta.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Beta.xcconfig; sourceTree = "<group>"; };
+		77B4E7442990E021006098DC /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		77DFB870274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWithIdBottomSheetViewController.swift; sourceTree = "<group>"; };
 		77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHarmonyViewController.swift; sourceTree = "<group>"; };
 		77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardHarmony.storyboard; sourceTree = "<group>"; };
@@ -786,6 +789,9 @@
 		F8FC437926C01CDD0033E151 = {
 			isa = PBXGroup;
 			children = (
+				77B4E7422990E00B006098DC /* Debug.xcconfig */,
+				77B4E7432990E015006098DC /* Beta.xcconfig */,
+				77B4E7442990E021006098DC /* Release.xcconfig */,
 				F8FC43BE26C025180033E151 /* .swiftlint.yml */,
 				F8FC438426C01CDD0033E151 /* NADA-iOS-forRelease */,
 				F8FC438326C01CDD0033E151 /* Products */,
@@ -1257,8 +1263,99 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		77B4E7402990DFB7006098DC /* Beta */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77B4E7432990E015006098DC /* Beta.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Beta;
+		};
+		77B4E7412990DFB7006098DC /* Beta */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77B4E7432990E015006098DC /* Beta.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "NADA-iOS-forRelease/NADA-iOS-forRelease.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T3VFJ764ZC;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = T3VFJ764ZC;
+				INFOPLIST_FILE = "NADA-iOS-forRelease/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.2;
+				PRODUCT_BUNDLE_IDENTIFIER = "YJC.NADA-iOS-forRelease";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development YJC.NADA-iOS-forRelease";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development YJC.NADA-iOS-forRelease";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Beta;
+		};
 		F8FC439426C01CDE0033E151 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77B4E7422990E00B006098DC /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1320,6 +1417,7 @@
 		};
 		F8FC439526C01CDE0033E151 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77B4E7442990E021006098DC /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1375,7 +1473,7 @@
 		};
 		F8FC439726C01CDE0033E151 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F4EE1D042EC783FA8528743 /* Pods-NADA-iOS-forRelease.debug.xcconfig */;
+			baseConfigurationReference = 77B4E7422990E00B006098DC /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1403,7 +1501,7 @@
 		};
 		F8FC439826C01CDE0033E151 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E770167DDA25A2CE063AA5C /* Pods-NADA-iOS-forRelease.release.xcconfig */;
+			baseConfigurationReference = 77B4E7442990E021006098DC /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1436,6 +1534,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F8FC439426C01CDE0033E151 /* Debug */,
+				77B4E7402990DFB7006098DC /* Beta */,
 				F8FC439526C01CDE0033E151 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1445,6 +1544,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F8FC439726C01CDE0033E151 /* Debug */,
+				77B4E7412990DFB7006098DC /* Beta */,
 				F8FC439826C01CDE0033E151 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;

@@ -89,6 +89,8 @@
 		77812947275F6EA3004B34F4 /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77812946275F6EA3004B34F4 /* CardDetailViewController.swift */; };
 		7781294A275F6ED7004B34F4 /* CardDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77812949275F6ED7004B34F4 /* CardDetail.storyboard */; };
 		77AA68EA273E0EC4009C89B0 /* CardAddInGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */; };
+		77B4E7482990E420006098DC /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B4E7472990E420006098DC /* Home.storyboard */; };
+		77B4E74B2990E50E006098DC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B4E74A2990E50E006098DC /* HomeViewController.swift */; };
 		77DFB871274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFB870274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift */; };
 		77F2C0EB27632A91007641E3 /* CardHarmonyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */; };
 		77F2C0ED27632AA7007641E3 /* CardHarmony.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */; };
@@ -243,6 +245,8 @@
 		77B4E7422990E00B006098DC /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		77B4E7432990E015006098DC /* Beta.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Beta.xcconfig; sourceTree = "<group>"; };
 		77B4E7442990E021006098DC /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		77B4E7472990E420006098DC /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		77B4E74A2990E50E006098DC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		77DFB870274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWithIdBottomSheetViewController.swift; sourceTree = "<group>"; };
 		77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHarmonyViewController.swift; sourceTree = "<group>"; };
 		77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardHarmony.storyboard; sourceTree = "<group>"; };
@@ -603,6 +607,22 @@
 			path = CardDetail;
 			sourceTree = "<group>";
 		};
+		77B4E7462990E415006098DC /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				77B4E7472990E420006098DC /* Home.storyboard */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		77B4E7492990E4FC006098DC /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				77B4E74A2990E50E006098DC /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		F82FF8222701FFE300E57F8B /* RequiredFlavor */ = {
 			isa = PBXGroup;
 			children = (
@@ -897,6 +917,7 @@
 		F8FC43A026C01F040033E151 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				77B4E7492990E4FC006098DC /* Home */,
 				397B750E2763A5DD004AEB03 /* OpenSource */,
 				397B75182763B5DA004AEB03 /* TeamNADA */,
 				77812945275F6E6A004B34F4 /* CardDetail */,
@@ -927,6 +948,7 @@
 		F8FC43A226C01F2B0033E151 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				77B4E7462990E415006098DC /* Home */,
 				393E3348275F6A5D00965BBF /* Splash */,
 				395FE2E227619B0F00A9815E /* TabBar */,
 				395FE2E127619B0800A9815E /* Login */,
@@ -1057,6 +1079,7 @@
 				77F2C0ED27632AA7007641E3 /* CardHarmony.storyboard in Resources */,
 				39C394D5277CD33500DBA566 /* EmptyCardListTableViewCell.xib in Resources */,
 				F84BAFB226FDB552004CA335 /* BackCardCreationCollectionViewCell.xib in Resources */,
+				77B4E7482990E420006098DC /* Home.storyboard in Resources */,
 				397B75172763B5B7004AEB03 /* TeamNADA.storyboard in Resources */,
 				3936993B274A53C600684420 /* GroupEdit.storyboard in Resources */,
 				3903CC212769F4F40094C458 /* EmptyCardCell.xib in Resources */,
@@ -1245,6 +1268,7 @@
 				F8C83FB8272F9E3F0009DF0D /* UtilAPI.swift in Sources */,
 				F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */,
 				39C394D4277CD33500DBA566 /* EmptyCardListTableViewCell.swift in Sources */,
+				77B4E74B2990E50E006098DC /* HomeViewController.swift in Sources */,
 				7734D5B427778EFB004360E4 /* HarmonyResponse.swift in Sources */,
 				397B75132763A916004AEB03 /* OpenSourceTableViewCell.swift in Sources */,
 				F811720027383097002742CF /* ChangeGroupRequest.swift in Sources */,

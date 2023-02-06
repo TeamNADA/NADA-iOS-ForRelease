@@ -36,6 +36,22 @@ struct QRCodeProvider: TimelineProvider {
 struct QRCodeEntry: TimelineEntry {
     let date: Date
 }
+
+struct QRCodeEntryView: View {
+    var entry: QRCodeProvider.Entry
+    @Environment(\.widgetFamily) var widgetFamily
+    
+    var body: some View {
+        switch widgetFamily {
+        default:
+            Image("widgetQr")
+                .resizable()
+                .scaledToFill()
+                .widgetURL(URL(string: "openQRCodeWidget"))
+        }
+    }
+}
+
 struct QRCodeWidget: Widget {
     let kind: String = "QRCodeWidget"
     
@@ -44,6 +60,9 @@ struct QRCodeWidget: Widget {
                             provider: QRCodeProvider()) { entry in
             QRCodeEntryView(entry: entry)
         }
+        .configurationDisplayName("QR Code 위젯")
+        .description("QR Code 를 인식할 수 있도록 카메라로 빠르게 접근합니다.")
+    }
 }
 
 struct QRCodeWidget_Previews: PreviewProvider {

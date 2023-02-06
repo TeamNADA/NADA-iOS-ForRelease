@@ -107,9 +107,7 @@
 		F835EF6F29800F51001ABAAF /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F835EF6E29800F51001ABAAF /* UIApplication+Extension.swift */; };
 		F838B660298E5C5300D84340 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F838B65F298E5C5300D84340 /* WidgetKit.framework */; };
 		F838B662298E5C5300D84340 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F838B661298E5C5300D84340 /* SwiftUI.framework */; };
-		F838B665298E5C5300D84340 /* WidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838B664298E5C5300D84340 /* WidgetsBundle.swift */; };
 		F838B667298E5C5300D84340 /* WidgetsLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838B666298E5C5300D84340 /* WidgetsLiveActivity.swift */; };
-		F838B669298E5C5300D84340 /* Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838B668298E5C5300D84340 /* Widgets.swift */; };
 		F838B66C298E5C5400D84340 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F838B66B298E5C5400D84340 /* Assets.xcassets */; };
 		F838B66E298E5C5400D84340 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F838B66A298E5C5300D84340 /* Widgets.intentdefinition */; };
 		F838B66F298E5C5400D84340 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F838B66A298E5C5300D84340 /* Widgets.intentdefinition */; };
@@ -132,7 +130,6 @@
 		F87122762733046300A24E74 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87122752733046300A24E74 /* Card.swift */; };
 		F871227827330A3800A24E74 /* CardCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F871227727330A3800A24E74 /* CardCreationRequest.swift */; };
 		F8719DDB274F92E90081AD51 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8719DDA274F92E90081AD51 /* UITextField+Extension.swift */; };
-		F87D2223298EA616001A882B /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87D2222298EA616001A882B /* Color+Extension.swift */; };
 		F87D222A298ECAFB001A882B /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F87D2229298ECAFB001A882B /* Intents.framework */; };
 		F87D222D298ECAFB001A882B /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87D222C298ECAFB001A882B /* IntentHandler.swift */; };
 		F87D2235298ECAFB001A882B /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F87D2234298ECAFB001A882B /* IntentsUI.framework */; };
@@ -144,6 +141,11 @@
 		F8915A22275728F20013D609 /* SelectBirthBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */; };
 		F8915A23275728F20013D609 /* SelectMBTIBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */; };
 		F8A9FE1A2743DC6B00BC60CE /* CardListInGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A9FE192743DC6B00BC60CE /* CardListInGroupRequest.swift */; };
+		F8BCDD22298FFA830044D0B4 /* QRCodeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BCDD21298FFA830044D0B4 /* QRCodeWidget.swift */; };
+		F8BCDD24298FFA940044D0B4 /* OpenAppLockScreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BCDD23298FFA940044D0B4 /* OpenAppLockScreenWidget.swift */; };
+		F8BCDD25298FFAF90044D0B4 /* WidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838B664298E5C5300D84340 /* WidgetsBundle.swift */; };
+		F8BCDD26298FFB0B0044D0B4 /* MyCardWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838B668298E5C5300D84340 /* MyCardWidget.swift */; };
+		F8BCDD27298FFB280044D0B4 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87D2222298EA616001A882B /* Color+Extension.swift */; };
 		F8C310C0273A7360008EC5BA /* FrontCardCreationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C310BF273A7360008EC5BA /* FrontCardCreationDelegate.swift */; };
 		F8C83FAE272F99940009DF0D /* MoyaLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FAD272F99940009DF0D /* MoyaLoggerPlugin.swift */; };
 		F8C83FB6272F9E380009DF0D /* UtilService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FB5272F9E380009DF0D /* UtilService.swift */; };
@@ -317,7 +319,7 @@
 		F838B661298E5C5300D84340 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		F838B664298E5C5300D84340 /* WidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsBundle.swift; sourceTree = "<group>"; };
 		F838B666298E5C5300D84340 /* WidgetsLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsLiveActivity.swift; sourceTree = "<group>"; };
-		F838B668298E5C5300D84340 /* Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widgets.swift; sourceTree = "<group>"; };
+		F838B668298E5C5300D84340 /* MyCardWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardWidget.swift; sourceTree = "<group>"; };
 		F838B66A298E5C5300D84340 /* Widgets.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Widgets.intentdefinition; sourceTree = "<group>"; };
 		F838B66B298E5C5400D84340 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F838B66D298E5C5400D84340 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -353,6 +355,8 @@
 		F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectBirthBottomViewController.swift; sourceTree = "<group>"; };
 		F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMBTIBottomViewController.swift; sourceTree = "<group>"; };
 		F8A9FE192743DC6B00BC60CE /* CardListInGroupRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListInGroupRequest.swift; sourceTree = "<group>"; };
+		F8BCDD21298FFA830044D0B4 /* QRCodeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeWidget.swift; sourceTree = "<group>"; };
+		F8BCDD23298FFA940044D0B4 /* OpenAppLockScreenWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAppLockScreenWidget.swift; sourceTree = "<group>"; };
 		F8C310BF273A7360008EC5BA /* FrontCardCreationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontCardCreationDelegate.swift; sourceTree = "<group>"; };
 		F8C83FAD272F99940009DF0D /* MoyaLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggerPlugin.swift; sourceTree = "<group>"; };
 		F8C83FB5272F9E380009DF0D /* UtilService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilService.swift; sourceTree = "<group>"; };
@@ -731,10 +735,7 @@
 			isa = PBXGroup;
 			children = (
 				F87D2220298EA5E5001A882B /* Resource */,
-				F838B664298E5C5300D84340 /* WidgetsBundle.swift */,
-				F838B666298E5C5300D84340 /* WidgetsLiveActivity.swift */,
-				F838B668298E5C5300D84340 /* Widgets.swift */,
-				F838B66A298E5C5300D84340 /* Widgets.intentdefinition */,
+				F87D2249298ECBEA001A882B /* WidgetsBundle */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -838,6 +839,7 @@
 			children = (
 				F838B66D298E5C5400D84340 /* Info.plist */,
 				F838B66B298E5C5400D84340 /* Assets.xcassets */,
+				F838B66A298E5C5300D84340 /* Widgets.intentdefinition */,
 				F87D2221298EA606001A882B /* Extension */,
 			);
 			path = Resource;
@@ -868,6 +870,18 @@
 				F87D223C298ECAFB001A882B /* Info.plist */,
 			);
 			path = IntentsExtensionUI;
+			sourceTree = "<group>";
+		};
+		F87D2249298ECBEA001A882B /* WidgetsBundle */ = {
+			isa = PBXGroup;
+			children = (
+				F838B664298E5C5300D84340 /* WidgetsBundle.swift */,
+				F838B668298E5C5300D84340 /* MyCardWidget.swift */,
+				F8BCDD21298FFA830044D0B4 /* QRCodeWidget.swift */,
+				F8BCDD23298FFA940044D0B4 /* OpenAppLockScreenWidget.swift */,
+				F838B666298E5C5300D84340 /* WidgetsLiveActivity.swift */,
+			);
+			path = WidgetsBundle;
 			sourceTree = "<group>";
 		};
 		F8915A1F275713A10013D609 /* CardCreation */ = {
@@ -1392,10 +1406,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8BCDD24298FFA940044D0B4 /* OpenAppLockScreenWidget.swift in Sources */,
+				F8BCDD27298FFB280044D0B4 /* Color+Extension.swift in Sources */,
 				F838B66E298E5C5400D84340 /* Widgets.intentdefinition in Sources */,
 				F838B667298E5C5300D84340 /* WidgetsLiveActivity.swift in Sources */,
-				F838B669298E5C5300D84340 /* Widgets.swift in Sources */,
-				F838B665298E5C5300D84340 /* WidgetsBundle.swift in Sources */,
+				F8BCDD25298FFAF90044D0B4 /* WidgetsBundle.swift in Sources */,
+				F8BCDD22298FFA830044D0B4 /* QRCodeWidget.swift in Sources */,
+				F8BCDD26298FFB0B0044D0B4 /* MyCardWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1470,7 +1487,6 @@
 				F871227827330A3800A24E74 /* CardCreationRequest.swift in Sources */,
 				39D88B5F2745FB7E00A72164 /* MoreViewController.swift in Sources */,
 				F8FC43B326C020B90033E151 /* BackCardCreationDelegate.swift in Sources */,
-				F87D2223298EA616001A882B /* Color+Extension.swift in Sources */,
 				39369944274A568900684420 /* GroupEditTableViewCell.swift in Sources */,
 				F8C83FBB272F9F370009DF0D /* NetworkResult.swift in Sources */,
 				39D2E130270B43DA00AD0889 /* UIFont+Extension.swift in Sources */,
@@ -1631,9 +1647,9 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T3VFJ764ZC;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IntentsExtensionUI/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = IntentsExtensionUI;
@@ -1647,6 +1663,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "YJC.NADA-iOS-forRelease.IntentsExtensionUI";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1689,9 +1706,9 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T3VFJ764ZC;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IntentsExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = IntentsExtension;
@@ -1705,6 +1722,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "YJC.NADA-iOS-forRelease.IntentsExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

@@ -1,14 +1,14 @@
 {
   "images" : [
     {
+      "scale" : "1x",
       "idiom" : "universal",
-      "filename" : "nadaLogoTxt.png",
-      "scale" : "1x"
+      "filename" : "nadaLogoTxt.png"
     },
     {
-      "filename" : "nadaLogoTxt@2x.png",
       "scale" : "2x",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "filename" : "nadaLogoTxt@2x.png"
     },
     {
       "filename" : "nadaLogoTxt@3x.png",

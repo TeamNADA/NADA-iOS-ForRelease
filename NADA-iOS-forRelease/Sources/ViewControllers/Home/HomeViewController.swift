@@ -28,12 +28,15 @@ final class HomeViewController: UIViewController {
     }
     private let giveCardLabel = UILabel().then {
         $0.text = "명함 주기"
+        $0.font = UIFont.title02
     }
     private let takeCardLabel = UILabel().then {
         $0.text = "명함 받기"
+        $0.font = UIFont.title02
     }
     private let aroundMeLabel = UILabel().then {
         $0.text = "내 근처의 명함"
+        $0.font = UIFont.title02
     }
     private let giveCardIcon = UIImageView().then {
         $0.backgroundColor = .blue

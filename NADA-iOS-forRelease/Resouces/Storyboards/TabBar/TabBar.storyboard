@@ -50,7 +50,7 @@
         <scene sceneID="TU9-Cl-iIw">
             <objects>
                 <viewControllerPlaceholder storyboardName="Front" id="Y0f-TL-Qou" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="iconCardsMine" selectedImage="iconCardsSelected" id="hSy-di-0lN"/>
+                    <tabBarItem key="tabBarItem" title="" image="iconCardsMine" selectedImage="iconCardsMineSelected" id="hSy-di-0lN"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hen-qi-9Az" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -80,6 +80,7 @@
     <resources>
         <image name="iconCards" width="30" height="30"/>
         <image name="iconCardsMine" width="30" height="30"/>
+        <image name="iconCardsMineSelected" width="30" height="35"/>
         <image name="iconCardsSelected" width="30" height="35"/>
         <image name="iconHome" width="30" height="30"/>
         <image name="iconHomeSelected" width="30" height="35"/>

@@ -96,7 +96,7 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="G4S-UU-Nlv" secondAttribute="bottom" id="ni7-jU-JdH"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="iconHome" selectedImage="iconHomeSelected" id="trK-km-n7M"/>
+                    <tabBarItem key="tabBarItem" title="" image="iconCardsMine" selectedImage="iconCardsMineSelected" id="trK-km-n7M"/>
                     <navigationItem key="navigationItem" id="cZk-R4-laO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -128,6 +128,8 @@
     </scenes>
     <resources>
         <image name="iconAdd" width="24" height="24"/>
+        <image name="iconCardsMine" width="30" height="30"/>
+        <image name="iconCardsMineSelected" width="30" height="35"/>
         <image name="iconHome" width="30" height="30"/>
         <image name="iconHomeSelected" width="30" height="35"/>
         <image name="iconList" width="24" height="24"/>

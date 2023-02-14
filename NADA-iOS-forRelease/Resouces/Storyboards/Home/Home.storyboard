@@ -20,6 +20,7 @@
                         <color key="backgroundColor" name="background"/>
                     </view>
                     <navigationItem key="navigationItem" id="PKB-EA-pOb"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -29,7 +30,9 @@
         <scene sceneID="pFh-HM-o91">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dv4-lK-YHH" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="iconHome" selectedImage="iconHomeSelected" id="Seb-lN-ABr"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xo7-mv-bR4">
                         <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -45,6 +48,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="iconHome" width="30" height="30"/>
+        <image name="iconHomeSelected" width="30" height="35"/>
         <namedColor name="background">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

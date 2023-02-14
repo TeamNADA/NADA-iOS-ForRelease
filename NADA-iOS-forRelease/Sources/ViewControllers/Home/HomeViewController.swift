@@ -74,7 +74,7 @@ extension HomeViewController {
         aroundMeImageView.addSubviews([aroundMeLabel, aroundMeIcon])
         
         nadaIcon.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.top.equalTo(self.view.safeAreaLayoutGuide).inset(12)
             make.leading.equalToSuperview().inset(19)
         }
         giveCardImageView.snp.makeConstraints { make in
@@ -101,6 +101,19 @@ extension HomeViewController {
         aroundMeLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(18)
             make.bottom.equalToSuperview().inset(12)
+        }
+        giveCardIcon.snp.makeConstraints { make in
+            make.top.leading.equalToSuperview().inset(6)
+            make.width.height.equalTo(90)
+        }
+        takeCardIcon.snp.makeConstraints { make in
+            make.top.leading.equalToSuperview().inset(6)
+            make.width.height.equalTo(90)
+        }
+        aroundMeIcon.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().inset(24)
+            make.width.height.equalTo(90)
         }
     }
     

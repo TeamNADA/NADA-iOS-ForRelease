@@ -91,6 +91,7 @@
 		77AA68EA273E0EC4009C89B0 /* CardAddInGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */; };
 		77B4E7482990E420006098DC /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B4E7472990E420006098DC /* Home.storyboard */; };
 		77B4E74B2990E50E006098DC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B4E74A2990E50E006098DC /* HomeViewController.swift */; };
+		77C6E350299B84E300E059F9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6E34F299B84E300E059F9 /* HomeViewModel.swift */; };
 		77DFB871274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFB870274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift */; };
 		77F2C0EB27632A91007641E3 /* CardHarmonyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */; };
 		77F2C0ED27632AA7007641E3 /* CardHarmony.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */; };
@@ -247,6 +248,7 @@
 		77B4E7442990E021006098DC /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		77B4E7472990E420006098DC /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		77B4E74A2990E50E006098DC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		77C6E34F299B84E300E059F9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		77DFB870274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWithIdBottomSheetViewController.swift; sourceTree = "<group>"; };
 		77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHarmonyViewController.swift; sourceTree = "<group>"; };
 		77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardHarmony.storyboard; sourceTree = "<group>"; };
@@ -618,9 +620,26 @@
 		77B4E7492990E4FC006098DC /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				77B4E74A2990E50E006098DC /* HomeViewController.swift */,
+				77C6E34D299B84CA00E059F9 /* ViewModel */,
+				77C6E34E299B84D500E059F9 /* VC */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		77C6E34D299B84CA00E059F9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				77C6E34F299B84E300E059F9 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		77C6E34E299B84D500E059F9 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				77B4E74A2990E50E006098DC /* HomeViewController.swift */,
+			);
+			path = VC;
 			sourceTree = "<group>";
 		};
 		F82FF8222701FFE300E57F8B /* RequiredFlavor */ = {
@@ -1176,6 +1195,7 @@
 				F87122762733046300A24E74 /* Card.swift in Sources */,
 				39317D2227646F8E00D87166 /* GroupNameEditBottomSheetViewController.swift in Sources */,
 				F84BAF9D26FDB417004CA335 /* CardCreationViewController.swift in Sources */,
+				77C6E350299B84E300E059F9 /* HomeViewModel.swift in Sources */,
 				F8C83FCB272FA32C0009DF0D /* GroupService.swift in Sources */,
 				F858079E2700354E00872484 /* BackgroundCollectionViewCell.swift in Sources */,
 				F8C83FBD272F9F430009DF0D /* GenericResponse.swift in Sources */,

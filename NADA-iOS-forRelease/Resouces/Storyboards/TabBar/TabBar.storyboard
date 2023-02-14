@@ -40,17 +40,17 @@
         <scene sceneID="9yj-h6-i8W">
             <objects>
                 <viewControllerPlaceholder storyboardName="Home" id="lsn-a9-5bb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Jli-T8-SvH"/>
+                    <tabBarItem key="tabBarItem" title="" image="iconHome" selectedImage="iconHomeSelected" id="Jli-T8-SvH"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oR6-bb-TQs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="574" y="-78"/>
+            <point key="canvasLocation" x="578" y="-97"/>
         </scene>
         <!--Front-->
         <scene sceneID="TU9-Cl-iIw">
             <objects>
                 <viewControllerPlaceholder storyboardName="Front" id="Y0f-TL-Qou" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="iconHome" selectedImage="iconHomeSelected" id="hSy-di-0lN"/>
+                    <tabBarItem key="tabBarItem" title="" image="iconCardsMine" selectedImage="iconCardsSelected" id="hSy-di-0lN"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hen-qi-9Az" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -79,6 +79,7 @@
     </scenes>
     <resources>
         <image name="iconCards" width="30" height="30"/>
+        <image name="iconCardsMine" width="30" height="30"/>
         <image name="iconCardsSelected" width="30" height="35"/>
         <image name="iconHome" width="30" height="30"/>
         <image name="iconHomeSelected" width="30" height="35"/>

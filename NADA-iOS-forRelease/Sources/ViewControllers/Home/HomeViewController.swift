@@ -6,13 +6,39 @@
 //
 
 import UIKit
+import SnapKit
+import Then
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
 
+    // MARK: - Properties
+    
+    // MARK: - UI Components
+    
+    private let giveCardImageView = UIImageView().then {
+        $0.image = UIImage(named: "cardVertical")
+    }
+    
+    private let takeCardImageView = UIImageView().then {
+        $0.image = UIImage(named: "cardVertical")
+    }
+    
+    private let aroundMeImageView = UIImageView().then {
+        $0.image = UIImage(named: "cardVertical")
+    }
+    
+    // MARK: - View Life Cycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
 
+}
+
+extension HomeViewController {
+    
+    // MARK: - UI & Layout
+    
+    // MARK: - Methods
 }

@@ -56,9 +56,10 @@ struct WidgetCard {
     let userName: String
     let backgroundImage: UIImage
 }
+
 struct MyCardEntry: TimelineEntry {
     let date: Date
-    let configuration: MyCardIntent
+    let widgetCard: WidgetCard?
 }
 
 struct MyCardEntryView: View {

@@ -15,5 +15,24 @@ class IntentHandler: INExtension {
         
         return self
     }
+}
+
+extension IntentHandler: MyCardIntentHandling {
+    func provideMyCardOptionsCollection(for intent: MyCardIntent, with completion: @escaping (INObjectCollection<MyCard>?, Error?) -> Void) {
+        let myCards: [MyCard] = Card.mockData.map { card in
+            let myCard = MyCard(identifier: card.cardID, display: card.title)
+            
+            return myCard
+        }
+        let collection = INObjectCollection(items: myCards)
+        
+        completion(collection, nil)
+    }
     
+    func defaultMyCard(for intent: MyCardIntent) -> MyCard? {
+        let myCard = MyCard(identifier: Card.mockData[0].cardID,
+                            display: Card.mockData[0].title)
+        
+        return myCard
+    }
 }

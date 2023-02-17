@@ -35,6 +35,21 @@ struct MyCardProvider: IntentTimelineProvider {
     }
 }
 
+extension MyCardProvider {
+    // TODO: - 서버 혹은 DB 를 활용하여 내 명함을 조회하는 함수로 변경.
+    private func fetchMyCard(with cardID: String) -> Card? {
+        var matchedCard: Card?
+        
+        Card.mockData.forEach { card in
+            if card.cardID == cardID {
+                matchedCard = card
+            }
+        }
+        
+        return matchedCard
+    }
+}
+
 struct WidgetCard {
     let cardID: String
     let title: String

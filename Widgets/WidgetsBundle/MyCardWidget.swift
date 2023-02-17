@@ -34,15 +34,27 @@ struct MyCardProvider: IntentTimelineProvider {
     func getTimeline(for configuration: MyCardIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
         var entries: [MyCardEntry] = []
 
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = MyCardEntry(date: entryDate, configuration: configuration)
-            entries.append(entry)
+        
+        if let cardID = configuration.myCard?.identifier,
+           let card = fetchMyCard(with: cardID) {
+            for hourOffset in 0 ..< 5 {
+                let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate) ?? Date()
+                let entry = MyCardEntry(date: entryDate, widgetCard: WidgetCard(cardID: card.cardID,
+                                                               title: card.title,
+                                                               userName: card.name,
+                // TODO: - image 를 통신하거나 DB 에서 꺼내오는 작업이 필요하다.
+                                                               backgroundImage: UIImage(named: card.background) ?? UIImage()))
+                entries.append(entry)
+            }
+        } else {
+            for hourOffset in 0 ..< 5 {
+                let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate) ?? Date()
+                entries.append(MyCardEntry(date: entryDate, widgetCard: nil))
+            }
         }
-
         let timeline = Timeline(entries: entries, policy: .atEnd)
+        
         completion(timeline)
     }
 }

@@ -35,6 +35,12 @@ struct MyCardProvider: IntentTimelineProvider {
     }
 }
 
+struct WidgetCard {
+    let cardID: String
+    let title: String
+    let userName: String
+    let backgroundImage: UIImage
+}
 struct MyCardEntry: TimelineEntry {
     let date: Date
     let configuration: MyCardIntent

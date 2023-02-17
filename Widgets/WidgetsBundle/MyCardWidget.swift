@@ -137,20 +137,25 @@ struct MyCardEntryView: View {
 }
 
 struct MyCardWidget: Widget {
-    let kind: String = "Widgets"
-
+    let kind: String = "MyCardWidget"
+    
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: MyCardIntent.self, provider: MyCardProvider()) { entry in
+        IntentConfiguration(kind: kind,
+                            intent: MyCardIntent.self,
+                            provider: MyCardProvider()) { entry in
             MyCardEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("명함 위젯")
+        .description("명함 이미지를 보여주고,\n내 명함으로 빠르게 접근합니다.")
+        .supportedFamilies([.systemSmall])
     }
 }
 
 struct MyCardWidget_Previews: PreviewProvider {
     static var previews: some View {
-        MyCardEntryView(entry: MyCardEntry(date: Date(), configuration: MyCardIntent()))
+        MyCardEntryView(entry: MyCardEntry(date: Date(), widgetCard: nil))
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
+        MyCardEntryView(entry: MyCardEntry(date: Date(), widgetCard: WidgetCard(cardID: Card.mockData[0].cardID, title: Card.mockData[0].title, userName: Card.mockData[0].name, backgroundImage: UIImage(named: Card.mockData[2].background) ?? UIImage())))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

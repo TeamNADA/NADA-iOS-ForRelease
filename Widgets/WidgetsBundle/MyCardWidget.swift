@@ -89,8 +89,50 @@ struct MyCardEntry: TimelineEntry {
 struct MyCardEntryView: View {
     var entry: MyCardProvider.Entry
 
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
-        Text(entry.date, style: .time)
+        if let widgetCard = entry.widgetCard {
+            ZStack {
+                Color.white
+                GeometryReader { proxy in
+                    HStack(spacing: 0) {
+                        Image(uiImage: widgetCard.backgroundImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: proxy.size.height * (92 / 152), height: proxy.size.height)
+                            .clipped()
+                        Color.backgroundColor(for: colorScheme)
+                    }
+                }
+                VStack {
+                    HStack {
+                        Text(widgetCard.title)
+                            .font(.system(size: 15))
+                            .foregroundColor(.init(white: 1.0, opacity: 0.8))
+                            .padding(EdgeInsets(top: 12, leading: 10, bottom: 0, trailing: 0))
+                            .lineLimit(1)
+                        Spacer()
+                        Image("logoNada")
+                            .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 10))
+                    }
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Text(widgetCard.userName)
+                            .font(.system(size: 15))
+                            .foregroundColor(.userNameColor(for: colorScheme))
+                            .padding(EdgeInsets(top: 0, leading: 10, bottom: 11, trailing: 10))
+                            .lineLimit(1)
+                    }
+                }
+            }
+            .widgetURL(URL(string: "openMyCardWidget"))
+        } else {
+            Image("widgetEmpty")
+                .resizable()
+                .scaledToFill()
+        }
     }
 }
 

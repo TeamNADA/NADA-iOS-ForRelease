@@ -15,7 +15,19 @@ struct MyCardProvider: IntentTimelineProvider {
     }
 
     func getSnapshot(for configuration: MyCardIntent, in context: Context, completion: @escaping (MyCardEntry) -> Void) {
-        let entry = MyCardEntry(date: Date(), configuration: configuration)
+        let entry: MyCardEntry
+        
+        if let cardID = configuration.myCard?.identifier,
+           let card = fetchMyCard(with: cardID) {
+            entry = MyCardEntry(date: Date(), widgetCard: WidgetCard(cardID: card.cardID,
+                                                       title: card.title,
+                                                       userName: card.name,
+            // TODO: - image 를 통신하거나 DB 에서 꺼내오는 작업이 필요하다.
+                                                       backgroundImage: UIImage(named: card.background) ?? UIImage()))
+        } else {
+            entry = MyCardEntry(date: Date(), widgetCard: nil)
+        }
+        
         completion(entry)
     }
 

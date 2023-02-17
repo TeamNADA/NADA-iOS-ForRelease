@@ -75,8 +75,10 @@ extension FrontCardCell {
         phoneNumberLabel.lineBreakMode = .byTruncatingTail
         linkURLLabel.font = .textRegular04
         linkURLLabel.textColor = .white
-        linkURLLabel.numberOfLines = 1
+        linkURLLabel.numberOfLines = 2
         linkURLLabel.lineBreakMode = .byTruncatingTail
+        
+        linkURLStackView.alignment = .center
     }
     private func setTapGesture() {
         instagramIDLabel.isUserInteractionEnabled = true

@@ -11,7 +11,7 @@ import Intents
 
 struct MyCardProvider: IntentTimelineProvider {
     func placeholder(in context: Context) -> MyCardEntry {
-        MyCardEntry(date: Date(), configuration: MyCardIntent())
+        MyCardEntry(date: Date(), widgetCard: WidgetCard(cardID: "", title: "일이삼사오육칠팔구", userName: "일이삼사오육", backgroundImage: UIImage()))
     }
 
     func getSnapshot(for configuration: MyCardIntent, in context: Context, completion: @escaping (MyCardEntry) -> Void) {

@@ -117,6 +117,7 @@
 		F8518055275D040C006BD5ED /* OnboardingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8518053275D040C006BD5ED /* OnboardingCollectionViewCell.xib */; };
 		F8518058275D042B006BD5ED /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8518057275D042B006BD5ED /* Onboarding.storyboard */; };
 		F851805B275D047C006BD5ED /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F851805A275D047C006BD5ED /* OnboardingViewController.swift */; };
+		F855AEF129A3185000312D20 /* CardCreationCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F855AEF029A3185000312D20 /* CardCreationCategoryViewController.swift */; };
 		F8562C96296ADD1000DA1109 /* nearby.json in Resources */ = {isa = PBXBuildFile; fileRef = F8562C95296ADD1000DA1109 /* nearby.json */; };
 		F8562C98296ADD6700DA1109 /* Lottie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8562C97296ADD6700DA1109 /* Lottie.swift */; };
 		F85711A5274A6B2200F59F0B /* CardCreationPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85711A4274A6B2200F59F0B /* CardCreationPreviewViewController.swift */; };
@@ -274,6 +275,7 @@
 		F8518053275D040C006BD5ED /* OnboardingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingCollectionViewCell.xib; sourceTree = "<group>"; };
 		F8518057275D042B006BD5ED /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		F851805A275D047C006BD5ED /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		F855AEF029A3185000312D20 /* CardCreationCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreationCategoryViewController.swift; sourceTree = "<group>"; };
 		F8562C95296ADD1000DA1109 /* nearby.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nearby.json; sourceTree = "<group>"; };
 		F8562C97296ADD6700DA1109 /* Lottie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lottie.swift; sourceTree = "<group>"; };
 		F85711A4274A6B2200F59F0B /* CardCreationPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreationPreviewViewController.swift; sourceTree = "<group>"; };
@@ -693,6 +695,7 @@
 			children = (
 				F84BAF9C26FDB417004CA335 /* CardCreationViewController.swift */,
 				F85711A4274A6B2200F59F0B /* CardCreationPreviewViewController.swift */,
+				F855AEF029A3185000312D20 /* CardCreationCategoryViewController.swift */,
 			);
 			path = CardCreation;
 			sourceTree = "<group>";
@@ -1256,6 +1259,7 @@
 				39D88B6B274600B100A72164 /* CommonBottomSheetViewController.swift in Sources */,
 				7734D5B627779EF0004360E4 /* QRCodeView.swift in Sources */,
 				3918F66727719C4B00984648 /* UserReissueToken.swift in Sources */,
+				F855AEF129A3185000312D20 /* CardCreationCategoryViewController.swift in Sources */,
 				7705CF3E2752C7DB005195DF /* CardView.swift in Sources */,
 				F8FC43BA26C022900033E151 /* ViewController.swift in Sources */,
 				39D13568273FDCB800B1A148 /* UserWithTokenRequest.swift in Sources */,

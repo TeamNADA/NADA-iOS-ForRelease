@@ -1,0 +1,12 @@
+//
+//  Release.xcconfig
+//  NADA-iOS-forRelease
+//
+//  Created by Yi Joon Choi on 2023/02/06.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+#include "Pods/Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.release.xcconfig"
+KAKAO_NATIVE_APP_KEY = kakao5b8dd8cc878344bb7532eeca4365a4aa

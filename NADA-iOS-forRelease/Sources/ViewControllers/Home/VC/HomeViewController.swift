@@ -18,7 +18,6 @@ final class HomeViewController: UIViewController {
     // MARK: - Properties
     
     private let disposeBag = DisposeBag()
-    private let aroundMeTapGesture = UITapGestureRecognizer()
     
     // MARK: - UI Components
     
@@ -74,7 +73,6 @@ extension HomeViewController {
     private func setUI() {
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
-        aroundMeImageView.addGestureRecognizer(aroundMeTapGesture)
     }
     
     private func setLayout() {

@@ -101,6 +101,8 @@
 		F80975EA2990A27900075B93 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F838B66A298E5C5300D84340 /* Widgets.intentdefinition */; };
 		F811720027383097002742CF /* ChangeGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81171FF27383097002742CF /* ChangeGroupRequest.swift */; };
 		F822E7A92709CEB60020452C /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F822E7A82709CEB60020452C /* Notification.swift */; };
+		F8257750299546920067E145 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87122752733046300A24E74 /* Card.swift */; };
+		F8257751299546930067E145 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87122752733046300A24E74 /* Card.swift */; };
 		F8268DB927730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8268DB827730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift */; };
 		F82FEB4C27639F3100DA7847 /* MainCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FEB4A27639F3100DA7847 /* MainCardCell.swift */; };
 		F82FEB4D27639F3100DA7847 /* MainCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F82FEB4B27639F3100DA7847 /* MainCardCell.xib */; };
@@ -1465,6 +1467,7 @@
 				F8BCDD25298FFAF90044D0B4 /* WidgetsBundle.swift in Sources */,
 				F8BCDD22298FFA830044D0B4 /* QRCodeWidget.swift in Sources */,
 				F8BCDD26298FFB0B0044D0B4 /* MyCardWidget.swift in Sources */,
+				F8257750299546920067E145 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1473,6 +1476,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F80975E92990A27400075B93 /* Widgets.intentdefinition in Sources */,
+				F8257751299546930067E145 /* Card.swift in Sources */,
 				F87D222D298ECAFB001A882B /* IntentHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

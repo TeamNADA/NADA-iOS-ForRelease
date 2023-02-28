@@ -39,6 +39,12 @@ extension AroundMeViewController {
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
         navigationBar.setUI("내 근처의 명함", leftImage: UIImage(named: "iconClear"), rightImage: UIImage(named: "iconRefreshLocation"))
+        navigationBar.leftButtonAction = {
+          self.dismiss(animated: true)
+        }
+        navigationBar.rightButtonAction = {
+          print("리프레시")
+        }
     }
     
     private func setLayout() {

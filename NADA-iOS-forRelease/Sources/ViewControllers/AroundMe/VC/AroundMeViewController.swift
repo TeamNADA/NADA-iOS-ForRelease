@@ -19,11 +19,14 @@ final class AroundMeViewController: UIViewController {
     
     // MARK: - UI Components
     
+    private let navigationBar = CustomNavigationBar()
+    
     // MARK: - View Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        setLayout()
     }
 
 }
@@ -31,8 +34,19 @@ final class AroundMeViewController: UIViewController {
 extension AroundMeViewController {
     
     // MARK: - UI & Layout
+    
     private func setUI() {
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
+        navigationBar.setUI("내 근처의 명함", leftImage: UIImage(named: "iconClear"), rightImage: UIImage(named: "iconRefreshLocation"))
+    }
+    
+    private func setLayout() {
+        view.addSubviews([navigationBar])
+        
+        navigationBar.snp.makeConstraints { make in
+            make.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
+            make.height.equalTo(50)
+        }
     }
 }

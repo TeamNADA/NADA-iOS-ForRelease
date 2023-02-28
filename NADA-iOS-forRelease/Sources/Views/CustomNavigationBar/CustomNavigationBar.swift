@@ -17,7 +17,7 @@ import UIKit
  2) 해당 ViewController로 가서 CustomNavigationBar를 상속받은 UIView 생성 (ex: navigationBar)
  3) navigationBar.leftButtonAction = { 왼쪽버튼을 누르면 해야할 것 } 을 추가해요.
  4) navigationBar.rightButtonAction = { 오른쪽버튼을 누르면 해야할 것 } 을 추가해요.
- 5) func iconImage(leftImage: UIImage, rightImage: UIImage) 함수를 이용하여 왼쪽 아이템과 오른쪽 아이템을 바꿔주세요.
+ 5) func setUI(_ title: String?, leftImage: UIImage?, rightImage: UIImage?) 함수를 이용하여 왼쪽/오른쪽 아이템과 타이틀을 바꿔주세요.
  
  */
 
@@ -57,8 +57,8 @@ class CustomNavigationBar: UIView {
     
     func setUI(_ title: String?, leftImage: UIImage?, rightImage: UIImage?) {
         titleLabel.text = title
-        leftButton.setImage(leftImage?.withRenderingMode(.alwaysTemplate), for: .normal)
-        rightButton.setImage(rightImage?.withRenderingMode(.alwaysTemplate), for: .normal)
+        leftButton.setImage(leftImage?.withRenderingMode(.alwaysOriginal), for: .normal)
+        rightButton.setImage(rightImage?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
     
     private func setLayout() {

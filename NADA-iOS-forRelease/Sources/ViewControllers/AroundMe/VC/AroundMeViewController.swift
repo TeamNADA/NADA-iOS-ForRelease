@@ -17,9 +17,29 @@ final class AroundMeViewController: UIViewController {
 
     // MARK: - Properties
     
+    private let disposeBag = DisposeBag()
+    
     // MARK: - UI Components
     
     private let navigationBar = CustomNavigationBar()
+    private let emptyTitleLabel = UILabel().then {
+        $0.text = "아직 근처에 명함이 없어요."
+        $0.font = .textBold02
+        $0.textColor = .quaternary
+        $0.sizeToFit()
+    }
+    private let emptyDescLabel = UILabel().then {
+        $0.text = "명함 앞면 > 상단의 ‘공유' > 명함 활성화 버튼으로\n명함을 공유해 보세요."
+        $0.numberOfLines = 2
+        $0.font = .textRegular05
+        $0.textColor = .quaternary
+        $0.textAlignment = .center
+    }
+    private let emptyStackView = UIStackView().then {
+        $0.spacing = 9
+        $0.axis = .vertical
+        $0.alignment = .center
+    }
     
     // MARK: - View Life Cycles
     
@@ -48,11 +68,17 @@ extension AroundMeViewController {
     }
     
     private func setLayout() {
-        view.addSubviews([navigationBar])
+        view.addSubviews([navigationBar, emptyStackView])
+        emptyStackView.addArrangedSubview(emptyTitleLabel)
+        emptyStackView.addArrangedSubview(emptyDescLabel)
         
         navigationBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
             make.height.equalTo(50)
+        }
+        emptyStackView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.height.equalTo(57)
         }
     }
 }

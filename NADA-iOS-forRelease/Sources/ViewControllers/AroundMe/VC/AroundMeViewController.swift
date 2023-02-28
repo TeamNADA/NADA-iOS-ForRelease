@@ -17,9 +17,22 @@ final class AroundMeViewController: UIViewController {
 
     // MARK: - Properties
     
+    // MARK: - UI Components
+    
+    // MARK: - View Life Cycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setUI()
     }
 
+}
+
+extension AroundMeViewController {
+    
+    // MARK: - UI & Layout
+    private func setUI() {
+        self.view.backgroundColor = .white
+        self.navigationController?.navigationBar.isHidden = true
+    }
 }

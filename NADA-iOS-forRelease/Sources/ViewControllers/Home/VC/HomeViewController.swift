@@ -150,6 +150,9 @@ extension HomeViewController {
             .bind { owner, _ in
                 owner.makeVibrate()
                 print("근처의 명함")
+                let aroundMeVC = AroundMeViewController()
+                aroundMeVC.modalPresentationStyle = .overFullScreen
+                owner.present(aroundMeVC, animated: true)
             }.disposed(by: self.disposeBag)
     }
 }

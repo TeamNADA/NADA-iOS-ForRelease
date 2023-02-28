@@ -46,6 +46,9 @@ PODS:
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
+  - RxGesture (4.0.4):
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
   - RxRelay (6.5.0):
     - RxSwift (= 6.5.0)
   - RxSwift (6.5.0)
@@ -64,12 +67,13 @@ DEPENDENCIES:
   - Kingfisher
   - lottie-ios
   - Moya
-  - Moya/RxSwift (~> 15.0)
+  - Moya/RxSwift
   - NVActivityIndicatorView
-  - RxCocoa (= 6.5.0)
-  - RxSwift (= 6.5.0)
+  - RxCocoa
+  - RxGesture
+  - RxSwift
   - SkeletonView
-  - SnapKit (~> 5.0.0)
+  - SnapKit
   - SwiftLint
   - Then
   - VerticalCardSwiper
@@ -92,6 +96,7 @@ SPEC REPOS:
     - NVActivityIndicatorView
     - PromisesObjC
     - RxCocoa
+    - RxGesture
     - RxRelay
     - RxSwift
     - SkeletonView
@@ -117,6 +122,7 @@ SPEC CHECKSUMS:
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SkeletonView: 5a050f6411e697abd4cda0a8d767013399dccd69
@@ -125,6 +131,6 @@ SPEC CHECKSUMS:
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
   VerticalCardSwiper: 68df635b354500f86934ea044ade37a264c044c6
 
-PODFILE CHECKSUM: c58e0db5050fd8bb34c4ef3321262fe3b5fbbd24
+PODFILE CHECKSUM: b186cf8910d792fc7d216af81c08bcb9714776a3
 
 COCOAPODS: 1.11.3

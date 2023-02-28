@@ -1679,6 +1679,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = T3VFJ764ZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Widgets/Resource/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Widgets;
@@ -1693,6 +1694,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "YJC.NADA-iOS-forRelease.Widgets";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore YJC.NADA-iOS-forRelease.Widgets";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1738,9 +1740,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T3VFJ764ZC;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = T3VFJ764ZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IntentsExtensionUI/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = IntentsExtensionUI;
@@ -1754,6 +1757,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "YJC.NADA-iOS-forRelease.IntentsExtensionUI";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore YJC.NADA-iOS-forRelease.IntentsExtensionUI";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1799,9 +1804,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T3VFJ764ZC;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = T3VFJ764ZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IntentsExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = IntentsExtension;
@@ -1815,6 +1821,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "YJC.NADA-iOS-forRelease.IntentsExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore YJC.NADA-iOS-forRelease.IntentsExtension";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -2032,7 +2040,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F8FC439426C01CDE0033E151 /* Debug */,
-				77B4E7402990DFB7006098DC /* Beta */,
 				F8FC439526C01CDE0033E151 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -2042,7 +2049,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F8FC439726C01CDE0033E151 /* Debug */,
-				77B4E7412990DFB7006098DC /* Beta */,
 				F8FC439826C01CDE0033E151 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;

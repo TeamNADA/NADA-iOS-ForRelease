@@ -88,6 +88,7 @@
 		777FF89F27364B7B00BF69D3 /* GroupEditRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89E27364B7B00BF69D3 /* GroupEditRequest.swift */; };
 		77812947275F6EA3004B34F4 /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77812946275F6EA3004B34F4 /* CardDetailViewController.swift */; };
 		7781294A275F6ED7004B34F4 /* CardDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77812949275F6ED7004B34F4 /* CardDetail.storyboard */; };
+		77A4D5EB29AE20CB00367B7C /* makeVibrate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5EA29AE20CB00367B7C /* makeVibrate.swift */; };
 		77AA68EA273E0EC4009C89B0 /* CardAddInGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */; };
 		77B4E7482990E420006098DC /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B4E7472990E420006098DC /* Home.storyboard */; };
 		77B4E74B2990E50E006098DC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B4E74A2990E50E006098DC /* HomeViewController.swift */; };
@@ -303,6 +304,7 @@
 		777FF89E27364B7B00BF69D3 /* GroupEditRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEditRequest.swift; sourceTree = "<group>"; };
 		77812946275F6EA3004B34F4 /* CardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
 		77812949275F6ED7004B34F4 /* CardDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardDetail.storyboard; sourceTree = "<group>"; };
+		77A4D5EA29AE20CB00367B7C /* makeVibrate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = makeVibrate.swift; sourceTree = "<group>"; };
 		77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddInGroupRequest.swift; sourceTree = "<group>"; };
 		77B4E7422990E00B006098DC /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		77B4E7432990E015006098DC /* Beta.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Beta.xcconfig; sourceTree = "<group>"; };
@@ -720,6 +722,14 @@
 			path = CardDetail;
 			sourceTree = "<group>";
 		};
+		77A4D5E929AE20A600367B7C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				77A4D5EA29AE20CB00367B7C /* makeVibrate.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		77B4E7462990E415006098DC /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -1045,6 +1055,7 @@
 				F8562C94296ADC0A00DA1109 /* Lottie */,
 				F8FC43A326C01F420033E151 /* Constants */,
 				F8FC43A426C01F5B0033E151 /* Extensions */,
+				77A4D5E929AE20A600367B7C /* Utils */,
 				F8FC43A226C01F2B0033E151 /* Storyboards */,
 			);
 			path = Resouces;
@@ -1537,6 +1548,7 @@
 				F8F5D0AA270800FD00D99D2E /* Xib.swift in Sources */,
 				F82FF8252702000000E57F8B /* RequiredFlavorCollectionViewCell.swift in Sources */,
 				F8C83FC7272FA2A20009DF0D /* CardService.swift in Sources */,
+				77A4D5EB29AE20CB00367B7C /* makeVibrate.swift in Sources */,
 				39D88B662745FE5F00A72164 /* TabBarViewController.swift in Sources */,
 				77607EDA274A68BE00204CD2 /* GroupCollectionViewCell.swift in Sources */,
 				F871227827330A3800A24E74 /* CardCreationRequest.swift in Sources */,

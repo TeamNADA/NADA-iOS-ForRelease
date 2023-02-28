@@ -89,6 +89,9 @@
 		77812947275F6EA3004B34F4 /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77812946275F6EA3004B34F4 /* CardDetailViewController.swift */; };
 		7781294A275F6ED7004B34F4 /* CardDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77812949275F6ED7004B34F4 /* CardDetail.storyboard */; };
 		77AA68EA273E0EC4009C89B0 /* CardAddInGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */; };
+		77B4E7482990E420006098DC /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B4E7472990E420006098DC /* Home.storyboard */; };
+		77B4E74B2990E50E006098DC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B4E74A2990E50E006098DC /* HomeViewController.swift */; };
+		77C6E350299B84E300E059F9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6E34F299B84E300E059F9 /* HomeViewModel.swift */; };
 		77DFB871274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFB870274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift */; };
 		77F2C0EB27632A91007641E3 /* CardHarmonyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */; };
 		77F2C0ED27632AA7007641E3 /* CardHarmony.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */; };
@@ -277,6 +280,7 @@
 		39DC06992778BEFB00C8ECCC /* CardListLookUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListLookUp.swift; sourceTree = "<group>"; };
 		39F5A3CE271461EA00191F94 /* BackCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackCardCell.swift; sourceTree = "<group>"; };
 		39F5A3CF271461EA00191F94 /* BackCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackCardCell.xib; sourceTree = "<group>"; };
+		3C14FF1DC641D872C3FDD637 /* Pods-NADA-iOS-forRelease.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.beta.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.beta.xcconfig"; sourceTree = "<group>"; };
 		4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NADA_iOS_forRelease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7705CF3D2752C7DB005195DF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		7705CF3F2752C844005195DF /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
@@ -300,6 +304,12 @@
 		77812946275F6EA3004B34F4 /* CardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
 		77812949275F6ED7004B34F4 /* CardDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardDetail.storyboard; sourceTree = "<group>"; };
 		77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddInGroupRequest.swift; sourceTree = "<group>"; };
+		77B4E7422990E00B006098DC /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		77B4E7432990E015006098DC /* Beta.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Beta.xcconfig; sourceTree = "<group>"; };
+		77B4E7442990E021006098DC /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		77B4E7472990E420006098DC /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		77B4E74A2990E50E006098DC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		77C6E34F299B84E300E059F9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		77DFB870274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWithIdBottomSheetViewController.swift; sourceTree = "<group>"; };
 		77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHarmonyViewController.swift; sourceTree = "<group>"; };
 		77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardHarmony.storyboard; sourceTree = "<group>"; };
@@ -429,6 +439,7 @@
 			children = (
 				7F4EE1D042EC783FA8528743 /* Pods-NADA-iOS-forRelease.debug.xcconfig */,
 				1E770167DDA25A2CE063AA5C /* Pods-NADA-iOS-forRelease.release.xcconfig */,
+				3C14FF1DC641D872C3FDD637 /* Pods-NADA-iOS-forRelease.beta.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -709,6 +720,39 @@
 			path = CardDetail;
 			sourceTree = "<group>";
 		};
+		77B4E7462990E415006098DC /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				77B4E7472990E420006098DC /* Home.storyboard */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		77B4E7492990E4FC006098DC /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				77C6E34D299B84CA00E059F9 /* ViewModel */,
+				77C6E34E299B84D500E059F9 /* VC */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		77C6E34D299B84CA00E059F9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				77C6E34F299B84E300E059F9 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		77C6E34E299B84D500E059F9 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				77B4E74A2990E50E006098DC /* HomeViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
 		F82FF8222701FFE300E57F8B /* RequiredFlavor */ = {
 			isa = PBXGroup;
 			children = (
@@ -956,6 +1000,9 @@
 		F8FC437926C01CDD0033E151 = {
 			isa = PBXGroup;
 			children = (
+				77B4E7422990E00B006098DC /* Debug.xcconfig */,
+				77B4E7432990E015006098DC /* Beta.xcconfig */,
+				77B4E7442990E021006098DC /* Release.xcconfig */,
 				F8FC43BE26C025180033E151 /* .swiftlint.yml */,
 				F8FC438426C01CDD0033E151 /* NADA-iOS-forRelease */,
 				F838B663298E5C5300D84340 /* Widgets */,
@@ -1065,6 +1112,7 @@
 		F8FC43A026C01F040033E151 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				77B4E7492990E4FC006098DC /* Home */,
 				397B750E2763A5DD004AEB03 /* OpenSource */,
 				397B75182763B5DA004AEB03 /* TeamNADA */,
 				77812945275F6E6A004B34F4 /* CardDetail */,
@@ -1095,6 +1143,7 @@
 		F8FC43A226C01F2B0033E151 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				77B4E7462990E415006098DC /* Home */,
 				393E3348275F6A5D00965BBF /* Splash */,
 				395FE2E227619B0F00A9815E /* TabBar */,
 				395FE2E127619B0800A9815E /* Login */,
@@ -1315,6 +1364,7 @@
 				77F2C0ED27632AA7007641E3 /* CardHarmony.storyboard in Resources */,
 				39C394D5277CD33500DBA566 /* EmptyCardListTableViewCell.xib in Resources */,
 				F84BAFB226FDB552004CA335 /* BackCardCreationCollectionViewCell.xib in Resources */,
+				77B4E7482990E420006098DC /* Home.storyboard in Resources */,
 				397B75172763B5B7004AEB03 /* TeamNADA.storyboard in Resources */,
 				3936993B274A53C600684420 /* GroupEdit.storyboard in Resources */,
 				3903CC212769F4F40094C458 /* EmptyCardCell.xib in Resources */,
@@ -1444,6 +1494,7 @@
 				F838B66F298E5C5400D84340 /* Widgets.intentdefinition in Sources */,
 				39317D2227646F8E00D87166 /* GroupNameEditBottomSheetViewController.swift in Sources */,
 				F84BAF9D26FDB417004CA335 /* CardCreationViewController.swift in Sources */,
+				77C6E350299B84E300E059F9 /* HomeViewModel.swift in Sources */,
 				F8C83FCB272FA32C0009DF0D /* GroupService.swift in Sources */,
 				F858079E2700354E00872484 /* BackgroundCollectionViewCell.swift in Sources */,
 				F8C83FBD272F9F430009DF0D /* GenericResponse.swift in Sources */,
@@ -1536,6 +1587,7 @@
 				F8C83FB8272F9E3F0009DF0D /* UtilAPI.swift in Sources */,
 				F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */,
 				39C394D4277CD33500DBA566 /* EmptyCardListTableViewCell.swift in Sources */,
+				77B4E74B2990E50E006098DC /* HomeViewController.swift in Sources */,
 				7734D5B427778EFB004360E4 /* HarmonyResponse.swift in Sources */,
 				397B75132763A916004AEB03 /* OpenSourceTableViewCell.swift in Sources */,
 				F811720027383097002742CF /* ChangeGroupRequest.swift in Sources */,
@@ -1780,6 +1832,7 @@
 		};
 		F8FC439426C01CDE0033E151 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77B4E7422990E00B006098DC /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1841,6 +1894,7 @@
 		};
 		F8FC439526C01CDE0033E151 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77B4E7442990E021006098DC /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1896,7 +1950,7 @@
 		};
 		F8FC439726C01CDE0033E151 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F4EE1D042EC783FA8528743 /* Pods-NADA-iOS-forRelease.debug.xcconfig */;
+			baseConfigurationReference = 77B4E7422990E00B006098DC /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1925,7 +1979,7 @@
 		};
 		F8FC439826C01CDE0033E151 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E770167DDA25A2CE063AA5C /* Pods-NADA-iOS-forRelease.release.xcconfig */;
+			baseConfigurationReference = 77B4E7442990E021006098DC /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1986,6 +2040,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F8FC439426C01CDE0033E151 /* Debug */,
+				77B4E7402990DFB7006098DC /* Beta */,
 				F8FC439526C01CDE0033E151 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1995,6 +2050,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F8FC439726C01CDE0033E151 /* Debug */,
+				77B4E7412990DFB7006098DC /* Beta */,
 				F8FC439826C01CDE0033E151 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;

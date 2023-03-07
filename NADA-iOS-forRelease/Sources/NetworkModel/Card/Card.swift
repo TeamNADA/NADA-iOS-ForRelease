@@ -47,4 +47,10 @@ struct Card: Codable {
 //        twoTmi = (try? values.decode(String.self, forKey: .twoTmi))
 //        threeTmi = (try? values.decode(String.self, forKey: .threeTmi))
 //    }
+    
+    static let mockData = [
+        Card(cardID: "id1", background: "imgCardBg01", title: "첫 번째 카드", name: "1현규", birthDate: "", mbti: "", instagram: "", link: "", cardDescription: "", phoneNumber: "", isMincho: true, isSoju: true, isBoomuk: true, isSauced: true, oneTmi: "", twoTmi: "", threeTmi: ""),
+        Card(cardID: "id2", background: "imgCardBg02", title: "두 번째 카드", name: "2현규", birthDate: "", mbti: "", instagram: "", link: "", cardDescription: "", phoneNumber: "", isMincho: true, isSoju: true, isBoomuk: true, isSauced: true, oneTmi: "", twoTmi: "", threeTmi: ""),
+        Card(cardID: "id3", background: "imgCardBg03", title: "세 번째 카드", name: "3현규", birthDate: "", mbti: "", instagram: "", link: "", cardDescription: "", phoneNumber: "", isMincho: true, isSoju: true, isBoomuk: true, isSauced: true, oneTmi: "", twoTmi: "", threeTmi: "")
+    ]
 }

@@ -109,7 +109,7 @@
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="32s-jO-RgD" secondAttribute="trailing" constant="20" id="p6L-xc-Oo3"/>
                         </constraints>
                     </stackView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconBirthday" translatesAutoresizingMaskIntoConstraints="NO" id="SXl-Ls-Qsz">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconMbti" translatesAutoresizingMaskIntoConstraints="NO" id="SXl-Ls-Qsz">
                         <rect key="frame" x="95.5" y="273.5" width="18" height="18"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="18" id="6KF-To-yWi"/>
@@ -209,6 +209,7 @@
     <resources>
         <image name="iconBirthday" width="18" height="18"/>
         <image name="iconInstagram" width="24" height="24"/>
+        <image name="iconMbti" width="18" height="18"/>
         <image name="iconShare" width="24" height="24"/>
         <image name="iconUrl" width="24" height="24"/>
         <image name="phoneEnabled" width="24" height="24"/>

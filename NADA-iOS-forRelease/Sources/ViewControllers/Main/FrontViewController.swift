@@ -77,12 +77,9 @@ class FrontViewController: UIViewController {
     
     // MARK: - @IBAction Properties
     // 명함 생성 뷰로 화면 전환
-    @IBAction func presentToCardCreationView(_ sender: Any) {
-        let nextVC = UIStoryboard(name: Const.Storyboard.Name.cardCreation, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardCreationViewController)
-        let navigationController = UINavigationController(rootViewController: nextVC)
-        navigationController.modalPresentationStyle = .fullScreen
-        
-        self.present(navigationController, animated: true, completion: nil)
+    @IBAction func presentToCardCreationCategoryViewController(_ sender: Any) {
+        let nextVC = CardCreationCategoryViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
     // 명함 리스트 뷰로 화면 전환

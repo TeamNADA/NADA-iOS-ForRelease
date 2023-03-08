@@ -792,14 +792,6 @@
 			path = Widgets;
 			sourceTree = "<group>";
 		};
-		F843DD6B29A5F81700D8D20D /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				F843DD6C29A5F83000D8D20D /* CardCreationCategoryViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		F84BAF9E26FDB425004CA335 /* CardCreation */ = {
 			isa = PBXGroup;
 			children = (
@@ -825,9 +817,8 @@
 		F84BAFB326FDB8AA004CA335 /* CardCreation */ = {
 			isa = PBXGroup;
 			children = (
-				F84BAF9C26FDB417004CA335 /* CardCreationViewController.swift */,
-				F85711A4274A6B2200F59F0B /* CardCreationPreviewViewController.swift */,
-				F855AEF029A3185000312D20 /* CardCreationCategoryViewController.swift */,
+				F885C8A929B827120079FA35 /* ViewModel */,
+				F885C8A829B827030079FA35 /* VC */,
 			);
 			path = CardCreation;
 			sourceTree = "<group>";
@@ -943,6 +934,24 @@
 				F838B666298E5C5300D84340 /* WidgetsLiveActivity.swift */,
 			);
 			path = WidgetsBundle;
+			sourceTree = "<group>";
+		};
+		F885C8A829B827030079FA35 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				F84BAF9C26FDB417004CA335 /* CardCreationViewController.swift */,
+				F85711A4274A6B2200F59F0B /* CardCreationPreviewViewController.swift */,
+				F855AEF029A3185000312D20 /* CardCreationCategoryViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		F885C8A929B827120079FA35 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F843DD6C29A5F83000D8D20D /* CardCreationCategoryViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		F8915A1F275713A10013D609 /* CardCreation */ = {
@@ -1075,7 +1084,6 @@
 				F8C83FB9272F9F030009DF0D /* NetworkModel */,
 				F8FC439E26C01EF70033E151 /* NetworkService */,
 				F8FC439F26C01EFC0033E151 /* Protocols */,
-				F843DD6B29A5F81700D8D20D /* ViewModels */,
 				F8FC43A026C01F040033E151 /* ViewControllers */,
 				F8FC43A126C01F1F0033E151 /* Views */,
 			);
@@ -2060,7 +2068,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F8FC439426C01CDE0033E151 /* Debug */,
-				77B4E7402990DFB7006098DC /* Beta */,
 				F8FC439526C01CDE0033E151 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -2070,7 +2077,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F8FC439726C01CDE0033E151 /* Debug */,
-				77B4E7412990DFB7006098DC /* Beta */,
 				F8FC439826C01CDE0033E151 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;

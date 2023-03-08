@@ -118,9 +118,10 @@ class CardCreationCategoryViewController: UIViewController {
     private let contentTextlabel: UILabel = {
         let label = UILabel()
         label.text = """
-                    "다크모드를 켜고 아이콘의 재미있는 포인트를 찾아보세요👀
+                    다크모드를 켜고 아이콘의 재미있는 포인트를 찾아보세요👀
                     (더보기 > 다크모드 스위치 활성화)
                     """
+        label.numberOfLines = 2
         label.textColor = .mainColorButtonText
         label.font = .textRegular05
         
@@ -141,11 +142,95 @@ class CardCreationCategoryViewController: UIViewController {
 
 extension CardCreationCategoryViewController {
     private func setUI() {
-        
-
+        view.backgroundColor = .white
     }
-    
+}
+
+// MARK: - Layout
+
+extension CardCreationCategoryViewController {
     private func setLayout() {
+        view.addSubviews([navigationBarView, basicBackgroundView, jobBackgroundView, diggingBackgroundView, checkMarkImageView, contentTextlabel])
+        navigationBarView.addSubviews([backButton, titleLabel])
+        basicBackgroundView.addSubviews([basicTextlabel, basicImageView])
+        jobBackgroundView.addSubviews([jobTextlabel, jobImageView])
+        diggingBackgroundView.addSubviews([diggingTextlabel, diggingImageView])
         
+        navigationBarView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(50)
+        }
+        
+        backButton.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalToSuperview().inset(24)
+            make.height.width.equalTo(24)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.centerY.centerX.equalToSuperview()
+        }
+        
+        basicBackgroundView.snp.makeConstraints { make in
+            make.bottom.equalTo(view.snp.centerY).offset(-63)
+            make.leading.trailing.equalToSuperview().inset(24)
+            make.height.equalTo(basicBackgroundView.snp.width).multipliedBy(117.0 / 327.0)
+        }
+        
+        basicTextlabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(18)
+            make.bottom.equalToSuperview().inset(14)
+        }
+        
+        basicImageView.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(24)
+            make.top.equalToSuperview().inset(11)
+            make.bottom.equalToSuperview().inset(9)
+        }
+        
+        jobBackgroundView.snp.makeConstraints { make in
+            make.top.equalTo(basicBackgroundView.snp.bottom).offset(12)
+            make.leading.trailing.equalToSuperview().inset(24)
+            make.height.equalTo(basicBackgroundView.snp.width).multipliedBy(117.0 / 327.0)
+        }
+        
+        jobTextlabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(18)
+            make.bottom.equalToSuperview().inset(14)
+        }
+        
+        jobImageView.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(24)
+            make.top.equalToSuperview().inset(11)
+            make.bottom.equalToSuperview().inset(9)
+        }
+        
+        diggingBackgroundView.snp.makeConstraints { make in
+            make.top.equalTo(jobBackgroundView.snp.bottom).offset(12)
+            make.leading.trailing.equalToSuperview().inset(24)
+            make.height.equalTo(basicBackgroundView.snp.width).multipliedBy(117.0 / 327.0)
+        }
+        
+        diggingTextlabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(18)
+            make.bottom.equalToSuperview().inset(14)
+        }
+        
+        diggingImageView.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(24)
+            make.top.equalToSuperview().inset(11)
+            make.bottom.equalToSuperview().inset(9)
+        }
+        
+        checkMarkImageView.snp.makeConstraints { make in
+            make.top.equalTo(diggingBackgroundView.snp.bottom).offset(10)
+            make.leading.equalToSuperview().inset(24)
+        }
+        
+        contentTextlabel.snp.makeConstraints { make in
+            make.leading.equalTo(checkMarkImageView.snp.trailing).offset(5)
+            make.top.equalTo(checkMarkImageView).offset(3)
+        }
     }
 }

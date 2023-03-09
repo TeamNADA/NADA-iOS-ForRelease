@@ -147,6 +147,7 @@
 		F87D223F298ECAFB001A882B /* IntentsExtensionUI.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F87D2233298ECAFB001A882B /* IntentsExtensionUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F87D2242298ECAFB001A882B /* IntentsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F87D2228298ECAFB001A882B /* IntentsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F88101F92987CBAF007266B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F88101F82987CBAF007266B5 /* GoogleService-Info.plist */; };
+		F88C8DE929B8919700196A33 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88C8DE829B8919700196A33 /* ViewModelType.swift */; };
 		F8915A22275728F20013D609 /* SelectBirthBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */; };
 		F8915A23275728F20013D609 /* SelectMBTIBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */; };
 		F8A9FE1A2743DC6B00BC60CE /* CardListInGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A9FE192743DC6B00BC60CE /* CardListInGroupRequest.swift */; };
@@ -370,6 +371,7 @@
 		F87D223A298ECAFB001A882B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		F87D223C298ECAFB001A882B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F88101F82987CBAF007266B5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F88C8DE829B8919700196A33 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectBirthBottomViewController.swift; sourceTree = "<group>"; };
 		F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMBTIBottomViewController.swift; sourceTree = "<group>"; };
 		F8A9FE192743DC6B00BC60CE /* CardListInGroupRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListInGroupRequest.swift; sourceTree = "<group>"; };
@@ -1128,6 +1130,7 @@
 		F8FC439F26C01EFC0033E151 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				F88C8DE829B8919700196A33 /* ViewModelType.swift */,
 				F8915A1F275713A10013D609 /* CardCreation */,
 			);
 			path = Protocols;
@@ -1522,6 +1525,7 @@
 				F84BAF9D26FDB417004CA335 /* CardCreationViewController.swift in Sources */,
 				77C6E350299B84E300E059F9 /* HomeViewModel.swift in Sources */,
 				F8C83FCB272FA32C0009DF0D /* GroupService.swift in Sources */,
+				F88C8DE929B8919700196A33 /* ViewModelType.swift in Sources */,
 				F858079E2700354E00872484 /* BackgroundCollectionViewCell.swift in Sources */,
 				F8C83FBD272F9F430009DF0D /* GenericResponse.swift in Sources */,
 				F835EF6F29800F51001ABAAF /* UIApplication+Extension.swift in Sources */,

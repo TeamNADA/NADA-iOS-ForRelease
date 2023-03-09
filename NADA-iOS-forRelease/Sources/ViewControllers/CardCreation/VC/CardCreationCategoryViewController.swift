@@ -165,8 +165,6 @@ extension CardCreationCategoryViewController {
     }
 
     private func bindViewModel() {
-        
-        // TODO: - RxGesture 로 리펙토링 하기.
         let basicTapGesture = UITapGestureRecognizer()
         basicBackgroundView.addGestureRecognizer(basicTapGesture)
         

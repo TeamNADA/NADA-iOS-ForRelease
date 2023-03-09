@@ -17,7 +17,7 @@ class CardCreationCategoryViewController: UIViewController {
     
     private let navigationBarView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .background
         
         return view
     }()
@@ -40,7 +40,6 @@ class CardCreationCategoryViewController: UIViewController {
     
     private let basicBackgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .cardCreationUnclicked
         view.layer.cornerRadius = 15
         
         return view
@@ -64,7 +63,6 @@ class CardCreationCategoryViewController: UIViewController {
     
     private let jobBackgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .cardCreationUnclicked
         view.layer.cornerRadius = 15
         
         return view
@@ -88,7 +86,6 @@ class CardCreationCategoryViewController: UIViewController {
     
     private let diggingBackgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .cardCreationUnclicked
         view.layer.cornerRadius = 15
         
         return view
@@ -145,6 +142,10 @@ class CardCreationCategoryViewController: UIViewController {
 extension CardCreationCategoryViewController {
     private func setUI() {
         view.backgroundColor = .white
+        view.backgroundColor = .background
+        basicBackgroundView.backgroundColor = .cardCreationUnclicked
+        jobBackgroundView.backgroundColor = .cardCreationUnclicked
+        diggingBackgroundView.backgroundColor = .cardCreationUnclicked
     }
 }
 

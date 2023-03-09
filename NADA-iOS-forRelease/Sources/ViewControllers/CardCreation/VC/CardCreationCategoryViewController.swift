@@ -158,6 +158,22 @@ extension CardCreationCategoryViewController {
     private func navigationBackSwipeMotion() {
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
+    // TODO: - 화면전환 메서드 작성.
+    private func presentToBasicCardCreationViewController() {
+        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.cardCreation, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardCreationViewController) as? CardCreationViewController else { return }
+        let navigationController = UINavigationController(rootViewController: nextVC)
+        navigationController.modalPresentationStyle = .fullScreen
+        self.navigationController?.present(navigationController, animated: true)
+    }
+    
+    private func presentToJobCardCreationViewController() {
+        
+    }
+    
+    private func presentToDiggingCardCreationViewController() {
+        
+    }
+    
     // MARK: - @objc methods
 
     @objc

@@ -132,8 +132,10 @@ class CardCreationCategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUI()
         setLayout()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setUI()
     }
 }
 
@@ -141,7 +143,6 @@ class CardCreationCategoryViewController: UIViewController {
 
 extension CardCreationCategoryViewController {
     private func setUI() {
-        view.backgroundColor = .white
         view.backgroundColor = .background
         basicBackgroundView.backgroundColor = .cardCreationUnclicked
         jobBackgroundView.backgroundColor = .cardCreationUnclicked

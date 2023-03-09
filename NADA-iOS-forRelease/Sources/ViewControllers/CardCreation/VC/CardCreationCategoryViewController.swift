@@ -127,6 +127,9 @@ class CardCreationCategoryViewController: UIViewController {
         return label
     }()
     
+    var viewModel = CardCreationCategoryViewModel()
+    private var disposeBag = DisposeBag()
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -135,6 +138,8 @@ class CardCreationCategoryViewController: UIViewController {
         setLayout()
         setAddTargets()
         navigationBackSwipeMotion()
+        bindViewModel()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         setUI()
@@ -158,6 +163,46 @@ extension CardCreationCategoryViewController {
     private func navigationBackSwipeMotion() {
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
+
+    private func bindViewModel() {
+        
+        // TODO: - RxGesture 로 리펙토링 하기.
+        let basicTapGesture = UITapGestureRecognizer()
+        basicBackgroundView.addGestureRecognizer(basicTapGesture)
+        
+        let jobTapGesture = UITapGestureRecognizer()
+        jobBackgroundView.addGestureRecognizer(jobTapGesture)
+        
+        let diggingTapGesture = UITapGestureRecognizer()
+        diggingBackgroundView.addGestureRecognizer(diggingTapGesture)
+        
+        let input = CardCreationCategoryViewModel.Input(touchBasic: basicTapGesture.rx.event,
+                                                        touchJob: jobTapGesture.rx.event,
+                                                        touchDigging: diggingTapGesture.rx.event)
+        let output = viewModel.transform(input: input)
+        
+        output.touchBasic
+            .bind(with: self, onNext: { owner, _ in
+                owner.basicBackgroundView.backgroundColor = .cardCreationClicked
+                owner.presentToBasicCardCreationViewController()
+            })
+            .disposed(by: disposeBag)
+        
+        output.touchJob
+            .bind(with: self, onNext: { owner, _ in
+                owner.jobBackgroundView.backgroundColor = .cardCreationClicked
+                owner.presentToJobCardCreationViewController()
+            })
+            .disposed(by: disposeBag)
+
+        output.touchDigging
+            .bind(with: self, onNext: { owner, _ in
+                owner.diggingBackgroundView.backgroundColor = .cardCreationClicked
+                owner.presentToDiggingCardCreationViewController()
+            })
+            .disposed(by: disposeBag)
+    }
+    
     // TODO: - 화면전환 메서드 작성.
     private func presentToBasicCardCreationViewController() {
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.cardCreation, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardCreationViewController) as? CardCreationViewController else { return }

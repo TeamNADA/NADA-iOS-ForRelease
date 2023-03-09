@@ -133,6 +133,8 @@ class CardCreationCategoryViewController: UIViewController {
         super.viewDidLoad()
         
         setLayout()
+        setAddTargets()
+        navigationBackSwipeMotion()
     
     override func viewWillAppear(_ animated: Bool) {
         setUI()
@@ -147,6 +149,20 @@ extension CardCreationCategoryViewController {
         basicBackgroundView.backgroundColor = .cardCreationUnclicked
         jobBackgroundView.backgroundColor = .cardCreationUnclicked
         diggingBackgroundView.backgroundColor = .cardCreationUnclicked
+    }
+    
+    private func setAddTargets() {
+        backButton.addTarget(self, action: #selector(touchBackButton), for: .touchUpInside)
+    }
+    
+    private func navigationBackSwipeMotion() {
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+    }
+    // MARK: - @objc methods
+
+    @objc
+    private func touchBackButton() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

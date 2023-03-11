@@ -76,8 +76,7 @@ extension AroundMeViewController {
     
     private func setLayout() {
         view.addSubviews([navigationBar, emptyStackView])
-        emptyStackView.addArrangedSubview(emptyTitleLabel)
-        emptyStackView.addArrangedSubview(emptyDescLabel)
+        emptyStackView.addArrangedSubviews([emptyTitleLabel, emptyDescLabel])
         
         navigationBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)

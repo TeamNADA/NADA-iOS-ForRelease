@@ -91,6 +91,7 @@
 		77A4D5EB29AE20CB00367B7C /* makeVibrate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5EA29AE20CB00367B7C /* makeVibrate.swift */; };
 		77A4D5EF29AE269B00367B7C /* AroundMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5EE29AE269B00367B7C /* AroundMeViewController.swift */; };
 		77A4D5F429AE291F00367B7C /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5F329AE291F00367B7C /* CustomNavigationBar.swift */; };
+		77A4D5F629BC304C00367B7C /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5F529BC304C00367B7C /* UIStackView+Extension.swift */; };
 		77AA68EA273E0EC4009C89B0 /* CardAddInGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */; };
 		77B4E7482990E420006098DC /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B4E7472990E420006098DC /* Home.storyboard */; };
 		77B4E74B2990E50E006098DC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B4E74A2990E50E006098DC /* HomeViewController.swift */; };
@@ -309,6 +310,7 @@
 		77A4D5EA29AE20CB00367B7C /* makeVibrate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = makeVibrate.swift; sourceTree = "<group>"; };
 		77A4D5EE29AE269B00367B7C /* AroundMeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundMeViewController.swift; sourceTree = "<group>"; };
 		77A4D5F329AE291F00367B7C /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
+		77A4D5F529BC304C00367B7C /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddInGroupRequest.swift; sourceTree = "<group>"; };
 		77B4E7422990E00B006098DC /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		77B4E7432990E015006098DC /* Beta.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Beta.xcconfig; sourceTree = "<group>"; };
@@ -1238,6 +1240,7 @@
 				F8D74DD7276C7FB60071E5FC /* UIImageView+Extension.swift */,
 				7734D5B72777A8E8004360E4 /* String+Extension.swift */,
 				F835EF6E29800F51001ABAAF /* UIApplication+Extension.swift */,
+				77A4D5F529BC304C00367B7C /* UIStackView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1547,6 +1550,7 @@
 				F8C83FCB272FA32C0009DF0D /* GroupService.swift in Sources */,
 				F858079E2700354E00872484 /* BackgroundCollectionViewCell.swift in Sources */,
 				F8C83FBD272F9F430009DF0D /* GenericResponse.swift in Sources */,
+				77A4D5F629BC304C00367B7C /* UIStackView+Extension.swift in Sources */,
 				F835EF6F29800F51001ABAAF /* UIApplication+Extension.swift in Sources */,
 				398413B7274A7A1E005550BC /* AddGroupBottomSheetViewController.swift in Sources */,
 				77DFB871274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift in Sources */,

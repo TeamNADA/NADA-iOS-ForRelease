@@ -46,6 +46,7 @@ final class AroundMeViewController: UIViewController {
     private lazy var aroundMeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: aroundMeCollectionViewFlowLayout).then {
         $0.showsHorizontalScrollIndicator = false
         $0.clipsToBounds = false
+        $0.backgroundColor = .blue
     }
     
     // MARK: - View Life Cycles
@@ -75,7 +76,7 @@ extension AroundMeViewController {
     }
     
     private func setLayout() {
-        view.addSubviews([navigationBar, emptyStackView])
+        view.addSubviews([navigationBar, emptyStackView, aroundMeCollectionView])
         emptyStackView.addArrangedSubviews([emptyTitleLabel, emptyDescLabel])
         
         navigationBar.snp.makeConstraints { make in
@@ -85,6 +86,11 @@ extension AroundMeViewController {
         emptyStackView.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.height.equalTo(57)
+        }
+        aroundMeCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(navigationBar.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
         }
     }
 }

@@ -40,6 +40,13 @@ final class AroundMeViewController: UIViewController {
         $0.axis = .vertical
         $0.alignment = .center
     }
+    private let aroundMeCollectionViewFlowLayout = UICollectionViewFlowLayout().then {
+        $0.estimatedItemSize = .zero
+    }
+    private lazy var aroundMeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: aroundMeCollectionViewFlowLayout).then {
+        $0.showsHorizontalScrollIndicator = false
+        $0.clipsToBounds = false
+    }
     
     // MARK: - View Life Cycles
     

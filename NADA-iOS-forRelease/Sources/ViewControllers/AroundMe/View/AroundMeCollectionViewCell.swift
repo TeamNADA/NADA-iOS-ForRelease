@@ -40,7 +40,7 @@ class AroundMeCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
-//        setLayout()
+        setLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -52,6 +52,11 @@ class AroundMeCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Methods
+    
+    //TODO: 나중에 model 나오면 재정의
+    public func setImageData(_ thumailURL: String) {
+        profileImageView.updateServerImage(thumailURL)
+    }
     
     // MARK: - UI & Layout
     

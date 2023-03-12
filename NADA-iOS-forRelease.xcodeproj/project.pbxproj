@@ -93,6 +93,9 @@
 		77A4D5F429AE291F00367B7C /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5F329AE291F00367B7C /* CustomNavigationBar.swift */; };
 		77A4D5F629BC304C00367B7C /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5F529BC304C00367B7C /* UIStackView+Extension.swift */; };
 		77A4D5F929BC320600367B7C /* AroundMeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5F829BC320600367B7C /* AroundMeCollectionViewCell.swift */; };
+		77A4D5FC29BD6F4600367B7C /* AroundMeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5FB29BD6F4600367B7C /* AroundMeViewModel.swift */; };
+		77A4D5FE29BD6F9500367B7C /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5FD29BD6F9500367B7C /* ViewModelType.swift */; };
+		77A4D60129BD708C00367B7C /* AroundMeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D60029BD708C00367B7C /* AroundMeResponse.swift */; };
 		77AA68EA273E0EC4009C89B0 /* CardAddInGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */; };
 		77B4E7482990E420006098DC /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B4E7472990E420006098DC /* Home.storyboard */; };
 		77B4E74B2990E50E006098DC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B4E74A2990E50E006098DC /* HomeViewController.swift */; };
@@ -313,6 +316,9 @@
 		77A4D5F329AE291F00367B7C /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		77A4D5F529BC304C00367B7C /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		77A4D5F829BC320600367B7C /* AroundMeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundMeCollectionViewCell.swift; sourceTree = "<group>"; };
+		77A4D5FB29BD6F4600367B7C /* AroundMeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundMeViewModel.swift; sourceTree = "<group>"; };
+		77A4D5FD29BD6F9500367B7C /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		77A4D60029BD708C00367B7C /* AroundMeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundMeResponse.swift; sourceTree = "<group>"; };
 		77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddInGroupRequest.swift; sourceTree = "<group>"; };
 		77B4E7422990E00B006098DC /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		77B4E7432990E015006098DC /* Beta.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Beta.xcconfig; sourceTree = "<group>"; };
@@ -741,6 +747,7 @@
 		77A4D5ED29AE267F00367B7C /* AroundMe */ = {
 			isa = PBXGroup;
 			children = (
+				77A4D5FA29BD6F3600367B7C /* ViewModel */,
 				77A4D5F729BC31EC00367B7C /* View */,
 				77A4D5F029AE26A600367B7C /* VC */,
 			);
@@ -778,6 +785,22 @@
 				77A4D5F829BC320600367B7C /* AroundMeCollectionViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		77A4D5FA29BD6F3600367B7C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				77A4D5FB29BD6F4600367B7C /* AroundMeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		77A4D5FF29BD705B00367B7C /* AroundMe */ = {
+			isa = PBXGroup;
+			children = (
+				77A4D60029BD708C00367B7C /* AroundMeResponse.swift */,
+			);
+			path = AroundMe;
 			sourceTree = "<group>";
 		};
 		77B4E7462990E415006098DC /* Home */ = {
@@ -1053,6 +1076,7 @@
 				F87122722733032300A24E74 /* Card */,
 				777FF89927359B1000BF69D3 /* Group */,
 				7734D5B027778EC8004360E4 /* Util */,
+				77A4D5FF29BD705B00367B7C /* AroundMe */,
 			);
 			path = NetworkModel;
 			sourceTree = "<group>";
@@ -1166,6 +1190,7 @@
 			isa = PBXGroup;
 			children = (
 				F8915A1F275713A10013D609 /* CardCreation */,
+				77A4D5FD29BD6F9500367B7C /* ViewModelType.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1592,6 +1617,7 @@
 				770E58862778A78900498C2E /* Status.swift in Sources */,
 				F851805B275D047C006BD5ED /* OnboardingViewController.swift in Sources */,
 				392BAF7B2793E90D0013DCB3 /* KeyChainKey.swift in Sources */,
+				77A4D5FC29BD6F4600367B7C /* AroundMeViewModel.swift in Sources */,
 				39C1E88F270EC762006D2089 /* UIColor+Extension.swift in Sources */,
 				F8C83FC9272FA3190009DF0D /* GroupAPI.swift in Sources */,
 				F8FC43B826C0227D0033E151 /* Const.swift in Sources */,
@@ -1631,7 +1657,9 @@
 				392BAF792793BAF80013DCB3 /* KeyChain.swift in Sources */,
 				7766A40F274FEBE200714912 /* CardInGroupCollectionViewCell.swift in Sources */,
 				3927A7D7275F2A9B008BCD2A /* UserDefaults.swift in Sources */,
+				77A4D60129BD708C00367B7C /* AroundMeResponse.swift in Sources */,
 				7734D5B82777A8E8004360E4 /* String+Extension.swift in Sources */,
+				77A4D5FE29BD6F9500367B7C /* ViewModelType.swift in Sources */,
 				F8C83FC3272FA17B0009DF0D /* URL.swift in Sources */,
 				392F7FB4274621F1008CDBF5 /* MoreListTableViewCell.swift in Sources */,
 				77AA68EA273E0EC4009C89B0 /* CardAddInGroupRequest.swift in Sources */,

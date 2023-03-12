@@ -98,6 +98,7 @@
 		77A4D60129BD708C00367B7C /* AroundMeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D60029BD708C00367B7C /* AroundMeResponse.swift */; };
 		77A4D60429BD743600367B7C /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D60329BD743600367B7C /* ModuleFactory.swift */; };
 		77A4D60629BD747300367B7C /* controllerFromStoryBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D60529BD747300367B7C /* controllerFromStoryBoard.swift */; };
+		77A4D60829BD74BC00367B7C /* getClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D60729BD74BC00367B7C /* getClassName.swift */; };
 		77AA68EA273E0EC4009C89B0 /* CardAddInGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */; };
 		77B4E7482990E420006098DC /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B4E7472990E420006098DC /* Home.storyboard */; };
 		77B4E74B2990E50E006098DC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B4E74A2990E50E006098DC /* HomeViewController.swift */; };
@@ -323,6 +324,7 @@
 		77A4D60029BD708C00367B7C /* AroundMeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundMeResponse.swift; sourceTree = "<group>"; };
 		77A4D60329BD743600367B7C /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
 		77A4D60529BD747300367B7C /* controllerFromStoryBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = controllerFromStoryBoard.swift; sourceTree = "<group>"; };
+		77A4D60729BD74BC00367B7C /* getClassName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getClassName.swift; sourceTree = "<group>"; };
 		77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddInGroupRequest.swift; sourceTree = "<group>"; };
 		77B4E7422990E00B006098DC /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		77B4E7432990E015006098DC /* Beta.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Beta.xcconfig; sourceTree = "<group>"; };
@@ -744,6 +746,7 @@
 			isa = PBXGroup;
 			children = (
 				77A4D5EA29AE20CB00367B7C /* makeVibrate.swift */,
+				77A4D60729BD74BC00367B7C /* getClassName.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1612,6 +1615,7 @@
 				39523E09270184A700536900 /* CardListViewController.swift in Sources */,
 				F85711A5274A6B2200F59F0B /* CardCreationPreviewViewController.swift in Sources */,
 				39DC069A2778BEFB00C8ECCC /* CardListLookUp.swift in Sources */,
+				77A4D60829BD74BC00367B7C /* getClassName.swift in Sources */,
 				777FF89B27359B7800BF69D3 /* Groups.swift in Sources */,
 				77F47D93276C79B600414659 /* Header.swift in Sources */,
 				397B75102763A5F5004AEB03 /* OpenSourceViewController.swift in Sources */,

@@ -13,6 +13,10 @@ final class AroundMeViewModel: ViewModelType {
     // MARK: - Properties
     
 //    private let useCase: StadiumUseCase
+    let dummyModel = AroundMeResponse(profileImage: "imgProfileSmall",
+                                              myName: "내 이름(닉네임)",
+                                              cardName: "명함 이름")
+    
     private let disposeBag = DisposeBag()
     
     // MARK: - Inputs
@@ -25,7 +29,8 @@ final class AroundMeViewModel: ViewModelType {
     // MARK: - Outputs
     
     struct Output {
-        var cardList = PublishRelay<AroundMeResponse?>()
+        var cardList = PublishRelay<[AroundMeResponse]>()
+        var error = PublishRelay<Error>()
     }
     
     // MARK: - Initialize
@@ -42,13 +47,13 @@ extension AroundMeViewModel {
         
         input.viewDidLoadEvent
             .withUnretained(self)
-            .subscribe{ owner, _ in
+            .subscribe { owner, _ in
 //            self.useCase.getStadiumList()
         }.disposed(by: self.disposeBag)
         
         input.refreshButtonTapEvent
             .withUnretained(self)
-            .subscribe{ owner, _ in
+            .subscribe { owner, _ in
 //            self.useCase.getStadiumList()
         }.disposed(by: self.disposeBag)
         
@@ -68,4 +73,3 @@ extension AroundMeViewModel {
 //        }.disposed(by: self.disposeBag)
     }
 }
-

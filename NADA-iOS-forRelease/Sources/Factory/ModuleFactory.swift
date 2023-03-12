@@ -24,7 +24,6 @@ protocol ModuleFactoryProtocol {
     func makeSplashVC() -> SplashViewController
 }
 
-
 final class ModuleFactory: ModuleFactoryProtocol {
     static let shared = ModuleFactory()
     private init() { }

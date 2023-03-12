@@ -17,6 +17,7 @@ final class AroundMeViewController: UIViewController {
 
     // MARK: - Properties
     
+    var viewModel: AroundMeViewModel!
     private let disposeBag = DisposeBag()
     
     // MARK: - UI Components
@@ -55,6 +56,8 @@ final class AroundMeViewController: UIViewController {
         super.viewDidLoad()
         setUI()
         setLayout()
+        setRegister()
+        bindViewModels()
     }
 
 }
@@ -93,4 +96,44 @@ extension AroundMeViewController {
             make.bottom.equalTo(self.view.safeAreaLayoutGuide)
         }
     }
+    
+    // MARK: - Methods
+    
+    private func setRegister() {
+        aroundMeCollectionView.register(AroundMeCollectionViewCell.self, forCellWithReuseIdentifier: AroundMeCollectionViewCell.className)
+    }
+    
+    private func bindViewModels() {
+        let input = AroundMeViewModel.Input(
+            viewDidLoadEvent: self.rx.methodInvoked(#selector(UIViewController.viewWillAppear)).map { _ in },
+            refreshButtonTapEvent: self.rx.methodInvoked(#selector(UIViewController.viewWillAppear)).map { _ in })
+        //        let output = self.viewModel.transform(from: input, disposeBag: self.disposeBag)
+        
+        //TODO: 서버 연결 뒤 rx binding
+        
+        aroundMeCollectionView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
+    }
 }
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension AroundMeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        var width: CGFloat = UIScreen.main.bounds.width - 48
+        var height: CGFloat = 144
+        
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
+    }
+}
+
+

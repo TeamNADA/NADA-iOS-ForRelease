@@ -17,6 +17,7 @@ final class HomeViewController: UIViewController {
 
     // MARK: - Properties
     
+    private var moduleFactory = ModuleFactory.shared
     private let disposeBag = DisposeBag()
     
     // MARK: - UI Components
@@ -149,8 +150,7 @@ extension HomeViewController {
             .withUnretained(self)
             .bind { owner, _ in
                 owner.makeVibrate()
-                let aroundMeVC = AroundMeViewController()
-                aroundMeVC.modalPresentationStyle = .overFullScreen
+                let aroundMeVC = self.moduleFactory.makeAroundMeVC()
                 owner.present(aroundMeVC, animated: true)
             }.disposed(by: self.disposeBag)
     }

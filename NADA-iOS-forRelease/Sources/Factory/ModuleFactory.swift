@@ -22,6 +22,7 @@ import UIKit
 
 protocol ModuleFactoryProtocol {
     func makeSplashVC() -> SplashViewController
+    func makeAroundMeVC() -> AroundMeViewController
 }
 
 final class ModuleFactory: ModuleFactoryProtocol {
@@ -31,5 +32,13 @@ final class ModuleFactory: ModuleFactoryProtocol {
     func makeSplashVC() -> SplashViewController {
         let splashVC = SplashViewController.controllerFromStoryboard(.splash)
         return splashVC
+    }
+    
+    func makeAroundMeVC() -> AroundMeViewController {
+        let viewModel = AroundMeViewModel()
+        let aroundMeVC = AroundMeViewController()
+        aroundMeVC.viewModel = viewModel
+        aroundMeVC.modalPresentationStyle = .overFullScreen
+        return aroundMeVC
     }
 }

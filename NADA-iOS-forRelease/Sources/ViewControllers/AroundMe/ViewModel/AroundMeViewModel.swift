@@ -18,22 +18,21 @@ final class AroundMeViewModel: ViewModelType {
     // MARK: - Inputs
     
     struct Input {
-        let viewWillAppearEvent: Observable<Void>
-        let refreshButtonTapped: Observable<Void>
+        let viewDidLoadEvent: Observable<Void>
+        let refreshButtonTapEvent: Observable<Void>
     }
     
     // MARK: - Outputs
     
     struct Output {
-        var ingStadium = PublishRelay<StadiumModel?>()
-        var stadiumLists = PublishRelay<[StadiumModel]>()
+        var cardList = PublishRelay<AroundMeResponse?>()
     }
     
     // MARK: - Initialize
     
-    init(useCase: StadiumUseCase) {
-        self.useCase = useCase
-    }
+//    init(useCase: StadiumUseCase) {
+//        self.useCase = useCase
+//    }
 }
 
 extension AroundMeViewModel {
@@ -41,25 +40,32 @@ extension AroundMeViewModel {
         let output = Output()
         self.bindOutput(output: output, disposeBag: disposeBag)
         
-        input.viewWillAppearEvent.subscribe(onNext: { [weak self] in
-            guard let self = self else { return }
-            self.useCase.getStadiumList()
-        }).disposed(by: self.disposeBag)
+        input.viewDidLoadEvent
+            .withUnretained(self)
+            .subscribe{ owner, _ in
+//            self.useCase.getStadiumList()
+        }.disposed(by: self.disposeBag)
+        
+        input.refreshButtonTapEvent
+            .withUnretained(self)
+            .subscribe{ owner, _ in
+//            self.useCase.getStadiumList()
+        }.disposed(by: self.disposeBag)
         
         return output
     }
     
     private func bindOutput(output: Output, disposeBag: DisposeBag) {
-        let stadiumListRelay = useCase.stadiumList
-        let ingStadiumRelay = useCase.ingStadium
-        
-        stadiumListRelay.subscribe { model in
-            output.stadiumLists.accept(model)
-        }.disposed(by: self.disposeBag)
-        
-        ingStadiumRelay.subscribe { model in
-            output.ingStadium.accept(model)
-        }.disposed(by: self.disposeBag)
+//        let stadiumListRelay = useCase.stadiumList
+//        let ingStadiumRelay = useCase.ingStadium
+//
+//        stadiumListRelay.subscribe { model in
+//            output.stadiumLists.accept(model)
+//        }.disposed(by: self.disposeBag)
+//
+//        ingStadiumRelay.subscribe { model in
+//            output.ingStadium.accept(model)
+//        }.disposed(by: self.disposeBag)
     }
 }
 

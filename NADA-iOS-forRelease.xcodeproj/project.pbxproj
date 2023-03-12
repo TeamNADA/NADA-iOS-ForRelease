@@ -96,6 +96,8 @@
 		77A4D5FC29BD6F4600367B7C /* AroundMeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5FB29BD6F4600367B7C /* AroundMeViewModel.swift */; };
 		77A4D5FE29BD6F9500367B7C /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5FD29BD6F9500367B7C /* ViewModelType.swift */; };
 		77A4D60129BD708C00367B7C /* AroundMeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D60029BD708C00367B7C /* AroundMeResponse.swift */; };
+		77A4D60429BD743600367B7C /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D60329BD743600367B7C /* ModuleFactory.swift */; };
+		77A4D60629BD747300367B7C /* controllerFromStoryBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D60529BD747300367B7C /* controllerFromStoryBoard.swift */; };
 		77AA68EA273E0EC4009C89B0 /* CardAddInGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */; };
 		77B4E7482990E420006098DC /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B4E7472990E420006098DC /* Home.storyboard */; };
 		77B4E74B2990E50E006098DC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B4E74A2990E50E006098DC /* HomeViewController.swift */; };
@@ -319,6 +321,8 @@
 		77A4D5FB29BD6F4600367B7C /* AroundMeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundMeViewModel.swift; sourceTree = "<group>"; };
 		77A4D5FD29BD6F9500367B7C /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		77A4D60029BD708C00367B7C /* AroundMeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundMeResponse.swift; sourceTree = "<group>"; };
+		77A4D60329BD743600367B7C /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
+		77A4D60529BD747300367B7C /* controllerFromStoryBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = controllerFromStoryBoard.swift; sourceTree = "<group>"; };
 		77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddInGroupRequest.swift; sourceTree = "<group>"; };
 		77B4E7422990E00B006098DC /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		77B4E7432990E015006098DC /* Beta.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Beta.xcconfig; sourceTree = "<group>"; };
@@ -803,6 +807,15 @@
 			path = AroundMe;
 			sourceTree = "<group>";
 		};
+		77A4D60229BD741C00367B7C /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				77A4D60329BD743600367B7C /* ModuleFactory.swift */,
+				77A4D60529BD747300367B7C /* controllerFromStoryBoard.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
 		77B4E7462990E415006098DC /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -1138,6 +1151,7 @@
 		F8FC439A26C01EA90033E151 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				77A4D60229BD741C00367B7C /* Factory */,
 				F8FC438526C01CDD0033E151 /* AppDelegate.swift */,
 				F8FC438726C01CDD0033E151 /* SceneDelegate.swift */,
 				F8FC439B26C01EC30033E151 /* Cells */,
@@ -1660,10 +1674,12 @@
 				77A4D60129BD708C00367B7C /* AroundMeResponse.swift in Sources */,
 				7734D5B82777A8E8004360E4 /* String+Extension.swift in Sources */,
 				77A4D5FE29BD6F9500367B7C /* ViewModelType.swift in Sources */,
+				77A4D60429BD743600367B7C /* ModuleFactory.swift in Sources */,
 				F8C83FC3272FA17B0009DF0D /* URL.swift in Sources */,
 				392F7FB4274621F1008CDBF5 /* MoreListTableViewCell.swift in Sources */,
 				77AA68EA273E0EC4009C89B0 /* CardAddInGroupRequest.swift in Sources */,
 				77A4D5EF29AE269B00367B7C /* AroundMeViewController.swift in Sources */,
+				77A4D60629BD747300367B7C /* controllerFromStoryBoard.swift in Sources */,
 				3936993E274A53E000684420 /* GroupEditViewController.swift in Sources */,
 				F8C83FAE272F99940009DF0D /* MoyaLoggerPlugin.swift in Sources */,
 				F84BAFAD26FDB543004CA335 /* FrontCardCreationCollectionViewCell.swift in Sources */,

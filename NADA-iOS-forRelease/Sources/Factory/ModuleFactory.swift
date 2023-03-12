@@ -21,7 +21,7 @@ import UIKit
  */
 
 protocol ModuleFactoryProtocol {
-    
+    func makeSplashVC() -> SplashViewController
 }
 
 
@@ -29,4 +29,8 @@ final class ModuleFactory: ModuleFactoryProtocol {
     static let shared = ModuleFactory()
     private init() { }
     
+    func makeSplashVC() -> SplashViewController {
+        let splashVC = SplashViewController.controllerFromStoryboard(.splash)
+        return splashVC
+    }
 }

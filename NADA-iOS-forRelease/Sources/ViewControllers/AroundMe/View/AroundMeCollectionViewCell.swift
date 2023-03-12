@@ -54,8 +54,11 @@ class AroundMeCollectionViewCell: UICollectionViewCell {
     // MARK: - Methods
     
     //TODO: 나중에 model 나오면 재정의
-    public func setImageData(_ thumailURL: String) {
-        profileImageView.updateServerImage(thumailURL)
+    public func setData(_ model: AroundMeResponse) {
+//        profileImageView.updateServerImage(model.profileImage)
+        profileImageView.image = UIImage(named: model.profileImage)
+        myNameLabel.text = model.myName
+        cardNameLabel.text = model.cardName
     }
     
     // MARK: - UI & Layout

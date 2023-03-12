@@ -13,9 +13,24 @@ final class AroundMeViewModel: ViewModelType {
     // MARK: - Properties
     
 //    private let useCase: StadiumUseCase
-    let dummyModel = AroundMeResponse(profileImage: "imgProfileSmall",
-                                              myName: "내 이름(닉네임)",
-                                              cardName: "명함 이름")
+    let dummyList = [AroundMeResponse(profileImage: "imgProfileSmall",
+                                      myName: "내 이름(닉네임)",
+                                      cardName: "명함 이름"),
+                     AroundMeResponse(profileImage: "imgProfileSmall",
+                                      myName: "내 이름(닉네임)",
+                                      cardName: "명함 이름"),
+                     AroundMeResponse(profileImage: "imgProfileSmall",
+                                      myName: "내 이름(닉네임)",
+                                      cardName: "명함 이름"),
+                     AroundMeResponse(profileImage: "imgProfileSmall",
+                                      myName: "내 이름(닉네임)",
+                                      cardName: "명함 이름"),
+                     AroundMeResponse(profileImage: "imgProfileSmall",
+                                      myName: "내 이름(닉네임)",
+                                      cardName: "명함 이름"),
+                     AroundMeResponse(profileImage: "imgProfileSmall",
+                                      myName: "내 이름(닉네임)",
+                                      cardName: "명함 이름")]
     
     private let disposeBag = DisposeBag()
     

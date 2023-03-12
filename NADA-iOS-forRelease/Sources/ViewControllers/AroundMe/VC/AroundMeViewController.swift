@@ -56,6 +56,7 @@ final class AroundMeViewController: UIViewController {
         super.viewDidLoad()
         setUI()
         setLayout()
+        setDelegate()
         setRegister()
         bindViewModels()
     }
@@ -99,6 +100,11 @@ extension AroundMeViewController {
     
     // MARK: - Methods
     
+    private func setDelegate() {
+        aroundMeCollectionView.dataSource = self
+//        aroundMeCollectionView.delegate = self
+    }
+    
     private func setRegister() {
         aroundMeCollectionView.register(AroundMeCollectionViewCell.self, forCellWithReuseIdentifier: AroundMeCollectionViewCell.className)
     }
@@ -136,4 +142,17 @@ extension AroundMeViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - UICollectionViewDataSource
 
+extension AroundMeViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let model = viewModel.dummyList
+        guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: AroundMeCollectionViewCell.className, for: indexPath) as? AroundMeCollectionViewCell else { return UICollectionViewCell()}
+        cardCell.setData(model[indexPath.row])
+        return cardCell
+    }
+}

@@ -47,7 +47,7 @@ final class AroundMeViewController: UIViewController {
     private lazy var aroundMeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: aroundMeCollectionViewFlowLayout).then {
         $0.showsHorizontalScrollIndicator = false
         $0.clipsToBounds = false
-        $0.backgroundColor = .blue
+//        $0.backgroundColor = .blue
     }
     
     // MARK: - View Life Cycles
@@ -126,8 +126,8 @@ extension AroundMeViewController {
 
 extension AroundMeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var width: CGFloat = UIScreen.main.bounds.width - 48
-        var height: CGFloat = 144
+        let width: CGFloat = UIScreen.main.bounds.width - 48
+        let height: CGFloat = 144
         
         return CGSize(width: width, height: height)
     }

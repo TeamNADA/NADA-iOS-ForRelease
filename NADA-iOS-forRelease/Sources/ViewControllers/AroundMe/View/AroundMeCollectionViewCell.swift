@@ -88,7 +88,7 @@ class AroundMeCollectionViewCell: UICollectionViewCell {
             make.leading.equalToSuperview().inset(20)
         }
         dividerLine.snp.makeConstraints { make in
-            make.bottom.equalTo(cardNameLabel.snp.top).offset(11)
+            make.bottom.equalTo(cardNameLabel.snp.top).offset(-11)
             make.height.equalTo(0.5)
         }
     }

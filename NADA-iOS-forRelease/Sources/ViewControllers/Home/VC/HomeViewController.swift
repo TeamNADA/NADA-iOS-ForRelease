@@ -72,7 +72,7 @@ extension HomeViewController {
     // MARK: - UI & Layout
     
     private func setUI() {
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .background
         self.navigationController?.navigationBar.isHidden = true
     }
     

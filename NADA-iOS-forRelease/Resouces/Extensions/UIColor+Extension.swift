@@ -162,6 +162,34 @@ extension UIColor {
         }
     }
     
+    @nonobjc class var cardCreationUnclicked: UIColor {
+        if #available(iOS 13, *) {
+            return UIColor { (traitCollection: UITraitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .light {
+                    return UIColor(red: 224.0 / 255.0, green: 232 / 255.0, blue: 239.0 / 255.0, alpha: 1.0)
+                } else {
+                    return UIColor(red: 64.0 / 255.0, green: 70 / 255.0, blue: 79 / 255.0, alpha: 1.0)
+                }
+            }
+        } else {
+            return UIColor(red: 224.0 / 255.0, green: 232 / 255.0, blue: 239.0 / 255.0, alpha: 1.0)
+        }
+    }
+    
+    @nonobjc class var cardCreationClicked: UIColor {
+        if #available(iOS 13, *) {
+            return UIColor { (traitCollection: UITraitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .light {
+                    return UIColor(red: 202.0 / 255.0, green: 209 / 255.0, blue: 215.0 / 255.0, alpha: 1.0)
+                } else {
+                    return UIColor(red: 45.0 / 255.0, green: 49 / 255.0, blue: 55 / 255.0, alpha: 1.0)
+                }
+            }
+        } else {
+            return UIColor(red: 224.0 / 255.0, green: 232 / 255.0, blue: 239.0 / 255.0, alpha: 1.0)
+        }
+    }
+    
     @nonobjc class var harmonyRed: UIColor {
       return UIColor(red: 239.0 / 255.0, green: 115.0 / 255.0, blue: 115.0 / 255.0, alpha: 1.0)
     }

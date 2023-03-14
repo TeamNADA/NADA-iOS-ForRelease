@@ -18,6 +18,8 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     public var isShareable = false
     public var cardDataModel: Card?
     public var isActivate: Bool?
+    private weak var timer: Timer?
+    private var seconds = 0
 
     private let cardBackgroundView: UIView = {
         let view = UIView()
@@ -172,6 +174,13 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         
         lottieImage.isHidden = isActivate ? false : true
         _ = isActivate ? lottieImage.play() : lottieImage.stop()
+        
+        if isActivate {
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(processTimer), userInfo: nil, repeats: true)
+        } else {
+            timer?.invalidate()
+            seconds = 0
+        }
     }
     
     private func setupLayout() {
@@ -381,5 +390,11 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     
     @objc func touchSwitch(_ sender: UISwitch) {
         setCardActivationUI(with: sender.isOn)
+    }
+    
+    @objc
+    func processTimer() {
+        seconds += 1
+        print(seconds)
     }
 }

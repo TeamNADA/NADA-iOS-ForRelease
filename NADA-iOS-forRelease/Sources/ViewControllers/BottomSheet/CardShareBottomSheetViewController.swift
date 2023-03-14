@@ -180,6 +180,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         } else {
             timer?.invalidate()
             seconds = 0
+            nearByTimeLabel.text = "10:00"
         }
     }
     
@@ -395,6 +396,6 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     @objc
     func processTimer() {
         seconds += 1
-        print(seconds)
+        nearByTimeLabel.text = calculateMinuteTime(sec: 600 - seconds)
     }
 }

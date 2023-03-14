@@ -55,6 +55,16 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         return label
     }()
     
+    private let nearByTimeLabel: UILabel = {
+        let label = UILabel()
+        label.font = .button02
+        label.textColor = .mainColorNadaMain
+        label.text = "10:00"
+        label.sizeToFit()
+        
+        return label
+    }()
+    
     lazy
     private var nearBySwitch: UISwitch = {
         let nearBySwitch = UISwitch()
@@ -139,7 +149,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         
         cardBackgroundView.addSubviews([nadaLogoImage, qrImage, idStackView, saveAsImageButton])
         
-        nearByBackgroundView.addSubviews([nearByImage, nearByLabel, nearBySwitch, lottieImage])
+        nearByBackgroundView.addSubviews([nearByImage, nearByLabel, nearByTimeLabel, nearBySwitch, lottieImage])
         
         idLabel.text = cardDataModel?.cardID ?? ""
         
@@ -156,6 +166,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         
         nearByLabel.text = isActivate ? "내 근처의 명함 ON" : "내 근처의 명함 OFF"
         nearByLabel.textColor = isActivate ? .mainColorNadaMain : .tertiary
+        nearByTimeLabel.isHidden = !isActivate
         
         nearBySwitch.setOn(isActivate, animated: false)
         
@@ -220,13 +231,19 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
             nearByLabel.centerYAnchor.constraint(equalTo: nearByBackgroundView.centerYAnchor),
             nearByLabel.leadingAnchor.constraint(equalTo: nearByImage.trailingAnchor)
         ])
-        
+                
         nearBySwitch.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             nearBySwitch.centerYAnchor.constraint(equalTo: nearByBackgroundView.centerYAnchor),
             nearBySwitch.trailingAnchor.constraint(equalTo: nearByBackgroundView.trailingAnchor, constant: -20.0),
             nearBySwitch.heightAnchor.constraint(equalToConstant: 31.0),
             nearBySwitch.widthAnchor.constraint(equalToConstant: 51.0)
+        ])
+        
+        nearByTimeLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nearByTimeLabel.centerYAnchor.constraint(equalTo: nearByBackgroundView.centerYAnchor),
+            nearByTimeLabel.trailingAnchor.constraint(equalTo: nearBySwitch.leadingAnchor, constant: -5.0)
         ])
         
         lottieImage.translatesAutoresizingMaskIntoConstraints = false

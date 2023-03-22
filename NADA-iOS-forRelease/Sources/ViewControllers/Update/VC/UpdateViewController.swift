@@ -8,11 +8,13 @@
 import UIKit
 
 import FlexLayout
+import PinLayout
 
 class UpdateViewController: UIViewController {
 
     // MARK: - Components
     
+    private let rootFlexContainer = UIView()
     private let updateCardImageView = UIImageView()
     private let cancelButton = UIButton()
     private let updateContentLabel = UILabel()
@@ -28,6 +30,13 @@ class UpdateViewController: UIViewController {
         setUI()
         addTargets()
         setLayout()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        rootFlexContainer.pin.horizontally(24).vCenter().height(rootFlexContainer.frame.width / 327 * 487 )
+        rootFlexContainer.flex.layout()
     }
 }
 
@@ -81,6 +90,7 @@ extension UpdateViewController {
 
 extension UpdateViewController {
     private func setLayout() {
+        view.addSubview(rootFlexContainer)
         
     }
 }

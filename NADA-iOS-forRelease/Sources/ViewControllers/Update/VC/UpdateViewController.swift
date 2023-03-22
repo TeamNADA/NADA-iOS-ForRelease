@@ -35,6 +35,11 @@ class UpdateViewController: UIViewController {
 
 extension UpdateViewController {
     private func setUI() {
+        view.backgroundColor = .black.withAlphaComponent(0.4)
+        
+        rootFlexContainer.backgroundColor = .background
+        rootFlexContainer.layer.cornerRadius = 20
+        
         updateCardImageView.image = UIImage(named: "imgUpdate")
         
         cancelButton.setImage(UIImage(named: "iconClear"), for: .normal)

@@ -43,6 +43,7 @@ PODS:
   - NVActivityIndicatorView (5.1.1):
     - NVActivityIndicatorView/Base (= 5.1.1)
   - NVActivityIndicatorView/Base (5.1.1)
+  - PinLayout (1.10.4)
   - PromisesObjC (2.2.0)
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
@@ -68,6 +69,7 @@ DEPENDENCIES:
   - Moya
   - Moya/RxSwift
   - NVActivityIndicatorView
+  - PinLayout
   - RxCocoa
   - RxSwift
   - SkeletonView
@@ -93,6 +95,7 @@ SPEC REPOS:
     - lottie-ios
     - Moya
     - NVActivityIndicatorView
+    - PinLayout
     - PromisesObjC
     - RxCocoa
     - RxRelay
@@ -119,6 +122,7 @@ SPEC CHECKSUMS:
   lottie-ios: d0954d3150061f662ed0adf96ef98d7421864c47
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
+  PinLayout: f8a677ce0cd1cfe96b58435d029b4ceb4ce9c04c
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
@@ -129,6 +133,6 @@ SPEC CHECKSUMS:
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
   VerticalCardSwiper: 68df635b354500f86934ea044ade37a264c044c6
 
-PODFILE CHECKSUM: 21a7f8b252714d69ca9015c958692d0cc0e5e2cb
+PODFILE CHECKSUM: bc179a77a6e2b3bd5e2b878e4f4b9eca55d127ce
 
 COCOAPODS: 1.12.0

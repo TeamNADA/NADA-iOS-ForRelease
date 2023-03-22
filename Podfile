@@ -24,4 +24,5 @@ target 'NADA-iOS-forRelease' do
   pod 'RxCocoa'
   pod 'Moya/RxSwift'
   pod 'FlexLayout'
+  pod 'PinLayout'
 end

@@ -56,7 +56,18 @@ extension UpdateViewController {
         updateContentLabel.numberOfLines = 10
         updateContentLabel.font = .textRegular04
         updateContentLabel.textColor = .secondary
-        updateContentLabel.text = ""
+        updateContentLabel.lineBreakMode = .byCharWrapping
+        updateContentLabel.text = """
+                                안녕하세요, 나다입니다.
+                                이번 업데이트에서는 아래와 같은 내용이 개선되었습니다.
+                                안녕하세융
+                                나다에요
+                                -명함을 위젯으로 추가할 수 있어요
+                                -내 주변의 명함을 검색할 수 있어요
+                                ㅇㅇㅇ
+                                앱스토어에서 최신 버전을 확인해 보세요!
+                                이정도면 10줄!
+                                """
         
         checkBoxButton.setImage(UIImage(named: "icnCheckboxUnfilled"), for: .normal)
         checkBoxButton.setImage(UIImage(named: "icnCheckboxFilled"), for: .selected)

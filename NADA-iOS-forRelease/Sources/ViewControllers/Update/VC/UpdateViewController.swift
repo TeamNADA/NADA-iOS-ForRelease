@@ -35,7 +35,7 @@ class UpdateViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        rootFlexContainer.pin.horizontally(24).vCenter().height(rootFlexContainer.frame.width / 327 * 487 )
+        rootFlexContainer.pin.vCenter().hCenter().height(487).width(327)
         rootFlexContainer.flex.layout()
     }
 }

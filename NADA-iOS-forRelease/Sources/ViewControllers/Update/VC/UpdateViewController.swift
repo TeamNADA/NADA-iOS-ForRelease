@@ -71,6 +71,7 @@ extension UpdateViewController {
     private func addTargets() {
         cancelButton.addTarget(self, action: #selector(touchCancelButton), for: .touchUpInside)
         updateButton.addTarget(self, action: #selector(touchUpdateButton), for: .touchUpInside)
+        checkBoxButton.addTarget(self, action: #selector(touchCheckBox), for: .touchUpInside)
     }
     
     // MARK: - Objc Methods
@@ -83,6 +84,12 @@ extension UpdateViewController {
     @objc
     private func touchUpdateButton() {
         // TODO: - 앱스토어로 연결 혹은 홈으로 연결하는 액션 구현.
+    }
+    
+    @objc
+    private func touchCheckBox(_ sender: UIButton) {
+        // TODO: - 체크하게 되면 다시 띄어주지 않음
+        checkBoxButton.isSelected.toggle()
     }
 }
 

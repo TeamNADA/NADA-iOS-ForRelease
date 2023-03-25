@@ -110,5 +110,21 @@ extension UpdateViewController {
     private func setLayout() {
         view.addSubview(rootFlexContainer)
         
+        rootFlexContainer.flex.direction(.column).justifyContent(.spaceBetween).define { flex in
+            flex.addItem().direction(.column).define { flex in
+                flex.addItem().direction(.column).alignItems(.center).define { flex in
+                        flex.addItem(updateCardImageView).marginTop(20)
+                        flex.addItem(cancelButton).position(.absolute).top(20).right(20)
+                    }
+                flex.addItem(updateContentLabel).marginTop(16).marginBottom(18).marginHorizontal(16)
+            }
+            flex.addItem().direction(.column).define { flex in
+                flex.addItem().direction(.row).alignItems(.center).marginBottom(20).define { flex in
+                    flex.addItem(checkBoxButton).marginLeft(16).size(16)
+                    flex.addItem(checkLabel).marginLeft(2)
+                }
+                flex.addItem(updateButton).marginBottom(16).marginHorizontal(17)
+            }
+        }
     }
 }

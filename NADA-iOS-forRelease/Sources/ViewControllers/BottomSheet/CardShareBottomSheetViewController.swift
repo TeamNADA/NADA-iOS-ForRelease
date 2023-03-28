@@ -20,6 +20,8 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     public var isActivate: Bool?
     private weak var timer: Timer?
     private var seconds = 0
+    private var savedTime = ""
+    private var appDidEnterBackgroundDate: Date?
 
     private let cardBackgroundView: UIView = {
         let view = UIView()
@@ -140,6 +142,10 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setNotification()
+    }
+    
     // MARK: - @Functions
     
     private func setupUI() {
@@ -182,6 +188,31 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
             seconds = 0
             nearByTimeLabel.text = "10:00"
         }
+    }
+    
+    func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground(_:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+
+    @objc func applicationDidEnterBackground(_ notification: NotificationCenter) {
+        appDidEnterBackgroundDate = Date()
+        savedTime = nearByTimeLabel.text ?? "00:00"
+        print(savedTime)
+    }
+
+    @objc func applicationWillEnterForeground(_ notification: NotificationCenter) {
+        guard let previousDate = appDidEnterBackgroundDate else { return }
+        let calendar = Calendar.current
+        let difference = calendar.dateComponents([.second], from: previousDate, to: Date())
+        let seconds = difference.second!
+        print(savedTime)
+        print(calculateMinuteTime(sec: calculateMinuteTimeToInt(time: savedTime) - seconds))
+        print(seconds)
+        DispatchQueue.main.async {
+            self.nearByTimeLabel.text = calculateMinuteTime(sec: calculateMinuteTimeToInt(time: self.savedTime) - seconds)
+        }
+        print(nearByTimeLabel.text)
     }
     
     private func setupLayout() {

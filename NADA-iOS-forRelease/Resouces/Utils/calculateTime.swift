@@ -19,3 +19,12 @@ func calculateMinuteTime(sec: Int) -> String {
     let second = (sec % 3600) % 60
     return "\(String(format: "%02d", minute)):\(String(format: "%02d", second))"
 }
+
+func calculateMinuteTimeToInt(time: String) -> Int {
+    let components = time.split { $0 == ":" } .map { (x) -> Int in return Int(String(x))! }
+
+    let minutes = components[0]
+    let seconds = components[1]
+    let secondsCaculated = minutes*60 + seconds
+    return secondsCaculated
+}

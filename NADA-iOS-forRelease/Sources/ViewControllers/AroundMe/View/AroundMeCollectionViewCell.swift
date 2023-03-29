@@ -32,6 +32,7 @@ class AroundMeCollectionViewCell: UICollectionViewCell {
     }
     
     private var cardNameLabel = UILabel().then {
+        $0.textColor = .tertiary
         $0.font = .textBold02
     }
     
@@ -88,8 +89,10 @@ class AroundMeCollectionViewCell: UICollectionViewCell {
             make.leading.equalToSuperview().inset(20)
         }
         dividerLine.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.leading.equalToSuperview()
             make.bottom.equalTo(cardNameLabel.snp.top).offset(-11)
-            make.height.equalTo(0.5)
+            make.height.equalTo(1)
         }
     }
 }

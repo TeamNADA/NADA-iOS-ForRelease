@@ -9,8 +9,8 @@ import Foundation
 
 extension Const {
     struct URL {
-//        static let baseURL = "https://nada-server.o-r.kr"
-        static let baseURL = "http://3.34.197.90"
+//        static let baseURL = "http://3.34.197.90"
+        static let baseURL = "http://3.35.107.3:8080/api/v1"
         static let policyURL = "https://nadaitzme.notion.site/NADA-8385054bc2e44762a62f590534b2a24d"
         static let serviceURL =  "https://nadaitzme.notion.site/NADA-58544bc9f0a1493c94f223cab3a440d0"
         static let moyaURL = "https://github.com/Moya/Moya"

@@ -38,7 +38,7 @@ final class AroundMeViewController: UIViewController {
         $0.textAlignment = .center
     }
     private let emptyStackView = UIStackView().then {
-        $0.spacing = 9
+        $0.spacing = 10
         $0.axis = .vertical
         $0.alignment = .center
     }

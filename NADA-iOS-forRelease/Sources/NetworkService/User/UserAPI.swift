@@ -31,13 +31,13 @@ public class UserAPI {
         }
     }
     
-    func userSocialSignUp(request: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        userProvider.request(.userSocialSignUp(userID: request)) { (result) in
+    func userSocialSignUp(socialID: String, socialType: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        userProvider.request(.userSocialSignUp(socialID: socialID, socialType: socialType)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                let networkResult = self.judgeUserTokenFetchStatus(by: statusCode, data)
+                let networkResult = self.judgeUserSocialSignUpStatus(by: statusCode, data)
                 completion(networkResult)
 
             case .failure(let err):
@@ -75,6 +75,25 @@ public class UserAPI {
             case .failure(let err):
                 print(err)
             }
+        }
+    }
+    
+    private func judgeUserSocialSignUpStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(GenericResponse<AccessToken>.self, from: data)
+        else {
+            return .pathErr
+        }
+        
+        switch statusCode {
+        case 200:
+            return .success(decodedData.data ?? "None-Data")
+        case 400..<500:
+            return .requestErr(decodedData.error?.message ?? "error message")
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
         }
     }
     

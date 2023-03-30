@@ -15,7 +15,7 @@ class BackCardCreationCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "BackCardCreationCollectionViewCell"
     
-    private let flavorList = ["민초", "반민초", "소주", "맥주", "부먹", "찍먹", "양념", "후라이드"]
+    var flavorList: [String]?
     private let maxLength: Int = 20
     private var textFieldList = [UITextField]()
     private var requiredCollectionViewList = [UICollectionView]()
@@ -207,13 +207,13 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDataSource {
         }
         switch collectionView {
         case isMinchoCollectionView:
-            cell.initCell(flavor: flavorList[indexPath.item])
+            cell.initCell(flavor: flavorList?[indexPath.item] ?? "")
         case isSojuCollectionView:
-            cell.initCell(flavor: flavorList[indexPath.item + 2])
+            cell.initCell(flavor: flavorList?[indexPath.item + 2] ?? "")
         case isBoomukCollectionView:
-            cell.initCell(flavor: flavorList[indexPath.item + 4])
+            cell.initCell(flavor: flavorList?[indexPath.item + 4] ?? "")
         case isSaucedCollectionView:
-            cell.initCell(flavor: flavorList[indexPath.item + 6])
+            cell.initCell(flavor: flavorList?[indexPath.item + 6] ?? "")
         default:
             return UICollectionViewCell()
         }

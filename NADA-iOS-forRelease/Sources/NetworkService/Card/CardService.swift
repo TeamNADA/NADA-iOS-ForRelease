@@ -115,6 +115,7 @@ extension CardService: TargetType {
         case .imageUpload(let image):
             var multiPartData: [Moya.MultipartFormData] = []
             let imageData = MultipartFormData(provider: .data(image.pngData() ?? Data()), name: "image", mimeType: "image/png")
+            multiPartData.append(imageData)
             
             return .uploadMultipart(multiPartData)
         }

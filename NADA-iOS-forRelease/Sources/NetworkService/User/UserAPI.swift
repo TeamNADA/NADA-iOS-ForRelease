@@ -109,7 +109,7 @@ public class UserAPI {
         case 200:
             return .success(decodedData.data ?? "None-Data")
         case 400..<500:
-            return .requestErr(decodedData.msg)
+            return .requestErr(decodedData.error?.message ?? "error message")
         case 500:
             return .serverErr
         default:
@@ -144,9 +144,9 @@ public class UserAPI {
         
         switch statusCode {
         case 200:
-            return .success(decodedData.msg)
+            return .success("success")
         case 400..<500:
-            return .requestErr(decodedData.msg)
+            return .requestErr(decodedData.error?.message ?? "error message")
         case 500:
             return .serverErr
         default:

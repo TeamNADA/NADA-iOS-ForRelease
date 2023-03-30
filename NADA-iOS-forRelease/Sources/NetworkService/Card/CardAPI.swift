@@ -121,7 +121,7 @@ public class CardAPI {
         case 200:
             return .success(decodedData.data ?? "None-Data")
         case 400..<500:
-            return .requestErr(decodedData.msg)
+            return .requestErr(decodedData.error?.message ?? "error message")
         case 500:
             return .serverErr
         default:
@@ -141,7 +141,7 @@ public class CardAPI {
         case 200:
             return .success(decodedData.data ?? "None-Data")
         case 400..<500:
-            return .requestErr(decodedData.msg)
+            return .requestErr(decodedData.error?.message ?? "error message")
         case 500:
             return .serverErr
         default:
@@ -161,7 +161,7 @@ public class CardAPI {
         case 200:
             return .success(decodedData.data ?? "None-Data")
         case 400..<500:
-            return .requestErr(decodedData.msg)
+            return .requestErr(decodedData.error?.message ?? "error message")
         case 500:
             return .serverErr
         default:
@@ -181,7 +181,7 @@ public class CardAPI {
         case 201:
             return .success(decodedData.data ?? "None-Data")
         case 400..<500:
-            return .requestErr(decodedData.msg)
+            return .requestErr(decodedData.error?.message ?? "error message")
         case 500:
             return .serverErr
         default:
@@ -196,9 +196,9 @@ public class CardAPI {
         
         switch statusCode {
         case 200:
-            return .success(decodedData.msg)
+            return .success("")
         case 400..<500:
-            return .requestErr(decodedData.msg)
+            return .requestErr(decodedData.error?.message ?? "error message")
         case 500:
             return .serverErr
         default:

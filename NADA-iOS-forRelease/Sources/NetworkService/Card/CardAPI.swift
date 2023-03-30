@@ -124,7 +124,41 @@ public class CardAPI {
         }
     }
     
+    func tasteFetch(cardType: CardType, completion: @escaping (NetworkResult<Any>) -> Void) {
+        cardProvider.request(.tasteFetch(cardType: cardType)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeTasteFetchStatus(by: statusCode, data)
+                
+                completion(networkResult)
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
     // MARK: - JudgeStatus methods
+    
+    private func judgeTasteFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(GenericResponse<Taste>.self, from: data)
+        else {
+            return .pathErr
+        }
+        
+        switch statusCode {
+        case 200:
+            return .success(decodedData.data ?? "None-Data")
+        case 400..<500:
+            return .requestErr(decodedData.error?.message ?? "error message")
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
     
     private func judgeCardDetailFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         

@@ -159,6 +159,8 @@ public class GroupAPI {
         }
     }
     
+    // MARK: - JudgeStatus methods
+    
     private func judgeGroupListFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
 
         let decoder = JSONDecoder()

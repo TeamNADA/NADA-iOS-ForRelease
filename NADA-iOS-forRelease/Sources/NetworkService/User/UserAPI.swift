@@ -78,6 +78,8 @@ public class UserAPI {
         }
     }
     
+    // MARK: - JudgeStatus methods
+    
     private func judgeUserSocialSignUpStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<AccessToken>.self, from: data)

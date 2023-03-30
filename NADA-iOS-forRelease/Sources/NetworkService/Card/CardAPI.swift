@@ -123,6 +123,9 @@ public class CardAPI {
             }
         }
     }
+    
+    // MARK: - JudgeStatus methods
+    
     private func judgeCardDetailFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()

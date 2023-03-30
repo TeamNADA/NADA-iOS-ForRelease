@@ -14,6 +14,7 @@ enum CardService {
     case cardListFetch(userID: String, isList: Bool, offset: Int?)
     case cardListEdit(request: CardListEditRequest)
     case cardDelete(cardID: String)
+    case imageUpload(image: UIImage)
 }
 
 extension CardService: TargetType {
@@ -34,6 +35,8 @@ extension CardService: TargetType {
             return "/cards"
         case .cardDelete(let cardID):
             return "/card/\(cardID)"
+        case .imageUpload:
+            return "/image"
         }
     }
     
@@ -41,7 +44,7 @@ extension CardService: TargetType {
         switch self {
         case .cardDetailFetch, .cardListFetch:
             return .get
-        case .cardCreation:
+        case .cardCreation, .imageUpload:
             return .post
         case .cardListEdit:
             return .put
@@ -106,6 +109,11 @@ extension CardService: TargetType {
                                       encoding: URLEncoding.queryString)
         case .cardListEdit(let requestModel):
             return .requestJSONEncodable(requestModel)
+        case .imageUpload(let image):
+            var multiPartData: [Moya.MultipartFormData] = []
+            let imageData = MultipartFormData(provider: .data(image.pngData() ?? Data()), name: "image", mimeType: "image/png")
+            
+            return .uploadMultipart(multiPartData)
         }
     }
     
@@ -115,7 +123,7 @@ extension CardService: TargetType {
             return Const.Header.bearerHeader()
         case .cardListEdit:
             return Const.Header.basicHeader()
-        case .cardCreation:
+        case .cardCreation, .imageUpload:
             return Const.Header.multipartFormHeader()
         }
     }

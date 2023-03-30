@@ -144,7 +144,7 @@ public class UserAPI {
         
         switch statusCode {
         case 200:
-            return .success("success")
+            return .success(decodedData.data ?? "None-Data")
         case 400..<500:
             return .requestErr(decodedData.error?.message ?? "error message")
         case 500:

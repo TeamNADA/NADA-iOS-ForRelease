@@ -15,6 +15,7 @@ enum CardService {
     case cardListEdit(request: CardListEditRequest)
     case cardDelete(cardID: String)
     case imageUpload(image: UIImage)
+    case tasteFetch(cardType: CardType)
 }
 
 extension CardService: TargetType {
@@ -37,12 +38,14 @@ extension CardService: TargetType {
             return "/card/\(cardID)"
         case .imageUpload:
             return "/image"
+        case .tasteFetch(let cardType):
+            return "/card/\(cardType)/taste"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .cardDetailFetch, .cardListFetch:
+        case .cardDetailFetch, .cardListFetch, .tasteFetch:
             return .get
         case .cardCreation, .imageUpload:
             return .post
@@ -59,7 +62,7 @@ extension CardService: TargetType {
     
     var task: Task {
         switch self {
-        case .cardDetailFetch, .cardDelete:
+        case .cardDetailFetch, .cardDelete, .tasteFetch:
             return .requestPlain
         case .cardCreation(let request, let image):
             
@@ -119,7 +122,7 @@ extension CardService: TargetType {
     
     var headers: [String: String]? {
         switch self {
-        case .cardDetailFetch, .cardListFetch, .cardDelete:
+        case .cardDetailFetch, .cardListFetch, .cardDelete, .tasteFetch:
             return Const.Header.bearerHeader()
         case .cardListEdit:
             return Const.Header.basicHeader()

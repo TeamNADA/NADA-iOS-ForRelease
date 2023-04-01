@@ -112,8 +112,8 @@ extension AroundMeViewController {
     
     private func bindViewModels() {
         let input = AroundMeViewModel.Input(
-            viewDidLoadEvent: self.rx.methodInvoked(#selector(UIViewController.viewWillAppear)).map { _ in },
-            refreshButtonTapEvent: self.rx.methodInvoked(#selector(UIViewController.viewWillAppear)).map { _ in })
+            viewDidLoadEvent: self.rx.methodInvoked(#selector(UIViewController.viewDidLoad)).map { _ in },
+            refreshButtonTapEvent: self.navigationBar.rightButton.rx.tap.map { _ in })
         //        let output = self.viewModel.transform(from: input, disposeBag: self.disposeBag)
         
         //TODO: 서버 연결 뒤 rx binding

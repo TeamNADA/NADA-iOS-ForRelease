@@ -14,19 +14,29 @@ struct CardClass: Codable {
 
 // MARK: - Card
 struct Card: Codable {
-    let cardID: String
-    let author: String? = ""
-    let background, title, name, birthDate, mbti: String
-    let instagram, link, cardDescription, phoneNumber: String?
-    let isMincho, isSoju, isBoomuk, isSauced: Bool
-    let oneTmi, twoTmi, threeTmi: String?
+    let birth: String
+    let cardID: Int
+    let cardUUID: String
+    let cardImage: String
+    let cardName: String
+    let cardTastes: [CardTasteInfo]
+    let cardType: String
+    let departmentName: String?
+    let isRepresentative: Bool
+    let mailAddress: String?
+    let mbti: String?
+    let phoneNumber: String?
+    let sns: String?
+    let tmi: String?
+    let urls: [String]?
+    let userName: String
 
     enum CodingKeys: String, CodingKey {
+        case birth, cardImage, cardName, cardTastes, cardType, departmentName, isRepresentative, mailAddress, mbti, phoneNumber, sns, tmi, urls, userName
         case cardID = "cardId"
-        case author, background, title, name, birthDate, mbti, instagram, link, phoneNumber
-        case cardDescription = "description"
-        case isMincho, isSoju, isBoomuk, isSauced, oneTmi, twoTmi, threeTmi
+        case cardUUID = "cardUuid"
     }
+        
     // TODO: - 쓰게 될줄 알았는데 안써서 일단 보류
 //    init(from decoder: Decoder) throws {
 //        let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -49,8 +59,18 @@ struct Card: Codable {
 //    }
     
     static let mockData = [
-        Card(cardID: "id1", background: "imgCardBg01", title: "첫 번째 카드", name: "1현규", birthDate: "", mbti: "", instagram: "", link: "", cardDescription: "", phoneNumber: "", isMincho: true, isSoju: true, isBoomuk: true, isSauced: true, oneTmi: "", twoTmi: "", threeTmi: ""),
-        Card(cardID: "id2", background: "imgCardBg02", title: "두 번째 카드", name: "2현규", birthDate: "", mbti: "", instagram: "", link: "", cardDescription: "", phoneNumber: "", isMincho: true, isSoju: true, isBoomuk: true, isSauced: true, oneTmi: "", twoTmi: "", threeTmi: ""),
-        Card(cardID: "id3", background: "imgCardBg03", title: "세 번째 카드", name: "3현규", birthDate: "", mbti: "", instagram: "", link: "", cardDescription: "", phoneNumber: "", isMincho: true, isSoju: true, isBoomuk: true, isSauced: true, oneTmi: "", twoTmi: "", threeTmi: "")
+        Card(birth: "", cardID: 0, cardUUID: "id1", cardImage: "imgCardBg01", cardName: "첫 번째 카드", cardTastes: [CardTasteInfo(cardTasteName: "", isChoose: false, sortOrder: 0)], cardType: "", departmentName: "", isRepresentative: false, mailAddress: "", mbti: "", phoneNumber: "", sns: "", tmi: "", urls: [], userName: "1현규"),
+        Card(birth: "", cardID: 1, cardUUID: "id2", cardImage: "imgCardBg02", cardName: "두 번째 카드", cardTastes: [CardTasteInfo(cardTasteName: "", isChoose: false, sortOrder: 0)], cardType: "", departmentName: "", isRepresentative: false, mailAddress: "", mbti: "", phoneNumber: "", sns: "", tmi: "", urls: [], userName: "2현규"),
+        Card(birth: "", cardID: 2, cardUUID: "id3", cardImage: "imgCardBg03", cardName: "세 번째 카드", cardTastes: [CardTasteInfo(cardTasteName: "", isChoose: false, sortOrder: 0)], cardType: "", departmentName: "", isRepresentative: false, mailAddress: "", mbti: "", phoneNumber: "", sns: "", tmi: "", urls: [], userName: "3현규")
     ]
+}
+
+struct CardTasteInfo: Codable {
+    let cardTasteName: String
+    let isChoose: Bool
+    let sortOrder: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case cardTasteName, isChoose, sortOrder
+    }
 }

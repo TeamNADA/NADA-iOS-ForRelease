@@ -141,7 +141,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         
         nearByBackgroundView.addSubviews([nearByImage, nearByLabel, nearBySwitch, lottieImage])
         
-        idLabel.text = cardDataModel?.cardID ?? ""
+        idLabel.text = cardDataModel?.cardUUID ?? ""
         
         setCardActivationUI(with: isActivate ?? false)
         
@@ -239,7 +239,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     private func setQRImage() {
         let frame = CGRect(origin: .zero, size: qrImage.frame.size)
         let qrcode = QRCodeView(frame: frame)
-        generateDynamicLink(with: cardDataModel?.cardID ?? "") { dynamicLink in
+        generateDynamicLink(with: cardDataModel?.cardUUID ?? "") { dynamicLink in
             qrcode.generateCode(dynamicLink,
                                 foregroundColor: .primary,
                                 backgroundColor: .card)
@@ -327,7 +327,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return UIImage() }
         backCard.frame = CGRect(x: 0, y: 0, width: 327, height: 540)
         guard let cardDataModel = cardDataModel else { return UIImage() }
-        backCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
+        backCard.initCell(cardTasteInfo: cardDataModel.cardTastes, tmi: cardDataModel.tmi, isShareable: isShareable)
 
         let backCardView = UIView(frame: CGRect(x: 0, y: 0, width: 327, height: 540))
         backCardView.addSubview(backCard)
@@ -344,7 +344,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     
     @objc
     private func copyId() {
-        UIPasteboard.general.string = cardDataModel?.cardID ?? ""
+        UIPasteboard.general.string = cardDataModel?.cardUUID ?? ""
         showToast(message: "명함 아이디가 복사되었습니다.", font: UIFont.button02, view: "copyID")
     }
     

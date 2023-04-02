@@ -56,24 +56,28 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
         view.addSubview(addButton)
         setupLayout()
         
-        groupLabel.text = cardDataModel?.cardDescription
+        groupLabel.text = cardDataModel?.departmentName
         setCardView()
     }
     
     private func setCardView() {
-        cardView.backgroundImageView.updateServerImage(cardDataModel?.background ?? "")
-        cardView.titleLabel.text = cardDataModel?.title ?? ""
-        cardView.descriptionLabel.text = cardDataModel?.cardDescription ?? ""
-        cardView.userNameLabel.text = cardDataModel?.name ?? ""
-        cardView.birthLabel.text = cardDataModel?.birthDate ?? ""
-        cardView.mbtiLabel.text = cardDataModel?.mbti ?? ""
-        cardView.instagramIDLabel.text = cardDataModel?.instagram ?? ""
-        cardView.lineURLLabel.text = cardDataModel?.link ?? ""
+        guard let cardDataModel else { return }
         
-        if cardDataModel?.instagram == ""{
+        cardView.backgroundImageView.updateServerImage(cardDataModel.cardImage)
+        cardView.titleLabel.text = cardDataModel.cardName
+        cardView.descriptionLabel.text = cardDataModel.departmentName ?? ""
+        cardView.userNameLabel.text = cardDataModel.userName
+        cardView.birthLabel.text = cardDataModel.birth
+        cardView.mbtiLabel.text = cardDataModel.mbti ?? ""
+        cardView.instagramIDLabel.text = cardDataModel.sns ?? ""
+        if let urls = cardDataModel.urls {
+            cardView.lineURLLabel.text = urls[0]
+        }
+        
+        if cardDataModel.sns == nil {
             cardView.instagramIcon.isHidden = true
         }
-        if cardDataModel?.link == ""{
+        if cardDataModel.urls == nil {
             cardView.urlIcon.isHidden = true
         }
     }

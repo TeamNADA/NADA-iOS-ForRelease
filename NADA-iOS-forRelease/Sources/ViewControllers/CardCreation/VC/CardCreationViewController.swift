@@ -64,19 +64,6 @@ class CardCreationViewController: UIViewController {
         setTextLabelGesture()
         setNotification()
         tasteFetchWithAPI()
-        
-        // FIXME: 서버통신 테스트 중. 추후 호출 위치 변경.
-//        cardDetailFetchWithAPI(cardID: "cardA")
-        
-        // FIXME: group.서버통신 테스트 중. 추후 호출 위치 변경.
-//        let changeGroupRequest = ChangeGroupRequest(cardID: "cardA",
-//                                                    userID: "nada2",
-//                                                    groupID: 3,
-//                                                    newGroupID: 2)
-//        changeGroupWithAPI(request: changeGroupRequest)
-        
-        // FIXME: group.서버통신 테스트 중. 추후 호출 위치 변경.
-//        cardDeleteInGroupWithAPI(groupID: 3, cardID: "cardA")
     }
     
     // MARK: - @IBAction Properties

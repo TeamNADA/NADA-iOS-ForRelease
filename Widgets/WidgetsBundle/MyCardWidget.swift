@@ -19,11 +19,11 @@ struct MyCardProvider: IntentTimelineProvider {
         
         if let cardID = configuration.myCard?.identifier,
            let card = fetchMyCard(with: cardID) {
-            entry = MyCardEntry(date: Date(), widgetCard: WidgetCard(cardID: card.cardID,
-                                                       title: card.title,
-                                                       userName: card.name,
+            entry = MyCardEntry(date: Date(), widgetCard: WidgetCard(cardID: card.cardUUID,
+                                                       title: card.cardName,
+                                                       userName: card.userName,
             // TODO: - image 를 통신하거나 DB 에서 꺼내오는 작업이 필요하다.
-                                                       backgroundImage: UIImage(named: card.background) ?? UIImage()))
+                                                       backgroundImage: UIImage(named: card.cardImage) ?? UIImage()))
         } else {
             entry = MyCardEntry(date: Date(), widgetCard: nil)
         }
@@ -40,11 +40,11 @@ struct MyCardProvider: IntentTimelineProvider {
            let card = fetchMyCard(with: cardID) {
             for hourOffset in 0 ..< 5 {
                 let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate) ?? Date()
-                let entry = MyCardEntry(date: entryDate, widgetCard: WidgetCard(cardID: card.cardID,
-                                                               title: card.title,
-                                                               userName: card.name,
+                let entry = MyCardEntry(date: entryDate, widgetCard: WidgetCard(cardID: card.cardUUID,
+                                                               title: card.cardName,
+                                                               userName: card.userName,
                 // TODO: - image 를 통신하거나 DB 에서 꺼내오는 작업이 필요하다.
-                                                               backgroundImage: UIImage(named: card.background) ?? UIImage()))
+                                                               backgroundImage: UIImage(named: card.cardImage) ?? UIImage()))
                 entries.append(entry)
             }
         } else {
@@ -65,7 +65,7 @@ extension MyCardProvider {
         var matchedCard: Card?
         
         Card.mockData.forEach { card in
-            if card.cardID == cardID {
+            if card.cardUUID == cardID {
                 matchedCard = card
             }
         }
@@ -155,7 +155,7 @@ struct MyCardWidget_Previews: PreviewProvider {
     static var previews: some View {
         MyCardEntryView(entry: MyCardEntry(date: Date(), widgetCard: nil))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
-        MyCardEntryView(entry: MyCardEntry(date: Date(), widgetCard: WidgetCard(cardID: Card.mockData[0].cardID, title: Card.mockData[0].title, userName: Card.mockData[0].name, backgroundImage: UIImage(named: Card.mockData[2].background) ?? UIImage())))
+        MyCardEntryView(entry: MyCardEntry(date: Date(), widgetCard: WidgetCard(cardID: Card.mockData[0].cardUUID, title: Card.mockData[0].cardName, userName: Card.mockData[0].userName, backgroundImage: UIImage(named: Card.mockData[2].cardImage) ?? UIImage())))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

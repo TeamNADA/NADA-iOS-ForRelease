@@ -121,14 +121,14 @@ extension CardCreationPreviewViewController {
         frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
         guard let frontCardDataModel = frontCardDataModel else { return }
         frontCard.initCell(cardBackgroundImage,
-                           frontCardDataModel.title,
-                           frontCardDataModel.description,
-                           frontCardDataModel.name,
-                           frontCardDataModel.birthDate,
-                           frontCardDataModel.mbti,
-                           frontCardDataModel.instagramID,
-                           frontCardDataModel.phoneNumber,
-                           frontCardDataModel.linkURL,
+                           frontCardDataModel.cardName,
+                           frontCardDataModel.departmentName ?? "",
+                           frontCardDataModel.userName,
+                           frontCardDataModel.birth,
+                           frontCardDataModel.mbti ?? "",
+                           frontCardDataModel.sns ?? "",
+                           frontCardDataModel.phoneNumber ?? "",
+                           frontCardDataModel.urls?[0] ?? "",
                            isShareable: isShareable)
         
         cardView.addSubview(frontCard)
@@ -199,14 +199,14 @@ extension CardCreationPreviewViewController {
             frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
             guard let frontCardDataModel = frontCardDataModel else { return }
             frontCard.initCell(cardBackgroundImage,
-                               frontCardDataModel.title,
-                               frontCardDataModel.description,
-                               frontCardDataModel.name,
-                               frontCardDataModel.birthDate,
-                               frontCardDataModel.mbti,
-                               frontCardDataModel.instagramID,
-                               frontCardDataModel.phoneNumber,
-                               frontCardDataModel.linkURL,
+                               frontCardDataModel.cardName,
+                               frontCardDataModel.departmentName ?? "",
+                               frontCardDataModel.userName,
+                               frontCardDataModel.birth,
+                               frontCardDataModel.mbti ?? "",
+                               frontCardDataModel.sns ?? "",
+                               frontCardDataModel.phoneNumber ?? "",
+                               frontCardDataModel.urls?[0] ?? "",
                                isShareable: isShareable)
             
             cardView.addSubview(frontCard)

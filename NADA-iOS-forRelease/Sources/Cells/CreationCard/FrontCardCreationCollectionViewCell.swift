@@ -203,16 +203,16 @@ extension FrontCardCreationCollectionViewCell {
         } else {
             frontCardCreationDelegate?.frontCardCreation(requiredInfo: false)
         }
-        if let defaultImageIndex = defaultImageIndex {
-            frontCardCreationDelegate?.frontCardCreation(with: FrontCardDataModel(defaultImage: defaultImageIndex,
-                                                                                 title: cardTitleTextField.text ?? "",
-                                                                                 name: userNameTextField.text ?? "",
-                                                                                 birthDate: birthLabel.text ?? "",
-                                                                                 mbti: mbtiLabel.text ?? "",
-                                                                                 instagramID: instagramIDTextField.text ?? "",
-                                                                                 linkURL: linkURLTextField.text ?? "",
-                                                                                 description: descriptionTextField.text ?? "",
-                                                                                 phoneNumber: phoneNumberTextField.text ?? ""))
+        if let _ = defaultImageIndex {
+            frontCardCreationDelegate?.frontCardCreation(with: FrontCardDataModel(birth: birthLabel.text ?? "",
+                                                                                  cardName: cardTitleTextField.text ?? "",
+                                                                                  userName: userNameTextField.text ?? "",
+                                                                                  departmentName: descriptionTextField.text,
+                                                                                  mailAddress: nil,
+                                                                                  mbti: mbtiLabel.text,
+                                                                                  phoneNumber: phoneNumberTextField.text,
+                                                                                  sns: instagramIDTextField.text,
+                                                                                  urls: linkURLTextField.text == nil ? nil : [linkURLTextField.text ?? ""]))
         }
     }
     static func nib() -> UINib {

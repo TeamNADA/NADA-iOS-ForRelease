@@ -96,6 +96,7 @@ class CardCreationViewController: UIViewController {
         nextVC.frontCardDataModel = frontCard
         nextVC.backCardDataModel = backCard
         nextVC.cardBackgroundImage = newImage
+        nextVC.tasteInfo = tasteInfo
         navigationController?.pushViewController(nextVC, animated: true)
     }
 }
@@ -343,14 +344,8 @@ extension CardCreationViewController: BackCardCreationDelegate {
     func backCardCreation(endEditing valid: Bool) {
         isEditingMode = valid
     }
-    func backCardCreation(withRequired requiredInfo: [String: Bool], withOptional optionalInfo: [String: String]) {
-        backCard = BackCardDataModel(isMincho: requiredInfo["isMincho"] ?? false,
-                                     isSoju: requiredInfo["isSoju"] ?? false,
-                                     isBoomuk: requiredInfo["isBoomuk"] ?? false,
-                                     isSauced: requiredInfo["isSauced"] ?? false,
-                                     oneTMI: optionalInfo["firstTMI"] ?? "",
-                                     twoTMI: optionalInfo["secondTMI"] ?? "",
-                                     threeTMI: optionalInfo["thirdTMI"] ?? "")
+    func backCardCreation(withRequired requiredInfo: [String], withOptional optionalInfo: String?) {
+        backCard = BackCardDataModel(tastes: requiredInfo, tmi: optionalInfo)
     }
 }
 

@@ -55,19 +55,18 @@ class CardCreationPreviewViewController: UIViewController {
     }
     @IBAction func touchCompleteButton(_ sender: Any) {
         guard let frontCardDataModel = frontCardDataModel, let backCardDataModel = backCardDataModel else { return }
-        
-        guard let userID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) else { return }
-        
-        cardCreationRequest = CardCreationRequest(userID: userID, frontCard: frontCardDataModel, backCard: backCardDataModel)
-        guard let cardCreationRequest = cardCreationRequest,
-              let cardBackgroundImage = cardBackgroundImage else { return }
 
         DispatchQueue.main.async {
             self.setActivityIndicator()
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.cardCreationWithAPI(request: cardCreationRequest, image: cardBackgroundImage)
+            self.cardImageUploadWithAPI { [weak self] imageURL in
+                guard let self = self else { return }
+                
+                let cardCreationRequest = CardCreationRequest(cardImageURL: imageURL, cardType: self.cardType, frontCard: frontCardDataModel, backCard: backCardDataModel)
+                self.cardCreationWithAPI(request: cardCreationRequest)
+            }
         }
     }
     @IBAction func touchBackButton(_ sender: Any) {
@@ -227,8 +226,8 @@ extension CardCreationPreviewViewController {
     
     // MARK: - Network
     
-    func cardCreationWithAPI(request: CardCreationRequest, image: UIImage) {
-        CardAPI.shared.cardCreation(request: request, image: image) { response in
+    private func cardCreationWithAPI(request: CardCreationRequest) {
+        CardAPI.shared.cardCreation(request: request) { response in
             switch response {
             case .success:
                 print("cardCreationWithAPI - success")
@@ -266,5 +265,24 @@ extension CardCreationPreviewViewController {
             }
         }
     }
-    
+    private func cardImageUploadWithAPI(completion: @escaping (String) -> Void) {
+        guard let image = cardBackgroundImage else { return }
+        CardAPI.shared.cardImageUpload(image: image) { response in
+            switch response {
+            case .success(let data):
+                print("cardImageUploadWithAPI - success")
+                if let imageURL = data as? String {
+                    completion(imageURL)
+                }
+            case .requestErr(let message):
+                print("cardImageUploadWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("cardImageUploadWithAPI - pathErr")
+            case .serverErr:
+                print("cardImageUploadWithAPI - serverErr")
+            case .networkFail:
+                print("cardImageUploadWithAPI - networkFail")
+            }
+        }
+    }
 }

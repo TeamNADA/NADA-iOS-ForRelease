@@ -14,11 +14,11 @@ class CardCreationPreviewViewController: UIViewController {
     public var frontCardDataModel: FrontCardDataModel?
     public var backCardDataModel: BackCardDataModel?
     public var cardBackgroundImage: UIImage?
-    public var defaultImageIndex: Int?
+    public var tasteInfo: [TasteInfo]?
     
     private var isFront = true
-    private var cardCreationRequest: CardCreationRequest?
     private var isShareable = false
+    private let cardType: String = "BASIC"
     
     lazy var loadingBgView: UIView = {
         let bgView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
@@ -180,16 +180,18 @@ extension CardCreationPreviewViewController {
         if isFront {
             guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return }
             guard let backCardDataModel = backCardDataModel else { return }
+            guard let tasteInfo else { return }
             backCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
-            backCard.initCell(cardBackgroundImage,
-                              backCardDataModel.isMincho,
-                              backCardDataModel.isSoju,
-                              backCardDataModel.isBoomuk,
-                              backCardDataModel.isSauced,
-                              backCardDataModel.oneTMI,
-                              backCardDataModel.twoTMI,
-                              backCardDataModel.threeTMI,
-                              isShareable: isShareable)
+            
+            var cardTasteInfo: [CardTasteInfo] = []
+
+            for index in 0..<tasteInfo.count {
+                cardTasteInfo.append(CardTasteInfo(cardTasteName: tasteInfo[index].tasteName,
+                                                   isChoose: backCardDataModel.tastes.contains(tasteInfo[index].tasteName),
+                                                   sortOrder: index))
+            }
+            
+            backCard.initCell(cardTasteInfo: cardTasteInfo, tmi: backCardDataModel.tmi)
             
             cardView.addSubview(backCard)
             isFront = false

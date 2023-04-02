@@ -16,8 +16,8 @@ class BackCardCreationCollectionViewCell: UICollectionViewCell {
     static let identifier = "BackCardCreationCollectionViewCell"
     
     var flavorList: [String]?
-    private let maxLength: Int = 20
-    private var textFieldList = [UITextField]()
+    // TODO: - UITextView 꽉 채우고 최대 글자수 지정.
+    private let maxLength: Int = 0
     private var requiredCollectionViewList = [UICollectionView]()
     
     public weak var backCardCreationDelegate: BackCardCreationDelegate?
@@ -30,14 +30,12 @@ class BackCardCreationCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var requiredInfoTextLabel: UILabel!
     @IBOutlet weak var optionalInfoTextLabel: UILabel!
     
-    @IBOutlet weak var firstTMITextField: UITextField!
-    @IBOutlet weak var secondTMITextField: UITextField!
-    @IBOutlet weak var thirdTMITextField: UITextField!
+    @IBOutlet weak var tmiTextView: UITextView!
     
-    @IBOutlet weak var isMinchoCollectionView: UICollectionView!
-    @IBOutlet weak var isSojuCollectionView: UICollectionView!
-    @IBOutlet weak var isBoomukCollectionView: UICollectionView!
-    @IBOutlet weak var isSaucedCollectionView: UICollectionView!
+    @IBOutlet weak var firstTasteCollectionView: UICollectionView!
+    @IBOutlet weak var secondTasteCollectionView: UICollectionView!
+    @IBOutlet weak var thirdTasteCollectionView: UICollectionView!
+    @IBOutlet weak var fourthTasteCollectionView: UICollectionView!
     
     // MARK: - Cell Life Cycle
     
@@ -46,7 +44,7 @@ class BackCardCreationCollectionViewCell: UICollectionViewCell {
         
         setUI()
         registerCell()
-        textFieldDelegate()
+        textViewDelegate()
         setNotification()
     }
 }
@@ -57,7 +55,6 @@ extension BackCardCreationCollectionViewCell {
     private func setUI() {
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         
-        initUITextFieldList()
         initCollectionViewList()
         
         scrollView.indicatorStyle = .default
@@ -72,39 +69,24 @@ extension BackCardCreationCollectionViewCell {
         requiredInfoTextLabel.attributedText = requiredAttributeString
         requiredInfoTextLabel.font = .textBold01
         
-        let optionalAttributeString = NSMutableAttributedString(string: "나의 재밌는 TMI를 알려주세요. (20자)")
-        optionalAttributeString.addAttribute(.foregroundColor, value: UIColor.secondary, range: NSRange(location: 0, length: 18))
-        optionalAttributeString.addAttribute(.font, value: UIFont.textBold01, range: NSRange(location: 0, length: 18))
-        optionalAttributeString.addAttribute(.foregroundColor, value: UIColor.quaternary, range: NSRange(location: 19, length: 5))
-        optionalAttributeString.addAttribute(.font, value: UIFont.textRegular03, range: NSRange(location: 19, length: 5))
-        optionalInfoTextLabel.attributedText = optionalAttributeString
+        optionalInfoTextLabel.text = "나의 재밌는 TMI를 알려주세요."
+        optionalInfoTextLabel.textColor = .secondary
+        optionalInfoTextLabel.font = .textBold01
         
-        firstTMITextField.attributedPlaceholder = NSAttributedString(string: "TMI 1", attributes: [NSAttributedString.Key.foregroundColor: UIColor.quaternary])
-        secondTMITextField.attributedPlaceholder = NSAttributedString(string: "TMI 2", attributes: [NSAttributedString.Key.foregroundColor: UIColor.quaternary])
-        thirdTMITextField.attributedPlaceholder = NSAttributedString(string: "TMI 3", attributes: [NSAttributedString.Key.foregroundColor: UIColor.quaternary])
-        
-        _ = textFieldList.map {
-            $0.font = .textRegular04
-            $0.backgroundColor = .textBox
-            $0.textColor = .primary
-            $0.layer.cornerRadius = 10
-            $0.borderStyle = .none
-            $0.setLeftPaddingPoints(12)
-        }
-    }
-    private func initUITextFieldList() {
-        textFieldList.append(contentsOf: [
-            firstTMITextField,
-            secondTMITextField,
-            thirdTMITextField
-        ])
+        tmiTextView.tintColor = .primary
+        tmiTextView.textContainerInset = UIEdgeInsets(top: 12, left: 24, bottom: 12, right: 24)
+        tmiTextView.backgroundColor = .textBox
+        tmiTextView.font = .textRegular04
+        tmiTextView.text = "조금 더 다채로운 모습을 담아볼까요?"
+        tmiTextView.textColor = .quaternary
+        tmiTextView.layer.cornerRadius = 10
     }
     private func initCollectionViewList() {
         requiredCollectionViewList.append(contentsOf: [
-            isMinchoCollectionView,
-            isSojuCollectionView,
-            isBoomukCollectionView,
-            isSaucedCollectionView
+            firstTasteCollectionView,
+            secondTasteCollectionView,
+            thirdTasteCollectionView,
+            fourthTasteCollectionView
         ])
     }
     private func registerCell() {
@@ -114,67 +96,28 @@ extension BackCardCreationCollectionViewCell {
             $0.register(RequiredFlavorCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.requiredCollectionViewCell)
         }
     }
-    private func textFieldDelegate() {
-        _ = textFieldList.map { $0.delegate = self }
+    private func textViewDelegate() {
+        tmiTextView.delegate = self
     }
     private func setNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(dismissKeyboard), name: .touchRequiredView, object: nil)
     }
     private func checkBackCardStatus() {
         backCardCreationDelegate?.backCardCreation(withRequired: [
-            "isMincho": isMinchoCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false,
-            "isSoju": isSojuCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false,
-            "isBoomuk": isBoomukCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false,
-            "isSauced": isSaucedCollectionView.indexPathsForSelectedItems == [[0, 0]] ? true: false
-        ], withOptional: [
-            "firstTMI": firstTMITextField.text ?? "",
-            "secondTMI": secondTMITextField.text ?? "",
-            "thirdTMI": thirdTMITextField.text ?? ""
-        ])
+            firstTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? flavorList?[0] ?? "" : flavorList?[1] ?? "",
+            secondTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? flavorList?[2] ?? "" : flavorList?[3] ?? "",
+            thirdTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? flavorList?[4] ?? "" : flavorList?[5] ?? "",
+            fourthTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? flavorList?[6] ?? "" : flavorList?[7] ?? ""
+        ], withOptional: tmiTextView.text == "조금 더 다채로운 모습을 담아볼까요?" ? nil : tmiTextView.text)
     }
     static func nib() -> UINib {
         return UINib(nibName: Const.Xib.backCardCreationCollectionViewCell, bundle: Bundle(for: BackCardCreationCollectionViewCell.self))
     }
     
     // MARK: - @objc Methods
-    
-    @objc
-    private func textFieldDidChange(_ notification: NSNotification) {
-        if let textField = notification.object as? UITextField {
-            switch textField {
-            case firstTMITextField:
-                if let text = firstTMITextField.text {
-                    if text.count > maxLength {
-                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
-                        let newString = String(text[text.startIndex..<maxIndex])
-                        firstTMITextField.text = newString
-                    }
-                }
-            case secondTMITextField:
-                if let text = secondTMITextField.text {
-                    if text.count > maxLength {
-                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
-                        let newString = String(text[text.startIndex..<maxIndex])
-                        secondTMITextField.text = newString
-                    }
-                }
-            case thirdTMITextField:
-                if let text = thirdTMITextField.text {
-                    if text.count > maxLength {
-                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
-                        let newString = String(text[text.startIndex..<maxIndex])
-                        thirdTMITextField.text = newString
-                    }
-                }
-            default:
-                return
-            }
-        }
-    }
     @objc
     private func dismissKeyboard() {
-        _ = textFieldList.map { $0.resignFirstResponder() }
+        tmiTextView.resignFirstResponder()
     }
 }
 
@@ -183,10 +126,10 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         backCardCreationDelegate?.backCardCreation(endEditing: true)
-        if isMinchoCollectionView.indexPathsForSelectedItems?.isEmpty == false &&
-            isSojuCollectionView.indexPathsForSelectedItems?.isEmpty == false &&
-            isBoomukCollectionView.indexPathsForSelectedItems?.isEmpty == false &&
-            isSaucedCollectionView.indexPathsForSelectedItems?.isEmpty == false {
+        if firstTasteCollectionView.indexPathsForSelectedItems?.isEmpty == false &&
+            secondTasteCollectionView.indexPathsForSelectedItems?.isEmpty == false &&
+            thirdTasteCollectionView.indexPathsForSelectedItems?.isEmpty == false &&
+            fourthTasteCollectionView.indexPathsForSelectedItems?.isEmpty == false {
             backCardCreationDelegate?.backCardCreation(requiredInfo: true)
         } else {
             backCardCreationDelegate?.backCardCreation(requiredInfo: false)
@@ -206,13 +149,13 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         switch collectionView {
-        case isMinchoCollectionView:
+        case firstTasteCollectionView:
             cell.initCell(flavor: flavorList?[indexPath.item] ?? "")
-        case isSojuCollectionView:
+        case secondTasteCollectionView:
             cell.initCell(flavor: flavorList?[indexPath.item + 2] ?? "")
-        case isBoomukCollectionView:
+        case thirdTasteCollectionView:
             cell.initCell(flavor: flavorList?[indexPath.item + 4] ?? "")
-        case isSaucedCollectionView:
+        case fourthTasteCollectionView:
             cell.initCell(flavor: flavorList?[indexPath.item + 6] ?? "")
         default:
             return UICollectionViewCell()
@@ -240,19 +183,23 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayout
     }
 }
 
-// MARK: - UITextFieldDelegate
-extension BackCardCreationCollectionViewCell: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.becomeFirstResponder()
-        textField.borderWidth = 1
-        textField.borderColor = .tertiary
+// MARK: - UITextViewDelegate
+extension BackCardCreationCollectionViewCell: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "조금 더 다채로운 모습을 담아볼까요?" {
+            textView.text = ""
+            textView.textColor = .primary
+        }
+        textView.borderColor = .primary
+        textView.borderWidth = 1
     }
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == "" {
+            textView.text = "조금 더 다채로운 모습을 담아볼까요?"
+            textView.textColor = .quaternary
+        }
         backCardCreationDelegate?.backCardCreation(endEditing: true)
         checkBackCardStatus()
-        textField.borderWidth = 0
-    }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return textField.resignFirstResponder()
+        textView.borderWidth = 0
     }
 }

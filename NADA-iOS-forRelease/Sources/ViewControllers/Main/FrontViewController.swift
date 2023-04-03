@@ -15,10 +15,10 @@ class FrontViewController: UIViewController {
     
     // MARK: - Properteis
     
-    private var offset = 0
     private var isInfiniteScroll = true
     private var cardDataList: [Card]? = []
-    private var userID: String?
+    private var pageNumber: Int = 0
+    private let pageSize: Int = 8
     
     var isAfterCreation = false
     
@@ -48,7 +48,6 @@ class FrontViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUserID()
         setDelegate()
         setNotification()
     }
@@ -61,15 +60,15 @@ class FrontViewController: UIViewController {
                 
                 self.setActivityIndicator()
                 
-                self.offset = 0
+                self.pageNumber = 0
                 self.cardDataList?.removeAll()
             }
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.cardListFetchWithAPI(userID: self.userID, isList: false, offset: self.offset) {
-                    _ = self.cardSwiper.scrollToCard(at: 0, animated: false)
-                    self.activityIndicator.stopAnimating()
-                    self.loadingBgView.removeFromSuperview()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                self?.cardListPageFetchWithAPI(pageNumber: self?.pageNumber ?? -1, pageSize: self?.pageSize ?? -1) {
+                    _ = self?.cardSwiper.scrollToCard(at: 0, animated: false)
+                    self?.activityIndicator.stopAnimating()
+                    self?.loadingBgView.removeFromSuperview()
                 }
             }
         }
@@ -105,10 +104,6 @@ extension FrontViewController {
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(didRecievePresentCardShare(_:)), name: .presentCardShare, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setCreationReloadMainCardSwiper), name: .creationReloadMainCardSwiper, object: nil)
-    }
-    
-    private func setUserID() {
-        userID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID)
     }
     
     private func setActivityIndicator() {
@@ -147,9 +142,9 @@ extension FrontViewController {
         isAfterCreation = true
         
         cardDataList?.removeAll()
-        offset = 0
+        pageNumber = 0
         
-        cardListFetchWithAPI(userID: userID, isList: false, offset: offset) {
+        cardListPageFetchWithAPI(pageNumber: pageNumber, pageSize: pageSize) {
             _ = self.cardSwiper.scrollToCard(at: 1, animated: false)
             self.isAfterCreation = false
         }
@@ -166,9 +161,9 @@ extension FrontViewController: VerticalCardSwiperDelegate {
         if verticalCardSwiperView.contentOffset.y > verticalCardSwiperView.contentSize.height - verticalCardSwiperView.bounds.height {
             if isInfiniteScroll {
                 isInfiniteScroll = false
-                offset += 1
-                guard let userID = userID else { return }
-                cardListFetchWithAPI(userID: userID, isList: false, offset: offset) {
+                pageNumber += 1
+
+                cardListPageFetchWithAPI(pageNumber: pageNumber, pageSize: pageSize) {
                     self.isInfiniteScroll = true
                 }
             }
@@ -204,24 +199,23 @@ extension FrontViewController: VerticalCardSwiperDatasource {
 
 // MARK: - Network
 extension FrontViewController {
-    func cardListFetchWithAPI(userID: String?, isList: Bool, offset: Int, completion: @escaping () -> Void = { }) {
-        guard let userID = userID else { return }
-        CardAPI.shared.cardListFetch(userID: userID, isList: isList, offset: offset) { response in
+    func cardListPageFetchWithAPI(pageNumber: Int, pageSize: Int, completion: @escaping () -> Void = { }) {
+        CardAPI.shared.cardListFetch(pageNumber: pageNumber, pageSize: pageSize) { response in
             switch response {
             case .success(let data):
-                if let cardListLookUp = data as? CardListLookUp {
-                    self.cardDataList?.append(contentsOf: cardListLookUp.cards)
+                if let cardData = data as? [Card] {
+                    self.cardDataList?.append(contentsOf: cardData)
                     self.cardSwiper.reloadData()
                 }
                 completion()
             case .requestErr(let message):
-                print("cardListFetchWithAPI - requestErr: \(message)")
+                print("cardListPageFetchWithAPI - requestErr: \(message)")
             case .pathErr:
-                print("cardListFetchWithAPI - pathErr")
+                print("cardListPageFetchWithAPI - pathErr")
             case .serverErr:
-                print("cardListFetchWithAPI - serverErr")
+                print("cardListPageFetchWithAPI - serverErr")
             case .networkFail:
-                print("cardListFetchWithAPI - networkFail")
+                print("cardListPageFetchWithAPI - networkFail")
             }
         }
     }

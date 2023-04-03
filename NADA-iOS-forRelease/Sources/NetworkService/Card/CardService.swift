@@ -11,7 +11,8 @@ import Moya
 enum CardService {
     case cardDetailFetch(cardID: String)
     case cardCreation(request: CardCreationRequest)
-    case cardListFetch(userID: String, isList: Bool, offset: Int?)
+    case cardListPageFetch(pageNumber: Int, pageSize: Int)
+    case cardListFetch
     case cardListEdit(request: CardListEditRequest)
     case cardDelete(cardID: String)
     case imageUpload(image: UIImage)
@@ -30,8 +31,10 @@ extension CardService: TargetType {
             return "/card/\(cardID)"
         case .cardCreation:
             return "/card"
+        case .cardListPageFetch:
+            return "/card/page"
         case .cardListFetch:
-            return "/cards"
+            return "/card"
         case .cardListEdit:
             return "/cards"
         case .cardDelete(let cardID):
@@ -45,7 +48,7 @@ extension CardService: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .cardDetailFetch, .cardListFetch, .tasteFetch:
+        case .cardDetailFetch, .cardListPageFetch, .cardListFetch, .tasteFetch:
             return .get
         case .cardCreation, .imageUpload:
             return .post
@@ -62,7 +65,7 @@ extension CardService: TargetType {
     
     var task: Task {
         switch self {
-        case .cardDetailFetch, .cardDelete, .tasteFetch:
+        case .cardDetailFetch, .cardDelete, .tasteFetch, .cardListFetch:
             return .requestPlain
         case .cardCreation(let request):
             var parameters: [String: Any] = ["brith": request.frontCard.birth,
@@ -101,10 +104,9 @@ extension CardService: TargetType {
             }
             
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
-        case .cardListFetch(let userID, let isList, let offset):
-            return .requestParameters(parameters: ["userId": userID,
-                                                   "list": isList,
-                                                   "offset": offset ?? ""],
+        case .cardListPageFetch(let pageNumber, let pageSize):
+            return .requestParameters(parameters: ["pageNo": pageNumber,
+                                                   "pageSize": pageSize],
                                       encoding: URLEncoding.queryString)
         case .cardListEdit(let requestModel):
             return .requestJSONEncodable(requestModel)
@@ -119,7 +121,7 @@ extension CardService: TargetType {
     
     var headers: [String: String]? {
         switch self {
-        case .cardDetailFetch, .cardListFetch, .cardDelete, .tasteFetch:
+        case .cardDetailFetch, .cardListPageFetch, .cardListFetch, .cardDelete, .tasteFetch:
             return Const.Header.bearerHeader()
         case .cardListEdit, .cardCreation:
             return Const.Header.basicHeader()

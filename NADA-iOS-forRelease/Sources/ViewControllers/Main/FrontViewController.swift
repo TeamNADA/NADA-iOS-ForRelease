@@ -17,7 +17,7 @@ class FrontViewController: UIViewController {
     
     private var isInfiniteScroll = true
     private var cardDataList: [Card]? = []
-    private var pageNumber: Int = 0
+    private var pageNumber: Int = 1
     private let pageSize: Int = 8
     
     var isAfterCreation = false
@@ -60,7 +60,7 @@ class FrontViewController: UIViewController {
                 
                 self.setActivityIndicator()
                 
-                self.pageNumber = 0
+                self.pageNumber = 1
                 self.cardDataList?.removeAll()
             }
             
@@ -142,7 +142,7 @@ extension FrontViewController {
         isAfterCreation = true
         
         cardDataList?.removeAll()
-        pageNumber = 0
+        pageNumber = 1
         
         cardListPageFetchWithAPI(pageNumber: pageNumber, pageSize: pageSize) {
             _ = self.cardSwiper.scrollToCard(at: 1, animated: false)

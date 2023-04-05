@@ -170,6 +170,10 @@
 		F8C83FCB272FA32C0009DF0D /* GroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FCA272FA32C0009DF0D /* GroupService.swift */; };
 		F8D74DD8276C7FB60071E5FC /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D74DD7276C7FB60071E5FC /* UIImageView+Extension.swift */; };
 		F8D92E0A29D5324E002ACC73 /* Taste.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D92E0929D5324E002ACC73 /* Taste.swift */; };
+		F8F00C3929DD474700A15377 /* UpdateNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F00C3829DD474700A15377 /* UpdateNote.swift */; };
+		F8F00C3B29DD483000A15377 /* UpdateUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F00C3A29DD483000A15377 /* UpdateUserInfo.swift */; };
+		F8F00C3E29DD489200A15377 /* UpdateAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F00C3D29DD489200A15377 /* UpdateAPI.swift */; };
+		F8F00C4129DD48A000A15377 /* UpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F00C4029DD48A000A15377 /* UpdateService.swift */; };
 		F8F5D0AA270800FD00D99D2E /* Xib.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F5D0A9270800FD00D99D2E /* Xib.swift */; };
 		F8FC438626C01CDD0033E151 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC438526C01CDD0033E151 /* AppDelegate.swift */; };
 		F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC438726C01CDD0033E151 /* SceneDelegate.swift */; };
@@ -391,6 +395,10 @@
 		F8C83FCA272FA32C0009DF0D /* GroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupService.swift; sourceTree = "<group>"; };
 		F8D74DD7276C7FB60071E5FC /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		F8D92E0929D5324E002ACC73 /* Taste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Taste.swift; sourceTree = "<group>"; };
+		F8F00C3829DD474700A15377 /* UpdateNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNote.swift; sourceTree = "<group>"; };
+		F8F00C3A29DD483000A15377 /* UpdateUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfo.swift; sourceTree = "<group>"; };
+		F8F00C3D29DD489200A15377 /* UpdateAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAPI.swift; sourceTree = "<group>"; };
+		F8F00C4029DD48A000A15377 /* UpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateService.swift; sourceTree = "<group>"; };
 		F8F5D0A9270800FD00D99D2E /* Xib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Xib.swift; sourceTree = "<group>"; };
 		F8FC438226C01CDD0033E151 /* NADA-iOS-forRelease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NADA-iOS-forRelease.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8FC438526C01CDD0033E151 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1019,8 +1027,27 @@
 				F87122722733032300A24E74 /* Card */,
 				777FF89927359B1000BF69D3 /* Group */,
 				7734D5B027778EC8004360E4 /* Util */,
+				F8F00C3729DD46B300A15377 /* Update */,
 			);
 			path = NetworkModel;
+			sourceTree = "<group>";
+		};
+		F8F00C3729DD46B300A15377 /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				F8F00C3829DD474700A15377 /* UpdateNote.swift */,
+				F8F00C3A29DD483000A15377 /* UpdateUserInfo.swift */,
+			);
+			path = Update;
+			sourceTree = "<group>";
+		};
+		F8F00C3C29DD487E00A15377 /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				F8F00C3D29DD489200A15377 /* UpdateAPI.swift */,
+				F8F00C4029DD48A000A15377 /* UpdateService.swift */,
+			);
+			path = Update;
 			sourceTree = "<group>";
 		};
 		F8FC437926C01CDD0033E151 = {
@@ -1123,6 +1150,7 @@
 				F8C83FB0272F9CB10009DF0D /* Card */,
 				F8C83FB3272F9CF30009DF0D /* Group */,
 				F8C83FB4272F9E250009DF0D /* Util */,
+				F8F00C3C29DD487E00A15377 /* Update */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -1537,6 +1565,7 @@
 				3958F239270FFBBF00B100B2 /* GroupViewController.swift in Sources */,
 				3909242F26FA15E800236C51 /* UIView+Extension.swift in Sources */,
 				39523E09270184A700536900 /* CardListViewController.swift in Sources */,
+				F8F00C4129DD48A000A15377 /* UpdateService.swift in Sources */,
 				F8D92E0A29D5324E002ACC73 /* Taste.swift in Sources */,
 				F85711A5274A6B2200F59F0B /* CardCreationPreviewViewController.swift in Sources */,
 				777FF89B27359B7800BF69D3 /* Groups.swift in Sources */,
@@ -1554,6 +1583,7 @@
 				F8C83FBF272FA0670009DF0D /* UserSevice.swift in Sources */,
 				39F5A3D0271461EA00191F94 /* BackCardCell.swift in Sources */,
 				F8268DB927730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift in Sources */,
+				F8F00C3B29DD483000A15377 /* UpdateUserInfo.swift in Sources */,
 				F8562C98296ADD6700DA1109 /* Lottie.swift in Sources */,
 				770E58862778A78900498C2E /* Status.swift in Sources */,
 				F851805B275D047C006BD5ED /* OnboardingViewController.swift in Sources */,
@@ -1561,6 +1591,7 @@
 				F843DD6D29A5F83000D8D20D /* CardCreationCategoryViewModel.swift in Sources */,
 				39C1E88F270EC762006D2089 /* UIColor+Extension.swift in Sources */,
 				F8C83FC9272FA3190009DF0D /* GroupAPI.swift in Sources */,
+				F8F00C3E29DD489200A15377 /* UpdateAPI.swift in Sources */,
 				F8FC43B826C0227D0033E151 /* Const.swift in Sources */,
 				394F314C27081B3A00C83291 /* FrontViewController.swift in Sources */,
 				777FF89D2735B16B00BF69D3 /* GroupAddRequest.swift in Sources */,
@@ -1607,6 +1638,7 @@
 				F8518054275D040C006BD5ED /* OnboardingCollectionViewCell.swift in Sources */,
 				77703157275005AA002CBD19 /* CardResultBottomSheetViewController.swift in Sources */,
 				F8D74DD8276C7FB60071E5FC /* UIImageView+Extension.swift in Sources */,
+				F8F00C3929DD474700A15377 /* UpdateNote.swift in Sources */,
 				39D13565273FDB9C00B1A148 /* User.swift in Sources */,
 				77812947275F6EA3004B34F4 /* CardDetailViewController.swift in Sources */,
 				F822E7A92709CEB60020452C /* Notification.swift in Sources */,

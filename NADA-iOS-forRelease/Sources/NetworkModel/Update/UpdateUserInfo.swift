@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+struct UpdateUserInfo: Codable {
+    let forceUpdateAgreement: Bool
+}

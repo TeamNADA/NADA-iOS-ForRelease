@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct UpdateNote: Codable {
+    let text: String
+    let isForce: String
+    let latestVersion: String
+}

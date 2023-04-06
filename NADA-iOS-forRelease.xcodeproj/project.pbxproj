@@ -47,7 +47,7 @@
 		397B75142763A916004AEB03 /* OpenSourceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 397B75122763A916004AEB03 /* OpenSourceTableViewCell.xib */; };
 		397B75172763B5B7004AEB03 /* TeamNADA.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 397B75162763B5B7004AEB03 /* TeamNADA.storyboard */; };
 		397B751A2763B5F1004AEB03 /* TeamNADAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B75192763B5F1004AEB03 /* TeamNADAViewController.swift */; };
-		3981148E273BEBB300E28630 /* CardListEditRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3981148D273BEBB300E28630 /* CardListEditRequest.swift */; };
+		3981148E273BEBB300E28630 /* CardReorderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3981148D273BEBB300E28630 /* CardReorderInfo.swift */; };
 		39811490273BEBCE00E28630 /* CardListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3981148F273BEBCE00E28630 /* CardListRequest.swift */; };
 		398413B7274A7A1E005550BC /* AddGroupBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398413B6274A7A1E005550BC /* AddGroupBottomSheetViewController.swift */; };
 		399C55DF2711949D00845A54 /* CGPoint+Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399C55DE2711949D00845A54 /* CGPoint+Distance.swift */; };
@@ -269,7 +269,7 @@
 		397B75122763A916004AEB03 /* OpenSourceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenSourceTableViewCell.xib; sourceTree = "<group>"; };
 		397B75162763B5B7004AEB03 /* TeamNADA.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamNADA.storyboard; sourceTree = "<group>"; };
 		397B75192763B5F1004AEB03 /* TeamNADAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamNADAViewController.swift; sourceTree = "<group>"; };
-		3981148D273BEBB300E28630 /* CardListEditRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListEditRequest.swift; sourceTree = "<group>"; };
+		3981148D273BEBB300E28630 /* CardReorderInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardReorderInfo.swift; sourceTree = "<group>"; };
 		3981148F273BEBCE00E28630 /* CardListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListRequest.swift; sourceTree = "<group>"; };
 		398413B6274A7A1E005550BC /* AddGroupBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupBottomSheetViewController.swift; sourceTree = "<group>"; };
 		399C55DE2711949D00845A54 /* CGPoint+Distance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Distance.swift"; sourceTree = "<group>"; };
@@ -889,7 +889,7 @@
 			children = (
 				F87122752733046300A24E74 /* Card.swift */,
 				F871227727330A3800A24E74 /* CardCreationRequest.swift */,
-				3981148D273BEBB300E28630 /* CardListEditRequest.swift */,
+				3981148D273BEBB300E28630 /* CardReorderInfo.swift */,
 				3981148F273BEBCE00E28630 /* CardListRequest.swift */,
 				F8D92E0929D5324E002ACC73 /* Taste.swift */,
 			);
@@ -1613,7 +1613,7 @@
 				F8719DDB274F92E90081AD51 /* UITextField+Extension.swift in Sources */,
 				F8A9FE1A2743DC6B00BC60CE /* CardListInGroupRequest.swift in Sources */,
 				397B751A2763B5F1004AEB03 /* TeamNADAViewController.swift in Sources */,
-				3981148E273BEBB300E28630 /* CardListEditRequest.swift in Sources */,
+				3981148E273BEBB300E28630 /* CardReorderInfo.swift in Sources */,
 				39D88B6B274600B100A72164 /* CommonBottomSheetViewController.swift in Sources */,
 				7734D5B627779EF0004360E4 /* QRCodeView.swift in Sources */,
 				3918F66727719C4B00984648 /* UserReissueToken.swift in Sources */,

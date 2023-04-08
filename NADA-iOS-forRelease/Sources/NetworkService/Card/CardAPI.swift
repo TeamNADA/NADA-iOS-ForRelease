@@ -14,8 +14,8 @@ public class CardAPI {
     
     public init() { }
     
-    func cardDetailFetch(cardID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        cardProvider.request(.cardDetailFetch(cardID: cardID)) { (result) in
+    func cardDetailFetch(cardUUID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        cardProvider.request(.cardDetailFetch(cardUUID: cardUUID)) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode

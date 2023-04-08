@@ -9,7 +9,7 @@ import Foundation
 import Moya
 
 enum CardService {
-    case cardDetailFetch(cardID: String)
+    case cardDetailFetch(cardUUID: String)
     case cardCreation(request: CardCreationRequest)
     case cardListPageFetch(pageNumber: Int, pageSize: Int)
     case cardListFetch
@@ -27,8 +27,8 @@ extension CardService: TargetType {
     
     var path: String {
         switch self {
-        case .cardDetailFetch(let cardID):
-            return "/card/\(cardID)"
+        case .cardDetailFetch(let cardUUID):
+            return "/card/\(cardUUID)/search"
         case .cardCreation:
             return "/card"
         case .cardListPageFetch:

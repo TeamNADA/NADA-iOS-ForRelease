@@ -30,8 +30,8 @@ public class CardAPI {
         }
     }
     
-    func cardCreation(request: CardCreationRequest, image: UIImage, completion: @escaping (NetworkResult<Any>) -> Void) {
-        cardProvider.request(.cardCreation(request: request, image: image)) { (result) in
+    func cardCreation(request: CardCreationRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
+        cardProvider.request(.cardCreation(request: request)) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
@@ -163,7 +163,7 @@ public class CardAPI {
     private func judgeCardDetailFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<CardClass>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<Card>.self, from: data)
         else {
             return .pathErr
         }

@@ -64,19 +64,6 @@ class CardCreationViewController: UIViewController {
         setTextLabelGesture()
         setNotification()
         tasteFetchWithAPI()
-        
-        // FIXME: 서버통신 테스트 중. 추후 호출 위치 변경.
-//        cardDetailFetchWithAPI(cardID: "cardA")
-        
-        // FIXME: group.서버통신 테스트 중. 추후 호출 위치 변경.
-//        let changeGroupRequest = ChangeGroupRequest(cardID: "cardA",
-//                                                    userID: "nada2",
-//                                                    groupID: 3,
-//                                                    newGroupID: 2)
-//        changeGroupWithAPI(request: changeGroupRequest)
-        
-        // FIXME: group.서버통신 테스트 중. 추후 호출 위치 변경.
-//        cardDeleteInGroupWithAPI(groupID: 3, cardID: "cardA")
     }
     
     // MARK: - @IBAction Properties
@@ -96,6 +83,7 @@ class CardCreationViewController: UIViewController {
         nextVC.frontCardDataModel = frontCard
         nextVC.backCardDataModel = backCard
         nextVC.cardBackgroundImage = newImage
+        nextVC.tasteInfo = tasteInfo
         navigationController?.pushViewController(nextVC, animated: true)
     }
 }
@@ -280,6 +268,9 @@ extension CardCreationViewController: UICollectionViewDataSource {
                     return UICollectionViewCell()
                 }
                 backCreationCell.backCardCreationDelegate = self
+                if let tasteInfo {
+                    backCreationCell.flavorList = tasteInfo.map { $0.tasteName }
+                }
                 
                 return backCreationCell
             }
@@ -340,14 +331,8 @@ extension CardCreationViewController: BackCardCreationDelegate {
     func backCardCreation(endEditing valid: Bool) {
         isEditingMode = valid
     }
-    func backCardCreation(withRequired requiredInfo: [String: Bool], withOptional optionalInfo: [String: String]) {
-        backCard = BackCardDataModel(isMincho: requiredInfo["isMincho"] ?? false,
-                                     isSoju: requiredInfo["isSoju"] ?? false,
-                                     isBoomuk: requiredInfo["isBoomuk"] ?? false,
-                                     isSauced: requiredInfo["isSauced"] ?? false,
-                                     oneTMI: optionalInfo["firstTMI"] ?? "",
-                                     twoTMI: optionalInfo["secondTMI"] ?? "",
-                                     threeTMI: optionalInfo["thirdTMI"] ?? "")
+    func backCardCreation(withRequired requiredInfo: [String], withOptional optionalInfo: String?) {
+        backCard = BackCardDataModel(tastes: requiredInfo, tmi: optionalInfo)
     }
 }
 
@@ -376,7 +361,10 @@ extension CardCreationViewController {
             case .success(let data):
                 print("cardCreationWithAPI - success")
                 if let tastes = data as? Taste {
-                    self.tasteInfo = tastes.tasteInfos
+                    self.tasteInfo = tastes.tasteInfos.sorted { $0.sortOrder < $1.sortOrder }
+                    DispatchQueue.main.async { [weak self] in
+                        self?.cardCreationCollectionView.reloadData()
+                    }
                 }
             case .requestErr(let message):
                 print("tasteFetchWithAPI - requestErr: \(message)")

@@ -125,31 +125,32 @@ extension FrontCardCell {
     func initCellFromServer(cardData: Card, isShareable: Bool) {
         self.cardData = cardData
         
-        if cardData.background.hasPrefix("https://") {
-            self.backgroundImageView.updateServerImage(cardData.background)
+        if cardData.cardImage.hasPrefix("https://") {
+            self.backgroundImageView.updateServerImage(cardData.cardImage)
         } else {
-            if let bgImage = UIImage(named: cardData.background) {
+            if let bgImage = UIImage(named: cardData.cardImage) {
                 self.backgroundImageView.image = bgImage
             }
         }
             
-        titleLabel.text = cardData.title
-        descriptionLabel.text = cardData.cardDescription
-        userNameLabel.text = cardData.name
-        birthLabel.text = cardData.birthDate
+        titleLabel.text = cardData.cardName
+        descriptionLabel.text = cardData.departmentName
+        userNameLabel.text = cardData.userName
+        birthLabel.text = cardData.birth
         mbtiLabel.text = cardData.mbti
-        instagramIDLabel.text = cardData.instagram
+        instagramIDLabel.text = cardData.sns
         phoneNumberLabel.text = cardData.phoneNumber
-        linkURLLabel.text = cardData.link
+        if let urls = cardData.urls {
+            linkURLLabel.text = urls[0]
+        }
         
-        // FIXME: - 서버 API 에서 빈 데이터를 보내주지 않는다면, Card 데이터 모델에서 nil 이 넘어온다. 빈문자열인지 nil인지 확인하고 수정하자.(현재 홈에서 서버로부터 nil 을 받아서 전화번호가 보임)
-        if let instagram = cardData.instagram, instagram.isEmpty {
+        if cardData.sns == nil {
             instagramStackView.isHidden = true
         }
-        if let phoneNumber = cardData.phoneNumber, phoneNumber.isEmpty {
+        if cardData.phoneNumber == nil {
             phoneNumberStackView.isHidden = true
         }
-        if let link = cardData.link, link.isEmpty {
+        if cardData.urls == nil {
             linkURLStackView.isHidden = true
         }
         

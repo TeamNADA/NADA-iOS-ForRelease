@@ -29,7 +29,7 @@ class CardDetailViewController: UIViewController {
     
     @IBAction func presentHarmonyViewController(_ sender: Any) {
         cardHarmonyFetchWithAPI(myCard: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.firstCardID) ?? "",
-                                yourCard: cardDataModel?.cardID ?? "")
+                                yourCard: cardDataModel?.cardUUID ?? "")
     }
     
     @IBOutlet weak var optionButton: UIButton!
@@ -113,7 +113,7 @@ extension CardDetailViewController {
             return 
         }
         idStackView.isHidden = true
-        idLabel.text = cardDataModel?.cardID
+        idLabel.text = cardDataModel?.cardUUID
     }
     private func setMenu() {
         let changeGroup = UIAction(title: "그룹 변경",
@@ -134,7 +134,7 @@ extension CardDetailViewController {
                                        message: "명함을 정말 삭제하시겠습니까?",
                                        deleteAction: { _ in
                 // 명함 삭제 서버통신
-                self.cardDeleteInGroupWithAPI(groupID: self.groupId ?? 0, cardID: self.cardDataModel?.cardID ?? "")
+                self.cardDeleteInGroupWithAPI(groupID: self.groupId ?? 0, cardID: self.cardDataModel?.cardUUID ?? "")
             }) })
         let options = UIMenu(title: "options", options: .displayInline, children: [changeGroup, deleteCard])
         
@@ -199,7 +199,7 @@ extension CardDetailViewController {
             guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return }
             backCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
             guard let cardDataModel = cardDataModel else { return }
-            backCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
+            backCard.initCell(cardTasteInfo: cardDataModel.cardTastes, tmi: cardDataModel.tmi)
             
             cardView.addSubview(backCard)
             isFront = false

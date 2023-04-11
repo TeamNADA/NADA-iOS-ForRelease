@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="364" height="604"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CX8-sW-5EH">
-                                <rect key="frame" x="0.0" y="0.0" width="364" height="491.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="364" height="604"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXB-TC-pyT">
                                         <rect key="frame" x="24" y="14" width="41.5" height="20.5"/>
@@ -30,6 +30,19 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="4NM-U6-Gii">
+                                        <rect key="frame" x="24" y="44.5" width="316" height="44"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="sK3-0X-bq0"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9QR-If-qp5">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                    </collectionView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Uga-cx-3Jf">
                                         <rect key="frame" x="24" y="98.5" width="316" height="44"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -60,80 +73,47 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                     </collectionView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vxc-UH-Nd2">
-                                        <rect key="frame" x="24" y="311.5" width="316" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="lke-v9-UUS"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9cx-2c-aNd">
-                                        <rect key="frame" x="24" y="365.5" width="316" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="fsS-MO-0UT"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cSq-jF-yH4">
-                                        <rect key="frame" x="24" y="419.5" width="316" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="YuA-9N-X8X"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOx-9X-tSn">
                                         <rect key="frame" x="24" y="280.5" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="4NM-U6-Gii">
-                                        <rect key="frame" x="24" y="44.5" width="316" height="44"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HMA-9v-aUQ">
+                                        <rect key="frame" x="24" y="311.5" width="316" height="139"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="sK3-0X-bq0"/>
+                                            <constraint firstAttribute="width" secondItem="HMA-9v-aUQ" secondAttribute="height" multiplier="327:144" id="nb1-DK-bo9"/>
                                         </constraints>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9QR-If-qp5">
-                                            <size key="itemSize" width="128" height="128"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                    </collectionView>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="UXB-TC-pyT" firstAttribute="leading" secondItem="CX8-sW-5EH" secondAttribute="leading" constant="24" id="2pG-dn-gk9"/>
                                     <constraint firstItem="Uga-cx-3Jf" firstAttribute="top" secondItem="4NM-U6-Gii" secondAttribute="bottom" constant="10" id="3l3-pI-FwF"/>
-                                    <constraint firstItem="9cx-2c-aNd" firstAttribute="top" secondItem="Vxc-UH-Nd2" secondAttribute="bottom" constant="10" id="8JW-On-Xrv"/>
                                     <constraint firstItem="Uga-cx-3Jf" firstAttribute="leading" secondItem="4NM-U6-Gii" secondAttribute="leading" id="9kg-9V-8WS"/>
-                                    <constraint firstItem="cSq-jF-yH4" firstAttribute="trailing" secondItem="9cx-2c-aNd" secondAttribute="trailing" id="GHq-e2-ulw"/>
-                                    <constraint firstItem="9cx-2c-aNd" firstAttribute="trailing" secondItem="Vxc-UH-Nd2" secondAttribute="trailing" id="KIf-hM-33O"/>
                                     <constraint firstItem="Uga-cx-3Jf" firstAttribute="height" secondItem="4NM-U6-Gii" secondAttribute="height" id="KPu-VS-lu6"/>
                                     <constraint firstItem="m5i-Vd-PDH" firstAttribute="leading" secondItem="Uga-cx-3Jf" secondAttribute="leading" id="KQA-85-9YV"/>
                                     <constraint firstItem="m5i-Vd-PDH" firstAttribute="height" secondItem="Uga-cx-3Jf" secondAttribute="height" id="LiH-Y5-cs5"/>
                                     <constraint firstItem="Uga-cx-3Jf" firstAttribute="trailing" secondItem="4NM-U6-Gii" secondAttribute="trailing" id="McC-12-sjP"/>
-                                    <constraint firstItem="cSq-jF-yH4" firstAttribute="top" secondItem="9cx-2c-aNd" secondAttribute="bottom" constant="10" id="Nsu-pv-70a"/>
                                     <constraint firstItem="FOx-9X-tSn" firstAttribute="top" secondItem="9eS-JT-PuT" secondAttribute="bottom" constant="30" id="QWn-6s-tGb"/>
                                     <constraint firstItem="4NM-U6-Gii" firstAttribute="leading" secondItem="CX8-sW-5EH" secondAttribute="leading" constant="24" id="SJL-Nk-QUu"/>
-                                    <constraint firstItem="9cx-2c-aNd" firstAttribute="leading" secondItem="Vxc-UH-Nd2" secondAttribute="leading" id="VcM-vw-eFI"/>
                                     <constraint firstItem="9eS-JT-PuT" firstAttribute="height" secondItem="m5i-Vd-PDH" secondAttribute="height" id="YVN-GA-JOE"/>
-                                    <constraint firstItem="cSq-jF-yH4" firstAttribute="leading" secondItem="9cx-2c-aNd" secondAttribute="leading" id="cUl-Mm-a9t"/>
-                                    <constraint firstItem="Vxc-UH-Nd2" firstAttribute="top" secondItem="FOx-9X-tSn" secondAttribute="bottom" constant="10" id="dNg-8L-im2"/>
+                                    <constraint firstItem="HMA-9v-aUQ" firstAttribute="top" secondItem="FOx-9X-tSn" secondAttribute="bottom" constant="10" id="Zpe-O7-EQ5"/>
                                     <constraint firstItem="m5i-Vd-PDH" firstAttribute="top" secondItem="Uga-cx-3Jf" secondAttribute="bottom" constant="10" id="egr-9c-nkw"/>
-                                    <constraint firstAttribute="bottom" secondItem="cSq-jF-yH4" secondAttribute="bottom" constant="28" id="fao-fJ-Mmo"/>
                                     <constraint firstItem="9eS-JT-PuT" firstAttribute="trailing" secondItem="m5i-Vd-PDH" secondAttribute="trailing" id="fy0-WP-ufd"/>
                                     <constraint firstItem="UXB-TC-pyT" firstAttribute="top" secondItem="CX8-sW-5EH" secondAttribute="top" constant="14" id="g7d-gu-NkK"/>
                                     <constraint firstItem="m5i-Vd-PDH" firstAttribute="trailing" secondItem="Uga-cx-3Jf" secondAttribute="trailing" id="hht-6j-Rsr"/>
                                     <constraint firstItem="4NM-U6-Gii" firstAttribute="top" secondItem="UXB-TC-pyT" secondAttribute="bottom" constant="10" id="jY2-qK-vl0"/>
-                                    <constraint firstItem="Vxc-UH-Nd2" firstAttribute="leading" secondItem="CX8-sW-5EH" secondAttribute="leading" constant="24" id="ohM-CP-chi"/>
                                     <constraint firstItem="FOx-9X-tSn" firstAttribute="leading" secondItem="UXB-TC-pyT" secondAttribute="leading" id="pF5-qj-d3i"/>
                                     <constraint firstItem="9eS-JT-PuT" firstAttribute="leading" secondItem="m5i-Vd-PDH" secondAttribute="leading" id="r3T-GO-mxF"/>
+                                    <constraint firstItem="HMA-9v-aUQ" firstAttribute="leading" secondItem="CX8-sW-5EH" secondAttribute="leading" constant="24" id="v21-pW-SPw"/>
                                     <constraint firstItem="9eS-JT-PuT" firstAttribute="top" secondItem="m5i-Vd-PDH" secondAttribute="bottom" constant="10" id="vS7-9i-6n6"/>
-                                    <constraint firstAttribute="trailing" secondItem="Vxc-UH-Nd2" secondAttribute="trailing" constant="24" id="xwu-Gu-fFM"/>
+                                    <constraint firstAttribute="trailing" secondItem="HMA-9v-aUQ" secondAttribute="trailing" constant="24" id="wVQ-I3-Ea5"/>
                                     <constraint firstAttribute="trailing" secondItem="4NM-U6-Gii" secondAttribute="trailing" constant="24" id="z98-Kw-4Mb"/>
                                 </constraints>
                             </view>
@@ -159,21 +139,22 @@
             <size key="customSize" width="364" height="604"/>
             <connections>
                 <outlet property="bgView" destination="CX8-sW-5EH" id="f0q-Pd-V4h"/>
-                <outlet property="firstTMITextField" destination="Vxc-UH-Nd2" id="QFw-9r-Tmb"/>
-                <outlet property="isBoomukCollectionView" destination="m5i-Vd-PDH" id="TCs-Yv-tMf"/>
-                <outlet property="isMinchoCollectionView" destination="4NM-U6-Gii" id="ytI-aE-2vl"/>
-                <outlet property="isSaucedCollectionView" destination="9eS-JT-PuT" id="QZh-H7-DGD"/>
-                <outlet property="isSojuCollectionView" destination="Uga-cx-3Jf" id="aFZ-3f-iGK"/>
+                <outlet property="firstTasteCollectionView" destination="4NM-U6-Gii" id="se2-D0-Ce9"/>
+                <outlet property="fourthTasteCollectionView" destination="9eS-JT-PuT" id="hOA-Jx-lkY"/>
                 <outlet property="optionalInfoTextLabel" destination="FOx-9X-tSn" id="hE1-FU-c1W"/>
                 <outlet property="requiredInfoTextLabel" destination="UXB-TC-pyT" id="sic-Na-pst"/>
                 <outlet property="scrollView" destination="Cau-0y-d0k" id="DY9-dH-xTb"/>
-                <outlet property="secondTMITextField" destination="9cx-2c-aNd" id="gtj-d1-BrQ"/>
-                <outlet property="thirdTMITextField" destination="cSq-jF-yH4" id="vKG-l9-csl"/>
+                <outlet property="secondTasteCollectionView" destination="Uga-cx-3Jf" id="03K-NX-QW0"/>
+                <outlet property="thirdTasteCollectionView" destination="m5i-Vd-PDH" id="xNK-HF-5DC"/>
+                <outlet property="tmiTextView" destination="HMA-9v-aUQ" id="DUV-K9-wfU"/>
             </connections>
             <point key="canvasLocation" x="369.56521739130437" y="241.74107142857142"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

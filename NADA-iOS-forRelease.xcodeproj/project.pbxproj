@@ -64,7 +64,6 @@
 		39D88B642745FDD400A72164 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39D88B632745FDD400A72164 /* TabBar.storyboard */; };
 		39D88B662745FE5F00A72164 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D88B652745FE5F00A72164 /* TabBarViewController.swift */; };
 		39D88B6B274600B100A72164 /* CommonBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D88B6A274600B100A72164 /* CommonBottomSheetViewController.swift */; };
-		39DC069A2778BEFB00C8ECCC /* CardListLookUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DC06992778BEFB00C8ECCC /* CardListLookUp.swift */; };
 		39F5A3D0271461EA00191F94 /* BackCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5A3CE271461EA00191F94 /* BackCardCell.swift */; };
 		39F5A3D1271461EA00191F94 /* BackCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39F5A3CF271461EA00191F94 /* BackCardCell.xib */; };
 		7705CF3E2752C7DB005195DF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7705CF3D2752C7DB005195DF /* CardView.swift */; };
@@ -108,6 +107,7 @@
 		77F2C0ED27632AA7007641E3 /* CardHarmony.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */; };
 		77F47D93276C79B600414659 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F47D92276C79B600414659 /* Header.swift */; };
 		DBBB91E1639641F40C5B4416 /* Pods_NADA_iOS_forRelease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */; };
+		F805588529C993E7002E8EA3 /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F805588429C993E7002E8EA3 /* UpdateViewController.swift */; };
 		F80975E92990A27400075B93 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F838B66A298E5C5300D84340 /* Widgets.intentdefinition */; };
 		F80975EA2990A27900075B93 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F838B66A298E5C5300D84340 /* Widgets.intentdefinition */; };
 		F811720027383097002742CF /* ChangeGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81171FF27383097002742CF /* ChangeGroupRequest.swift */; };
@@ -158,6 +158,7 @@
 		F87D223F298ECAFB001A882B /* IntentsExtensionUI.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F87D2233298ECAFB001A882B /* IntentsExtensionUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F87D2242298ECAFB001A882B /* IntentsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F87D2228298ECAFB001A882B /* IntentsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F88101F92987CBAF007266B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F88101F82987CBAF007266B5 /* GoogleService-Info.plist */; };
+		F88C8DE929B8919700196A33 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88C8DE829B8919700196A33 /* ViewModelType.swift */; };
 		F8915A22275728F20013D609 /* SelectBirthBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */; };
 		F8915A23275728F20013D609 /* SelectMBTIBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */; };
 		F8A9FE1A2743DC6B00BC60CE /* CardListInGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A9FE192743DC6B00BC60CE /* CardListInGroupRequest.swift */; };
@@ -180,6 +181,7 @@
 		F8C83FC9272FA3190009DF0D /* GroupAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FC8272FA3190009DF0D /* GroupAPI.swift */; };
 		F8C83FCB272FA32C0009DF0D /* GroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FCA272FA32C0009DF0D /* GroupService.swift */; };
 		F8D74DD8276C7FB60071E5FC /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D74DD7276C7FB60071E5FC /* UIImageView+Extension.swift */; };
+		F8D92E0A29D5324E002ACC73 /* Taste.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D92E0929D5324E002ACC73 /* Taste.swift */; };
 		F8F5D0AA270800FD00D99D2E /* Xib.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F5D0A9270800FD00D99D2E /* Xib.swift */; };
 		F8FC438626C01CDD0033E151 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC438526C01CDD0033E151 /* AppDelegate.swift */; };
 		F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC438726C01CDD0033E151 /* SceneDelegate.swift */; };
@@ -292,7 +294,6 @@
 		39D88B632745FDD400A72164 /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		39D88B652745FE5F00A72164 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		39D88B6A274600B100A72164 /* CommonBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonBottomSheetViewController.swift; sourceTree = "<group>"; };
-		39DC06992778BEFB00C8ECCC /* CardListLookUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListLookUp.swift; sourceTree = "<group>"; };
 		39F5A3CE271461EA00191F94 /* BackCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackCardCell.swift; sourceTree = "<group>"; };
 		39F5A3CF271461EA00191F94 /* BackCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackCardCell.xib; sourceTree = "<group>"; };
 		3C14FF1DC641D872C3FDD637 /* Pods-NADA-iOS-forRelease.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.beta.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.beta.xcconfig"; sourceTree = "<group>"; };
@@ -341,6 +342,7 @@
 		77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardHarmony.storyboard; sourceTree = "<group>"; };
 		77F47D92276C79B600414659 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		7F4EE1D042EC783FA8528743 /* Pods-NADA-iOS-forRelease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.debug.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.debug.xcconfig"; sourceTree = "<group>"; };
+		F805588429C993E7002E8EA3 /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		F81171FF27383097002742CF /* ChangeGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeGroupRequest.swift; sourceTree = "<group>"; };
 		F822E7A82709CEB60020452C /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		F8268DB827730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCardAlertBottomSheetViewController.swift; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 		F87D223A298ECAFB001A882B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		F87D223C298ECAFB001A882B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F88101F82987CBAF007266B5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F88C8DE829B8919700196A33 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectBirthBottomViewController.swift; sourceTree = "<group>"; };
 		F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMBTIBottomViewController.swift; sourceTree = "<group>"; };
 		F8A9FE192743DC6B00BC60CE /* CardListInGroupRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListInGroupRequest.swift; sourceTree = "<group>"; };
@@ -411,6 +414,7 @@
 		F8C83FC8272FA3190009DF0D /* GroupAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAPI.swift; sourceTree = "<group>"; };
 		F8C83FCA272FA32C0009DF0D /* GroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupService.swift; sourceTree = "<group>"; };
 		F8D74DD7276C7FB60071E5FC /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		F8D92E0929D5324E002ACC73 /* Taste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Taste.swift; sourceTree = "<group>"; };
 		F8F5D0A9270800FD00D99D2E /* Xib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Xib.swift; sourceTree = "<group>"; };
 		F8FC438226C01CDD0033E151 /* NADA-iOS-forRelease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NADA-iOS-forRelease.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8FC438526C01CDD0033E151 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -858,6 +862,22 @@
 			path = VC;
 			sourceTree = "<group>";
 		};
+		F805588329C993D0002E8EA3 /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				F805588629C993EF002E8EA3 /* VC */,
+			);
+			path = Update;
+			sourceTree = "<group>";
+		};
+		F805588629C993EF002E8EA3 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				F805588429C993E7002E8EA3 /* UpdateViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
 		F82FF8222701FFE300E57F8B /* RequiredFlavor */ = {
 			isa = PBXGroup;
 			children = (
@@ -980,7 +1000,7 @@
 				F871227727330A3800A24E74 /* CardCreationRequest.swift */,
 				3981148D273BEBB300E28630 /* CardListEditRequest.swift */,
 				3981148F273BEBCE00E28630 /* CardListRequest.swift */,
-				39DC06992778BEFB00C8ECCC /* CardListLookUp.swift */,
+				F8D92E0929D5324E002ACC73 /* Taste.swift */,
 			);
 			path = Card;
 			sourceTree = "<group>";
@@ -1230,6 +1250,7 @@
 		F8FC439F26C01EFC0033E151 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				F88C8DE829B8919700196A33 /* ViewModelType.swift */,
 				F8915A1F275713A10013D609 /* CardCreation */,
 				77A4D5FD29BD6F9500367B7C /* ViewModelType.swift */,
 			);
@@ -1239,6 +1260,7 @@
 		F8FC43A026C01F040033E151 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				F805588329C993D0002E8EA3 /* Update */,
 				77B4E7492990E4FC006098DC /* Home */,
 				77A4D5ED29AE267F00367B7C /* AroundMe */,
 				397B750E2763A5DD004AEB03 /* OpenSource */,
@@ -1627,6 +1649,7 @@
 				F84BAF9D26FDB417004CA335 /* CardCreationViewController.swift in Sources */,
 				77C6E350299B84E300E059F9 /* HomeViewModel.swift in Sources */,
 				F8C83FCB272FA32C0009DF0D /* GroupService.swift in Sources */,
+				F88C8DE929B8919700196A33 /* ViewModelType.swift in Sources */,
 				F858079E2700354E00872484 /* BackgroundCollectionViewCell.swift in Sources */,
 				F8C83FBD272F9F430009DF0D /* GenericResponse.swift in Sources */,
 				77A4D5F629BC304C00367B7C /* UIStackView+Extension.swift in Sources */,
@@ -1639,6 +1662,7 @@
 				3958F239270FFBBF00B100B2 /* GroupViewController.swift in Sources */,
 				3909242F26FA15E800236C51 /* UIView+Extension.swift in Sources */,
 				39523E09270184A700536900 /* CardListViewController.swift in Sources */,
+				F8D92E0A29D5324E002ACC73 /* Taste.swift in Sources */,
 				F85711A5274A6B2200F59F0B /* CardCreationPreviewViewController.swift in Sources */,
 				39DC069A2778BEFB00C8ECCC /* CardListLookUp.swift in Sources */,
 				77A4D60829BD74BC00367B7C /* getClassName.swift in Sources */,
@@ -1719,6 +1743,7 @@
 				77703157275005AA002CBD19 /* CardResultBottomSheetViewController.swift in Sources */,
 				F8D74DD8276C7FB60071E5FC /* UIImageView+Extension.swift in Sources */,
 				39D13565273FDB9C00B1A148 /* User.swift in Sources */,
+				F805588529C993E7002E8EA3 /* UpdateViewController.swift in Sources */,
 				77812947275F6EA3004B34F4 /* CardDetailViewController.swift in Sources */,
 				F822E7A92709CEB60020452C /* Notification.swift in Sources */,
 				F8C83FC5272FA2940009DF0D /* CardAPI.swift in Sources */,

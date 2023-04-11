@@ -15,9 +15,4 @@ struct User: Codable {
     enum CodingKeys: String, CodingKey {
         case userID = "userId"
     }
-    // TODO: - 쓰게 될줄 알았는데 안써서 일단 보류
-//    init(from decoder: Decoder) throws {
-//        let values = try decoder.container(keyedBy: CodingKeys.self)
-//        userID = (try? values.decode(String.self, forKey: .userID)) ?? ""
-//    }
 }

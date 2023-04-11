@@ -104,17 +104,18 @@ extension AddWithIdBottomSheetViewController {
         CardAPI.shared.cardDetailFetch(cardID: cardID) { response in
             switch response {
             case .success(let data):
-                if let card = data as? CardClass {
-                    if UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) == card.card.author {
-                        self.errorImageView.isHidden = false
-                        self.explainLabel.isHidden = false
-                        self.explainLabel.text = "자신의 명함은 추가할 수 없습니다."
-                    } else {
+                if let card = data as? Card {
+                    // TODO: - 자신의 명함 추가하는 경우 예외처리.
+//                    if UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) == card.author {
+//                        self.errorImageView.isHidden = false
+//                        self.explainLabel.isHidden = false
+//                        self.explainLabel.text = "자신의 명함은 추가할 수 없습니다."
+//                    } else {
                         self.addWithIdTextField.resignFirstResponder()
                         let nextVC = CardResultBottomSheetViewController()
-                        nextVC.cardDataModel = card.card
-                        self.hideBottomSheetAndPresent(nextBottomSheet: nextVC, title: card.card.name, height: 574)
-                    }
+                        nextVC.cardDataModel = card
+                        self.hideBottomSheetAndPresent(nextBottomSheet: nextVC, title: card.userName, height: 574)
+//                    }
                 }
             case .requestErr(let message):
                 print("cardDetailFetchWithAPI - requestErr: \(message)")

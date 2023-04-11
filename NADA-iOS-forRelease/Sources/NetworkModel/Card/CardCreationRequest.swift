@@ -9,7 +9,8 @@ import Foundation
 
 // MARK: - CardCreation
 struct CardCreationRequest: Codable {
-    let userID: String
+    let cardImageURL: String
+    let cardType: String
     let frontCard: FrontCardDataModel
     let backCard: BackCardDataModel
 }
@@ -17,14 +18,15 @@ struct CardCreationRequest: Codable {
 // MARK: - FrontCard
 
 struct FrontCardDataModel: Codable {
-    let defaultImage: Int
-    let title, name, birthDate, mbti: String
-    let instagramID, linkURL, description, phoneNumber: String
+    let birth, cardName, userName: String
+    
+    let departmentName, mailAddress, mbti, phoneNumber, sns: String?
+    let urls: [String]?
 }
     
 // MARK: - BackCard
 
 struct BackCardDataModel: Codable {
-    let isMincho, isSoju, isBoomuk, isSauced: Bool
-    let oneTMI, twoTMI, threeTMI: String
+    let tastes: [String]
+    let tmi: String?
 }

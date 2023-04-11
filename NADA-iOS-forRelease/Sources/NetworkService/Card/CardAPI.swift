@@ -30,8 +30,8 @@ public class CardAPI {
         }
     }
     
-    func cardCreation(request: CardCreationRequest, image: UIImage, completion: @escaping (NetworkResult<Any>) -> Void) {
-        cardProvider.request(.cardCreation(request: request, image: image)) { (result) in
+    func cardCreation(request: CardCreationRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
+        cardProvider.request(.cardCreation(request: request)) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
@@ -47,21 +47,9 @@ public class CardAPI {
         }
     }
     
-    func cardListFetch(userID: String, isList: Bool, offset: Int?, completion: @escaping (NetworkResult<Any>) -> Void) {
-        cardProvider.request(.cardListFetch(userID: userID, isList: isList, offset: offset)) { (result) in
-            if isList == true {
-                switch result {
-                case .success(let response):
-                    let statusCode = response.statusCode
-                    let data = response.data
-                    
-                    let networkResult = self.judgeCardListFetchStatus(by: statusCode, data)
-                    completion(networkResult)
-                    
-                case .failure(let err):
-                    print(err)
-                }
-            } else {
+    func cardListFetch(pageNumber: Int? = nil, pageSize: Int? = nil, completion: @escaping (NetworkResult<Any>) -> Void) {
+        if let pageNumber, let pageSize {
+            cardProvider.request(.cardListPageFetch(pageNumber: pageNumber, pageSize: pageSize)) { result in
                 switch result {
                 case .success(let response):
                     let statusCode = response.statusCode
@@ -69,7 +57,19 @@ public class CardAPI {
                     
                     let networkResult = self.judgeMainListFetchStatus(by: statusCode, data)
                     completion(networkResult)
+                case .failure(let err):
+                    print(err)
+                }
+            }
+        } else {
+            cardProvider.request(.cardListFetch) { result in
+                switch result {
+                case .success(let response):
+                    let statusCode = response.statusCode
+                    let data = response.data
                     
+                    let networkResult = self.judgeMainListFetchStatus(by: statusCode, data)
+                    completion(networkResult)
                 case .failure(let err):
                     print(err)
                 }
@@ -109,10 +109,41 @@ public class CardAPI {
         }
     }
     
-    private func judgeCardDetailFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
-        
+    func cardImageUpload(image: UIImage, completion: @escaping (NetworkResult<Any>) -> Void) {
+        cardProvider.request(.imageUpload(image: image)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data)
+                
+                completion(networkResult)
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
+    func tasteFetch(cardType: CardType, completion: @escaping (NetworkResult<Any>) -> Void) {
+        cardProvider.request(.tasteFetch(cardType: cardType)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeTasteFetchStatus(by: statusCode, data)
+                
+                completion(networkResult)
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
+    // MARK: - JudgeStatus methods
+    
+    private func judgeTasteFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<CardClass>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<Taste>.self, from: data)
         else {
             return .pathErr
         }
@@ -121,7 +152,27 @@ public class CardAPI {
         case 200:
             return .success(decodedData.data ?? "None-Data")
         case 400..<500:
-            return .requestErr(decodedData.msg)
+            return .requestErr(decodedData.error?.message ?? "error message")
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    private func judgeCardDetailFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
+        
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(GenericResponse<Card>.self, from: data)
+        else {
+            return .pathErr
+        }
+        
+        switch statusCode {
+        case 200:
+            return .success(decodedData.data ?? "None-Data")
+        case 400..<500:
+            return .requestErr(decodedData.error?.message ?? "error message")
         case 500:
             return .serverErr
         default:
@@ -132,7 +183,7 @@ public class CardAPI {
     private func judgeMainListFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<CardListLookUp>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<[Card]>.self, from: data)
         else {
             return .pathErr
         }
@@ -141,7 +192,7 @@ public class CardAPI {
         case 200:
             return .success(decodedData.data ?? "None-Data")
         case 400..<500:
-            return .requestErr(decodedData.msg)
+            return .requestErr(decodedData.error?.message ?? "error message")
         case 500:
             return .serverErr
         default:
@@ -149,25 +200,25 @@ public class CardAPI {
         }
     }
     
-    private func judgeCardListFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
-        
-        let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<CardListRequest>.self, from: data)
-        else {
-            return .pathErr
-        }
-        
-        switch statusCode {
-        case 200:
-            return .success(decodedData.data ?? "None-Data")
-        case 400..<500:
-            return .requestErr(decodedData.msg)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
+//    private func judgeCardListFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
+//
+//        let decoder = JSONDecoder()
+//        guard let decodedData = try? decoder.decode(GenericResponse<CardListRequest>.self, from: data)
+//        else {
+//            return .pathErr
+//        }
+//
+//        switch statusCode {
+//        case 200:
+//            return .success(decodedData.data ?? "None-Data")
+//        case 400..<500:
+//            return .requestErr(decodedData.error?.message ?? "error message")
+//        case 500:
+//            return .serverErr
+//        default:
+//            return .networkFail
+//        }
+//    }
     
     private func judgeCardCreationStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         
@@ -181,7 +232,7 @@ public class CardAPI {
         case 201:
             return .success(decodedData.data ?? "None-Data")
         case 400..<500:
-            return .requestErr(decodedData.msg)
+            return .requestErr(decodedData.error?.message ?? "error message")
         case 500:
             return .serverErr
         default:
@@ -196,9 +247,9 @@ public class CardAPI {
         
         switch statusCode {
         case 200:
-            return .success(decodedData.msg)
+            return .success(decodedData.data ?? "None-Data")
         case 400..<500:
-            return .requestErr(decodedData.msg)
+            return .requestErr(decodedData.error?.message ?? "error message")
         case 500:
             return .serverErr
         default:

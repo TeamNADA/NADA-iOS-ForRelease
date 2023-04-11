@@ -110,16 +110,13 @@ extension MoreViewController {
     func setLogoutClicked() {
         makeOKCancelAlert(title: "", message: "로그아웃 하시겠습니까?", okAction: { _ in
             self.makeOKAlert(title: "", message: "로그아웃이 완료 되었습니다.") { _ in
-                // TODO: - KeyChain 적용
                 if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) {
-//                if let acToken = KeyChain.read(key: Const.KeyChainKey.accessToken) {
                     self.logoutUserWithAPI(token: acToken)
-                    // TODO: - KeyChain 적용
+                    
                     self.defaults.removeObject(forKey: Const.UserDefaultsKey.accessToken)
                     self.defaults.removeObject(forKey: Const.UserDefaultsKey.refreshToken)
-//                    KeyChain.delete(key: Const.KeyChainKey.accessToken)
-//                    KeyChain.delete(key: Const.KeyChainKey.refreshToken)
                     self.defaults.removeObject(forKey: Const.UserDefaultsKey.darkModeState)
+                    
                     let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
                     nextVC.modalPresentationStyle = .overFullScreen
                     self.navigationController?.changeRootViewController(nextVC)
@@ -135,10 +132,7 @@ extension MoreViewController {
                     print(error)
                 } else {
                     self.makeOKAlert(title: "", message: "받은 명함이 초기화 되었습니다.")
-                    // TODO: - KeyChain 적용
                     if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) {
-//                    if let acToken = KeyChain.read(key: Const.KeyChainKey.accessToken) {
-//                        self.groupResetWithAPI(token: acToken)
                     }
                 }
             }
@@ -154,14 +148,12 @@ extension MoreViewController {
                     self.makeOKAlert(title: "", message: "모든 명함이 삭제되었습니다.") { _ in
                         // TODO: - KeyChain 적용
                         if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) {
-//                        if let acToken = KeyChain.read(key: Const.KeyChainKey.accessToken) {
                             self.deleteUserWithAPI(token: acToken)
-                            // TODO: - KeyChain 적용
+                            
                             self.defaults.removeObject(forKey: Const.UserDefaultsKey.accessToken)
                             self.defaults.removeObject(forKey: Const.UserDefaultsKey.refreshToken)
-//                            KeyChain.delete(key: Const.KeyChainKey.accessToken)
-//                            KeyChain.delete(key: Const.KeyChainKey.refreshToken)
                             self.defaults.removeObject(forKey: Const.UserDefaultsKey.darkModeState)
+                            
                             let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
                             nextVC.modalPresentationStyle = .overFullScreen
                             self.navigationController?.changeRootViewController(nextVC)

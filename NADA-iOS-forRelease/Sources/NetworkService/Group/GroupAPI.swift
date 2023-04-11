@@ -159,6 +159,8 @@ public class GroupAPI {
         }
     }
     
+    // MARK: - JudgeStatus methods
+    
     private func judgeGroupListFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
 
         let decoder = JSONDecoder()
@@ -171,7 +173,7 @@ public class GroupAPI {
         case 200:
             return .success(decodedData.data ?? "None-Data")
         case 400..<500:
-            return .requestErr(decodedData.msg)
+            return .requestErr(decodedData.error?.message ?? "error message")
         case 500:
             return .serverErr
         default:
@@ -191,7 +193,7 @@ public class GroupAPI {
         case 200:
             return .success(decodedData.data ?? "None-Data")
         case 400..<500:
-            return .requestErr(decodedData.msg)
+            return .requestErr(decodedData.error?.message ?? "error message")
         case 500:
             return .serverErr
         default:
@@ -207,9 +209,9 @@ public class GroupAPI {
         
         switch statusCode {
         case 200:
-            return .success(decodedData.msg)
+            return .success(decodedData.data ?? "None-Data")
         case 400..<500:
-            return .requestErr(decodedData.msg)
+            return .requestErr(decodedData.error?.message ?? "error message")
         case 500:
             return .serverErr
         default:

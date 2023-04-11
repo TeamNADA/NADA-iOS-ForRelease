@@ -101,6 +101,7 @@
 		77AA68EA273E0EC4009C89B0 /* CardAddInGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */; };
 		77B4E7482990E420006098DC /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B4E7472990E420006098DC /* Home.storyboard */; };
 		77B4E74B2990E50E006098DC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B4E74A2990E50E006098DC /* HomeViewController.swift */; };
+		77BFDFEF29E57A3600663D6E /* ReceiveCardBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BFDFEE29E57A3600663D6E /* ReceiveCardBottomSheetViewController.swift */; };
 		77C6E350299B84E300E059F9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6E34F299B84E300E059F9 /* HomeViewModel.swift */; };
 		77DFB871274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFB870274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift */; };
 		77F2C0EB27632A91007641E3 /* CardHarmonyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */; };
@@ -340,6 +341,7 @@
 		77B4E7442990E021006098DC /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		77B4E7472990E420006098DC /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		77B4E74A2990E50E006098DC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		77BFDFEE29E57A3600663D6E /* ReceiveCardBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveCardBottomSheetViewController.swift; sourceTree = "<group>"; };
 		77C6E34F299B84E300E059F9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		77DFB870274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWithIdBottomSheetViewController.swift; sourceTree = "<group>"; };
 		77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHarmonyViewController.swift; sourceTree = "<group>"; };
@@ -681,6 +683,7 @@
 				F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */,
 				7734D5A927719520004360E4 /* CardShareBottomSheetViewController.swift */,
 				F8268DB827730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift */,
+				77BFDFEE29E57A3600663D6E /* ReceiveCardBottomSheetViewController.swift */,
 			);
 			path = BottomSheet;
 			sourceTree = "<group>";
@@ -1693,7 +1696,6 @@
 				F8F00C4129DD48A000A15377 /* UpdateService.swift in Sources */,
 				F8D92E0A29D5324E002ACC73 /* Taste.swift in Sources */,
 				F85711A5274A6B2200F59F0B /* CardCreationPreviewViewController.swift in Sources */,
-				39DC069A2778BEFB00C8ECCC /* CardListLookUp.swift in Sources */,
 				77A4D60829BD74BC00367B7C /* getClassName.swift in Sources */,
 				777FF89B27359B7800BF69D3 /* Groups.swift in Sources */,
 				77F47D93276C79B600414659 /* Header.swift in Sources */,
@@ -1722,6 +1724,7 @@
 				F8F00C3E29DD489200A15377 /* UpdateAPI.swift in Sources */,
 				F8FC43B826C0227D0033E151 /* Const.swift in Sources */,
 				394F314C27081B3A00C83291 /* FrontViewController.swift in Sources */,
+				77BFDFEF29E57A3600663D6E /* ReceiveCardBottomSheetViewController.swift in Sources */,
 				777FF89D2735B16B00BF69D3 /* GroupAddRequest.swift in Sources */,
 				7734D5AA27719520004360E4 /* CardShareBottomSheetViewController.swift in Sources */,
 				77A4D5F429AE291F00367B7C /* CustomNavigationBar.swift in Sources */,

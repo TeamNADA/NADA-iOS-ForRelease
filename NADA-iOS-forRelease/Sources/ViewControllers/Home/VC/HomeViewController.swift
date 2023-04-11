@@ -35,7 +35,7 @@ final class HomeViewController: UIViewController {
         $0.image = UIImage(named: "cardHorizon")
     }
     private let giveCardLabel = UILabel().then {
-        $0.text = "명함 주기"
+        $0.text = "명함 보내기"
         $0.font = UIFont.title02
     }
     private let takeCardLabel = UILabel().then {

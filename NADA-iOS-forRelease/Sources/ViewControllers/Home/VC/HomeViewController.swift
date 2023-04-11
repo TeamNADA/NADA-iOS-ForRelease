@@ -47,13 +47,13 @@ final class HomeViewController: UIViewController {
         $0.font = UIFont.title02
     }
     private let giveCardIcon = UIImageView().then {
-        $0.backgroundColor = .blue
+        $0.image = UIImage(named: "imgSend")
     }
     private let takeCardIcon = UIImageView().then {
-        $0.backgroundColor = .blue
+        $0.image = UIImage(named: "imgRecieve")
     }
     private let aroundMeIcon = UIImageView().then {
-        $0.backgroundColor = .blue
+        $0.image = UIImage(named: "imgNearby")
     }
     
     // MARK: - View Life Cycles
@@ -113,16 +113,13 @@ extension HomeViewController {
         }
         giveCardIcon.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().inset(6)
-            make.width.height.equalTo(90)
         }
         takeCardIcon.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().inset(6)
-            make.width.height.equalTo(90)
         }
         aroundMeIcon.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().inset(24)
-            make.width.height.equalTo(90)
         }
     }
     

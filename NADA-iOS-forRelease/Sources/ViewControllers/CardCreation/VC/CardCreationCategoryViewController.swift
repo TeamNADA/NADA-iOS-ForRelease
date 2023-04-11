@@ -268,25 +268,8 @@ extension CardCreationCategoryViewController {
             make.bottom.equalToSuperview().inset(9)
         }
         
-        jobBackgroundView.snp.makeConstraints { make in
-            make.top.equalTo(basicBackgroundView.snp.bottom).offset(12)
-            make.leading.trailing.equalToSuperview().inset(24)
-            make.height.equalTo(basicBackgroundView.snp.width).multipliedBy(117.0 / 327.0)
-        }
-        
-        jobTextlabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(18)
-            make.bottom.equalToSuperview().inset(14)
-        }
-        
-        jobImageView.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(24)
-            make.top.equalToSuperview().inset(11)
-            make.bottom.equalToSuperview().inset(9)
-        }
-        
         diggingBackgroundView.snp.makeConstraints { make in
-            make.top.equalTo(jobBackgroundView.snp.bottom).offset(12)
+            make.top.equalTo(basicBackgroundView.snp.bottom).offset(12)
             make.leading.trailing.equalToSuperview().inset(24)
             make.height.equalTo(basicBackgroundView.snp.width).multipliedBy(117.0 / 327.0)
         }
@@ -297,6 +280,23 @@ extension CardCreationCategoryViewController {
         }
         
         diggingImageView.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(24)
+            make.top.equalToSuperview().inset(11)
+            make.bottom.equalToSuperview().inset(9)
+        }
+        
+        jobBackgroundView.snp.makeConstraints { make in
+            make.top.equalTo(jobBackgroundView.snp.bottom).offset(12)
+            make.leading.trailing.equalToSuperview().inset(24)
+            make.height.equalTo(basicBackgroundView.snp.width).multipliedBy(117.0 / 327.0)
+        }
+        
+        jobTextlabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(18)
+            make.bottom.equalToSuperview().inset(14)
+        }
+        
+        jobImageView.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(24)
             make.top.equalToSuperview().inset(11)
             make.bottom.equalToSuperview().inset(9)

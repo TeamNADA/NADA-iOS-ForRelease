@@ -48,6 +48,9 @@ PODS:
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
+  - RxGesture (4.0.4):
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
   - RxRelay (6.5.0):
     - RxSwift (= 6.5.0)
   - RxSwift (6.5.0)
@@ -71,6 +74,7 @@ DEPENDENCIES:
   - NVActivityIndicatorView
   - PinLayout
   - RxCocoa
+  - RxGesture
   - RxSwift
   - SkeletonView
   - SnapKit
@@ -98,6 +102,7 @@ SPEC REPOS:
     - PinLayout
     - PromisesObjC
     - RxCocoa
+    - RxGesture
     - RxRelay
     - RxSwift
     - SkeletonView
@@ -125,6 +130,7 @@ SPEC CHECKSUMS:
   PinLayout: f8a677ce0cd1cfe96b58435d029b4ceb4ce9c04c
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SkeletonView: 5a050f6411e697abd4cda0a8d767013399dccd69
@@ -133,6 +139,6 @@ SPEC CHECKSUMS:
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
   VerticalCardSwiper: 68df635b354500f86934ea044ade37a264c044c6
 
-PODFILE CHECKSUM: bc179a77a6e2b3bd5e2b878e4f4b9eca55d127ce
+PODFILE CHECKSUM: 4f8083405fc2c8c3395baf17cf92037c6ff0eab7
 
 COCOAPODS: 1.12.0

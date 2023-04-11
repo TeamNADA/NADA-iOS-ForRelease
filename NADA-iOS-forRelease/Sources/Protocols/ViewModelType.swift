@@ -2,9 +2,10 @@
 //  ViewModelType.swift
 //  NADA-iOS-forRelease
 //
-//  Created by kimhyungyu on 2023/03/08.
+//  Created by Yi Joon Choi on 2023/03/12.
 //
 
+import Foundation
 import RxSwift
 
 protocol ViewModelType {

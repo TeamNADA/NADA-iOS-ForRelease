@@ -5,15 +5,23 @@
 //  Created by Yi Joon Choi on 2023/02/06.
 //
 
-import UIKit
+import RxSwift
+import RxRelay
+import RxCocoa
+import RxGesture
 import SnapKit
 import Then
+import UIKit
 
 final class HomeViewController: UIViewController {
 
     // MARK: - Properties
     
+    private var moduleFactory = ModuleFactory.shared
+    private let disposeBag = DisposeBag()
+    
     // MARK: - UI Components
+    
     private let nadaIcon = UIImageView().then {
         $0.image = UIImage(named: "nadaLogoTxt")
     }
@@ -54,6 +62,7 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         setUI()
         setLayout()
+        bindActions()
     }
 
 }
@@ -63,7 +72,7 @@ extension HomeViewController {
     // MARK: - UI & Layout
     
     private func setUI() {
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .background
         self.navigationController?.navigationBar.isHidden = true
     }
     
@@ -118,4 +127,31 @@ extension HomeViewController {
     }
     
     // MARK: - Methods
+    
+    private func bindActions() {
+        giveCardImageView.rx.tapGesture()
+            .when(.recognized) // bind시에도 이벤트가 발생하기 때문 .skip(1)으로도 처리 가능
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.makeVibrate()
+                print("명함 주기")
+            }.disposed(by: self.disposeBag)
+        
+        takeCardImageView.rx.tapGesture()
+            .when(.recognized) // bind시에도 이벤트가 발생하기 때문 .skip(1)으로도 처리 가능
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.makeVibrate()
+                print("명함 받기")
+            }.disposed(by: self.disposeBag)
+        
+        aroundMeImageView.rx.tapGesture()
+            .when(.recognized) // bind시에도 이벤트가 발생하기 때문 .skip(1)으로도 처리 가능
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.makeVibrate()
+                let aroundMeVC = self.moduleFactory.makeAroundMeVC()
+                owner.present(aroundMeVC, animated: true)
+            }.disposed(by: self.disposeBag)
+    }
 }

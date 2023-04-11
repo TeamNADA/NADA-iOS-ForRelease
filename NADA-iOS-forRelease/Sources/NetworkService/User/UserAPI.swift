@@ -78,6 +78,8 @@ public class UserAPI {
         }
     }
     
+    // MARK: - JudgeStatus methods
+    
     private func judgeUserSocialSignUpStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<AccessToken>.self, from: data)
@@ -144,7 +146,7 @@ public class UserAPI {
         
         switch statusCode {
         case 200:
-            return .success("success")
+            return .success(decodedData.data ?? "None-Data")
         case 400..<500:
             return .requestErr(decodedData.error?.message ?? "error message")
         case 500:

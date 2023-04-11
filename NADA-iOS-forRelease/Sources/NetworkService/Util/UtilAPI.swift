@@ -31,6 +31,8 @@ public class UtilAPI {
         }
     }
     
+    // MARK: - JudgeStatus methods
+    
     private func judgeStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()

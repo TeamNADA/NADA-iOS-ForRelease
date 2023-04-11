@@ -41,6 +41,8 @@ class CardCreationViewController: UIViewController {
     private var mbtiText: String?
     private var birthText: String?
     private var newImage: UIImage?
+    private var cardType: CardType = .basic
+    private var tasteInfo: [TasteInfo]?
     
     // MARK: - @IBOutlet Properties
     
@@ -61,6 +63,7 @@ class CardCreationViewController: UIViewController {
         registerCell()
         setTextLabelGesture()
         setNotification()
+        tasteFetchWithAPI()
         
         // FIXME: 서버통신 테스트 중. 추후 호출 위치 변경.
 //        cardDetailFetchWithAPI(cardID: "cardA")
@@ -361,5 +364,29 @@ extension CardCreationViewController: UIImagePickerControllerDelegate, UINavigat
         NotificationCenter.default.post(name: .cancelImagePicker, object: nil)
         
         dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - API methods
+
+extension CardCreationViewController {
+    func tasteFetchWithAPI() {
+        CardAPI.shared.tasteFetch(cardType: cardType) { response in
+            switch response {
+            case .success(let data):
+                print("cardCreationWithAPI - success")
+                if let tastes = data as? Taste {
+                    self.tasteInfo = tastes.tasteInfos
+                }
+            case .requestErr(let message):
+                print("tasteFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("tasteFetchWithAPI - pathErr")
+            case .serverErr:
+                print("tasteFetchWithAPI - serverErr")
+            case .networkFail:
+                print("tasteFetchWithAPI - networkFail")
+            }
+        }
     }
 }

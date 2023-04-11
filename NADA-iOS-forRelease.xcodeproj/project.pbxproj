@@ -97,6 +97,7 @@
 		77F2C0ED27632AA7007641E3 /* CardHarmony.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */; };
 		77F47D93276C79B600414659 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F47D92276C79B600414659 /* Header.swift */; };
 		DBBB91E1639641F40C5B4416 /* Pods_NADA_iOS_forRelease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */; };
+		F805588529C993E7002E8EA3 /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F805588429C993E7002E8EA3 /* UpdateViewController.swift */; };
 		F80975E92990A27400075B93 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F838B66A298E5C5300D84340 /* Widgets.intentdefinition */; };
 		F80975EA2990A27900075B93 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F838B66A298E5C5300D84340 /* Widgets.intentdefinition */; };
 		F811720027383097002742CF /* ChangeGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81171FF27383097002742CF /* ChangeGroupRequest.swift */; };
@@ -320,6 +321,7 @@
 		77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardHarmony.storyboard; sourceTree = "<group>"; };
 		77F47D92276C79B600414659 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		7F4EE1D042EC783FA8528743 /* Pods-NADA-iOS-forRelease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.debug.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.debug.xcconfig"; sourceTree = "<group>"; };
+		F805588429C993E7002E8EA3 /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		F81171FF27383097002742CF /* ChangeGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeGroupRequest.swift; sourceTree = "<group>"; };
 		F822E7A82709CEB60020452C /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		F8268DB827730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCardAlertBottomSheetViewController.swift; sourceTree = "<group>"; };
@@ -761,6 +763,22 @@
 			path = VC;
 			sourceTree = "<group>";
 		};
+		F805588329C993D0002E8EA3 /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				F805588629C993EF002E8EA3 /* VC */,
+			);
+			path = Update;
+			sourceTree = "<group>";
+		};
+		F805588629C993EF002E8EA3 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				F805588429C993E7002E8EA3 /* UpdateViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
 		F82FF8222701FFE300E57F8B /* RequiredFlavor */ = {
 			isa = PBXGroup;
 			children = (
@@ -1139,6 +1157,7 @@
 		F8FC43A026C01F040033E151 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				F805588329C993D0002E8EA3 /* Update */,
 				77B4E7492990E4FC006098DC /* Home */,
 				397B750E2763A5DD004AEB03 /* OpenSource */,
 				397B75182763B5DA004AEB03 /* TeamNADA */,
@@ -1608,6 +1627,7 @@
 				77703157275005AA002CBD19 /* CardResultBottomSheetViewController.swift in Sources */,
 				F8D74DD8276C7FB60071E5FC /* UIImageView+Extension.swift in Sources */,
 				39D13565273FDB9C00B1A148 /* User.swift in Sources */,
+				F805588529C993E7002E8EA3 /* UpdateViewController.swift in Sources */,
 				77812947275F6EA3004B34F4 /* CardDetailViewController.swift in Sources */,
 				F822E7A92709CEB60020452C /* Notification.swift in Sources */,
 				F8C83FC5272FA2940009DF0D /* CardAPI.swift in Sources */,

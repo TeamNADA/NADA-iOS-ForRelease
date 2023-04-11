@@ -13,7 +13,7 @@ enum CardService {
     case cardCreation(request: CardCreationRequest)
     case cardListPageFetch(pageNumber: Int, pageSize: Int)
     case cardListFetch
-    case cardListEdit(request: CardListEditRequest)
+    case cardReorder(request: [CardReorderInfo])
     case cardDelete(cardID: String)
     case imageUpload(image: UIImage)
     case tasteFetch(cardType: CardType)
@@ -35,8 +35,8 @@ extension CardService: TargetType {
             return "/card/page"
         case .cardListFetch:
             return "/card"
-        case .cardListEdit:
-            return "/cards"
+        case .cardReorder:
+            return "/card/reorder"
         case .cardDelete(let cardID):
             return "/card/\(cardID)"
         case .imageUpload:
@@ -50,10 +50,8 @@ extension CardService: TargetType {
         switch self {
         case .cardDetailFetch, .cardListPageFetch, .cardListFetch, .tasteFetch:
             return .get
-        case .cardCreation, .imageUpload:
+        case .cardCreation, .cardReorder, .imageUpload:
             return .post
-        case .cardListEdit:
-            return .put
         case .cardDelete:
             return .delete
         }
@@ -108,7 +106,7 @@ extension CardService: TargetType {
             return .requestParameters(parameters: ["pageNo": pageNumber,
                                                    "pageSize": pageSize],
                                       encoding: URLEncoding.queryString)
-        case .cardListEdit(let requestModel):
+        case .cardReorder(let requestModel):
             return .requestJSONEncodable(requestModel)
         case .imageUpload(let image):
             var multiPartData: [Moya.MultipartFormData] = []
@@ -123,7 +121,7 @@ extension CardService: TargetType {
         switch self {
         case .cardDetailFetch, .cardListPageFetch, .cardListFetch, .cardDelete, .tasteFetch:
             return Const.Header.bearerHeader()
-        case .cardListEdit, .cardCreation:
+        case .cardReorder, .cardCreation:
             return Const.Header.basicHeader()
         case .imageUpload:
             return Const.Header.multipartFormHeader()

@@ -140,6 +140,11 @@ extension HomeViewController {
             .bind { owner, _ in
                 owner.makeVibrate()
                 print("명함 받기")
+                let nextVC = ReceiveCardBottomSheetViewController()
+                            .setTitle("명함 받기")
+                            .setHeight(285)
+                nextVC.modalPresentationStyle = .overFullScreen
+                self.present(nextVC, animated: false, completion: nil)
             }.disposed(by: self.disposeBag)
         
         aroundMeImageView.rx.tapGesture()

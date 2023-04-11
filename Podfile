@@ -25,4 +25,5 @@ target 'NADA-iOS-forRelease' do
   pod 'Moya/RxSwift'
   pod 'FlexLayout'
   pod 'PinLayout'
+pod 'RxGesture'
 end

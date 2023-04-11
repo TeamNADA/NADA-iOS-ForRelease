@@ -28,3 +28,7 @@ struct Token: Codable {
     let grantType, accessToken, refreshToken: String
     let accessTokenExpiresIn: Int
 }
+
+struct AccessToken: Codable {
+    let accessToken: String
+}

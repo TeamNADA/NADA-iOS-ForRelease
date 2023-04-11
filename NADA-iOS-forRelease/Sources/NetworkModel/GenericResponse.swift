@@ -8,20 +8,23 @@
 import Foundation
 
 struct GenericResponse<T: Codable>: Codable {
-    let msg: String
-    let timestamp: String
+    let error: NetworkError?
+    let status: Int
     let data: T?
     
     enum CodingKeys: String, CodingKey {
-        case msg
-        case timestamp
-        case data
+        case error
+        case status
+        case data = "result"
     }
+}
+
+struct NetworkError: Codable {
+    let code: String
+    let message: String
     
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        msg = (try? values.decode(String.self, forKey: .msg)) ?? ""
-        timestamp = (try? values.decode(String.self, forKey: .timestamp)) ?? ""
-        data = (try? values.decode(T.self, forKey: .data)) ?? nil
+    enum CodingKeys: String, CodingKey {
+        case code
+        case message
     }
 }

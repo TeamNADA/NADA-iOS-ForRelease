@@ -113,7 +113,7 @@ extension LoginViewController {
                         print(error)
                     } else {
                         if let userID = user?.kakaoAccount?.email {
-                            self.postUserSignUpWithAPI(request: userID)
+                            self.postUserSignUpWithAPI(socialID: userID, socialType: "KAKAO")
                             UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isAppleLogin)
                             UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.isKakaoLogin)
                         }
@@ -136,7 +136,7 @@ extension LoginViewController {
                         print(error)
                     } else {
                         if let userID = user?.kakaoAccount?.email {
-                            self.postUserSignUpWithAPI(request: userID)
+                            self.postUserSignUpWithAPI(socialID: userID, socialType: "KAKAO")
                             UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isAppleLogin)
                             UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.isKakaoLogin)
                         }
@@ -172,7 +172,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
             
             let userIdentifier = appleIDCredential.user
-            postUserSignUpWithAPI(request: userIdentifier)
+            postUserSignUpWithAPI(socialID: userIdentifier, socialType: "APPLE")
             UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.isAppleLogin)
             UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isKakaoLogin)
             
@@ -189,19 +189,15 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
 
 // MARK: - Network
 extension LoginViewController {
-    func postUserSignUpWithAPI(request: String) {
-        UserAPI.shared.userSocialSignUp(request: request) { response in
+    func postUserSignUpWithAPI(socialID: String, socialType: String) {
+        UserAPI.shared.userSocialSignUp(socialID: socialID, socialType: socialType) { response in
             switch response {
             case .success(let loginData):
                 print("postUserSignUpWithAPI - success")
-                if let userData = loginData as? UserWithTokenRequest {
-                    UserDefaults.standard.set(userData.user.userID, forKey: Const.UserDefaultsKey.userID)
-                    
-                    // TODO: - KeyChain 적용
-                    UserDefaults.standard.set(userData.user.token.accessToken, forKey: Const.UserDefaultsKey.accessToken)
-                    UserDefaults.standard.set(userData.user.token.refreshToken, forKey: Const.UserDefaultsKey.refreshToken)
-                    //                    KeyChain.create(key: Const.KeyChainKey.accessToken, token: userData.user.token.accessToken)
-                    //                    KeyChain.create(key: Const.KeyChainKey.refreshToken, token: userData.user.token.refreshToken)
+                if let userData = loginData as? AccessToken {
+                    UserDefaults.standard.set(socialID, forKey: Const.UserDefaultsKey.userID)
+                    UserDefaults.standard.set(userData.accessToken, forKey: Const.UserDefaultsKey.accessToken)
+//                    UserDefaults.standard.set(userData.user.token.refreshToken, forKey: Const.UserDefaultsKey.refreshToken)
                     self.presentToMain()
                 }
             case .requestErr(let message):

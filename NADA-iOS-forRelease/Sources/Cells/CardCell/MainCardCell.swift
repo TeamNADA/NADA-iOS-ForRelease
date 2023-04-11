@@ -76,7 +76,7 @@ extension MainCardCell {
             guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return }
             backCard.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
             guard let cardDataModel = cardDataModel else { return }
-            backCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable ?? false)
+            backCard.initCell(cardTasteInfo: cardDataModel.cardTastes, tmi: cardDataModel.tmi)
             
             contentView.addSubview(backCard)
             isFront = false

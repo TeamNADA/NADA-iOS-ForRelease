@@ -14,11 +14,11 @@ class CardCreationPreviewViewController: UIViewController {
     public var frontCardDataModel: FrontCardDataModel?
     public var backCardDataModel: BackCardDataModel?
     public var cardBackgroundImage: UIImage?
-    public var defaultImageIndex: Int?
+    public var tasteInfo: [TasteInfo]?
     
     private var isFront = true
-    private var cardCreationRequest: CardCreationRequest?
     private var isShareable = false
+    private let cardType: String = "BASIC"
     
     lazy var loadingBgView: UIView = {
         let bgView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
@@ -49,25 +49,24 @@ class CardCreationPreviewViewController: UIViewController {
         super.viewDidLoad()
         
         setUI()
-        setBackgroundImage()
+//        setBackgroundImage()
         setFrontCard()
         setGestureRecognizer()
     }
     @IBAction func touchCompleteButton(_ sender: Any) {
         guard let frontCardDataModel = frontCardDataModel, let backCardDataModel = backCardDataModel else { return }
-        
-        guard let userID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) else { return }
-        
-        cardCreationRequest = CardCreationRequest(userID: userID, frontCard: frontCardDataModel, backCard: backCardDataModel)
-        guard let cardCreationRequest = cardCreationRequest,
-              let cardBackgroundImage = cardBackgroundImage else { return }
 
         DispatchQueue.main.async {
             self.setActivityIndicator()
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.cardCreationWithAPI(request: cardCreationRequest, image: cardBackgroundImage)
+            self.cardImageUploadWithAPI { [weak self] imageURL in
+                guard let self = self else { return }
+                
+                let cardCreationRequest = CardCreationRequest(cardImageURL: imageURL, cardType: self.cardType, frontCard: frontCardDataModel, backCard: backCardDataModel)
+                self.cardCreationWithAPI(request: cardCreationRequest)
+            }
         }
     }
     @IBAction func touchBackButton(_ sender: Any) {
@@ -121,14 +120,14 @@ extension CardCreationPreviewViewController {
         frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
         guard let frontCardDataModel = frontCardDataModel else { return }
         frontCard.initCell(cardBackgroundImage,
-                           frontCardDataModel.title,
-                           frontCardDataModel.description,
-                           frontCardDataModel.name,
-                           frontCardDataModel.birthDate,
-                           frontCardDataModel.mbti,
-                           frontCardDataModel.instagramID,
-                           frontCardDataModel.phoneNumber,
-                           frontCardDataModel.linkURL,
+                           frontCardDataModel.cardName,
+                           frontCardDataModel.departmentName ?? "",
+                           frontCardDataModel.userName,
+                           frontCardDataModel.birth,
+                           frontCardDataModel.mbti ?? "",
+                           frontCardDataModel.sns ?? "",
+                           frontCardDataModel.phoneNumber ?? "",
+                           frontCardDataModel.urls?[0] ?? "",
                            isShareable: isShareable)
         
         cardView.addSubview(frontCard)
@@ -142,25 +141,26 @@ extension CardCreationPreviewViewController {
         swipeRightGestureRecognizer.direction = .right
         self.cardView.addGestureRecognizer(swipeRightGestureRecognizer)
     }
-    private func setBackgroundImage() {
-        if frontCardDataModel?.defaultImage == 0 {
-            return
-        } else if frontCardDataModel?.defaultImage == 1 {
-            cardBackgroundImage = UIImage(named: "imgCardBg01")
-        } else if frontCardDataModel?.defaultImage == 2 {
-            cardBackgroundImage = UIImage(named: "imgCardBg02")
-        } else if frontCardDataModel?.defaultImage == 3 {
-            cardBackgroundImage = UIImage(named: "imgCardBg03")
-        } else if frontCardDataModel?.defaultImage == 4 {
-            cardBackgroundImage = UIImage(named: "imgCardBg04")
-        } else if frontCardDataModel?.defaultImage == 5 {
-            cardBackgroundImage = UIImage(named: "imgCardBg05")
-        } else if frontCardDataModel?.defaultImage == 6 {
-            cardBackgroundImage = UIImage(named: "imgCardBg06")
-        } else {
-            cardBackgroundImage = UIImage(named: "imgCardBg07")
-        }
-    }
+    // TODO: -  추후 서버에서 개발하면 사용할 메서드.
+//    private func setBackgroundImage() {
+//        if frontCardDataModel?.defaultImage == 0 {
+//            return
+//        } else if frontCardDataModel?.defaultImage == 1 {
+//            cardBackgroundImage = UIImage(named: "imgCardBg01")
+//        } else if frontCardDataModel?.defaultImage == 2 {
+//            cardBackgroundImage = UIImage(named: "imgCardBg02")
+//        } else if frontCardDataModel?.defaultImage == 3 {
+//            cardBackgroundImage = UIImage(named: "imgCardBg03")
+//        } else if frontCardDataModel?.defaultImage == 4 {
+//            cardBackgroundImage = UIImage(named: "imgCardBg04")
+//        } else if frontCardDataModel?.defaultImage == 5 {
+//            cardBackgroundImage = UIImage(named: "imgCardBg05")
+//        } else if frontCardDataModel?.defaultImage == 6 {
+//            cardBackgroundImage = UIImage(named: "imgCardBg06")
+//        } else {
+//            cardBackgroundImage = UIImage(named: "imgCardBg07")
+//        }
+//    }
     private func setActivityIndicator() {
         view.addSubview(loadingBgView)
         loadingBgView.addSubview(activityIndicator)
@@ -180,16 +180,18 @@ extension CardCreationPreviewViewController {
         if isFront {
             guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return }
             guard let backCardDataModel = backCardDataModel else { return }
+            guard let tasteInfo else { return }
             backCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
-            backCard.initCell(cardBackgroundImage,
-                              backCardDataModel.isMincho,
-                              backCardDataModel.isSoju,
-                              backCardDataModel.isBoomuk,
-                              backCardDataModel.isSauced,
-                              backCardDataModel.oneTMI,
-                              backCardDataModel.twoTMI,
-                              backCardDataModel.threeTMI,
-                              isShareable: isShareable)
+            
+            var cardTasteInfo: [CardTasteInfo] = []
+
+            for index in 0..<tasteInfo.count {
+                cardTasteInfo.append(CardTasteInfo(cardTasteName: tasteInfo[index].tasteName,
+                                                   isChoose: backCardDataModel.tastes.contains(tasteInfo[index].tasteName),
+                                                   sortOrder: index))
+            }
+            
+            backCard.initCell(cardTasteInfo: cardTasteInfo, tmi: backCardDataModel.tmi)
             
             cardView.addSubview(backCard)
             isFront = false
@@ -199,14 +201,14 @@ extension CardCreationPreviewViewController {
             frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
             guard let frontCardDataModel = frontCardDataModel else { return }
             frontCard.initCell(cardBackgroundImage,
-                               frontCardDataModel.title,
-                               frontCardDataModel.description,
-                               frontCardDataModel.name,
-                               frontCardDataModel.birthDate,
-                               frontCardDataModel.mbti,
-                               frontCardDataModel.instagramID,
-                               frontCardDataModel.phoneNumber,
-                               frontCardDataModel.linkURL,
+                               frontCardDataModel.cardName,
+                               frontCardDataModel.departmentName ?? "",
+                               frontCardDataModel.userName,
+                               frontCardDataModel.birth,
+                               frontCardDataModel.mbti ?? "",
+                               frontCardDataModel.sns ?? "",
+                               frontCardDataModel.phoneNumber ?? "",
+                               frontCardDataModel.urls?[0] ?? "",
                                isShareable: isShareable)
             
             cardView.addSubview(frontCard)
@@ -226,8 +228,8 @@ extension CardCreationPreviewViewController {
     
     // MARK: - Network
     
-    func cardCreationWithAPI(request: CardCreationRequest, image: UIImage) {
-        CardAPI.shared.cardCreation(request: request, image: image) { response in
+    private func cardCreationWithAPI(request: CardCreationRequest) {
+        CardAPI.shared.cardCreation(request: request) { response in
             switch response {
             case .success:
                 print("cardCreationWithAPI - success")
@@ -265,5 +267,24 @@ extension CardCreationPreviewViewController {
             }
         }
     }
-    
+    private func cardImageUploadWithAPI(completion: @escaping (String) -> Void) {
+        guard let image = cardBackgroundImage else { return }
+        CardAPI.shared.cardImageUpload(image: image) { response in
+            switch response {
+            case .success(let data):
+                print("cardImageUploadWithAPI - success")
+                if let imageURL = data as? String {
+                    completion(imageURL)
+                }
+            case .requestErr(let message):
+                print("cardImageUploadWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("cardImageUploadWithAPI - pathErr")
+            case .serverErr:
+                print("cardImageUploadWithAPI - serverErr")
+            case .networkFail:
+                print("cardImageUploadWithAPI - networkFail")
+            }
+        }
+    }
 }

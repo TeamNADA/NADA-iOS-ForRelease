@@ -6,6 +6,8 @@
 //
 
 import SnapKit
+import RxSwift
+import RxCocoa
 
 import UIKit
 
@@ -15,7 +17,7 @@ class CardCreationCategoryViewController: UIViewController {
     
     private let navigationBarView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .background
         
         return view
     }()
@@ -38,7 +40,6 @@ class CardCreationCategoryViewController: UIViewController {
     
     private let basicBackgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .cardCreationUnclicked
         view.layer.cornerRadius = 15
         
         return view
@@ -62,7 +63,6 @@ class CardCreationCategoryViewController: UIViewController {
     
     private let jobBackgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .cardCreationUnclicked
         view.layer.cornerRadius = 15
         
         return view
@@ -86,7 +86,6 @@ class CardCreationCategoryViewController: UIViewController {
     
     private let diggingBackgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .cardCreationUnclicked
         view.layer.cornerRadius = 15
         
         return view
@@ -128,13 +127,22 @@ class CardCreationCategoryViewController: UIViewController {
         return label
     }()
     
+    var viewModel = CardCreationCategoryViewModel()
+    private var disposeBag = DisposeBag()
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUI()
         setLayout()
+        setAddTargets()
+        navigationBackSwipeMotion()
+        bindViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setUI()
     }
 }
 
@@ -142,7 +150,78 @@ class CardCreationCategoryViewController: UIViewController {
 
 extension CardCreationCategoryViewController {
     private func setUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .background
+        basicBackgroundView.backgroundColor = .cardCreationUnclicked
+        jobBackgroundView.backgroundColor = .cardCreationUnclicked
+        diggingBackgroundView.backgroundColor = .cardCreationUnclicked
+    }
+    
+    private func setAddTargets() {
+        backButton.addTarget(self, action: #selector(touchBackButton), for: .touchUpInside)
+    }
+    
+    private func navigationBackSwipeMotion() {
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+    }
+
+    private func bindViewModel() {
+        let basicTapGesture = UITapGestureRecognizer()
+        basicBackgroundView.addGestureRecognizer(basicTapGesture)
+        
+        let jobTapGesture = UITapGestureRecognizer()
+        jobBackgroundView.addGestureRecognizer(jobTapGesture)
+        
+        let diggingTapGesture = UITapGestureRecognizer()
+        diggingBackgroundView.addGestureRecognizer(diggingTapGesture)
+        
+        let input = CardCreationCategoryViewModel.Input(touchBasic: basicTapGesture.rx.event,
+                                                        touchJob: jobTapGesture.rx.event,
+                                                        touchDigging: diggingTapGesture.rx.event)
+        let output = viewModel.transform(input: input)
+        
+        output.touchBasic
+            .bind(with: self, onNext: { owner, _ in
+                owner.basicBackgroundView.backgroundColor = .cardCreationClicked
+                owner.presentToBasicCardCreationViewController()
+            })
+            .disposed(by: disposeBag)
+        
+        output.touchJob
+            .bind(with: self, onNext: { owner, _ in
+                owner.jobBackgroundView.backgroundColor = .cardCreationClicked
+                owner.presentToJobCardCreationViewController()
+            })
+            .disposed(by: disposeBag)
+
+        output.touchDigging
+            .bind(with: self, onNext: { owner, _ in
+                owner.diggingBackgroundView.backgroundColor = .cardCreationClicked
+                owner.presentToDiggingCardCreationViewController()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    // TODO: - 화면전환 메서드 작성.
+    private func presentToBasicCardCreationViewController() {
+        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.cardCreation, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardCreationViewController) as? CardCreationViewController else { return }
+        let navigationController = UINavigationController(rootViewController: nextVC)
+        navigationController.modalPresentationStyle = .fullScreen
+        self.navigationController?.present(navigationController, animated: true)
+    }
+    
+    private func presentToJobCardCreationViewController() {
+        
+    }
+    
+    private func presentToDiggingCardCreationViewController() {
+        
+    }
+    
+    // MARK: - @objc methods
+
+    @objc
+    private func touchBackButton() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
@@ -189,25 +268,8 @@ extension CardCreationCategoryViewController {
             make.bottom.equalToSuperview().inset(9)
         }
         
-        jobBackgroundView.snp.makeConstraints { make in
-            make.top.equalTo(basicBackgroundView.snp.bottom).offset(12)
-            make.leading.trailing.equalToSuperview().inset(24)
-            make.height.equalTo(basicBackgroundView.snp.width).multipliedBy(117.0 / 327.0)
-        }
-        
-        jobTextlabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(18)
-            make.bottom.equalToSuperview().inset(14)
-        }
-        
-        jobImageView.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(24)
-            make.top.equalToSuperview().inset(11)
-            make.bottom.equalToSuperview().inset(9)
-        }
-        
         diggingBackgroundView.snp.makeConstraints { make in
-            make.top.equalTo(jobBackgroundView.snp.bottom).offset(12)
+            make.top.equalTo(basicBackgroundView.snp.bottom).offset(12)
             make.leading.trailing.equalToSuperview().inset(24)
             make.height.equalTo(basicBackgroundView.snp.width).multipliedBy(117.0 / 327.0)
         }
@@ -218,6 +280,23 @@ extension CardCreationCategoryViewController {
         }
         
         diggingImageView.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(24)
+            make.top.equalToSuperview().inset(11)
+            make.bottom.equalToSuperview().inset(9)
+        }
+        
+        jobBackgroundView.snp.makeConstraints { make in
+            make.top.equalTo(jobBackgroundView.snp.bottom).offset(12)
+            make.leading.trailing.equalToSuperview().inset(24)
+            make.height.equalTo(basicBackgroundView.snp.width).multipliedBy(117.0 / 327.0)
+        }
+        
+        jobTextlabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(18)
+            make.bottom.equalToSuperview().inset(14)
+        }
+        
+        jobImageView.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(24)
             make.top.equalToSuperview().inset(11)
             make.bottom.equalToSuperview().inset(9)

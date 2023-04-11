@@ -56,7 +56,7 @@ final class AroundMeViewModel: ViewModelType {
 }
 
 extension AroundMeViewModel {
-    func transform(from input: Input, disposeBag: DisposeBag) -> Output {
+    func transform(input: Input) -> Output {
         let output = Output()
         self.bindOutput(output: output, disposeBag: disposeBag)
         

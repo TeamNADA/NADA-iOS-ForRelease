@@ -13,7 +13,7 @@ class CardListViewController: UIViewController {
         
     // MARK: - Properties
     var cardItems: [CardList] = []
-    var newCardItems: [Ordered] = []
+    var newCardItems: [CardReorderInfo] = []
     
     // MARK: - IBOutlet Properties
     @IBOutlet weak var cardListTableView: UITableView!
@@ -83,12 +83,12 @@ class CardListViewController: UIViewController {
             cardListTableView.reloadData()
             cardListTableView.moveRow(at: index!, to: IndexPath(row: 0, section: 0))
             
-            var count = 0
-            while cardItems.count > count {
-                newCardItems.append(Ordered(cardID: cardItems[count].cardID, priority: count))
-                count += 1
+            for index in 0..<cardItems.count {
+                newCardItems.append(CardReorderInfo(cardID: cardItems[index].cardID,
+                                                    isRepresentative: index == 0 ? true : false,
+                                                    sortOrder: index == 0 ? 0 : cardItems.count - index))
             }
-            cardListEditWithAPI(request: CardListEditRequest(ordered: newCardItems))
+            cardReorderWithAPI(request: newCardItems)
         }
     }
 }
@@ -166,7 +166,7 @@ extension CardListViewController: UITableViewDataSource {
 // MARK: - Network
 extension CardListViewController {
     func cardListFetchWithAPI() {
-        CardAPI.shared.cardListFetch() { response in
+        CardAPI.shared.cardListFetch { response in
             switch response {
             case .success(let data):
                 if let card = data as? CardListRequest {
@@ -185,19 +185,19 @@ extension CardListViewController {
         }
     }
     
-    func cardListEditWithAPI(request: CardListEditRequest) {
-        CardAPI.shared.cardListEdit(request: request) { response in
+    func cardReorderWithAPI(request: [CardReorderInfo]) {
+        CardAPI.shared.cardReorder(request: request) { response in
             switch response {
             case .success(let data):
-                print(data)
+                print("postCardReorderWithAPI - success: ", data)
             case .requestErr(let message):
-                print("putCardListEditWithAPI - requestErr", message)
+                print("postCardReorderWithAPI - requestErr: ", message)
             case .pathErr:
-                print("putCardListEditWithAPI - pathErr")
+                print("postCardReorderWithAPI - pathErr")
             case .serverErr:
-                print("putCardListEditWithAPI - serverErr")
+                print("postCardReorderWithAPI - serverErr")
             case .networkFail:
-                print("putCardListEditWithAPI - networkFail")
+                print("postCardReorderWithAPI - networkFail")
             }
         }
     }
@@ -313,15 +313,16 @@ extension CardListViewController {
                     MyCell.cellSnapshot!.transform = CGAffineTransform.identity
                     MyCell.cellSnapshot!.alpha = 0.0
                     cell?.alpha = 1.0
-                    
-                }, completion: { (finished) -> Void in
+                }, completion: { [weak self] (finished) -> Void in
                     if finished {
-                        var count = 0
-                        while self.cardItems.count > count {
-                            self.newCardItems.append(Ordered(cardID: self.cardItems[count].cardID, priority: count))
-                            count += 1
+                        guard let self = self else { return }
+                        
+                        for index in 0..<(cardItems.count) {
+                            newCardItems.append(CardReorderInfo(cardID: cardItems[index].cardID,
+                                                                isRepresentative: index == 0 ? true : false,
+                                                                sortOrder: index == 0 ? 0 : cardItems.count - index))
                         }
-                        self.cardListEditWithAPI(request: CardListEditRequest(ordered: self.newCardItems))
+                        cardReorderWithAPI(request: newCardItems)
                         
                         Initial.initialIndexPath = nil
                         MyCell.cellSnapshot!.removeFromSuperview()

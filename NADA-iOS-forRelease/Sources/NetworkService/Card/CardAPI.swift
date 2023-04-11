@@ -21,7 +21,7 @@ public class CardAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeCardDetailFetchStatus(by: statusCode, data)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: Card.self)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -37,7 +37,7 @@ public class CardAPI {
                 let statusCode = response.statusCode
                 let data = response.data
 
-                let networkResult = self.judgeCardCreationStatus(by: statusCode, data)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: Card.self)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -55,7 +55,7 @@ public class CardAPI {
                     let statusCode = response.statusCode
                     let data = response.data
                     
-                    let networkResult = self.judgeMainListFetchStatus(by: statusCode, data)
+                    let networkResult = self.judgeStatus(by: statusCode, data: data, type: [Card].self)
                     completion(networkResult)
                 case .failure(let err):
                     print(err)
@@ -68,7 +68,7 @@ public class CardAPI {
                     let statusCode = response.statusCode
                     let data = response.data
                     
-                    let networkResult = self.judgeMainListFetchStatus(by: statusCode, data)
+                    let networkResult = self.judgeStatus(by: statusCode, data: data, type: [Card].self)
                     completion(networkResult)
                 case .failure(let err):
                     print(err)
@@ -77,14 +77,14 @@ public class CardAPI {
         }
     }
     
-    func cardListEdit(request: CardListEditRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
-        cardProvider.request(.cardListEdit(request: request)) { (result) in
+    func cardReorder(request: [CardReorderInfo], completion: @escaping (NetworkResult<Any>) -> Void) {
+        cardProvider.request(.cardReorder(request: request)) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeStatus(by: statusCode, data)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: String.self)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -100,7 +100,7 @@ public class CardAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeStatus(by: statusCode, data)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: String.self)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -115,7 +115,7 @@ public class CardAPI {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                let networkResult = self.judgeStatus(by: statusCode, data)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: String.self)
                 
                 completion(networkResult)
             case .failure(let err):
@@ -130,7 +130,7 @@ public class CardAPI {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                let networkResult = self.judgeTasteFetchStatus(by: statusCode, data)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: Taste.self)
                 
                 completion(networkResult)
             case .failure(let err):
@@ -140,65 +140,6 @@ public class CardAPI {
     }
     
     // MARK: - JudgeStatus methods
-    
-    private func judgeTasteFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<Taste>.self, from: data)
-        else {
-            return .pathErr
-        }
-        
-        switch statusCode {
-        case 200:
-            return .success(decodedData.data ?? "None-Data")
-        case 400..<500:
-            return .requestErr(decodedData.error?.message ?? "error message")
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    private func judgeCardDetailFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
-        
-        let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<Card>.self, from: data)
-        else {
-            return .pathErr
-        }
-        
-        switch statusCode {
-        case 200:
-            return .success(decodedData.data ?? "None-Data")
-        case 400..<500:
-            return .requestErr(decodedData.error?.message ?? "error message")
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    private func judgeMainListFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
-        
-        let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<[Card]>.self, from: data)
-        else {
-            return .pathErr
-        }
-        
-        switch statusCode {
-        case 200:
-            return .success(decodedData.data ?? "None-Data")
-        case 400..<500:
-            return .requestErr(decodedData.error?.message ?? "error message")
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
     
 //    private func judgeCardListFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
 //
@@ -220,29 +161,9 @@ public class CardAPI {
 //        }
 //    }
     
-    private func judgeCardCreationStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
-        
+    private func judgeStatus<T: Codable>(by statusCode: Int, data: Data, type: T.Type) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<Card>.self, from: data)
-        else {
-            return .pathErr
-        }
-        
-        switch statusCode {
-        case 201:
-            return .success(decodedData.data ?? "None-Data")
-        case 400..<500:
-            return .requestErr(decodedData.error?.message ?? "error message")
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    private func judgeStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<String>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<T>.self, from: data)
         else { return .pathErr }
         
         switch statusCode {

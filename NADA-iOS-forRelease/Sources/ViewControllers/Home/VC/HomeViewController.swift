@@ -25,14 +25,17 @@ final class HomeViewController: UIViewController {
     private let nadaIcon = UIImageView().then {
         $0.image = UIImage(named: "nadaLogoTxt")
     }
-    private let giveCardImageView = UIImageView().then {
-        $0.image = UIImage(named: "cardVertical")
+    private let giveCardView = UIView().then {
+        $0.backgroundColor = .homeViews
+        $0.layer.cornerRadius = 15
     }
-    private let takeCardImageView = UIImageView().then {
-        $0.image = UIImage(named: "cardVertical")
+    private let takeCardView = UIView().then {
+        $0.backgroundColor = .homeViews
+        $0.layer.cornerRadius = 15
     }
-    private let aroundMeImageView = UIImageView().then {
-        $0.image = UIImage(named: "cardHorizon")
+    private let aroundMeView = UIView().then {
+        $0.backgroundColor = .homeViews
+        $0.layer.cornerRadius = 15
     }
     private let giveCardLabel = UILabel().then {
         $0.text = "명함 보내기"
@@ -77,27 +80,32 @@ extension HomeViewController {
     }
     
     private func setLayout() {
-        view.addSubviews([nadaIcon, giveCardImageView, takeCardImageView, aroundMeImageView])
-        giveCardImageView.addSubviews([giveCardLabel, giveCardIcon])
-        takeCardImageView.addSubviews([takeCardLabel, takeCardIcon])
-        aroundMeImageView.addSubviews([aroundMeLabel, aroundMeIcon])
+        view.addSubviews([nadaIcon, giveCardView, takeCardView, aroundMeView])
+        giveCardView.addSubviews([giveCardLabel, giveCardIcon])
+        takeCardView.addSubviews([takeCardLabel, takeCardIcon])
+        aroundMeView.addSubviews([aroundMeLabel, aroundMeIcon])
         
         nadaIcon.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide).inset(12)
             make.leading.equalToSuperview().inset(19)
         }
-        giveCardImageView.snp.makeConstraints { make in
+        giveCardView.snp.makeConstraints { make in
             make.top.equalTo(nadaIcon.snp.bottom).offset(150)
             make.leading.equalToSuperview().inset(24)
+            make.width.equalTo(157)
+            make.height.equalTo(205)
         }
-        takeCardImageView.snp.makeConstraints { make in
+        takeCardView.snp.makeConstraints { make in
             make.top.equalTo(nadaIcon.snp.bottom).offset(150)
             make.trailing.equalToSuperview().inset(24)
+            make.width.equalTo(157)
+            make.height.equalTo(205)
         }
-        aroundMeImageView.snp.makeConstraints { make in
+        aroundMeView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(giveCardImageView.snp.bottom).offset(14)
+            make.top.equalTo(giveCardView.snp.bottom).offset(14)
             make.leading.equalToSuperview().inset(24)
+            make.height.equalTo(100)
         }
         giveCardLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(18)
@@ -126,7 +134,7 @@ extension HomeViewController {
     // MARK: - Methods
     
     private func bindActions() {
-        giveCardImageView.rx.tapGesture()
+        giveCardView.rx.tapGesture()
             .when(.recognized) // bind시에도 이벤트가 발생하기 때문 .skip(1)으로도 처리 가능
             .withUnretained(self)
             .bind { owner, _ in
@@ -134,7 +142,7 @@ extension HomeViewController {
                 print("명함 주기")
             }.disposed(by: self.disposeBag)
         
-        takeCardImageView.rx.tapGesture()
+        takeCardView.rx.tapGesture()
             .when(.recognized) // bind시에도 이벤트가 발생하기 때문 .skip(1)으로도 처리 가능
             .withUnretained(self)
             .bind { owner, _ in
@@ -147,7 +155,7 @@ extension HomeViewController {
                 self.present(nextVC, animated: false, completion: nil)
             }.disposed(by: self.disposeBag)
         
-        aroundMeImageView.rx.tapGesture()
+        aroundMeView.rx.tapGesture()
             .when(.recognized) // bind시에도 이벤트가 발생하기 때문 .skip(1)으로도 처리 가능
             .withUnretained(self)
             .bind { owner, _ in

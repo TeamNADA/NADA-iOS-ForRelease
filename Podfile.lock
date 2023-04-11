@@ -74,8 +74,8 @@ DEPENDENCIES:
   - NVActivityIndicatorView
   - PinLayout
   - RxCocoa
-  - RxSwift
   - RxGesture
+  - RxSwift
   - SkeletonView
   - SnapKit
   - SwiftLint
@@ -139,6 +139,6 @@ SPEC CHECKSUMS:
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
   VerticalCardSwiper: 68df635b354500f86934ea044ade37a264c044c6
 
-PODFILE CHECKSUM: bc179a77a6e2b3bd5e2b878e4f4b9eca55d127ce
+PODFILE CHECKSUM: 4f8083405fc2c8c3395baf17cf92037c6ff0eab7
 
 COCOAPODS: 1.12.0

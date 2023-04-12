@@ -137,7 +137,7 @@ extension QRScanViewController: AVCaptureMetadataOutputObjectsDelegate {
                     let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: true)?.queryItems
                     let cardID = queryItems?.filter { $0.name == "cardID" }.first?.value
                     
-                    self.cardDetailFetchWithAPI(cardID: cardID ?? "")
+                    self.cardDetailFetchWithAPI(cardUUID: cardID ?? "")
                 }
             } else {
                 self.showToast(message: "유효하지 않은 QR입니다.", font: UIFont.button02, view: "QRScan")
@@ -147,8 +147,8 @@ extension QRScanViewController: AVCaptureMetadataOutputObjectsDelegate {
 }
 
 extension QRScanViewController {
-    func cardDetailFetchWithAPI(cardID: String) {
-        CardAPI.shared.cardDetailFetch(cardID: cardID) { response in
+    func cardDetailFetchWithAPI(cardUUID: String) {
+        CardAPI.shared.cardDetailFetch(cardUUID: cardUUID) { response in
             switch response {
             case .success(let data):
                 if let card = data as? Card {

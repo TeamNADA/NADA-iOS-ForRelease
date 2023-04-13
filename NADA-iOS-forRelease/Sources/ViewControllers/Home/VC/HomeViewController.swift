@@ -143,7 +143,7 @@ extension HomeViewController {
             }.disposed(by: self.disposeBag)
         
         takeCardView.rx.tapGesture()
-            .when(.recognized) // bind시에도 이벤트가 발생하기 때문 .skip(1)으로도 처리 가능
+            .when(.recognized)
             .withUnretained(self)
             .bind { owner, _ in
                 owner.makeVibrate()
@@ -156,7 +156,7 @@ extension HomeViewController {
             }.disposed(by: self.disposeBag)
         
         aroundMeView.rx.tapGesture()
-            .when(.recognized) // bind시에도 이벤트가 발생하기 때문 .skip(1)으로도 처리 가능
+            .when(.recognized)
             .withUnretained(self)
             .bind { owner, _ in
                 owner.makeVibrate()

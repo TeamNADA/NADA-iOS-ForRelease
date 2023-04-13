@@ -155,3 +155,44 @@ extension HomeViewController {
             }.disposed(by: self.disposeBag)
     }
 }
+
+// MARK: - Network
+extension HomeViewController {
+    func updateUserInfoFetchWithAPI(completion: @escaping (Bool) -> Void) {
+        UpdateAPI.shared.updateUserInfoFetch { response in
+            switch response {
+            case .success(let data):
+                guard let updateUserInfo = data as? UpdateUserInfo else { return }
+                completion(updateUserInfo.forceUpdateAgreement)
+                print("getUpdateNoteFetchWithAPI - success")
+            case .requestErr(let message):
+                print("getUpdateUserInfoFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("getUpdateUserInfoFetchWithAPI - pathErr")
+            case .serverErr:
+                print("getUpdateUserInfoFetchWithAPI - serverErr")
+            case .networkFail:
+                print("getUpdateUserInfoFetchWithAPI - networkFail")
+            }
+        }
+    }
+    func updateNoteFetchWithAPI(completion: @escaping (UpdateNote) -> Void) {
+        UpdateAPI.shared.updateNoteFetch { response in
+            switch response {
+            case .success(let data):
+                guard let updateNote = data as? UpdateNote else { return }
+                completion(updateNote)
+                print("getUpdateNoteFetchWithAPI - success")
+            case .requestErr(let message):
+                print("getUpdateNoteFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("getUpdateNoteFetchWithAPI - pathErr")
+            case .serverErr:
+                print("getUpdateNoteFetchWithAPI - serverErr")
+            case .networkFail:
+                print("getUpdateNoteFetchWithAPI - networkFail")
+            }
+            
+        }
+    }
+}

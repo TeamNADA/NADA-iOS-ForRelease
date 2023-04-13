@@ -41,4 +41,10 @@ final class ModuleFactory: ModuleFactoryProtocol {
         aroundMeVC.modalPresentationStyle = .overFullScreen
         return aroundMeVC
     }
+    
+    func makeUpdateVC() -> UpdateViewController {
+        let updateVC = UpdateViewController()
+        updateVC.modalPresentationStyle = .overFullScreen
+        return updateVC
+    }
 }

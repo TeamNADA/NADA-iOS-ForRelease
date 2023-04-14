@@ -22,6 +22,9 @@ class UpdateViewController: UIViewController {
     private let checkLabel = UILabel()
     private let updateButton = UIButton()
     
+    var updateNote: UpdateNote?
+    var forceUpdateAgreement: Bool = false
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {

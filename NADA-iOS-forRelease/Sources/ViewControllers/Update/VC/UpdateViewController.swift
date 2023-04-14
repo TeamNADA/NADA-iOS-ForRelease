@@ -118,7 +118,6 @@ extension UpdateViewController {
     
     @objc
     private func touchCheckBox(_ sender: UIButton) {
-        // TODO: - 체크하게 되면 다시 띄어주지 않음
         checkBoxButton.isSelected.toggle()
     }
 }

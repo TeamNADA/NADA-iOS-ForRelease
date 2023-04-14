@@ -26,15 +26,15 @@ final class HomeViewController: UIViewController {
         $0.image = UIImage(named: "nadaLogoTxt")
     }
     private let giveCardView = UIView().then {
-        $0.backgroundColor = .homeViews
+        $0.backgroundColor = .cardCreationUnclicked
         $0.layer.cornerRadius = 15
     }
     private let takeCardView = UIView().then {
-        $0.backgroundColor = .homeViews
+        $0.backgroundColor = .cardCreationUnclicked
         $0.layer.cornerRadius = 15
     }
     private let aroundMeView = UIView().then {
-        $0.backgroundColor = .homeViews
+        $0.backgroundColor = .cardCreationUnclicked
         $0.layer.cornerRadius = 15
     }
     private let giveCardLabel = UILabel().then {
@@ -139,6 +139,7 @@ extension HomeViewController {
             .withUnretained(self)
             .bind { owner, _ in
                 owner.makeVibrate()
+                owner.giveCardView.backgroundColor = .cardCreationClicked
                 print("명함 주기")
             }.disposed(by: self.disposeBag)
         
@@ -147,6 +148,7 @@ extension HomeViewController {
             .withUnretained(self)
             .bind { owner, _ in
                 owner.makeVibrate()
+                owner.takeCardView.backgroundColor = .cardCreationClicked
                 print("명함 받기")
                 let nextVC = ReceiveCardBottomSheetViewController()
                             .setTitle("명함 받기")
@@ -160,6 +162,7 @@ extension HomeViewController {
             .withUnretained(self)
             .bind { owner, _ in
                 owner.makeVibrate()
+                owner.aroundMeView.backgroundColor = .cardCreationClicked
                 let aroundMeVC = self.moduleFactory.makeAroundMeVC()
                 owner.present(aroundMeVC, animated: true)
             }.disposed(by: self.disposeBag)

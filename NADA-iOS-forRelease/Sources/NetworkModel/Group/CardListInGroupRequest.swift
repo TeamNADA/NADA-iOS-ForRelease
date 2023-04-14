@@ -1,5 +1,5 @@
 //
-//  CardListRequest.swift
+//  CardListInGroupRequest.swift
 //  NADA-iOS-forRelease
 //
 //  Created by Yi Joon Choi on 2021/11/12.

@@ -22,7 +22,9 @@ final class AroundMeViewController: UIViewController {
     
     // MARK: - UI Components
     
-    private let navigationBar = CustomNavigationBar()
+    private let navigationBar = CustomNavigationBar().then {
+        $0.backgroundColor = .background
+    }
     private let emptyTitleLabel = UILabel().then {
         $0.text = "아직 근처에 명함이 없어요."
         $0.font = .textBold02
@@ -47,7 +49,7 @@ final class AroundMeViewController: UIViewController {
     private lazy var aroundMeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: aroundMeCollectionViewFlowLayout).then {
         $0.showsHorizontalScrollIndicator = false
         $0.clipsToBounds = false
-//        $0.backgroundColor = .blue
+        $0.backgroundColor = .background
     }
     
     // MARK: - View Life Cycles
@@ -68,7 +70,7 @@ extension AroundMeViewController {
     // MARK: - UI & Layout
     
     private func setUI() {
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .background
         self.navigationController?.navigationBar.isHidden = true
         navigationBar.setUI("내 근처의 명함", leftImage: UIImage(named: "iconClear"), rightImage: UIImage(named: "iconRefreshLocation"))
         navigationBar.leftButtonAction = {

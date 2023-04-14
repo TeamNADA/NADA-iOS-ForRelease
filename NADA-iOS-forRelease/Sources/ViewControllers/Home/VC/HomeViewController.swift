@@ -25,17 +25,20 @@ final class HomeViewController: UIViewController {
     private let nadaIcon = UIImageView().then {
         $0.image = UIImage(named: "nadaLogoTxt")
     }
-    private let giveCardImageView = UIImageView().then {
-        $0.image = UIImage(named: "cardVertical")
+    private let giveCardView = UIView().then {
+        $0.backgroundColor = .cardCreationUnclicked
+        $0.layer.cornerRadius = 15
     }
-    private let takeCardImageView = UIImageView().then {
-        $0.image = UIImage(named: "cardVertical")
+    private let takeCardView = UIView().then {
+        $0.backgroundColor = .cardCreationUnclicked
+        $0.layer.cornerRadius = 15
     }
-    private let aroundMeImageView = UIImageView().then {
-        $0.image = UIImage(named: "cardHorizon")
+    private let aroundMeView = UIView().then {
+        $0.backgroundColor = .cardCreationUnclicked
+        $0.layer.cornerRadius = 15
     }
     private let giveCardLabel = UILabel().then {
-        $0.text = "명함 주기"
+        $0.text = "명함 보내기"
         $0.font = UIFont.title02
     }
     private let takeCardLabel = UILabel().then {
@@ -47,23 +50,26 @@ final class HomeViewController: UIViewController {
         $0.font = UIFont.title02
     }
     private let giveCardIcon = UIImageView().then {
-        $0.backgroundColor = .blue
+        $0.image = UIImage(named: "imgSend")
     }
     private let takeCardIcon = UIImageView().then {
-        $0.backgroundColor = .blue
+        $0.image = UIImage(named: "imgRecieve")
     }
     private let aroundMeIcon = UIImageView().then {
-        $0.backgroundColor = .blue
+        $0.image = UIImage(named: "imgNearby")
     }
     
     // MARK: - View Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUI()
         setLayout()
         bindActions()
         checkUpdateVersion()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setUI()
     }
 }
 
@@ -74,30 +80,38 @@ extension HomeViewController {
     private func setUI() {
         self.view.backgroundColor = .background
         self.navigationController?.navigationBar.isHidden = true
+        giveCardView.backgroundColor = .cardCreationUnclicked
+        takeCardView.backgroundColor = .cardCreationUnclicked
+        aroundMeView.backgroundColor = .cardCreationUnclicked
     }
     
     private func setLayout() {
-        view.addSubviews([nadaIcon, giveCardImageView, takeCardImageView, aroundMeImageView])
-        giveCardImageView.addSubviews([giveCardLabel, giveCardIcon])
-        takeCardImageView.addSubviews([takeCardLabel, takeCardIcon])
-        aroundMeImageView.addSubviews([aroundMeLabel, aroundMeIcon])
+        view.addSubviews([nadaIcon, giveCardView, takeCardView, aroundMeView])
+        giveCardView.addSubviews([giveCardLabel, giveCardIcon])
+        takeCardView.addSubviews([takeCardLabel, takeCardIcon])
+        aroundMeView.addSubviews([aroundMeLabel, aroundMeIcon])
         
         nadaIcon.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide).inset(12)
             make.leading.equalToSuperview().inset(19)
         }
-        giveCardImageView.snp.makeConstraints { make in
+        giveCardView.snp.makeConstraints { make in
             make.top.equalTo(nadaIcon.snp.bottom).offset(150)
             make.leading.equalToSuperview().inset(24)
+            make.width.equalTo(157)
+            make.height.equalTo(205)
         }
-        takeCardImageView.snp.makeConstraints { make in
+        takeCardView.snp.makeConstraints { make in
             make.top.equalTo(nadaIcon.snp.bottom).offset(150)
             make.trailing.equalToSuperview().inset(24)
+            make.width.equalTo(157)
+            make.height.equalTo(205)
         }
-        aroundMeImageView.snp.makeConstraints { make in
+        aroundMeView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(giveCardImageView.snp.bottom).offset(14)
+            make.top.equalTo(giveCardView.snp.bottom).offset(14)
             make.leading.equalToSuperview().inset(24)
+            make.height.equalTo(100)
         }
         giveCardLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(18)
@@ -113,43 +127,48 @@ extension HomeViewController {
         }
         giveCardIcon.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().inset(6)
-            make.width.height.equalTo(90)
         }
         takeCardIcon.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().inset(6)
-            make.width.height.equalTo(90)
         }
         aroundMeIcon.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().inset(24)
-            make.width.height.equalTo(90)
         }
     }
     
     // MARK: - Methods
     
     private func bindActions() {
-        giveCardImageView.rx.tapGesture()
+        giveCardView.rx.tapGesture()
             .when(.recognized) // bind시에도 이벤트가 발생하기 때문 .skip(1)으로도 처리 가능
             .withUnretained(self)
             .bind { owner, _ in
                 owner.makeVibrate()
+                owner.giveCardView.backgroundColor = .cardCreationClicked
                 print("명함 주기")
             }.disposed(by: self.disposeBag)
         
-        takeCardImageView.rx.tapGesture()
-            .when(.recognized) // bind시에도 이벤트가 발생하기 때문 .skip(1)으로도 처리 가능
+        takeCardView.rx.tapGesture()
+            .when(.recognized)
             .withUnretained(self)
             .bind { owner, _ in
                 owner.makeVibrate()
+                owner.takeCardView.backgroundColor = .cardCreationClicked
                 print("명함 받기")
+                let nextVC = ReceiveCardBottomSheetViewController()
+                            .setTitle("명함 받기")
+                            .setHeight(285)
+                nextVC.modalPresentationStyle = .overFullScreen
+                self.present(nextVC, animated: false, completion: nil)
             }.disposed(by: self.disposeBag)
         
-        aroundMeImageView.rx.tapGesture()
-            .when(.recognized) // bind시에도 이벤트가 발생하기 때문 .skip(1)으로도 처리 가능
+        aroundMeView.rx.tapGesture()
+            .when(.recognized)
             .withUnretained(self)
             .bind { owner, _ in
                 owner.makeVibrate()
+                owner.aroundMeView.backgroundColor = .cardCreationClicked
                 let aroundMeVC = self.moduleFactory.makeAroundMeVC()
                 owner.present(aroundMeVC, animated: true)
             }.disposed(by: self.disposeBag)

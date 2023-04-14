@@ -144,5 +144,11 @@ extension UpdateViewController {
                 flex.addItem(updateButton).marginBottom(16).marginHorizontal(17)
             }
         }
+        
+        guard let updateNote else { return }
+        if updateNote.isForce {
+            checkBoxButton.flex.display(.none)
+            checkLabel.flex.display(.none)
+        }
     }
 }

@@ -45,6 +45,7 @@ final class ModuleFactory: ModuleFactoryProtocol {
     func makeUpdateVC() -> UpdateViewController {
         let updateVC = UpdateViewController()
         updateVC.modalPresentationStyle = .overFullScreen
+        updateVC.modalTransitionStyle = .crossDissolve
         return updateVC
     }
 }

@@ -112,8 +112,8 @@ extension LoginViewController {
                     if let error = error {
                         print(error)
                     } else {
-                        if let userID = user?.kakaoAccount?.email {
-                            self.postUserSignUpWithAPI(socialID: userID, socialType: "KAKAO")
+                        if let userID = user?.id {
+                            self.postUserSignUpWithAPI(socialID: String(userID), socialType: "KAKAO")
                             UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isAppleLogin)
                             UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.isKakaoLogin)
                         }
@@ -135,8 +135,8 @@ extension LoginViewController {
                     if let error = error {
                         print(error)
                     } else {
-                        if let userID = user?.kakaoAccount?.email {
-                            self.postUserSignUpWithAPI(socialID: userID, socialType: "KAKAO")
+                        if let userID = user?.id {
+                            self.postUserSignUpWithAPI(socialID: String(userID), socialType: "KAKAO")
                             UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isAppleLogin)
                             UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.isKakaoLogin)
                         }

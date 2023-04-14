@@ -43,7 +43,7 @@ public class UtilAPI {
         case 200:
             return .success(decodedData.data ?? "None-Data")
         case 400..<500:
-            return .requestErr(decodedData.error?.message ?? "error message")
+            return .requestErr(decodedData.message ?? "error message")
         case 500:
             return .serverErr
         default:

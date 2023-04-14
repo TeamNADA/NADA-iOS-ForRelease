@@ -8,11 +8,11 @@
 import Foundation
 
 struct Taste: Codable {
-    let careType: CardType
+    let cardType: String
     let tasteInfos: [TasteInfo]
 }
 
-enum CardType: String, Codable {
+enum CardType: String {
     case basic = "BASIC"
     case company = "COMPANY"
     case fan = "FAN"

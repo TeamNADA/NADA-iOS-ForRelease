@@ -41,8 +41,9 @@ class CardCreationViewController: UIViewController {
     private var mbtiText: String?
     private var birthText: String?
     private var newImage: UIImage?
-    private var cardType: CardType = .basic
     private var tasteInfo: [TasteInfo]?
+    
+    private let cardType: CardType = .basic
     
     // MARK: - @IBOutlet Properties
     
@@ -63,7 +64,7 @@ class CardCreationViewController: UIViewController {
         registerCell()
         setTextLabelGesture()
         setNotification()
-        tasteFetchWithAPI()
+        tasteFetchWithAPI(cardType: cardType)
     }
     
     // MARK: - @IBAction Properties
@@ -355,7 +356,7 @@ extension CardCreationViewController: UIImagePickerControllerDelegate, UINavigat
 // MARK: - API methods
 
 extension CardCreationViewController {
-    func tasteFetchWithAPI() {
+    func tasteFetchWithAPI(cardType: CardType) {
         CardAPI.shared.tasteFetch(cardType: cardType) { response in
             switch response {
             case .success(let data):

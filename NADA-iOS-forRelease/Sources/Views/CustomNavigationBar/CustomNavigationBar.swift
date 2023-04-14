@@ -51,6 +51,7 @@ class CustomNavigationBar: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        setLayout()
     }
     
     // MARK: - UI & Layout

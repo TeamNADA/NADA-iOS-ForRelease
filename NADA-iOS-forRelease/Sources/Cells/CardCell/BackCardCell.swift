@@ -60,6 +60,7 @@ extension BackCardCell {
         
         tmiLabel.font = .textRegular04
         tmiLabel.textColor = .background
+        tmiLabel.numberOfLines = 0
     }
     
     func initCell(cardTasteInfo: [CardTasteInfo], tmi: String?, isShareable: Bool = false) {

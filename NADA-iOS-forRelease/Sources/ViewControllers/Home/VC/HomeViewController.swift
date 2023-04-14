@@ -63,11 +63,13 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUI()
         setLayout()
         bindActions()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setUI()
+    }
 }
 
 extension HomeViewController {

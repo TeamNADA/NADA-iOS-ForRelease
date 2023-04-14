@@ -63,7 +63,7 @@ extension BackCardCell {
     }
     
     func initCell(cardTasteInfo: [CardTasteInfo], tmi: String?, isShareable: Bool = false) {
-        let cardTasteInfo: [CardTasteInfo] = cardTasteInfo.sorted { $0.sortOrder < $1.sortOrder }
+        let cardTasteInfo: [CardTasteInfo] = cardTasteInfo.sorted { $0.sortOrder > $1.sortOrder }
         
         for index in stride(from: 0, to: cardTasteInfo.count, by: 2) {
             if cardTasteInfo[index].isChoose {

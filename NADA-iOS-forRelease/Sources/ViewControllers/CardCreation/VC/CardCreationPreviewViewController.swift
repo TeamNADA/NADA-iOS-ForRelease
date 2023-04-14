@@ -188,7 +188,7 @@ extension CardCreationPreviewViewController {
             for index in 0..<tasteInfo.count {
                 cardTasteInfo.append(CardTasteInfo(cardTasteName: tasteInfo[index].tasteName,
                                                    isChoose: backCardDataModel.tastes.contains(tasteInfo[index].tasteName),
-                                                   sortOrder: index))
+                                                   sortOrder: tasteInfo[index].sortOrder))
             }
             
             backCard.initCell(cardTasteInfo: cardTasteInfo, tmi: backCardDataModel.tmi)

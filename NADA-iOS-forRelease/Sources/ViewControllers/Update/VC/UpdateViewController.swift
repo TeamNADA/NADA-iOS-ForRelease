@@ -114,6 +114,7 @@ extension UpdateViewController {
     @objc
     private func touchCheckBox(_ sender: UIButton) {
         checkBoxButton.isSelected.toggle()
+        forceUpdateAgreement.toggle()
     }
 }
 

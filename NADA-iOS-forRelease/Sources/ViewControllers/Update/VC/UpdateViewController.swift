@@ -89,7 +89,16 @@ extension UpdateViewController {
     
     @objc
     private func touchCancelButton() {
-        // TODO: - 비강제 업데이트는 창 닫기. 강제 업데이트는 앱 종료.
+        guard let updateNote else { return }
+        if updateNote.isForce {
+            UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                exit(0)
+            }
+        } else {
+            // TODO: - 확인했어요 API 통신
+            self.dismiss(animated: true)
+        }
     }
     
     @objc

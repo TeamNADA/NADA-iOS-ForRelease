@@ -22,8 +22,9 @@ class UpdateViewController: UIViewController {
     private let checkLabel = UILabel()
     private let updateButton = UIButton()
     
+    private lazy var forceUpdateAgreement: Bool = false
+    
     var updateNote: UpdateNote?
-    var forceUpdateAgreement: Bool = false
     
     // MARK: - View Life Cycle
     

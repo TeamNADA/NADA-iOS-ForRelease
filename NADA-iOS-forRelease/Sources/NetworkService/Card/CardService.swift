@@ -14,7 +14,7 @@ enum CardService {
     case cardListPageFetch(pageNumber: Int, pageSize: Int)
     case cardListFetch
     case cardReorder(request: [CardReorderInfo])
-    case cardDelete(cardID: String)
+    case cardDelete(cardID: Int)
     case imageUpload(image: UIImage)
     case tasteFetch(cardType: CardType)
 }

@@ -93,7 +93,7 @@ public class CardAPI {
         }
     }
     
-    func cardDelete(cardID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func cardDelete(cardID: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
         cardProvider.request(.cardDelete(cardID: cardID)) { (result) in
             switch result {
             case .success(let response):

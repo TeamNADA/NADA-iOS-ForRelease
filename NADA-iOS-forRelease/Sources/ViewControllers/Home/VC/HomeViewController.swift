@@ -63,8 +63,8 @@ final class HomeViewController: UIViewController {
         setUI()
         setLayout()
         bindActions()
+        checkUpdateVersion()
     }
-
 }
 
 extension HomeViewController {
@@ -168,6 +168,24 @@ extension HomeViewController {
         } else {
             return currentVersionArray[1] < appStoreVersionArray[1] ? true : false
         }
+    }
+    
+    private func checkUpdateVersion() {
+        updateUserInfoFetchWithAPI { [weak self] forceUpdateAgreement in
+            if !forceUpdateAgreement {
+                self?.updateNoteFetchWithAPI { [weak self] updateNote in
+                    if self?.checkUpdateAvailable(updateNote.latestVersion) ?? false {
+                        self?.presentToUpdateVC(with: updateNote)
+                    }
+                }
+            }
+        }
+    }
+
+    private func presentToUpdateVC(with updateNote: UpdateNote?) {
+        let updateVC = ModuleFactory.shared.makeUpdateVC()
+        updateVC.updateNote = updateNote
+        self.present(updateVC, animated: true)
     }
 }
 

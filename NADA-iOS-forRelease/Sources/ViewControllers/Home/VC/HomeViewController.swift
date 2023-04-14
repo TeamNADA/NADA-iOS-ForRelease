@@ -154,6 +154,21 @@ extension HomeViewController {
                 owner.present(aroundMeVC, animated: true)
             }.disposed(by: self.disposeBag)
     }
+    
+    private func checkUpdateAvailable(_ latestVersion: String) -> Bool {
+        var latestVersion = latestVersion
+        latestVersion.removeFirst()
+        
+        guard let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return false }
+        let currentVersionArray = currentVersion.split(separator: ".").map { $0 }
+        let appStoreVersionArray = latestVersion.split(separator: ".").map { $0 }
+        
+        if currentVersionArray[0] < appStoreVersionArray[0] {
+            return true
+        } else {
+            return currentVersionArray[1] < appStoreVersionArray[1] ? true : false
+        }
+    }
 }
 
 // MARK: - Network

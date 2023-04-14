@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - CardReorderInfo
 struct CardReorderInfo: Codable {
-    let cardID: String
+    let cardID: Int
     let isRepresentative: Bool
     let sortOrder: Int
 

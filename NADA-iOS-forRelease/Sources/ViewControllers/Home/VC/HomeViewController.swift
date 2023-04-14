@@ -79,6 +79,9 @@ extension HomeViewController {
     private func setUI() {
         self.view.backgroundColor = .background
         self.navigationController?.navigationBar.isHidden = true
+        giveCardView.backgroundColor = .cardCreationUnclicked
+        takeCardView.backgroundColor = .cardCreationUnclicked
+        aroundMeView.backgroundColor = .cardCreationUnclicked
     }
     
     private func setLayout() {

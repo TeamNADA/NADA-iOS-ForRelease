@@ -9,6 +9,6 @@ import Foundation
 
 struct UpdateNote: Codable {
     let text: String
-    let isForce: String
+    let isForce: Bool
     let latestVersion: String
 }

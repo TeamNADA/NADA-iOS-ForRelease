@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2566DBA723D1370275ECE593 /* Pods_NADA_iOS_forRelease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D86FBA2B7966CFE6EEF0E7E8 /* Pods_NADA_iOS_forRelease.framework */; };
 		39007F2C27080D8200E7143E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39007F2B27080D8200E7143E /* UIViewController+Extension.swift */; };
 		3903CC202769F4F40094C458 /* EmptyCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903CC1E2769F4F40094C458 /* EmptyCardCell.swift */; };
 		3903CC212769F4F40094C458 /* EmptyCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3903CC1F2769F4F40094C458 /* EmptyCardCell.xib */; };
@@ -106,7 +107,6 @@
 		77F2C0EB27632A91007641E3 /* CardHarmonyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */; };
 		77F2C0ED27632AA7007641E3 /* CardHarmony.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */; };
 		77F47D93276C79B600414659 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F47D92276C79B600414659 /* Header.swift */; };
-		DBBB91E1639641F40C5B4416 /* Pods_NADA_iOS_forRelease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */; };
 		F805588529C993E7002E8EA3 /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F805588429C993E7002E8EA3 /* UpdateViewController.swift */; };
 		F80975E92990A27400075B93 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F838B66A298E5C5300D84340 /* Widgets.intentdefinition */; };
 		F80975EA2990A27900075B93 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F838B66A298E5C5300D84340 /* Widgets.intentdefinition */; };
@@ -239,7 +239,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1E770167DDA25A2CE063AA5C /* Pods-NADA-iOS-forRelease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.release.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.release.xcconfig"; sourceTree = "<group>"; };
+		00BC6C525F13C9651D73976F /* Pods-NADA-iOS-forRelease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.debug.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.debug.xcconfig"; sourceTree = "<group>"; };
 		39007F2B27080D8200E7143E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		3903CC1E2769F4F40094C458 /* EmptyCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCardCell.swift; sourceTree = "<group>"; };
 		3903CC1F2769F4F40094C458 /* EmptyCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyCardCell.xib; sourceTree = "<group>"; };
@@ -300,8 +300,6 @@
 		39D88B6A274600B100A72164 /* CommonBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonBottomSheetViewController.swift; sourceTree = "<group>"; };
 		39F5A3CE271461EA00191F94 /* BackCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackCardCell.swift; sourceTree = "<group>"; };
 		39F5A3CF271461EA00191F94 /* BackCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackCardCell.xib; sourceTree = "<group>"; };
-		3C14FF1DC641D872C3FDD637 /* Pods-NADA-iOS-forRelease.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.beta.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.beta.xcconfig"; sourceTree = "<group>"; };
-		4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NADA_iOS_forRelease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7705CF3D2752C7DB005195DF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		7705CF3F2752C844005195DF /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
 		770E58852778A78900498C2E /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
@@ -345,7 +343,8 @@
 		77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHarmonyViewController.swift; sourceTree = "<group>"; };
 		77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardHarmony.storyboard; sourceTree = "<group>"; };
 		77F47D92276C79B600414659 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
-		7F4EE1D042EC783FA8528743 /* Pods-NADA-iOS-forRelease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.debug.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.debug.xcconfig"; sourceTree = "<group>"; };
+		78FC1ADEA3CAB995C08D47DB /* Pods-NADA-iOS-forRelease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.release.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.release.xcconfig"; sourceTree = "<group>"; };
+		D86FBA2B7966CFE6EEF0E7E8 /* Pods_NADA_iOS_forRelease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NADA_iOS_forRelease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F805588429C993E7002E8EA3 /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		F81171FF27383097002742CF /* ChangeGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeGroupRequest.swift; sourceTree = "<group>"; };
 		F822E7A82709CEB60020452C /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
@@ -467,7 +466,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBBB91E1639641F40C5B4416 /* Pods_NADA_iOS_forRelease.framework in Frameworks */,
+				2566DBA723D1370275ECE593 /* Pods_NADA_iOS_forRelease.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,9 +476,8 @@
 		186051B2C99DBAECC539DAC9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				7F4EE1D042EC783FA8528743 /* Pods-NADA-iOS-forRelease.debug.xcconfig */,
-				1E770167DDA25A2CE063AA5C /* Pods-NADA-iOS-forRelease.release.xcconfig */,
-				3C14FF1DC641D872C3FDD637 /* Pods-NADA-iOS-forRelease.beta.xcconfig */,
+				00BC6C525F13C9651D73976F /* Pods-NADA-iOS-forRelease.debug.xcconfig */,
+				78FC1ADEA3CAB995C08D47DB /* Pods-NADA-iOS-forRelease.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -700,11 +698,11 @@
 		4D28D444572353D68574D2B0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4A2183AE0E469153221624A0 /* Pods_NADA_iOS_forRelease.framework */,
 				F838B65F298E5C5300D84340 /* WidgetKit.framework */,
 				F838B661298E5C5300D84340 /* SwiftUI.framework */,
 				F87D2229298ECAFB001A882B /* Intents.framework */,
 				F87D2234298ECAFB001A882B /* IntentsUI.framework */,
+				D86FBA2B7966CFE6EEF0E7E8 /* Pods_NADA_iOS_forRelease.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1430,13 +1428,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8FC439626C01CDE0033E151 /* Build configuration list for PBXNativeTarget "NADA-iOS-forRelease" */;
 			buildPhases = (
-				651C07EF2315142A685BB6AA /* [CP] Check Pods Manifest.lock */,
+				63B126249E7D65994A592714 /* [CP] Check Pods Manifest.lock */,
 				F8FC437E26C01CDD0033E151 /* Sources */,
 				F8FC437F26C01CDD0033E151 /* Frameworks */,
 				F8FC438026C01CDD0033E151 /* Resources */,
-				AF97E239CC02D3189BC80412 /* [CP] Embed Pods Frameworks */,
 				F8FC43BD26C0244D0033E151 /* ShellScript */,
 				F838B673298E5C5400D84340 /* Embed Foundation Extensions */,
+				2FD8F2B3BF35A3CA09A8E81C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1574,7 +1572,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		651C07EF2315142A685BB6AA /* [CP] Check Pods Manifest.lock */ = {
+		2FD8F2B3BF35A3CA09A8E81C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		63B126249E7D65994A592714 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1594,23 +1609,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AF97E239CC02D3189BC80412 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F8FC43BD26C0244D0033E151 /* ShellScript */ = {
@@ -1693,7 +1691,6 @@
 				F8F00C4129DD48A000A15377 /* UpdateService.swift in Sources */,
 				F8D92E0A29D5324E002ACC73 /* Taste.swift in Sources */,
 				F85711A5274A6B2200F59F0B /* CardCreationPreviewViewController.swift in Sources */,
-				39DC069A2778BEFB00C8ECCC /* CardListLookUp.swift in Sources */,
 				77A4D60829BD74BC00367B7C /* getClassName.swift in Sources */,
 				777FF89B27359B7800BF69D3 /* Groups.swift in Sources */,
 				77F47D93276C79B600414659 /* Header.swift in Sources */,

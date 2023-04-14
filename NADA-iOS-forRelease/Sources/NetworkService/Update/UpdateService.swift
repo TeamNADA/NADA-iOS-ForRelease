@@ -26,9 +26,9 @@ extension UpdateService: TargetType {
     var path: String {
         switch self {
         case .updateUserInfoFetch:
-            return "/app/update/note"
-        case .updateNoteFetch:
             return "/app/update"
+        case .updateNoteFetch:
+            return "/app/update/note"
         }
     }
     
@@ -46,7 +46,7 @@ extension UpdateService: TargetType {
         }
     }
     
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         switch self {
         case .updateUserInfoFetch, .updateNoteFetch:
             return Const.Header.bearerHeader()

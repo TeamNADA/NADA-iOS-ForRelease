@@ -103,7 +103,17 @@ extension UpdateViewController {
     
     @objc
     private func touchUpdateButton() {
-        // TODO: - 앱스토어로 연결 혹은 홈으로 연결하는 액션 구현.
+        let appID = "1600711887"
+        guard let url = URL(string: "itms-apps://itunes.apple.com/app/\(appID)") else { return }
+        guard let updateNote else { return }
+        
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
+        
+        if !updateNote.isForce {
+            // TODO: - 확인했어요 API 통신
+        }
     }
     
     @objc

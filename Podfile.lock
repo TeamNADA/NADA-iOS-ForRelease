@@ -1,19 +1,19 @@
 PODS:
   - Alamofire (5.6.4)
-  - Firebase/CoreOnly (10.7.0):
-    - FirebaseCore (= 10.7.0)
-  - Firebase/DynamicLinks (10.7.0):
+  - Firebase/CoreOnly (10.8.0):
+    - FirebaseCore (= 10.8.0)
+  - Firebase/DynamicLinks (10.8.0):
     - Firebase/CoreOnly
-    - FirebaseDynamicLinks (~> 10.7.0)
-  - FirebaseCore (10.7.0):
+    - FirebaseDynamicLinks (~> 10.8.0)
+  - FirebaseCore (10.8.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/Logger (~> 7.8)
-  - FirebaseCoreInternal (10.7.0):
+  - FirebaseCoreInternal (10.8.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
-  - FirebaseDynamicLinks (10.7.0):
+  - FirebaseDynamicLinks (10.8.0):
     - FirebaseCore (~> 10.0)
-  - FlexLayout (1.3.30)
+  - FlexLayout (1.3.31)
   - GoogleUtilities/Environment (7.11.1):
     - PromisesObjC (< 3.0, >= 1.2)
   - GoogleUtilities/Logger (7.11.1):
@@ -113,11 +113,11 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
-  Firebase: 0219acf760880eeec8ce479895bd7767466d9f81
-  FirebaseCore: e317665b9d744727a97e623edbbed009320afdd7
-  FirebaseCoreInternal: 8845798510aae74703467480f71ac613788d0696
-  FirebaseDynamicLinks: 16a8fae3697fba66fed7a1d646fe59f30d42aa31
-  FlexLayout: 6651ad721f521c29d50bc724788488c84e0bc32a
+  Firebase: b49ef44e5ec9a3d0c1f6450f410337e97872279c
+  FirebaseCore: e78636a990b54be427ce300aa09a0e359f4e0e87
+  FirebaseCoreInternal: fa2899eb1f340054858d289e5a0fb935a0a74e52
+  FirebaseDynamicLinks: 8c7e16503fd057c44727b6bc8dc8e7ff2a667955
+  FlexLayout: 8010187077ecf09710cdf0e9c8ffe2c9b92ec5db
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
   IQKeyboardManagerSwift: c7955c0bdbf7b2eb29bb7daaa44e3d90f55a9a85
   KakaoSDKAuth: 8fca87815de22062a23297983f327613b087b8bb

@@ -94,14 +94,14 @@ class AddWithIdBottomSheetViewController: CommonBottomSheetViewController, UITex
 
 extension AddWithIdBottomSheetViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        cardDetailFetchWithAPI(cardID: textField.text ?? "")
+        cardDetailFetchWithAPI(cardUUID: textField.text ?? "")
         return true
     }
 }
 
 extension AddWithIdBottomSheetViewController {
-    func cardDetailFetchWithAPI(cardID: String) {
-        CardAPI.shared.cardDetailFetch(cardID: cardID) { response in
+    func cardDetailFetchWithAPI(cardUUID: String) {
+        CardAPI.shared.cardDetailFetch(cardUUID: cardUUID) { response in
             switch response {
             case .success(let data):
                 if let card = data as? Card {

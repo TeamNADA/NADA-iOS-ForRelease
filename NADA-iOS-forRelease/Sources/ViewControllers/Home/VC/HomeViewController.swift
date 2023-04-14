@@ -65,6 +65,7 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         setLayout()
         bindActions()
+        checkUpdateVersion()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -171,5 +172,79 @@ extension HomeViewController {
                 let aroundMeVC = self.moduleFactory.makeAroundMeVC()
                 owner.present(aroundMeVC, animated: true)
             }.disposed(by: self.disposeBag)
+    }
+    
+    private func checkUpdateAvailable(_ latestVersion: String) -> Bool {
+        var latestVersion = latestVersion
+        latestVersion.removeFirst()
+        
+        guard let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return false }
+        let currentVersionArray = currentVersion.split(separator: ".").map { $0 }
+        let appStoreVersionArray = latestVersion.split(separator: ".").map { $0 }
+        
+        if currentVersionArray[0] < appStoreVersionArray[0] {
+            return true
+        } else {
+            return currentVersionArray[1] < appStoreVersionArray[1] ? true : false
+        }
+    }
+    
+    private func checkUpdateVersion() {
+        updateUserInfoFetchWithAPI { [weak self] forceUpdateAgreement in
+            if !forceUpdateAgreement {
+                self?.updateNoteFetchWithAPI { [weak self] updateNote in
+                    if self?.checkUpdateAvailable(updateNote.latestVersion) ?? false {
+                        self?.presentToUpdateVC(with: updateNote)
+                    }
+                }
+            }
+        }
+    }
+
+    private func presentToUpdateVC(with updateNote: UpdateNote?) {
+        let updateVC = ModuleFactory.shared.makeUpdateVC()
+        updateVC.updateNote = updateNote
+        self.present(updateVC, animated: true)
+    }
+}
+
+// MARK: - Network
+extension HomeViewController {
+    func updateUserInfoFetchWithAPI(completion: @escaping (Bool) -> Void) {
+        UpdateAPI.shared.updateUserInfoFetch { response in
+            switch response {
+            case .success(let data):
+                guard let updateUserInfo = data as? UpdateUserInfo else { return }
+                completion(updateUserInfo.forceUpdateAgreement)
+                print("getUpdateNoteFetchWithAPI - success")
+            case .requestErr(let message):
+                print("getUpdateUserInfoFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("getUpdateUserInfoFetchWithAPI - pathErr")
+            case .serverErr:
+                print("getUpdateUserInfoFetchWithAPI - serverErr")
+            case .networkFail:
+                print("getUpdateUserInfoFetchWithAPI - networkFail")
+            }
+        }
+    }
+    func updateNoteFetchWithAPI(completion: @escaping (UpdateNote) -> Void) {
+        UpdateAPI.shared.updateNoteFetch { response in
+            switch response {
+            case .success(let data):
+                guard let updateNote = data as? UpdateNote else { return }
+                completion(updateNote)
+                print("getUpdateNoteFetchWithAPI - success")
+            case .requestErr(let message):
+                print("getUpdateNoteFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("getUpdateNoteFetchWithAPI - pathErr")
+            case .serverErr:
+                print("getUpdateNoteFetchWithAPI - serverErr")
+            case .networkFail:
+                print("getUpdateNoteFetchWithAPI - networkFail")
+            }
+            
+        }
     }
 }

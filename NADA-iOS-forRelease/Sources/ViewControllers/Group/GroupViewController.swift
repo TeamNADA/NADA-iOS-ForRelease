@@ -224,8 +224,8 @@ extension GroupViewController {
         }
     }
     
-    func cardDetailFetchWithAPI(cardID: String) {
-        CardAPI.shared.cardDetailFetch(cardID: cardID) { response in
+    func cardDetailFetchWithAPI(cardUUID: String) {
+        CardAPI.shared.cardDetailFetch(cardUUID: cardUUID) { response in
             switch response {
             case .success(let data):
                 if let card = data as? Card {
@@ -341,7 +341,7 @@ extension GroupViewController: UICollectionViewDataSource {
                 }
             }
         case cardsCollectionView:
-            cardDetailFetchWithAPI(cardID: frontCards?[indexPath.row].cardID ?? "")
+            cardDetailFetchWithAPI(cardUUID: frontCards?[indexPath.row].cardID ?? "")
         default:
             return
         }

@@ -12,13 +12,13 @@ class OnboardingViewController: UIViewController {
     // MARK: - Properties
     
     private var currentIndex: CGFloat = 0
-    private let onboardingList = ["onboarding01", "onboarding02", "onboarding03", "onboarding04"]
+    private let onboardingList = ["onboarding01", "onboarding02", "onboarding03", "onboarding04", "onboarding05"]
     private enum Size {
         static let cellWidth: CGFloat = 327
         static let cellHeigth: CGFloat = 327
         static let cellTopInset: CGFloat = 198
         static let cellBottomInset: CGFloat = 208
-        static let cellLineSpacing: CGFloat = 85
+        static let cellLineSpacing: CGFloat = 30
         static let topSafeArea: CGFloat = 44
     }
     
@@ -87,7 +87,7 @@ extension OnboardingViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.onboardingCollectionViewCell, for: indexPath) as? OnboardingCollectionViewCell else { return UICollectionViewCell() }
-        let isLast = indexPath.item == 3 ? true : false
+        let isLast = indexPath.item == 4 ? true : false
         cell.initCell(image: onboardingList[indexPath.item], isLast: isLast)
         
         if isLast {

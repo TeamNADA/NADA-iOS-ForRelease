@@ -72,7 +72,7 @@ extension GroupEditViewController: UITableViewDelegate {
                     // 취소 눌렀을 때 액션이 들어갈 부분
                 }, deleteAction: { _ in
                     self.groupDeleteWithAPI(
-                        groupID: self.serverGroups?.groups[indexPath.row].groupID ?? 0,
+                        groupID: self.serverGroups?.groups[indexPath.row].cardGroupId ?? 0,
                         defaultGroupId: self.unClass ?? 0)
                     self.groupEditTableView.reloadData()
                     NotificationCenter.default.post(name: Notification.Name.passDataToGroup, object: 0, userInfo: nil)
@@ -93,7 +93,7 @@ extension GroupEditViewController: UITableViewDelegate {
                 .setTitle("그룹명 변경")
                 .setHeight(184)
             nextVC.modalPresentationStyle = .overFullScreen
-            nextVC.text = serverGroups?.groups[indexPath.row].groupName ?? ""
+            nextVC.text = serverGroups?.groups[indexPath.row].cardGroupName ?? ""
             nextVC.returnToGroupEditViewController = {
                 self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
             }
@@ -121,7 +121,7 @@ extension GroupEditViewController: UITableViewDataSource {
         } else {
             guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.groupEditTableViewCell, for: indexPath) as? GroupEditTableViewCell else { return UITableViewCell() }
             
-            serviceCell.initData(title: serverGroups?.groups[indexPath.row].groupName ?? "")
+            serviceCell.initData(title: serverGroups?.groups[indexPath.row].cardGroupName ?? "")
             return serviceCell
         }
     }
@@ -130,7 +130,7 @@ extension GroupEditViewController: UITableViewDataSource {
 // MARK: - Extensions
 extension GroupEditViewController {
     func serverGroupList() {
-        self.unClass = serverGroups?.groups[0].groupID
+        self.unClass = serverGroups?.groups[0].cardGroupId
         serverGroups?.groups.remove(at: 0)
     }
 }
@@ -143,7 +143,7 @@ extension GroupEditViewController {
             case .success(let data):
                 if let group = data as? Groups {
                     self.serverGroups = group
-                    self.unClass = self.serverGroups?.groups[0].groupID
+                    self.unClass = self.serverGroups?.groups[0].cardGroupId
                     self.serverGroups?.groups.remove(at: 0)
                     self.groupEditTableView.reloadData()
                 }

@@ -62,6 +62,7 @@ class FrontCardCreationCollectionViewCell: UICollectionViewCell {
         registerCell()
         textFieldDelegate()
         setNotification()
+        setAddTargets()
     }
 }
 
@@ -223,6 +224,9 @@ extension FrontCardCreationCollectionViewCell {
                                                                                   defaultImageIndex: defaultImageIndex))
         }
     }
+    private func setAddTargets() {
+        phoneNumberTextField.addTarget(self, action: #selector(phoneNumberTextFieldDidChange), for: .editingChanged)
+    }
     static func nib() -> UINib {
         return UINib(nibName: Const.Xib.frontCardCreationCollectionViewCell, bundle: Bundle(for: FrontCardCreationCollectionViewCell.self))
     }
@@ -326,6 +330,22 @@ extension FrontCardCreationCollectionViewCell {
         if cardBackgroundImage == nil {
             backgroundSettingCollectionView.deselectItem(at: IndexPath.init(item: 0, section: 0), animated: true)
         }
+    }
+    @objc
+    private func phoneNumberTextFieldDidChange() {
+        if let text = phoneNumberTextField.text?.replacingOccurrences(of: "-", with: "") {
+            let textArray = text.map { String($0) }
+            
+            if text.count < 10 {
+                phoneNumberTextField.text = text
+            } else if text.count == 10 {
+                phoneNumberTextField.text = textArray[0...2].joined() + "-" + textArray[3...5].joined() + "-" + textArray[6...9].joined()
+            } else if text.count == 11 {
+                phoneNumberTextField.text = textArray[0...2].joined() + "-" + textArray[3...6].joined() + "-" + textArray[7...10].joined()
+            } else {
+                phoneNumberTextField.text = text
+            }
+        } 
     }
 }
 

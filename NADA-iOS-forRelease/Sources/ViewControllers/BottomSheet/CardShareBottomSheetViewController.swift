@@ -168,7 +168,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         lottieImage.isHidden = isActivate ? false : true
         _ = isActivate ? lottieImage.play() : lottieImage.stop()
         
-        //TODO: 여기서 스위치 키면 위치정보 받아오기, 끄면 위치 정보 노출하지 않기
+        // TODO: 여기서 스위치 키면 위치정보 받아오기, 끄면 위치 정보 노출하지 않기
         if isActivate {
             //TODO: 여기서 활성화된 명함 정보/위치정보 API로 쏴주기
             locationManager.startUpdatingLocation()
@@ -180,7 +180,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
             print("✅ longitude: ", longitude)
             
         } else {
-            //TODO: 여기서 비활성화된 명함 정보/위치정보 API로 쏴주기
+            // TODO: 여기서 비활성화된 명함 정보/위치정보 API로 쏴주기
             
         }
     }

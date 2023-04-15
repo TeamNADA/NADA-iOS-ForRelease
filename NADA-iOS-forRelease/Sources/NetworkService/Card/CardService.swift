@@ -89,8 +89,12 @@ extension CardService: TargetType {
                 parameters["phoneNumber"] = phoneNumber
             }
             
-            if let sns = request.frontCard.sns {
-                parameters["sns"] = sns
+            if let instagram = request.frontCard.instagram {
+                parameters["instagram"] = instagram
+            }
+            
+            if let twitter = request.frontCard.twitter {
+                parameters["twitter"] = twitter
             }
             
             if let tmi = request.backCard.tmi {

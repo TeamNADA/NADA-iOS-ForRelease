@@ -48,7 +48,7 @@ public class GroupAPI {
     }
     
     func groupListFetch(userID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        groupProvider.request(.groupListFetch(userID: userID)) { (result) in
+        groupProvider.request(.groupListFetch) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode

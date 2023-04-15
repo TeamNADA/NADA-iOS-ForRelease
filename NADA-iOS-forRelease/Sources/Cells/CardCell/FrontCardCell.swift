@@ -140,18 +140,19 @@ extension FrontCardCell {
         mbtiLabel.text = cardData.mbti
         instagramIDLabel.text = cardData.instagram
         phoneNumberLabel.text = cardData.phoneNumber
-        if let urls = cardData.urls {
-            linkURLLabel.text = urls[0]
-        }
         
-        if cardData.instagram == nil {
+        if let urls = cardData.urls {
+            if urls[0].isEmpty {
+                linkURLStackView.isHidden = true
+            } else {
+                linkURLLabel.text = urls[0]
+            }
+        }
+        if cardData.instagram?.isEmpty ?? false {
             instagramStackView.isHidden = true
         }
-        if cardData.phoneNumber == nil {
+        if cardData.phoneNumber?.isEmpty ?? false {
             phoneNumberStackView.isHidden = true
-        }
-        if cardData.urls == nil {
-            linkURLStackView.isHidden = true
         }
         
         shareButton.isHidden = !isShareable

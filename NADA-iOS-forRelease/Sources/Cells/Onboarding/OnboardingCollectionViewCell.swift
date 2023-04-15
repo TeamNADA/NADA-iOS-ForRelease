@@ -7,11 +7,15 @@
 
 import UIKit
 
+import Lottie
+
 class OnboardingCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
     var presentToLoginViewController: (() -> Void)?
+    private let onboardingFirstLottieView = LottieAnimationView(name: Const.Lottie.onboarding01)
+    private let onboardingSecondLottieView = LottieAnimationView(name: Const.Lottie.onboarding02)
 
     // MARK: - @IBOutlet Properties
     
@@ -24,6 +28,7 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
 
         setUI()
+        setLayout()
     }
     
     static func nib() -> UINib {
@@ -52,7 +57,27 @@ extension OnboardingCollectionViewCell {
         
         imageView.contentMode = .scaleAspectFill
     }
-    func initCell(image: String, isLast: Bool) {
+    private func setLayout() {
+        self.contentView.addSubviews([onboardingFirstLottieView, onboardingSecondLottieView])
+        
+        onboardingFirstLottieView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            onboardingFirstLottieView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 56),
+            onboardingFirstLottieView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 64),
+            onboardingFirstLottieView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -63),
+            onboardingFirstLottieView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -134)
+        ])
+        
+        onboardingSecondLottieView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            onboardingSecondLottieView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 20),
+            onboardingSecondLottieView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 10),
+            onboardingSecondLottieView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -10),
+            onboardingSecondLottieView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -117)
+        ])
+    }
+}
+
 // MARK: - Initialize Methods
 
 extension OnboardingCollectionViewCell {

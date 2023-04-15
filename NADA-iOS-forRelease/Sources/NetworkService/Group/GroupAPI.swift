@@ -22,7 +22,7 @@ public class GroupAPI {
                 let statusCode = response.statusCode
                 let data = response.data
 
-                let networkResult = self.judgeStatus(by: statusCode, data)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: String.self)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -38,7 +38,7 @@ public class GroupAPI {
                 let statusCode = response.statusCode
                 let data = response.data
 
-                let networkResult = self.judgeStatus(by: statusCode, data)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: String.self)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -48,13 +48,13 @@ public class GroupAPI {
     }
     
     func groupListFetch(userID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        groupProvider.request(.groupListFetch(userID: userID)) { (result) in
+        groupProvider.request(.groupListFetch) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeGroupListFetchStatus(by: statusCode, data)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: [Group].self)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -70,7 +70,7 @@ public class GroupAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeStatus(by: statusCode, data)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: String.self)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -86,7 +86,7 @@ public class GroupAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeStatus(by: statusCode, data)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: String.self)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -102,7 +102,7 @@ public class GroupAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeStatus(by: statusCode, data)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: String.self)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -118,7 +118,7 @@ public class GroupAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeStatus(by: statusCode, data)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: String.self)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -134,7 +134,7 @@ public class GroupAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeCardListFetchInGroupStatus(by: statusCode, data)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: [Card].self)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -150,7 +150,7 @@ public class GroupAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeStatus(by: statusCode, data)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: String.self)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -201,10 +201,9 @@ public class GroupAPI {
         }
     }
     
-    private func judgeStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
-        
+    private func judgeStatus<T: Codable>(by statusCode: Int, data: Data, type: T.Type) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<String>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<T>.self, from: data)
         else { return .pathErr }
         
         switch statusCode {

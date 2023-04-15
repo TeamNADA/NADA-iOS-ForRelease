@@ -19,12 +19,18 @@ struct CardsInGroupResponse: Codable {
 
 // MARK: - Cards
 struct FrontCard: Codable {
-    let cardID, background, title, name, birthDate, mbti: String
-    let instagram, link, cardDescription: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case cardID = "cardId"
-        case background, title, name, birthDate, mbti, instagram, link
-        case cardDescription = "description"
-    }
+    let birth: String
+        let cardID: Int
+        let cardImage, cardName, cardType, cardUUID: String
+        let departmentName, instagram, mailAddress, mbti: String
+        let phoneNumber, tmi, twitter, urls: String
+        let userName: String
+
+        enum CodingKeys: String, CodingKey {
+            case birth
+            case cardID = "cardId"
+            case cardImage, cardName, cardType
+            case cardUUID = "cardUuid"
+            case departmentName, instagram, mailAddress, mbti, phoneNumber, tmi, twitter, urls, userName
+        }
 } 

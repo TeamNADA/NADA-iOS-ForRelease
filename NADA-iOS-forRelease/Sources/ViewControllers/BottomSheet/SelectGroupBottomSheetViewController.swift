@@ -54,7 +54,7 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
     private func setupUI() {
         view.addSubview(groupPicker)
         view.addSubview(doneButton)
-        selectedGroup = serverGroups?.groups[0].groupID ?? 0
+        selectedGroup = serverGroups?.groups[0].cardGroupId ?? 0
         groupPicker.delegate = self
         groupPicker.dataSource = self
         setupLayout()
@@ -113,16 +113,16 @@ extension SelectGroupBottomSheetViewController: UIPickerViewDelegate, UIPickerVi
         label.textAlignment = .center
         
         if pickerView.selectedRow(inComponent: component) == row {
-            label.attributedText = NSAttributedString(string: serverGroups?.groups[row].groupName ?? "", attributes: [NSAttributedString.Key.font: UIFont.textBold01, NSAttributedString.Key.foregroundColor: UIColor.mainColorNadaMain])
+            label.attributedText = NSAttributedString(string: serverGroups?.groups[row].cardGroupName ?? "", attributes: [NSAttributedString.Key.font: UIFont.textBold01, NSAttributedString.Key.foregroundColor: UIColor.mainColorNadaMain])
         } else {
-            label.attributedText = NSAttributedString(string: serverGroups?.groups[row].groupName ?? "", attributes: [NSAttributedString.Key.font: UIFont.textRegular03, NSAttributedString.Key.foregroundColor: UIColor.quaternary])
+            label.attributedText = NSAttributedString(string: serverGroups?.groups[row].cardGroupName ?? "", attributes: [NSAttributedString.Key.font: UIFont.textRegular03, NSAttributedString.Key.foregroundColor: UIColor.quaternary])
         }
         
         return label
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedGroup = serverGroups?.groups[row].groupID ?? 0
+        selectedGroup = serverGroups?.groups[row].cardGroupId ?? 0
         selectedGroupIndex = row
         pickerView.reloadAllComponents()
     }

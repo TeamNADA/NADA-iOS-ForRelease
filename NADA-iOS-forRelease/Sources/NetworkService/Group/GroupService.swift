@@ -9,7 +9,7 @@ import Foundation
 import Moya
 
 enum GroupService {
-    case groupListFetch(userID: String)
+    case groupListFetch
     case groupDelete(groupID: Int, defaultGroupId: Int)
     case groupAdd(groupRequest: GroupAddRequest)
     case groupEdit(groupRequest: GroupEditRequest)
@@ -37,15 +37,15 @@ extension GroupService: TargetType {
     var path: String {
         switch self {
         case .groupListFetch, .groupReset:
-            return "/groups"
+            return "/card-group/list"
         case .groupDelete(let groupID, _):
             return "/group/\(groupID)"
         case .groupAdd, .groupEdit:
             return "/group"
         case .cardAddInGroup, .changeCardGroup:
             return "/groups/card"
-        case .cardListFetchInGroup:
-            return "/groups/cards"
+        case .cardListFetchInGroup(let cardListInGroupRequest):
+            return "/card-group/\(cardListInGroupRequest.cardGroupId)/cards"
         case .cardDeleteInGroup(let groupID, let cardID):
             return "/group/\(groupID)/\(cardID)"
         }
@@ -70,9 +70,8 @@ extension GroupService: TargetType {
     
     var task: Task {
         switch self {
-        case .groupListFetch(let userID):
-            return .requestParameters(parameters: ["userId": userID],
-                                      encoding: URLEncoding.queryString)
+        case .groupListFetch:
+            return .requestPlain
         case .cardDeleteInGroup, .groupReset:
             return .requestPlain
         case .groupDelete(_, let defaultGroupId):
@@ -85,9 +84,8 @@ extension GroupService: TargetType {
         case .cardAddInGroup(let cardRequest):
             return .requestJSONEncodable(cardRequest)
         case .cardListFetchInGroup(let cardListInGroupRequest):
-            return .requestParameters(parameters: ["userId": cardListInGroupRequest.userId,
-                                                   "groupId": cardListInGroupRequest.groupId,
-                                                   "offset": cardListInGroupRequest.offset], encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: ["pageNo": cardListInGroupRequest.pageNo,
+                                                   "pageSize": cardListInGroupRequest.pageSize], encoding: URLEncoding.queryString)
         case .changeCardGroup(let requestModel):
             return .requestJSONEncodable(requestModel)
         }

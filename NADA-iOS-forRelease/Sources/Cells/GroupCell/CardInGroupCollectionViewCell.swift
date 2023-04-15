@@ -21,8 +21,8 @@ class CardInGroupCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var instagramIcon: UIImageView!
     @IBOutlet weak var urlIcon: UIImageView!
-    var groupId: Int?
-    var cardId: Int?
+    var groupID: Int?
+    var cardUUID: String?
     
     override func awakeFromNib() {
         super.awakeFromNib()

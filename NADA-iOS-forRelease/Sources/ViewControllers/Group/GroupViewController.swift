@@ -304,7 +304,7 @@ extension GroupViewController: UICollectionViewDataSource {
             }
             guard let frontCards = frontCards else { return UICollectionViewCell() }
             cardCell.backgroundImageView.updateServerImage(frontCards[indexPath.row].cardImage)
-            cardCell.cardId = frontCards[indexPath.row].cardID
+            cardCell.cardUUID = frontCards[indexPath.row].cardUUID
             cardCell.titleLabel.text = frontCards[indexPath.row].cardName
             cardCell.descriptionLabel.text = frontCards[indexPath.row].departmentName
             cardCell.userNameLabel.text = frontCards[indexPath.row].userName

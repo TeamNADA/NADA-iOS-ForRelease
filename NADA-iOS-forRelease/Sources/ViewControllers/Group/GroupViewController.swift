@@ -185,7 +185,7 @@ extension GroupViewController {
                         self.isInfiniteScroll = true
                     }
                 }
-                print("success")
+                print("groupListFetchWithAPI - success")
             case .requestErr(let message):
                 print("groupListFetchWithAPI - requestErr: \(message)")
             case .pathErr:
@@ -215,7 +215,7 @@ extension GroupViewController {
                     self.cardsCollectionView.reloadData()
                 }
                 //completion()
-                print("✅")
+                print("cardListInGroupWithAPI - success")
             case .requestErr(let message):
                 print("cardListInGroupWithAPI - requestErr: \(message)")
             case .pathErr:

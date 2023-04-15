@@ -19,7 +19,7 @@ struct CardCreationRequest: Codable {
 struct FrontCardDataModel: Codable {
     let birth, cardName, userName: String
     
-    let departmentName, mailAddress, mbti, phoneNumber, sns: String?
+    let departmentName, mailAddress, mbti, phoneNumber, instagram, twitter: String?
     let urls: [String]?
     let defaultImageIndex: Int
 }

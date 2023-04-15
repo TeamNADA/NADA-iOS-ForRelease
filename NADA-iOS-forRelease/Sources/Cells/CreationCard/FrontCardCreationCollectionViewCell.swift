@@ -140,6 +140,8 @@ extension FrontCardCreationCollectionViewCell {
                                                                             NSAttributedString.Key.foregroundColor: UIColor.quaternary
                                                                         ])
         
+        phoneNumberTextField.keyboardType = .numberPad
+        
         _ = requiredTextFieldList.map {
             $0.font = .textRegular04
             $0.backgroundColor = .textBox

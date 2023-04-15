@@ -172,17 +172,20 @@ extension GroupViewController {
         GroupAPI.shared.groupListFetch(userID: userID) { response in
             switch response {
             case .success(let data):
+                /*
                 if let group = data as? Groups {
                     self.serverGroups = group
                     self.groupCollectionView.reloadData()
-                    self.groupId = group.groups[self.selectedRow].groupID
-                    self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "", groupId: group.groups[self.selectedRow].groupID, offset: 0)) {
+                    self.groupId = group.groups[self.selectedRow].cardGroupId
+                    self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "", groupId: group.groups[self.selectedRow].cardGroupId, offset: 0)) {
                         if self.frontCards?.count != 0 {
                             self.cardsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
                         }
                         self.isInfiniteScroll = true
                     }
                 }
+                 */
+                print("success")
             case .requestErr(let message):
                 print("groupListFetchWithAPI - requestErr: \(message)")
             case .pathErr:
@@ -258,7 +261,7 @@ extension GroupViewController: UICollectionViewDelegate {
                     isInfiniteScroll = false
                     offset += 1
                     
-                    cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "", groupId: serverGroups?.groups[self.selectedRow].groupID ?? -1, offset: offset)) {
+                    cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "", groupId: serverGroups?.groups[self.selectedRow].cardGroupId ?? -1, offset: offset)) {
                         self.isInfiniteScroll = true
                     }
                 }
@@ -286,7 +289,7 @@ extension GroupViewController: UICollectionViewDataSource {
             guard let groupCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.groupCollectionViewCell, for: indexPath) as? GroupCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            groupCell.groupName.text = serverGroups?.groups[indexPath.row].groupName
+            groupCell.groupName.text = serverGroups?.groups[indexPath.row].cardGroupName
             
             if indexPath.row == selectedRow {
                 collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
@@ -324,7 +327,7 @@ extension GroupViewController: UICollectionViewDataSource {
         switch collectionView {
         case groupCollectionView:
             selectedRow = indexPath.row
-            groupId = serverGroups?.groups[indexPath.row].groupID
+            groupId = serverGroups?.groups[indexPath.row].cardGroupId
             offset = 0
             frontCards?.removeAll()
             
@@ -335,7 +338,7 @@ extension GroupViewController: UICollectionViewDataSource {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.cardListInGroupWithAPI(cardListInGroupRequest:
                                         CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "",
-                                                               groupId: self.serverGroups?.groups[indexPath.row].groupID ?? 0,
+                                                               groupId: self.serverGroups?.groups[indexPath.row].cardGroupId ?? 0,
                                                                offset: 0)) {
                     self.isInfiniteScroll = true
                 }
@@ -360,7 +363,7 @@ extension GroupViewController: UICollectionViewDelegateFlowLayout {
             guard let cell = groupCollectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.groupCollectionViewCell, for: indexPath) as? GroupCollectionViewCell else {
                 return .zero
             }
-            cell.groupName.text = serverGroups?.groups[indexPath.row].groupName
+            cell.groupName.text = serverGroups?.groups[indexPath.row].cardGroupName
             cell.groupName.sizeToFit()
             width = cell.groupName.frame.width + 30
             height = collectionView.frame.size.height

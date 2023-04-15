@@ -203,7 +203,7 @@ extension FrontCardCreationCollectionViewCell {
         } else {
             frontCardCreationDelegate?.frontCardCreation(requiredInfo: false)
         }
-        if let _ = defaultImageIndex {
+        if let defaultImageIndex {
             frontCardCreationDelegate?.frontCardCreation(with: FrontCardDataModel(birth: birthLabel.text ?? "",
                                                                                   cardName: cardTitleTextField.text ?? "",
                                                                                   userName: userNameTextField.text ?? "",
@@ -212,7 +212,8 @@ extension FrontCardCreationCollectionViewCell {
                                                                                   mbti: mbtiLabel.text,
                                                                                   phoneNumber: phoneNumberTextField.text,
                                                                                   sns: instagramIDTextField.text,
-                                                                                  urls: linkURLTextField.text == nil ? nil : [linkURLTextField.text ?? ""]))
+                                                                                  urls: linkURLTextField.text == nil ? nil : [linkURLTextField.text ?? ""],
+                                                                                  defaultImageIndex: defaultImageIndex))
         }
     }
     static func nib() -> UINib {

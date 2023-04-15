@@ -49,7 +49,7 @@ class CardCreationPreviewViewController: UIViewController {
         super.viewDidLoad()
         
         setUI()
-//        setBackgroundImage()
+        setBackgroundImage()
         setFrontCard()
         setGestureRecognizer()
     }
@@ -58,9 +58,6 @@ class CardCreationPreviewViewController: UIViewController {
 
         DispatchQueue.main.async {
             self.setActivityIndicator()
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.cardImageUploadWithAPI { [weak self] imageURL in
                 guard let self = self else { return }
                 
@@ -141,26 +138,25 @@ extension CardCreationPreviewViewController {
         swipeRightGestureRecognizer.direction = .right
         self.cardView.addGestureRecognizer(swipeRightGestureRecognizer)
     }
-    // TODO: -  추후 서버에서 개발하면 사용할 메서드.
-//    private func setBackgroundImage() {
-//        if frontCardDataModel?.defaultImage == 0 {
-//            return
-//        } else if frontCardDataModel?.defaultImage == 1 {
-//            cardBackgroundImage = UIImage(named: "imgCardBg01")
-//        } else if frontCardDataModel?.defaultImage == 2 {
-//            cardBackgroundImage = UIImage(named: "imgCardBg02")
-//        } else if frontCardDataModel?.defaultImage == 3 {
-//            cardBackgroundImage = UIImage(named: "imgCardBg03")
-//        } else if frontCardDataModel?.defaultImage == 4 {
-//            cardBackgroundImage = UIImage(named: "imgCardBg04")
-//        } else if frontCardDataModel?.defaultImage == 5 {
-//            cardBackgroundImage = UIImage(named: "imgCardBg05")
-//        } else if frontCardDataModel?.defaultImage == 6 {
-//            cardBackgroundImage = UIImage(named: "imgCardBg06")
-//        } else {
-//            cardBackgroundImage = UIImage(named: "imgCardBg07")
-//        }
-//    }
+    private func setBackgroundImage() {
+        if frontCardDataModel?.defaultImageIndex == 0 {
+            return
+        } else if frontCardDataModel?.defaultImageIndex == 1 {
+            cardBackgroundImage = UIImage(named: "imgCardBg01")
+        } else if frontCardDataModel?.defaultImageIndex == 2 {
+            cardBackgroundImage = UIImage(named: "imgCardBg02")
+        } else if frontCardDataModel?.defaultImageIndex == 3 {
+            cardBackgroundImage = UIImage(named: "imgCardBg03")
+        } else if frontCardDataModel?.defaultImageIndex == 4 {
+            cardBackgroundImage = UIImage(named: "imgCardBg04")
+        } else if frontCardDataModel?.defaultImageIndex == 5 {
+            cardBackgroundImage = UIImage(named: "imgCardBg05")
+        } else if frontCardDataModel?.defaultImageIndex == 6 {
+            cardBackgroundImage = UIImage(named: "imgCardBg06")
+        } else {
+            cardBackgroundImage = UIImage(named: "imgCardBg07")
+        }
+    }
     private func setActivityIndicator() {
         view.addSubview(loadingBgView)
         loadingBgView.addSubview(activityIndicator)
@@ -188,7 +184,7 @@ extension CardCreationPreviewViewController {
             for index in 0..<tasteInfo.count {
                 cardTasteInfo.append(CardTasteInfo(cardTasteName: tasteInfo[index].tasteName,
                                                    isChoose: backCardDataModel.tastes.contains(tasteInfo[index].tasteName),
-                                                   sortOrder: index))
+                                                   sortOrder: tasteInfo[index].sortOrder))
             }
             
             backCard.initCell(cardTasteInfo: cardTasteInfo, tmi: backCardDataModel.tmi)

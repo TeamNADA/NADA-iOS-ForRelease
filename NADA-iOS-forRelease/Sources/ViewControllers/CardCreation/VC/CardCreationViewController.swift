@@ -362,7 +362,7 @@ extension CardCreationViewController {
             case .success(let data):
                 print("cardCreationWithAPI - success")
                 if let tastes = data as? Taste {
-                    self.tasteInfo = tastes.tasteInfos.sorted { $0.sortOrder < $1.sortOrder }
+                    self.tasteInfo = tastes.tasteInfos.sorted { $0.sortOrder > $1.sortOrder }
                     DispatchQueue.main.async { [weak self] in
                         self?.cardCreationCollectionView.reloadData()
                     }

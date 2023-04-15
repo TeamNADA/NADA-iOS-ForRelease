@@ -230,11 +230,13 @@ extension CardCreationPreviewViewController {
             case .success:
                 print("cardCreationWithAPI - success")
                 
-                guard let presentingVC = self.presentingViewController else { return }
-                
                 NotificationCenter.default.post(name: .creationReloadMainCardSwiper, object: nil)
                 
+                guard let presentingTabBarVC = self.presentingViewController as? TabBarViewController,
+                      let presentingNavigationVC = presentingTabBarVC.selectedViewController as? UINavigationController else { return }
+                
                 self.dismiss(animated: true) {
+                    presentingNavigationVC.popToRootViewController(animated: true)
                     self.activityIndicator.stopAnimating()
                     self.loadingBgView.removeFromSuperview()
                     
@@ -247,7 +249,7 @@ extension CardCreationPreviewViewController {
                             .setHeight(587)
                         nextVC.modalPresentationStyle = .overFullScreen
                         
-                        presentingVC.present(nextVC, animated: true) {
+                        presentingTabBarVC.present(nextVC, animated: true) {
                             UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isFirstCard)
                         }
                     }

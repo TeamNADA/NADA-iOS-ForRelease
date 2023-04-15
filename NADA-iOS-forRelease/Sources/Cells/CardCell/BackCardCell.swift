@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import VerticalCardSwiper
 import Kingfisher
 
@@ -18,11 +19,8 @@ class BackCardCell: CardCell {
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var tasteTitleLabel: UILabel!
-    
     @IBOutlet var tasteImageViews: [UIImageView]!
-    
     @IBOutlet var tasteLabels: [UILabel]!
-    
     @IBOutlet weak var tmiTitleLabel: UILabel!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var tmiLabel: UILabel!

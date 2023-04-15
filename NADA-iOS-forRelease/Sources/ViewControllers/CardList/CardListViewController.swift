@@ -83,6 +83,8 @@ class CardListViewController: UIViewController {
             cardListTableView.reloadData()
             cardListTableView.moveRow(at: index!, to: IndexPath(row: 0, section: 0))
             
+            newCardItems = []
+            
             for index in 0..<cardItems.count {
                 newCardItems.append(CardReorderInfo(cardID: cardItems[index].cardID,
                                                     isRepresentative: index == 0 ? true : false,
@@ -316,6 +318,8 @@ extension CardListViewController {
                 }, completion: { [weak self] (finished) -> Void in
                     if finished {
                         guard let self = self else { return }
+                        
+                        newCardItems = []
                         
                         for index in 0..<(cardItems.count) {
                             newCardItems.append(CardReorderInfo(cardID: cardItems[index].cardID,

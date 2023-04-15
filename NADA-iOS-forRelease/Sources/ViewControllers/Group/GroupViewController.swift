@@ -205,8 +205,8 @@ extension GroupViewController {
                 self.activityIndicator.stopAnimating()
                 self.loadingBgView.removeFromSuperview()
                 
-                if let cards = data as? CardsInGroupResponse {
-                    self.frontCards?.append(contentsOf: cards.cards)
+                if let cards = data as? [FrontCard] {
+                    self.frontCards = cards
                     if self.frontCards?.count == 0 {
                         self.emptyView.isHidden = false
                     } else {
@@ -214,7 +214,8 @@ extension GroupViewController {
                     }
                     self.cardsCollectionView.reloadData()
                 }
-                completion()
+                //completion()
+                print("✅")
             case .requestErr(let message):
                 print("cardListInGroupWithAPI - requestErr: \(message)")
             case .pathErr:
@@ -302,20 +303,20 @@ extension GroupViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             guard let frontCards = frontCards else { return UICollectionViewCell() }
-            cardCell.backgroundImageView.updateServerImage(frontCards[indexPath.row].background)
+            cardCell.backgroundImageView.updateServerImage(frontCards[indexPath.row].cardImage)
             cardCell.cardId = frontCards[indexPath.row].cardID
-            cardCell.titleLabel.text = frontCards[indexPath.row].title
-            cardCell.descriptionLabel.text = frontCards[indexPath.row].cardDescription
-            cardCell.userNameLabel.text = frontCards[indexPath.row].name
-            cardCell.birthLabel.text = frontCards[indexPath.row].birthDate
+            cardCell.titleLabel.text = frontCards[indexPath.row].cardName
+            cardCell.descriptionLabel.text = frontCards[indexPath.row].departmentName
+            cardCell.userNameLabel.text = frontCards[indexPath.row].userName
+            cardCell.birthLabel.text = frontCards[indexPath.row].birth
             cardCell.mbtiLabel.text = frontCards[indexPath.row].mbti
             cardCell.instagramIDLabel.text = frontCards[indexPath.row].instagram
-            cardCell.lineURLLabel.text = frontCards[indexPath.row].link
+            cardCell.lineURLLabel.text = frontCards[indexPath.row].urls
             
             if frontCards[indexPath.row].instagram == "" {
                 cardCell.instagramIcon.isHidden = true
             }
-            if frontCards[indexPath.row].link == "" {
+            if frontCards[indexPath.row].urls == "" {
                 cardCell.urlIcon.isHidden = true
             }
             
@@ -346,7 +347,7 @@ extension GroupViewController: UICollectionViewDataSource {
                 }
             }
         case cardsCollectionView:
-            cardDetailFetchWithAPI(cardUUID: frontCards?[indexPath.row].cardID ?? "")
+            cardDetailFetchWithAPI(cardUUID: frontCards?[indexPath.row].cardUUID ?? "")
         default:
             return
         }

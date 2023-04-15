@@ -201,7 +201,6 @@ extension CardCreationCategoryViewController {
             .disposed(by: disposeBag)
     }
     
-    // TODO: - 화면전환 메서드 작성.
     private func presentToBasicCardCreationViewController() {
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.cardCreation, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardCreationViewController) as? CardCreationViewController else { return }
         let navigationController = UINavigationController(rootViewController: nextVC)
@@ -210,11 +209,11 @@ extension CardCreationCategoryViewController {
     }
     
     private func presentToJobCardCreationViewController() {
-        
+        // TODO: - 화면전환 메서드 작성.
     }
     
     private func presentToDiggingCardCreationViewController() {
-        
+        // TODO: - 화면전환 메서드 작성.
     }
     
     // MARK: - @objc methods
@@ -271,7 +270,7 @@ extension CardCreationCategoryViewController {
         diggingBackgroundView.snp.makeConstraints { make in
             make.top.equalTo(basicBackgroundView.snp.bottom).offset(12)
             make.leading.trailing.equalToSuperview().inset(24)
-            make.height.equalTo(basicBackgroundView.snp.width).multipliedBy(117.0 / 327.0)
+            make.height.equalTo(diggingBackgroundView.snp.width).multipliedBy(117.0 / 327.0)
         }
         
         diggingTextlabel.snp.makeConstraints { make in
@@ -286,9 +285,9 @@ extension CardCreationCategoryViewController {
         }
         
         jobBackgroundView.snp.makeConstraints { make in
-            make.top.equalTo(jobBackgroundView.snp.bottom).offset(12)
+            make.top.equalTo(diggingBackgroundView.snp.bottom).offset(12)
             make.leading.trailing.equalToSuperview().inset(24)
-            make.height.equalTo(basicBackgroundView.snp.width).multipliedBy(117.0 / 327.0)
+            make.height.equalTo(jobBackgroundView.snp.width).multipliedBy(117.0 / 327.0)
         }
         
         jobTextlabel.snp.makeConstraints { make in
@@ -303,7 +302,7 @@ extension CardCreationCategoryViewController {
         }
         
         checkMarkImageView.snp.makeConstraints { make in
-            make.top.equalTo(diggingBackgroundView.snp.bottom).offset(10)
+            make.top.equalTo(jobBackgroundView.snp.bottom).offset(10)
             make.leading.equalToSuperview().inset(24)
         }
         

@@ -44,8 +44,8 @@ extension GroupService: TargetType {
             return "/group"
         case .cardAddInGroup, .changeCardGroup:
             return "/groups/card"
-        case .cardListFetchInGroup:
-            return "/groups/cards"
+        case .cardListFetchInGroup(let cardListInGroupRequest):
+            return "/card-group/\(cardListInGroupRequest.cardGroupId)/cards"
         case .cardDeleteInGroup(let groupID, let cardID):
             return "/group/\(groupID)/\(cardID)"
         }
@@ -84,9 +84,8 @@ extension GroupService: TargetType {
         case .cardAddInGroup(let cardRequest):
             return .requestJSONEncodable(cardRequest)
         case .cardListFetchInGroup(let cardListInGroupRequest):
-            return .requestParameters(parameters: ["userId": cardListInGroupRequest.userId,
-                                                   "groupId": cardListInGroupRequest.groupId,
-                                                   "offset": cardListInGroupRequest.offset], encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: ["pageNo": cardListInGroupRequest.pageNo,
+                                                   "pageSize": cardListInGroupRequest.pageSize], encoding: URLEncoding.queryString)
         case .changeCardGroup(let requestModel):
             return .requestJSONEncodable(requestModel)
         }

@@ -134,7 +134,7 @@ public class GroupAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeCardListFetchInGroupStatus(by: statusCode, data)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: [Card].self)
                 completion(networkResult)
                 
             case .failure(let err):

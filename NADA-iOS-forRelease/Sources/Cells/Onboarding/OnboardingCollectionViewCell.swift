@@ -53,9 +53,30 @@ extension OnboardingCollectionViewCell {
         imageView.contentMode = .scaleAspectFill
     }
     func initCell(image: String, isLast: Bool) {
+// MARK: - Initialize Methods
+
+extension OnboardingCollectionViewCell {
+    func initCell(image: String, index: Int) {
         if let image = UIImage(named: image) {
             imageView.image = image
         }
-        startButton.isHidden = !isLast
+        
+        if index == 0 {
+            onboardingFirstLottieView.isHidden = false
+            onboardingSecondLottieView.isHidden = true
+            startButton.isHidden = true
+        } else if index == 1 {
+            onboardingFirstLottieView.isHidden = true
+            onboardingSecondLottieView.isHidden = false
+            startButton.isHidden = true
+        } else if index == 4 {
+            onboardingFirstLottieView.isHidden = true
+            onboardingSecondLottieView.isHidden = true
+            startButton.isHidden = false
+        } else {
+            onboardingFirstLottieView.isHidden = true
+            onboardingSecondLottieView.isHidden = true
+            startButton.isHidden = true
+        }
     }
 }

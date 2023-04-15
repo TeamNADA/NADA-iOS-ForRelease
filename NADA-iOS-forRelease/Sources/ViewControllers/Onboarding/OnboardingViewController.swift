@@ -87,10 +87,10 @@ extension OnboardingViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.onboardingCollectionViewCell, for: indexPath) as? OnboardingCollectionViewCell else { return UICollectionViewCell() }
-        let isLast = indexPath.item == 4 ? true : false
-        cell.initCell(image: onboardingList[indexPath.item], isLast: isLast)
         
-        if isLast {
+        cell.initCell(image: onboardingList[indexPath.item], index: indexPath.item)
+        
+        if indexPath.item == 4 {
             cell.presentToLoginViewController = {
                 guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController) as? LoginViewController else { return }
                 nextVC.modalTransitionStyle = .crossDissolve

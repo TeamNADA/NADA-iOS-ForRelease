@@ -66,7 +66,7 @@ extension CardService: TargetType {
         case .cardDetailFetch, .cardDelete, .tasteFetch, .cardListFetch:
             return .requestPlain
         case .cardCreation(let request):
-            var parameters: [String: Any] = ["brith": request.frontCard.birth,
+            var parameters: [String: Any] = ["birth": request.frontCard.birth,
                                              "cardImage": request.cardImageURL,
                                              "cardName": request.frontCard.cardName,
                                              "cardTastes": request.backCard.tastes,

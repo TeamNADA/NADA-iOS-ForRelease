@@ -20,6 +20,9 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     public var cardDataModel: Card?
     public var isActivate: Bool?
     var locationManager = CLLocationManager()
+    
+    private var latitude: CLLocationDegrees = 0
+    private var longitude: CLLocationDegrees = 0
 
     private let cardBackgroundView: UIView = {
         let view = UIView()
@@ -164,6 +167,22 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         
         lottieImage.isHidden = isActivate ? false : true
         _ = isActivate ? lottieImage.play() : lottieImage.stop()
+        
+        //TODO: 여기서 스위치 키면 위치정보 받아오기, 끄면 위치 정보 노출하지 않기
+        if isActivate {
+            //TODO: 여기서 활성화된 명함 정보/위치정보 API로 쏴주기
+            locationManager.startUpdatingLocation()
+            latitude = locationManager.location?.coordinate.latitude ?? 0
+            longitude = locationManager.location?.coordinate.longitude ?? 0
+            
+            print("✅ activated")
+            print("✅ latitude: ", latitude)
+            print("✅ longitude: ", longitude)
+            
+        } else {
+            //TODO: 여기서 비활성화된 명함 정보/위치정보 API로 쏴주기
+            
+        }
     }
     
     private func setupLayout() {
@@ -353,7 +372,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
             locationManager.startUpdatingLocation()
             print(locationManager.location?.coordinate)
         } else {
-            print("lcoation off")
+            print("location off")
         }
     }
     
@@ -388,8 +407,11 @@ extension CardShareBottomSheetViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("Location Here")
         if let location = locations.first {
-            print("위도: ", location.coordinate.latitude)
-            print("경도: ", location.coordinate.longitude)
+            print("✅ 위도: ", location.coordinate.latitude)
+            print("✅ 경도: ", location.coordinate.longitude)
+            
+            latitude = location.coordinate.latitude
+            longitude = location.coordinate.longitude
         }
     }
     

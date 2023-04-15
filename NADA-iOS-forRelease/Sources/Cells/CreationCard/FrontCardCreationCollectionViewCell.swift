@@ -123,18 +123,22 @@ extension FrontCardCreationCollectionViewCell {
         mbtiLabel.textColor = .quaternary
         mbtiLabel.text = "MBTI"
         
-        instagramIDTextField.attributedPlaceholder = NSAttributedString(string: "Instagram (@ 제외)", attributes: [
-            NSAttributedString.Key.foregroundColor: UIColor.quaternary
-        ])
-        linkURLTextField.attributedPlaceholder = NSAttributedString(string: "URL (Github, Blog 등)", attributes: [
-            NSAttributedString.Key.foregroundColor: UIColor.quaternary
-        ])
-        descriptionTextField.attributedPlaceholder = NSAttributedString(string: "학교 전공/동아리 기수 등 (15자)", attributes: [
-            NSAttributedString.Key.foregroundColor: UIColor.quaternary
-        ])
-        phoneNumberTextField.attributedPlaceholder = NSAttributedString(string: "전화번호", attributes: [
-        NSAttributedString.Key.foregroundColor: UIColor.quaternary
-        ])
+        instagramIDTextField.attributedPlaceholder = NSAttributedString(string: "Instagram (@ 제외)",
+                                                                        attributes: [
+                                                                            NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                        ])
+        linkURLTextField.attributedPlaceholder = NSAttributedString(string: "URL (Github, Blog 등)",
+                                                                    attributes: [
+                                                                        NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                    ])
+        descriptionTextField.attributedPlaceholder = NSAttributedString(string: "학교 전공/동아리 기수 등 (15자)",
+                                                                        attributes: [
+                                                                            NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                        ])
+        phoneNumberTextField.attributedPlaceholder = NSAttributedString(string: "전화번호",
+                                                                        attributes: [
+                                                                            NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                        ])
         
         _ = requiredTextFieldList.map {
             $0.font = .textRegular04

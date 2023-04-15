@@ -69,12 +69,12 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
         cardView.userNameLabel.text = cardDataModel.userName
         cardView.birthLabel.text = cardDataModel.birth
         cardView.mbtiLabel.text = cardDataModel.mbti ?? ""
-        cardView.instagramIDLabel.text = cardDataModel.sns ?? ""
+        cardView.instagramIDLabel.text = cardDataModel.instagram ?? ""
         if let urls = cardDataModel.urls {
             cardView.lineURLLabel.text = urls[0]
         }
         
-        if cardDataModel.sns == nil {
+        if cardDataModel.instagram == nil {
             cardView.instagramIcon.isHidden = true
         }
         if cardDataModel.urls == nil {

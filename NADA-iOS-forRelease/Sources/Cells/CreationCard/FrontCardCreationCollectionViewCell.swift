@@ -211,7 +211,8 @@ extension FrontCardCreationCollectionViewCell {
                                                                                   mailAddress: nil,
                                                                                   mbti: mbtiLabel.text,
                                                                                   phoneNumber: phoneNumberTextField.text,
-                                                                                  sns: instagramIDTextField.text,
+                                                                                  instagram: instagramIDTextField.text,
+                                                                                  twitter: nil,
                                                                                   urls: linkURLTextField.text == nil ? nil : [linkURLTextField.text ?? ""],
                                                                                   defaultImageIndex: defaultImageIndex))
         }

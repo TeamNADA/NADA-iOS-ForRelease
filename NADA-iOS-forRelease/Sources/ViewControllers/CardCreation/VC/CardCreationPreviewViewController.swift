@@ -122,7 +122,7 @@ extension CardCreationPreviewViewController {
                            frontCardDataModel.userName,
                            frontCardDataModel.birth,
                            frontCardDataModel.mbti ?? "",
-                           frontCardDataModel.sns ?? "",
+                           frontCardDataModel.instagram ?? "",
                            frontCardDataModel.phoneNumber ?? "",
                            frontCardDataModel.urls?[0] ?? "",
                            isShareable: isShareable)
@@ -202,7 +202,7 @@ extension CardCreationPreviewViewController {
                                frontCardDataModel.userName,
                                frontCardDataModel.birth,
                                frontCardDataModel.mbti ?? "",
-                               frontCardDataModel.sns ?? "",
+                               frontCardDataModel.instagram ?? "",
                                frontCardDataModel.phoneNumber ?? "",
                                frontCardDataModel.urls?[0] ?? "",
                                isShareable: isShareable)

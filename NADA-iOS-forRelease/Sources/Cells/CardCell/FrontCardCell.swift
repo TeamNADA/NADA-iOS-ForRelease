@@ -138,13 +138,13 @@ extension FrontCardCell {
         userNameLabel.text = cardData.userName
         birthLabel.text = cardData.birth
         mbtiLabel.text = cardData.mbti
-        instagramIDLabel.text = cardData.sns
+        instagramIDLabel.text = cardData.instagram
         phoneNumberLabel.text = cardData.phoneNumber
         if let urls = cardData.urls {
             linkURLLabel.text = urls[0]
         }
         
-        if cardData.sns == nil {
+        if cardData.instagram == nil {
             instagramStackView.isHidden = true
         }
         if cardData.phoneNumber == nil {

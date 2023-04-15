@@ -60,9 +60,6 @@ extension OnboardingViewController: UICollectionViewDelegate {
         var offset = targetContentOffset.pointee
         let index = round(offset.y / Size.cellHeigth)
         
-        if index == 1 {
-            NotificationCenter.default.post(name: .scrollToSecondIndex, object: nil)
-        }
         if index > currentIndex {
             currentIndex += 1
         } else if index < currentIndex {
@@ -75,6 +72,10 @@ extension OnboardingViewController: UICollectionViewDelegate {
             offset = CGPoint(x: CGFloat.zero, y: -Size.topSafeArea)
         } else {
             offset = CGPoint(x: CGFloat.zero, y: currentIndex * (Size.cellHeigth + Size.cellLineSpacing) - Size.topSafeArea)
+        }
+        
+        if currentIndex == 1 {
+            NotificationCenter.default.post(name: .scrollToSecondIndex, object: nil)
         }
 
         targetContentOffset.pointee = offset

@@ -110,7 +110,9 @@ extension CardService: TargetType {
             return .requestParameters(parameters: ["pageNo": pageNumber,
                                                    "pageSize": pageSize],
                                       encoding: URLEncoding.queryString)
-        case .cardReorder(let requestModel):
+        case .cardReorder(let request):
+            let requestModel = CardReorderInfosRequest(cardReorderInfos: request)
+            
             return .requestJSONEncodable(requestModel)
         case .imageUpload(let image):
             var multiPartData: [Moya.MultipartFormData] = []

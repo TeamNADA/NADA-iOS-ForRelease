@@ -18,3 +18,8 @@ struct CardReorderInfo: Codable {
         case isRepresentative, sortOrder
     }
 }
+
+// MARK: - CardReorderInfos
+struct CardReorderInfosRequest: Codable {
+    let cardReorderInfos: [CardReorderInfo]
+}

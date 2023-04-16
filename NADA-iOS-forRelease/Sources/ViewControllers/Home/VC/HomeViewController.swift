@@ -206,6 +206,13 @@ extension HomeViewController {
         updateVC.updateNote = updateNote
         self.present(updateVC, animated: true)
     }
+    
+    private func presentToCardDetailVC(cardDataModel: Card) {
+        let cardDetailVC = moduleFactory.makeCardDetailVC()
+        cardDetailVC.status = .add
+        cardDetailVC.cardDataModel = cardDataModel
+        self.present(cardDetailVC, animated: true)
+    }
 }
 
 // MARK: - Network

@@ -54,9 +54,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
         if let url = userActivity.webpageURL {
-            let handled = DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, error in
+            let _ = DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, error in
                 if let cardUUID = self.handleDynamicLink(dynamicLink) {
-                    UserDefaults.standard.set(cardUUID, forKey: Const.UserDefaultsKey.dynamicLinkCardUUID)
                 }
             }
         }

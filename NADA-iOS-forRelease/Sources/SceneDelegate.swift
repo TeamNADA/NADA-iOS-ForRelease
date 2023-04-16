@@ -55,10 +55,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
         if let url = userActivity.webpageURL {
             let handled = DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, error in
-                if let cardID = self.handleDynamicLink(dynamicLink) {
-                    
-                    // TODO: - user defaults 로 cardID 저장하고, 홈 뷰에서 존재 유무로 명함 조회. 조회 시 user defaults 삭제.
-                    
+                if let cardUUID = self.handleDynamicLink(dynamicLink) {
+                    UserDefaults.standard.set(cardUUID, forKey: Const.UserDefaultsKey.dynamicLinkCardUUID)
                 }
             }
         }
@@ -103,8 +101,8 @@ extension SceneDelegate {
               let link = dynamicLink.url else { return nil }
         
         let queryItems = URLComponents(url: link, resolvingAgainstBaseURL: true)?.queryItems
-        let cardID = queryItems?.filter { $0.name == "cardID" }.first?.value
+        let cardUUID = queryItems?.filter { $0.name == "cardUUID" }.first?.value
         
-        return cardID
+        return cardUUID
     }
 }

@@ -88,9 +88,8 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
                                                            groupID: groupId ?? 0,
                                                            newGroupID: selectedGroup))
         case .add, .addWithQR:
-            cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardId: cardDataModel?.cardUUID ?? "",
-                                                                     userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "",
-                                                                     groupId: selectedGroup))
+            cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardUUID: cardDataModel?.cardUUID ?? "",
+                                                                     cardGroupID: selectedGroup))
         case .group:
             return
         }

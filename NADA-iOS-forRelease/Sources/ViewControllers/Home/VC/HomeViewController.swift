@@ -213,6 +213,15 @@ extension HomeViewController {
         cardDetailVC.cardDataModel = cardDataModel
         self.present(cardDetailVC, animated: true)
     }
+    
+    public func checkDynamicLink() {
+        let dynamicLinkCardUUID = ""
+        self.cardDetailFetchWithAPI(cardUUID: dynamicLinkCardUUID) { [weak self] cardDataModel in
+            self?.cardAddInGroupWithAPI(cardUUID: dynamicLinkCardUUID) { [weak self] in
+                self?.presentToCardDetailVC(cardDataModel: cardDataModel)
+            }
+        }
+    }
 }
 
 // MARK: - Network

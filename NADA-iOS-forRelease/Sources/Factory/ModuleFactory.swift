@@ -51,6 +51,7 @@ final class ModuleFactory: ModuleFactoryProtocol {
     
     func makeCardDetailVC() -> CardDetailViewController {
         let cardDetailVC = CardDetailViewController.controllerFromStoryboard(.cardDetail)
+        cardDetailVC.modalPresentationStyle = .overFullScreen
         return cardDetailVC
     }
 }

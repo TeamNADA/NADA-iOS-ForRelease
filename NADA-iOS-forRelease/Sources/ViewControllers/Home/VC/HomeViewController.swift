@@ -247,4 +247,40 @@ extension HomeViewController {
             
         }
     }
+    private func cardDetailFetchWithAPI(cardUUID: String, completion: @escaping (Card) -> Void) {
+        CardAPI.shared.cardDetailFetch(cardUUID: cardUUID) { response in
+            switch response {
+            case .success(let data):
+                if let cardDataModel = data as? Card {
+                    completion(cardDataModel)
+                }
+                print("cardDetailFetchWithAPI - success")
+            case .requestErr(let message):
+                print("cardDetailFetchWithAPI - requestErr", message)
+            case .pathErr:
+                print("cardDetailFetchWithAPI - pathErr")
+            case .serverErr:
+                print("cardDetailFetchWithAPI - serverErr")
+            case .networkFail:
+                print("deleteGroupWithAPI - networkFail")
+            }
+        }
+    }
+    private func cardAddInGroupWithAPI(cardUUID: String, completion: @escaping () -> Void) {
+        GroupAPI.shared.cardAddInGroup(cardRequest: CardAddInGroupRequest(cardUUID: cardUUID, cardGroupID: 1)) { response in
+            switch response {
+            case .success:
+                completion()
+                print("cardAddInGroupWithAPI - success")
+            case .requestErr(let message):
+                print("cardAddInGroupWithAPI - requestErr", message)
+            case .pathErr:
+                print("cardAddInGroupWithAPI - pathErr")
+            case .serverErr:
+                print("cardAddInGroupWithAPI - serverErr")
+            case .networkFail:
+                print("cardAddInGroupWithAPI - networkFail")
+            }
+        }
+    }
 }

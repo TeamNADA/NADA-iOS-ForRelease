@@ -14,22 +14,6 @@ public class GroupAPI {
     var groupProvider = MoyaProvider<GroupService>(plugins: [MoyaLoggerPlugin()])
 
     public init() { }
-
-    func changeCardGroup(request: ChangeGroupRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
-        groupProvider.request(.changeCardGroup(request: request)) { (result) in
-            switch result {
-            case .success(let response):
-                let statusCode = response.statusCode
-                let data = response.data
-
-                let networkResult = self.judgeStatus(by: statusCode, data: data, type: String.self)
-                completion(networkResult)
-                
-            case .failure(let err):
-                print(err)
-            }
-        }
-    }
     
     func cardDeleteInGroup(groupID: Int, cardID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
         groupProvider.request(.cardDeleteInGroup(groupID: groupID, cardID: cardID)) { (result) in

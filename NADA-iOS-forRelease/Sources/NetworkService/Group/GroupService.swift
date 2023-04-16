@@ -15,7 +15,6 @@ enum GroupService {
     case groupEdit(groupRequest: GroupEditRequest)
     case cardAddInGroup(cardRequest: CardAddInGroupRequest)
     case cardListFetchInGroup(cardListInGroupRequest: CardListInGroupRequest)
-    case changeCardGroup(request: ChangeGroupRequest)
     case cardDeleteInGroup(groupID: Int, cardID: String)
     case groupReset(token: String)
 }
@@ -29,7 +28,7 @@ extension GroupService: TargetType {
         switch self {
         case .groupListFetch, .cardListFetchInGroup, .groupDelete, .cardDeleteInGroup:
             return .bearer
-        case .groupAdd, .groupEdit, .cardAddInGroup, .changeCardGroup, .groupReset:
+        case .groupAdd, .groupEdit, .cardAddInGroup, .groupReset:
             return .bearer
         }
     }
@@ -42,8 +41,8 @@ extension GroupService: TargetType {
             return "/group/\(groupID)"
         case .groupAdd, .groupEdit:
             return "/group"
-        case .cardAddInGroup, .changeCardGroup:
-            return "/groups/card"
+        case .cardAddInGroup:
+            return "/card-group/mapping"
         case .cardListFetchInGroup(let cardListInGroupRequest):
             return "/card-group/\(cardListInGroupRequest.cardGroupId)/cards"
         case .cardDeleteInGroup(let groupID, let cardID):
@@ -59,7 +58,7 @@ extension GroupService: TargetType {
             return .delete
         case .groupAdd, .cardAddInGroup:
             return .post
-        case .groupEdit, .changeCardGroup:
+        case .groupEdit:
             return .put
         }
     }
@@ -88,8 +87,6 @@ extension GroupService: TargetType {
         case .cardListFetchInGroup(let cardListInGroupRequest):
             return .requestParameters(parameters: ["pageNo": cardListInGroupRequest.pageNo,
                                                    "pageSize": cardListInGroupRequest.pageSize], encoding: URLEncoding.queryString)
-        case .changeCardGroup(let requestModel):
-            return .requestJSONEncodable(requestModel)
         }
     }
     
@@ -97,7 +94,7 @@ extension GroupService: TargetType {
         switch self {
         case .groupListFetch, .cardListFetchInGroup, .groupReset, .groupDelete, .cardDeleteInGroup:
             return Const.Header.bearerHeader()
-        case .groupAdd, .groupEdit, .cardAddInGroup, .changeCardGroup:
+        case .groupAdd, .groupEdit, .cardAddInGroup:
             return Const.Header.basicHeader()
         }
     }

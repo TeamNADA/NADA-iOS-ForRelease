@@ -50,7 +50,7 @@ final class ModuleFactory: ModuleFactoryProtocol {
     }
     
     func makeCardDetailVC() -> CardDetailViewController {
-        let cardDetailVC = CardDetailViewController()
+        let cardDetailVC = CardDetailViewController.controllerFromStoryboard(.cardDetail)
         return cardDetailVC
     }
 }

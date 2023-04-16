@@ -210,7 +210,7 @@ extension HomeViewController {
 
 // MARK: - Network
 extension HomeViewController {
-    func updateUserInfoFetchWithAPI(completion: @escaping (Bool) -> Void) {
+    private func updateUserInfoFetchWithAPI(completion: @escaping (Bool) -> Void) {
         UpdateAPI.shared.updateUserInfoFetch { response in
             switch response {
             case .success(let data):
@@ -228,7 +228,7 @@ extension HomeViewController {
             }
         }
     }
-    func updateNoteFetchWithAPI(completion: @escaping (UpdateNote) -> Void) {
+    private func updateNoteFetchWithAPI(completion: @escaping (UpdateNote) -> Void) {
         UpdateAPI.shared.updateNoteFetch { response in
             switch response {
             case .success(let data):

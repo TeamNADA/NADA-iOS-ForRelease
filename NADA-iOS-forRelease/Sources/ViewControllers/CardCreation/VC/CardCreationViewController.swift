@@ -239,6 +239,22 @@ extension CardCreationViewController {
         let imagePicker = YPImagePicker(configuration: config)
         imagePicker.imagePickerDelegate = self
         
+//        imagePicker.didFinishPicking(completion: YPImagePicker.DidFinishPickingCompletion)
+//        public typealias DidFinishPickingCompletion = (_ items: [YPMediaItem], _ cancelled: Bool) -> Void
+        imagePicker.didFinishPicking { [weak self] items, cancelled in
+            guard let self = self else { return }
+            
+            if cancelled {
+                NotificationCenter.default.post(name: .cancelImagePicker, object: nil)
+            }
+            
+//            selectedImage = items
+            if let photo = items.singlePhoto {
+                backgroundImage = photo.image
+                NotificationCenter.default.post(name: .sendNewImage, object: backgroundImage)
+            }
+            imagePicker.dismiss(animated: true)
+        }
         
         imagePicker.modalPresentationStyle = .overFullScreen
         present(imagePicker, animated: true, completion: nil)

@@ -7,6 +7,8 @@
 
 import UIKit
 
+import YPImagePicker
+
 class CardCreationViewController: UIViewController {
 
     // MARK: - Properties

@@ -236,6 +236,8 @@ extension CardCreationViewController {
         // 이전에 선택한 이미지가 pre-selected 되어 있음.
 //        config.library.preselectedItems = selectedImage
         
+        config.colors.tintColor = .mainColorNadaMain
+        
         let imagePicker = YPImagePicker(configuration: config)
         imagePicker.imagePickerDelegate = self
         

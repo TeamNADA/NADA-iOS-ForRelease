@@ -261,6 +261,18 @@ extension CardCreationViewController {
     }
 }
 
+// MARK: - YPImagePickerDelegate
+extension CardCreationViewController: YPImagePickerDelegate {
+    func imagePickerHasNoItemsInLibrary(_ picker: YPImagePicker) {
+        self.makeOKAlert(title: "", message: "가져올 수 있는 사진이 없습니다.")
+    }
+    
+    func shouldAddToSelection(indexPath: IndexPath, numSelections: Int) -> Bool {
+        // false 로 설정하면 선택해도 다음으로 갈 수 없다. 즉, 추가할 수 없음.
+        return true
+    }
+}
+
 // MARK: - UICollectionViewDelegate
 extension CardCreationViewController: UICollectionViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -382,22 +394,6 @@ extension CardCreationViewController: BackCardCreationDelegate {
     }
     func backCardCreation(withRequired requiredInfo: [String], withOptional optionalInfo: String?) {
         backCard = BackCardDataModel(tastes: requiredInfo, tmi: optionalInfo)
-    }
-}
-
-extension CardCreationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            newImage = editedImage
-        }
-        NotificationCenter.default.post(name: .sendNewImage, object: newImage)
-        
-        picker.dismiss(animated: true, completion: nil)
-    }
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        NotificationCenter.default.post(name: .cancelImagePicker, object: nil)
-        
-        dismiss(animated: true, completion: nil)
     }
 }
 

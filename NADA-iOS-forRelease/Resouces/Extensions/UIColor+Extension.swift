@@ -211,6 +211,6 @@ extension UIColor {
     }
     
     @nonobjc class var tasteLabel: UIColor {
-        return UIColor(red: 19.0 / 255.0, green: 20.0 / 255.0, blue: 22.0, alpha: 1.0)
+        return UIColor(red: 19.0 / 255.0, green: 20.0 / 255.0, blue: 22.0 / 255.0, alpha: 1.0)
     }
 }

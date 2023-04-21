@@ -101,6 +101,26 @@ extension SelectBirthBottomSheetViewController {
         ])
     }
     
+    private func setBirth(month: String, day: String) -> String {
+        var birth: String = ""
+        
+        if month.count == 2 {
+            birth.append("0\(month)")
+        } else {
+            birth.append(month)
+        }
+        
+        birth.append(" ")
+        
+        if day.count == 2 {
+            birth.append("0\(day)")
+        } else {
+            birth.append(day)
+        }
+        
+        return birth
+    }
+    
     // MARK: - @objc Methods
     
     @objc func dismissToCardCreationViewController() {

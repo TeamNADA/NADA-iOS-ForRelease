@@ -12,5 +12,7 @@ extension Const {
         private init() { }
         
         static let nearby = "nearby.json"
+        static let onboarding01 = "onboarding01.json"
+        static let onboarding02 = "onboarding02.json"
     }
 }

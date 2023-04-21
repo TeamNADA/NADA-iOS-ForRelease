@@ -70,7 +70,9 @@ extension UpdateViewController {
         
         checkLabel.font = .textRegular05
         checkLabel.textColor = .tertiary
-        checkLabel.text = "확인했어요!"
+        let attributes: [NSAttributedString.Key: Any] = [.baselineOffset: -2.1]
+        let attributesString = NSAttributedString(string: "확인했어요!", attributes: attributes)
+        checkLabel.attributedText = attributesString
         
         updateButton.setImage(UIImage(named: "btnMainGoUpdate"), for: .normal)
     }

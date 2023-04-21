@@ -175,6 +175,7 @@ extension CardListViewController {
                     self.cardItems = card
                     self.cardListTableView.reloadData()
                 }
+                print("getCardListFetchWithAPI - success")
             case .requestErr(let message):
                 print("getCardListFetchWithAPI - requestErr", message)
             case .pathErr:
@@ -207,10 +208,10 @@ extension CardListViewController {
     func deleteCardWithAPI(cardID: Int) {
         CardAPI.shared.cardDelete(cardID: cardID) { response in
             switch response {
-            case .success(let data):
-                print(data)
+            case .success:
                 self.cardListFetchWithAPI()
                 self.cardListTableView.reloadData()
+                print("deleteGroupWithAPI - success")
             case .requestErr(let message):
                 print("deleteGroupWithAPI - requestErr", message)
             case .pathErr:

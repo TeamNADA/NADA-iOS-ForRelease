@@ -110,6 +110,8 @@
 		F805588529C993E7002E8EA3 /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F805588429C993E7002E8EA3 /* UpdateViewController.swift */; };
 		F80975E92990A27400075B93 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F838B66A298E5C5300D84340 /* Widgets.intentdefinition */; };
 		F80975EA2990A27900075B93 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F838B66A298E5C5300D84340 /* Widgets.intentdefinition */; };
+		F80C679329F21BB7002C5ECC /* onboarding01.json in Resources */ = {isa = PBXBuildFile; fileRef = F80C679129F21BB7002C5ECC /* onboarding01.json */; };
+		F80C679429F21BB7002C5ECC /* onboarding02.json in Resources */ = {isa = PBXBuildFile; fileRef = F80C679229F21BB7002C5ECC /* onboarding02.json */; };
 		F811720027383097002742CF /* ChangeGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81171FF27383097002742CF /* ChangeGroupRequest.swift */; };
 		F822E7A92709CEB60020452C /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F822E7A82709CEB60020452C /* Notification.swift */; };
 		F8257750299546920067E145 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87122752733046300A24E74 /* Card.swift */; };
@@ -346,6 +348,8 @@
 		78FC1ADEA3CAB995C08D47DB /* Pods-NADA-iOS-forRelease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.release.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.release.xcconfig"; sourceTree = "<group>"; };
 		D86FBA2B7966CFE6EEF0E7E8 /* Pods_NADA_iOS_forRelease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NADA_iOS_forRelease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F805588429C993E7002E8EA3 /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
+		F80C679129F21BB7002C5ECC /* onboarding01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding01.json; sourceTree = "<group>"; };
+		F80C679229F21BB7002C5ECC /* onboarding02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding02.json; sourceTree = "<group>"; };
 		F81171FF27383097002742CF /* ChangeGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeGroupRequest.swift; sourceTree = "<group>"; };
 		F822E7A82709CEB60020452C /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		F8268DB827730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCardAlertBottomSheetViewController.swift; sourceTree = "<group>"; };
@@ -978,6 +982,8 @@
 			isa = PBXGroup;
 			children = (
 				F8562C95296ADD1000DA1109 /* nearby.json */,
+				F80C679129F21BB7002C5ECC /* onboarding01.json */,
+				F80C679229F21BB7002C5ECC /* onboarding02.json */,
 			);
 			path = Lottie;
 			sourceTree = "<group>";
@@ -1533,6 +1539,7 @@
 				F858079F2700354E00872484 /* BackgroundCollectionViewCell.xib in Resources */,
 				F84BAFAE26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib in Resources */,
 				3958F23C270FFBD500B100B2 /* Group.storyboard in Resources */,
+				F80C679429F21BB7002C5ECC /* onboarding02.json in Resources */,
 				F83206AB26F61E3700D61711 /* FrontCardCell.xib in Resources */,
 				394F314F27081B4C00C83291 /* Front.storyboard in Resources */,
 				3979709826FA0BF0003FB4F5 /* Login.storyboard in Resources */,
@@ -1545,6 +1552,7 @@
 				397B75172763B5B7004AEB03 /* TeamNADA.storyboard in Resources */,
 				3936993B274A53C600684420 /* GroupEdit.storyboard in Resources */,
 				3903CC212769F4F40094C458 /* EmptyCardCell.xib in Resources */,
+				F80C679329F21BB7002C5ECC /* onboarding01.json in Resources */,
 				39D88B642745FDD400A72164 /* TabBar.storyboard in Resources */,
 				F8562C96296ADD1000DA1109 /* nearby.json in Resources */,
 				7766A410274FEBE200714912 /* CardInGroupCollectionViewCell.xib in Resources */,

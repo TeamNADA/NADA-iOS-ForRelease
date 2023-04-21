@@ -141,26 +141,6 @@ public class CardAPI {
     
     // MARK: - JudgeStatus methods
     
-//    private func judgeCardListFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
-//
-//        let decoder = JSONDecoder()
-//        guard let decodedData = try? decoder.decode(GenericResponse<CardListRequest>.self, from: data)
-//        else {
-//            return .pathErr
-//        }
-//
-//        switch statusCode {
-//        case 200:
-//            return .success(decodedData.data ?? "None-Data")
-//        case 400..<500:
-//            return .requestErr(decodedData.error?.message ?? "error message")
-//        case 500:
-//            return .serverErr
-//        default:
-//            return .networkFail
-//        }
-//    }
-    
     private func judgeStatus<T: Codable>(by statusCode: Int, data: Data, type: T.Type) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<T>.self, from: data)

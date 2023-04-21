@@ -215,7 +215,7 @@ extension HomeViewController {
             switch response {
             case .success(let data):
                 guard let updateUserInfo = data as? UpdateUserInfo else { return }
-                completion(updateUserInfo.forceUpdateAgreement)
+                completion(updateUserInfo.checkUpdateNote)
                 print("getUpdateNoteFetchWithAPI - success")
             case .requestErr(let message):
                 print("getUpdateUserInfoFetchWithAPI - requestErr: \(message)")

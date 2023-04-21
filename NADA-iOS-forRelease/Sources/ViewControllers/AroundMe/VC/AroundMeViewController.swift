@@ -26,7 +26,7 @@ final class AroundMeViewController: UIViewController {
         $0.backgroundColor = .background
     }
     private let emptyTitleLabel = UILabel().then {
-        $0.text = "아직 근처에 명함이 없어요."
+        $0.text = "아직 근처에 명함이 없어요!"
         $0.font = .textBold02
         $0.textColor = .quaternary
         $0.sizeToFit()

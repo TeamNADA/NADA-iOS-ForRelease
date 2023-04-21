@@ -65,7 +65,7 @@ extension SelectBirthBottomSheetViewController {
         view.addSubview(dayPicker)
         view.addSubview(doneButton)
         
-        selectedBirth = monthList[0] + " " + dayList[0]
+        selectedBirth = setBirth(month: monthList[0], day: dayList[0])
         
         monthPicker.delegate = self
         monthPicker.dataSource = self
@@ -181,7 +181,7 @@ extension SelectBirthBottomSheetViewController: UIPickerViewDelegate, UIPickerVi
         
         month = month.isEmpty ? monthList[0] : month
         day = day.isEmpty ? dayList[0] : day
-        selectedBirth = month + " " + day
+        selectedBirth = setBirth(month: month, day: day)
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {

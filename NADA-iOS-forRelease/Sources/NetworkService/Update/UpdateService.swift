@@ -12,6 +12,7 @@ import Moya
 enum UpdateService {
     case updateUserInfoFetch
     case updateNoteFetch
+    case checkUpdateNote(isChecked: Bool)
 }
 
 extension UpdateService: TargetType {
@@ -29,6 +30,8 @@ extension UpdateService: TargetType {
             return "/app/update"
         case .updateNoteFetch:
             return "/app/update/note"
+        case .checkUpdateNote:
+             return "/app/update/check"
         }
     }
     
@@ -36,6 +39,8 @@ extension UpdateService: TargetType {
         switch self {
         case .updateUserInfoFetch, .updateNoteFetch:
             return .get
+        case .checkUpdateNote:
+            return .post
         }
     }
     
@@ -43,12 +48,15 @@ extension UpdateService: TargetType {
         switch self {
         case .updateUserInfoFetch, .updateNoteFetch:
             return .requestPlain
+        case .checkUpdateNote(let isChecked):
+            return .requestParameters(parameters: ["checkUpdateNote": isChecked],
+                                      encoding: URLEncoding.queryString)
         }
     }
     
     var headers: [String: String]? {
         switch self {
-        case .updateUserInfoFetch, .updateNoteFetch:
+        case .updateUserInfoFetch, .updateNoteFetch, .checkUpdateNote:
             return Const.Header.bearerHeader()
         }
     }

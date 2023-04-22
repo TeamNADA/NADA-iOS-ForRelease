@@ -94,7 +94,7 @@ extension UpdateViewController {
                 exit(0)
             }
         } else {
-            // TODO: - 확인했어요 API 통신
+            checkUpdateNoteWithAPI(forceUpdateAgreement)
             self.dismiss(animated: true)
         }
     }
@@ -110,7 +110,7 @@ extension UpdateViewController {
         }
         
         if !updateNote.isForce {
-            // TODO: - 확인했어요 API 통신
+            checkUpdateNoteWithAPI(forceUpdateAgreement)
         }
     }
     
@@ -118,6 +118,27 @@ extension UpdateViewController {
     private func touchCheckBox(_ sender: UIButton) {
         checkBoxButton.isSelected.toggle()
         forceUpdateAgreement.toggle()
+    }
+}
+
+// MARK: - Network
+
+extension UpdateViewController {
+    private func checkUpdateNoteWithAPI(_ forceUpdateAgreement: Bool) {
+        UpdateAPI.shared.checkUpdateNote(isChecked: forceUpdateAgreement) { response in
+            switch response {
+            case .success:
+                print("checkUpdateNoteWithAPI - success")
+            case .requestErr(let message):
+                print("checkUpdateNoteWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("checkUpdateNoteWithAPI - pathErr")
+            case .serverErr:
+                print("checkUpdateNoteWithAPI - serverErr")
+            case .networkFail:
+                print("checkUpdateNoteWithAPI - networkFail")
+            }
+        }
     }
 }
 

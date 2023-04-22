@@ -190,8 +190,8 @@ extension HomeViewController {
     }
     
     private func checkUpdateVersion() {
-        updateUserInfoFetchWithAPI { [weak self] forceUpdateAgreement in
-            if !forceUpdateAgreement {
+        updateUserInfoFetchWithAPI { [weak self] checkUpdateNote in
+            if !checkUpdateNote {
                 self?.updateNoteFetchWithAPI { [weak self] updateNote in
                     if self?.checkUpdateAvailable(updateNote.latestVersion) ?? false {
                         self?.presentToUpdateVC(with: updateNote)

@@ -8,5 +8,5 @@
 import Foundation
 
 struct UpdateUserInfo: Codable {
-    let forceUpdateAgreement: Bool
+    let checkUpdateNote: Bool
 }

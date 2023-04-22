@@ -48,4 +48,10 @@ final class ModuleFactory: ModuleFactoryProtocol {
         updateVC.modalTransitionStyle = .crossDissolve
         return updateVC
     }
+    
+    func makeCardDetailVC() -> CardDetailViewController {
+        let cardDetailVC = CardDetailViewController.controllerFromStoryboard(.cardDetail)
+        cardDetailVC.modalPresentationStyle = .overFullScreen
+        return cardDetailVC
+    }
 }

@@ -46,15 +46,15 @@ extension BackCardCell {
         backgroundImageView.image = UIImage(named: "backCardBg")
         
         tasteTitleLabel.font = .title02
-        tasteTitleLabel.textColor = .background
+        tasteTitleLabel.textColor = .white
         
         for index in 0..<tasteLabels.count {
             tasteLabels[index].font = .button02
-            tasteLabels[index].textColor = .primary
+            tasteLabels[index].textColor = .tasteLabel
         }
         
         tmiTitleLabel.font = .title02
-        tmiTitleLabel.textColor = .background
+        tmiTitleLabel.textColor = .white
         
         tmiLabel.font = .textRegular04
         tmiLabel.textColor = .background
@@ -74,6 +74,7 @@ extension BackCardCell {
         
         for index in 0..<tasteLabels.count {
             tasteLabels[index].text = cardTasteInfo[index].cardTasteName
+            tasteLabels[index].textColor = cardTasteInfo[index].isChoose ? .tasteLabel :  .tasteLabel.withAlphaComponent(0.5)
         }
         
         if let tmi {

@@ -88,9 +88,8 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
                                                            groupID: groupId ?? 0,
                                                            newGroupID: selectedGroup))
         case .add, .addWithQR:
-            cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardId: cardDataModel?.cardUUID ?? "",
-                                                                     userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "",
-                                                                     groupId: selectedGroup))
+            cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardUUID: cardDataModel?.cardUUID ?? "",
+                                                                     cardGroupID: selectedGroup))
         case .group:
             return
         }
@@ -162,23 +161,24 @@ extension SelectGroupBottomSheetViewController {
     }
     
     func changeGroupWithAPI(request: ChangeGroupRequest) {
-        GroupAPI.shared.changeCardGroup(request: request) { response in
-            switch response {
-            case .success:
-                NotificationCenter.default.post(name: Notification.Name.passDataToGroup, object: self.selectedGroupIndex, userInfo: nil)
-                NotificationCenter.default.post(name: Notification.Name.passDataToDetail, object: self.selectedGroup, userInfo: nil)
-                self.makeOKAlert(title: "", message: "그룹이 변경되었습니다.") { _ in
-                    self.hideBottomSheetAndGoBack()
-                }
-            case .requestErr(let message):
-                print("changeGroupWithAPI - requestErr: \(message)")
-            case .pathErr:
-                print("changeGroupWithAPI - pathErr")
-            case .serverErr:
-                print("changeGroupWithAPI - serverErr")
-            case .networkFail:
-                print("changeGroupWithAPI - networkFail")
-            }
-        }
+        // FIXME: - cardAddInGroup 으로 변경.
+//        GroupAPI.shared.changeCardGroup(request: request) { response in
+//            switch response {
+//            case .success:
+//                NotificationCenter.default.post(name: Notification.Name.passDataToGroup, object: self.selectedGroupIndex, userInfo: nil)
+//                NotificationCenter.default.post(name: Notification.Name.passDataToDetail, object: self.selectedGroup, userInfo: nil)
+//                self.makeOKAlert(title: "", message: "그룹이 변경되었습니다.") { _ in
+//                    self.hideBottomSheetAndGoBack()
+//                }
+//            case .requestErr(let message):
+//                print("changeGroupWithAPI - requestErr: \(message)")
+//            case .pathErr:
+//                print("changeGroupWithAPI - pathErr")
+//            case .serverErr:
+//                print("changeGroupWithAPI - serverErr")
+//            case .networkFail:
+//                print("changeGroupWithAPI - networkFail")
+//            }
+//        }
     }
 }

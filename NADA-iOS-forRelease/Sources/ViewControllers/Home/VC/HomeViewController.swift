@@ -206,11 +206,27 @@ extension HomeViewController {
         updateVC.updateNote = updateNote
         self.present(updateVC, animated: true)
     }
+    
+    private func presentToCardDetailVC(cardDataModel: Card) {
+        let cardDetailVC = moduleFactory.makeCardDetailVC()
+        cardDetailVC.status = .add
+        cardDetailVC.cardDataModel = cardDataModel
+        self.present(cardDetailVC, animated: true)
+    }
+    
+    public func checkDynamicLink() {
+        let dynamicLinkCardUUID = ""
+        self.cardDetailFetchWithAPI(cardUUID: dynamicLinkCardUUID) { [weak self] cardDataModel in
+            self?.cardAddInGroupWithAPI(cardUUID: dynamicLinkCardUUID) { [weak self] in
+                self?.presentToCardDetailVC(cardDataModel: cardDataModel)
+            }
+        }
+    }
 }
 
 // MARK: - Network
 extension HomeViewController {
-    func updateUserInfoFetchWithAPI(completion: @escaping (Bool) -> Void) {
+    private func updateUserInfoFetchWithAPI(completion: @escaping (Bool) -> Void) {
         UpdateAPI.shared.updateUserInfoFetch { response in
             switch response {
             case .success(let data):
@@ -228,7 +244,7 @@ extension HomeViewController {
             }
         }
     }
-    func updateNoteFetchWithAPI(completion: @escaping (UpdateNote) -> Void) {
+    private func updateNoteFetchWithAPI(completion: @escaping (UpdateNote) -> Void) {
         UpdateAPI.shared.updateNoteFetch { response in
             switch response {
             case .success(let data):
@@ -245,6 +261,42 @@ extension HomeViewController {
                 print("getUpdateNoteFetchWithAPI - networkFail")
             }
             
+        }
+    }
+    private func cardDetailFetchWithAPI(cardUUID: String, completion: @escaping (Card) -> Void) {
+        CardAPI.shared.cardDetailFetch(cardUUID: cardUUID) { response in
+            switch response {
+            case .success(let data):
+                if let cardDataModel = data as? Card {
+                    completion(cardDataModel)
+                }
+                print("cardDetailFetchWithAPI - success")
+            case .requestErr(let message):
+                print("cardDetailFetchWithAPI - requestErr", message)
+            case .pathErr:
+                print("cardDetailFetchWithAPI - pathErr")
+            case .serverErr:
+                print("cardDetailFetchWithAPI - serverErr")
+            case .networkFail:
+                print("deleteGroupWithAPI - networkFail")
+            }
+        }
+    }
+    private func cardAddInGroupWithAPI(cardUUID: String, completion: @escaping () -> Void) {
+        GroupAPI.shared.cardAddInGroup(cardRequest: CardAddInGroupRequest(cardUUID: cardUUID, cardGroupID: 1)) { response in
+            switch response {
+            case .success:
+                completion()
+                print("cardAddInGroupWithAPI - success")
+            case .requestErr(let message):
+                print("cardAddInGroupWithAPI - requestErr", message)
+            case .pathErr:
+                print("cardAddInGroupWithAPI - pathErr")
+            case .serverErr:
+                print("cardAddInGroupWithAPI - serverErr")
+            case .networkFail:
+                print("cardAddInGroupWithAPI - networkFail")
+            }
         }
     }
 }

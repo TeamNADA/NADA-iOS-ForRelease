@@ -208,41 +208,17 @@ extension CardCreationViewController {
     @objc
     private func presentToImagePicker() {
         var config = YPImagePickerConfiguration()
-        
-//        주요 설정해야하는 default 값.
-//        config.library.mediaType = .photo
-//        config.library.defaultMultipleSelection = false
-//        config.library.maxNumberOfItems = 1
-        
         config.screens = [.library]
         config.startOnScreen = .library
-        
-        // cropping style 을 square or not 으로 지정.
         config.library.isSquareByDefault = false
-        
-        // 필터 단계 스킵.
         config.showsPhotoFilters = false
-        
-        // 새 이미지를 사진 라이브러리에 저장하지 않음.
-        // 👉 저장하지 않으면 selectedImage 에 담긴 이미지가 사진 라이브러리에서 찾을 수가 없어서 가장 앞에 이미지를 선택함.
-        // selectedImage 사용 못함.
         config.shouldSaveNewPicturesToAlbum = false
-        
-        // crop overlay 의 default 색상.
-//        config.colors.cropOverlayColor = .ypSystemBackground.withAlphaComponent(0.4)
-        // 327 * 540 비율로 crop 희망.
         config.showsCrop = .rectangle(ratio: 0.6)
-        
-        // 이전에 선택한 이미지가 pre-selected 되어 있음.
-//        config.library.preselectedItems = selectedImage
-        
         config.colors.tintColor = .mainColorNadaMain
         
         let imagePicker = YPImagePicker(configuration: config)
         imagePicker.imagePickerDelegate = self
         
-//        imagePicker.didFinishPicking(completion: YPImagePicker.DidFinishPickingCompletion)
-//        public typealias DidFinishPickingCompletion = (_ items: [YPMediaItem], _ cancelled: Bool) -> Void
         imagePicker.didFinishPicking { [weak self] items, cancelled in
             guard let self = self else { return }
             
@@ -250,7 +226,6 @@ extension CardCreationViewController {
                 NotificationCenter.default.post(name: .cancelImagePicker, object: nil)
             }
             
-//            selectedImage = items
             if let photo = items.singlePhoto {
                 backgroundImage = photo.image
                 NotificationCenter.default.post(name: .sendNewImage, object: backgroundImage)
@@ -270,7 +245,6 @@ extension CardCreationViewController: YPImagePickerDelegate {
     }
     
     func shouldAddToSelection(indexPath: IndexPath, numSelections: Int) -> Bool {
-        // false 로 설정하면 선택해도 다음으로 갈 수 없다. 즉, 추가할 수 없음.
         return true
     }
 }

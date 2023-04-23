@@ -25,6 +25,7 @@ protocol ModuleFactoryProtocol {
     func makeAroundMeVC() -> AroundMeViewController
     func makeUpdateVC() -> UpdateViewController
     func makeCardDetailVC() -> CardDetailViewController
+    func makeGroupEditVC() -> GroupEditViewController
 }
 
 final class ModuleFactory: ModuleFactoryProtocol {
@@ -55,5 +56,11 @@ final class ModuleFactory: ModuleFactoryProtocol {
         let cardDetailVC = CardDetailViewController.controllerFromStoryboard(.cardDetail)
         cardDetailVC.modalPresentationStyle = .overFullScreen
         return cardDetailVC
+    }
+    
+    func makeGroupEditVC() -> GroupEditViewController {
+        let groupEditVC = GroupEditViewController.controllerFromStoryboard(.groupEdit)
+        groupEditVC.serverGroups = self.serverGroups
+        return groupEditVC
     }
 }

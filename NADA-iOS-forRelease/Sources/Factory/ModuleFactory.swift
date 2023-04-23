@@ -64,7 +64,7 @@ final class ModuleFactory: ModuleFactoryProtocol {
         case .company:
             cardCreationVC = CardCreationViewController.controllerFromStoryboard(.companyCardCreation)
         case .fan:
-            cardCreationVC = CardCreationViewController.controllerFromStoryboard(.fanCardCreation)
+            cardCreationVC = FanCardCreationViewController.controllerFromStoryboard(.fanCardCreation)
         }
         
         let navigationController = UINavigationController(rootViewController: cardCreationVC)

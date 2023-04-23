@@ -29,11 +29,9 @@ class GroupEditViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        groupEditTableView.register(GroupEditTableViewCell.nib(), forCellReuseIdentifier: Const.Xib.groupEditTableViewCell)
-        groupEditTableView.register(EmptyGroupEditTableViewCell.nib(), forCellReuseIdentifier: Const.Xib.EmptyGroupEditTableViewCell)
-        
-        groupEditTableView.delegate = self
-        groupEditTableView.dataSource = self
+        setDelegate()
+        setRegister()
+        bindViewModels()
         serverGroupList()
     }
     
@@ -63,9 +61,33 @@ class GroupEditViewController: UIViewController {
         let input = GroupEditViewModel.Input(viewDidLoadEvent: self.rx.methodInvoked(#selector(UIViewController.viewDidLoad)).map { _ in })
         let output = self.viewModel.transform(input: input)
         
-        //TODO: 서버 연결 뒤 rx binding
-        groupEditTableView.rx.setDelegate(self)
-            .disposed(by: disposeBag)
+        output.groupListRelay
+            .compactMap { $0 }
+            .withUnretained(self)
+            .subscribe { owner, list in
+                print(list)
+                print("✅✅✅")
+                owner.setData(groupList: list)
+                print(list)
+                print("✅✅✅")
+            }.disposed(by: self.disposeBag)
+    }
+    
+    func setData(groupList: [Group]) {
+        self.serverGroups = groupList
+        print(groupList)
+        print("✅")
+        self.groupEditTableView.reloadData()
+    }
+    
+    private func setDelegate() {
+        groupEditTableView.delegate = self
+        groupEditTableView.dataSource = self
+    }
+    
+    private func setRegister() {
+        groupEditTableView.register(GroupEditTableViewCell.nib(), forCellReuseIdentifier: Const.Xib.groupEditTableViewCell)
+        groupEditTableView.register(EmptyGroupEditTableViewCell.nib(), forCellReuseIdentifier: Const.Xib.EmptyGroupEditTableViewCell)
     }
 }
 
@@ -124,7 +146,6 @@ extension GroupEditViewController: UITableViewDelegate {
 extension GroupEditViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let count = serverGroups?.count
-//        print("✅", count)
         if count == 0 {
             return 1
         } else {

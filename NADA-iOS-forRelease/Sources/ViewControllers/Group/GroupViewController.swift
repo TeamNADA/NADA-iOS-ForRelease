@@ -63,8 +63,8 @@ class GroupViewController: UIViewController {
     
     // 중간 그룹 이름들 나열된 뷰
     @IBAction func pushToGroupEdit(_ sender: Any) {
-        let groupEditVC = self.moduleFactory.makeGroupEditVC(groupList: serverGroups ?? [])
         print("✅", serverGroups)
+        let groupEditVC = self.moduleFactory.makeGroupEditVC(groupList: serverGroups ?? [])
         navigationController?.pushViewController(groupEditVC, animated: true)
     }
     
@@ -187,7 +187,6 @@ extension GroupViewController {
                     self.serverGroups = group
                     self.groupCollectionView.reloadData()
                     self.groupId = group[self.selectedRow].cardGroupId
-                    print("✅", self.groupId)
                     self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(cardGroupId: self.groupId ?? 0, pageNo: 1, pageSize: 1)) {
                         if self.frontCards?.count != 0 {
                             self.cardsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)

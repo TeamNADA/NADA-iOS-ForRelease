@@ -12,9 +12,8 @@ final class GroupEditViewModel: ViewModelType {
     
     // MARK: - Properties
     
-//    private let useCase: StadiumUseCase
     private let disposeBag = DisposeBag()
-    private var groupList: [Group] = []
+    var groupList: [Group] = []
     
     // MARK: - Inputs
     
@@ -25,8 +24,7 @@ final class GroupEditViewModel: ViewModelType {
     // MARK: - Outputs
     
     struct Output {
-        var groupList = PublishRelay<[Group]>()
-        var error = PublishRelay<Error>()
+        var groupListRelay = PublishRelay<[Group]>()
     }
     
     // MARK: - Initialize
@@ -39,27 +37,15 @@ final class GroupEditViewModel: ViewModelType {
 extension GroupEditViewModel {
     func transform(input: Input) -> Output {
         let output = Output()
-        self.bindOutput(output: output, disposeBag: disposeBag)
         
         input.viewDidLoadEvent
             .withUnretained(self)
             .subscribe { owner, _ in
-//            self.useCase.getStadiumList()
-        }.disposed(by: self.disposeBag)
+                output.groupListRelay.accept(owner.groupList)
+                print("✅✅", owner.groupList)
+            }
+            .disposed(by: self.disposeBag)
         
         return output
-    }
-    
-    private func bindOutput(output: Output, disposeBag: DisposeBag) {
-//        let stadiumListRelay = useCase.stadiumList
-//        let ingStadiumRelay = useCase.ingStadium
-//
-//        stadiumListRelay.subscribe { model in
-//            output.stadiumLists.accept(model)
-//        }.disposed(by: self.disposeBag)
-//
-//        ingStadiumRelay.subscribe { model in
-//            output.ingStadium.accept(model)
-//        }.disposed(by: self.disposeBag)
     }
 }

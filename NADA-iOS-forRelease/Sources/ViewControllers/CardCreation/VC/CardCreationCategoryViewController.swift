@@ -202,18 +202,18 @@ extension CardCreationCategoryViewController {
     }
     
     private func presentToBasicCardCreationViewController() {
-        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.cardCreation, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardCreationViewController) as? CardCreationViewController else { return }
-        let navigationController = UINavigationController(rootViewController: nextVC)
-        navigationController.modalPresentationStyle = .fullScreen
+        let navigationController = ModuleFactory.shared.makeCardCreationVC(cardType: .basic)
         self.navigationController?.present(navigationController, animated: true)
     }
     
-    private func presentToJobCardCreationViewController() {
-        // TODO: - 화면전환 메서드 작성.
+    private func presentTocompanyCardCreationViewController() {
+        let navigationController = ModuleFactory.shared.makeCardCreationVC(cardType: .company)
+        self.navigationController?.present(navigationController, animated: true)
     }
     
-    private func presentToDiggingCardCreationViewController() {
-        // TODO: - 화면전환 메서드 작성.
+    private func presentTofanCardCreationViewController() {
+        let navigationController = ModuleFactory.shared.makeCardCreationVC(cardType: .fan)
+        self.navigationController?.present(navigationController, animated: true)
     }
     
     // MARK: - @objc methods

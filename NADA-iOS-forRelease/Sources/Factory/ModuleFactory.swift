@@ -54,4 +54,21 @@ final class ModuleFactory: ModuleFactoryProtocol {
         cardDetailVC.modalPresentationStyle = .overFullScreen
         return cardDetailVC
     }
+    
+    func makeCardCreationVC(cardType: CardType) -> UINavigationController {
+        let cardCreationVC: UIViewController
+        
+        switch cardType {
+        case .basic:
+            cardCreationVC = CardCreationViewController.controllerFromStoryboard(.cardCreation)
+        case .company:
+            cardCreationVC = CardCreationViewController.controllerFromStoryboard(.companyCardCreation)
+        case .fan:
+            cardCreationVC = CardCreationViewController.controllerFromStoryboard(.fanCardCreation)
+        }
+        
+        let navigationController = UINavigationController(rootViewController: cardCreationVC)
+        navigationController.modalPresentationStyle = .fullScreen
+        return navigationController
+    }
 }

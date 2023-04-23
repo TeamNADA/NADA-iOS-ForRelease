@@ -23,6 +23,8 @@ import UIKit
 protocol ModuleFactoryProtocol {
     func makeSplashVC() -> SplashViewController
     func makeAroundMeVC() -> AroundMeViewController
+    func makeUpdateVC() -> UpdateViewController
+    func makeCardDetailVC() -> CardDetailViewController
 }
 
 final class ModuleFactory: ModuleFactoryProtocol {

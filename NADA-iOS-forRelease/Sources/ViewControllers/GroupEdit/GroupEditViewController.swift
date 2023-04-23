@@ -107,7 +107,7 @@ extension GroupEditViewController: UITableViewDelegate {
 extension GroupEditViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let count = serverGroups?.count
-        print("✅", count)
+//        print("✅", count)
         if count == 0 {
             return 1
         } else {

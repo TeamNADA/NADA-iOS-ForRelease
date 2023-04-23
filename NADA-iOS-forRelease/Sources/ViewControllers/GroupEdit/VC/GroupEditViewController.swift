@@ -7,9 +7,18 @@
 
 import UIKit
 
+import RxSwift
+import RxRelay
+import RxCocoa
+import RxGesture
+import SnapKit
+import Then
+
 class GroupEditViewController: UIViewController {
     
     // MARK: - Properties
+    var viewModel: GroupEditViewModel!
+    private let disposeBag = DisposeBag()
     var serverGroups: [Group]?
     var unClass: Int?
     
@@ -50,6 +59,14 @@ class GroupEditViewController: UIViewController {
         }
     }
     
+    private func bindViewModels() {
+        let input = GroupEditViewModel.Input(viewDidLoadEvent: self.rx.methodInvoked(#selector(UIViewController.viewDidLoad)).map { _ in })
+        let output = self.viewModel.transform(input: input)
+        
+        //TODO: 서버 연결 뒤 rx binding
+        groupEditTableView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
+    }
 }
 
 // MARK: - TableView Delegate

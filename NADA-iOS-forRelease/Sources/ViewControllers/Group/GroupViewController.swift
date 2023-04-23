@@ -52,8 +52,8 @@ class GroupViewController: UIViewController {
     // 중간 그룹 이름들 나열된 뷰
     @IBAction func pushToGroupEdit(_ sender: Any) {
         guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.groupEdit, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.groupEditViewController) as? GroupEditViewController else { return }
-        //nextVC.serverGroups = self.serverGroups
-        //TODO: 고치세요
+        nextVC.serverGroups = self.serverGroups
+        print("✅", serverGroups)
         
         navigationController?.pushViewController(nextVC, animated: true)
     }

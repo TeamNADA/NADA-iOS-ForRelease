@@ -10,7 +10,7 @@ import UIKit
 class GroupEditViewController: UIViewController {
     
     // MARK: - Properties
-    var serverGroups: Groups?
+    var serverGroups: [Group]?
     var unClass: Int?
     
     // MARK: - @IBOutlet Properties
@@ -34,7 +34,7 @@ class GroupEditViewController: UIViewController {
     }
     
     @IBAction func presentToAddGroupBottom(_ sender: UIButton) {
-        if serverGroups?.groups.count == 4 {
+        if serverGroups?.count == 4 {
             makeOKAlert(title: "", message: "새로운 그룹은 최대 4개까지만 등록 가능합니다.")
         } else {
             let nextVC = AddGroupBottomSheetViewController()
@@ -55,7 +55,7 @@ class GroupEditViewController: UIViewController {
 // MARK: - TableView Delegate
 extension GroupEditViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if serverGroups?.groups.isEmpty == true {
+        if serverGroups?.isEmpty == true {
             return 674
         } else {
             return 59
@@ -64,7 +64,7 @@ extension GroupEditViewController: UITableViewDelegate {
     
     // Swipe Action
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        if serverGroups?.groups.isEmpty == true {
+        if serverGroups?.isEmpty == true {
             return nil
         } else {
             let deleteAction = UIContextualAction(style: .normal, title: "삭제", handler: { (_ action, _ view, _ success) in
@@ -72,7 +72,7 @@ extension GroupEditViewController: UITableViewDelegate {
                     // 취소 눌렀을 때 액션이 들어갈 부분
                 }, deleteAction: { _ in
                     self.groupDeleteWithAPI(
-                        groupID: self.serverGroups?.groups[indexPath.row].cardGroupId ?? 0,
+                        groupID: self.serverGroups?[indexPath.row].cardGroupId ?? 0,
                         defaultGroupId: self.unClass ?? 0)
                     self.groupEditTableView.reloadData()
                     NotificationCenter.default.post(name: Notification.Name.passDataToGroup, object: 0, userInfo: nil)
@@ -88,16 +88,16 @@ extension GroupEditViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if serverGroups?.groups.isEmpty == false {
+        if serverGroups?.isEmpty == false {
             let nextVC = GroupNameEditBottomSheetViewController()
                 .setTitle("그룹명 변경")
                 .setHeight(184)
             nextVC.modalPresentationStyle = .overFullScreen
-            nextVC.text = serverGroups?.groups[indexPath.row].cardGroupName ?? ""
+            nextVC.text = serverGroups?[indexPath.row].cardGroupName ?? ""
             nextVC.returnToGroupEditViewController = {
                 self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
             }
-            nextVC.nowGroup = serverGroups?.groups[indexPath.row]
+            nextVC.nowGroup = serverGroups?[indexPath.row]
             self.present(nextVC, animated: false, completion: nil)
         }
     }
@@ -106,7 +106,8 @@ extension GroupEditViewController: UITableViewDelegate {
 // MARK: - TableView DataSource
 extension GroupEditViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = serverGroups?.groups.count
+        let count = serverGroups?.count
+        print("✅", count)
         if count == 0 {
             return 1
         } else {
@@ -115,13 +116,13 @@ extension GroupEditViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if serverGroups?.groups.isEmpty == true {
+        if serverGroups?.isEmpty == true {
             guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.EmptyGroupEditTableViewCell, for: indexPath) as? EmptyGroupEditTableViewCell else { return UITableViewCell() }
             return serviceCell
         } else {
             guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.groupEditTableViewCell, for: indexPath) as? GroupEditTableViewCell else { return UITableViewCell() }
             
-            serviceCell.initData(title: serverGroups?.groups[indexPath.row].cardGroupName ?? "")
+            serviceCell.initData(title: serverGroups?[indexPath.row].cardGroupName ?? "")
             return serviceCell
         }
     }
@@ -130,8 +131,8 @@ extension GroupEditViewController: UITableViewDataSource {
 // MARK: - Extensions
 extension GroupEditViewController {
     func serverGroupList() {
-        self.unClass = serverGroups?.groups[0].cardGroupId
-        serverGroups?.groups.remove(at: 0)
+        self.unClass = serverGroups?[0].cardGroupId
+        serverGroups?.remove(at: 0)
     }
 }
 
@@ -141,10 +142,10 @@ extension GroupEditViewController {
         GroupAPI.shared.groupListFetch(userID: userID) { response in
             switch response {
             case .success(let data):
-                if let group = data as? Groups {
+                if let group = data as? [Group] {
                     self.serverGroups = group
-                    self.unClass = self.serverGroups?.groups[0].cardGroupId
-                    self.serverGroups?.groups.remove(at: 0)
+                    self.unClass = self.serverGroups?[0].cardGroupId
+                    self.serverGroups?.remove(at: 0)
                     self.groupEditTableView.reloadData()
                 }
             case .requestErr(let message):

@@ -28,7 +28,6 @@ class GroupEditViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setDelegate()
         setRegister()
         bindViewModels()
@@ -58,25 +57,20 @@ class GroupEditViewController: UIViewController {
     }
     
     private func bindViewModels() {
-        let input = GroupEditViewModel.Input(viewDidLoadEvent: self.rx.methodInvoked(#selector(UIViewController.viewDidLoad)).map { _ in })
+        let input = GroupEditViewModel.Input(
+            viewWillAppearEvent: self.rx.methodInvoked(#selector(UIViewController.viewWillAppear(_:))).map { _ in })
         let output = self.viewModel.transform(input: input)
         
         output.groupListRelay
             .compactMap { $0 }
             .withUnretained(self)
             .subscribe { owner, list in
-                print(list)
-                print("✅✅✅")
                 owner.setData(groupList: list)
-                print(list)
-                print("✅✅✅")
             }.disposed(by: self.disposeBag)
     }
     
     func setData(groupList: [Group]) {
         self.serverGroups = groupList
-        print(groupList)
-        print("✅")
         self.groupEditTableView.reloadData()
     }
     

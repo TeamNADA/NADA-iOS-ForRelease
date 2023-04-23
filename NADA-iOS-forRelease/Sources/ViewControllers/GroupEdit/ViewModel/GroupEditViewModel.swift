@@ -18,7 +18,7 @@ final class GroupEditViewModel: ViewModelType {
     // MARK: - Inputs
     
     struct Input {
-        let viewDidLoadEvent: Observable<Void>
+        let viewWillAppearEvent: Observable<Void>
     }
     
     // MARK: - Outputs
@@ -38,11 +38,10 @@ extension GroupEditViewModel {
     func transform(input: Input) -> Output {
         let output = Output()
         
-        input.viewDidLoadEvent
+        input.viewWillAppearEvent
             .withUnretained(self)
             .subscribe { owner, _ in
                 output.groupListRelay.accept(owner.groupList)
-                print("✅✅", owner.groupList)
             }
             .disposed(by: self.disposeBag)
         

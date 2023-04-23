@@ -162,8 +162,8 @@ extension FanCardCreationViewController {
         cardCreationCollectionView.delegate = self
         cardCreationCollectionView.dataSource = self
 
-        cardCreationCollectionView.register(FrontCardCreationCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.frontCardCreationCollectionViewCell)
-        cardCreationCollectionView.register(BackCardCreationCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.backCardCreationCollectionViewCell)
+        cardCreationCollectionView.register(FanFrontCardCreationCollectionViewCell.nib(), forCellWithReuseIdentifier: FanFrontCardCreationCollectionViewCell.className)
+        cardCreationCollectionView.register(BackCardCreationCollectionViewCell.nib(), forCellWithReuseIdentifier: BackCardCreationCollectionViewCell.className)
     }
     private func setTextLabelGesture() {
         let tapFrontTextLabelGesture = UITapGestureRecognizer(target: self, action: #selector(dragToFront))
@@ -280,20 +280,13 @@ extension FanCardCreationViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == cardCreationCollectionView {
             if indexPath.item == 0 {
-                guard let frontCreationCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.frontCardCreationCollectionViewCell, for: indexPath) as? FrontCardCreationCollectionViewCell else {
+                guard let frontCreationCell = collectionView.dequeueReusableCell(withReuseIdentifier: FanFrontCardCreationCollectionViewCell.className, for: indexPath) as? FanFrontCardCreationCollectionViewCell else {
                     return UICollectionViewCell()
                 }
                 frontCreationCell.frontCardCreationDelegate = self
                 frontCreationCell.presentingBirthBottomVCClosure = {
                     let nextVC = SelectBirthBottomSheetViewController()
                                 .setTitle("날짜")
-                                .setHeight(355)
-                    nextVC.modalPresentationStyle = .overFullScreen
-                    self.present(nextVC, animated: false, completion: nil)
-                }
-                frontCreationCell.presentingMBTIBottomVCClosure = {
-                    let nextVC = SelectMBTIBottmViewController()
-                                .setTitle("MBTI")
                                 .setHeight(355)
                     nextVC.modalPresentationStyle = .overFullScreen
                     self.present(nextVC, animated: false, completion: nil)

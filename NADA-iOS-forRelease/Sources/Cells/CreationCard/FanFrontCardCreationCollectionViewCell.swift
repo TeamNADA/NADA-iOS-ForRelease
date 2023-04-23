@@ -22,10 +22,11 @@ class FanFrontCardCreationCollectionViewCell: UICollectionViewCell {
     private var optionalTextFieldList = [UITextField]()
     private var cardBackgroundImage: UIImage?
     private var defaultImageIndex: Int?
+    private var isInstagram: Bool?
+    
     private let maxLength: Int = 15
   
     public var presentingBirthBottomVCClosure: (() -> Void)?
-    public var presentingMBTIBottomVCClosure: (() -> Void)?
     
     // MARK: - @IBOutlet Properties
     
@@ -42,13 +43,13 @@ class FanFrontCardCreationCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var birthLabel: UILabel!
     @IBOutlet weak var birthView: UIView!
-    @IBOutlet weak var mbtiLabel: UILabel!
-    @IBOutlet weak var mbtiView: UIView!
 
-    @IBOutlet weak var descriptionTextField: UITextField!
-    @IBOutlet weak var instagramIDTextField: UITextField!
-    @IBOutlet weak var phoneNumberTextField: UITextField!
-    @IBOutlet weak var linkURLTextField: UITextField!
+    @IBOutlet weak var instagramButton: UIButton!
+    @IBOutlet weak var twitterButton: UIButton!
+    
+    @IBOutlet weak var snsTextField: UITextField!
+    @IBOutlet weak var firstURLTextField: UITextField!
+    @IBOutlet weak var secondURLTextField: UITextField!
     
     @IBOutlet weak var bgView: UIView!
     
@@ -62,7 +63,26 @@ class FanFrontCardCreationCollectionViewCell: UICollectionViewCell {
         registerCell()
         textFieldDelegate()
         setNotification()
-        setAddTargets()
+    }
+    
+    // MARK: - IBAction Methods
+    
+    @IBAction func touchInstagramButton(_ sender: Any) {
+        isInstagram = true
+        
+        if twitterButton.isSelected == true {
+            twitterButton.isSelected.toggle()
+        }
+        instagramButton.isSelected.toggle()
+        
+    }
+    @IBAction func touchTwitterButton(_ sender: Any) {
+        isInstagram = false
+        
+        if instagramButton.isSelected == true {
+            instagramButton.isSelected.toggle()
+        }
+        twitterButton.isSelected.toggle()
     }
 }
 
@@ -95,20 +115,20 @@ extension FanFrontCardCreationCollectionViewCell {
         cardTitleInfoTextLabel.attributedText = cardTitleAttributeString
         cardTitleInfoTextLabel.font = .textBold01
         
-        let requiredAttributeString = NSMutableAttributedString(string: "*나에 대한 기본정보를 입력해 주세요.")
+        let requiredAttributeString = NSMutableAttributedString(string: "*명함에 대한 기본정보를 입력해 주세요.")
         requiredAttributeString.addAttribute(.foregroundColor, value: UIColor.mainColorNadaMain, range: NSRange(location: 0, length: 1))
         requiredAttributeString.addAttribute(.foregroundColor, value: UIColor.secondary, range: NSRange(location: 1, length: requiredAttributeString.length - 1))
         requiredInfoTextLabel.attributedText = requiredAttributeString
         requiredInfoTextLabel.font = .textBold01
         
-        optionalInfoTextLabel.text = "나를 더 표현할 수 있는 정보가 있나요?"
+        optionalInfoTextLabel.text = "내 명함을 더 표현할 수 있는 정보가 있나요?"
         optionalInfoTextLabel.font = .textBold01
         optionalInfoTextLabel.textColor = .secondary
         
         cardTitleTextField.attributedPlaceholder = NSAttributedString(string: "명함 이름 (15자)", attributes: [
             NSAttributedString.Key.foregroundColor: UIColor.quaternary
         ])
-        userNameTextField.attributedPlaceholder = NSAttributedString(string: "본인 이름 (15자)", attributes: [
+        userNameTextField.attributedPlaceholder = NSAttributedString(string: "닉네임 (15자)", attributes: [
             NSAttributedString.Key.foregroundColor: UIColor.quaternary
         ])
 
@@ -116,32 +136,28 @@ extension FanFrontCardCreationCollectionViewCell {
         birthView.backgroundColor = .textBox
         birthLabel.font = .textRegular04
         birthLabel.textColor = .quaternary
-        birthLabel.text = "생일"
+        birthLabel.text = "기념일 (최애 생일, 입덕일, 내 생일, 데뷔일 등)"
         
-        mbtiView.layer.cornerRadius = 10
-        mbtiView.backgroundColor = .textBox
-        mbtiLabel.font = .textRegular04
-        mbtiLabel.textColor = .quaternary
-        mbtiLabel.text = "MBTI"
+        instagramButton.setImage(UIImage(named: "iconDisabledInstagram"), for: .normal)
+        instagramButton.setImage(UIImage(named: "iconInstagramSelected"), for: .selected)
+        instagramButton.setTitle("", for: .normal)
         
-        instagramIDTextField.attributedPlaceholder = NSAttributedString(string: "Instagram (@ 제외)",
+        twitterButton.setImage(UIImage(named: "iconDisabledTwitter"), for: .normal)
+        twitterButton.setImage(UIImage(named: "iconTwitterSelected"), for: .selected)
+        twitterButton.setTitle("", for: .normal)
+        
+        snsTextField.attributedPlaceholder = NSAttributedString(string: "SNS (instagram / twitter)",
                                                                         attributes: [
                                                                             NSAttributedString.Key.foregroundColor: UIColor.quaternary
                                                                         ])
-        linkURLTextField.attributedPlaceholder = NSAttributedString(string: "URL (Github, Blog 등)",
+        firstURLTextField.attributedPlaceholder = NSAttributedString(string: "URL 1 (fancafe, youtube)",
                                                                     attributes: [
                                                                         NSAttributedString.Key.foregroundColor: UIColor.quaternary
                                                                     ])
-        descriptionTextField.attributedPlaceholder = NSAttributedString(string: "학교 전공/동아리 기수 등 (15자)",
+        secondURLTextField.attributedPlaceholder = NSAttributedString(string: "URL 2 (fancafe, youtube)",
                                                                         attributes: [
                                                                             NSAttributedString.Key.foregroundColor: UIColor.quaternary
                                                                         ])
-        phoneNumberTextField.attributedPlaceholder = NSAttributedString(string: "전화번호",
-                                                                        attributes: [
-                                                                            NSAttributedString.Key.foregroundColor: UIColor.quaternary
-                                                                        ])
-        
-        phoneNumberTextField.keyboardType = .numberPad
         
         _ = requiredTextFieldList.map {
             $0.font = .textRegular04
@@ -163,9 +179,6 @@ extension FanFrontCardCreationCollectionViewCell {
     private func setTapAction() {
         let birthViewTapGesture = UITapGestureRecognizer(target: self, action: #selector(touchBirthView))
         birthView.addGestureRecognizer(birthViewTapGesture)
-        
-        let mbtiViewTapGesture = UITapGestureRecognizer(target: self, action: #selector(touchMBTIView))
-        mbtiView.addGestureRecognizer(mbtiViewTapGesture)
     }
     private func initUITextFieldList() {
         requiredTextFieldList.append(contentsOf: [
@@ -173,10 +186,9 @@ extension FanFrontCardCreationCollectionViewCell {
             userNameTextField
         ])
         optionalTextFieldList.append(contentsOf: [
-            instagramIDTextField,
-            linkURLTextField,
-            descriptionTextField,
-            phoneNumberTextField
+            snsTextField,
+            firstURLTextField,
+            secondURLTextField
         ])
     }
     private func registerCell() {
@@ -191,7 +203,6 @@ extension FanFrontCardCreationCollectionViewCell {
     }
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(setBirthText(notification:)), name: .completeFrontCardBirth, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(setMBTIText(notification:)), name: .completeFrontCardMBTI, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setCardBackgroundImage(notifiation:)), name: .sendNewImage, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(dismissBorderLine), name: .dismissRequiredBottomSheet, object: nil)
@@ -204,7 +215,6 @@ extension FanFrontCardCreationCollectionViewCell {
         if cardTitleTextField.hasText &&
             userNameTextField.hasText &&
             birthLabel.text != "생년월일" &&
-            mbtiLabel.text != "MBTI" &&
             defaultImageIndex != nil {
             frontCardCreationDelegate?.frontCardCreation(requiredInfo: true)
         } else {
@@ -214,21 +224,18 @@ extension FanFrontCardCreationCollectionViewCell {
             frontCardCreationDelegate?.frontCardCreation(with: FrontCardDataModel(birth: birthLabel.text ?? "",
                                                                                   cardName: cardTitleTextField.text ?? "",
                                                                                   userName: userNameTextField.text ?? "",
-                                                                                  departmentName: descriptionTextField.text,
+                                                                                  departmentName: nil,
                                                                                   mailAddress: nil,
-                                                                                  mbti: mbtiLabel.text,
-                                                                                  phoneNumber: phoneNumberTextField.text,
-                                                                                  instagram: instagramIDTextField.text,
-                                                                                  twitter: nil,
-                                                                                  urls: linkURLTextField.text == nil ? nil : [linkURLTextField.text ?? ""],
+                                                                                  mbti: nil,
+                                                                                  phoneNumber: nil,
+                                                                                  instagram: isInstagram ?? false ? snsTextField.text : nil,
+                                                                                  twitter: isInstagram ?? false ? nil : snsTextField.text,
+                                                                                  urls: [firstURLTextField.text, secondURLTextField.text].compactMap { $0 },
                                                                                   defaultImageIndex: defaultImageIndex))
         }
     }
-    private func setAddTargets() {
-        phoneNumberTextField.addTarget(self, action: #selector(phoneNumberTextFieldDidChange), for: .editingChanged)
-    }
     static func nib() -> UINib {
-        return UINib(nibName: Const.Xib.frontCardCreationCollectionViewCell, bundle: Bundle(for: FrontCardCreationCollectionViewCell.self))
+        return UINib(nibName: FanFrontCardCreationCollectionViewCell.className, bundle: Bundle(for: FanFrontCardCreationCollectionViewCell.self))
     }
     
     // MARK: - @objc Methods
@@ -238,14 +245,6 @@ extension FanFrontCardCreationCollectionViewCell {
         birthLabel.text = notification.object as? String
         birthLabel.textColor = .primary
         birthView.borderWidth = 0
-        
-        checkFrontCradStatus()
-    }
-    @objc
-    private func setMBTIText(notification: NSNotification) {
-        mbtiLabel.text = notification.object as? String
-        mbtiLabel.textColor = .primary
-        mbtiView.borderWidth = 0
         
         checkFrontCradStatus()
     }
@@ -277,22 +276,6 @@ extension FanFrontCardCreationCollectionViewCell {
                         userNameTextField.text = newString
                     }
                 }
-            case descriptionTextField:
-                if let text = descriptionTextField.text {
-                    if text.count > maxLength {
-                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
-                        let newString = String(text[text.startIndex..<maxIndex])
-                        descriptionTextField.text = newString
-                    }
-                }
-            case phoneNumberTextField:
-                if let text = phoneNumberTextField.text {
-                    if text.count > maxLength {
-                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
-                        let newString = String(text[text.startIndex..<maxIndex])
-                        phoneNumberTextField.text = newString
-                    }
-                }
             default:
                 return
             }
@@ -310,42 +293,14 @@ extension FanFrontCardCreationCollectionViewCell {
         birthView.layer.borderWidth = 1
     }
     @objc
-    private func touchMBTIView() {
-        _ = requiredTextFieldList.map { $0.resignFirstResponder() }
-        _ = optionalTextFieldList.map { $0.resignFirstResponder() }
-        
-        NotificationCenter.default.post(name: .touchRequiredView, object: nil)
-        
-        presentingMBTIBottomVCClosure?()
-        mbtiView.layer.borderColor = UIColor.tertiary.cgColor
-        mbtiView.layer.borderWidth = 1
-    }
-    @objc
     private func dismissBorderLine() {
         birthView.layer.borderWidth = 0
-        mbtiView.layer.borderWidth = 0
     }
     @objc
     private func cancelImagePicker() {
         if cardBackgroundImage == nil {
             backgroundSettingCollectionView.deselectItem(at: IndexPath.init(item: 0, section: 0), animated: true)
         }
-    }
-    @objc
-    private func phoneNumberTextFieldDidChange() {
-        if let text = phoneNumberTextField.text?.replacingOccurrences(of: "-", with: "") {
-            let textArray = text.map { String($0) }
-            
-            if text.count < 10 {
-                phoneNumberTextField.text = text
-            } else if text.count == 10 {
-                phoneNumberTextField.text = textArray[0...2].joined() + "-" + textArray[3...5].joined() + "-" + textArray[6...9].joined()
-            } else if text.count == 11 {
-                phoneNumberTextField.text = textArray[0...2].joined() + "-" + textArray[3...6].joined() + "-" + textArray[7...10].joined()
-            } else {
-                phoneNumberTextField.text = text
-            }
-        } 
     }
 }
 

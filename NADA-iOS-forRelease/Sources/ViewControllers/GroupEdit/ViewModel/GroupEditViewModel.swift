@@ -14,6 +14,7 @@ final class GroupEditViewModel: ViewModelType {
     
 //    private let useCase: StadiumUseCase
     private let disposeBag = DisposeBag()
+    private var groupList: [Group] = []
     
     // MARK: - Inputs
     
@@ -30,9 +31,9 @@ final class GroupEditViewModel: ViewModelType {
     
     // MARK: - Initialize
     
-//    init(useCase: StadiumUseCase) {
-//        self.useCase = useCase
-//    }
+    init(groupList: [Group]) {
+        self.groupList = groupList
+    }
 }
 
 extension GroupEditViewModel {

@@ -7,12 +7,24 @@
 
 import Photos
 import UIKit
+
 import Kingfisher
 import NVActivityIndicatorView
+import RxSwift
+import RxRelay
+import RxCocoa
+import RxGesture
+import SnapKit
+import Then
 
 class GroupViewController: UIViewController {
     
+    
     // MARK: - Properties
+    
+    private var moduleFactory = ModuleFactory.shared
+    private let disposeBag = DisposeBag()
+    
     // 네비게이션 바
     @IBAction func presentToAddWithIdView(_ sender: Any) {
         let nextVC = AddWithIdBottomSheetViewController()
@@ -51,11 +63,9 @@ class GroupViewController: UIViewController {
     
     // 중간 그룹 이름들 나열된 뷰
     @IBAction func pushToGroupEdit(_ sender: Any) {
-        guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.groupEdit, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.groupEditViewController) as? GroupEditViewController else { return }
-        nextVC.serverGroups = self.serverGroups
+        let groupEditVC = self.moduleFactory.makeGroupEditVC(groupList: serverGroups ?? [])
         print("✅", serverGroups)
-        
-        navigationController?.pushViewController(nextVC, animated: true)
+        navigationController?.pushViewController(groupEditVC, animated: true)
     }
     
     // MARK: - Components

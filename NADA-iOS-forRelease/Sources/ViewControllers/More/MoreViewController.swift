@@ -137,12 +137,10 @@ extension MoreViewController {
         makeOKCancelAlert(title: "", message: "정말 탈퇴하시겠습니까?\n앱 내 정보가 모두 삭제되며, 이후 복구는 불가합니다.", okAction: { [weak self ]_ in
             self?.deleteUserWithAPI {
                 self?.makeOKAlert(title: "", message: "나다를 이용해주셔서 감사합니다.\n다음에 또 뵈어요! 🥹") { _ in
-                    if let _ = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) {
-                        self?.defaults.removeObject(forKey: Const.UserDefaultsKey.accessToken)
+                    self?.defaults.removeObject(forKey: Const.UserDefaultsKey.accessToken)
 //                        self.defaults.removeObject(forKey: Const.UserDefaultsKey.refreshToken)
-                        self?.defaults.removeObject(forKey: Const.UserDefaultsKey.darkModeState)
-                        
-                    }
+                    self?.defaults.removeObject(forKey: Const.UserDefaultsKey.darkModeState)
+                    
                     let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
                     nextVC.modalPresentationStyle = .overFullScreen
                     self?.navigationController?.changeRootViewController(nextVC)

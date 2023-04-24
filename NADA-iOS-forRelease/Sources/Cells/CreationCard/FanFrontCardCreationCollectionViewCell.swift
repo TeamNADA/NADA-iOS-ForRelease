@@ -221,6 +221,35 @@ extension FanFrontCardCreationCollectionViewCell {
             frontCardCreationDelegate?.frontCardCreation(requiredInfo: false)
         }
         if let defaultImageIndex {
+            var instagramID: String?
+            var twitterID: String?
+            
+            if let isInstagram {
+                if isInstagram {
+                    instagramID = snsTextField.text
+                } else {
+                    twitterID = snsTextField.text
+                }
+            }
+            
+            if let text = snsTextField.text,
+               text.isEmpty {
+                instagramID = nil
+                twitterID = nil
+            }
+            
+            var urls: [String] = []
+            
+            [firstURLTextField.text ?? "", secondURLTextField.text ?? ""].forEach { url in
+                if url != "" {
+                    urls.append(url)
+                }
+            }
+            
+            if urls.isEmpty {
+                urls = [""]
+            }
+            
             frontCardCreationDelegate?.frontCardCreation(with: FrontCardDataModel(birth: birthLabel.text ?? "",
                                                                                   cardName: cardTitleTextField.text ?? "",
                                                                                   userName: userNameTextField.text ?? "",
@@ -228,9 +257,9 @@ extension FanFrontCardCreationCollectionViewCell {
                                                                                   mailAddress: nil,
                                                                                   mbti: nil,
                                                                                   phoneNumber: nil,
-                                                                                  instagram: isInstagram ?? false ? snsTextField.text : nil,
-                                                                                  twitter: isInstagram ?? false ? nil : snsTextField.text,
-                                                                                  urls: [firstURLTextField.text, secondURLTextField.text].compactMap { $0 },
+                                                                                  instagram: instagramID,
+                                                                                  twitter: twitterID,
+                                                                                  urls: urls,
                                                                                   defaultImageIndex: defaultImageIndex))
         }
     }

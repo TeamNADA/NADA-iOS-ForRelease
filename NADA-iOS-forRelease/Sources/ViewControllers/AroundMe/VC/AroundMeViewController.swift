@@ -4,6 +4,7 @@
 //
 //  Created by Yi Joon Choi on 2023/02/28.
 //
+import UIKit
 
 import RxSwift
 import RxRelay
@@ -11,7 +12,6 @@ import RxCocoa
 import RxGesture
 import SnapKit
 import Then
-import UIKit
 
 final class AroundMeViewController: UIViewController {
 
@@ -158,3 +158,37 @@ extension AroundMeViewController: UICollectionViewDataSource {
         return cardCell
     }
 }
+
+// MARK: - Network
+/*
+extension AroundMeViewController {
+    func cardNearByFetchWithAPI(longitude: Double, latitude: Double) {
+        NearbyAPI.shared.cardNearByFetch(longitde: longitude, latitude: latitude) { response in
+            switch response {
+            case .success(let data):
+                if let group = data as? [Group] {
+                    self.serverGroups = group
+                    self.groupCollectionView.reloadData()
+                    self.groupId = group[self.selectedRow].cardGroupId
+                    print("✅", self.groupId)
+                    self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(cardGroupId: self.groupId ?? 0, pageNo: 1, pageSize: 1)) {
+                        if self.frontCards?.count != 0 {
+                            self.cardsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+                        }
+                        self.isInfiniteScroll = true
+                    }
+                }
+                print("groupListFetchWithAPI - success")
+            case .requestErr(let message):
+                print("groupListFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("groupListFetchWithAPI - pathErr")
+            case .serverErr:
+                print("groupListFetchWithAPI - serverErr")
+            case .networkFail:
+                print("groupListFetchWithAPI - networkFail")
+            }
+        }
+    }
+}
+*/

@@ -126,7 +126,9 @@ extension MoreViewController {
     func setResetClicked() {
         makeOKCancelAlert(title: "", message: "받은 명함과 명함 모음 그룹이 모두 초기화됩니다. 정말 초기화하시겠습니까?", okAction: { [weak self] _ in
             self?.groupResetWithAPI {
-                self?.makeOKAlert(title: "", message: "받은 명함이 초기화 되었습니다.")
+                self?.makeOKAlert(title: "", message: "받은 명함이 초기화 되었습니다.") { _ in
+                    self?.tabBarController?.selectedIndex = 2
+                }
             }
         })
     }

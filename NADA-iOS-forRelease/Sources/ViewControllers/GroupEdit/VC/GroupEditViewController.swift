@@ -151,10 +151,10 @@ extension GroupEditViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if serverGroups?.isEmpty == true {
-            guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.EmptyGroupEditTableViewCell, for: indexPath) as? EmptyGroupEditTableViewCell else { return UITableViewCell() }
+            guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: EmptyGroupEditTableViewCell.className, for: indexPath) as? EmptyGroupEditTableViewCell else { return UITableViewCell() }
             return serviceCell
         } else {
-            guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.groupEditTableViewCell, for: indexPath) as? GroupEditTableViewCell else { return UITableViewCell() }
+            guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: GroupEditTableViewCell.className, for: indexPath) as? GroupEditTableViewCell else { return UITableViewCell() }
             
             serviceCell.initData(title: serverGroups?[indexPath.row].cardGroupName ?? "")
             return serviceCell

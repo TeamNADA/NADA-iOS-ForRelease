@@ -120,7 +120,7 @@ extension FrontCardCell {
         }
     }
     
-    /// 서버에서 image 를 URL 로 가져올 경우 사용.
+    /// 명함 조회 시 사용.
     func initCellFromServer(cardData: Card, isShareable: Bool) {
         self.cardData = cardData
         
@@ -157,37 +157,33 @@ extension FrontCardCell {
         shareButton.isHidden = !isShareable
     }
     
-    /// 명함생성할 때 image 를 UIImage 로 가져올 경우 사용
+    /// 명함 미리보기 시 사용.
     func initCell(_ backgroundImage: UIImage?,
-                  _ cardTitle: String,
-                  _ cardDescription: String,
-                  _ userName: String,
-                  _ birth: String,
-                  _ mbti: String,
-                  _ instagramID: String,
-                  _ phoneNumber: String,
-                  _ linkURL: String,
-                  isShareable: Bool) {
+                  _ frontCardDataModel: FrontCardDataModel) {
         backgroundImageView.image = backgroundImage ?? UIImage()
-        titleLabel.text = cardTitle
-        descriptionLabel.text = cardDescription
-        userNameLabel.text = userName
-        birthLabel.text = birth
-        mbtiLabel.text = mbti
-        instagramIDLabel.text = instagramID
-        phoneNumberLabel.text = phoneNumber
-        linkURLLabel.text = linkURL
+        titleLabel.text = frontCardDataModel.cardName
+        descriptionLabel.text = frontCardDataModel.departmentName
+        userNameLabel.text = frontCardDataModel.userName
+        birthLabel.text = frontCardDataModel.birth
+        mbtiLabel.text = frontCardDataModel.mbti
+        instagramIDLabel.text = frontCardDataModel.instagram
+        phoneNumberLabel.text = frontCardDataModel.phoneNumber
         
-        if instagramID.isEmpty {
+        if let urls = frontCardDataModel.urls {
+            if urls[0].isEmpty {
+                linkURLStackView.isHidden = true
+            } else {
+                linkURLLabel.text = urls[0]
+            }
+        }
+        
+        if frontCardDataModel.instagram?.isEmpty ?? false {
             instagramStackView.isHidden = true
         }
-        if phoneNumber.isEmpty {
+        if frontCardDataModel.phoneNumber?.isEmpty ?? false {
             phoneNumberStackView.isHidden = true
         }
-        if linkURL.isEmpty {
-            linkURLStackView.isHidden = true
-        }
         
-        shareButton.isHidden = !isShareable
+        shareButton.isHidden = true
     }
 }

@@ -190,7 +190,7 @@ extension FanFrontCardCell {
     
     /// 명함 미리보기 시 사용.
     func initCell(_ backgroundImage: UIImage?,
-                  frontCardDataModel: FrontCardDataModel) {
+                  _ frontCardDataModel: FrontCardDataModel) {
         backgroundImageView.image = backgroundImage ?? UIImage()
         titleLabel.text = frontCardDataModel.cardName
         userNameLabel.text = frontCardDataModel.userName

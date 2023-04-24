@@ -92,10 +92,9 @@ extension CompanyFrontCardCell {
     }
     
     // MARK: - @objc Methods
-    
     @objc
     private func tapMailLabel() {
-        // TODO: - mail 앱 열기
+        NotificationCenter.default.post(name: .presentMail, object: mailLabel.text ?? "")
     }
     @objc
     private func tapLinkURLLabel() {

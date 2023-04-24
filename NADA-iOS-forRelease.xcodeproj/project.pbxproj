@@ -170,6 +170,12 @@
 		F8915A22275728F20013D609 /* SelectBirthBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */; };
 		F8915A23275728F20013D609 /* SelectMBTIBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */; };
 		F8A9FE1A2743DC6B00BC60CE /* CardListInGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A9FE192743DC6B00BC60CE /* CardListInGroupRequest.swift */; };
+		F8B3F40829F67B07006586BB /* CompanyCardCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8B3F40729F67B07006586BB /* CompanyCardCreation.storyboard */; };
+		F8B3F40A29F67B1C006586BB /* CompanyCardCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B3F40929F67B1C006586BB /* CompanyCardCreationViewController.swift */; };
+		F8B3F40D29F67B6F006586BB /* CompanyFrontCardCreationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8B3F40B29F67B6F006586BB /* CompanyFrontCardCreationCollectionViewCell.xib */; };
+		F8B3F40E29F67B6F006586BB /* CompanyFrontCardCreationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B3F40C29F67B6F006586BB /* CompanyFrontCardCreationCollectionViewCell.swift */; };
+		F8B3F41129F67F8D006586BB /* CompanyFrontCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B3F40F29F67F8D006586BB /* CompanyFrontCardCell.swift */; };
+		F8B3F41229F67F8D006586BB /* CompanyFrontCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8B3F41029F67F8D006586BB /* CompanyFrontCardCell.xib */; };
 		F8BCDD22298FFA830044D0B4 /* QRCodeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BCDD21298FFA830044D0B4 /* QRCodeWidget.swift */; };
 		F8BCDD24298FFA940044D0B4 /* OpenAppLockScreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BCDD23298FFA940044D0B4 /* OpenAppLockScreenWidget.swift */; };
 		F8BCDD25298FFAF90044D0B4 /* WidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838B664298E5C5300D84340 /* WidgetsBundle.swift */; };
@@ -417,6 +423,12 @@
 		F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectBirthBottomViewController.swift; sourceTree = "<group>"; };
 		F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMBTIBottomViewController.swift; sourceTree = "<group>"; };
 		F8A9FE192743DC6B00BC60CE /* CardListInGroupRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListInGroupRequest.swift; sourceTree = "<group>"; };
+		F8B3F40729F67B07006586BB /* CompanyCardCreation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CompanyCardCreation.storyboard; sourceTree = "<group>"; };
+		F8B3F40929F67B1C006586BB /* CompanyCardCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyCardCreationViewController.swift; sourceTree = "<group>"; };
+		F8B3F40B29F67B6F006586BB /* CompanyFrontCardCreationCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompanyFrontCardCreationCollectionViewCell.xib; sourceTree = "<group>"; };
+		F8B3F40C29F67B6F006586BB /* CompanyFrontCardCreationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyFrontCardCreationCollectionViewCell.swift; sourceTree = "<group>"; };
+		F8B3F40F29F67F8D006586BB /* CompanyFrontCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyFrontCardCell.swift; sourceTree = "<group>"; };
+		F8B3F41029F67F8D006586BB /* CompanyFrontCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompanyFrontCardCell.xib; sourceTree = "<group>"; };
 		F8BCDD21298FFA830044D0B4 /* QRCodeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeWidget.swift; sourceTree = "<group>"; };
 		F8BCDD23298FFA940044D0B4 /* OpenAppLockScreenWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAppLockScreenWidget.swift; sourceTree = "<group>"; };
 		F8C310BF273A7360008EC5BA /* FrontCardCreationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontCardCreationDelegate.swift; sourceTree = "<group>"; };
@@ -913,6 +925,8 @@
 		F83206AC26F61E5800D61711 /* CardCell */ = {
 			isa = PBXGroup;
 			children = (
+				F8B3F40F29F67F8D006586BB /* CompanyFrontCardCell.swift */,
+				F8B3F41029F67F8D006586BB /* CompanyFrontCardCell.xib */,
 				F8458D6929F54EDF000D53A7 /* FanFrontCardCell.swift */,
 				F8458D6A29F54EDF000D53A7 /* FanFrontCardCell.xib */,
 				F82FEB4A27639F3100DA7847 /* MainCardCell.swift */,
@@ -939,6 +953,7 @@
 		F84BAF9E26FDB425004CA335 /* CardCreation */ = {
 			isa = PBXGroup;
 			children = (
+				F8B3F40729F67B07006586BB /* CompanyCardCreation.storyboard */,
 				F8458D6129F5183B000D53A7 /* FanCardCreation.storyboard */,
 				F82FF81C2701EBCE00E57F8B /* CardCreation.storyboard */,
 				F85711A6274A6B3400F59F0B /* CardCreationPreview.storyboard */,
@@ -951,6 +966,8 @@
 			children = (
 				F82FF8222701FFE300E57F8B /* RequiredFlavor */,
 				F858079B2700348000872484 /* Background */,
+				F8B3F40C29F67B6F006586BB /* CompanyFrontCardCreationCollectionViewCell.swift */,
+				F8B3F40B29F67B6F006586BB /* CompanyFrontCardCreationCollectionViewCell.xib */,
 				F8458D6529F51B2F000D53A7 /* FanFrontCardCreationCollectionViewCell.swift */,
 				F8458D6629F51B2F000D53A7 /* FanFrontCardCreationCollectionViewCell.xib */,
 				F84BAFAB26FDB543004CA335 /* FrontCardCreationCollectionViewCell.swift */,
@@ -1087,6 +1104,7 @@
 		F885C8A829B827030079FA35 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				F8B3F40929F67B1C006586BB /* CompanyCardCreationViewController.swift */,
 				F8458D6329F51870000D53A7 /* FanCardCreationViewController.swift */,
 				F84BAF9C26FDB417004CA335 /* CardCreationViewController.swift */,
 				F85711A4274A6B2200F59F0B /* CardCreationPreviewViewController.swift */,
@@ -1567,6 +1585,7 @@
 				39C394D5277CD33500DBA566 /* EmptyCardListTableViewCell.xib in Resources */,
 				F84BAFB226FDB552004CA335 /* BackCardCreationCollectionViewCell.xib in Resources */,
 				F8458D6C29F54EDF000D53A7 /* FanFrontCardCell.xib in Resources */,
+				F8B3F40829F67B07006586BB /* CompanyCardCreation.storyboard in Resources */,
 				77B4E7482990E420006098DC /* Home.storyboard in Resources */,
 				397B75172763B5B7004AEB03 /* TeamNADA.storyboard in Resources */,
 				3936993B274A53C600684420 /* GroupEdit.storyboard in Resources */,
@@ -1577,8 +1596,10 @@
 				7766A410274FEBE200714912 /* CardInGroupCollectionViewCell.xib in Resources */,
 				7705CF402752C844005195DF /* CardView.xib in Resources */,
 				397B750D2763A5AF004AEB03 /* OpenSource.storyboard in Resources */,
+				F8B3F40D29F67B6F006586BB /* CompanyFrontCardCreationCollectionViewCell.xib in Resources */,
 				393E334A275F6A6600965BBF /* Splash.storyboard in Resources */,
 				39523E5C2701A48900536900 /* CardListTableViewCell.xib in Resources */,
+				F8B3F41229F67F8D006586BB /* CompanyFrontCardCell.xib in Resources */,
 				F8FC439226C01CDE0033E151 /* LaunchScreen.storyboard in Resources */,
 				F8FC438F26C01CDE0033E151 /* Assets.xcassets in Resources */,
 				F8518055275D040C006BD5ED /* OnboardingCollectionViewCell.xib in Resources */,
@@ -1741,10 +1762,13 @@
 				770E58862778A78900498C2E /* Status.swift in Sources */,
 				F851805B275D047C006BD5ED /* OnboardingViewController.swift in Sources */,
 				392BAF7B2793E90D0013DCB3 /* KeyChainKey.swift in Sources */,
+				F8B3F40A29F67B1C006586BB /* CompanyCardCreationViewController.swift in Sources */,
 				77A4D5FC29BD6F4600367B7C /* AroundMeViewModel.swift in Sources */,
 				F843DD6D29A5F83000D8D20D /* CardCreationCategoryViewModel.swift in Sources */,
+				F8B3F40E29F67B6F006586BB /* CompanyFrontCardCreationCollectionViewCell.swift in Sources */,
 				39C1E88F270EC762006D2089 /* UIColor+Extension.swift in Sources */,
 				F8C83FC9272FA3190009DF0D /* GroupAPI.swift in Sources */,
+				F8B3F41129F67F8D006586BB /* CompanyFrontCardCell.swift in Sources */,
 				F8F00C3E29DD489200A15377 /* UpdateAPI.swift in Sources */,
 				F8FC43B826C0227D0033E151 /* Const.swift in Sources */,
 				394F314C27081B3A00C83291 /* FrontViewController.swift in Sources */,

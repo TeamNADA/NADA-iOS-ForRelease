@@ -20,6 +20,8 @@ import UIKit
 
 enum Storyboards: String {
     case cardCreation = "CardCreation"
+    case fanCardCreation = "FanCardCreation"
+    case companyCardCreation = "CompanyCardCreation"
     case login = "Login"
     case cardList = "CardList"
     case front = "Front"

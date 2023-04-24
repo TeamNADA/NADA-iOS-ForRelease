@@ -5,6 +5,7 @@
 //  Created by Yi Joon Choi on 2023/02/28.
 //
 import UIKit
+import CoreLocation
 
 import RxSwift
 import RxRelay
@@ -20,6 +21,10 @@ final class AroundMeViewController: UIViewController {
     var viewModel: AroundMeViewModel!
     private let disposeBag = DisposeBag()
     var cardsNearBy: [AroundMeResponse]? = []
+    var locationManager = CLLocationManager()
+    
+    private var latitude: CLLocationDegrees = 0
+    private var longitude: CLLocationDegrees = 0
     
     // MARK: - UI Components
     
@@ -57,6 +62,7 @@ final class AroundMeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setLocationManager()
         setUI()
         setLayout()
         setDelegate()
@@ -102,6 +108,22 @@ extension AroundMeViewController {
     }
     
     // MARK: - Methods
+    
+    private func setLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        
+        DispatchQueue.global().async {
+            if CLLocationManager.locationServicesEnabled() {
+                print("location on")
+                self.locationManager.startUpdatingLocation()
+                print(self.locationManager.location?.coordinate)
+            } else {
+                print("location off")
+            }
+        }
+    }
     
     private func setDelegate() {
         aroundMeCollectionView.rx.setDelegate(self)
@@ -166,6 +188,26 @@ extension AroundMeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
         return UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
+    }
+}
+
+// MARK: - CLLocationManagerDelegate
+
+extension AroundMeViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            print("✅ 위도: ", location.coordinate.latitude)
+            print("✅ 경도: ", location.coordinate.longitude)
+            
+            latitude = location.coordinate.latitude
+            longitude = location.coordinate.longitude
+            
+            cardNearByFetchWithAPI(longitude: longitude, latitude: latitude)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
     }
 }
 

@@ -56,10 +56,10 @@ class AroundMeCollectionViewCell: UICollectionViewCell {
     // MARK: - Methods
     
     public func setData(_ model: AroundMeResponse) {
-        profileImageView.updateServerImage(model.imageUrl)
+        profileImageView.updateServerImage(model.imageURL)
         myNameLabel.text = model.name
         cardNameLabel.text = model.cardName
-        cardUUID = model.cardUuid
+        cardUUID = model.cardUUID
     }
     
     // MARK: - UI & Layout

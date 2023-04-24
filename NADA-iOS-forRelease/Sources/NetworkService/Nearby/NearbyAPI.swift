@@ -21,8 +21,7 @@ public final class NearbyAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                // TODO: datamodel 만들어서 바꾸기
-                let networkResult = self.judgeStatus(by: statusCode, data: data, type: UpdateNote.self)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: [AroundMeResponse].self)
                 completion(networkResult)
             case .failure(let err):
                 print(err)

@@ -63,14 +63,14 @@ extension FrontCardCell {
         descriptionLabel.textColor = .white
         userNameLabel.font = .title01
         userNameLabel.textColor = .white
-        birthLabel.font = .textRegular02
+        birthLabel.font = .textRegular03
         birthLabel.textColor = .white
-        mbtiLabel.font = .textRegular02
+        mbtiLabel.font = .textRegular03
         mbtiLabel.textColor = .white
         instagramIDLabel.font = .textRegular03
         instagramIDLabel.textColor = .white
         instagramIDLabel.lineBreakMode = .byTruncatingTail
-        phoneNumberLabel.font = .textRegular03
+        phoneNumberLabel.font = .textRegular04
         phoneNumberLabel.textColor = .white
         phoneNumberLabel.lineBreakMode = .byTruncatingTail
         linkURLLabel.font = .textRegular04
@@ -118,7 +118,6 @@ extension FrontCardCell {
         if UIApplication.shared.canOpenURL(webURL) {
             UIApplication.shared.open(webURL, options: [:], completionHandler: nil)
         }
-        // TODO: - instagram 없다면 웹으로 보여주는 것도 방법.
     }
     
     /// 서버에서 image 를 URL 로 가져올 경우 사용.

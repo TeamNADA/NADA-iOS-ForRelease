@@ -13,19 +13,19 @@ import RxSwift
 struct CardCreationCategoryViewModel: ViewModelType {
     struct Input {
         let touchBasic: ControlEvent<UITapGestureRecognizer>
-        let touchJob: ControlEvent<UITapGestureRecognizer>
-        let touchDigging: ControlEvent<UITapGestureRecognizer>
+        let touchcompany: ControlEvent<UITapGestureRecognizer>
+        let touchfan: ControlEvent<UITapGestureRecognizer>
     }
     
     struct Output {
         let touchBasic: ControlEvent<UITapGestureRecognizer>
-        let touchJob: ControlEvent<UITapGestureRecognizer>
-        let touchDigging: ControlEvent<UITapGestureRecognizer>
+        let touchcompany: ControlEvent<UITapGestureRecognizer>
+        let touchfan: ControlEvent<UITapGestureRecognizer>
     }
     
     func transform(input: Input) -> Output {
         return Output(touchBasic: input.touchBasic,
-                      touchJob: input.touchJob,
-                      touchDigging: input.touchDigging)
+                      touchcompany: input.touchcompany,
+                      touchfan: input.touchfan)
     }
 }

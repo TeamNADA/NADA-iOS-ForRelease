@@ -48,7 +48,7 @@ class GroupEditViewController: UIViewController {
                 .setHeight(184)
             nextVC.returnToGroupEditViewController = {
                 self.makeOKAlert(title: "", message: "그룹이 추가되었습니다.", okAction: {_ in
-                    self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
+                    self.groupListFetchWithAPI()
                 }, completion: nil)
             }
             nextVC.modalPresentationStyle = .overFullScreen
@@ -128,7 +128,7 @@ extension GroupEditViewController: UITableViewDelegate {
             nextVC.modalPresentationStyle = .overFullScreen
             nextVC.text = serverGroups?[indexPath.row].cardGroupName ?? ""
             nextVC.returnToGroupEditViewController = {
-                self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
+                self.groupListFetchWithAPI()
             }
             nextVC.nowGroup = serverGroups?[indexPath.row]
             self.present(nextVC, animated: false, completion: nil)
@@ -170,8 +170,8 @@ extension GroupEditViewController {
 
 // MARK: - Network
 extension GroupEditViewController {
-    func groupListFetchWithAPI(userID: String) {
-        GroupAPI.shared.groupListFetch(userID: userID) { response in
+    func groupListFetchWithAPI() {
+        GroupAPI.shared.groupListFetch() { response in
             switch response {
             case .success(let data):
                 if let group = data as? [Group] {
@@ -197,7 +197,7 @@ extension GroupEditViewController {
             switch response {
             case .success:
                 print("groupDeleteWithAPI - success")
-                self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
+                self.groupListFetchWithAPI()
                 self.groupEditTableView.reloadData()
             case .requestErr(let message):
                 print("groupDeleteWithAPI - requestErr: \(message)")

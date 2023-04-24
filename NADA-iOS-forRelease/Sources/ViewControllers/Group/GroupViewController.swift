@@ -19,7 +19,6 @@ import Then
 
 class GroupViewController: UIViewController {
     
-    
     // MARK: - Properties
     
     private var moduleFactory = ModuleFactory.shared
@@ -120,7 +119,7 @@ class GroupViewController: UIViewController {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
+            self.groupListFetchWithAPI()
         }
     }
 }
@@ -171,15 +170,15 @@ extension GroupViewController {
         offset = 0
         frontCards?.removeAll()
         
-        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
+        groupListFetchWithAPI()
     }
 }
 
 // MARK: - Network
 
 extension GroupViewController {
-    func groupListFetchWithAPI(userID: String) {
-        GroupAPI.shared.groupListFetch(userID: userID) { response in
+    func groupListFetchWithAPI() {
+        GroupAPI.shared.groupListFetch() { response in
             switch response {
             case .success(let data):
                 if let group = data as? [Group] {

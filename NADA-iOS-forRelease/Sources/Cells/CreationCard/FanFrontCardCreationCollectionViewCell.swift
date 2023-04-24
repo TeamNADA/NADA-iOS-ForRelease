@@ -141,10 +141,12 @@ extension FanFrontCardCreationCollectionViewCell {
         instagramButton.setImage(UIImage(named: "iconDisabledInstagram"), for: .normal)
         instagramButton.setImage(UIImage(named: "iconInstagramSelected"), for: .selected)
         instagramButton.setTitle("", for: .normal)
+        instagramButton.tintColor = .white
         
         twitterButton.setImage(UIImage(named: "iconDisabledTwitter"), for: .normal)
         twitterButton.setImage(UIImage(named: "iconTwitterSelected"), for: .selected)
         twitterButton.setTitle("", for: .normal)
+        twitterButton.tintColor = .white
         
         snsTextField.attributedPlaceholder = NSAttributedString(string: "SNS (instagram / twitter)",
                                                                         attributes: [

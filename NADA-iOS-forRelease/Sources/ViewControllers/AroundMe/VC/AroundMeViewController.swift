@@ -152,15 +152,20 @@ extension AroundMeViewController {
     }
     
     private func bindActions() {
-        navigationBar.rightButtonAction = {
-            self.cardNearByFetchWithAPI(longitude: self.longitude, latitude: self.latitude)
-        }
+        navigationBar.rightButton.rx.tap
+            .withUnretained(self)
+            .subscribe { owner, _ in
+                owner.makeVibrate(degree: .medium)
+                owner.cardNearByFetchWithAPI(longitude: self.longitude, latitude: self.latitude)
+            }.disposed(by: self.disposeBag)
     }
     
     private func bindViewModels() {
         let input = AroundMeViewModel.Input(
-            viewWillAppearEvent: self.rx.methodInvoked(#selector(UIViewController.viewWillAppear)).map { _ in },
-            refreshButtonTapEvent: self.rx.methodInvoked(#selector(UIViewController.viewWillAppear)).map { _ in })
+            viewWillAppearEvent: self.rx.methodInvoked(#selector(UIViewController.viewWillAppear)).map { _ in
+                self.cardNearByFetchWithAPI(longitude: self.longitude, latitude: self.latitude)
+            },
+            refreshButtonTapEvent: self.rx.methodInvoked(#selector(UIViewController.viewWillAppear)).map { _ in})
         let output = self.viewModel.transform(input: input)
         
         output.cardList

@@ -39,7 +39,6 @@ final class AroundMeViewModel: ViewModelType {
 extension AroundMeViewModel {
     func transform(input: Input) -> Output {
         let output = Output()
-//        self.bindOutput(output: output, disposeBag: disposeBag)
         
         input.viewWillAppearEvent
             .withUnretained(self)
@@ -60,12 +59,4 @@ extension AroundMeViewModel {
         
         return output
     }
-    
-//    private func bindOutput(output: Output, disposeBag: DisposeBag) {
-//        let cardListRelay = useCase.stadiumList
-//
-//        cardListRelay.subscribe { model in
-//            output.cardList.accept(model)
-//        }.disposed(by: self.disposeBag)
-//    }
 }

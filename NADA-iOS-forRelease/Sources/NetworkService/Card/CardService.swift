@@ -116,7 +116,7 @@ extension CardService: TargetType {
             return .requestJSONEncodable(requestModel)
         case .imageUpload(let image):
             var multiPartData: [Moya.MultipartFormData] = []
-            let imageData = MultipartFormData(provider: .data(image.pngData() ?? Data()), name: "image", fileName: "image", mimeType: "image/png")
+            let imageData = MultipartFormData(provider: .data(image.jpegData(compressionQuality: 0.5) ?? Data()), name: "image", fileName: "image", mimeType: "image/png")
             multiPartData.append(imageData)
             
             return .uploadMultipart(multiPartData)

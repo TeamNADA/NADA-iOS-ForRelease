@@ -38,7 +38,7 @@ extension GroupService: TargetType {
         case .groupListFetch, .groupReset:
             return "/card-group/list"
         case .groupDelete(let groupID, _):
-            return "/group/\(groupID)"
+            return "/card-group/\(groupID)"
         case .groupAdd, .groupEdit:
             return "/card-group"
         case .cardAddInGroup:

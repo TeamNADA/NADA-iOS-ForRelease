@@ -66,6 +66,8 @@ class GroupEditViewController: UIViewController {
             .withUnretained(self)
             .subscribe { owner, list in
                 owner.setData(groupList: list)
+                self.unClass = self.serverGroups?[0].cardGroupId
+                self.serverGroups?.remove(at: 0)
             }.disposed(by: self.disposeBag)
     }
     
@@ -171,7 +173,7 @@ extension GroupEditViewController {
 // MARK: - Network
 extension GroupEditViewController {
     func groupListFetchWithAPI() {
-        GroupAPI.shared.groupListFetch() { response in
+        GroupAPI.shared.groupListFetch { response in
             switch response {
             case .success(let data):
                 if let group = data as? [Group] {

@@ -82,8 +82,8 @@ class GroupEditViewController: UIViewController {
     }
     
     private func setRegister() {
-        groupEditTableView.register(GroupEditTableViewCell.nib(), forCellReuseIdentifier: Const.Xib.groupEditTableViewCell)
-        groupEditTableView.register(EmptyGroupEditTableViewCell.nib(), forCellReuseIdentifier: Const.Xib.EmptyGroupEditTableViewCell)
+        groupEditTableView.register(GroupEditTableViewCell.nib(), forCellReuseIdentifier: GroupEditTableViewCell.className)
+        groupEditTableView.register(EmptyGroupEditTableViewCell.nib(), forCellReuseIdentifier: EmptyGroupEditTableViewCell.className)
     }
 }
 

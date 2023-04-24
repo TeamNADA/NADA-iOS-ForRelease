@@ -8,7 +8,8 @@
 import Foundation
 
 struct AroundMeResponse {
-    let profileImage: String
-    let myName: String
     let cardName: String
+    let cardUuid: String
+    let imageUrl: String
+    let name: String
 }

@@ -45,8 +45,6 @@ class FanCardCreationViewController: UIViewController {
     private var backgroundImage: UIImage?
     private var tasteInfo: [TasteInfo]?
     
-//    private lazy var selectedImage: [YPMediaItem] = []
-    
     private let cardType: CardType = .basic
     
     // MARK: - @IBOutlet Properties

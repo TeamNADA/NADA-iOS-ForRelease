@@ -45,7 +45,7 @@ class FanCardCreationViewController: UIViewController {
     private var backgroundImage: UIImage?
     private var tasteInfo: [TasteInfo]?
     
-    private let cardType: CardType = .basic
+    private let cardType: CardType = .fan
     
     // MARK: - @IBOutlet Properties
     
@@ -87,6 +87,7 @@ class FanCardCreationViewController: UIViewController {
         nextVC.backCardDataModel = backCard
         nextVC.cardBackgroundImage = backgroundImage
         nextVC.tasteInfo = tasteInfo
+        nextVC.cardType = .fan
         navigationController?.pushViewController(nextVC, animated: true)
     }
 }

@@ -87,6 +87,7 @@ class CardCreationViewController: UIViewController {
         nextVC.backCardDataModel = backCard
         nextVC.cardBackgroundImage = backgroundImage
         nextVC.tasteInfo = tasteInfo
+        nextVC.cardType = .basic
         navigationController?.pushViewController(nextVC, animated: true)
     }
 }

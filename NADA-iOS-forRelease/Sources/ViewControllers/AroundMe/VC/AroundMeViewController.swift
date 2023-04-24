@@ -67,6 +67,7 @@ final class AroundMeViewController: UIViewController {
         setLayout()
         setDelegate()
         setRegister()
+        bindActions()
         bindViewModels()
     }
 
@@ -150,6 +151,12 @@ extension AroundMeViewController {
         self.aroundMeCollectionView.reloadData()
     }
     
+    private func bindActions() {
+        navigationBar.rightButtonAction = {
+            self.cardNearByFetchWithAPI(longitude: self.longitude, latitude: self.latitude)
+        }
+    }
+    
     private func bindViewModels() {
         let input = AroundMeViewModel.Input(
             viewWillAppearEvent: self.rx.methodInvoked(#selector(UIViewController.viewWillAppear)).map { _ in },
@@ -157,11 +164,11 @@ extension AroundMeViewController {
         let output = self.viewModel.transform(input: input)
         
         output.cardList
-                    .compactMap { $0 }
-                    .withUnretained(self)
-                    .subscribe { owner, list in
-                        owner.setData(cardList: list)
-                    }.disposed(by: self.disposeBag)
+            .compactMap { $0 }
+            .withUnretained(self)
+            .subscribe { owner, list in
+                owner.setData(cardList: list)
+            }.disposed(by: self.disposeBag)
         
         output.cardList
             .bind(to: aroundMeCollectionView.rx.items(cellIdentifier: AroundMeCollectionViewCell.className, cellType: AroundMeCollectionViewCell.self)) { _, model, cell in

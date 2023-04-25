@@ -66,6 +66,10 @@ final class HomeViewController: UIViewController {
         setLayout()
         bindActions()
         checkUpdateVersion()
+        
+        if let dynamicLinkCardUUID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.dynamicLinkCardUUID) {
+            checkDynamicLink(dynamicLinkCardUUID)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -214,10 +218,10 @@ extension HomeViewController {
         self.present(cardDetailVC, animated: true)
     }
     
-    public func checkDynamicLink() {
-        let dynamicLinkCardUUID = ""
+    private func checkDynamicLink(_ dynamicLinkCardUUID: String) {
         self.cardDetailFetchWithAPI(cardUUID: dynamicLinkCardUUID) { [weak self] cardDataModel in
             self?.cardAddInGroupWithAPI(cardUUID: dynamicLinkCardUUID) { [weak self] in
+                UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.dynamicLinkCardUUID)
                 self?.presentToCardDetailVC(cardDataModel: cardDataModel)
             }
         }

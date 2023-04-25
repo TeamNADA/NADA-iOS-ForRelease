@@ -52,6 +52,22 @@ class TabBarViewController: UITabBarController {
 extension TabBarViewController {
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(presentMail), name: .presentMail, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(presentCardDetailVC), name: .presentDynamicLink, object: nil)
+    }
+    
+    private func presentToCardDetailVC(cardDataModel: Card) {
+        let cardDetailVC = ModuleFactory.shared.makeCardDetailVC()
+        cardDetailVC.status = .add
+        cardDetailVC.cardDataModel = cardDataModel
+        self.present(cardDetailVC, animated: true)
+    }
+    
+    private func checkDynamicLink(_ dynamicLinkCardUUID: String) {
+        self.cardDetailFetchWithAPI(cardUUID: dynamicLinkCardUUID) { [weak self] cardDataModel in
+            self?.cardAddInGroupWithAPI(cardUUID: dynamicLinkCardUUID) { [weak self] in
+                self?.presentToCardDetailVC(cardDataModel: cardDataModel)
+            }
+        }
     }
     
     // MARK: - @objc Methods
@@ -74,9 +90,57 @@ extension TabBarViewController {
             present(mailErrorAlert, animated: true, completion: nil)
         }
     }
+    
+    @objc
+    private func presentCardDetailVC(_ notification: Notification) {
+        guard let cardUUID = notification.object as? String else { return }
+        checkDynamicLink(cardUUID)
+    }
+}
+
+// MARK: - Network
+
+extension TabBarViewController {
+    private func cardDetailFetchWithAPI(cardUUID: String, completion: @escaping (Card) -> Void) {
+        CardAPI.shared.cardDetailFetch(cardUUID: cardUUID) { response in
+            switch response {
+            case .success(let data):
+                if let cardDataModel = data as? Card {
+                    completion(cardDataModel)
+                }
+                print("cardDetailFetchWithAPI - success")
+            case .requestErr(let message):
+                print("cardDetailFetchWithAPI - requestErr", message)
+            case .pathErr:
+                print("cardDetailFetchWithAPI - pathErr")
+            case .serverErr:
+                print("cardDetailFetchWithAPI - serverErr")
+            case .networkFail:
+                print("deleteGroupWithAPI - networkFail")
+            }
+        }
+    }
+    private func cardAddInGroupWithAPI(cardUUID: String, completion: @escaping () -> Void) {
+        GroupAPI.shared.cardAddInGroup(cardRequest: CardAddInGroupRequest(cardUUID: cardUUID, cardGroupID: 1)) { response in
+            switch response {
+            case .success:
+                completion()
+                print("cardAddInGroupWithAPI - success")
+            case .requestErr(let message):
+                print("cardAddInGroupWithAPI - requestErr", message)
+            case .pathErr:
+                print("cardAddInGroupWithAPI - pathErr")
+            case .serverErr:
+                print("cardAddInGroupWithAPI - serverErr")
+            case .networkFail:
+                print("cardAddInGroupWithAPI - networkFail")
+            }
+        }
+    }
 }
 
 // MARK: - MFMailComposeViewControllerDelegate
+
 extension TabBarViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         switch result {

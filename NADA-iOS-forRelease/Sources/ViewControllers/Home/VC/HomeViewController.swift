@@ -66,10 +66,6 @@ final class HomeViewController: UIViewController {
         setLayout()
         bindActions()
         checkUpdateVersion()
-        
-        if let dynamicLinkCardUUID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.dynamicLinkCardUUID) {
-            checkDynamicLink(dynamicLinkCardUUID)
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -199,6 +195,10 @@ extension HomeViewController {
                 self?.updateNoteFetchWithAPI { [weak self] updateNote in
                     if self?.checkUpdateAvailable(updateNote.latestVersion) ?? false {
                         self?.presentToUpdateVC(with: updateNote)
+                    } else {
+                        if let dynamicLinkCardUUID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.dynamicLinkCardUUID) {
+                            self?.checkDynamicLink(dynamicLinkCardUUID)
+                        }
                     }
                 }
             }

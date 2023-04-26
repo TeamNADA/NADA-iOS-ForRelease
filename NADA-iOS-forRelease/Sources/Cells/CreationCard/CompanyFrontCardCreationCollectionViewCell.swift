@@ -9,7 +9,7 @@ import UIKit
 
 import IQKeyboardManagerSwift
 
-class FrontCardCreationCollectionViewCell: UICollectionViewCell {
+class CompanyFrontCardCreationCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Protocols
     
@@ -46,7 +46,7 @@ class FrontCardCreationCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var mbtiView: UIView!
 
     @IBOutlet weak var descriptionTextField: UITextField!
-    @IBOutlet weak var instagramIDTextField: UITextField!
+    @IBOutlet weak var mailTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var linkURLTextField: UITextField!
     
@@ -68,7 +68,7 @@ class FrontCardCreationCollectionViewCell: UICollectionViewCell {
 
 // MARK: - Extensions
 
-extension FrontCardCreationCollectionViewCell {
+extension CompanyFrontCardCreationCollectionViewCell {
     private func setUI() {
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         
@@ -95,7 +95,7 @@ extension FrontCardCreationCollectionViewCell {
         cardTitleInfoTextLabel.attributedText = cardTitleAttributeString
         cardTitleInfoTextLabel.font = .textBold01
         
-        let requiredAttributeString = NSMutableAttributedString(string: "*나에 대한 기본정보를 입력해 주세요.")
+        let requiredAttributeString = NSMutableAttributedString(string: "*명함에 대한 기본정보를 입력해 주세요.")
         requiredAttributeString.addAttribute(.foregroundColor, value: UIColor.mainColorNadaMain, range: NSRange(location: 0, length: 1))
         requiredAttributeString.addAttribute(.foregroundColor, value: UIColor.secondary, range: NSRange(location: 1, length: requiredAttributeString.length - 1))
         requiredInfoTextLabel.attributedText = requiredAttributeString
@@ -124,15 +124,11 @@ extension FrontCardCreationCollectionViewCell {
         mbtiLabel.textColor = .quaternary
         mbtiLabel.text = "MBTI"
         
-        instagramIDTextField.attributedPlaceholder = NSAttributedString(string: "Instagram (@ 제외)",
+        descriptionTextField.attributedPlaceholder = NSAttributedString(string: "부서명 (15자)",
                                                                         attributes: [
                                                                             NSAttributedString.Key.foregroundColor: UIColor.quaternary
                                                                         ])
-        linkURLTextField.attributedPlaceholder = NSAttributedString(string: "URL (Github, Blog 등)",
-                                                                    attributes: [
-                                                                        NSAttributedString.Key.foregroundColor: UIColor.quaternary
-                                                                    ])
-        descriptionTextField.attributedPlaceholder = NSAttributedString(string: "학교 전공/동아리 기수 등 (15자)",
+        mailTextField.attributedPlaceholder = NSAttributedString(string: "메일주소",
                                                                         attributes: [
                                                                             NSAttributedString.Key.foregroundColor: UIColor.quaternary
                                                                         ])
@@ -140,6 +136,10 @@ extension FrontCardCreationCollectionViewCell {
                                                                         attributes: [
                                                                             NSAttributedString.Key.foregroundColor: UIColor.quaternary
                                                                         ])
+        linkURLTextField.attributedPlaceholder = NSAttributedString(string: "URL (Github, Blog, Linkedin)",
+                                                                    attributes: [
+                                                                        NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                    ])
         
         phoneNumberTextField.keyboardType = .numberPad
         
@@ -173,7 +173,7 @@ extension FrontCardCreationCollectionViewCell {
             userNameTextField
         ])
         optionalTextFieldList.append(contentsOf: [
-            instagramIDTextField,
+            mailTextField,
             linkURLTextField,
             descriptionTextField,
             phoneNumberTextField
@@ -183,7 +183,7 @@ extension FrontCardCreationCollectionViewCell {
         backgroundSettingCollectionView.delegate = self
         backgroundSettingCollectionView.dataSource = self
         
-        backgroundSettingCollectionView.register(BackgroundCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.backgroundCollectionViewCell)
+        backgroundSettingCollectionView.register(BackgroundCollectionViewCell.nib(), forCellWithReuseIdentifier: BackgroundCollectionViewCell.className)
     }
     private func textFieldDelegate() {
         _ = requiredTextFieldList.map { $0.delegate = self }
@@ -215,10 +215,10 @@ extension FrontCardCreationCollectionViewCell {
                                                                                   cardName: cardTitleTextField.text ?? "",
                                                                                   userName: userNameTextField.text ?? "",
                                                                                   departmentName: descriptionTextField.text,
-                                                                                  mailAddress: nil,
+                                                                                  mailAddress: mailTextField.text,
                                                                                   mbti: mbtiLabel.text,
                                                                                   phoneNumber: phoneNumberTextField.text,
-                                                                                  instagram: instagramIDTextField.text,
+                                                                                  instagram: nil,
                                                                                   twitter: nil,
                                                                                   urls: linkURLTextField.text == nil ? nil : [linkURLTextField.text ?? ""],
                                                                                   defaultImageIndex: defaultImageIndex))
@@ -228,7 +228,7 @@ extension FrontCardCreationCollectionViewCell {
         phoneNumberTextField.addTarget(self, action: #selector(phoneNumberTextFieldDidChange), for: .editingChanged)
     }
     static func nib() -> UINib {
-        return UINib(nibName: Const.Xib.frontCardCreationCollectionViewCell, bundle: Bundle(for: FrontCardCreationCollectionViewCell.self))
+        return UINib(nibName: CompanyFrontCardCreationCollectionViewCell.className, bundle: Bundle(for: CompanyFrontCardCreationCollectionViewCell.self))
     }
     
     // MARK: - @objc Methods
@@ -342,7 +342,7 @@ extension FrontCardCreationCollectionViewCell {
 }
 
 // MARK: - UICollectionViewDelegate
-extension FrontCardCreationCollectionViewCell: UICollectionViewDelegate {
+extension CompanyFrontCardCreationCollectionViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.item {
         case 0:
@@ -367,7 +367,7 @@ extension FrontCardCreationCollectionViewCell: UICollectionViewDelegate {
 }
 
 // MARK: - UICollectionViewDataSource
-extension FrontCardCreationCollectionViewCell: UICollectionViewDataSource {
+extension CompanyFrontCardCreationCollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return backgroundList.count
     }
@@ -393,7 +393,7 @@ extension FrontCardCreationCollectionViewCell: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-extension FrontCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayout {
+extension CompanyFrontCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 26, bottom: 0, right: 26)
     }
@@ -409,7 +409,7 @@ extension FrontCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayou
 }
 
 // MARK: - UITextFieldDelegate
-extension FrontCardCreationCollectionViewCell: UITextFieldDelegate {
+extension CompanyFrontCardCreationCollectionViewCell: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
             textField.borderWidth = 1
             textField.borderColor = .tertiary

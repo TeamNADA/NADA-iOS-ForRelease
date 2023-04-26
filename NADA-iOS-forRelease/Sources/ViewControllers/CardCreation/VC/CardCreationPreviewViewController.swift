@@ -120,27 +120,23 @@ extension CardCreationPreviewViewController {
             frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
             
             guard let frontCardDataModel = frontCardDataModel else { return }
-            frontCard.initCell(cardBackgroundImage,
-                               frontCardDataModel.cardName,
-                               frontCardDataModel.departmentName ?? "",
-                               frontCardDataModel.userName,
-                               frontCardDataModel.birth,
-                               frontCardDataModel.mbti ?? "",
-                               frontCardDataModel.instagram ?? "",
-                               frontCardDataModel.phoneNumber ?? "",
-                               frontCardDataModel.urls?[0] ?? "",
-                               isShareable: isShareable)
+            frontCard.initCell(cardBackgroundImage, frontCardDataModel)
             
             cardView.addSubview(frontCard)
         case .company:
-            return
+            guard let frontCard = CompanyFrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? CompanyFrontCardCell else { return }
+            frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
+            
+            guard let frontCardDataModel = frontCardDataModel else { return }
+            frontCard.initCell(cardBackgroundImage, frontCardDataModel)
+            
+            cardView.addSubview(frontCard)
         case .fan:
             guard let frontCard = FanFrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FanFrontCardCell else { return }
             frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
             
             guard let frontCardDataModel = frontCardDataModel else { return }
-            frontCard.initCell(cardBackgroundImage,
-                               frontCardDataModel: frontCardDataModel)
+            frontCard.initCell(cardBackgroundImage, frontCardDataModel)
             
             cardView.addSubview(frontCard)
         }

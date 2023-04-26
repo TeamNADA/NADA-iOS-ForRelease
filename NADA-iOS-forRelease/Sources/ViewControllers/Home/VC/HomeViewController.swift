@@ -195,6 +195,7 @@ extension HomeViewController {
                 self?.updateNoteFetchWithAPI { [weak self] updateNote in
                     if self?.checkUpdateAvailable(updateNote.latestVersion) ?? false {
                         self?.presentToUpdateVC(with: updateNote)
+                        UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.dynamicLinkCardUUID)
                     } else {
                         if let dynamicLinkCardUUID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.dynamicLinkCardUUID) {
                             self?.checkDynamicLink(dynamicLinkCardUUID)

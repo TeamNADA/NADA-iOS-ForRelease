@@ -56,6 +56,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let url = userActivity.webpageURL {
             let _ = DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, error in
                 if let cardUUID = self.handleDynamicLink(dynamicLink) {
+                    NotificationCenter.default.post(name: .presentDynamicLink, object: cardUUID)
+                    UserDefaults.standard.setValue(cardUUID, forKey: Const.UserDefaultsKey.dynamicLinkCardUUID)
                 }
             }
         }

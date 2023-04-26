@@ -202,6 +202,10 @@ extension HomeViewController {
                         }
                     }
                 }
+            } else {
+                if let dynamicLinkCardUUID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.dynamicLinkCardUUID) {
+                    self?.checkDynamicLink(dynamicLinkCardUUID)
+                }
             }
         }
     }

@@ -174,21 +174,6 @@ extension HomeViewController {
             }.disposed(by: self.disposeBag)
     }
     
-    private func checkUpdateAvailable(_ latestVersion: String) -> Bool {
-        var latestVersion = latestVersion
-        latestVersion.removeFirst()
-        
-        guard let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return false }
-        let currentVersionArray = currentVersion.split(separator: ".").map { $0 }
-        let appStoreVersionArray = latestVersion.split(separator: ".").map { $0 }
-        
-        if currentVersionArray[0] < appStoreVersionArray[0] {
-            return true
-        } else {
-            return currentVersionArray[1] < appStoreVersionArray[1] ? true : false
-        }
-    }
-    
     private func checkUpdateVersion() {
         updateUserInfoFetchWithAPI { [weak self] checkUpdateNote in
             if !checkUpdateNote {
@@ -209,18 +194,26 @@ extension HomeViewController {
             }
         }
     }
-
+    
+    private func checkUpdateAvailable(_ latestVersion: String) -> Bool {
+        var latestVersion = latestVersion
+        latestVersion.removeFirst()
+        
+        guard let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return false }
+        let currentVersionArray = currentVersion.split(separator: ".").map { $0 }
+        let appStoreVersionArray = latestVersion.split(separator: ".").map { $0 }
+        
+        if currentVersionArray[0] < appStoreVersionArray[0] {
+            return true
+        } else {
+            return currentVersionArray[1] < appStoreVersionArray[1] ? true : false
+        }
+    }
+    
     private func presentToUpdateVC(with updateNote: UpdateNote?) {
         let updateVC = ModuleFactory.shared.makeUpdateVC()
         updateVC.updateNote = updateNote
         self.present(updateVC, animated: true)
-    }
-    
-    private func presentToCardDetailVC(cardDataModel: Card) {
-        let cardDetailVC = moduleFactory.makeCardDetailVC()
-        cardDetailVC.status = .add
-        cardDetailVC.cardDataModel = cardDataModel
-        self.present(cardDetailVC, animated: true)
     }
     
     private func checkDynamicLink(_ dynamicLinkCardUUID: String) {
@@ -230,6 +223,13 @@ extension HomeViewController {
                 self?.presentToCardDetailVC(cardDataModel: cardDataModel)
             }
         }
+    }
+    
+    private func presentToCardDetailVC(cardDataModel: Card) {
+        let cardDetailVC = moduleFactory.makeCardDetailVC()
+        cardDetailVC.status = .add
+        cardDetailVC.cardDataModel = cardDataModel
+        self.present(cardDetailVC, animated: true)
     }
 }
 

@@ -116,6 +116,7 @@
 		F8257750299546920067E145 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87122752733046300A24E74 /* Card.swift */; };
 		F8257751299546930067E145 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87122752733046300A24E74 /* Card.swift */; };
 		F8268DB927730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8268DB827730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift */; };
+		F82AF69F29FBB3000051545B /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FBC272F9F430009DF0D /* GenericResponse.swift */; };
 		F82AF6A229FBBEE50051545B /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82AF6A129FBBEE50051545B /* UserDefaults+Extension.swift */; };
 		F82AF6A329FBC1710051545B /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82AF6A129FBBEE50051545B /* UserDefaults+Extension.swift */; };
 		F82FEB4C27639F3100DA7847 /* MainCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FEB4A27639F3100DA7847 /* MainCardCell.swift */; };
@@ -1703,6 +1704,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F82AF69F29FBB3000051545B /* GenericResponse.swift in Sources */,
 				F80975E92990A27400075B93 /* Widgets.intentdefinition in Sources */,
 				F8257751299546930067E145 /* Card.swift in Sources */,
 				F82AF6A329FBC1710051545B /* UserDefaults+Extension.swift in Sources */,

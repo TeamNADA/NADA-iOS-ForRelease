@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         KakaoSDK.initSDK(appKey: "5b8dd8cc878344bb7532eeca4365a4aa")
         
-        let acToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken)
+        let acToken = UserDefaults.appGroup.string(forKey: Const.UserDefaultsKey.accessToken)
         
         if acToken != nil {
             if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.isAppleLogin) {

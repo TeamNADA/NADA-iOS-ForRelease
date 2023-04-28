@@ -10,5 +10,9 @@
 	<array>
 		<string>applinks:itznada.page.link</string>
 	</array>
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>group.NADA-iOS-foreRelease</string>
+	</array>
 </dict>
 </plist>

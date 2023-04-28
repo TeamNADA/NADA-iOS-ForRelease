@@ -196,7 +196,7 @@ extension LoginViewController {
                 print("postUserSignUpWithAPI - success")
                 if let userData = loginData as? AccessToken {
                     UserDefaults.standard.set(socialID, forKey: Const.UserDefaultsKey.userID)
-                    UserDefaults.standard.set(userData.accessToken, forKey: Const.UserDefaultsKey.accessToken)
+                    UserDefaults.appGroup.set(userData.accessToken, forKey: Const.UserDefaultsKey.accessToken)
 //                    UserDefaults.standard.set(userData.user.token.refreshToken, forKey: Const.UserDefaultsKey.refreshToken)
                     self.presentToMain()
                 }

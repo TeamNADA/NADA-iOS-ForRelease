@@ -16,16 +16,16 @@ extension Const {
         
         static func multipartFormHeader() -> [String: String] {
             ["Content-Type": "application/json",
-             "Authorization": "Bearer \(UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) ?? "")"]
+             "Authorization": "Bearer \(UserDefaults.appGroup.string(forKey: Const.UserDefaultsKey.accessToken) ?? "")"]
         }
         
         static func bearerHeader() -> [String: String] {
-            ["Authorization": "Bearer \(UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) ?? "")"]
+            ["Authorization": "Bearer \(UserDefaults.appGroup.string(forKey: Const.UserDefaultsKey.accessToken) ?? "")"]
         }
         
         static func basicHeader() -> [String: String] {
             ["Content-Type": "application/json",
-             "Authorization": "Bearer \(UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) ?? "")"]
+             "Authorization": "Bearer \(UserDefaults.appGroup.string(forKey: Const.UserDefaultsKey.accessToken) ?? "")"]
         }
     }
 }

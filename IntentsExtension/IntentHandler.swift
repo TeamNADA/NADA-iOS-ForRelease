@@ -31,9 +31,10 @@ extension IntentHandler: MyCardIntentHandling {
     }
     
     func defaultMyCard(for intent: MyCardIntent) -> MyCard? {
-        // TODO: - 내 명함이 존재하면 첫 번째 명함을 기본값으로 설정. 존재하지 않다면 nil 반환.
-        let myCard = MyCard(identifier: Card.mockData[0].cardUUID,
-                            display: Card.mockData[0].cardName)
+        var myCard: MyCard?
+        if let cardItems {
+            myCard = MyCard(identifier: cardItems[0].cardUUID, display: cardItems[0].cardName)
+        }
         
         return myCard
     }

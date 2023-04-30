@@ -19,15 +19,15 @@ class IntentHandler: INExtension {
 
 extension IntentHandler: MyCardIntentHandling {
     func provideMyCardOptionsCollection(for intent: MyCardIntent, with completion: @escaping (INObjectCollection<MyCard>?, Error?) -> Void) {
-        // TODO: - 서버 통신 혹은 DB 에서 선택 목록 가져온다.
-        let myCards: [MyCard] = Card.mockData.map { card in
-            let myCard = MyCard(identifier: card.cardUUID, display: card.cardName)
-            
-            return myCard
+        if let cardItems {
+            let myCards = cardItems.map { card in
+                let myCard = MyCard(identifier: card.cardUUID, display: card.cardName)
+                
+                return myCard
+            }
+            let collection = INObjectCollection(items: myCards)
+            completion(collection, nil)
         }
-        let collection = INObjectCollection(items: myCards)
-        
-        completion(collection, nil)
     }
     
     func defaultMyCard(for intent: MyCardIntent) -> MyCard? {

@@ -38,7 +38,7 @@ public class GroupAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeStatus(by: statusCode, data: data, type: [Group].self)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: [String].self)
                 completion(networkResult)
                 
             case .failure(let err):

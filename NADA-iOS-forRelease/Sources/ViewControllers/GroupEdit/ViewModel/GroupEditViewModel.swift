@@ -13,7 +13,7 @@ final class GroupEditViewModel: ViewModelType {
     // MARK: - Properties
     
     private let disposeBag = DisposeBag()
-    var groupList: [Group] = []
+    var groupList: [String] = []
     
     // MARK: - Inputs
     
@@ -24,12 +24,12 @@ final class GroupEditViewModel: ViewModelType {
     // MARK: - Outputs
     
     struct Output {
-        var groupListRelay = PublishRelay<[Group]>()
+        var groupListRelay = PublishRelay<[String]>()
     }
     
     // MARK: - Initialize
     
-    init(groupList: [Group]) {
+    init(groupList: [String]) {
         self.groupList = groupList
     }
 }

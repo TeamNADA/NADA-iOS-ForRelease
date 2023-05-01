@@ -91,7 +91,7 @@ class GroupViewController: UIViewController {
     @IBOutlet weak var emptyView: UIView!
     
     // 그룹 이름들을 담을 변수 생성
-    var serverGroups: [Group]? = []
+    var serverGroups: [String]? = []
     var frontCards: [FrontCard]? = []
     var serverCardsWithBack: Card?
     var groupId: Int?
@@ -181,10 +181,10 @@ extension GroupViewController {
         GroupAPI.shared.groupListFetch() { response in
             switch response {
             case .success(let data):
-                if let group = data as? [Group] {
+                if let group = data as? [String] {
                     self.serverGroups = group
                     self.groupCollectionView.reloadData()
-                    self.groupId = group[self.selectedRow].cardGroupId
+//                    self.groupId = group[self.selectedRow].cardGroupId
                     self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(cardGroupId: self.groupId ?? 0, pageNo: 1, pageSize: 1)) {
                         if self.frontCards?.count != 0 {
                             self.cardsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
@@ -299,7 +299,7 @@ extension GroupViewController: UICollectionViewDataSource {
             guard let groupCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.groupCollectionViewCell, for: indexPath) as? GroupCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            groupCell.groupName.text = serverGroups?[indexPath.row].cardGroupName
+            groupCell.groupName.text = serverGroups?[indexPath.row]
             
             if indexPath.row == selectedRow {
                 collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
@@ -337,7 +337,7 @@ extension GroupViewController: UICollectionViewDataSource {
         switch collectionView {
         case groupCollectionView:
             selectedRow = indexPath.row
-            groupId = serverGroups?[indexPath.row].cardGroupId
+//            groupId = serverGroups?[indexPath.row].cardGroupId
             offset = 0
             frontCards?.removeAll()
             
@@ -373,7 +373,7 @@ extension GroupViewController: UICollectionViewDelegateFlowLayout {
             guard let cell = groupCollectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.groupCollectionViewCell, for: indexPath) as? GroupCollectionViewCell else {
                 return .zero
             }
-            cell.groupName.text = serverGroups?[indexPath.row].cardGroupName
+            cell.groupName.text = serverGroups?[indexPath.row]
             cell.groupName.sizeToFit()
             width = cell.groupName.frame.width + 30
             height = collectionView.frame.size.height

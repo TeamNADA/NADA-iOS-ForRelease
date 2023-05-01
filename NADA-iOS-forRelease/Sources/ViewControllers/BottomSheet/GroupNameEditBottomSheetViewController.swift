@@ -15,7 +15,7 @@ class GroupNameEditBottomSheetViewController: CommonBottomSheetViewController, U
     // 넘어온 그룹 이름 데이터를 받는 변수 선언
     var text: String = ""
     var returnToGroupEditViewController: (() -> Void)?
-    var nowGroup: Group?
+    var nowGroup: String?
     private var bottomSheetViewTopConstraint: NSLayoutConstraint?
     
     // 그룹 추가 텍스트 필드
@@ -89,7 +89,7 @@ class GroupNameEditBottomSheetViewController: CommonBottomSheetViewController, U
 extension GroupNameEditBottomSheetViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        groupEditWithAPI(groupRequest: GroupEditRequest(groupId: nowGroup?.cardGroupId ?? 0, groupName: addGroupTextField.text ?? ""))
+//        groupEditWithAPI(groupRequest: GroupEditRequest(groupId: nowGroup?.cardGroupId ?? 0, groupName: addGroupTextField.text ?? ""))
         nowHideBottomSheetAndGoBack()
         
         return true

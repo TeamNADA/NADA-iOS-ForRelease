@@ -17,6 +17,7 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
     var groupName: String?
     
     var status: Status = .add
+    var isChanging = false
     
     private let groupPicker: UIPickerView = {
         let pickerView = UIPickerView()
@@ -83,9 +84,10 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
     @objc func presentCardInfoViewController() {
         switch status {
         case .detail:
-            cardDeleteInGroupWithAPI(cardUuid: cardDataModel?.cardUUID ?? "", cardGroupName: groupName ?? "")
-            cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardGroupName: selectedGroup,
-                                                                     cardUUID: cardDataModel?.cardUUID ?? ""))
+            isChanging = true
+            changeGroupWithAPI(cardUuid: cardDataModel?.cardUUID ?? "",
+                               cardGroupName: groupName ?? "",
+                               changingTo: selectedGroup)
         case .add, .addWithQR:
             cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardGroupName: selectedGroup,
                                                                      cardUUID: cardDataModel?.cardUUID ?? ""))
@@ -139,13 +141,19 @@ extension SelectGroupBottomSheetViewController {
         GroupAPI.shared.cardAddInGroup(cardRequest: cardRequest) { response in
             switch response {
             case .success:
-                guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
-                nextVC.status = self.status
-                nextVC.cardDataModel = self.cardDataModel
-                nextVC.groupName = self.selectedGroup
-                nextVC.serverGroups = self.serverGroups
-                NotificationCenter.default.post(name: Notification.Name.passDataToGroup, object: self.selectedGroupIndex, userInfo: nil)
-                self.hideBottomSheetAndPresentVC(nextViewController: nextVC)
+                if self.isChanging {
+                    self.makeOKAlert(title: "", message: "그룹이 변경되었습니다.") { _ in
+                        self.hideBottomSheetAndGoBack()
+                    }
+                } else {
+                    guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
+                    nextVC.status = self.status
+                    nextVC.cardDataModel = self.cardDataModel
+                    nextVC.groupName = self.selectedGroup
+                    nextVC.serverGroups = self.serverGroups
+                    NotificationCenter.default.post(name: Notification.Name.passDataToGroup, object: self.selectedGroupIndex, userInfo: nil)
+                    self.hideBottomSheetAndPresentVC(nextViewController: nextVC)
+                }
             case .requestErr(let message):
                 print("postCardAddInGroupWithAPI - requestErr", message)
                 self.showToast(message: message as? String ?? "", font: UIFont.button03, view: "wrongCard")
@@ -175,6 +183,30 @@ extension SelectGroupBottomSheetViewController {
                 print("cardDeleteInGroupWithAPI - networkFail")
             }
             
+        }
+    }
+    
+    func changeGroupWithAPI(cardUuid: String, cardGroupName: String, changingTo: String) {
+        GroupAPI.shared.cardDeleteInGroup(cardUuid: cardUuid, cardGroupName: cardGroupName) { response in
+            switch response {
+            case .success:
+                print("cardDeleteInGroupWithAPI - success")
+                self.cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardGroupName: changingTo,
+                                                                              cardUUID: self.cardDataModel?.cardUUID ?? ""))
+                NotificationCenter.default.post(name: Notification.Name.passDataToGroup, object: self.selectedGroupIndex, userInfo: nil)
+                NotificationCenter.default.post(name: Notification.Name.passDataToDetail, object: self.selectedGroup, userInfo: nil)
+                self.makeOKAlert(title: "", message: "그룹이 변경되었습니다.") { _ in
+                    self.hideBottomSheetAndGoBack()
+                }
+            case .requestErr(let message):
+                print("cardDeleteInGroupWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("cardDeleteInGroupWithAPI - pathErr")
+            case .serverErr:
+                print("cardDeleteInGroupWithAPI - serverErr")
+            case .networkFail:
+                print("cardDeleteInGroupWithAPI - networkFail")
+            }
         }
     }
 }

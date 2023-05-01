@@ -184,8 +184,9 @@ extension GroupViewController {
                 if let group = data as? [String] {
                     self.serverGroups = group
                     self.groupCollectionView.reloadData()
+                    print("selectedRow: ", self.selectedRow)
                     if group[self.selectedRow] != "미분류" { self.groupName = group[self.selectedRow] }
-                    self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(pageNo: 1, pageSize: 10, groupName: self.groupName)) {
+                    self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(pageNo: 1, pageSize: 6, groupName: self.groupName)) {
                         if self.frontCards?.count != 0 {
                             self.cardsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
                         }
@@ -211,6 +212,8 @@ extension GroupViewController {
             case .success(let data):
                 self.activityIndicator.stopAnimating()
                 self.loadingBgView.removeFromSuperview()
+                // TODO: API 수정되면 밑에 리로드 지우기
+                self.cardsCollectionView.reloadData()
                 
                 if let cards = data as? [Card] {
                     self.frontCards = cards
@@ -220,6 +223,7 @@ extension GroupViewController {
                         self.emptyView.isHidden = true
                     }
                     self.cardsCollectionView.reloadData()
+                    print("✅")
                 }
                 // completion()
                 print("cardListInGroupWithAPI - success")

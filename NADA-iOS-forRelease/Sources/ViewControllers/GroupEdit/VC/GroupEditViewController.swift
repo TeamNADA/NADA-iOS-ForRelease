@@ -109,6 +109,7 @@ extension GroupEditViewController: UITableViewDelegate {
 //                    self.groupDeleteWithAPI(
 //                        groupID: self.serverGroups?[indexPath.row].cardGroupId ?? 0,
 //                        defaultGroupId: self.unClass ?? 0)
+                    self.groupDeleteWithAPI(cardGroupName: self.serverGroups?[indexPath.row] ?? "")
                     self.groupEditTableView.reloadData()
                     NotificationCenter.default.post(name: Notification.Name.passDataToGroup, object: 0, userInfo: nil)
                 })
@@ -194,8 +195,8 @@ extension GroupEditViewController {
         }
     }
     
-    func groupDeleteWithAPI(groupID: Int, defaultGroupId: Int) {
-        GroupAPI.shared.groupDelete(groupID: groupID, defaultGroupId: defaultGroupId) { response in
+    func groupDeleteWithAPI(cardGroupName: String) {
+        GroupAPI.shared.groupDelete(cardGroupName: cardGroupName) { response in
             switch response {
             case .success:
                 print("groupDeleteWithAPI - success")

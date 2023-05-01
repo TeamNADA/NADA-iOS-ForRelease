@@ -94,7 +94,7 @@ class GroupViewController: UIViewController {
     var serverGroups: [String]? = []
     var frontCards: [FrontCard]? = []
     var serverCardsWithBack: Card?
-    var groupName: String?
+    var groupName: String = ""
     
     var selectedRow = 0
     private var offset = 0
@@ -184,8 +184,8 @@ extension GroupViewController {
                 if let group = data as? [String] {
                     self.serverGroups = group
                     self.groupCollectionView.reloadData()
-                    self.groupName = group[self.selectedRow]
-                    self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(pageNo: 1, pageSize: 10, groupName: self.groupName ?? "미분류")) {
+                    if group[self.selectedRow] != "미분류" { self.groupName = group[self.selectedRow] }
+                    self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(pageNo: 1, pageSize: 10, groupName: self.groupName)) {
                         if self.frontCards?.count != 0 {
                             self.cardsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
                         }
@@ -337,7 +337,7 @@ extension GroupViewController: UICollectionViewDataSource {
         switch collectionView {
         case groupCollectionView:
             selectedRow = indexPath.row
-//            groupId = serverGroups?[indexPath.row].cardGroupId
+            if selectedRow != 0 { self.groupName = serverGroups?[indexPath.row] ?? "" }
             offset = 0
             frontCards?.removeAll()
             
@@ -347,7 +347,7 @@ extension GroupViewController: UICollectionViewDataSource {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.cardListInGroupWithAPI(cardListInGroupRequest:
-                                                CardListInGroupRequest(pageNo: 1, pageSize: 10, groupName: self.groupName ?? "")) {
+                                                CardListInGroupRequest(pageNo: 1, pageSize: 10, groupName: self.groupName)) {
                     self.isInfiniteScroll = true
                 }
             }

@@ -84,9 +84,9 @@ extension GroupService: TargetType {
             return .requestJSONEncodable(groupRequest)
         case .groupEdit(let groupRequest):
             return .requestJSONEncodable(groupRequest)
-        case .cardAddInGroup(let gorupRequest):
-            return .requestParameters(parameters: ["cardGroupId": gorupRequest.cardGroupID,
-                                                   "cardUUID": gorupRequest.cardUUID],
+        case .cardAddInGroup(let groupRequest):
+            return .requestParameters(parameters: ["cardGroupName": groupRequest.cardGroupName,
+                                                   "cardUUID": groupRequest.cardUUID],
                                       encoding: JSONEncoding.default)
         case .cardListFetchInGroup(let cardListInGroupRequest):
             return .requestParameters(parameters: ["pageNo": cardListInGroupRequest.pageNo,

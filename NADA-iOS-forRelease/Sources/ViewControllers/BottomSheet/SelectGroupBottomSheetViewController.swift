@@ -11,10 +11,10 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
 
     // MARK: - Properties
     var cardDataModel: Card?
-    var serverGroups: Groups?
-    var selectedGroup = 0
+    var serverGroups: [String]?
+    var selectedGroup = ""
     var selectedGroupIndex = 0
-    var groupId: Int?
+    var groupName: String?
     
     var status: Status = .add
     
@@ -54,7 +54,7 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
     private func setupUI() {
         view.addSubview(groupPicker)
         view.addSubview(doneButton)
-        selectedGroup = serverGroups?.groups[0].cardGroupId ?? 0
+        selectedGroup = serverGroups?[0] ?? ""
         groupPicker.delegate = self
         groupPicker.dataSource = self
         setupLayout()
@@ -82,14 +82,14 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
     
     @objc func presentCardInfoViewController() {
         switch status {
-        case .detail:
-            changeGroupWithAPI(request: ChangeGroupRequest(cardID: cardDataModel?.cardUUID ?? "",
-                                                           userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "",
-                                                           groupID: groupId ?? 0,
-                                                           newGroupID: selectedGroup))
-        case .add, .addWithQR:
-            cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardUUID: cardDataModel?.cardUUID ?? "",
-                                                                     cardGroupID: selectedGroup))
+//        case .detail:
+//            changeGroupWithAPI(request: ChangeGroupRequest(cardID: cardDataModel?.cardUUID ?? "",
+//                                                           userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "",
+//                                                           groupID: groupName ?? 0,
+//                                                           newGroupID: selectedGroup))
+        case .add, .addWithQR, .detail:
+            cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardGroupName: selectedGroup,
+                                                                     cardUUID: cardDataModel?.cardUUID ?? ""))
         case .group:
             return
         }
@@ -103,7 +103,7 @@ extension SelectGroupBottomSheetViewController: UIPickerViewDelegate, UIPickerVi
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return serverGroups?.groups.count ?? 1
+        return serverGroups?.count ?? 1
     }
 
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
@@ -112,16 +112,16 @@ extension SelectGroupBottomSheetViewController: UIPickerViewDelegate, UIPickerVi
         label.textAlignment = .center
         
         if pickerView.selectedRow(inComponent: component) == row {
-            label.attributedText = NSAttributedString(string: serverGroups?.groups[row].cardGroupName ?? "", attributes: [NSAttributedString.Key.font: UIFont.textBold01, NSAttributedString.Key.foregroundColor: UIColor.mainColorNadaMain])
+            label.attributedText = NSAttributedString(string: serverGroups?[row] ?? "", attributes: [NSAttributedString.Key.font: UIFont.textBold01, NSAttributedString.Key.foregroundColor: UIColor.mainColorNadaMain])
         } else {
-            label.attributedText = NSAttributedString(string: serverGroups?.groups[row].cardGroupName ?? "", attributes: [NSAttributedString.Key.font: UIFont.textRegular03, NSAttributedString.Key.foregroundColor: UIColor.quaternary])
+            label.attributedText = NSAttributedString(string: serverGroups?[row] ?? "", attributes: [NSAttributedString.Key.font: UIFont.textRegular03, NSAttributedString.Key.foregroundColor: UIColor.quaternary])
         }
         
         return label
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedGroup = serverGroups?.groups[row].cardGroupId ?? 0
+        selectedGroup = serverGroups?[row] ?? ""
         selectedGroupIndex = row
         pickerView.reloadAllComponents()
     }
@@ -143,7 +143,7 @@ extension SelectGroupBottomSheetViewController {
                 guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
                 nextVC.status = self.status
                 nextVC.cardDataModel = self.cardDataModel
-                nextVC.groupId = self.selectedGroup
+                nextVC.groupName = self.selectedGroup
                 nextVC.serverGroups = self.serverGroups
                 NotificationCenter.default.post(name: Notification.Name.passDataToGroup, object: self.selectedGroupIndex, userInfo: nil)
                 self.hideBottomSheetAndPresentVC(nextViewController: nextVC)

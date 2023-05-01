@@ -43,8 +43,8 @@ class CardDetailViewController: UIViewController {
     
     private var isFront = true
     var status: Status = .group
-    var serverGroups: Groups?
-    var groupId: Int?
+    var serverGroups: [String]?
+    var groupName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,7 +122,7 @@ extension CardDetailViewController {
                         .setTitle("그룹선택")
                         .setHeight(386)
             nextVC.status = .detail
-            nextVC.groupId = self.groupId
+            nextVC.groupName = self.groupName
             nextVC.serverGroups = self.serverGroups
             nextVC.cardDataModel = self.cardDataModel
             nextVC.modalPresentationStyle = .overFullScreen
@@ -134,7 +134,7 @@ extension CardDetailViewController {
                                        message: "명함을 정말 삭제하시겠습니까?",
                                        deleteAction: { _ in
                 // 명함 삭제 서버통신
-                self.cardDeleteInGroupWithAPI(groupID: self.groupId ?? 0, cardID: self.cardDataModel?.cardUUID ?? "")
+//                self.cardDeleteInGroupWithAPI(groupID: self.groupId ?? 0, cardID: self.cardDataModel?.cardUUID ?? "")
             }) })
         let options = UIMenu(title: "options", options: .displayInline, children: [changeGroup, deleteCard])
         
@@ -212,7 +212,7 @@ extension CardDetailViewController {
     // MARK: - @objc Methods
     
     @objc func didRecieveDataNotification(_ notification: Notification) {
-        groupId = notification.object as? Int ?? 0
+        groupName = notification.object as? String ?? ""
     }
     
     @objc

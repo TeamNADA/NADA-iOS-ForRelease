@@ -23,6 +23,9 @@ import UIKit
 protocol ModuleFactoryProtocol {
     func makeSplashVC() -> SplashViewController
     func makeAroundMeVC() -> AroundMeViewController
+    func makeUpdateVC() -> UpdateViewController
+    func makeCardDetailVC() -> CardDetailViewController
+    func makeGroupEditVC(groupList: [Group]) -> GroupEditViewController
 }
 
 final class ModuleFactory: ModuleFactoryProtocol {
@@ -53,6 +56,13 @@ final class ModuleFactory: ModuleFactoryProtocol {
         let cardDetailVC = CardDetailViewController.controllerFromStoryboard(.cardDetail)
         cardDetailVC.modalPresentationStyle = .overFullScreen
         return cardDetailVC
+    }
+    
+    func makeGroupEditVC(groupList: [Group]) -> GroupEditViewController {
+        let viewModel = GroupEditViewModel(groupList: groupList)
+        let groupEditVC = GroupEditViewController.controllerFromStoryboard(.groupEdit)
+        groupEditVC.viewModel = viewModel
+        return groupEditVC
     }
     
     func makeCardCreationVC(cardType: CardType) -> UINavigationController {

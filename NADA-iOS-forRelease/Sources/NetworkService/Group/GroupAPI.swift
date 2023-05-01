@@ -31,7 +31,7 @@ public class GroupAPI {
         }
     }
     
-    func groupListFetch(userID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func groupListFetch(completion: @escaping (NetworkResult<Any>) -> Void) {
         groupProvider.request(.groupListFetch) { (result) in
             switch result {
             case .success(let response):

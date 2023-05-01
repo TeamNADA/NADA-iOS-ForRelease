@@ -115,7 +115,7 @@ class AddGroupBottomSheetViewController: CommonBottomSheetViewController, UIText
 // MARK: - Extensions
 extension AddGroupBottomSheetViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        groupAddWithAPI(groupRequest: GroupAddRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "", groupName: addGroupTextField.text ?? ""))
+        groupAddWithAPI(groupRequest: GroupAddRequest(cardGroupName: addGroupTextField.text ?? ""))
         
         return true
     }

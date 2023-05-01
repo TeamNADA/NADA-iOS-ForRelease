@@ -87,6 +87,7 @@
 		777FF89F27364B7B00BF69D3 /* GroupEditRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89E27364B7B00BF69D3 /* GroupEditRequest.swift */; };
 		77812947275F6EA3004B34F4 /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77812946275F6EA3004B34F4 /* CardDetailViewController.swift */; };
 		7781294A275F6ED7004B34F4 /* CardDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77812949275F6ED7004B34F4 /* CardDetail.storyboard */; };
+		77A196C429F4DB2E000DEF49 /* GroupEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A196C329F4DB2E000DEF49 /* GroupEditViewModel.swift */; };
 		77A4D5EB29AE20CB00367B7C /* makeVibrate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5EA29AE20CB00367B7C /* makeVibrate.swift */; };
 		77A4D5EF29AE269B00367B7C /* AroundMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5EE29AE269B00367B7C /* AroundMeViewController.swift */; };
 		77A4D5F429AE291F00367B7C /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5F329AE291F00367B7C /* CustomNavigationBar.swift */; };
@@ -333,6 +334,7 @@
 		777FF89E27364B7B00BF69D3 /* GroupEditRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEditRequest.swift; sourceTree = "<group>"; };
 		77812946275F6EA3004B34F4 /* CardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
 		77812949275F6ED7004B34F4 /* CardDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardDetail.storyboard; sourceTree = "<group>"; };
+		77A196C329F4DB2E000DEF49 /* GroupEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEditViewModel.swift; sourceTree = "<group>"; };
 		77A4D5EA29AE20CB00367B7C /* makeVibrate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = makeVibrate.swift; sourceTree = "<group>"; };
 		77A4D5EE29AE269B00367B7C /* AroundMeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundMeViewController.swift; sourceTree = "<group>"; };
 		77A4D5F329AE291F00367B7C /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
@@ -520,7 +522,8 @@
 		3936993C274A53D300684420 /* GroupEdit */ = {
 			isa = PBXGroup;
 			children = (
-				3936993D274A53E000684420 /* GroupEditViewController.swift */,
+				77A196C129F4DB07000DEF49 /* ViewModel */,
+				77A196C229F4DB12000DEF49 /* VC */,
 			);
 			path = GroupEdit;
 			sourceTree = "<group>";
@@ -783,6 +786,22 @@
 				77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */,
 			);
 			path = CardDetail;
+			sourceTree = "<group>";
+		};
+		77A196C129F4DB07000DEF49 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				77A196C329F4DB2E000DEF49 /* GroupEditViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		77A196C229F4DB12000DEF49 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				3936993D274A53E000684420 /* GroupEditViewController.swift */,
+			);
+			path = VC;
 			sourceTree = "<group>";
 		};
 		77A4D5E929AE20A600367B7C /* Utils */ = {
@@ -1771,6 +1790,7 @@
 				394F314C27081B3A00C83291 /* FrontViewController.swift in Sources */,
 				F8458D6B29F54EDF000D53A7 /* FanFrontCardCell.swift in Sources */,
 				77BFDFEF29E57A3600663D6E /* ReceiveCardBottomSheetViewController.swift in Sources */,
+				77A196C429F4DB2E000DEF49 /* GroupEditViewModel.swift in Sources */,
 				777FF89D2735B16B00BF69D3 /* GroupAddRequest.swift in Sources */,
 				7734D5AA27719520004360E4 /* CardShareBottomSheetViewController.swift in Sources */,
 				77A4D5F429AE291F00367B7C /* CustomNavigationBar.swift in Sources */,

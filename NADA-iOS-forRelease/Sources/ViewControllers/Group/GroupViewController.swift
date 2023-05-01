@@ -7,12 +7,23 @@
 
 import Photos
 import UIKit
+
 import Kingfisher
 import NVActivityIndicatorView
+import RxSwift
+import RxRelay
+import RxCocoa
+import RxGesture
+import SnapKit
+import Then
 
 class GroupViewController: UIViewController {
     
     // MARK: - Properties
+    
+    private var moduleFactory = ModuleFactory.shared
+    private let disposeBag = DisposeBag()
+    
     // 네비게이션 바
     @IBAction func presentToAddWithIdView(_ sender: Any) {
         let nextVC = AddWithIdBottomSheetViewController()
@@ -51,11 +62,8 @@ class GroupViewController: UIViewController {
     
     // 중간 그룹 이름들 나열된 뷰
     @IBAction func pushToGroupEdit(_ sender: Any) {
-        guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.groupEdit, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.groupEditViewController) as? GroupEditViewController else { return }
-        //nextVC.serverGroups = self.serverGroups
-        //TODO: 고치세요
-        
-        navigationController?.pushViewController(nextVC, animated: true)
+        let groupEditVC = self.moduleFactory.makeGroupEditVC(groupList: serverGroups ?? [])
+        navigationController?.pushViewController(groupEditVC, animated: true)
     }
     
     // MARK: - Components
@@ -111,7 +119,7 @@ class GroupViewController: UIViewController {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
+            self.groupListFetchWithAPI()
         }
     }
 }
@@ -162,22 +170,21 @@ extension GroupViewController {
         offset = 0
         frontCards?.removeAll()
         
-        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
+        groupListFetchWithAPI()
     }
 }
 
 // MARK: - Network
 
 extension GroupViewController {
-    func groupListFetchWithAPI(userID: String) {
-        GroupAPI.shared.groupListFetch(userID: userID) { response in
+    func groupListFetchWithAPI() {
+        GroupAPI.shared.groupListFetch() { response in
             switch response {
             case .success(let data):
                 if let group = data as? [Group] {
                     self.serverGroups = group
                     self.groupCollectionView.reloadData()
                     self.groupId = group[self.selectedRow].cardGroupId
-                    print("✅", self.groupId)
                     self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(cardGroupId: self.groupId ?? 0, pageNo: 1, pageSize: 1)) {
                         if self.frontCards?.count != 0 {
                             self.cardsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
@@ -214,7 +221,7 @@ extension GroupViewController {
                     }
                     self.cardsCollectionView.reloadData()
                 }
-                //completion()
+                // completion()
                 print("cardListInGroupWithAPI - success")
             case .requestErr(let message):
                 print("cardListInGroupWithAPI - requestErr: \(message)")
@@ -237,8 +244,8 @@ extension GroupViewController {
                     
                     nextVC.cardDataModel = card
                     nextVC.groupId = self.groupId
-                    //nextVC.serverGroups = self.serverGroups
-                    //TODO: 고치세요
+                    // nextVC.serverGroups = self.serverGroups
+                    // TODO: 고치세요
                     self.navigationController?.pushViewController(nextVC, animated: true)
                 }
             case .requestErr(let message):

@@ -108,14 +108,14 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
     }
     
     @objc func presentGroupSelectBottomSheet() {
-        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
+        groupListFetchWithAPI()
     }
 
 }
 
 extension CardResultBottomSheetViewController {
-    func groupListFetchWithAPI(userID: String) {
-        GroupAPI.shared.groupListFetch(userID: userID) { response in
+    func groupListFetchWithAPI() {
+        GroupAPI.shared.groupListFetch { response in
             switch response {
             case .success(let data):
                 if let group = data as? Groups {

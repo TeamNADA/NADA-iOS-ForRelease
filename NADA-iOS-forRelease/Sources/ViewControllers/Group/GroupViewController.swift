@@ -94,7 +94,7 @@ class GroupViewController: UIViewController {
     var serverGroups: [String]? = []
     var frontCards: [FrontCard]? = []
     var serverCardsWithBack: Card?
-    var groupId: Int?
+    var groupName: String?
     
     var selectedRow = 0
     private var offset = 0
@@ -178,14 +178,14 @@ extension GroupViewController {
 
 extension GroupViewController {
     func groupListFetchWithAPI() {
-        GroupAPI.shared.groupListFetch() { response in
+        GroupAPI.shared.groupListFetch { response in
             switch response {
             case .success(let data):
                 if let group = data as? [String] {
                     self.serverGroups = group
                     self.groupCollectionView.reloadData()
-//                    self.groupId = group[self.selectedRow].cardGroupId
-                    self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(cardGroupId: self.groupId ?? 0, pageNo: 1, pageSize: 1)) {
+                    self.groupName = group[self.selectedRow]
+                    self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(pageNo: 1, pageSize: 10, groupName: self.groupName ?? "미분류")) {
                         if self.frontCards?.count != 0 {
                             self.cardsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
                         }
@@ -243,7 +243,7 @@ extension GroupViewController {
                     guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
                     
                     nextVC.cardDataModel = card
-                    nextVC.groupId = self.groupId
+//                    nextVC.groupId = self.groupId
                     // nextVC.serverGroups = self.serverGroups
                     // TODO: 고치세요
                     self.navigationController?.pushViewController(nextVC, animated: true)
@@ -347,9 +347,7 @@ extension GroupViewController: UICollectionViewDataSource {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.cardListInGroupWithAPI(cardListInGroupRequest:
-                                                CardListInGroupRequest(cardGroupId: self.groupId ?? 0,
-                                                                       pageNo: 1,
-                                                                       pageSize: 1)) {
+                                                CardListInGroupRequest(pageNo: 1, pageSize: 10, groupName: self.groupName ?? "")) {
                     self.isInfiniteScroll = true
                 }
             }

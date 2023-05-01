@@ -45,8 +45,8 @@ extension GroupService: TargetType {
             return "/card-group"
         case .cardAddInGroup:
             return "/card-group/mapping"
-        case .cardListFetchInGroup(let cardListInGroupRequest):
-            return "/card-group/\(cardListInGroupRequest.cardGroupId)/cards"
+        case .cardListFetchInGroup:
+            return "/card-group/cards"
         case .cardDeleteInGroup(let groupID, let cardID):
             return "/group/\(groupID)/\(cardID)"
         }
@@ -84,11 +84,12 @@ extension GroupService: TargetType {
             return .requestJSONEncodable(groupRequest)
         case .cardAddInGroup(let gorupRequest):
             return .requestParameters(parameters: ["cardGroupId": gorupRequest.cardGroupID,
-                                                   "cardUUID" : gorupRequest.cardUUID],
+                                                   "cardUUID": gorupRequest.cardUUID],
                                       encoding: JSONEncoding.default)
         case .cardListFetchInGroup(let cardListInGroupRequest):
             return .requestParameters(parameters: ["pageNo": cardListInGroupRequest.pageNo,
-                                                   "pageSize": cardListInGroupRequest.pageSize], encoding: URLEncoding.queryString)
+                                                   "pageSize": cardListInGroupRequest.pageSize,
+                                                   "groupName": cardListInGroupRequest.groupName], encoding: URLEncoding.queryString)
         }
     }
     

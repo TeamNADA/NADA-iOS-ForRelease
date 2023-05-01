@@ -285,14 +285,6 @@ extension FrontCardCreationCollectionViewCell {
                         descriptionTextField.text = newString
                     }
                 }
-            case phoneNumberTextField:
-                if let text = phoneNumberTextField.text {
-                    if text.count > maxLength {
-                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
-                        let newString = String(text[text.startIndex..<maxIndex])
-                        phoneNumberTextField.text = newString
-                    }
-                }
             default:
                 return
             }

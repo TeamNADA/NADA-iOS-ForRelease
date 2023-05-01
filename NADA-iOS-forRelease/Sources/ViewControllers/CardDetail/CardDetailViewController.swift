@@ -146,13 +146,35 @@ extension CardDetailViewController {
         optionButton.showsMenuAsPrimaryAction = true
     }
     private func setFrontCard() {
-        guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
+        guard let cardTypeString = cardDataModel?.cardType,
+            let cardType = CardType(rawValue: cardTypeString) else { return }
         
-        frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
-        guard let cardDataModel = cardDataModel else { return }
-        frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
-        
-        cardView.addSubview(frontCard)
+        switch cardType {
+        case .basic:
+            guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
+            
+            frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
+            guard let cardDataModel = cardDataModel else { return }
+            frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
+            
+            cardView.addSubview(frontCard)
+        case .company:
+            guard let frontCard = CompanyFrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? CompanyFrontCardCell else { return }
+            
+            frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
+            guard let cardDataModel = cardDataModel else { return }
+            frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
+            
+            cardView.addSubview(frontCard)
+        case .fan:
+            guard let frontCard = FanFrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FanFrontCardCell else { return }
+            
+            frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
+            guard let cardDataModel = cardDataModel else { return }
+            frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
+            
+            cardView.addSubview(frontCard)
+        }
     }
     private func setGestureRecognizer() {
         let swipeLeftGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(transitionCardWithAnimation(_:)))

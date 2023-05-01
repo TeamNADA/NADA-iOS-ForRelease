@@ -64,4 +64,21 @@ final class ModuleFactory: ModuleFactoryProtocol {
         groupEditVC.viewModel = viewModel
         return groupEditVC
     }
+    
+    func makeCardCreationVC(cardType: CardType) -> UINavigationController {
+        let cardCreationVC: UIViewController
+        
+        switch cardType {
+        case .basic:
+            cardCreationVC = CardCreationViewController.controllerFromStoryboard(.cardCreation)
+        case .company:
+            cardCreationVC = CompanyCardCreationViewController.controllerFromStoryboard(.companyCardCreation)
+        case .fan:
+            cardCreationVC = FanCardCreationViewController.controllerFromStoryboard(.fanCardCreation)
+        }
+        
+        let navigationController = UINavigationController(rootViewController: cardCreationVC)
+        navigationController.modalPresentationStyle = .fullScreen
+        return navigationController
+    }
 }

@@ -94,7 +94,6 @@
 		77A4D5F629BC304C00367B7C /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5F529BC304C00367B7C /* UIStackView+Extension.swift */; };
 		77A4D5F929BC320600367B7C /* AroundMeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5F829BC320600367B7C /* AroundMeCollectionViewCell.swift */; };
 		77A4D5FC29BD6F4600367B7C /* AroundMeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5FB29BD6F4600367B7C /* AroundMeViewModel.swift */; };
-		77A4D5FE29BD6F9500367B7C /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5FD29BD6F9500367B7C /* ViewModelType.swift */; };
 		77A4D60129BD708C00367B7C /* AroundMeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D60029BD708C00367B7C /* AroundMeResponse.swift */; };
 		77A4D60429BD743600367B7C /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D60329BD743600367B7C /* ModuleFactory.swift */; };
 		77A4D60629BD747300367B7C /* controllerFromStoryBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D60529BD747300367B7C /* controllerFromStoryBoard.swift */; };
@@ -134,6 +133,12 @@
 		F838B66F298E5C5400D84340 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F838B66A298E5C5300D84340 /* Widgets.intentdefinition */; };
 		F838B672298E5C5400D84340 /* WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F838B65E298E5C5300D84340 /* WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F843DD6D29A5F83000D8D20D /* CardCreationCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F843DD6C29A5F83000D8D20D /* CardCreationCategoryViewModel.swift */; };
+		F8458D6229F5183B000D53A7 /* FanCardCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8458D6129F5183B000D53A7 /* FanCardCreation.storyboard */; };
+		F8458D6429F51870000D53A7 /* FanCardCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8458D6329F51870000D53A7 /* FanCardCreationViewController.swift */; };
+		F8458D6729F51B2F000D53A7 /* FanFrontCardCreationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8458D6529F51B2F000D53A7 /* FanFrontCardCreationCollectionViewCell.swift */; };
+		F8458D6829F51B2F000D53A7 /* FanFrontCardCreationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8458D6629F51B2F000D53A7 /* FanFrontCardCreationCollectionViewCell.xib */; };
+		F8458D6B29F54EDF000D53A7 /* FanFrontCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8458D6929F54EDF000D53A7 /* FanFrontCardCell.swift */; };
+		F8458D6C29F54EDF000D53A7 /* FanFrontCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8458D6A29F54EDF000D53A7 /* FanFrontCardCell.xib */; };
 		F84BAF9D26FDB417004CA335 /* CardCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84BAF9C26FDB417004CA335 /* CardCreationViewController.swift */; };
 		F84BAFAD26FDB543004CA335 /* FrontCardCreationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84BAFAB26FDB543004CA335 /* FrontCardCreationCollectionViewCell.swift */; };
 		F84BAFAE26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F84BAFAC26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib */; };
@@ -165,6 +170,12 @@
 		F8915A22275728F20013D609 /* SelectBirthBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */; };
 		F8915A23275728F20013D609 /* SelectMBTIBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */; };
 		F8A9FE1A2743DC6B00BC60CE /* CardListInGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A9FE192743DC6B00BC60CE /* CardListInGroupRequest.swift */; };
+		F8B3F40829F67B07006586BB /* CompanyCardCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8B3F40729F67B07006586BB /* CompanyCardCreation.storyboard */; };
+		F8B3F40A29F67B1C006586BB /* CompanyCardCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B3F40929F67B1C006586BB /* CompanyCardCreationViewController.swift */; };
+		F8B3F40D29F67B6F006586BB /* CompanyFrontCardCreationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8B3F40B29F67B6F006586BB /* CompanyFrontCardCreationCollectionViewCell.xib */; };
+		F8B3F40E29F67B6F006586BB /* CompanyFrontCardCreationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B3F40C29F67B6F006586BB /* CompanyFrontCardCreationCollectionViewCell.swift */; };
+		F8B3F41129F67F8D006586BB /* CompanyFrontCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B3F40F29F67F8D006586BB /* CompanyFrontCardCell.swift */; };
+		F8B3F41229F67F8D006586BB /* CompanyFrontCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8B3F41029F67F8D006586BB /* CompanyFrontCardCell.xib */; };
 		F8BCDD22298FFA830044D0B4 /* QRCodeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BCDD21298FFA830044D0B4 /* QRCodeWidget.swift */; };
 		F8BCDD24298FFA940044D0B4 /* OpenAppLockScreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BCDD23298FFA940044D0B4 /* OpenAppLockScreenWidget.swift */; };
 		F8BCDD25298FFAF90044D0B4 /* WidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838B664298E5C5300D84340 /* WidgetsBundle.swift */; };
@@ -330,7 +341,6 @@
 		77A4D5F529BC304C00367B7C /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		77A4D5F829BC320600367B7C /* AroundMeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundMeCollectionViewCell.swift; sourceTree = "<group>"; };
 		77A4D5FB29BD6F4600367B7C /* AroundMeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundMeViewModel.swift; sourceTree = "<group>"; };
-		77A4D5FD29BD6F9500367B7C /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		77A4D60029BD708C00367B7C /* AroundMeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundMeResponse.swift; sourceTree = "<group>"; };
 		77A4D60329BD743600367B7C /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
 		77A4D60529BD747300367B7C /* controllerFromStoryBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = controllerFromStoryBoard.swift; sourceTree = "<group>"; };
@@ -373,6 +383,12 @@
 		F838B66B298E5C5400D84340 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F838B66D298E5C5400D84340 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F843DD6C29A5F83000D8D20D /* CardCreationCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreationCategoryViewModel.swift; sourceTree = "<group>"; };
+		F8458D6129F5183B000D53A7 /* FanCardCreation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FanCardCreation.storyboard; sourceTree = "<group>"; };
+		F8458D6329F51870000D53A7 /* FanCardCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FanCardCreationViewController.swift; sourceTree = "<group>"; };
+		F8458D6529F51B2F000D53A7 /* FanFrontCardCreationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FanFrontCardCreationCollectionViewCell.swift; path = "NADA-iOS-forRelease/Sources/Cells/CreationCard/FanFrontCardCreationCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		F8458D6629F51B2F000D53A7 /* FanFrontCardCreationCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FanFrontCardCreationCollectionViewCell.xib; path = "NADA-iOS-forRelease/Sources/Cells/CreationCard/FanFrontCardCreationCollectionViewCell.xib"; sourceTree = SOURCE_ROOT; };
+		F8458D6929F54EDF000D53A7 /* FanFrontCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FanFrontCardCell.swift; sourceTree = "<group>"; };
+		F8458D6A29F54EDF000D53A7 /* FanFrontCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FanFrontCardCell.xib; sourceTree = "<group>"; };
 		F84BAF9C26FDB417004CA335 /* CardCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreationViewController.swift; sourceTree = "<group>"; };
 		F84BAFAB26FDB543004CA335 /* FrontCardCreationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontCardCreationCollectionViewCell.swift; sourceTree = "<group>"; };
 		F84BAFAC26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FrontCardCreationCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -407,6 +423,12 @@
 		F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectBirthBottomViewController.swift; sourceTree = "<group>"; };
 		F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMBTIBottomViewController.swift; sourceTree = "<group>"; };
 		F8A9FE192743DC6B00BC60CE /* CardListInGroupRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListInGroupRequest.swift; sourceTree = "<group>"; };
+		F8B3F40729F67B07006586BB /* CompanyCardCreation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CompanyCardCreation.storyboard; sourceTree = "<group>"; };
+		F8B3F40929F67B1C006586BB /* CompanyCardCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyCardCreationViewController.swift; sourceTree = "<group>"; };
+		F8B3F40B29F67B6F006586BB /* CompanyFrontCardCreationCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompanyFrontCardCreationCollectionViewCell.xib; sourceTree = "<group>"; };
+		F8B3F40C29F67B6F006586BB /* CompanyFrontCardCreationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyFrontCardCreationCollectionViewCell.swift; sourceTree = "<group>"; };
+		F8B3F40F29F67F8D006586BB /* CompanyFrontCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyFrontCardCell.swift; sourceTree = "<group>"; };
+		F8B3F41029F67F8D006586BB /* CompanyFrontCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompanyFrontCardCell.xib; sourceTree = "<group>"; };
 		F8BCDD21298FFA830044D0B4 /* QRCodeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeWidget.swift; sourceTree = "<group>"; };
 		F8BCDD23298FFA940044D0B4 /* OpenAppLockScreenWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAppLockScreenWidget.swift; sourceTree = "<group>"; };
 		F8C310BF273A7360008EC5BA /* FrontCardCreationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontCardCreationDelegate.swift; sourceTree = "<group>"; };
@@ -920,6 +942,10 @@
 		F83206AC26F61E5800D61711 /* CardCell */ = {
 			isa = PBXGroup;
 			children = (
+				F8B3F40F29F67F8D006586BB /* CompanyFrontCardCell.swift */,
+				F8B3F41029F67F8D006586BB /* CompanyFrontCardCell.xib */,
+				F8458D6929F54EDF000D53A7 /* FanFrontCardCell.swift */,
+				F8458D6A29F54EDF000D53A7 /* FanFrontCardCell.xib */,
 				F82FEB4A27639F3100DA7847 /* MainCardCell.swift */,
 				F82FEB4B27639F3100DA7847 /* MainCardCell.xib */,
 				F83206A826F61E3700D61711 /* FrontCardCell.swift */,
@@ -944,6 +970,8 @@
 		F84BAF9E26FDB425004CA335 /* CardCreation */ = {
 			isa = PBXGroup;
 			children = (
+				F8B3F40729F67B07006586BB /* CompanyCardCreation.storyboard */,
+				F8458D6129F5183B000D53A7 /* FanCardCreation.storyboard */,
 				F82FF81C2701EBCE00E57F8B /* CardCreation.storyboard */,
 				F85711A6274A6B3400F59F0B /* CardCreationPreview.storyboard */,
 			);
@@ -955,6 +983,10 @@
 			children = (
 				F82FF8222701FFE300E57F8B /* RequiredFlavor */,
 				F858079B2700348000872484 /* Background */,
+				F8B3F40C29F67B6F006586BB /* CompanyFrontCardCreationCollectionViewCell.swift */,
+				F8B3F40B29F67B6F006586BB /* CompanyFrontCardCreationCollectionViewCell.xib */,
+				F8458D6529F51B2F000D53A7 /* FanFrontCardCreationCollectionViewCell.swift */,
+				F8458D6629F51B2F000D53A7 /* FanFrontCardCreationCollectionViewCell.xib */,
 				F84BAFAB26FDB543004CA335 /* FrontCardCreationCollectionViewCell.swift */,
 				F84BAFAC26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib */,
 				F84BAFAF26FDB552004CA335 /* BackCardCreationCollectionViewCell.swift */,
@@ -1089,6 +1121,8 @@
 		F885C8A829B827030079FA35 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				F8B3F40929F67B1C006586BB /* CompanyCardCreationViewController.swift */,
+				F8458D6329F51870000D53A7 /* FanCardCreationViewController.swift */,
 				F84BAF9C26FDB417004CA335 /* CardCreationViewController.swift */,
 				F85711A4274A6B2200F59F0B /* CardCreationPreviewViewController.swift */,
 				F855AEF029A3185000312D20 /* CardCreationCategoryViewController.swift */,
@@ -1303,7 +1337,6 @@
 			children = (
 				F88C8DE829B8919700196A33 /* ViewModelType.swift */,
 				F8915A1F275713A10013D609 /* CardCreation */,
-				77A4D5FD29BD6F9500367B7C /* ViewModelType.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1567,6 +1600,8 @@
 				77F2C0ED27632AA7007641E3 /* CardHarmony.storyboard in Resources */,
 				39C394D5277CD33500DBA566 /* EmptyCardListTableViewCell.xib in Resources */,
 				F84BAFB226FDB552004CA335 /* BackCardCreationCollectionViewCell.xib in Resources */,
+				F8458D6C29F54EDF000D53A7 /* FanFrontCardCell.xib in Resources */,
+				F8B3F40829F67B07006586BB /* CompanyCardCreation.storyboard in Resources */,
 				77B4E7482990E420006098DC /* Home.storyboard in Resources */,
 				397B75172763B5B7004AEB03 /* TeamNADA.storyboard in Resources */,
 				3936993B274A53C600684420 /* GroupEdit.storyboard in Resources */,
@@ -1577,20 +1612,24 @@
 				7766A410274FEBE200714912 /* CardInGroupCollectionViewCell.xib in Resources */,
 				7705CF402752C844005195DF /* CardView.xib in Resources */,
 				397B750D2763A5AF004AEB03 /* OpenSource.storyboard in Resources */,
+				F8B3F40D29F67B6F006586BB /* CompanyFrontCardCreationCollectionViewCell.xib in Resources */,
 				393E334A275F6A6600965BBF /* Splash.storyboard in Resources */,
 				39523E5C2701A48900536900 /* CardListTableViewCell.xib in Resources */,
+				F8B3F41229F67F8D006586BB /* CompanyFrontCardCell.xib in Resources */,
 				F8FC439226C01CDE0033E151 /* LaunchScreen.storyboard in Resources */,
 				F8FC438F26C01CDE0033E151 /* Assets.xcassets in Resources */,
 				F8518055275D040C006BD5ED /* OnboardingCollectionViewCell.xib in Resources */,
 				39F5A3D1271461EA00191F94 /* BackCardCell.xib in Resources */,
 				39369939274A4FCB00684420 /* Spoqa Han Sans Neo Regular.otf in Resources */,
 				39369938274A4FCB00684420 /* Spoqa Han Sans Neo Bold.otf in Resources */,
+				F8458D6229F5183B000D53A7 /* FanCardCreation.storyboard in Resources */,
 				7781294A275F6ED7004B34F4 /* CardDetail.storyboard in Resources */,
 				39C394D1277CCFD500DBA566 /* EmptyGroupEditTableViewCell.xib in Resources */,
 				39523E0B270184B100536900 /* CardList.storyboard in Resources */,
 				F82FF81D2701EBCE00E57F8B /* CardCreation.storyboard in Resources */,
 				39369937274A4FCB00684420 /* NotoSansCJKkr-Medium.otf in Resources */,
 				392F7FB5274621F1008CDBF5 /* MoreListTableViewCell.xib in Resources */,
+				F8458D6829F51B2F000D53A7 /* FanFrontCardCreationCollectionViewCell.xib in Resources */,
 				7770315927500C49002CBD19 /* QRScan.storyboard in Resources */,
 				390515B82706CEBB00C5F7A5 /* Colors.xcassets in Resources */,
 			);
@@ -1739,13 +1778,17 @@
 				770E58862778A78900498C2E /* Status.swift in Sources */,
 				F851805B275D047C006BD5ED /* OnboardingViewController.swift in Sources */,
 				392BAF7B2793E90D0013DCB3 /* KeyChainKey.swift in Sources */,
+				F8B3F40A29F67B1C006586BB /* CompanyCardCreationViewController.swift in Sources */,
 				77A4D5FC29BD6F4600367B7C /* AroundMeViewModel.swift in Sources */,
 				F843DD6D29A5F83000D8D20D /* CardCreationCategoryViewModel.swift in Sources */,
+				F8B3F40E29F67B6F006586BB /* CompanyFrontCardCreationCollectionViewCell.swift in Sources */,
 				39C1E88F270EC762006D2089 /* UIColor+Extension.swift in Sources */,
 				F8C83FC9272FA3190009DF0D /* GroupAPI.swift in Sources */,
+				F8B3F41129F67F8D006586BB /* CompanyFrontCardCell.swift in Sources */,
 				F8F00C3E29DD489200A15377 /* UpdateAPI.swift in Sources */,
 				F8FC43B826C0227D0033E151 /* Const.swift in Sources */,
 				394F314C27081B3A00C83291 /* FrontViewController.swift in Sources */,
+				F8458D6B29F54EDF000D53A7 /* FanFrontCardCell.swift in Sources */,
 				77BFDFEF29E57A3600663D6E /* ReceiveCardBottomSheetViewController.swift in Sources */,
 				77A196C429F4DB2E000DEF49 /* GroupEditViewModel.swift in Sources */,
 				777FF89D2735B16B00BF69D3 /* GroupAddRequest.swift in Sources */,
@@ -1783,9 +1826,9 @@
 				392BAF792793BAF80013DCB3 /* KeyChain.swift in Sources */,
 				7766A40F274FEBE200714912 /* CardInGroupCollectionViewCell.swift in Sources */,
 				3927A7D7275F2A9B008BCD2A /* UserDefaults.swift in Sources */,
+				F8458D6429F51870000D53A7 /* FanCardCreationViewController.swift in Sources */,
 				77A4D60129BD708C00367B7C /* AroundMeResponse.swift in Sources */,
 				7734D5B82777A8E8004360E4 /* String+Extension.swift in Sources */,
-				77A4D5FE29BD6F9500367B7C /* ViewModelType.swift in Sources */,
 				77A4D60429BD743600367B7C /* ModuleFactory.swift in Sources */,
 				F8C83FC3272FA17B0009DF0D /* URL.swift in Sources */,
 				392F7FB4274621F1008CDBF5 /* MoreListTableViewCell.swift in Sources */,
@@ -1793,6 +1836,7 @@
 				77A4D5EF29AE269B00367B7C /* AroundMeViewController.swift in Sources */,
 				77A4D60629BD747300367B7C /* controllerFromStoryBoard.swift in Sources */,
 				3936993E274A53E000684420 /* GroupEditViewController.swift in Sources */,
+				F8458D6729F51B2F000D53A7 /* FanFrontCardCreationCollectionViewCell.swift in Sources */,
 				F8C83FAE272F99940009DF0D /* MoyaLoggerPlugin.swift in Sources */,
 				F84BAFAD26FDB543004CA335 /* FrontCardCreationCollectionViewCell.swift in Sources */,
 				F8518054275D040C006BD5ED /* OnboardingCollectionViewCell.swift in Sources */,

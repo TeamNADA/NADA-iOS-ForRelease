@@ -175,6 +175,27 @@ extension HomeViewController {
             }.disposed(by: self.disposeBag)
     }
     
+    private func checkUpdateVersion() {
+        updateUserInfoFetchWithAPI { [weak self] checkUpdateNote in
+            if !checkUpdateNote {
+                self?.updateNoteFetchWithAPI { [weak self] updateNote in
+                    if self?.checkUpdateAvailable(updateNote.latestVersion) ?? false {
+                        self?.presentToUpdateVC(with: updateNote)
+                        UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.dynamicLinkCardUUID)
+                    } else {
+                        if let dynamicLinkCardUUID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.dynamicLinkCardUUID) {
+                            self?.checkDynamicLink(dynamicLinkCardUUID)
+                        }
+                    }
+                }
+            } else {
+                if let dynamicLinkCardUUID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.dynamicLinkCardUUID) {
+                    self?.checkDynamicLink(dynamicLinkCardUUID)
+                }
+            }
+        }
+    }
+    
     private func checkUpdateAvailable(_ latestVersion: String) -> Bool {
         var latestVersion = latestVersion
         latestVersion.removeFirst()
@@ -190,22 +211,19 @@ extension HomeViewController {
         }
     }
     
-    private func checkUpdateVersion() {
-        updateUserInfoFetchWithAPI { [weak self] checkUpdateNote in
-            if !checkUpdateNote {
-                self?.updateNoteFetchWithAPI { [weak self] updateNote in
-                    if self?.checkUpdateAvailable(updateNote.latestVersion) ?? false {
-                        self?.presentToUpdateVC(with: updateNote)
-                    }
-                }
-            }
-        }
-    }
-
     private func presentToUpdateVC(with updateNote: UpdateNote?) {
         let updateVC = ModuleFactory.shared.makeUpdateVC()
         updateVC.updateNote = updateNote
         self.present(updateVC, animated: true)
+    }
+    
+    private func checkDynamicLink(_ dynamicLinkCardUUID: String) {
+        self.cardDetailFetchWithAPI(cardUUID: dynamicLinkCardUUID) { [weak self] cardDataModel in
+            self?.cardAddInGroupWithAPI(cardUUID: dynamicLinkCardUUID) { [weak self] in
+                UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.dynamicLinkCardUUID)
+                self?.presentToCardDetailVC(cardDataModel: cardDataModel)
+            }
+        }
     }
     
     private func presentToCardDetailVC(cardDataModel: Card) {
@@ -213,15 +231,6 @@ extension HomeViewController {
         cardDetailVC.status = .add
         cardDetailVC.cardDataModel = cardDataModel
         self.present(cardDetailVC, animated: true)
-    }
-    
-    public func checkDynamicLink() {
-        let dynamicLinkCardUUID = ""
-        self.cardDetailFetchWithAPI(cardUUID: dynamicLinkCardUUID) { [weak self] cardDataModel in
-            self?.cardAddInGroupWithAPI(cardUUID: dynamicLinkCardUUID) { [weak self] in
-                self?.presentToCardDetailVC(cardDataModel: cardDataModel)
-            }
-        }
     }
 }
 

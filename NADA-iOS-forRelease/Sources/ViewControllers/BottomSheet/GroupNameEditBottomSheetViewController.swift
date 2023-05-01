@@ -90,6 +90,7 @@ extension GroupNameEditBottomSheetViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
 //        groupEditWithAPI(groupRequest: GroupEditRequest(groupId: nowGroup?.cardGroupId ?? 0, groupName: addGroupTextField.text ?? ""))
+        groupEditWithAPI(groupRequest: GroupEditRequest(groupName: nowGroup ?? "", modifyGroupName: addGroupTextField.text ?? ""))
         nowHideBottomSheetAndGoBack()
         
         return true

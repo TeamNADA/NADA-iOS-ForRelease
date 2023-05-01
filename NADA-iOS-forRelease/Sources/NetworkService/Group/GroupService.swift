@@ -41,8 +41,10 @@ extension GroupService: TargetType {
             return "/card-group/clear"
         case .groupDelete:
             return "/card-group"
-        case .groupAdd, .groupEdit:
+        case .groupAdd:
             return "/card-group"
+        case .groupEdit:
+            return "/card-group/name"
         case .cardAddInGroup:
             return "/card-group/mapping"
         case .cardListFetchInGroup:

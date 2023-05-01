@@ -106,9 +106,6 @@ extension GroupEditViewController: UITableViewDelegate {
                 self.makeCancelDeleteAlert(title: "그룹 삭제", message: "해당 그룹에 있던 명함은\n미분류 그룹으로 이동합니다.", cancelAction: { _ in
                     // 취소 눌렀을 때 액션이 들어갈 부분
                 }, deleteAction: { _ in
-//                    self.groupDeleteWithAPI(
-//                        groupID: self.serverGroups?[indexPath.row].cardGroupId ?? 0,
-//                        defaultGroupId: self.unClass ?? 0)
                     self.groupDeleteWithAPI(cardGroupName: self.serverGroups?[indexPath.row] ?? "")
                     self.groupEditTableView.reloadData()
                     NotificationCenter.default.post(name: Notification.Name.passDataToGroup, object: 0, userInfo: nil)

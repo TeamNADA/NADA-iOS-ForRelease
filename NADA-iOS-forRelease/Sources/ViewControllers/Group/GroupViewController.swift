@@ -269,11 +269,11 @@ extension GroupViewController: UICollectionViewDelegate {
                 if isInfiniteScroll {
                     isInfiniteScroll = false
                     offset += 1
-                    /*
-                    cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(userId: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "", groupId: serverGroups?.groups[self.selectedRow].cardGroupId ?? -1, offset: offset)) {
+                    cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(pageNo: offset,
+                                                                                          pageSize: 10,
+                                                                                          groupName: serverGroups?[self.selectedRow] ?? "")) {
                         self.isInfiniteScroll = true
                     }
-                     */
                 }
             }
         }
@@ -337,7 +337,11 @@ extension GroupViewController: UICollectionViewDataSource {
         switch collectionView {
         case groupCollectionView:
             selectedRow = indexPath.row
-            if selectedRow != 0 { self.groupName = serverGroups?[indexPath.row] ?? "" }
+            if selectedRow == 0 {
+                self.groupName = ""
+            } else {
+                self.groupName = serverGroups?[indexPath.row] ?? ""
+            }
             offset = 0
             frontCards?.removeAll()
             

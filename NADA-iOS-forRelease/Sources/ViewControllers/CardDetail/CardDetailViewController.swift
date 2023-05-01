@@ -45,6 +45,7 @@ class CardDetailViewController: UIViewController {
     var status: Status = .group
     var serverGroups: [String]?
     var groupName: String?
+    var cardType: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,8 +61,8 @@ class CardDetailViewController: UIViewController {
 }
 
 extension CardDetailViewController {
-    func cardDeleteInGroupWithAPI(groupID: Int, cardID: String) {
-        GroupAPI.shared.cardDeleteInGroup(groupID: groupID, cardID: cardID) { response in
+    func cardDeleteInGroupWithAPI(cardUuid: String, cardGroupName: String) {
+        GroupAPI.shared.cardDeleteInGroup(cardUuid: cardUuid, cardGroupName: cardGroupName) { response in
             switch response {
             case .success:
                 print("cardDeleteInGroupWithAPI - success")
@@ -135,6 +136,7 @@ extension CardDetailViewController {
                                        deleteAction: { _ in
                 // 명함 삭제 서버통신
 //                self.cardDeleteInGroupWithAPI(groupID: self.groupId ?? 0, cardID: self.cardDataModel?.cardUUID ?? "")
+                self.cardDeleteInGroupWithAPI(cardUuid: self.cardDataModel?.cardUUID ?? "", cardGroupName: self.groupName ?? "")
             }) })
         let options = UIMenu(title: "options", options: .displayInline, children: [changeGroup, deleteCard])
         

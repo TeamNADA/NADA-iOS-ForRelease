@@ -15,7 +15,7 @@ enum GroupService {
     case groupEdit(groupRequest: GroupEditRequest)
     case cardAddInGroup(cardRequest: CardAddInGroupRequest)
     case cardListFetchInGroup(cardListInGroupRequest: CardListInGroupRequest)
-    case cardDeleteInGroup(groupID: Int, cardID: String)
+    case cardDeleteInGroup(cardUuid: String, cardGroupName: String)
     case groupReset
 }
 
@@ -49,8 +49,8 @@ extension GroupService: TargetType {
             return "/card-group/mapping"
         case .cardListFetchInGroup:
             return "/card-group/cards"
-        case .cardDeleteInGroup(let groupID, let cardID):
-            return "/group/\(groupID)/\(cardID)"
+        case .cardDeleteInGroup(let cardUuid, _):
+            return "/card-group/card/\(cardUuid)"
         }
     }
     
@@ -75,8 +75,11 @@ extension GroupService: TargetType {
         switch self {
         case .groupListFetch:
             return .requestPlain
-        case .cardDeleteInGroup, .groupReset:
+        case .groupReset:
             return .requestPlain
+        case .cardDeleteInGroup(_, let cardGroupName):
+            return .requestParameters(parameters: ["cardGroupName": cardGroupName],
+                                      encoding: URLEncoding.queryString)
         case .groupDelete(let cardGroupName):
             return .requestParameters(parameters: ["cardGroupName": cardGroupName],
                                       encoding: URLEncoding.queryString)

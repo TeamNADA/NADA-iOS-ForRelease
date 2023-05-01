@@ -92,7 +92,7 @@ class GroupViewController: UIViewController {
     
     // 그룹 이름들을 담을 변수 생성
     var serverGroups: [String]? = []
-    var frontCards: [FrontCard]? = []
+    var frontCards: [Card]? = []
     var serverCardsWithBack: Card?
     var groupName: String = ""
     
@@ -134,7 +134,7 @@ extension GroupViewController {
         cardsCollectionView.dataSource = self
          
         groupCollectionView.register(GroupCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.groupCollectionViewCell)
-        cardsCollectionView.register(CardInGroupCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.cardInGroupCollectionViewCell)
+        cardsCollectionView.register(FrontCardCell.nib(), forCellWithReuseIdentifier: FrontCardCell.className)
     }
     
     private func setUI() {
@@ -212,7 +212,7 @@ extension GroupViewController {
                 self.activityIndicator.stopAnimating()
                 self.loadingBgView.removeFromSuperview()
                 
-                if let cards = data as? [FrontCard] {
+                if let cards = data as? [Card] {
                     self.frontCards = cards
                     if self.frontCards?.count == 0 {
                         self.emptyView.isHidden = false
@@ -243,9 +243,9 @@ extension GroupViewController {
                     guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardDetail, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardDetailViewController) as? CardDetailViewController else { return }
                     
                     nextVC.cardDataModel = card
-//                    nextVC.groupId = self.groupId
-                    // nextVC.serverGroups = self.serverGroups
-                    // TODO: 고치세요
+                    nextVC.groupName = self.groupName
+                    nextVC.serverGroups = self.serverGroups
+//                    nextVC.cardType = card.cardType 
                     self.navigationController?.pushViewController(nextVC, animated: true)
                 }
             case .requestErr(let message):
@@ -306,26 +306,31 @@ extension GroupViewController: UICollectionViewDataSource {
             }
             return groupCell
         case cardsCollectionView:
-            guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.cardInGroupCollectionViewCell, for: indexPath) as? CardInGroupCollectionViewCell else {
+//            guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.cardInGroupCollectionViewCell, for: indexPath) as? CardInGroupCollectionViewCell else {
+//                return UICollectionViewCell()
+//            }
+            guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: FrontCardCell.className, for: indexPath) as? FrontCardCell else {
                 return UICollectionViewCell()
             }
-            guard let frontCards = frontCards else { return UICollectionViewCell() }
-            cardCell.backgroundImageView.updateServerImage(frontCards[indexPath.row].cardImage)
-            cardCell.cardUUID = frontCards[indexPath.row].cardUUID
-            cardCell.titleLabel.text = frontCards[indexPath.row].cardName
-            cardCell.descriptionLabel.text = frontCards[indexPath.row].departmentName
-            cardCell.userNameLabel.text = frontCards[indexPath.row].userName
-            cardCell.birthLabel.text = frontCards[indexPath.row].birth
-            cardCell.mbtiLabel.text = frontCards[indexPath.row].mbti
-            cardCell.instagramIDLabel.text = frontCards[indexPath.row].instagram
-            cardCell.lineURLLabel.text = frontCards[indexPath.row].urls
             
-            if frontCards[indexPath.row].instagram == "" {
-                cardCell.instagramIcon.isHidden = true
-            }
-            if frontCards[indexPath.row].urls == "" {
-                cardCell.urlIcon.isHidden = true
-            }
+            guard let frontCards = frontCards else { return UICollectionViewCell() }
+//            cardCell.backgroundImageView.updateServerImage(frontCards[indexPath.row].cardImage)
+//            cardCell.cardUUID = frontCards[indexPath.row].cardUUID
+//            cardCell.titleLabel.text = frontCards[indexPath.row].cardName
+//            cardCell.descriptionLabel.text = frontCards[indexPath.row].departmentName
+//            cardCell.userNameLabel.text = frontCards[indexPath.row].userName
+//            cardCell.birthLabel.text = frontCards[indexPath.row].birth
+//            cardCell.mbtiLabel.text = frontCards[indexPath.row].mbti
+//            cardCell.instagramIDLabel.text = frontCards[indexPath.row].instagram
+//            cardCell.lineURLLabel.text = frontCards[indexPath.row].urls
+//
+//            if frontCards[indexPath.row].instagram == "" {
+//                cardCell.instagramIcon.isHidden = true
+//            }
+//            if frontCards[indexPath.row].urls == "" {
+//                cardCell.urlIcon.isHidden = true
+//            }
+            cardCell.initCellFromServer(cardData: frontCards[indexPath.row], isShareable: false)
             
             return cardCell
         default:

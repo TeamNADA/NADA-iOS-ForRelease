@@ -82,12 +82,11 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
     
     @objc func presentCardInfoViewController() {
         switch status {
-//        case .detail:
-//            changeGroupWithAPI(request: ChangeGroupRequest(cardID: cardDataModel?.cardUUID ?? "",
-//                                                           userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "",
-//                                                           groupID: groupName ?? 0,
-//                                                           newGroupID: selectedGroup))
-        case .add, .addWithQR, .detail:
+        case .detail:
+            cardDeleteInGroupWithAPI(cardUuid: cardDataModel?.cardUUID ?? "", cardGroupName: groupName ?? "")
+            cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardGroupName: selectedGroup,
+                                                                     cardUUID: cardDataModel?.cardUUID ?? ""))
+        case .add, .addWithQR:
             cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardGroupName: selectedGroup,
                                                                      cardUUID: cardDataModel?.cardUUID ?? ""))
         case .group:
@@ -160,25 +159,22 @@ extension SelectGroupBottomSheetViewController {
         }
     }
     
-    func changeGroupWithAPI(request: ChangeGroupRequest) {
-        // FIXME: - cardAddInGroup 으로 변경.
-//        GroupAPI.shared.changeCardGroup(request: request) { response in
-//            switch response {
-//            case .success:
-//                NotificationCenter.default.post(name: Notification.Name.passDataToGroup, object: self.selectedGroupIndex, userInfo: nil)
-//                NotificationCenter.default.post(name: Notification.Name.passDataToDetail, object: self.selectedGroup, userInfo: nil)
-//                self.makeOKAlert(title: "", message: "그룹이 변경되었습니다.") { _ in
-//                    self.hideBottomSheetAndGoBack()
-//                }
-//            case .requestErr(let message):
-//                print("changeGroupWithAPI - requestErr: \(message)")
-//            case .pathErr:
-//                print("changeGroupWithAPI - pathErr")
-//            case .serverErr:
-//                print("changeGroupWithAPI - serverErr")
-//            case .networkFail:
-//                print("changeGroupWithAPI - networkFail")
-//            }
-//        }
+    func cardDeleteInGroupWithAPI(cardUuid: String, cardGroupName: String) {
+        GroupAPI.shared.cardDeleteInGroup(cardUuid: cardUuid, cardGroupName: cardGroupName) { response in
+            switch response {
+            case .success:
+                print("cardDeleteInGroupWithAPI - success")
+                self.navigationController?.popViewController(animated: true)
+            case .requestErr(let message):
+                print("cardDeleteInGroupWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("cardDeleteInGroupWithAPI - pathErr")
+            case .serverErr:
+                print("cardDeleteInGroupWithAPI - serverErr")
+            case .networkFail:
+                print("cardDeleteInGroupWithAPI - networkFail")
+            }
+            
+        }
     }
 }

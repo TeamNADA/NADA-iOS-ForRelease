@@ -135,7 +135,6 @@ extension CardDetailViewController {
                                        message: "명함을 정말 삭제하시겠습니까?",
                                        deleteAction: { _ in
                 // 명함 삭제 서버통신
-//                self.cardDeleteInGroupWithAPI(groupID: self.groupId ?? 0, cardID: self.cardDataModel?.cardUUID ?? "")
                 self.cardDeleteInGroupWithAPI(cardUuid: self.cardDataModel?.cardUUID ?? "", cardGroupName: self.groupName ?? "")
             }) })
         let options = UIMenu(title: "options", options: .displayInline, children: [changeGroup, deleteCard])

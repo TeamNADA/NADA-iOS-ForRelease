@@ -134,7 +134,7 @@ extension GroupViewController {
         cardsCollectionView.dataSource = self
          
         groupCollectionView.register(GroupCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.groupCollectionViewCell)
-        cardsCollectionView.register(FrontCardCell.nib(), forCellWithReuseIdentifier: FrontCardCell.className)
+        cardsCollectionView.register(FanFrontCardCell.nib(), forCellWithReuseIdentifier: FanFrontCardCell.className)
     }
     
     private func setUI() {
@@ -313,7 +313,7 @@ extension GroupViewController: UICollectionViewDataSource {
 //            guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.cardInGroupCollectionViewCell, for: indexPath) as? CardInGroupCollectionViewCell else {
 //                return UICollectionViewCell()
 //            }
-            guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: FrontCardCell.className, for: indexPath) as? FrontCardCell else {
+            guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: FanFrontCardCell.className, for: indexPath) as? FanFrontCardCell else {
                 return UICollectionViewCell()
             }
             
@@ -335,6 +335,7 @@ extension GroupViewController: UICollectionViewDataSource {
 //                cardCell.urlIcon.isHidden = true
 //            }
             cardCell.initCellFromServer(cardData: frontCards[indexPath.row], isShareable: false)
+            cardCell.setConstraints()
             
             return cardCell
         default:

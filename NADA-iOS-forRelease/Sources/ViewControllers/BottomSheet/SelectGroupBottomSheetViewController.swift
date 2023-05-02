@@ -168,7 +168,7 @@ extension SelectGroupBottomSheetViewController {
     }
     
     func cardDeleteInGroupWithAPI(cardUuid: String, cardGroupName: String) {
-        GroupAPI.shared.cardDeleteInGroup(cardUuid: cardUuid, cardGroupName: cardGroupName) { response in
+        GroupAPI.shared.cardDeleteInGroup(cardUUID: cardUuid, cardGroupName: cardGroupName) { response in
             switch response {
             case .success:
                 print("cardDeleteInGroupWithAPI - success")
@@ -187,7 +187,7 @@ extension SelectGroupBottomSheetViewController {
     }
     
     func changeGroupWithAPI(cardUuid: String, cardGroupName: String, changingTo: String) {
-        GroupAPI.shared.cardDeleteInGroup(cardUuid: cardUuid, cardGroupName: cardGroupName) { response in
+        GroupAPI.shared.cardDeleteInGroup(cardUUID: cardUuid, cardGroupName: cardGroupName) { response in
             switch response {
             case .success:
                 print("cardDeleteInGroupWithAPI - success")

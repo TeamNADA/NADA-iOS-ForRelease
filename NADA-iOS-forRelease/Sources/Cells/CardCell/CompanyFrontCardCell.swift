@@ -103,7 +103,7 @@ extension CompanyFrontCardCell {
         let widths = [birthdayImageWidth, mbtiImageWidth, mailImageWidth, phoneImageWidth, urlImageWidth]
         
         constraints.forEach {
-            $0?.constant = ($0?.constant ?? 0) * (258/540)
+            $0?.constant = ($0?.constant ?? 0) * 0.6
         }
         labels.forEach {
             $0?.font = $0?.font.withSize(($0?.font.pointSize ?? 0) * 0.6)

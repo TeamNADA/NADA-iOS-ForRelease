@@ -95,7 +95,7 @@ extension FanFrontCardCell {
         let labels = [titleLabel, userNameLabel, birthLabel, snsLabel, firstURLLabel, secondURLLabel]
         let widths = [birthImageViewWidth, snsImageViewWidth, firstUrlWidth, secondUrlWidth]
         constraints.forEach {
-            $0?.constant = ($0?.constant ?? 0) * (258/540)
+            $0?.constant = ($0?.constant ?? 0) * 0.6
         }
         labels.forEach {
             $0?.font = $0?.font.withSize(($0?.font.pointSize ?? 0) * 0.6)

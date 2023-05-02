@@ -205,7 +205,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
             timer?.invalidate()
             seconds = 0
             nearByTimeLabel.text = "10:00"
-            
+            print("✅✅ deactivated")
         }
     }
     

@@ -22,7 +22,7 @@ final class AroundMeViewController: UIViewController {
     
     var viewModel: AroundMeViewModel!
     private let disposeBag = DisposeBag()
-    var cardsNearBy: [AroundMeResponse]? = []
+    var cardsNearBy: [AroundMeResponse] = []
     var locationManager = CLLocationManager()
     
     private var latitude: CLLocationDegrees = 0
@@ -129,19 +129,8 @@ extension AroundMeViewController {
     }
     
     private func setDelegate() {
-        aroundMeCollectionView.rx.setDelegate(self)
-            .disposed(by: disposeBag)
-        
-        aroundMeCollectionView.rx.modelSelected(AroundMeResponse.self)
-            .subscribe { [weak self] model in
-                guard let self = self else { return }
-                if let game = model.element {
-//                    let playVC = self.moduleFactory.makePlayVC(.replay, type: .disableControl, matchId: game.matchID)
-//                    self.hidesBottomBarWhenPushed = true
-//                    self.navigationController?.pushViewController(playVC, animated: true)
-                    print("Clicked")
-                }
-            }.disposed(by: disposeBag)
+        aroundMeCollectionView.dataSource = self
+        aroundMeCollectionView.delegate = self
     }
     
     private func setRegister() {
@@ -170,18 +159,18 @@ extension AroundMeViewController {
             refreshButtonTapEvent: self.rx.methodInvoked(#selector(UIViewController.viewWillAppear)).map { _ in})
         let output = self.viewModel.transform(input: input)
         
-        output.cardList
-            .compactMap { $0 }
-            .withUnretained(self)
-            .subscribe { owner, list in
-                owner.setData(cardList: list)
-            }.disposed(by: self.disposeBag)
-        
-        output.cardList
-            .bind(to: aroundMeCollectionView.rx.items(cellIdentifier: AroundMeCollectionViewCell.className, cellType: AroundMeCollectionViewCell.self)) { _, model, cell in
-                cell.setData(model)
-            }
-            .disposed(by: disposeBag)
+//        output.cardList
+//            .compactMap { $0 }
+//            .withUnretained(self)
+//            .subscribe { owner, list in
+//                owner.setData(cardList: list)
+//            }.disposed(by: self.disposeBag)
+//
+//        output.cardList
+//            .bind(to: aroundMeCollectionView.rx.items(cellIdentifier: AroundMeCollectionViewCell.className, cellType: AroundMeCollectionViewCell.self)) { _, model, cell in
+//                cell.setData(model)
+//            }
+//            .disposed(by: disposeBag)
     }
 }
 
@@ -202,6 +191,26 @@ extension AroundMeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
         return UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+
+extension AroundMeViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return cardsNearBy.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: AroundMeCollectionViewCell.className, for: indexPath) as? AroundMeCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cardCell.setData(cardsNearBy[indexPath.row])
+        return cardCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("selected")
     }
 }
 
@@ -235,6 +244,9 @@ extension AroundMeViewController {
                 if let cards = data as? [AroundMeResponse] {
                     self.cardsNearBy = cards
                     print(cards)
+                    if cards.isEmpty {
+                        self.aroundMeCollectionView.isHidden = true
+                    }
                     self.aroundMeCollectionView.reloadData()
                 }
                 print("cardNearByFetchWithAPI - success")

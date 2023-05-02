@@ -23,6 +23,8 @@ class AroundMeCollectionViewCell: UICollectionViewCell {
     
     private var profileImageView = UIImageView().then {
         $0.image = UIImage(named: "imgProfileSmall")
+        $0.layer.cornerRadius = 33
+        $0.clipsToBounds = true
     }
     
     private var myNameLabel = UILabel().then {
@@ -80,6 +82,7 @@ class AroundMeCollectionViewCell: UICollectionViewCell {
         profileImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(20)
             make.leading.equalToSuperview().inset(12)
+            make.width.height.equalTo(66)
         }
         myNameLabel.snp.makeConstraints { make in
             make.centerY.equalTo(profileImageView.snp.centerY)

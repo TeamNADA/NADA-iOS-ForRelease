@@ -34,6 +34,19 @@ class FanFrontCardCell: CardCell {
     @IBOutlet weak var secondURLStackView: UIStackView!
     @IBOutlet weak var totalStackView: UIStackView!
     
+    @IBOutlet weak var titleLabelTop: NSLayoutConstraint!
+    @IBOutlet weak var titleLabelBottom: NSLayoutConstraint!
+    @IBOutlet weak var titleLabelLeading: NSLayoutConstraint!
+    @IBOutlet weak var userNameBottom: NSLayoutConstraint!
+    @IBOutlet weak var totalStackviewBottom: NSLayoutConstraint!
+    @IBOutlet weak var totalStackviewLeading: NSLayoutConstraint!
+    @IBOutlet weak var totalStackviewTrailing: NSLayoutConstraint!
+    
+    @IBOutlet weak var birthImageViewWidth: NSLayoutConstraint!
+    @IBOutlet weak var snsImageViewWidth: NSLayoutConstraint!
+    @IBOutlet weak var firstUrlWidth: NSLayoutConstraint!
+    @IBOutlet weak var secondUrlWidth: NSLayoutConstraint!
+    
     // MARK: - Life Cycle
     
     override func awakeFromNib() {
@@ -75,6 +88,23 @@ extension FanFrontCardCell {
         
         firstURLStackView.alignment = .center
         secondURLStackView.alignment = .center
+    }
+    func setConstraints() {
+        let constraints = [titleLabelTop, titleLabelBottom, titleLabelLeading,
+                           userNameBottom, totalStackviewBottom, totalStackviewLeading, totalStackviewTrailing]
+        let labels = [titleLabel, userNameLabel, birthLabel, snsLabel, firstURLLabel, secondURLLabel]
+        let widths = [birthImageViewWidth, snsImageViewWidth, firstUrlWidth, secondUrlWidth]
+        constraints.forEach {
+            $0?.constant = ($0?.constant ?? 0) * 0.6
+        }
+        labels.forEach {
+            $0?.font = $0?.font.withSize(($0?.font.pointSize ?? 0) * 0.6)
+        }
+        widths.forEach {
+            $0?.constant = 12
+        }
+        totalStackView.spacing = 5
+        print("✅✅")
     }
     private func setTapGesture() {
         snsLabel.isUserInteractionEnabled = true
@@ -190,7 +220,7 @@ extension FanFrontCardCell {
     
     /// 명함 미리보기 시 사용.
     func initCell(_ backgroundImage: UIImage?,
-                  frontCardDataModel: FrontCardDataModel) {
+                  _ frontCardDataModel: FrontCardDataModel) {
         backgroundImageView.image = backgroundImage ?? UIImage()
         titleLabel.text = frontCardDataModel.cardName
         userNameLabel.text = frontCardDataModel.userName

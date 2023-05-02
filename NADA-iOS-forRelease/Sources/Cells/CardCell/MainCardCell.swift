@@ -61,7 +61,13 @@ extension MainCardCell {
             
             contentView.addSubview(frontCard)
         case .company:
-            return
+            guard let frontCard = CompanyFrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? CompanyFrontCardCell else { return }
+            
+            frontCard.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
+            guard let cardDataModel = cardDataModel else { return }
+            frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable ?? false)
+            
+            contentView.addSubview(frontCard)
         case .fan:
             guard let frontCard = FanFrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FanFrontCardCell else { return }
             

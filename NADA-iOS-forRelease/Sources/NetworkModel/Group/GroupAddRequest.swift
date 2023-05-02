@@ -8,6 +8,5 @@
 import Foundation
 
 struct GroupAddRequest: Codable {
-    var userId: String
-    var groupName: String
+    var cardGroupName: String
 }

@@ -23,6 +23,9 @@ import UIKit
 protocol ModuleFactoryProtocol {
     func makeSplashVC() -> SplashViewController
     func makeAroundMeVC() -> AroundMeViewController
+    func makeUpdateVC() -> UpdateViewController
+    func makeCardDetailVC() -> CardDetailViewController
+    func makeGroupEditVC(groupList: [String]) -> GroupEditViewController
 }
 
 final class ModuleFactory: ModuleFactoryProtocol {
@@ -55,6 +58,13 @@ final class ModuleFactory: ModuleFactoryProtocol {
         return cardDetailVC
     }
     
+    func makeGroupEditVC(groupList: [String]) -> GroupEditViewController {
+        let viewModel = GroupEditViewModel(groupList: groupList)
+        let groupEditVC = GroupEditViewController.controllerFromStoryboard(.groupEdit)
+        groupEditVC.viewModel = viewModel
+        return groupEditVC
+    }
+    
     func makeCardCreationVC(cardType: CardType) -> UINavigationController {
         let cardCreationVC: UIViewController
         
@@ -62,7 +72,7 @@ final class ModuleFactory: ModuleFactoryProtocol {
         case .basic:
             cardCreationVC = CardCreationViewController.controllerFromStoryboard(.cardCreation)
         case .company:
-            cardCreationVC = CardCreationViewController.controllerFromStoryboard(.companyCardCreation)
+            cardCreationVC = CompanyCardCreationViewController.controllerFromStoryboard(.companyCardCreation)
         case .fan:
             cardCreationVC = FanCardCreationViewController.controllerFromStoryboard(.fanCardCreation)
         }

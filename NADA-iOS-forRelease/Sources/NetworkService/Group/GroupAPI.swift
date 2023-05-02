@@ -15,8 +15,8 @@ public class GroupAPI {
 
     public init() { }
     
-    func cardDeleteInGroup(groupID: Int, cardID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        groupProvider.request(.cardDeleteInGroup(groupID: groupID, cardID: cardID)) { (result) in
+    func cardDeleteInGroup(cardUUID: String, cardGroupName: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        groupProvider.request(.cardDeleteInGroup(cardUUID: cardUUID, cardGroupName: cardGroupName)) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
@@ -31,14 +31,14 @@ public class GroupAPI {
         }
     }
     
-    func groupListFetch(userID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func groupListFetch(completion: @escaping (NetworkResult<Any>) -> Void) {
         groupProvider.request(.groupListFetch) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeStatus(by: statusCode, data: data, type: [Group].self)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: [String].self)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -47,8 +47,8 @@ public class GroupAPI {
         }
     }
     
-    func groupDelete(groupID: Int, defaultGroupId: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
-        groupProvider.request(.groupDelete(groupID: groupID, defaultGroupId: defaultGroupId)) { (result) in
+    func groupDelete(cardGroupName: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        groupProvider.request(.groupDelete(cardGroupName: cardGroupName)) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
@@ -127,8 +127,8 @@ public class GroupAPI {
         }
     }
     
-    func groupReset(token: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        groupProvider.request(.groupReset(token: token)) { (result) in
+    func groupReset(completion: @escaping (NetworkResult<Any>) -> Void) {
+        groupProvider.request(.groupReset) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
@@ -144,47 +144,7 @@ public class GroupAPI {
     }
     
     // MARK: - JudgeStatus methods
-    
-    private func judgeGroupListFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
-
-        let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<Groups>.self, from: data)
-        else {
-            return .pathErr
-        }
-
-        switch statusCode {
-        case 200:
-            return .success(decodedData.data ?? "None-Data")
-        case 400..<500:
-            return .requestErr(decodedData.message ?? "error message")
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    private func judgeCardListFetchInGroupStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
-        
-        let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<CardsInGroupResponse>.self, from: data)
-        else {
-            return .pathErr
-        }
-        
-        switch statusCode {
-        case 200:
-            return .success(decodedData.data ?? "None-Data")
-        case 400..<500:
-            return .requestErr(decodedData.message ?? "error message")
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
+  
     private func judgeStatus<T: Codable>(by statusCode: Int, data: Data, type: T.Type) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<T>.self, from: data)

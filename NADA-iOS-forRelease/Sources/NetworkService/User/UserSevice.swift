@@ -9,10 +9,8 @@ import Foundation
 import Moya
 
 enum UserSevice {
-    case userDelete(token: String)
+    case userDelete
     case userSocialSignUp(socialID: String, socialType: String)
-    case userLogout(token: String)
-    case userTokenReissue(request: UserReissueToken)
 }
 
 extension UserSevice: TargetType {
@@ -24,21 +22,17 @@ extension UserSevice: TargetType {
     var path: String {
         switch self {
         case .userDelete:
-            return "/user"
+            return "/member"
         case .userSocialSignUp:
             return "/auth/signup"
-        case .userLogout:
-            return "auth/logout"
-        case .userTokenReissue:
-            return "auth/reissue"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .userSocialSignUp, .userTokenReissue:
+        case .userSocialSignUp:
             return .post
-        case .userDelete, .userLogout:
+        case .userDelete:
             return .delete
         }
     }
@@ -49,22 +43,20 @@ extension UserSevice: TargetType {
     
     var task: Task {
         switch self {
-        case .userDelete, .userLogout:
+        case .userDelete:
             return .requestPlain
         case .userSocialSignUp(let socialID, let socialType):
             return .requestParameters(parameters: ["socialId": socialID,
                                                    "socialType": socialType],
                                       encoding: JSONEncoding.default)
-        case .userTokenReissue(let request):
-            return .requestJSONEncodable(request)
         }
     }
     
     var headers: [String: String]? {
         switch self {
-        case .userSocialSignUp, .userTokenReissue:
+        case .userSocialSignUp:
             return Const.Header.applicationJsonHeader()
-        case .userDelete, .userLogout:
+        case .userDelete:
             return Const.Header.bearerHeader()
         }
     }

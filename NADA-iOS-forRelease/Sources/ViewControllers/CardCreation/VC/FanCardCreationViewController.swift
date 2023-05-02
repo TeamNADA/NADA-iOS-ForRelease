@@ -87,7 +87,7 @@ class FanCardCreationViewController: UIViewController {
         nextVC.backCardDataModel = backCard
         nextVC.cardBackgroundImage = backgroundImage
         nextVC.tasteInfo = tasteInfo
-        nextVC.cardType = .fan
+        nextVC.cardType = cardType
         navigationController?.pushViewController(nextVC, animated: true)
     }
 }

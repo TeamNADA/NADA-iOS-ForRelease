@@ -22,4 +22,6 @@ extension Notification.Name {
     static let creationReloadMainCardSwiper = Notification.Name("creationReloadMainCardSwiper")
     static let dismissQRCodeCardResult = Notification.Name("dismissQRCodeCardResult")
     static let scrollToSecondIndex = Notification.Name("scrollToSecondIndex")
+    static let presentMail = Notification.Name("presentMail")
+    static let presentDynamicLink = Notification.Name("presentDynamicLink")
 }

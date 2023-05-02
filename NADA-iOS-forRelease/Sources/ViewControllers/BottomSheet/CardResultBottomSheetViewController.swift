@@ -108,21 +108,21 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
     }
     
     @objc func presentGroupSelectBottomSheet() {
-        groupListFetchWithAPI(userID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")
+        groupListFetchWithAPI()
     }
 
 }
 
 extension CardResultBottomSheetViewController {
-    func groupListFetchWithAPI(userID: String) {
-        GroupAPI.shared.groupListFetch(userID: userID) { response in
+    func groupListFetchWithAPI() {
+        GroupAPI.shared.groupListFetch { response in
             switch response {
             case .success(let data):
-                if let group = data as? Groups {
+                if let groups = data as? [String] {
                     let nextVC = SelectGroupBottomSheetViewController()
                     nextVC.status = self.status
                     nextVC.cardDataModel = self.cardDataModel
-                    nextVC.serverGroups = group
+                    nextVC.serverGroups = groups
                     self.hideBottomSheetAndPresent(nextBottomSheet: nextVC, title: "그룹선택", height: 386)
                 }
             case .requestErr(let message):

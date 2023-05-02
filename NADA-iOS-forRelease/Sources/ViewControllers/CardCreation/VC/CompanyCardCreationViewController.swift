@@ -1,15 +1,15 @@
 //
-//  CardCreationViewController.swift
+//  CompanyCardCreationViewController.swift
 //  NADA-iOS-forRelease
 //
-//  Created by kimhyungyu on 2021/09/24.
+//  Created by kimhyungyu on 2023/04/24.
 //
 
 import UIKit
 
 import YPImagePicker
 
-class CardCreationViewController: UIViewController {
+class CompanyCardCreationViewController: UIViewController {
 
     // MARK: - Properties
     
@@ -45,7 +45,7 @@ class CardCreationViewController: UIViewController {
     private var backgroundImage: UIImage?
     private var tasteInfo: [TasteInfo]?
     
-    private let cardType: CardType = .basic
+    private let cardType: CardType = .company
     
     // MARK: - @IBOutlet Properties
     
@@ -93,7 +93,7 @@ class CardCreationViewController: UIViewController {
 }
 
 // MARK: - Extensions
-extension CardCreationViewController {
+extension CompanyCardCreationViewController {
     private func setUI() {
         navigationController?.navigationBar.isHidden = true
         
@@ -161,8 +161,8 @@ extension CardCreationViewController {
         cardCreationCollectionView.delegate = self
         cardCreationCollectionView.dataSource = self
 
-        cardCreationCollectionView.register(FrontCardCreationCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.frontCardCreationCollectionViewCell)
-        cardCreationCollectionView.register(BackCardCreationCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.backCardCreationCollectionViewCell)
+        cardCreationCollectionView.register(CompanyFrontCardCreationCollectionViewCell.nib(), forCellWithReuseIdentifier: CompanyFrontCardCreationCollectionViewCell.className)
+        cardCreationCollectionView.register(BackCardCreationCollectionViewCell.nib(), forCellWithReuseIdentifier: BackCardCreationCollectionViewCell.className)
     }
     private func setTextLabelGesture() {
         let tapFrontTextLabelGesture = UITapGestureRecognizer(target: self, action: #selector(dragToFront))
@@ -238,7 +238,7 @@ extension CardCreationViewController {
 }
 
 // MARK: - YPImagePickerDelegate
-extension CardCreationViewController: YPImagePickerDelegate {
+extension CompanyCardCreationViewController: YPImagePickerDelegate {
     func imagePickerHasNoItemsInLibrary(_ picker: YPImagePicker) {
         self.makeOKAlert(title: "", message: "가져올 수 있는 사진이 없습니다.")
     }
@@ -249,7 +249,7 @@ extension CardCreationViewController: YPImagePickerDelegate {
 }
 
 // MARK: - UICollectionViewDelegate
-extension CardCreationViewController: UICollectionViewDelegate {
+extension CompanyCardCreationViewController: UICollectionViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let targetIndex = targetContentOffset.pointee.x / scrollView.frame.size.width
         if targetIndex == 1 && currentIndex == 0 {
@@ -271,7 +271,7 @@ extension CardCreationViewController: UICollectionViewDelegate {
 }
 
 // MARK: - UICollectionViewDataSource
-extension CardCreationViewController: UICollectionViewDataSource {
+extension CompanyCardCreationViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
     }
@@ -279,7 +279,7 @@ extension CardCreationViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == cardCreationCollectionView {
             if indexPath.item == 0 {
-                guard let frontCreationCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.frontCardCreationCollectionViewCell, for: indexPath) as? FrontCardCreationCollectionViewCell else {
+                guard let frontCreationCell = collectionView.dequeueReusableCell(withReuseIdentifier: CompanyFrontCardCreationCollectionViewCell.className, for: indexPath) as? CompanyFrontCardCreationCollectionViewCell else {
                     return UICollectionViewCell()
                 }
                 frontCreationCell.frontCardCreationDelegate = self
@@ -316,7 +316,7 @@ extension CardCreationViewController: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-extension CardCreationViewController: UICollectionViewDelegateFlowLayout {
+extension CompanyCardCreationViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = collectionView.frame.height
         let width = collectionView.frame.width
@@ -336,7 +336,7 @@ extension CardCreationViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - FrontCardCreationDelegate
 
-extension CardCreationViewController: FrontCardCreationDelegate {
+extension CompanyCardCreationViewController: FrontCardCreationDelegate {
     func frontCardCreation(requiredInfo valid: Bool) {
         frontCardRequiredIsEmpty = !valid
         if frontCardRequiredIsEmpty == false && backCardRequiredIsEmpty == false {
@@ -355,7 +355,7 @@ extension CardCreationViewController: FrontCardCreationDelegate {
 
 // MARK: - BackCardCreationDelegate
 
-extension CardCreationViewController: BackCardCreationDelegate {
+extension CompanyCardCreationViewController: BackCardCreationDelegate {
     func backCardCreation(requiredInfo valid: Bool) {
         backCardRequiredIsEmpty = !valid
         if frontCardRequiredIsEmpty == false && backCardRequiredIsEmpty == false {
@@ -374,7 +374,7 @@ extension CardCreationViewController: BackCardCreationDelegate {
 
 // MARK: - API methods
 
-extension CardCreationViewController {
+extension CompanyCardCreationViewController {
     func tasteFetchWithAPI(cardType: CardType) {
         CardAPI.shared.tasteFetch(cardType: cardType) { response in
             switch response {

@@ -43,8 +43,9 @@ class CardDetailViewController: UIViewController {
     
     private var isFront = true
     var status: Status = .group
-    var serverGroups: Groups?
-    var groupId: Int?
+    var serverGroups: [String]?
+    var groupName: String?
+    var cardType: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,8 +61,8 @@ class CardDetailViewController: UIViewController {
 }
 
 extension CardDetailViewController {
-    func cardDeleteInGroupWithAPI(groupID: Int, cardID: String) {
-        GroupAPI.shared.cardDeleteInGroup(groupID: groupID, cardID: cardID) { response in
+    func cardDeleteInGroupWithAPI(cardUUID: String, cardGroupName: String) {
+        GroupAPI.shared.cardDeleteInGroup(cardUUID: cardUUID, cardGroupName: cardGroupName) { response in
             switch response {
             case .success:
                 print("cardDeleteInGroupWithAPI - success")
@@ -122,7 +123,7 @@ extension CardDetailViewController {
                         .setTitle("그룹선택")
                         .setHeight(386)
             nextVC.status = .detail
-            nextVC.groupId = self.groupId
+            nextVC.groupName = self.groupName
             nextVC.serverGroups = self.serverGroups
             nextVC.cardDataModel = self.cardDataModel
             nextVC.modalPresentationStyle = .overFullScreen
@@ -134,7 +135,7 @@ extension CardDetailViewController {
                                        message: "명함을 정말 삭제하시겠습니까?",
                                        deleteAction: { _ in
                 // 명함 삭제 서버통신
-                self.cardDeleteInGroupWithAPI(groupID: self.groupId ?? 0, cardID: self.cardDataModel?.cardUUID ?? "")
+                self.cardDeleteInGroupWithAPI(cardUUID: self.cardDataModel?.cardUUID ?? "", cardGroupName: self.groupName ?? "")
             }) })
         let options = UIMenu(title: "options", options: .displayInline, children: [changeGroup, deleteCard])
         
@@ -146,13 +147,35 @@ extension CardDetailViewController {
         optionButton.showsMenuAsPrimaryAction = true
     }
     private func setFrontCard() {
-        guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
+        guard let cardTypeString = cardDataModel?.cardType,
+            let cardType = CardType(rawValue: cardTypeString) else { return }
         
-        frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
-        guard let cardDataModel = cardDataModel else { return }
-        frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
-        
-        cardView.addSubview(frontCard)
+        switch cardType {
+        case .basic:
+            guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
+            
+            frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
+            guard let cardDataModel = cardDataModel else { return }
+            frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
+            
+            cardView.addSubview(frontCard)
+        case .company:
+            guard let frontCard = CompanyFrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? CompanyFrontCardCell else { return }
+            
+            frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
+            guard let cardDataModel = cardDataModel else { return }
+            frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
+            
+            cardView.addSubview(frontCard)
+        case .fan:
+            guard let frontCard = FanFrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FanFrontCardCell else { return }
+            
+            frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
+            guard let cardDataModel = cardDataModel else { return }
+            frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
+            
+            cardView.addSubview(frontCard)
+        }
     }
     private func setGestureRecognizer() {
         let swipeLeftGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(transitionCardWithAnimation(_:)))
@@ -190,7 +213,7 @@ extension CardDetailViewController {
     // MARK: - @objc Methods
     
     @objc func didRecieveDataNotification(_ notification: Notification) {
-        groupId = notification.object as? Int ?? 0
+        groupName = notification.object as? String ?? ""
     }
     
     @objc

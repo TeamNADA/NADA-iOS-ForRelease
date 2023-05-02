@@ -56,15 +56,15 @@ final class MoyaLoggerPlugin: PluginType {
         log.append("------------------- END HTTP (\(response.data.count)-byte body) -------------------")
         print(log)
         
-        switch statusCode {
-        case 401:
-            let acessToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken)
-            let refreshToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.refreshToken)
-            userTokenReissueWithAPI(request: UserReissueToken(accessToken: acessToken ?? "",
-                                                              refreshToken: refreshToken ?? ""))
-        default:
-            return
-        }
+//        switch statusCode {
+//        case 401:
+//            let acessToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken)
+//            let refreshToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.refreshToken)
+//            userTokenReissueWithAPI(request: UserReissueToken(accessToken: acessToken ?? "",
+//                                                              refreshToken: refreshToken ?? ""))
+//        default:
+//            return
+//        }
     }
     
     func onFail(_ error: MoyaError, target: TargetType) {
@@ -88,32 +88,32 @@ final class MoyaLoggerPlugin: PluginType {
 
 extension MoyaLoggerPlugin {
     func userTokenReissueWithAPI(request: UserReissueToken) {
-        UserAPI.shared.userTokenReissue(request: request) { response in
-            switch response {
-            case .success(let data):
-                if let tokenData = data as? UserReissueToken {
-                    UserDefaults.standard.set(tokenData.accessToken, forKey: Const.UserDefaultsKey.accessToken)
-                    UserDefaults.standard.set(tokenData.refreshToken, forKey: Const.UserDefaultsKey.refreshToken)
-                    
-                    print("userTokenReissueWithAPI - success")
-                }
-            case .requestErr(let statusCode):
-                if let statusCode = statusCode as? Int, statusCode == 406 {
-                    let loginVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
-                    UIApplication.shared.windows.first {$0.isKeyWindow}?.rootViewController = loginVC
-                    
-                    UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.accessToken)
-                    UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.refreshToken)
-                    UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.userID)
-                }
-                print("userTokenReissueWithAPI - requestErr: \(statusCode)")
-            case .pathErr:
-                print("userTokenReissueWithAPI - pathErr")
-            case .serverErr:
-                print("userTokenReissueWithAPI - serverErr")
-            case .networkFail:
-                print("userTokenReissueWithAPI - networkFail")
-            }
-        }
+//        UserAPI.shared.userTokenReissue(request: request) { response in
+//            switch response {
+//            case .success(let data):
+//                if let tokenData = data as? UserReissueToken {
+//                    UserDefaults.standard.set(tokenData.accessToken, forKey: Const.UserDefaultsKey.accessToken)
+//                    UserDefaults.standard.set(tokenData.refreshToken, forKey: Const.UserDefaultsKey.refreshToken)
+//
+//                    print("userTokenReissueWithAPI - success")
+//                }
+//            case .requestErr(let statusCode):
+//                if let statusCode = statusCode as? Int, statusCode == 406 {
+//                    let loginVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
+//                    UIApplication.shared.windows.first {$0.isKeyWindow}?.rootViewController = loginVC
+//
+//                    UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.accessToken)
+//                    UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.refreshToken)
+//                    UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.userID)
+//                }
+//                print("userTokenReissueWithAPI - requestErr: \(statusCode)")
+//            case .pathErr:
+//                print("userTokenReissueWithAPI - pathErr")
+//            case .serverErr:
+//                print("userTokenReissueWithAPI - serverErr")
+//            case .networkFail:
+//                print("userTokenReissueWithAPI - networkFail")
+//            }
+//        }
     }
 }

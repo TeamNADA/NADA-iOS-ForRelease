@@ -1,15 +1,16 @@
 //
-//  FrontCardCell.swift
+//  CompanyFrontCardCell.swift
 //  NADA-iOS-forRelease
 //
-//  Created by kimhyungyu on 2021/09/18.
+//  Created by kimhyungyu on 2023/04/24.
 //
 
 import UIKit
+
 import VerticalCardSwiper
 import Kingfisher
 
-class FrontCardCell: CardCell {
+class CompanyFrontCardCell: CardCell {
     
     // MARK: - Properties
     
@@ -22,16 +23,16 @@ class FrontCardCell: CardCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var birthLabel: UILabel!
     @IBOutlet weak var mbtiLabel: UILabel!
-    @IBOutlet weak var instagramIDLabel: UILabel!
+    @IBOutlet weak var mailLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
     @IBOutlet weak var linkURLLabel: UILabel!
     @IBOutlet weak var shareButton: UIButton!
     
-    @IBOutlet weak var instagramImageView: UIImageView!
+    @IBOutlet weak var mailImageView: UIImageView!
     @IBOutlet weak var phoneNumberImageView: UIImageView!
     @IBOutlet weak var linkURLImageView: UIImageView!
     
-    @IBOutlet weak var instagramStackView: UIStackView!
+    @IBOutlet weak var mailStackView: UIStackView!
     @IBOutlet weak var phoneNumberStackView: UIStackView!
     @IBOutlet weak var linkURLStackView: UIStackView!
     @IBOutlet weak var totalStackView: UIStackView!
@@ -39,17 +40,17 @@ class FrontCardCell: CardCell {
     @IBOutlet weak var titleLabelTop: NSLayoutConstraint!
     @IBOutlet weak var titleLabelLeading: NSLayoutConstraint!
     @IBOutlet weak var descLabelTop: NSLayoutConstraint!
-    @IBOutlet weak var usernameLabelTop: NSLayoutConstraint!
+    @IBOutlet weak var userNameLabelTop: NSLayoutConstraint!
     @IBOutlet weak var birthdayImageTop: NSLayoutConstraint!
     @IBOutlet weak var birthdayImageWidth: NSLayoutConstraint!
     @IBOutlet weak var mbtiImageLeading: NSLayoutConstraint!
-    @IBOutlet weak var instagramImageWidth: NSLayoutConstraint!
+    @IBOutlet weak var mbtiImageWidth: NSLayoutConstraint!
+    @IBOutlet weak var mailImageWidth: NSLayoutConstraint!
     @IBOutlet weak var phoneImageWidth: NSLayoutConstraint!
     @IBOutlet weak var urlImageWidth: NSLayoutConstraint!
-    @IBOutlet weak var mbtiImageWidth: NSLayoutConstraint!
-    @IBOutlet weak var totalStackViewBottom: NSLayoutConstraint!
-    @IBOutlet weak var totalStackViewLeading: NSLayoutConstraint!
-    @IBOutlet weak var totalStackViewTrailing: NSLayoutConstraint!
+    @IBOutlet weak var totalStackviewBottom: NSLayoutConstraint!
+    @IBOutlet weak var totalStackviewLeading: NSLayoutConstraint!
+    @IBOutlet weak var totalStackviewTrailing: NSLayoutConstraint!
     
     // MARK: - Life Cycle
     
@@ -64,13 +65,13 @@ class FrontCardCell: CardCell {
     }
     
     static func nib() -> UINib {
-        return UINib(nibName: Const.Xib.frontCardCell, bundle: Bundle(for: FrontCardCell.self))
+        return UINib(nibName: CompanyFrontCardCell.className, bundle: Bundle(for: CompanyFrontCardCell.self))
     }
 }
 
 // MARK: - Extensions
 
-extension FrontCardCell {
+extension CompanyFrontCardCell {
     private func setUI() {
         titleLabel.font = .title02
         titleLabel.textColor = .white
@@ -82,9 +83,9 @@ extension FrontCardCell {
         birthLabel.textColor = .white
         mbtiLabel.font = .textRegular03
         mbtiLabel.textColor = .white
-        instagramIDLabel.font = .textRegular03
-        instagramIDLabel.textColor = .white
-        instagramIDLabel.lineBreakMode = .byTruncatingTail
+        mailLabel.font = .textRegular04
+        mailLabel.textColor = .white
+        mailLabel.lineBreakMode = .byTruncatingTail
         phoneNumberLabel.font = .textRegular04
         phoneNumberLabel.textColor = .white
         phoneNumberLabel.lineBreakMode = .byTruncatingTail
@@ -97,9 +98,10 @@ extension FrontCardCell {
     }
     func setConstraints() {
         let constraints = [titleLabelTop, titleLabelLeading, descLabelTop,
-                           usernameLabelTop, birthdayImageTop, mbtiImageLeading, totalStackViewBottom, totalStackViewLeading, totalStackViewTrailing]
-        let labels = [titleLabel, descriptionLabel, userNameLabel, birthLabel, mbtiLabel, instagramIDLabel, phoneNumberLabel, linkURLLabel]
-        let widths = [birthdayImageWidth, phoneImageWidth, urlImageWidth, mbtiImageWidth]
+                           userNameLabelTop, birthdayImageTop, mbtiImageLeading, totalStackviewBottom, totalStackviewLeading, totalStackviewTrailing]
+        let labels = [titleLabel, descriptionLabel, userNameLabel, birthLabel, mbtiLabel, phoneNumberLabel, linkURLLabel, mailLabel]
+        let widths = [birthdayImageWidth, mbtiImageWidth, mailImageWidth, phoneImageWidth, urlImageWidth]
+        
         constraints.forEach {
             $0?.constant = ($0?.constant ?? 0) * 0.6
         }
@@ -113,9 +115,9 @@ extension FrontCardCell {
         print("✅✅")
     }
     private func setTapGesture() {
-        instagramIDLabel.isUserInteractionEnabled = true
-        let instagramTapGesture = UITapGestureRecognizer(target: self, action: #selector(tapInstagramLabel))
-        instagramIDLabel.addGestureRecognizer(instagramTapGesture)
+        mailLabel.isUserInteractionEnabled = true
+        let mailTapGesture = UITapGestureRecognizer(target: self, action: #selector(tapMailLabel))
+        mailLabel.addGestureRecognizer(mailTapGesture)
         
         linkURLLabel.isUserInteractionEnabled = true
         let linkURLTapGesture = UITapGestureRecognizer(target: self, action: #selector(tapLinkURLLabel))
@@ -123,18 +125,9 @@ extension FrontCardCell {
     }
     
     // MARK: - @objc Methods
-    
     @objc
-    private func tapInstagramLabel() {
-        let instagramID = instagramIDLabel.text ?? ""
-        let appURL = URL(string: "instagram://user?username=\(instagramID)")!
-        let webURL = URL(string: "https://instagram.com/\(instagramID)")!
-        
-        if UIApplication.shared.canOpenURL(appURL) {
-            UIApplication.shared.open(appURL, options: [:], completionHandler: nil)
-        } else {
-            UIApplication.shared.open(webURL, options: [:], completionHandler: nil)
-        }
+    private func tapMailLabel() {
+        NotificationCenter.default.post(name: .presentMail, object: mailLabel.text ?? "")
     }
     @objc
     private func tapLinkURLLabel() {
@@ -169,7 +162,7 @@ extension FrontCardCell {
         userNameLabel.text = cardData.userName
         birthLabel.text = cardData.birth
         mbtiLabel.text = cardData.mbti
-        instagramIDLabel.text = cardData.instagram
+        mailLabel.text = cardData.mailAddress
         phoneNumberLabel.text = cardData.phoneNumber
         
         if let urls = cardData.urls {
@@ -179,8 +172,8 @@ extension FrontCardCell {
                 linkURLLabel.text = urls[0]
             }
         }
-        if cardData.instagram?.isEmpty ?? false {
-            instagramStackView.isHidden = true
+        if cardData.mailAddress?.isEmpty ?? false {
+            mailStackView.isHidden = true
         }
         if cardData.phoneNumber?.isEmpty ?? false {
             phoneNumberStackView.isHidden = true
@@ -198,7 +191,7 @@ extension FrontCardCell {
         userNameLabel.text = frontCardDataModel.userName
         birthLabel.text = frontCardDataModel.birth
         mbtiLabel.text = frontCardDataModel.mbti
-        instagramIDLabel.text = frontCardDataModel.instagram
+        mailLabel.text = frontCardDataModel.mailAddress
         phoneNumberLabel.text = frontCardDataModel.phoneNumber
         
         if let urls = frontCardDataModel.urls {
@@ -209,8 +202,8 @@ extension FrontCardCell {
             }
         }
         
-        if frontCardDataModel.instagram?.isEmpty ?? false {
-            instagramStackView.isHidden = true
+        if frontCardDataModel.mailAddress?.isEmpty ?? false {
+            mailStackView.isHidden = true
         }
         if frontCardDataModel.phoneNumber?.isEmpty ?? false {
             phoneNumberStackView.isHidden = true

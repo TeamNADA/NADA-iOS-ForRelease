@@ -88,6 +88,8 @@
 		77812947275F6EA3004B34F4 /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77812946275F6EA3004B34F4 /* CardDetailViewController.swift */; };
 		7781294A275F6ED7004B34F4 /* CardDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77812949275F6ED7004B34F4 /* CardDetail.storyboard */; };
 		77A196C429F4DB2E000DEF49 /* GroupEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A196C329F4DB2E000DEF49 /* GroupEditViewModel.swift */; };
+		77A196C729F661DC000DEF49 /* NearbyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A196C629F661DC000DEF49 /* NearbyAPI.swift */; };
+		77A196C929F661E3000DEF49 /* NearbyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A196C829F661E3000DEF49 /* NearbyService.swift */; };
 		77A4D5EB29AE20CB00367B7C /* makeVibrate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5EA29AE20CB00367B7C /* makeVibrate.swift */; };
 		77A4D5EF29AE269B00367B7C /* AroundMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5EE29AE269B00367B7C /* AroundMeViewController.swift */; };
 		77A4D5F429AE291F00367B7C /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5F329AE291F00367B7C /* CustomNavigationBar.swift */; };
@@ -337,6 +339,8 @@
 		77812946275F6EA3004B34F4 /* CardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
 		77812949275F6ED7004B34F4 /* CardDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardDetail.storyboard; sourceTree = "<group>"; };
 		77A196C329F4DB2E000DEF49 /* GroupEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEditViewModel.swift; sourceTree = "<group>"; };
+		77A196C629F661DC000DEF49 /* NearbyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyAPI.swift; sourceTree = "<group>"; };
+		77A196C829F661E3000DEF49 /* NearbyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyService.swift; sourceTree = "<group>"; };
 		77A4D5EA29AE20CB00367B7C /* makeVibrate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = makeVibrate.swift; sourceTree = "<group>"; };
 		77A4D5EE29AE269B00367B7C /* AroundMeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundMeViewController.swift; sourceTree = "<group>"; };
 		77A4D5F329AE291F00367B7C /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
@@ -805,6 +809,15 @@
 				3936993D274A53E000684420 /* GroupEditViewController.swift */,
 			);
 			path = VC;
+			sourceTree = "<group>";
+		};
+		77A196C529F661C4000DEF49 /* Nearby */ = {
+			isa = PBXGroup;
+			children = (
+				77A196C629F661DC000DEF49 /* NearbyAPI.swift */,
+				77A196C829F661E3000DEF49 /* NearbyService.swift */,
+			);
+			path = Nearby;
 			sourceTree = "<group>";
 		};
 		77A4D5E929AE20A600367B7C /* Utils */ = {
@@ -1332,6 +1345,7 @@
 				F8C83FB0272F9CB10009DF0D /* Card */,
 				F8C83FB3272F9CF30009DF0D /* Group */,
 				F8C83FB4272F9E250009DF0D /* Util */,
+				77A196C529F661C4000DEF49 /* Nearby */,
 				F8F00C3C29DD487E00A15377 /* Update */,
 			);
 			path = NetworkService;
@@ -1748,6 +1762,7 @@
 				F8C83FCB272FA32C0009DF0D /* GroupService.swift in Sources */,
 				F88C8DE929B8919700196A33 /* ViewModelType.swift in Sources */,
 				F858079E2700354E00872484 /* BackgroundCollectionViewCell.swift in Sources */,
+				77A196C929F661E3000DEF49 /* NearbyService.swift in Sources */,
 				F8C83FBD272F9F430009DF0D /* GenericResponse.swift in Sources */,
 				77A4D5F629BC304C00367B7C /* UIStackView+Extension.swift in Sources */,
 				F835EF6F29800F51001ABAAF /* UIApplication+Extension.swift in Sources */,
@@ -1860,6 +1875,7 @@
 				F8915A23275728F20013D609 /* SelectMBTIBottomViewController.swift in Sources */,
 				393E3345275F69EE00965BBF /* SplashViewController.swift in Sources */,
 				F8C83FB8272F9E3F0009DF0D /* UtilAPI.swift in Sources */,
+				77A196C729F661DC000DEF49 /* NearbyAPI.swift in Sources */,
 				F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */,
 				77A4D5F929BC320600367B7C /* AroundMeCollectionViewCell.swift in Sources */,
 				39C394D4277CD33500DBA566 /* EmptyCardListTableViewCell.swift in Sources */,

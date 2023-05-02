@@ -466,7 +466,6 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
 
 extension CardShareBottomSheetViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("Location Here")
         if let location = locations.first {
             print("✅ 위도: ", location.coordinate.latitude)
             print("✅ 경도: ", location.coordinate.longitude)

@@ -13,6 +13,8 @@ class AroundMeCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
+    var cardUUID: String = ""
+    
     // MARK: - UI Components
     
     private let plusButton = UIButton().then {
@@ -54,12 +56,11 @@ class AroundMeCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Methods
     
-    //TODO: 나중에 model 나오면 재정의
     public func setData(_ model: AroundMeResponse) {
-//        profileImageView.updateServerImage(model.profileImage)
-        profileImageView.image = UIImage(named: model.profileImage)
-        myNameLabel.text = model.myName
+        profileImageView.updateServerImage(model.imageURL)
+        myNameLabel.text = model.name
         cardNameLabel.text = model.cardName
+        cardUUID = model.cardUUID
     }
     
     // MARK: - UI & Layout

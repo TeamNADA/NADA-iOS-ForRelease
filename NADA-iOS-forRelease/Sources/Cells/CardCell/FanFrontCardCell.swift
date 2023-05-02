@@ -98,7 +98,7 @@ extension FanFrontCardCell {
             $0?.constant = ($0?.constant ?? 0) * (258/540)
         }
         labels.forEach {
-            $0?.font = $0?.font.withSize(12)
+            $0?.font = $0?.font.withSize(($0?.font.pointSize ?? 0) * 0.65)
         }
         widths.forEach {
             $0?.constant = 12

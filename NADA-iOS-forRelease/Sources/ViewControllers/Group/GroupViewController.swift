@@ -333,7 +333,7 @@ extension GroupViewController: UICollectionViewDataSource {
                     return UICollectionViewCell()
                 }
                 cardCell.initCellFromServer(cardData: frontCards[indexPath.row], isShareable: false)
-//                cardCell.setConstraints()
+                cardCell.setConstraints()
                 return cardCell
             default:
                 return UICollectionViewCell()

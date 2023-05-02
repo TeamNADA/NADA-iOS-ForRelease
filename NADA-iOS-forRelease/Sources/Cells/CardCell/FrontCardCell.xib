@@ -55,7 +55,6 @@
                                         <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="CMJ-4p-lae"/>
-                                            <constraint firstAttribute="height" constant="24" id="Xxs-9N-RXe"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8oi-jO-fkf">
@@ -73,7 +72,6 @@
                                         <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="cuA-Eh-TkP"/>
-                                            <constraint firstAttribute="height" constant="24" id="e3W-4o-uT7"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63p-qi-OcL">
@@ -91,7 +89,6 @@
                                         <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="DaP-OT-lYg"/>
-                                            <constraint firstAttribute="height" constant="24" id="cpk-TF-9yb"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LqW-bV-yHr">
@@ -113,7 +110,7 @@
                         <rect key="frame" x="95.5" y="273.5" width="18" height="18"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="18" id="6KF-To-yWi"/>
-                            <constraint firstAttribute="height" constant="18" id="IeI-qi-pnl"/>
+                            <constraint firstAttribute="width" secondItem="SXl-Ls-Qsz" secondAttribute="height" multiplier="1:1" id="fx5-zr-XdG"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDj-1w-jyf">
@@ -146,7 +143,7 @@
                         <rect key="frame" x="24" y="273.5" width="18" height="18"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="18" id="4So-UZ-W8E"/>
-                            <constraint firstAttribute="height" constant="18" id="hHE-FG-uuR"/>
+                            <constraint firstAttribute="width" secondItem="Bkm-gK-Pca" secondAttribute="height" multiplier="1:1" id="d6q-Kk-QX9"/>
                         </constraints>
                     </imageView>
                 </subviews>
@@ -187,21 +184,34 @@
             <connections>
                 <outlet property="backgroundImageView" destination="D6t-Nc-4xH" id="qAU-7F-EMV"/>
                 <outlet property="birthLabel" destination="aik-Vi-yux" id="QTx-yd-LoY"/>
+                <outlet property="birthdayImageTop" destination="fn8-0D-X5B" id="amS-gL-5xK"/>
+                <outlet property="birthdayImageWidth" destination="4So-UZ-W8E" id="94j-k2-dJK"/>
+                <outlet property="descLabelTop" destination="W5z-RH-cOC" id="xj8-gL-2u3"/>
                 <outlet property="descriptionLabel" destination="VDj-1w-jyf" id="YqY-uP-XQV"/>
                 <outlet property="instagramIDLabel" destination="8oi-jO-fkf" id="eIE-ch-cCT"/>
                 <outlet property="instagramImageView" destination="TXF-fP-7YQ" id="CVp-bU-T3I"/>
+                <outlet property="instagramImageWidth" destination="CMJ-4p-lae" id="dKg-R6-HQW"/>
                 <outlet property="instagramStackView" destination="D6j-Cz-d99" id="1ZU-Be-asB"/>
                 <outlet property="linkURLImageView" destination="el0-x0-WD9" id="kWS-T3-Urt"/>
                 <outlet property="linkURLLabel" destination="LqW-bV-yHr" id="vD7-qs-hSc"/>
                 <outlet property="linkURLStackView" destination="7Qd-rb-YOy" id="6Xj-PV-blN"/>
+                <outlet property="mbtiImageLeading" destination="m7i-2Q-RNF" id="Z1w-VQ-5fY"/>
                 <outlet property="mbtiLabel" destination="eyB-c0-PQB" id="waJ-j4-tRM"/>
+                <outlet property="phoneImageWidth" destination="cuA-Eh-TkP" id="rVv-jC-y39"/>
                 <outlet property="phoneNumberImageView" destination="GXK-3x-QiF" id="Tyz-f0-Cy3"/>
                 <outlet property="phoneNumberLabel" destination="63p-qi-OcL" id="iYB-x9-hze"/>
                 <outlet property="phoneNumberStackView" destination="32s-jO-RgD" id="hmB-xr-kck"/>
                 <outlet property="shareButton" destination="aAt-PF-ce3" id="tNu-aM-Dsc"/>
                 <outlet property="titleLabel" destination="OeE-mZ-GcL" id="NIa-Yu-Bit"/>
+                <outlet property="titleLabelLeading" destination="kch-bF-wdy" id="Z0K-Pr-5lE"/>
+                <outlet property="titleLabelTop" destination="4yZ-WV-dW5" id="3V4-3L-GH1"/>
                 <outlet property="totalStackView" destination="AFF-gP-nt6" id="rwP-ON-N2U"/>
+                <outlet property="totalStackViewBottom" destination="NGu-mr-hGB" id="hHi-sL-Qrf"/>
+                <outlet property="totalStackViewLeading" destination="0o3-TT-y9X" id="ecD-8J-M2a"/>
+                <outlet property="totalStackViewTrailing" destination="TlW-CK-hkZ" id="7gj-eC-bN9"/>
+                <outlet property="urlImageWidth" destination="DaP-OT-lYg" id="BAp-0g-2tP"/>
                 <outlet property="userNameLabel" destination="cO6-DY-EUn" id="8AO-3c-DDH"/>
+                <outlet property="usernameLabelTop" destination="025-5i-Sid" id="7uz-Tx-JPp"/>
             </connections>
             <point key="canvasLocation" x="281.8840579710145" y="226.33928571428569"/>
         </collectionViewCell>

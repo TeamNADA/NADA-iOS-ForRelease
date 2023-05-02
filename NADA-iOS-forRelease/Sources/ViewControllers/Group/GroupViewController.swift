@@ -134,7 +134,9 @@ extension GroupViewController {
         cardsCollectionView.dataSource = self
          
         groupCollectionView.register(GroupCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.groupCollectionViewCell)
+        cardsCollectionView.register(FrontCardCell.nib(), forCellWithReuseIdentifier: FrontCardCell.className)
         cardsCollectionView.register(FanFrontCardCell.nib(), forCellWithReuseIdentifier: FanFrontCardCell.className)
+        cardsCollectionView.register(CompanyFrontCardCell.nib(), forCellWithReuseIdentifier: CompanyFrontCardCell.className)
     }
     
     private func setUI() {
@@ -310,34 +312,32 @@ extension GroupViewController: UICollectionViewDataSource {
             }
             return groupCell
         case cardsCollectionView:
-//            guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.cardInGroupCollectionViewCell, for: indexPath) as? CardInGroupCollectionViewCell else {
-//                return UICollectionViewCell()
-//            }
-            guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: FanFrontCardCell.className, for: indexPath) as? FanFrontCardCell else {
+            guard let frontCards = frontCards else { return UICollectionViewCell() }
+            switch frontCards[indexPath.row].cardType {
+            case "BASIC":
+                guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: FrontCardCell.className, for: indexPath) as? FrontCardCell else {
+                    return UICollectionViewCell()
+                }
+                cardCell.initCellFromServer(cardData: frontCards[indexPath.row], isShareable: false)
+                cardCell.setConstraints()
+                return cardCell
+            case "FAN":
+                guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: FanFrontCardCell.className, for: indexPath) as? FanFrontCardCell else {
+                    return UICollectionViewCell()
+                }
+                cardCell.initCellFromServer(cardData: frontCards[indexPath.row], isShareable: false)
+                cardCell.setConstraints()
+                return cardCell
+            case "COMPANY":
+                guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: CompanyFrontCardCell.className, for: indexPath) as? CompanyFrontCardCell else {
+                    return UICollectionViewCell()
+                }
+                cardCell.initCellFromServer(cardData: frontCards[indexPath.row], isShareable: false)
+//                cardCell.setConstraints()
+                return cardCell
+            default:
                 return UICollectionViewCell()
             }
-            
-            guard let frontCards = frontCards else { return UICollectionViewCell() }
-//            cardCell.backgroundImageView.updateServerImage(frontCards[indexPath.row].cardImage)
-//            cardCell.cardUUID = frontCards[indexPath.row].cardUUID
-//            cardCell.titleLabel.text = frontCards[indexPath.row].cardName
-//            cardCell.descriptionLabel.text = frontCards[indexPath.row].departmentName
-//            cardCell.userNameLabel.text = frontCards[indexPath.row].userName
-//            cardCell.birthLabel.text = frontCards[indexPath.row].birth
-//            cardCell.mbtiLabel.text = frontCards[indexPath.row].mbti
-//            cardCell.instagramIDLabel.text = frontCards[indexPath.row].instagram
-//            cardCell.lineURLLabel.text = frontCards[indexPath.row].urls
-//
-//            if frontCards[indexPath.row].instagram == "" {
-//                cardCell.instagramIcon.isHidden = true
-//            }
-//            if frontCards[indexPath.row].urls == "" {
-//                cardCell.urlIcon.isHidden = true
-//            }
-            cardCell.initCellFromServer(cardData: frontCards[indexPath.row], isShareable: false)
-            cardCell.setConstraints()
-            
-            return cardCell
         default:
             return UICollectionViewCell()
         }

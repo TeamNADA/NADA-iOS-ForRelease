@@ -104,6 +104,7 @@ extension FanFrontCardCell {
             $0?.constant = 12
         }
         totalStackView.spacing = 5
+        print("✅✅")
     }
     private func setTapGesture() {
         snsLabel.isUserInteractionEnabled = true

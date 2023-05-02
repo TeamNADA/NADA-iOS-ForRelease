@@ -8,7 +8,7 @@
 import Foundation
 
 struct CardListInGroupRequest: Codable {
-    var cardGroupId: Int
     var pageNo: Int
     var pageSize: Int
+    var groupName: String
 }

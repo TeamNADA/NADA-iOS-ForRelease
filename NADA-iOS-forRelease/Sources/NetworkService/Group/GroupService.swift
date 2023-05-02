@@ -10,12 +10,12 @@ import Moya
 
 enum GroupService {
     case groupListFetch
-    case groupDelete(groupID: Int, defaultGroupId: Int)
+    case groupDelete(cardGroupName: String)
     case groupAdd(groupRequest: GroupAddRequest)
     case groupEdit(groupRequest: GroupEditRequest)
     case cardAddInGroup(cardRequest: CardAddInGroupRequest)
     case cardListFetchInGroup(cardListInGroupRequest: CardListInGroupRequest)
-    case cardDeleteInGroup(groupID: Int, cardID: String)
+    case cardDeleteInGroup(cardUuid: String, cardGroupName: String)
     case groupReset
 }
 
@@ -39,16 +39,18 @@ extension GroupService: TargetType {
             return "/card-group/list"
         case .groupReset:
             return "/card-group/clear"
-        case .groupDelete(let groupID, _):
-            return "/card-group/\(groupID)"
-        case .groupAdd, .groupEdit:
+        case .groupDelete:
             return "/card-group"
+        case .groupAdd:
+            return "/card-group"
+        case .groupEdit:
+            return "/card-group/name"
         case .cardAddInGroup:
             return "/card-group/mapping"
-        case .cardListFetchInGroup(let cardListInGroupRequest):
-            return "/card-group/\(cardListInGroupRequest.cardGroupId)/cards"
-        case .cardDeleteInGroup(let groupID, let cardID):
-            return "/group/\(groupID)/\(cardID)"
+        case .cardListFetchInGroup:
+            return "/card-group/cards"
+        case .cardDeleteInGroup(let cardUuid, _):
+            return "/card-group/card/\(cardUuid)"
         }
     }
     
@@ -73,22 +75,26 @@ extension GroupService: TargetType {
         switch self {
         case .groupListFetch:
             return .requestPlain
-        case .cardDeleteInGroup, .groupReset:
+        case .groupReset:
             return .requestPlain
-        case .groupDelete(_, let defaultGroupId):
-            return .requestParameters(parameters: ["defaultGroupId": defaultGroupId],
+        case .cardDeleteInGroup(_, let cardGroupName):
+            return .requestParameters(parameters: ["cardGroupName": cardGroupName],
+                                      encoding: URLEncoding.queryString)
+        case .groupDelete(let cardGroupName):
+            return .requestParameters(parameters: ["cardGroupName": cardGroupName],
                                       encoding: URLEncoding.queryString)
         case .groupAdd(let groupRequest):
             return .requestJSONEncodable(groupRequest)
         case .groupEdit(let groupRequest):
             return .requestJSONEncodable(groupRequest)
-        case .cardAddInGroup(let gorupRequest):
-            return .requestParameters(parameters: ["cardGroupId": gorupRequest.cardGroupID,
-                                                   "cardUUID" : gorupRequest.cardUUID],
+        case .cardAddInGroup(let groupRequest):
+            return .requestParameters(parameters: ["cardGroupName": groupRequest.cardGroupName,
+                                                   "cardUUID": groupRequest.cardUUID],
                                       encoding: JSONEncoding.default)
         case .cardListFetchInGroup(let cardListInGroupRequest):
             return .requestParameters(parameters: ["pageNo": cardListInGroupRequest.pageNo,
-                                                   "pageSize": cardListInGroupRequest.pageSize], encoding: URLEncoding.queryString)
+                                                   "pageSize": cardListInGroupRequest.pageSize,
+                                                   "groupName": cardListInGroupRequest.groupName], encoding: URLEncoding.queryString)
         }
     }
     

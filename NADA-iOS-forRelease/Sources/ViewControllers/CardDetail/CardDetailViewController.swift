@@ -43,8 +43,9 @@ class CardDetailViewController: UIViewController {
     
     private var isFront = true
     var status: Status = .group
-    var serverGroups: Groups?
-    var groupId: Int?
+    var serverGroups: [String]?
+    var groupName: String?
+    var cardType: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,8 +61,8 @@ class CardDetailViewController: UIViewController {
 }
 
 extension CardDetailViewController {
-    func cardDeleteInGroupWithAPI(groupID: Int, cardID: String) {
-        GroupAPI.shared.cardDeleteInGroup(groupID: groupID, cardID: cardID) { response in
+    func cardDeleteInGroupWithAPI(cardUuid: String, cardGroupName: String) {
+        GroupAPI.shared.cardDeleteInGroup(cardUuid: cardUuid, cardGroupName: cardGroupName) { response in
             switch response {
             case .success:
                 print("cardDeleteInGroupWithAPI - success")
@@ -122,7 +123,7 @@ extension CardDetailViewController {
                         .setTitle("그룹선택")
                         .setHeight(386)
             nextVC.status = .detail
-            nextVC.groupId = self.groupId
+            nextVC.groupName = self.groupName
             nextVC.serverGroups = self.serverGroups
             nextVC.cardDataModel = self.cardDataModel
             nextVC.modalPresentationStyle = .overFullScreen
@@ -134,7 +135,7 @@ extension CardDetailViewController {
                                        message: "명함을 정말 삭제하시겠습니까?",
                                        deleteAction: { _ in
                 // 명함 삭제 서버통신
-                self.cardDeleteInGroupWithAPI(groupID: self.groupId ?? 0, cardID: self.cardDataModel?.cardUUID ?? "")
+                self.cardDeleteInGroupWithAPI(cardUuid: self.cardDataModel?.cardUUID ?? "", cardGroupName: self.groupName ?? "")
             }) })
         let options = UIMenu(title: "options", options: .displayInline, children: [changeGroup, deleteCard])
         
@@ -212,7 +213,7 @@ extension CardDetailViewController {
     // MARK: - @objc Methods
     
     @objc func didRecieveDataNotification(_ notification: Notification) {
-        groupId = notification.object as? Int ?? 0
+        groupName = notification.object as? String ?? ""
     }
     
     @objc

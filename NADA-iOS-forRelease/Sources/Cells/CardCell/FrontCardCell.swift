@@ -36,6 +36,21 @@ class FrontCardCell: CardCell {
     @IBOutlet weak var linkURLStackView: UIStackView!
     @IBOutlet weak var totalStackView: UIStackView!
     
+    @IBOutlet weak var titleLabelTop: NSLayoutConstraint!
+    @IBOutlet weak var titleLabelLeading: NSLayoutConstraint!
+    @IBOutlet weak var descLabelTop: NSLayoutConstraint!
+    @IBOutlet weak var usernameLabelTop: NSLayoutConstraint!
+    @IBOutlet weak var birthdayImageTop: NSLayoutConstraint!
+    @IBOutlet weak var birthdayImageWidth: NSLayoutConstraint!
+    @IBOutlet weak var mbtiImageLeading: NSLayoutConstraint!
+    @IBOutlet weak var instagramImageWidth: NSLayoutConstraint!
+    @IBOutlet weak var phoneImageWidth: NSLayoutConstraint!
+    @IBOutlet weak var urlImageWidth: NSLayoutConstraint!
+    @IBOutlet weak var mbtiImageWidth: NSLayoutConstraint!
+    @IBOutlet weak var totalStackViewBottom: NSLayoutConstraint!
+    @IBOutlet weak var totalStackViewLeading: NSLayoutConstraint!
+    @IBOutlet weak var totalStackViewTrailing: NSLayoutConstraint!
+    
     // MARK: - Life Cycle
     
     override func awakeFromNib() {
@@ -79,6 +94,23 @@ extension FrontCardCell {
         linkURLLabel.lineBreakMode = .byTruncatingTail
         
         linkURLStackView.alignment = .center
+    }
+    func setConstraints() {
+        let constraints = [titleLabelTop, titleLabelLeading, descLabelTop,
+                           usernameLabelTop, birthdayImageTop, mbtiImageLeading, totalStackViewBottom, totalStackViewLeading, totalStackViewTrailing]
+        let labels = [titleLabel, descriptionLabel, userNameLabel, birthLabel, mbtiLabel, instagramIDLabel, phoneNumberLabel, linkURLLabel]
+        let widths = [birthdayImageWidth, phoneImageWidth, urlImageWidth, mbtiImageWidth]
+        constraints.forEach {
+            $0?.constant = ($0?.constant ?? 0) * 0.6
+        }
+        labels.forEach {
+            $0?.font = $0?.font.withSize(($0?.font.pointSize ?? 0) * 0.6)
+        }
+        widths.forEach {
+            $0?.constant = 12
+        }
+        totalStackView.spacing = 5
+        print("✅✅")
     }
     private func setTapGesture() {
         instagramIDLabel.isUserInteractionEnabled = true

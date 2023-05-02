@@ -37,6 +37,21 @@ class CompanyFrontCardCell: CardCell {
     @IBOutlet weak var linkURLStackView: UIStackView!
     @IBOutlet weak var totalStackView: UIStackView!
     
+    @IBOutlet weak var titleLabelTop: NSLayoutConstraint!
+    @IBOutlet weak var titleLabelLeading: NSLayoutConstraint!
+    @IBOutlet weak var descLabelTop: NSLayoutConstraint!
+    @IBOutlet weak var userNameLabelTop: NSLayoutConstraint!
+    @IBOutlet weak var birthdayImageTop: NSLayoutConstraint!
+    @IBOutlet weak var birthdayImageWidth: NSLayoutConstraint!
+    @IBOutlet weak var mbtiImageLeading: NSLayoutConstraint!
+    @IBOutlet weak var mbtiImageWidth: NSLayoutConstraint!
+    @IBOutlet weak var mailImageWidth: NSLayoutConstraint!
+    @IBOutlet weak var phoneImageWidth: NSLayoutConstraint!
+    @IBOutlet weak var urlImageWidth: NSLayoutConstraint!
+    @IBOutlet weak var totalStackviewBottom: NSLayoutConstraint!
+    @IBOutlet weak var totalStackviewLeading: NSLayoutConstraint!
+    @IBOutlet weak var totalStackviewTrailing: NSLayoutConstraint!
+    
     // MARK: - Life Cycle
     
     override func awakeFromNib() {
@@ -80,6 +95,24 @@ extension CompanyFrontCardCell {
         linkURLLabel.lineBreakMode = .byTruncatingTail
         
         linkURLStackView.alignment = .center
+    }
+    func setConstraints() {
+        let constraints = [titleLabelTop, titleLabelLeading, descLabelTop,
+                           userNameLabelTop, birthdayImageTop, mbtiImageLeading, totalStackviewBottom, totalStackviewLeading, totalStackviewTrailing]
+        let labels = [titleLabel, descriptionLabel, userNameLabel, birthLabel, mbtiLabel, phoneNumberLabel, linkURLLabel, mailLabel]
+        let widths = [birthdayImageWidth, mbtiImageWidth, mailImageWidth, phoneImageWidth, urlImageWidth]
+        
+        constraints.forEach {
+            $0?.constant = ($0?.constant ?? 0) * 0.6
+        }
+        labels.forEach {
+            $0?.font = $0?.font.withSize(($0?.font.pointSize ?? 0) * 0.6)
+        }
+        widths.forEach {
+            $0?.constant = 12
+        }
+        totalStackView.spacing = 5
+        print("✅✅")
     }
     private func setTapGesture() {
         mailLabel.isUserInteractionEnabled = true

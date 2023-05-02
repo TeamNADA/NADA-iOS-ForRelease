@@ -19,8 +19,8 @@ class GroupEditViewController: UIViewController {
     // MARK: - Properties
     var viewModel: GroupEditViewModel!
     private let disposeBag = DisposeBag()
-    var serverGroups: [Group]?
-    var unClass: Int?
+    var serverGroups: [String]?
+    var unClass: String?
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var groupEditTableView: UITableView!
@@ -66,12 +66,12 @@ class GroupEditViewController: UIViewController {
             .withUnretained(self)
             .subscribe { owner, list in
                 owner.setData(groupList: list)
-                self.unClass = self.serverGroups?[0].cardGroupId
+                self.unClass = self.serverGroups?[0]
                 self.serverGroups?.remove(at: 0)
             }.disposed(by: self.disposeBag)
     }
     
-    func setData(groupList: [Group]) {
+    func setData(groupList: [String]) {
         self.serverGroups = groupList
         self.groupEditTableView.reloadData()
     }
@@ -106,9 +106,7 @@ extension GroupEditViewController: UITableViewDelegate {
                 self.makeCancelDeleteAlert(title: "그룹 삭제", message: "해당 그룹에 있던 명함은\n미분류 그룹으로 이동합니다.", cancelAction: { _ in
                     // 취소 눌렀을 때 액션이 들어갈 부분
                 }, deleteAction: { _ in
-                    self.groupDeleteWithAPI(
-                        groupID: self.serverGroups?[indexPath.row].cardGroupId ?? 0,
-                        defaultGroupId: self.unClass ?? 0)
+                    self.groupDeleteWithAPI(cardGroupName: self.serverGroups?[indexPath.row] ?? "")
                     self.groupEditTableView.reloadData()
                     NotificationCenter.default.post(name: Notification.Name.passDataToGroup, object: 0, userInfo: nil)
                 })
@@ -128,7 +126,7 @@ extension GroupEditViewController: UITableViewDelegate {
                 .setTitle("그룹명 변경")
                 .setHeight(184)
             nextVC.modalPresentationStyle = .overFullScreen
-            nextVC.text = serverGroups?[indexPath.row].cardGroupName ?? ""
+            nextVC.text = serverGroups?[indexPath.row] ?? ""
             nextVC.returnToGroupEditViewController = {
                 self.groupListFetchWithAPI()
             }
@@ -156,7 +154,7 @@ extension GroupEditViewController: UITableViewDataSource {
         } else {
             guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: GroupEditTableViewCell.className, for: indexPath) as? GroupEditTableViewCell else { return UITableViewCell() }
             
-            serviceCell.initData(title: serverGroups?[indexPath.row].cardGroupName ?? "")
+            serviceCell.initData(title: serverGroups?[indexPath.row] ?? "")
             return serviceCell
         }
     }
@@ -165,7 +163,7 @@ extension GroupEditViewController: UITableViewDataSource {
 // MARK: - Extensions
 extension GroupEditViewController {
     func serverGroupList() {
-        self.unClass = serverGroups?[0].cardGroupId
+        self.unClass = serverGroups?[0]
         serverGroups?.remove(at: 0)
     }
 }
@@ -176,9 +174,9 @@ extension GroupEditViewController {
         GroupAPI.shared.groupListFetch { response in
             switch response {
             case .success(let data):
-                if let group = data as? [Group] {
+                if let group = data as? [String] {
                     self.serverGroups = group
-                    self.unClass = self.serverGroups?[0].cardGroupId
+                    self.unClass = self.serverGroups?[0]
                     self.serverGroups?.remove(at: 0)
                     self.groupEditTableView.reloadData()
                 }
@@ -194,8 +192,8 @@ extension GroupEditViewController {
         }
     }
     
-    func groupDeleteWithAPI(groupID: Int, defaultGroupId: Int) {
-        GroupAPI.shared.groupDelete(groupID: groupID, defaultGroupId: defaultGroupId) { response in
+    func groupDeleteWithAPI(cardGroupName: String) {
+        GroupAPI.shared.groupDelete(cardGroupName: cardGroupName) { response in
             switch response {
             case .success:
                 print("groupDeleteWithAPI - success")

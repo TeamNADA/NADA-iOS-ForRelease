@@ -25,7 +25,7 @@ protocol ModuleFactoryProtocol {
     func makeAroundMeVC() -> AroundMeViewController
     func makeUpdateVC() -> UpdateViewController
     func makeCardDetailVC() -> CardDetailViewController
-    func makeGroupEditVC(groupList: [Group]) -> GroupEditViewController
+    func makeGroupEditVC(groupList: [String]) -> GroupEditViewController
 }
 
 final class ModuleFactory: ModuleFactoryProtocol {
@@ -58,7 +58,7 @@ final class ModuleFactory: ModuleFactoryProtocol {
         return cardDetailVC
     }
     
-    func makeGroupEditVC(groupList: [Group]) -> GroupEditViewController {
+    func makeGroupEditVC(groupList: [String]) -> GroupEditViewController {
         let viewModel = GroupEditViewModel(groupList: groupList)
         let groupEditVC = GroupEditViewController.controllerFromStoryboard(.groupEdit)
         groupEditVC.viewModel = viewModel

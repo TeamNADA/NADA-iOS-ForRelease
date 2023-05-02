@@ -15,8 +15,8 @@ public class GroupAPI {
 
     public init() { }
     
-    func cardDeleteInGroup(groupID: Int, cardID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        groupProvider.request(.cardDeleteInGroup(groupID: groupID, cardID: cardID)) { (result) in
+    func cardDeleteInGroup(cardUUID: String, cardGroupName: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        groupProvider.request(.cardDeleteInGroup(cardUUID: cardUUID, cardGroupName: cardGroupName)) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
@@ -38,7 +38,7 @@ public class GroupAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeStatus(by: statusCode, data: data, type: [Group].self)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: [String].self)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -47,8 +47,8 @@ public class GroupAPI {
         }
     }
     
-    func groupDelete(groupID: Int, defaultGroupId: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
-        groupProvider.request(.groupDelete(groupID: groupID, defaultGroupId: defaultGroupId)) { (result) in
+    func groupDelete(cardGroupName: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        groupProvider.request(.groupDelete(cardGroupName: cardGroupName)) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode

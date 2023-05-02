@@ -9,11 +9,11 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>88xZPY</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>22C65</string>
+	<string>22D68</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>14C18</string>
+	<string>14E222b</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>14.2</string>
+	<string>14.3</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
@@ -103,7 +103,7 @@
 			<key>INTypeDisplayNameID</key>
 			<string>J1deG2</string>
 			<key>INTypeLastPropertyTag</key>
-			<integer>101</integer>
+			<integer>103</integer>
 			<key>INTypeName</key>
 			<string>MyCard</string>
 			<key>INTypeProperties</key>
@@ -157,6 +157,34 @@
 					<integer>4</integer>
 					<key>INTypePropertyType</key>
 					<string>SpeakableString</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDisplayName</key>
+					<string>User Name</string>
+					<key>INTypePropertyDisplayNameID</key>
+					<string>oPOynL</string>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>5</integer>
+					<key>INTypePropertyName</key>
+					<string>userName</string>
+					<key>INTypePropertyTag</key>
+					<integer>102</integer>
+					<key>INTypePropertyType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDisplayName</key>
+					<string>Card Image</string>
+					<key>INTypePropertyDisplayNameID</key>
+					<string>QzTUbw</string>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>6</integer>
+					<key>INTypePropertyName</key>
+					<string>cardImage</string>
+					<key>INTypePropertyTag</key>
+					<integer>103</integer>
+					<key>INTypePropertyType</key>
+					<string>String</string>
 				</dict>
 			</array>
 		</dict>

@@ -17,13 +17,12 @@ struct MyCardProvider: IntentTimelineProvider {
     func getSnapshot(for configuration: MyCardIntent, in context: Context, completion: @escaping (MyCardEntry) -> Void) {
         let entry: MyCardEntry
         
-        if let cardID = configuration.myCard?.identifier,
-           let card = fetchMyCard(with: cardID) {
-            entry = MyCardEntry(date: Date(), widgetCard: WidgetCard(cardID: card.cardUUID,
-                                                       title: card.cardName,
-                                                       userName: card.userName,
-            // TODO: - image 를 통신하거나 DB 에서 꺼내오는 작업이 필요하다.
-                                                       backgroundImage: UIImage(named: card.cardImage) ?? UIImage()))
+        if let card = configuration.myCard {
+            entry = MyCardEntry(date: Date(),
+                                widgetCard: WidgetCard(cardID: card.identifier ?? "",
+                                                       title: card.displayString,
+                                                       userName: card.userName ?? "",
+                                                       backgroundImage: fetchImage(card.cardImage ?? "")))
         } else {
             entry = MyCardEntry(date: Date(), widgetCard: nil)
         }
@@ -36,15 +35,14 @@ struct MyCardProvider: IntentTimelineProvider {
 
         let currentDate = Date()
         
-        if let cardID = configuration.myCard?.identifier,
-           let card = fetchMyCard(with: cardID) {
+        if let card = configuration.myCard {
             for hourOffset in 0 ..< 5 {
                 let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate) ?? Date()
-                let entry = MyCardEntry(date: entryDate, widgetCard: WidgetCard(cardID: card.cardUUID,
-                                                               title: card.cardName,
-                                                               userName: card.userName,
-                // TODO: - image 를 통신하거나 DB 에서 꺼내오는 작업이 필요하다.
-                                                               backgroundImage: UIImage(named: card.cardImage) ?? UIImage()))
+                let entry = MyCardEntry(date: entryDate,
+                                        widgetCard: WidgetCard(cardID: card.identifier ?? "",
+                                                               title: card.displayString,
+                                                               userName: card.userName ?? "",
+                                                               backgroundImage: fetchImage(card.cardImage ?? "")))
                 entries.append(entry)
             }
         } else {
@@ -60,17 +58,12 @@ struct MyCardProvider: IntentTimelineProvider {
 }
 
 extension MyCardProvider {
-    // TODO: - 서버 혹은 DB 를 활용하여 내 명함을 조회하는 함수로 변경.
-    private func fetchMyCard(with cardID: String) -> Card? {
-        var matchedCard: Card?
+    private func fetchImage(_ urlString: String) -> UIImage {
+        guard let url = URL(string: urlString),
+              let data = try? Data(contentsOf: url),
+              let image = UIImage(data: data) else { return UIImage() }
         
-        Card.mockData.forEach { card in
-            if card.cardUUID == cardID {
-                matchedCard = card
-            }
-        }
-        
-        return matchedCard
+        return image
     }
 }
 

@@ -110,8 +110,8 @@ extension MoreViewController {
     func setLogoutClicked() {
         makeOKCancelAlert(title: "", message: "로그아웃 하시겠습니까?", okAction: { _ in
             self.makeOKAlert(title: "", message: "로그아웃이 완료 되었습니다.") { _ in
-                if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) {
-                    self.defaults.removeObject(forKey: Const.UserDefaultsKey.accessToken)
+                if let acToken = UserDefaults.appGroup.string(forKey: Const.UserDefaultsKey.accessToken) {
+                    UserDefaults.appGroup.removeObject(forKey: Const.UserDefaultsKey.accessToken)
 //                    self.defaults.removeObject(forKey: Const.UserDefaultsKey.refreshToken)
                     self.defaults.removeObject(forKey: Const.UserDefaultsKey.darkModeState)
                     
@@ -137,7 +137,7 @@ extension MoreViewController {
         makeOKCancelAlert(title: "", message: "정말 탈퇴하시겠습니까?\n앱 내 정보가 모두 삭제되며, 이후 복구는 불가합니다.", okAction: { [weak self ]_ in
             self?.deleteUserWithAPI {
                 self?.makeOKAlert(title: "", message: "나다를 이용해주셔서 감사합니다.\n다음에 또 뵈어요! 🥹") { _ in
-                    self?.defaults.removeObject(forKey: Const.UserDefaultsKey.accessToken)
+                    UserDefaults.appGroup.removeObject(forKey: Const.UserDefaultsKey.accessToken)
 //                        self.defaults.removeObject(forKey: Const.UserDefaultsKey.refreshToken)
                     self?.defaults.removeObject(forKey: Const.UserDefaultsKey.darkModeState)
                     

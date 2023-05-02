@@ -227,13 +227,7 @@ extension CardDetailViewController {
             cardView.addSubview(backCard)
             isFront = false
         } else {
-            guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
-            
-            frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
-            guard let cardDataModel = cardDataModel else { return }
-            frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
-            
-            cardView.addSubview(frontCard)
+            setFrontCard()
             isFront = true
         }
         if swipeGesture.direction == .right {

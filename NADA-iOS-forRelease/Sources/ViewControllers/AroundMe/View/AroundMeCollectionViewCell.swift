@@ -13,14 +13,20 @@ class AroundMeCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
+    var cardUUID: String = ""
+    var addCardMethod: (() -> Void)?
+    
     // MARK: - UI Components
     
     private let plusButton = UIButton().then {
         $0.setImage(UIImage(named: "icnPlusCircle"), for: .normal)
+        $0.addTarget(self, action: #selector(touchPlusButton), for: .touchUpInside)
     }
     
     private var profileImageView = UIImageView().then {
         $0.image = UIImage(named: "imgProfileSmall")
+        $0.layer.cornerRadius = 33
+        $0.clipsToBounds = true
     }
     
     private var myNameLabel = UILabel().then {
@@ -32,6 +38,7 @@ class AroundMeCollectionViewCell: UICollectionViewCell {
     }
     
     private var cardNameLabel = UILabel().then {
+        $0.textColor = .tertiary
         $0.font = .textBold02
     }
     
@@ -53,12 +60,11 @@ class AroundMeCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Methods
     
-    //TODO: 나중에 model 나오면 재정의
     public func setData(_ model: AroundMeResponse) {
-//        profileImageView.updateServerImage(model.profileImage)
-        profileImageView.image = UIImage(named: model.profileImage)
-        myNameLabel.text = model.myName
+        profileImageView.updateServerImage(model.imageURL)
+        myNameLabel.text = model.name
         cardNameLabel.text = model.cardName
+        cardUUID = model.cardUUID
     }
     
     // MARK: - UI & Layout
@@ -78,6 +84,7 @@ class AroundMeCollectionViewCell: UICollectionViewCell {
         profileImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(20)
             make.leading.equalToSuperview().inset(12)
+            make.width.height.equalTo(66)
         }
         myNameLabel.snp.makeConstraints { make in
             make.centerY.equalTo(profileImageView.snp.centerY)
@@ -88,8 +95,18 @@ class AroundMeCollectionViewCell: UICollectionViewCell {
             make.leading.equalToSuperview().inset(20)
         }
         dividerLine.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.leading.equalToSuperview()
             make.bottom.equalTo(cardNameLabel.snp.top).offset(-11)
-            make.height.equalTo(0.5)
+            make.height.equalTo(1)
         }
     }
+    
+    // MARK: - @objc
+    
+    @objc
+    private func touchPlusButton() {
+        addCardMethod?()
+    }
+    
 }

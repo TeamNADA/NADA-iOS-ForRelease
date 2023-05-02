@@ -19,6 +19,11 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     public var isShareable = false
     public var cardDataModel: Card?
     public var isActivate: Bool?
+    private weak var timer: Timer?
+    private var seconds = 0
+    private var savedTime = "10:00"
+    private var timesLeft = 600
+    private var appDidEnterBackgroundDate: Date?
     var locationManager = CLLocationManager()
     
     private var latitude: CLLocationDegrees = 0
@@ -56,6 +61,16 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     private let nearByLabel: UILabel = {
         let label = UILabel()
         label.font = .button02
+        
+        return label
+    }()
+    
+    private let nearByTimeLabel: UILabel = {
+        let label = UILabel()
+        label.font = .button02
+        label.textColor = .mainColorNadaMain
+        label.text = "10:00"
+        label.sizeToFit()
         
         return label
     }()
@@ -134,6 +149,11 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         setLocationManager()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setNotification()
+        nearByUUIDFetchWithAPI(cardUUID: cardDataModel?.cardUUID ?? "")
+    }
+    
     // MARK: - @Functions
     
     private func setupUI() {
@@ -145,23 +165,24 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         
         cardBackgroundView.addSubviews([nadaLogoImage, qrImage, idStackView, saveAsImageButton])
         
-        nearByBackgroundView.addSubviews([nearByImage, nearByLabel, nearBySwitch, lottieImage])
+        nearByBackgroundView.addSubviews([nearByImage, nearByLabel, nearByTimeLabel, nearBySwitch, lottieImage])
         
         idLabel.text = cardDataModel?.cardUUID ?? ""
         
-        setCardActivationUI(with: isActivate ?? false)
+        setCardActivationUI(with: isActivate ?? false, secondsLeft: 0)
         
         setupLayout()
         setQRImage()
     }
     
-    private func setCardActivationUI(with isActivate: Bool) {
+    private func setCardActivationUIWithAPI(with isActivate: Bool) {
         nearByBackgroundView.backgroundColor = isActivate ? .mainColorNadaMain.withAlphaComponent(0.15) : .card
         
         nearByImage.image = isActivate ? UIImage(named: "icnNearbyOn") : UIImage(named: "icnNearbyOff")
         
         nearByLabel.text = isActivate ? "내 근처의 명함 ON" : "내 근처의 명함 OFF"
         nearByLabel.textColor = isActivate ? .mainColorNadaMain : .tertiary
+        nearByTimeLabel.isHidden = !isActivate
         
         nearBySwitch.setOn(isActivate, animated: false)
         
@@ -169,19 +190,93 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         _ = isActivate ? lottieImage.play() : lottieImage.stop()
         
         // TODO: 여기서 스위치 키면 위치정보 받아오기, 끄면 위치 정보 노출하지 않기
+        locationManager.startUpdatingLocation()
+        latitude = locationManager.location?.coordinate.latitude ?? 0
+        longitude = locationManager.location?.coordinate.longitude ?? 0
+        
         if isActivate {
             //TODO: 여기서 활성화된 명함 정보/위치정보 API로 쏴주기
-            locationManager.startUpdatingLocation()
-            latitude = locationManager.location?.coordinate.latitude ?? 0
-            longitude = locationManager.location?.coordinate.longitude ?? 0
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(processTimer), userInfo: nil, repeats: true)
             
             print("✅ activated")
             print("✅ latitude: ", latitude)
             print("✅ longitude: ", longitude)
+            postNearByCardWithAPI(nearByRequest: NearByRequest(cardUUID: cardDataModel?.cardUUID ?? "", isActive: true, latitude: latitude, longitude: longitude))
             
         } else {
             // TODO: 여기서 비활성화된 명함 정보/위치정보 API로 쏴주기
+            timer?.invalidate()
+            seconds = 0
+            nearByTimeLabel.text = "10:00"
+            print("✅✅ deactivated")
+            print("✅ latitude: ", latitude)
+            print("✅ longitude: ", longitude)
+            postNearByCardWithAPI(nearByRequest: NearByRequest(cardUUID: cardDataModel?.cardUUID ?? "", isActive: false, latitude: latitude, longitude: longitude))
+        }
+    }
+    
+    private func setCardActivationUI(with isActivate: Bool, secondsLeft: Int) {
+        nearByBackgroundView.backgroundColor = isActivate ? .mainColorNadaMain.withAlphaComponent(0.15) : .card
+        
+        nearByImage.image = isActivate ? UIImage(named: "icnNearbyOn") : UIImage(named: "icnNearbyOff")
+        
+        nearByLabel.text = isActivate ? "내 근처의 명함 ON" : "내 근처의 명함 OFF"
+        nearByLabel.textColor = isActivate ? .mainColorNadaMain : .tertiary
+        nearByTimeLabel.isHidden = !isActivate
+        
+        nearBySwitch.setOn(isActivate, animated: false)
+        
+        lottieImage.isHidden = isActivate ? false : true
+        _ = isActivate ? lottieImage.play() : lottieImage.stop()
+        
+        if isActivate {
+            //TODO: 여기서 활성화된 명함 정보/위치정보 API로 쏴주기
+            print(calculateMinuteTime(sec: calculateMinuteTimeToInt(time: savedTime) - secondsLeft))
+            print(secondsLeft)
+
+            if secondsLeft >= 600 {
+                postNearByCardWithAPI(nearByRequest: NearByRequest(cardUUID: cardDataModel?.cardUUID ?? "", isActive: false, latitude: latitude, longitude: longitude))
+            }
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(processTimer), userInfo: nil, repeats: true)
             
+            print("✅ activated")
+            print("✅ latitude: ", latitude)
+            print("✅ longitude: ", longitude)
+        } else {
+            // TODO: 여기서 비활성화된 명함 정보/위치정보 API로 쏴주기
+            timer?.invalidate()
+            seconds = 0
+            nearByTimeLabel.text = "10:00"
+            print("✅✅ deactivated")
+        }
+    }
+    
+    func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground(_:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+
+    @objc func applicationDidEnterBackground(_ notification: NotificationCenter) {
+        appDidEnterBackgroundDate = Date()
+        savedTime = nearByTimeLabel.text ?? "00:00"
+        print(savedTime)
+    }
+
+    @objc func applicationWillEnterForeground(_ notification: NotificationCenter) {
+        guard let previousDate = appDidEnterBackgroundDate else { return }
+        let calendar = Calendar.current
+        let difference = calendar.dateComponents([.second], from: previousDate, to: Date())
+        let seconds = difference.second!
+        print(savedTime)
+        print(calculateMinuteTime(sec: calculateMinuteTimeToInt(time: savedTime) - seconds))
+        print(seconds)
+
+        if seconds >= 600 {
+            postNearByCardWithAPI(nearByRequest: NearByRequest(cardUUID: cardDataModel?.cardUUID ?? "", isActive: false, latitude: latitude, longitude: longitude))
+        } else {
+            DispatchQueue.main.async {
+                self.nearByTimeLabel.text = calculateMinuteTime(sec: calculateMinuteTimeToInt(time: self.savedTime) - seconds)
+            }
         }
     }
     
@@ -242,13 +337,19 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
             nearByLabel.centerYAnchor.constraint(equalTo: nearByBackgroundView.centerYAnchor),
             nearByLabel.leadingAnchor.constraint(equalTo: nearByImage.trailingAnchor)
         ])
-        
+                
         nearBySwitch.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             nearBySwitch.centerYAnchor.constraint(equalTo: nearByBackgroundView.centerYAnchor),
             nearBySwitch.trailingAnchor.constraint(equalTo: nearByBackgroundView.trailingAnchor, constant: -20.0),
             nearBySwitch.heightAnchor.constraint(equalToConstant: 31.0),
             nearBySwitch.widthAnchor.constraint(equalToConstant: 51.0)
+        ])
+        
+        nearByTimeLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nearByTimeLabel.centerYAnchor.constraint(equalTo: nearByBackgroundView.centerYAnchor),
+            nearByTimeLabel.trailingAnchor.constraint(equalTo: nearBySwitch.leadingAnchor, constant: -5.0)
         ])
         
         lottieImage.translatesAutoresizingMaskIntoConstraints = false
@@ -399,13 +500,18 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     }
     
     @objc func touchSwitch(_ sender: UISwitch) {
-        setCardActivationUI(with: sender.isOn)
+        setCardActivationUIWithAPI(with: sender.isOn)
+    }
+    
+    @objc
+    func processTimer() {
+        seconds += 1
+        nearByTimeLabel.text = calculateMinuteTime(sec: timesLeft - seconds)
     }
 }
 
 extension CardShareBottomSheetViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("Location Here")
         if let location = locations.first {
             print("✅ 위도: ", location.coordinate.latitude)
             print("✅ 경도: ", location.coordinate.longitude)
@@ -417,5 +523,49 @@ extension CardShareBottomSheetViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
+    }
+}
+
+// MARK: - Network
+
+extension CardShareBottomSheetViewController {
+    func postNearByCardWithAPI(nearByRequest: NearByRequest) {
+        NearbyAPI.shared.postNearByCard(nearByRequest: nearByRequest) { response in
+            switch response {
+            case .success:
+                print("postNearByCardWithAPI - success")
+            case .requestErr(let message):
+                print("postNearByCardWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("postNearByCardWithAPI - pathErr")
+            case .serverErr:
+                print("postNearByCardWithAPI - serverErr")
+            case .networkFail:
+                print("postNearByCardWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func nearByUUIDFetchWithAPI(cardUUID: String) {
+        NearbyAPI.shared.nearByUUIDFetch(cardUUID: cardUUID) { response in
+            switch response {
+            case .success(let data):
+                if let nearByUUIDResponse = data as? NearByUUIDResponse {
+                    print("✅✅✅")
+                    let interval = Date() - (nearByUUIDResponse.activeTime.toDate() ?? Date())
+                    self.setCardActivationUI(with: nearByUUIDResponse.isActive, secondsLeft: interval.second ?? 0)
+                    self.timesLeft = interval.second ?? 600
+                }
+                print("nearByUUIDFetchWithAPI - success")
+            case .requestErr(let message):
+                print("nearByUUIDFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("nearByUUIDFetchWithAPI - pathErr")
+            case .serverErr:
+                print("nearByUUIDFetchWithAPI - serverErr")
+            case .networkFail:
+                print("nearByUUIDFetchWithAPI - networkFail")
+            }
+        }
     }
 }

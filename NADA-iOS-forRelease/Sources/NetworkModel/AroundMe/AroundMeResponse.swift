@@ -7,8 +7,14 @@
 
 import Foundation
 
-struct AroundMeResponse {
-    let profileImage: String
-    let myName: String
-    let cardName: String
+struct AroundMeResponse: Codable {
+    let name, cardName: String
+    let imageURL: String
+    let cardUUID: String
+
+    enum CodingKeys: String, CodingKey {
+        case name, cardName
+        case imageURL = "imageUrl"
+        case cardUUID = "cardUuid"
+    }
 }

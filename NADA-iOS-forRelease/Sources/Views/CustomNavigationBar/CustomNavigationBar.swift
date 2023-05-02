@@ -38,7 +38,7 @@ class CustomNavigationBar: UIView {
     private lazy var leftButton = UIButton().then {
         $0.addTarget(self, action: #selector(touchLeftButton(_:)), for: .touchUpInside)
     }
-    private lazy var rightButton = UIButton().then {
+    lazy var rightButton = UIButton().then {
         $0.addTarget(self, action: #selector(touchRightButton(_:)), for: .touchUpInside)
     }
     

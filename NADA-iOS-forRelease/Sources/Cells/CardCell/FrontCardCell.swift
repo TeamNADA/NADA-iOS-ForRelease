@@ -46,6 +46,7 @@ class FrontCardCell: CardCell {
     @IBOutlet weak var instagramImageWidth: NSLayoutConstraint!
     @IBOutlet weak var phoneImageWidth: NSLayoutConstraint!
     @IBOutlet weak var urlImageWidth: NSLayoutConstraint!
+    @IBOutlet weak var mbtiImageWidth: NSLayoutConstraint!
     @IBOutlet weak var totalStackViewBottom: NSLayoutConstraint!
     @IBOutlet weak var totalStackViewLeading: NSLayoutConstraint!
     @IBOutlet weak var totalStackViewTrailing: NSLayoutConstraint!
@@ -98,12 +99,12 @@ extension FrontCardCell {
         let constraints = [titleLabelTop, titleLabelLeading, descLabelTop,
                            usernameLabelTop, birthdayImageTop, mbtiImageLeading, totalStackViewBottom, totalStackViewLeading, totalStackViewTrailing]
         let labels = [titleLabel, descriptionLabel, userNameLabel, birthLabel, mbtiLabel, instagramIDLabel, phoneNumberLabel, linkURLLabel]
-        let widths = [birthdayImageWidth, phoneImageWidth, urlImageWidth]
+        let widths = [birthdayImageWidth, phoneImageWidth, urlImageWidth, mbtiImageWidth]
         constraints.forEach {
             $0?.constant = ($0?.constant ?? 0) * (258/540)
         }
         labels.forEach {
-            $0?.font = $0?.font.withSize(($0?.font.pointSize ?? 0) * 0.65)
+            $0?.font = $0?.font.withSize(($0?.font.pointSize ?? 0) * 0.6)
         }
         widths.forEach {
             $0?.constant = 12

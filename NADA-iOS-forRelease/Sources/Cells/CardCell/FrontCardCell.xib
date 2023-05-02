@@ -196,6 +196,7 @@
                 <outlet property="linkURLLabel" destination="LqW-bV-yHr" id="vD7-qs-hSc"/>
                 <outlet property="linkURLStackView" destination="7Qd-rb-YOy" id="6Xj-PV-blN"/>
                 <outlet property="mbtiImageLeading" destination="m7i-2Q-RNF" id="Z1w-VQ-5fY"/>
+                <outlet property="mbtiImageWidth" destination="6KF-To-yWi" id="C8c-O4-epP"/>
                 <outlet property="mbtiLabel" destination="eyB-c0-PQB" id="waJ-j4-tRM"/>
                 <outlet property="phoneImageWidth" destination="cuA-Eh-TkP" id="rVv-jC-y39"/>
                 <outlet property="phoneNumberImageView" destination="GXK-3x-QiF" id="Tyz-f0-Cy3"/>

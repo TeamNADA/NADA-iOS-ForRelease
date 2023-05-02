@@ -71,7 +71,7 @@ class GroupNameEditBottomSheetViewController: CommonBottomSheetViewController, U
         let safeAreaHeight = view.safeAreaLayoutGuide.layoutFrame.height
         let bottomPadding = view.safeAreaInsets.bottom
         bottomSheetViewTopConstraint?.constant = safeAreaHeight + bottomPadding
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
             self.dimmedBackView.alpha = 0.0
             self.view.layoutIfNeeded()
             self.bottomSheetCoverView.isHidden = false

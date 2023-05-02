@@ -15,6 +15,7 @@ class CompanyFrontCardCell: CardCell {
     // MARK: - Properties
     
     private var cardData: Card?
+    private var setConstraintDone = false
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var backgroundImageView: UIImageView!
@@ -97,6 +98,9 @@ extension CompanyFrontCardCell {
         linkURLStackView.alignment = .center
     }
     func setConstraints() {
+        if setConstraintDone { return }
+        setConstraintDone = true
+        
         let constraints = [titleLabelTop, titleLabelLeading, descLabelTop,
                            userNameLabelTop, birthdayImageTop, mbtiImageLeading, totalStackviewBottom, totalStackviewLeading, totalStackviewTrailing]
         let labels = [titleLabel, descriptionLabel, userNameLabel, birthLabel, mbtiLabel, phoneNumberLabel, linkURLLabel, mailLabel]

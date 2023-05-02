@@ -92,9 +92,14 @@ extension GroupService: TargetType {
                                                    "cardUUID": groupRequest.cardUUID],
                                       encoding: JSONEncoding.default)
         case .cardListFetchInGroup(let cardListInGroupRequest):
-            return .requestParameters(parameters: ["pageNo": cardListInGroupRequest.pageNo,
-                                                   "pageSize": cardListInGroupRequest.pageSize,
-                                                   "groupName": cardListInGroupRequest.groupName], encoding: URLEncoding.queryString)
+            if cardListInGroupRequest.groupName == "미분류" {
+                return .requestParameters(parameters: ["pageNo": cardListInGroupRequest.pageNo,
+                                                       "pageSize": cardListInGroupRequest.pageSize], encoding: URLEncoding.queryString)
+            } else {
+                return .requestParameters(parameters: ["pageNo": cardListInGroupRequest.pageNo,
+                                                       "pageSize": cardListInGroupRequest.pageSize,
+                                                       "groupName": cardListInGroupRequest.groupName], encoding: URLEncoding.queryString)
+            }
         }
     }
     

@@ -94,7 +94,7 @@ class GroupViewController: UIViewController {
     var serverGroups: [String]? = []
     var frontCards: [Card]? = []
     var serverCardsWithBack: Card?
-    var groupName: String = ""
+    var groupName: String = "미분류"
     
     var selectedRow = 0
     private var offset = 0
@@ -187,7 +187,6 @@ extension GroupViewController {
                     self.serverGroups = group
                     self.groupCollectionView.reloadData()
                     print("selectedRow: ", self.selectedRow)
-                    if group[self.selectedRow] != "미분류" { self.groupName = group[self.selectedRow] }
                     self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(pageNo: 1, pageSize: 6, groupName: self.groupName)) {
                         if self.frontCards?.count != 0 {
                             self.cardsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
@@ -347,11 +346,7 @@ extension GroupViewController: UICollectionViewDataSource {
         switch collectionView {
         case groupCollectionView:
             selectedRow = indexPath.row
-            if selectedRow == 0 {
-                self.groupName = ""
-            } else {
-                self.groupName = serverGroups?[indexPath.row] ?? ""
-            }
+            self.groupName = serverGroups?[indexPath.row] ?? ""
             offset = 0
             frontCards?.removeAll()
             

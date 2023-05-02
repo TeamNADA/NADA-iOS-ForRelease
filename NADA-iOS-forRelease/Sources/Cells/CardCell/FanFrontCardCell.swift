@@ -14,6 +14,7 @@ class FanFrontCardCell: CardCell {
     // MARK: - Properties
     
     private var cardData: Card?
+    private var setConstraintDone = false
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var backgroundImageView: UIImageView!
@@ -90,10 +91,14 @@ extension FanFrontCardCell {
         secondURLStackView.alignment = .center
     }
     func setConstraints() {
+        if setConstraintDone { return }
+        setConstraintDone = true
+        
         let constraints = [titleLabelTop, titleLabelBottom, titleLabelLeading,
                            userNameBottom, totalStackviewBottom, totalStackviewLeading, totalStackviewTrailing]
         let labels = [titleLabel, userNameLabel, birthLabel, snsLabel, firstURLLabel, secondURLLabel]
         let widths = [birthImageViewWidth, snsImageViewWidth, firstUrlWidth, secondUrlWidth]
+        
         constraints.forEach {
             $0?.constant = ($0?.constant ?? 0) * 0.6
         }

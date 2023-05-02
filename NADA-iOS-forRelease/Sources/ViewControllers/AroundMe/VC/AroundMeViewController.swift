@@ -17,7 +17,7 @@ import SnapKit
 import Then
 
 final class AroundMeViewController: UIViewController {
-
+    
     // MARK: - Properties
     
     var viewModel: AroundMeViewModel!
@@ -72,7 +72,7 @@ final class AroundMeViewController: UIViewController {
         bindActions()
         bindViewModels()
     }
-
+    
 }
 
 extension AroundMeViewController {
@@ -84,10 +84,10 @@ extension AroundMeViewController {
         self.navigationController?.navigationBar.isHidden = true
         navigationBar.setUI("내 근처의 명함", leftImage: UIImage(named: "iconClear"), rightImage: UIImage(named: "iconRefreshLocation"))
         navigationBar.leftButtonAction = {
-          self.dismiss(animated: true)
+            self.dismiss(animated: true)
         }
         navigationBar.rightButtonAction = {
-          print("리프레시")
+            print("리프레시")
         }
     }
     
@@ -197,6 +197,7 @@ extension AroundMeViewController: UICollectionViewDataSource {
             let index = indexPath.row
             print("\(index) Call Back Method")
             // 여기서 카드 추가 API
+            self?.cardDetailFetchWithAPI(cardUUID: self?.cardsNearBy[indexPath.row].cardUUID ?? "")
         }
         return cardCell
     }
@@ -250,6 +251,36 @@ extension AroundMeViewController {
                 print("cardNearByFetchWithAPI - serverErr")
             case .networkFail:
                 print("cardNearByFetchWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func cardDetailFetchWithAPI(cardUUID: String) {
+        CardAPI.shared.cardDetailFetch(cardUUID: cardUUID) { response in
+            switch response {
+            case .success(let data):
+                if let card = data as? Card {
+                    // TODO: - 자신의 명함 추가하는 경우 예외처리.
+                    //                    if UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) == card.author {
+                    //                        self.errorImageView.isHidden = false
+                    //                        self.explainLabel.isHidden = false
+                    //                        self.explainLabel.text = "자신의 명함은 추가할 수 없습니다."
+                    //                    } else {
+                    let nextVC = CardResultBottomSheetViewController()
+                                .setTitle(card.userName)
+                                .setHeight(574)
+                    nextVC.cardDataModel = card
+                    nextVC.modalPresentationStyle = .overFullScreen
+                    self.present(nextVC, animated: false, completion: nil)
+                }
+            case .requestErr(let message):
+                print("cardDetailFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("cardDetailFetchWithAPI - pathErr")
+            case .serverErr:
+                print("cardDetailFetchWithAPI - serverErr")
+            case .networkFail:
+                print("cardDetailFetchWithAPI - networkFail")
             }
         }
     }

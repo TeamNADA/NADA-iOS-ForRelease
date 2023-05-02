@@ -188,17 +188,18 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         _ = isActivate ? lottieImage.play() : lottieImage.stop()
         
         // TODO: 여기서 스위치 키면 위치정보 받아오기, 끄면 위치 정보 노출하지 않기
+        locationManager.startUpdatingLocation()
+        latitude = locationManager.location?.coordinate.latitude ?? 0
+        longitude = locationManager.location?.coordinate.longitude ?? 0
+        
         if isActivate {
             //TODO: 여기서 활성화된 명함 정보/위치정보 API로 쏴주기
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(processTimer), userInfo: nil, repeats: true)
             
-            locationManager.startUpdatingLocation()
-            latitude = locationManager.location?.coordinate.latitude ?? 0
-            longitude = locationManager.location?.coordinate.longitude ?? 0
-            
             print("✅ activated")
             print("✅ latitude: ", latitude)
             print("✅ longitude: ", longitude)
+            groupListFetchWithAPI(nearByRequest: NearByRequest(cardUUID: cardDataModel?.cardUUID ?? "", isActive: true, latitude: latitude, longitude: longitude))
             
         } else {
             // TODO: 여기서 비활성화된 명함 정보/위치정보 API로 쏴주기
@@ -206,6 +207,9 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
             seconds = 0
             nearByTimeLabel.text = "10:00"
             print("✅✅ deactivated")
+            print("✅ latitude: ", latitude)
+            print("✅ longitude: ", longitude)
+            groupListFetchWithAPI(nearByRequest: NearByRequest(cardUUID: cardDataModel?.cardUUID ?? "", isActive: false, latitude: latitude, longitude: longitude))
         }
     }
     
@@ -477,5 +481,26 @@ extension CardShareBottomSheetViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
+    }
+}
+
+// MARK: - Network
+
+extension CardShareBottomSheetViewController {
+    func groupListFetchWithAPI(nearByRequest: NearByRequest) {
+        NearbyAPI.shared.postNearByCard(nearByRequest: nearByRequest) { response in
+            switch response {
+            case .success:
+                print("groupListFetchWithAPI - success")
+            case .requestErr(let message):
+                print("groupListFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("groupListFetchWithAPI - pathErr")
+            case .serverErr:
+                print("groupListFetchWithAPI - serverErr")
+            case .networkFail:
+                print("groupListFetchWithAPI - networkFail")
+            }
+        }
     }
 }

@@ -36,6 +36,21 @@ class FrontCardCell: CardCell {
     @IBOutlet weak var linkURLStackView: UIStackView!
     @IBOutlet weak var totalStackView: UIStackView!
     
+    @IBOutlet weak var titleLabelTop: NSLayoutConstraint!
+    @IBOutlet weak var titleLabelLeading: NSLayoutConstraint!
+    @IBOutlet weak var descLabelTop: NSLayoutConstraint!
+    @IBOutlet weak var usernameLabelTop: NSLayoutConstraint!
+    @IBOutlet weak var birthdayImageTop: NSLayoutConstraint!
+    @IBOutlet weak var birthdayImageWidth: NSLayoutConstraint!
+    @IBOutlet weak var mbtiImageLeading: NSLayoutConstraint!
+    @IBOutlet weak var instagramImageWidth: NSLayoutConstraint!
+    @IBOutlet weak var phoneImageWidth: NSLayoutConstraint!
+    @IBOutlet weak var urlImageWidth: NSLayoutConstraint!
+    @IBOutlet weak var mbtiImageWidth: NSLayoutConstraint!
+    @IBOutlet weak var totalStackViewBottom: NSLayoutConstraint!
+    @IBOutlet weak var totalStackViewLeading: NSLayoutConstraint!
+    @IBOutlet weak var totalStackViewTrailing: NSLayoutConstraint!
+    
     // MARK: - Life Cycle
     
     override func awakeFromNib() {
@@ -63,14 +78,14 @@ extension FrontCardCell {
         descriptionLabel.textColor = .white
         userNameLabel.font = .title01
         userNameLabel.textColor = .white
-        birthLabel.font = .textRegular02
+        birthLabel.font = .textRegular03
         birthLabel.textColor = .white
-        mbtiLabel.font = .textRegular02
+        mbtiLabel.font = .textRegular03
         mbtiLabel.textColor = .white
         instagramIDLabel.font = .textRegular03
         instagramIDLabel.textColor = .white
         instagramIDLabel.lineBreakMode = .byTruncatingTail
-        phoneNumberLabel.font = .textRegular03
+        phoneNumberLabel.font = .textRegular04
         phoneNumberLabel.textColor = .white
         phoneNumberLabel.lineBreakMode = .byTruncatingTail
         linkURLLabel.font = .textRegular04
@@ -79,6 +94,23 @@ extension FrontCardCell {
         linkURLLabel.lineBreakMode = .byTruncatingTail
         
         linkURLStackView.alignment = .center
+    }
+    func setConstraints() {
+        let constraints = [titleLabelTop, titleLabelLeading, descLabelTop,
+                           usernameLabelTop, birthdayImageTop, mbtiImageLeading, totalStackViewBottom, totalStackViewLeading, totalStackViewTrailing]
+        let labels = [titleLabel, descriptionLabel, userNameLabel, birthLabel, mbtiLabel, instagramIDLabel, phoneNumberLabel, linkURLLabel]
+        let widths = [birthdayImageWidth, phoneImageWidth, urlImageWidth, mbtiImageWidth]
+        constraints.forEach {
+            $0?.constant = ($0?.constant ?? 0) * 0.6
+        }
+        labels.forEach {
+            $0?.font = $0?.font.withSize(($0?.font.pointSize ?? 0) * 0.6)
+        }
+        widths.forEach {
+            $0?.constant = 12
+        }
+        totalStackView.spacing = 5
+        print("✅✅")
     }
     private func setTapGesture() {
         instagramIDLabel.isUserInteractionEnabled = true
@@ -118,10 +150,9 @@ extension FrontCardCell {
         if UIApplication.shared.canOpenURL(webURL) {
             UIApplication.shared.open(webURL, options: [:], completionHandler: nil)
         }
-        // TODO: - instagram 없다면 웹으로 보여주는 것도 방법.
     }
     
-    /// 서버에서 image 를 URL 로 가져올 경우 사용.
+    /// 명함 조회 시 사용.
     func initCellFromServer(cardData: Card, isShareable: Bool) {
         self.cardData = cardData
         
@@ -138,56 +169,53 @@ extension FrontCardCell {
         userNameLabel.text = cardData.userName
         birthLabel.text = cardData.birth
         mbtiLabel.text = cardData.mbti
-        instagramIDLabel.text = cardData.sns
+        instagramIDLabel.text = cardData.instagram
         phoneNumberLabel.text = cardData.phoneNumber
-        if let urls = cardData.urls {
-            linkURLLabel.text = urls[0]
-        }
         
-        if cardData.sns == nil {
+        if let urls = cardData.urls {
+            if urls[0].isEmpty {
+                linkURLStackView.isHidden = true
+            } else {
+                linkURLLabel.text = urls[0]
+            }
+        }
+        if cardData.instagram?.isEmpty ?? false {
             instagramStackView.isHidden = true
         }
-        if cardData.phoneNumber == nil {
+        if cardData.phoneNumber?.isEmpty ?? false {
             phoneNumberStackView.isHidden = true
-        }
-        if cardData.urls == nil {
-            linkURLStackView.isHidden = true
         }
         
         shareButton.isHidden = !isShareable
     }
     
-    /// 명함생성할 때 image 를 UIImage 로 가져올 경우 사용
+    /// 명함 미리보기 시 사용.
     func initCell(_ backgroundImage: UIImage?,
-                  _ cardTitle: String,
-                  _ cardDescription: String,
-                  _ userName: String,
-                  _ birth: String,
-                  _ mbti: String,
-                  _ instagramID: String,
-                  _ phoneNumber: String,
-                  _ linkURL: String,
-                  isShareable: Bool) {
+                  _ frontCardDataModel: FrontCardDataModel) {
         backgroundImageView.image = backgroundImage ?? UIImage()
-        titleLabel.text = cardTitle
-        descriptionLabel.text = cardDescription
-        userNameLabel.text = userName
-        birthLabel.text = birth
-        mbtiLabel.text = mbti
-        instagramIDLabel.text = instagramID
-        phoneNumberLabel.text = phoneNumber
-        linkURLLabel.text = linkURL
+        titleLabel.text = frontCardDataModel.cardName
+        descriptionLabel.text = frontCardDataModel.departmentName
+        userNameLabel.text = frontCardDataModel.userName
+        birthLabel.text = frontCardDataModel.birth
+        mbtiLabel.text = frontCardDataModel.mbti
+        instagramIDLabel.text = frontCardDataModel.instagram
+        phoneNumberLabel.text = frontCardDataModel.phoneNumber
         
-        if instagramID.isEmpty {
+        if let urls = frontCardDataModel.urls {
+            if urls[0].isEmpty {
+                linkURLStackView.isHidden = true
+            } else {
+                linkURLLabel.text = urls[0]
+            }
+        }
+        
+        if frontCardDataModel.instagram?.isEmpty ?? false {
             instagramStackView.isHidden = true
         }
-        if phoneNumber.isEmpty {
+        if frontCardDataModel.phoneNumber?.isEmpty ?? false {
             phoneNumberStackView.isHidden = true
         }
-        if linkURL.isEmpty {
-            linkURLStackView.isHidden = true
-        }
         
-        shareButton.isHidden = !isShareable
+        shareButton.isHidden = true
     }
 }

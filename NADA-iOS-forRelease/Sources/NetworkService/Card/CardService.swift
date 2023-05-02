@@ -9,12 +9,12 @@ import Foundation
 import Moya
 
 enum CardService {
-    case cardDetailFetch(cardID: String)
+    case cardDetailFetch(cardUUID: String)
     case cardCreation(request: CardCreationRequest)
     case cardListPageFetch(pageNumber: Int, pageSize: Int)
     case cardListFetch
     case cardReorder(request: [CardReorderInfo])
-    case cardDelete(cardID: String)
+    case cardDelete(cardID: Int)
     case imageUpload(image: UIImage)
     case tasteFetch(cardType: CardType)
 }
@@ -27,8 +27,8 @@ extension CardService: TargetType {
     
     var path: String {
         switch self {
-        case .cardDetailFetch(let cardID):
-            return "/card/\(cardID)"
+        case .cardDetailFetch(let cardUUID):
+            return "/card/\(cardUUID)/search"
         case .cardCreation:
             return "/card"
         case .cardListPageFetch:
@@ -42,7 +42,7 @@ extension CardService: TargetType {
         case .imageUpload:
             return "/image"
         case .tasteFetch(let cardType):
-            return "/card/\(cardType)/taste"
+            return "/card/\(cardType.rawValue)/taste"
         }
     }
     
@@ -66,7 +66,7 @@ extension CardService: TargetType {
         case .cardDetailFetch, .cardDelete, .tasteFetch, .cardListFetch:
             return .requestPlain
         case .cardCreation(let request):
-            var parameters: [String: Any] = ["brith": request.frontCard.birth,
+            var parameters: [String: Any] = ["birth": request.frontCard.birth,
                                              "cardImage": request.cardImageURL,
                                              "cardName": request.frontCard.cardName,
                                              "cardTastes": request.backCard.tastes,
@@ -89,8 +89,12 @@ extension CardService: TargetType {
                 parameters["phoneNumber"] = phoneNumber
             }
             
-            if let sns = request.frontCard.sns {
-                parameters["sns"] = sns
+            if let instagram = request.frontCard.instagram {
+                parameters["instagram"] = instagram
+            }
+            
+            if let twitter = request.frontCard.twitter {
+                parameters["twitter"] = twitter
             }
             
             if let tmi = request.backCard.tmi {
@@ -106,11 +110,13 @@ extension CardService: TargetType {
             return .requestParameters(parameters: ["pageNo": pageNumber,
                                                    "pageSize": pageSize],
                                       encoding: URLEncoding.queryString)
-        case .cardReorder(let requestModel):
+        case .cardReorder(let request):
+            let requestModel = CardReorderInfosRequest(cardReorderInfos: request)
+            
             return .requestJSONEncodable(requestModel)
         case .imageUpload(let image):
             var multiPartData: [Moya.MultipartFormData] = []
-            let imageData = MultipartFormData(provider: .data(image.pngData() ?? Data()), name: "image", mimeType: "image/png")
+            let imageData = MultipartFormData(provider: .data(image.jpegData(compressionQuality: 0.5) ?? Data()), name: "image", fileName: "image", mimeType: "image/png")
             multiPartData.append(imageData)
             
             return .uploadMultipart(multiPartData)

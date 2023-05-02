@@ -1,36 +1,36 @@
 PODS:
   - Alamofire (5.6.4)
-  - Firebase/CoreOnly (10.7.0):
-    - FirebaseCore (= 10.7.0)
-  - Firebase/DynamicLinks (10.7.0):
+  - Firebase/CoreOnly (10.8.0):
+    - FirebaseCore (= 10.8.0)
+  - Firebase/DynamicLinks (10.8.0):
     - Firebase/CoreOnly
-    - FirebaseDynamicLinks (~> 10.7.0)
-  - FirebaseCore (10.7.0):
+    - FirebaseDynamicLinks (~> 10.8.0)
+  - FirebaseCore (10.8.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/Logger (~> 7.8)
-  - FirebaseCoreInternal (10.7.0):
+  - FirebaseCoreInternal (10.8.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
-  - FirebaseDynamicLinks (10.7.0):
+  - FirebaseDynamicLinks (10.8.0):
     - FirebaseCore (~> 10.0)
-  - FlexLayout (1.3.30)
+  - FlexLayout (1.3.31)
   - GoogleUtilities/Environment (7.11.1):
     - PromisesObjC (< 3.0, >= 1.2)
   - GoogleUtilities/Logger (7.11.1):
     - GoogleUtilities/Environment
   - "GoogleUtilities/NSData+zlib (7.11.1)"
   - IQKeyboardManagerSwift (6.5.11)
-  - KakaoSDKAuth (2.14.0):
-    - KakaoSDKCommon (= 2.14.0)
-  - KakaoSDKCommon (2.14.0):
-    - KakaoSDKCommon/Common (= 2.14.0)
-    - KakaoSDKCommon/Network (= 2.14.0)
-  - KakaoSDKCommon/Common (2.14.0)
-  - KakaoSDKCommon/Network (2.14.0):
+  - KakaoSDKAuth (2.15.0):
+    - KakaoSDKCommon (= 2.15.0)
+  - KakaoSDKCommon (2.15.0):
+    - KakaoSDKCommon/Common (= 2.15.0)
+    - KakaoSDKCommon/Network (= 2.15.0)
+  - KakaoSDKCommon/Common (2.15.0)
+  - KakaoSDKCommon/Network (2.15.0):
     - Alamofire (~> 5.1)
-    - KakaoSDKCommon/Common (= 2.14.0)
-  - KakaoSDKUser (2.14.0):
-    - KakaoSDKAuth (= 2.14.0)
+    - KakaoSDKCommon/Common (= 2.15.0)
+  - KakaoSDKUser (2.15.0):
+    - KakaoSDKAuth (= 2.15.0)
   - Kingfisher (7.6.2)
   - lottie-ios (4.1.3)
   - Moya (15.0.0):
@@ -45,6 +45,7 @@ PODS:
   - NVActivityIndicatorView/Base (5.1.1)
   - PinLayout (1.10.4)
   - PromisesObjC (2.2.0)
+  - PryntTrimmerView (4.0.2)
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
@@ -56,9 +57,13 @@ PODS:
   - RxSwift (6.5.0)
   - SkeletonView (1.30.4)
   - SnapKit (5.6.0)
+  - SteviaLayout (4.7.3)
   - SwiftLint (0.51.0)
   - Then (3.0.0)
   - VerticalCardSwiper (2.3.1)
+  - YPImagePicker (5.2.1):
+    - PryntTrimmerView (= 4.0.2)
+    - SteviaLayout (= 4.7.3)
 
 DEPENDENCIES:
   - Firebase/DynamicLinks
@@ -81,6 +86,7 @@ DEPENDENCIES:
   - SwiftLint
   - Then
   - VerticalCardSwiper
+  - YPImagePicker
 
 SPEC REPOS:
   trunk:
@@ -101,44 +107,50 @@ SPEC REPOS:
     - NVActivityIndicatorView
     - PinLayout
     - PromisesObjC
+    - PryntTrimmerView
     - RxCocoa
     - RxGesture
     - RxRelay
     - RxSwift
     - SkeletonView
     - SnapKit
+    - SteviaLayout
     - SwiftLint
     - Then
     - VerticalCardSwiper
+    - YPImagePicker
 
 SPEC CHECKSUMS:
   Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
-  Firebase: 0219acf760880eeec8ce479895bd7767466d9f81
-  FirebaseCore: e317665b9d744727a97e623edbbed009320afdd7
-  FirebaseCoreInternal: 8845798510aae74703467480f71ac613788d0696
-  FirebaseDynamicLinks: 16a8fae3697fba66fed7a1d646fe59f30d42aa31
-  FlexLayout: 6651ad721f521c29d50bc724788488c84e0bc32a
+  Firebase: b49ef44e5ec9a3d0c1f6450f410337e97872279c
+  FirebaseCore: e78636a990b54be427ce300aa09a0e359f4e0e87
+  FirebaseCoreInternal: fa2899eb1f340054858d289e5a0fb935a0a74e52
+  FirebaseDynamicLinks: 8c7e16503fd057c44727b6bc8dc8e7ff2a667955
+  FlexLayout: 8010187077ecf09710cdf0e9c8ffe2c9b92ec5db
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
   IQKeyboardManagerSwift: c7955c0bdbf7b2eb29bb7daaa44e3d90f55a9a85
-  KakaoSDKAuth: 8fca87815de22062a23297983f327613b087b8bb
-  KakaoSDKCommon: 0ce638f7a2e49704943c0b74a087a9f8067bba1c
-  KakaoSDKUser: 2ca18314ce72e6690f76cb1f6f9fbc771d31a803
+  KakaoSDKAuth: 0fe5cf1756e8a9f66f8fc77826061aafa93034f3
+  KakaoSDKCommon: 89d863b7f34398e6fb93a0acb28a204908551a39
+  KakaoSDKUser: a997ca5c4c18ece2ab30646ff74841bc29d4399d
   Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
   lottie-ios: d0954d3150061f662ed0adf96ef98d7421864c47
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   PinLayout: f8a677ce0cd1cfe96b58435d029b4ceb4ce9c04c
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
+  PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SkeletonView: 5a050f6411e697abd4cda0a8d767013399dccd69
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
   SwiftLint: 1b7561918a19e23bfed960e40759086e70f4dba5
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
   VerticalCardSwiper: 68df635b354500f86934ea044ade37a264c044c6
+  YPImagePicker: f36043210c10b0783034eb1947d6e06e31c461e4
 
-PODFILE CHECKSUM: 4f8083405fc2c8c3395baf17cf92037c6ff0eab7
+PODFILE CHECKSUM: 6aac9570b93049853d9fa383fd5b608dbdbcd63d
 
 COCOAPODS: 1.12.0

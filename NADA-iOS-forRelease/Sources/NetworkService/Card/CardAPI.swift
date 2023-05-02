@@ -14,8 +14,8 @@ public class CardAPI {
     
     public init() { }
     
-    func cardDetailFetch(cardID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        cardProvider.request(.cardDetailFetch(cardID: cardID)) { (result) in
+    func cardDetailFetch(cardUUID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        cardProvider.request(.cardDetailFetch(cardUUID: cardUUID)) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
@@ -93,7 +93,7 @@ public class CardAPI {
         }
     }
     
-    func cardDelete(cardID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func cardDelete(cardID: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
         cardProvider.request(.cardDelete(cardID: cardID)) { (result) in
             switch result {
             case .success(let response):
@@ -141,26 +141,6 @@ public class CardAPI {
     
     // MARK: - JudgeStatus methods
     
-//    private func judgeCardListFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
-//
-//        let decoder = JSONDecoder()
-//        guard let decodedData = try? decoder.decode(GenericResponse<CardListRequest>.self, from: data)
-//        else {
-//            return .pathErr
-//        }
-//
-//        switch statusCode {
-//        case 200:
-//            return .success(decodedData.data ?? "None-Data")
-//        case 400..<500:
-//            return .requestErr(decodedData.error?.message ?? "error message")
-//        case 500:
-//            return .serverErr
-//        default:
-//            return .networkFail
-//        }
-//    }
-    
     private func judgeStatus<T: Codable>(by statusCode: Int, data: Data, type: T.Type) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<T>.self, from: data)
@@ -170,7 +150,7 @@ public class CardAPI {
         case 200:
             return .success(decodedData.data ?? "None-Data")
         case 400..<500:
-            return .requestErr(decodedData.error?.message ?? "error message")
+            return .requestErr(decodedData.message ?? "error message")
         case 500:
             return .serverErr
         default:

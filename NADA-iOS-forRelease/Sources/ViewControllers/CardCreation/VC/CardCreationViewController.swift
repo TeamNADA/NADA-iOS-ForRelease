@@ -7,6 +7,8 @@
 
 import UIKit
 
+import YPImagePicker
+
 class CardCreationViewController: UIViewController {
 
     // MARK: - Properties
@@ -40,9 +42,10 @@ class CardCreationViewController: UIViewController {
     private var backCard: BackCardDataModel?
     private var mbtiText: String?
     private var birthText: String?
-    private var newImage: UIImage?
-    private var cardType: CardType = .basic
+    private var backgroundImage: UIImage?
     private var tasteInfo: [TasteInfo]?
+    
+    private let cardType: CardType = .basic
     
     // MARK: - @IBOutlet Properties
     
@@ -63,7 +66,7 @@ class CardCreationViewController: UIViewController {
         registerCell()
         setTextLabelGesture()
         setNotification()
-        tasteFetchWithAPI()
+        tasteFetchWithAPI(cardType: cardType)
     }
     
     // MARK: - @IBAction Properties
@@ -82,8 +85,9 @@ class CardCreationViewController: UIViewController {
 
         nextVC.frontCardDataModel = frontCard
         nextVC.backCardDataModel = backCard
-        nextVC.cardBackgroundImage = newImage
+        nextVC.cardBackgroundImage = backgroundImage
         nextVC.tasteInfo = tasteInfo
+        nextVC.cardType = cardType
         navigationController?.pushViewController(nextVC, animated: true)
     }
 }
@@ -202,13 +206,45 @@ extension CardCreationViewController {
     }
     @objc
     private func presentToImagePicker() {
-        let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.allowsEditing = true
-        imagePicker.delegate = self
-        imagePicker.modalPresentationStyle = .overFullScreen
+        var config = YPImagePickerConfiguration()
+        config.screens = [.library]
+        config.startOnScreen = .library
+        config.library.isSquareByDefault = false
+        config.showsPhotoFilters = false
+        config.shouldSaveNewPicturesToAlbum = false
+        config.showsCrop = .rectangle(ratio: 0.6)
+        config.colors.tintColor = .mainColorNadaMain
         
+        let imagePicker = YPImagePicker(configuration: config)
+        imagePicker.imagePickerDelegate = self
+        
+        imagePicker.didFinishPicking { [weak self] items, cancelled in
+            guard let self = self else { return }
+            
+            if cancelled {
+                NotificationCenter.default.post(name: .cancelImagePicker, object: nil)
+            }
+            
+            if let photo = items.singlePhoto {
+                backgroundImage = photo.image
+                NotificationCenter.default.post(name: .sendNewImage, object: backgroundImage)
+            }
+            imagePicker.dismiss(animated: true)
+        }
+        
+        imagePicker.modalPresentationStyle = .overFullScreen
         present(imagePicker, animated: true, completion: nil)
+    }
+}
+
+// MARK: - YPImagePickerDelegate
+extension CardCreationViewController: YPImagePickerDelegate {
+    func imagePickerHasNoItemsInLibrary(_ picker: YPImagePicker) {
+        self.makeOKAlert(title: "", message: "가져올 수 있는 사진이 없습니다.")
+    }
+    
+    func shouldAddToSelection(indexPath: IndexPath, numSelections: Int) -> Bool {
+        return true
     }
 }
 
@@ -336,32 +372,16 @@ extension CardCreationViewController: BackCardCreationDelegate {
     }
 }
 
-extension CardCreationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            newImage = editedImage
-        }
-        NotificationCenter.default.post(name: .sendNewImage, object: newImage)
-        
-        picker.dismiss(animated: true, completion: nil)
-    }
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        NotificationCenter.default.post(name: .cancelImagePicker, object: nil)
-        
-        dismiss(animated: true, completion: nil)
-    }
-}
-
 // MARK: - API methods
 
 extension CardCreationViewController {
-    func tasteFetchWithAPI() {
+    func tasteFetchWithAPI(cardType: CardType) {
         CardAPI.shared.tasteFetch(cardType: cardType) { response in
             switch response {
             case .success(let data):
                 print("cardCreationWithAPI - success")
                 if let tastes = data as? Taste {
-                    self.tasteInfo = tastes.tasteInfos.sorted { $0.sortOrder < $1.sortOrder }
+                    self.tasteInfo = tastes.tasteInfos.sorted { $0.sortOrder > $1.sortOrder }
                     DispatchQueue.main.async { [weak self] in
                         self?.cardCreationCollectionView.reloadData()
                     }

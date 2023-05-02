@@ -5,6 +5,7 @@
 //  Created by Yi Joon Choi on 2021/12/21.
 //
 
+import CoreLocation
 import UIKit
 import Photos
 
@@ -22,6 +23,10 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     private var seconds = 0
     private var savedTime = ""
     private var appDidEnterBackgroundDate: Date?
+    var locationManager = CLLocationManager()
+    
+    private var latitude: CLLocationDegrees = 0
+    private var longitude: CLLocationDegrees = 0
 
     private let cardBackgroundView: UIView = {
         let view = UIView()
@@ -140,6 +145,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setLocationManager()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -181,12 +187,25 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         lottieImage.isHidden = isActivate ? false : true
         _ = isActivate ? lottieImage.play() : lottieImage.stop()
         
+        // TODO: 여기서 스위치 키면 위치정보 받아오기, 끄면 위치 정보 노출하지 않기
         if isActivate {
+            //TODO: 여기서 활성화된 명함 정보/위치정보 API로 쏴주기
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(processTimer), userInfo: nil, repeats: true)
+            
+            locationManager.startUpdatingLocation()
+            latitude = locationManager.location?.coordinate.latitude ?? 0
+            longitude = locationManager.location?.coordinate.longitude ?? 0
+            
+            print("✅ activated")
+            print("✅ latitude: ", latitude)
+            print("✅ longitude: ", longitude)
+            
         } else {
+            // TODO: 여기서 비활성화된 명함 정보/위치정보 API로 쏴주기
             timer?.invalidate()
             seconds = 0
             nearByTimeLabel.text = "10:00"
+            
         }
     }
     
@@ -306,7 +325,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     }
     
     private func generateDynamicLink(with cardID: String, completion: @escaping ((String) -> Void)) {
-        guard let link = URL(string: Const.URL.opendDynamicLinkOnWebURL + "/?cardID=" + cardID),
+        guard let link = URL(string: Const.URL.opendDynamicLinkOnWebURL + "/?cardUUID=" + cardID),
               let bundleID = Bundle.main.infoDictionary?["CFBundleIdentifier"] as? String else { return }
         let domainURLPrefix = Const.URL.dynamicLinkURLPrefix
         let appStoreID = "1600711887"
@@ -398,6 +417,20 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         return backImage
     }
     
+    private func setLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            print("location on")
+            locationManager.startUpdatingLocation()
+            print(locationManager.location?.coordinate)
+        } else {
+            print("location off")
+        }
+    }
+    
     // MARK: - @objc Methods
     
     @objc
@@ -428,5 +461,22 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     func processTimer() {
         seconds += 1
         nearByTimeLabel.text = calculateMinuteTime(sec: 600 - seconds)
+    }
+}
+
+extension CardShareBottomSheetViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("Location Here")
+        if let location = locations.first {
+            print("✅ 위도: ", location.coordinate.latitude)
+            print("✅ 경도: ", location.coordinate.longitude)
+            
+            latitude = location.coordinate.latitude
+            longitude = location.coordinate.longitude
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
     }
 }

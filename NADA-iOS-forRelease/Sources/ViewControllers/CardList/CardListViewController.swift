@@ -12,7 +12,7 @@ import KakaoSDKCommon
 class CardListViewController: UIViewController {
         
     // MARK: - Properties
-    var cardItems: [CardList] = []
+    var cardItems: [Card] = []
     var newCardItems: [CardReorderInfo] = []
     
     // MARK: - IBOutlet Properties
@@ -83,6 +83,8 @@ class CardListViewController: UIViewController {
             cardListTableView.reloadData()
             cardListTableView.moveRow(at: index!, to: IndexPath(row: 0, section: 0))
             
+            newCardItems = []
+            
             for index in 0..<cardItems.count {
                 newCardItems.append(CardReorderInfo(cardID: cardItems[index].cardID,
                                                     isRepresentative: index == 0 ? true : false,
@@ -145,7 +147,7 @@ extension CardListViewController: UITableViewDataSource {
         } else {
             guard let serviceCell = tableView.dequeueReusableCell(withIdentifier: Const.Xib.cardListTableViewCell, for: indexPath) as? CardListTableViewCell else { return UITableViewCell() }
             
-            serviceCell.initData(title: cardItems[indexPath.row].title)
+            serviceCell.initData(title: cardItems[indexPath.row].cardName)
             serviceCell.pinButton.addTarget(self, action: #selector(pinButtonClicked(_:)), for: .touchUpInside)
             
             if indexPath.row == 0 {
@@ -169,10 +171,11 @@ extension CardListViewController {
         CardAPI.shared.cardListFetch { response in
             switch response {
             case .success(let data):
-                if let card = data as? CardListRequest {
-                    self.cardItems = card.cardDates
+                if let card = data as? [Card] {
+                    self.cardItems = card
                     self.cardListTableView.reloadData()
                 }
+                print("getCardListFetchWithAPI - success")
             case .requestErr(let message):
                 print("getCardListFetchWithAPI - requestErr", message)
             case .pathErr:
@@ -202,13 +205,13 @@ extension CardListViewController {
         }
     }
     
-    func deleteCardWithAPI(cardID: String) {
+    func deleteCardWithAPI(cardID: Int) {
         CardAPI.shared.cardDelete(cardID: cardID) { response in
             switch response {
-            case .success(let data):
-                print(data)
+            case .success:
                 self.cardListFetchWithAPI()
                 self.cardListTableView.reloadData()
+                print("deleteGroupWithAPI - success")
             case .requestErr(let message):
                 print("deleteGroupWithAPI - requestErr", message)
             case .pathErr:
@@ -316,6 +319,8 @@ extension CardListViewController {
                 }, completion: { [weak self] (finished) -> Void in
                     if finished {
                         guard let self = self else { return }
+                        
+                        newCardItems = []
                         
                         for index in 0..<(cardItems.count) {
                             newCardItems.append(CardReorderInfo(cardID: cardItems[index].cardID,

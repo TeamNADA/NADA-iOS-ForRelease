@@ -1,9 +1,9 @@
 {
   "images" : [
     {
-      "filename" : "onboarding04.png",
       "scale" : "1x",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "filename" : "onboarding04.png"
     },
     {
       "filename" : "onboarding04@2x.png",

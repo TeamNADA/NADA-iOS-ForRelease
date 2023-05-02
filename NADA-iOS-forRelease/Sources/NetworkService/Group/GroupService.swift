@@ -9,15 +9,14 @@ import Foundation
 import Moya
 
 enum GroupService {
-    case groupListFetch(userID: String)
-    case groupDelete(groupID: Int, defaultGroupId: Int)
+    case groupListFetch
+    case groupDelete(cardGroupName: String)
     case groupAdd(groupRequest: GroupAddRequest)
     case groupEdit(groupRequest: GroupEditRequest)
     case cardAddInGroup(cardRequest: CardAddInGroupRequest)
     case cardListFetchInGroup(cardListInGroupRequest: CardListInGroupRequest)
-    case changeCardGroup(request: ChangeGroupRequest)
-    case cardDeleteInGroup(groupID: Int, cardID: String)
-    case groupReset(token: String)
+    case cardDeleteInGroup(cardUUID: String, cardGroupName: String)
+    case groupReset
 }
 
 extension GroupService: TargetType {
@@ -29,25 +28,29 @@ extension GroupService: TargetType {
         switch self {
         case .groupListFetch, .cardListFetchInGroup, .groupDelete, .cardDeleteInGroup:
             return .bearer
-        case .groupAdd, .groupEdit, .cardAddInGroup, .changeCardGroup, .groupReset:
+        case .groupAdd, .groupEdit, .cardAddInGroup, .groupReset:
             return .bearer
         }
     }
     
     var path: String {
         switch self {
-        case .groupListFetch, .groupReset:
-            return "/groups"
-        case .groupDelete(let groupID, _):
-            return "/group/\(groupID)"
-        case .groupAdd, .groupEdit:
-            return "/group"
-        case .cardAddInGroup, .changeCardGroup:
-            return "/groups/card"
+        case .groupListFetch:
+            return "/card-group/list"
+        case .groupReset:
+            return "/card-group/clear"
+        case .groupDelete:
+            return "/card-group"
+        case .groupAdd:
+            return "/card-group"
+        case .groupEdit:
+            return "/card-group/name"
+        case .cardAddInGroup:
+            return "/card-group/mapping"
         case .cardListFetchInGroup:
-            return "/groups/cards"
-        case .cardDeleteInGroup(let groupID, let cardID):
-            return "/group/\(groupID)/\(cardID)"
+            return "/card-group/cards"
+        case .cardDeleteInGroup(let cardUuid, _):
+            return "/card-group/card/\(cardUuid)"
         }
     }
     
@@ -55,11 +58,11 @@ extension GroupService: TargetType {
         switch self {
         case .groupListFetch, .cardListFetchInGroup:
             return .get
-        case .groupDelete, .cardDeleteInGroup, .groupReset:
+        case .groupDelete, .cardDeleteInGroup:
             return .delete
-        case .groupAdd, .cardAddInGroup:
+        case .groupAdd, .cardAddInGroup, .groupReset:
             return .post
-        case .groupEdit, .changeCardGroup:
+        case .groupEdit:
             return .put
         }
     }
@@ -70,26 +73,28 @@ extension GroupService: TargetType {
     
     var task: Task {
         switch self {
-        case .groupListFetch(let userID):
-            return .requestParameters(parameters: ["userId": userID],
-                                      encoding: URLEncoding.queryString)
-        case .cardDeleteInGroup, .groupReset:
+        case .groupListFetch:
             return .requestPlain
-        case .groupDelete(_, let defaultGroupId):
-            return .requestParameters(parameters: ["defaultGroupId": defaultGroupId],
+        case .groupReset:
+            return .requestPlain
+        case .cardDeleteInGroup(_, let cardGroupName):
+            return .requestParameters(parameters: ["cardGroupName": cardGroupName],
+                                      encoding: URLEncoding.queryString)
+        case .groupDelete(let cardGroupName):
+            return .requestParameters(parameters: ["cardGroupName": cardGroupName],
                                       encoding: URLEncoding.queryString)
         case .groupAdd(let groupRequest):
             return .requestJSONEncodable(groupRequest)
         case .groupEdit(let groupRequest):
             return .requestJSONEncodable(groupRequest)
-        case .cardAddInGroup(let cardRequest):
-            return .requestJSONEncodable(cardRequest)
+        case .cardAddInGroup(let groupRequest):
+            return .requestParameters(parameters: ["cardGroupName": groupRequest.cardGroupName,
+                                                   "cardUUID": groupRequest.cardUUID],
+                                      encoding: JSONEncoding.default)
         case .cardListFetchInGroup(let cardListInGroupRequest):
-            return .requestParameters(parameters: ["userId": cardListInGroupRequest.userId,
-                                                   "groupId": cardListInGroupRequest.groupId,
-                                                   "offset": cardListInGroupRequest.offset], encoding: URLEncoding.queryString)
-        case .changeCardGroup(let requestModel):
-            return .requestJSONEncodable(requestModel)
+            return .requestParameters(parameters: ["pageNo": cardListInGroupRequest.pageNo,
+                                                   "pageSize": cardListInGroupRequest.pageSize,
+                                                   "groupName": cardListInGroupRequest.groupName], encoding: URLEncoding.queryString)
         }
     }
     
@@ -97,7 +102,7 @@ extension GroupService: TargetType {
         switch self {
         case .groupListFetch, .cardListFetchInGroup, .groupReset, .groupDelete, .cardDeleteInGroup:
             return Const.Header.bearerHeader()
-        case .groupAdd, .groupEdit, .cardAddInGroup, .changeCardGroup:
+        case .groupAdd, .groupEdit, .cardAddInGroup:
             return Const.Header.basicHeader()
         }
     }

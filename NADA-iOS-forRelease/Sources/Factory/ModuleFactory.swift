@@ -23,6 +23,9 @@ import UIKit
 protocol ModuleFactoryProtocol {
     func makeSplashVC() -> SplashViewController
     func makeAroundMeVC() -> AroundMeViewController
+    func makeUpdateVC() -> UpdateViewController
+    func makeCardDetailVC() -> CardDetailViewController
+    func makeGroupEditVC(groupList: [String]) -> GroupEditViewController
 }
 
 final class ModuleFactory: ModuleFactoryProtocol {
@@ -40,5 +43,42 @@ final class ModuleFactory: ModuleFactoryProtocol {
         aroundMeVC.viewModel = viewModel
         aroundMeVC.modalPresentationStyle = .overFullScreen
         return aroundMeVC
+    }
+    
+    func makeUpdateVC() -> UpdateViewController {
+        let updateVC = UpdateViewController()
+        updateVC.modalPresentationStyle = .overFullScreen
+        updateVC.modalTransitionStyle = .crossDissolve
+        return updateVC
+    }
+    
+    func makeCardDetailVC() -> CardDetailViewController {
+        let cardDetailVC = CardDetailViewController.controllerFromStoryboard(.cardDetail)
+        cardDetailVC.modalPresentationStyle = .overFullScreen
+        return cardDetailVC
+    }
+    
+    func makeGroupEditVC(groupList: [String]) -> GroupEditViewController {
+        let viewModel = GroupEditViewModel(groupList: groupList)
+        let groupEditVC = GroupEditViewController.controllerFromStoryboard(.groupEdit)
+        groupEditVC.viewModel = viewModel
+        return groupEditVC
+    }
+    
+    func makeCardCreationVC(cardType: CardType) -> UINavigationController {
+        let cardCreationVC: UIViewController
+        
+        switch cardType {
+        case .basic:
+            cardCreationVC = CardCreationViewController.controllerFromStoryboard(.cardCreation)
+        case .company:
+            cardCreationVC = CompanyCardCreationViewController.controllerFromStoryboard(.companyCardCreation)
+        case .fan:
+            cardCreationVC = FanCardCreationViewController.controllerFromStoryboard(.fanCardCreation)
+        }
+        
+        let navigationController = UINavigationController(rootViewController: cardCreationVC)
+        navigationController.modalPresentationStyle = .fullScreen
+        return navigationController
     }
 }

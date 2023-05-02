@@ -22,6 +22,10 @@ class UpdateViewController: UIViewController {
     private let checkLabel = UILabel()
     private let updateButton = UIButton()
     
+    private lazy var forceUpdateAgreement: Bool = false
+    
+    var updateNote: UpdateNote?
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -57,24 +61,18 @@ extension UpdateViewController {
         updateContentLabel.font = .textRegular04
         updateContentLabel.textColor = .secondary
         updateContentLabel.lineBreakMode = .byCharWrapping
-        updateContentLabel.text = """
-                                안녕하세요, 나다입니다.
-                                이번 업데이트에서는 아래와 같은 내용이 개선되었습니다.
-                                안녕하세융
-                                나다에요
-                                -명함을 위젯으로 추가할 수 있어요
-                                -내 주변의 명함을 검색할 수 있어요
-                                ㅇㅇㅇ
-                                앱스토어에서 최신 버전을 확인해 보세요!
-                                이정도면 10줄!
-                                """
+        var updateText = updateNote?.text.replacingOccurrences(of: "\\n", with: "\n")
+        updateText = updateText?.replacingOccurrences(of: "\\t", with: " ")
+        updateContentLabel.text = updateText
         
         checkBoxButton.setImage(UIImage(named: "icnCheckboxUnfilled"), for: .normal)
         checkBoxButton.setImage(UIImage(named: "icnCheckboxFilled"), for: .selected)
         
         checkLabel.font = .textRegular05
         checkLabel.textColor = .tertiary
-        checkLabel.text = "확인했어요!"
+        let attributes: [NSAttributedString.Key: Any] = [.baselineOffset: -2.1]
+        let attributesString = NSAttributedString(string: "확인했어요!", attributes: attributes)
+        checkLabel.attributedText = attributesString
         
         updateButton.setImage(UIImage(named: "btnMainGoUpdate"), for: .normal)
     }
@@ -89,18 +87,58 @@ extension UpdateViewController {
     
     @objc
     private func touchCancelButton() {
-        // TODO: - 비강제 업데이트는 창 닫기. 강제 업데이트는 앱 종료.
+        guard let updateNote else { return }
+        if updateNote.isForce {
+            UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                exit(0)
+            }
+        } else {
+            checkUpdateNoteWithAPI(forceUpdateAgreement)
+            self.dismiss(animated: true)
+        }
     }
     
     @objc
     private func touchUpdateButton() {
-        // TODO: - 앱스토어로 연결 혹은 홈으로 연결하는 액션 구현.
+        let appID = "1600711887"
+        guard let url = URL(string: "itms-apps://itunes.apple.com/app/\(appID)") else { return }
+        guard let updateNote else { return }
+        
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
+        
+        if !updateNote.isForce {
+            checkUpdateNoteWithAPI(forceUpdateAgreement)
+        }
     }
     
     @objc
     private func touchCheckBox(_ sender: UIButton) {
-        // TODO: - 체크하게 되면 다시 띄어주지 않음
         checkBoxButton.isSelected.toggle()
+        forceUpdateAgreement.toggle()
+    }
+}
+
+// MARK: - Network
+
+extension UpdateViewController {
+    private func checkUpdateNoteWithAPI(_ forceUpdateAgreement: Bool) {
+        UpdateAPI.shared.checkUpdateNote(isChecked: forceUpdateAgreement) { response in
+            switch response {
+            case .success:
+                print("checkUpdateNoteWithAPI - success")
+            case .requestErr(let message):
+                print("checkUpdateNoteWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("checkUpdateNoteWithAPI - pathErr")
+            case .serverErr:
+                print("checkUpdateNoteWithAPI - serverErr")
+            case .networkFail:
+                print("checkUpdateNoteWithAPI - networkFail")
+            }
+        }
     }
 }
 
@@ -125,6 +163,12 @@ extension UpdateViewController {
                 }
                 flex.addItem(updateButton).marginBottom(16).marginHorizontal(17)
             }
+        }
+        
+        guard let updateNote else { return }
+        if updateNote.isForce {
+            checkBoxButton.flex.display(.none)
+            checkLabel.flex.display(.none)
         }
     }
 }

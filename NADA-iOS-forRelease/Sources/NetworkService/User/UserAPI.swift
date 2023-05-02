@@ -15,14 +15,14 @@ public class UserAPI {
     
     public init() { }
     
-    func userDelete(token: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        userProvider.request(.userDelete(token: token)) { (result) in
+    func userDelete(completion: @escaping (NetworkResult<Any>) -> Void) {
+        userProvider.request(.userDelete) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeStatus(by: statusCode, data)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: String.self)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -37,7 +37,7 @@ public class UserAPI {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                let networkResult = self.judgeUserSocialSignUpStatus(by: statusCode, data)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: AccessToken.self)
                 completion(networkResult)
 
             case .failure(let err):
@@ -46,109 +46,18 @@ public class UserAPI {
         }
     }
     
-    func userLogout(token: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        userProvider.request(.userLogout(token: token)) { (result) in
-            switch result {
-            case .success(let response):
-                let statusCode = response.statusCode
-                let data = response.data
-                
-                let networkResult = self.judgeStatus(by: statusCode, data)
-                completion(networkResult)
-                
-            case .failure(let err):
-                print(err)
-            }
-        }
-    }
-    
-    func userTokenReissue(request: UserReissueToken, completion: @escaping (NetworkResult<Any>) -> Void) {
-        userProvider.request(.userTokenReissue(request: request)) { (result) in
-            switch result {
-            case .success(let response):
-                let statusCode = response.statusCode
-                let data = response.data
-                
-                let networkResult = self.judgeUserTokenReissueStatus(by: statusCode, data)
-                completion(networkResult)
-                
-            case .failure(let err):
-                print(err)
-            }
-        }
-    }
-    
     // MARK: - JudgeStatus methods
     
-    private func judgeUserSocialSignUpStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
+    private func judgeStatus<T: Codable>(by statusCode: Int, data: Data, type: T.Type) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<AccessToken>.self, from: data)
-        else {
-            return .pathErr
-        }
-        
-        switch statusCode {
-        case 200:
-            return .success(decodedData.data ?? "None-Data")
-        case 400..<500:
-            return .requestErr(decodedData.error?.message ?? "error message")
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    private func judgeUserTokenFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
-        
-        let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<UserWithTokenRequest>.self, from: data)
-        else {
-            return .pathErr
-        }
-        
-        switch statusCode {
-        case 200:
-            return .success(decodedData.data ?? "None-Data")
-        case 400..<500:
-            return .requestErr(decodedData.error?.message ?? "error message")
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    private func judgeUserTokenReissueStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
-        
-        let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<UserReissueToken>.self, from: data)
-        else {
-            return .pathErr
-        }
-        
-        switch statusCode {
-        case 200:
-            return .success(decodedData.data ?? "None-Data")
-        case 400..<500:
-            return .requestErr(statusCode)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    private func judgeStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<String>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<T>.self, from: data)
         else { return .pathErr }
         
         switch statusCode {
         case 200:
             return .success(decodedData.data ?? "None-Data")
         case 400..<500:
-            return .requestErr(decodedData.error?.message ?? "error message")
+            return .requestErr(decodedData.message ?? "error message")
         case 500:
             return .serverErr
         default:

@@ -7,11 +7,16 @@
 
 import UIKit
 
+import Lottie
+
 class OnboardingCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
     var presentToLoginViewController: (() -> Void)?
+    var playSecondOnboardingLottie: Bool = true
+    private let onboardingFirstLottieView = LottieAnimationView(name: Const.Lottie.onboarding01)
+    private let onboardingSecondLottieView = LottieAnimationView(name: Const.Lottie.onboarding02)
 
     // MARK: - @IBOutlet Properties
     
@@ -24,6 +29,8 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
 
         setUI()
+        setLayout()
+        setNotification()
     }
     
     static func nib() -> UINib {
@@ -51,11 +58,70 @@ extension OnboardingCollectionViewCell {
         contentView.layer.masksToBounds = false
         
         imageView.contentMode = .scaleAspectFill
+        
+        onboardingFirstLottieView.loopMode = .playOnce
+        onboardingFirstLottieView.loopMode = .playOnce
+        onboardingFirstLottieView.play()
     }
-    func initCell(image: String, isLast: Bool) {
+    private func setLayout() {
+        self.contentView.addSubviews([onboardingFirstLottieView, onboardingSecondLottieView])
+        
+        onboardingFirstLottieView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            onboardingFirstLottieView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 56),
+            onboardingFirstLottieView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 64),
+            onboardingFirstLottieView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -63),
+            onboardingFirstLottieView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -134)
+        ])
+        
+        onboardingSecondLottieView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            onboardingSecondLottieView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 20),
+            onboardingSecondLottieView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 10),
+            onboardingSecondLottieView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -10),
+            onboardingSecondLottieView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -117)
+        ])
+    }
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(playOnboardingSecondLottieView), name: .scrollToSecondIndex, object: nil)
+    }
+    
+    // MARK: - @objc Methods
+    
+    @objc
+    func playOnboardingSecondLottieView() {
+        if playSecondOnboardingLottie {
+            onboardingSecondLottieView.play()
+        }
+        playSecondOnboardingLottie = false
+        print("playOnboardingSecondLottieView")
+    }
+}
+
+// MARK: - Initialize Methods
+
+extension OnboardingCollectionViewCell {
+    func initCell(image: String, index: Int) {
         if let image = UIImage(named: image) {
             imageView.image = image
         }
-        startButton.isHidden = !isLast
+        
+        if index == 0 {
+            onboardingFirstLottieView.isHidden = false
+            onboardingSecondLottieView.isHidden = true
+            startButton.isHidden = true
+        } else if index == 1 {
+            onboardingFirstLottieView.isHidden = true
+            onboardingSecondLottieView.isHidden = false
+            startButton.isHidden = true
+        } else if index == 4 {
+            onboardingFirstLottieView.isHidden = true
+            onboardingSecondLottieView.isHidden = true
+            startButton.isHidden = false
+        } else {
+            onboardingFirstLottieView.isHidden = true
+            onboardingSecondLottieView.isHidden = true
+            startButton.isHidden = true
+        }
     }
 }

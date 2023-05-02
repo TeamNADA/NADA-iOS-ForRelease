@@ -20,11 +20,6 @@ struct Groups: Codable {
 // MARK: - Group
 
 struct Group: Codable {
-    var groupID: Int
-    var groupName: String
-    
-    enum CodingKeys: String, CodingKey {
-        case groupID = "groupId"
-        case groupName
-    }
+    var cardGroupId: Int
+    var cardGroupName: String
 }

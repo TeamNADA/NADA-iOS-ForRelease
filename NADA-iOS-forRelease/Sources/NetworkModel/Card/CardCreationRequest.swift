@@ -16,16 +16,15 @@ struct CardCreationRequest: Codable {
 }
 
 // MARK: - FrontCard
-
 struct FrontCardDataModel: Codable {
     let birth, cardName, userName: String
     
-    let departmentName, mailAddress, mbti, phoneNumber, sns: String?
+    let departmentName, mailAddress, mbti, phoneNumber, instagram, twitter: String?
     let urls: [String]?
+    let defaultImageIndex: Int
 }
     
 // MARK: - BackCard
-
 struct BackCardDataModel: Codable {
     let tastes: [String]
     let tmi: String?

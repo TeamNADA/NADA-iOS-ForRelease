@@ -61,14 +61,14 @@ class CardCreationCategoryViewController: UIViewController {
         return imageView
     }()
     
-    private let jobBackgroundView: UIView = {
+    private let companyBackgroundView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 15
         
         return view
     }()
     
-    private let jobTextlabel: UILabel = {
+    private let companyTextlabel: UILabel = {
         let label = UILabel()
         label.text = "직장"
         label.textColor = .primary
@@ -77,21 +77,21 @@ class CardCreationCategoryViewController: UIViewController {
         return label
     }()
     
-    private let jobImageView: UIImageView = {
+    private let companyImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "icnOffice")
         
         return imageView
     }()
     
-    private let diggingBackgroundView: UIView = {
+    private let fanBackgroundView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 15
         
         return view
     }()
     
-    private let diggingTextlabel: UILabel = {
+    private let fanTextlabel: UILabel = {
         let label = UILabel()
         label.text = "덕질"
         label.textColor = .primary
@@ -100,7 +100,7 @@ class CardCreationCategoryViewController: UIViewController {
         return label
     }()
     
-    private let diggingImageView: UIImageView = {
+    private let fanImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "icnFan")
         
@@ -152,8 +152,8 @@ extension CardCreationCategoryViewController {
     private func setUI() {
         view.backgroundColor = .background
         basicBackgroundView.backgroundColor = .cardCreationUnclicked
-        jobBackgroundView.backgroundColor = .cardCreationUnclicked
-        diggingBackgroundView.backgroundColor = .cardCreationUnclicked
+        companyBackgroundView.backgroundColor = .cardCreationUnclicked
+        fanBackgroundView.backgroundColor = .cardCreationUnclicked
     }
     
     private func setAddTargets() {
@@ -168,15 +168,15 @@ extension CardCreationCategoryViewController {
         let basicTapGesture = UITapGestureRecognizer()
         basicBackgroundView.addGestureRecognizer(basicTapGesture)
         
-        let jobTapGesture = UITapGestureRecognizer()
-        jobBackgroundView.addGestureRecognizer(jobTapGesture)
+        let companyTapGesture = UITapGestureRecognizer()
+        companyBackgroundView.addGestureRecognizer(companyTapGesture)
         
-        let diggingTapGesture = UITapGestureRecognizer()
-        diggingBackgroundView.addGestureRecognizer(diggingTapGesture)
+        let fanTapGesture = UITapGestureRecognizer()
+        fanBackgroundView.addGestureRecognizer(fanTapGesture)
         
         let input = CardCreationCategoryViewModel.Input(touchBasic: basicTapGesture.rx.event,
-                                                        touchJob: jobTapGesture.rx.event,
-                                                        touchDigging: diggingTapGesture.rx.event)
+                                                        touchcompany: companyTapGesture.rx.event,
+                                                        touchfan: fanTapGesture.rx.event)
         let output = viewModel.transform(input: input)
         
         output.touchBasic
@@ -186,35 +186,34 @@ extension CardCreationCategoryViewController {
             })
             .disposed(by: disposeBag)
         
-        output.touchJob
+        output.touchcompany
             .bind(with: self, onNext: { owner, _ in
-                owner.jobBackgroundView.backgroundColor = .cardCreationClicked
-                owner.presentToJobCardCreationViewController()
+                owner.companyBackgroundView.backgroundColor = .cardCreationClicked
+                owner.presentTocompanyCardCreationViewController()
             })
             .disposed(by: disposeBag)
 
-        output.touchDigging
+        output.touchfan
             .bind(with: self, onNext: { owner, _ in
-                owner.diggingBackgroundView.backgroundColor = .cardCreationClicked
-                owner.presentToDiggingCardCreationViewController()
+                owner.fanBackgroundView.backgroundColor = .cardCreationClicked
+                owner.presentTofanCardCreationViewController()
             })
             .disposed(by: disposeBag)
     }
     
-    // TODO: - 화면전환 메서드 작성.
     private func presentToBasicCardCreationViewController() {
-        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.cardCreation, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardCreationViewController) as? CardCreationViewController else { return }
-        let navigationController = UINavigationController(rootViewController: nextVC)
-        navigationController.modalPresentationStyle = .fullScreen
+        let navigationController = ModuleFactory.shared.makeCardCreationVC(cardType: .basic)
         self.navigationController?.present(navigationController, animated: true)
     }
     
-    private func presentToJobCardCreationViewController() {
-        
+    private func presentTocompanyCardCreationViewController() {
+        let navigationController = ModuleFactory.shared.makeCardCreationVC(cardType: .company)
+        self.navigationController?.present(navigationController, animated: true)
     }
     
-    private func presentToDiggingCardCreationViewController() {
-        
+    private func presentTofanCardCreationViewController() {
+        let navigationController = ModuleFactory.shared.makeCardCreationVC(cardType: .fan)
+        self.navigationController?.present(navigationController, animated: true)
     }
     
     // MARK: - @objc methods
@@ -229,11 +228,11 @@ extension CardCreationCategoryViewController {
 
 extension CardCreationCategoryViewController {
     private func setLayout() {
-        view.addSubviews([navigationBarView, basicBackgroundView, jobBackgroundView, diggingBackgroundView, checkMarkImageView, contentTextlabel])
+        view.addSubviews([navigationBarView, basicBackgroundView, companyBackgroundView, fanBackgroundView, checkMarkImageView, contentTextlabel])
         navigationBarView.addSubviews([backButton, titleLabel])
         basicBackgroundView.addSubviews([basicTextlabel, basicImageView])
-        jobBackgroundView.addSubviews([jobTextlabel, jobImageView])
-        diggingBackgroundView.addSubviews([diggingTextlabel, diggingImageView])
+        companyBackgroundView.addSubviews([companyTextlabel, companyImageView])
+        fanBackgroundView.addSubviews([fanTextlabel, fanImageView])
         
         navigationBarView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
@@ -268,42 +267,42 @@ extension CardCreationCategoryViewController {
             make.bottom.equalToSuperview().inset(9)
         }
         
-        diggingBackgroundView.snp.makeConstraints { make in
+        fanBackgroundView.snp.makeConstraints { make in
             make.top.equalTo(basicBackgroundView.snp.bottom).offset(12)
             make.leading.trailing.equalToSuperview().inset(24)
-            make.height.equalTo(basicBackgroundView.snp.width).multipliedBy(117.0 / 327.0)
+            make.height.equalTo(fanBackgroundView.snp.width).multipliedBy(117.0 / 327.0)
         }
         
-        diggingTextlabel.snp.makeConstraints { make in
+        fanTextlabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(18)
             make.bottom.equalToSuperview().inset(14)
         }
         
-        diggingImageView.snp.makeConstraints { make in
+        fanImageView.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(24)
             make.top.equalToSuperview().inset(11)
             make.bottom.equalToSuperview().inset(9)
         }
         
-        jobBackgroundView.snp.makeConstraints { make in
-            make.top.equalTo(jobBackgroundView.snp.bottom).offset(12)
+        companyBackgroundView.snp.makeConstraints { make in
+            make.top.equalTo(fanBackgroundView.snp.bottom).offset(12)
             make.leading.trailing.equalToSuperview().inset(24)
-            make.height.equalTo(basicBackgroundView.snp.width).multipliedBy(117.0 / 327.0)
+            make.height.equalTo(companyBackgroundView.snp.width).multipliedBy(117.0 / 327.0)
         }
         
-        jobTextlabel.snp.makeConstraints { make in
+        companyTextlabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(18)
             make.bottom.equalToSuperview().inset(14)
         }
         
-        jobImageView.snp.makeConstraints { make in
+        companyImageView.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(24)
             make.top.equalToSuperview().inset(11)
             make.bottom.equalToSuperview().inset(9)
         }
         
         checkMarkImageView.snp.makeConstraints { make in
-            make.top.equalTo(diggingBackgroundView.snp.bottom).offset(10)
+            make.top.equalTo(companyBackgroundView.snp.bottom).offset(10)
             make.leading.equalToSuperview().inset(24)
         }
         

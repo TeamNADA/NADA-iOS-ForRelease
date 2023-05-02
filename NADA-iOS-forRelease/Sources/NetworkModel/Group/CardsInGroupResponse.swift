@@ -19,12 +19,27 @@ struct CardsInGroupResponse: Codable {
 
 // MARK: - Cards
 struct FrontCard: Codable {
-    let cardID, background, title, name, birthDate, mbti: String
-    let instagram, link, cardDescription: String?
-    
+    let cardID: Int
+    let cardUUID, cardType, cardName, departmentName: String
+    let userName, birth, mbti, instagram: String
+    let twitter, mailAddress: String?
+    let phoneNumber: String
+    let urls: [String]
+    let cardTastes: [CardTaste]
+    let tmi: String?
+    let cardImage: String
+    let isRepresentative: Bool
+
     enum CodingKeys: String, CodingKey {
         case cardID = "cardId"
-        case background, title, name, birthDate, mbti, instagram, link
-        case cardDescription = "description"
+        case cardUUID = "cardUuid"
+        case cardType, cardName, departmentName, userName, birth, mbti, instagram, twitter, mailAddress, phoneNumber, urls, cardTastes, tmi, cardImage, isRepresentative
     }
-} 
+}
+
+// MARK: - CardTaste
+struct CardTaste: Codable {
+    let cardTasteName: String
+    let sortOrder: Int
+    let isChoose: Bool
+}

@@ -16,8 +16,7 @@ class BackCardCreationCollectionViewCell: UICollectionViewCell {
     static let identifier = "BackCardCreationCollectionViewCell"
     
     var flavorList: [String]?
-    // TODO: - UITextView 꽉 채우고 최대 글자수 지정.
-    private let maxLength: Int = 0
+    private let maxLength: Int = 140
     private var requiredCollectionViewList = [UICollectionView]()
     
     public weak var backCardCreationDelegate: BackCardCreationDelegate?
@@ -201,5 +200,10 @@ extension BackCardCreationCollectionViewCell: UITextViewDelegate {
         backCardCreationDelegate?.backCardCreation(endEditing: true)
         checkBackCardStatus()
         textView.borderWidth = 0
+    }
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.text.count > 140 {
+            textView.deleteBackward()
+        }
     }
 }

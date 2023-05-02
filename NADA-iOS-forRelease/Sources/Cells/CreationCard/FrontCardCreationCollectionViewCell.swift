@@ -62,6 +62,7 @@ class FrontCardCreationCollectionViewCell: UICollectionViewCell {
         registerCell()
         textFieldDelegate()
         setNotification()
+        setAddTargets()
     }
 }
 
@@ -123,18 +124,24 @@ extension FrontCardCreationCollectionViewCell {
         mbtiLabel.textColor = .quaternary
         mbtiLabel.text = "MBTI"
         
-        instagramIDTextField.attributedPlaceholder = NSAttributedString(string: "Instagram (@ 제외)", attributes: [
-            NSAttributedString.Key.foregroundColor: UIColor.quaternary
-        ])
-        linkURLTextField.attributedPlaceholder = NSAttributedString(string: "URL (Github, Blog 등)", attributes: [
-            NSAttributedString.Key.foregroundColor: UIColor.quaternary
-        ])
-        descriptionTextField.attributedPlaceholder = NSAttributedString(string: "학교 전공/동아리 기수 등 (15자)", attributes: [
-            NSAttributedString.Key.foregroundColor: UIColor.quaternary
-        ])
-        phoneNumberTextField.attributedPlaceholder = NSAttributedString(string: "전화번호", attributes: [
-        NSAttributedString.Key.foregroundColor: UIColor.quaternary
-        ])
+        instagramIDTextField.attributedPlaceholder = NSAttributedString(string: "Instagram (@ 제외)",
+                                                                        attributes: [
+                                                                            NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                        ])
+        linkURLTextField.attributedPlaceholder = NSAttributedString(string: "URL (Github, Blog 등)",
+                                                                    attributes: [
+                                                                        NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                    ])
+        descriptionTextField.attributedPlaceholder = NSAttributedString(string: "학교 전공/동아리 기수 등 (15자)",
+                                                                        attributes: [
+                                                                            NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                        ])
+        phoneNumberTextField.attributedPlaceholder = NSAttributedString(string: "전화번호",
+                                                                        attributes: [
+                                                                            NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                        ])
+        
+        phoneNumberTextField.keyboardType = .numberPad
         
         _ = requiredTextFieldList.map {
             $0.font = .textRegular04
@@ -203,7 +210,7 @@ extension FrontCardCreationCollectionViewCell {
         } else {
             frontCardCreationDelegate?.frontCardCreation(requiredInfo: false)
         }
-        if let _ = defaultImageIndex {
+        if let defaultImageIndex {
             frontCardCreationDelegate?.frontCardCreation(with: FrontCardDataModel(birth: birthLabel.text ?? "",
                                                                                   cardName: cardTitleTextField.text ?? "",
                                                                                   userName: userNameTextField.text ?? "",
@@ -211,9 +218,14 @@ extension FrontCardCreationCollectionViewCell {
                                                                                   mailAddress: nil,
                                                                                   mbti: mbtiLabel.text,
                                                                                   phoneNumber: phoneNumberTextField.text,
-                                                                                  sns: instagramIDTextField.text,
-                                                                                  urls: linkURLTextField.text == nil ? nil : [linkURLTextField.text ?? ""]))
+                                                                                  instagram: instagramIDTextField.text,
+                                                                                  twitter: nil,
+                                                                                  urls: linkURLTextField.text == nil ? nil : [linkURLTextField.text ?? ""],
+                                                                                  defaultImageIndex: defaultImageIndex))
         }
+    }
+    private func setAddTargets() {
+        phoneNumberTextField.addTarget(self, action: #selector(phoneNumberTextFieldDidChange), for: .editingChanged)
     }
     static func nib() -> UINib {
         return UINib(nibName: Const.Xib.frontCardCreationCollectionViewCell, bundle: Bundle(for: FrontCardCreationCollectionViewCell.self))
@@ -273,14 +285,6 @@ extension FrontCardCreationCollectionViewCell {
                         descriptionTextField.text = newString
                     }
                 }
-            case phoneNumberTextField:
-                if let text = phoneNumberTextField.text {
-                    if text.count > maxLength {
-                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
-                        let newString = String(text[text.startIndex..<maxIndex])
-                        phoneNumberTextField.text = newString
-                    }
-                }
             default:
                 return
             }
@@ -318,6 +322,22 @@ extension FrontCardCreationCollectionViewCell {
         if cardBackgroundImage == nil {
             backgroundSettingCollectionView.deselectItem(at: IndexPath.init(item: 0, section: 0), animated: true)
         }
+    }
+    @objc
+    private func phoneNumberTextFieldDidChange() {
+        if let text = phoneNumberTextField.text?.replacingOccurrences(of: "-", with: "") {
+            let textArray = text.map { String($0) }
+            
+            if text.count < 10 {
+                phoneNumberTextField.text = text
+            } else if text.count == 10 {
+                phoneNumberTextField.text = textArray[0...2].joined() + "-" + textArray[3...5].joined() + "-" + textArray[6...9].joined()
+            } else if text.count == 11 {
+                phoneNumberTextField.text = textArray[0...2].joined() + "-" + textArray[3...6].joined() + "-" + textArray[7...10].joined()
+            } else {
+                phoneNumberTextField.text = text
+            }
+        } 
     }
 }
 

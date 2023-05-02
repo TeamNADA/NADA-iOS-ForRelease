@@ -21,6 +21,7 @@ class MainCardCell: CardCell {
     
     public var isShareable: Bool?
     public var cardDataModel: Card?
+    public var cardType: CardType?
     
     // MARK: - View Life Cycle
     
@@ -48,13 +49,34 @@ class MainCardCell: CardCell {
 
 extension MainCardCell {
     public func setFrontCard() {
-        guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
+        guard let cardType else { return }
         
-        frontCard.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
-        guard let cardDataModel = cardDataModel else { return }
-        frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable ?? false)
-        
-        contentView.addSubview(frontCard)
+        switch cardType {
+        case .basic:
+            guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
+            
+            frontCard.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
+            guard let cardDataModel = cardDataModel else { return }
+            frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable ?? false)
+            
+            contentView.addSubview(frontCard)
+        case .company:
+            guard let frontCard = CompanyFrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? CompanyFrontCardCell else { return }
+            
+            frontCard.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
+            guard let cardDataModel = cardDataModel else { return }
+            frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable ?? false)
+            
+            contentView.addSubview(frontCard)
+        case .fan:
+            guard let frontCard = FanFrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FanFrontCardCell else { return }
+            
+            frontCard.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
+            guard let cardDataModel = cardDataModel else { return }
+            frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable ?? false)
+            
+            contentView.addSubview(frontCard)
+        }
     }
     private func setGestureRecognizer() {
         let swipeLeftGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(transitionCardWithAnimation(_:)))
@@ -81,13 +103,7 @@ extension MainCardCell {
             contentView.addSubview(backCard)
             isFront = false
         } else {
-            guard let frontCard = FrontCardCell.nib().instantiate(withOwner: self, options: nil).first as? FrontCardCell else { return }
-            
-            frontCard.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
-            guard let cardDataModel = cardDataModel else { return }
-            frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable ?? false)
-            
-            contentView.addSubview(frontCard)
+            setFrontCard()
             isFront = true
         }
         if swipeGesture.direction == .right {

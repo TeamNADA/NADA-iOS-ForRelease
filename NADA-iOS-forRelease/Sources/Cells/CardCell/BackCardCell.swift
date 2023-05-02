@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import VerticalCardSwiper
 import Kingfisher
 
@@ -18,11 +19,8 @@ class BackCardCell: CardCell {
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var tasteTitleLabel: UILabel!
-    
     @IBOutlet var tasteImageViews: [UIImageView]!
-    
     @IBOutlet var tasteLabels: [UILabel]!
-    
     @IBOutlet weak var tmiTitleLabel: UILabel!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var tmiLabel: UILabel!
@@ -48,22 +46,23 @@ extension BackCardCell {
         backgroundImageView.image = UIImage(named: "backCardBg")
         
         tasteTitleLabel.font = .title02
-        tasteTitleLabel.textColor = .background
+        tasteTitleLabel.textColor = .white
         
         for index in 0..<tasteLabels.count {
             tasteLabels[index].font = .button02
-            tasteLabels[index].textColor = .primary
+            tasteLabels[index].textColor = .tasteLabel
         }
         
         tmiTitleLabel.font = .title02
-        tmiTitleLabel.textColor = .background
+        tmiTitleLabel.textColor = .white
         
         tmiLabel.font = .textRegular04
         tmiLabel.textColor = .background
+        tmiLabel.numberOfLines = 0
     }
     
     func initCell(cardTasteInfo: [CardTasteInfo], tmi: String?, isShareable: Bool = false) {
-        let cardTasteInfo: [CardTasteInfo] = cardTasteInfo.sorted { $0.sortOrder < $1.sortOrder }
+        let cardTasteInfo: [CardTasteInfo] = cardTasteInfo.sorted { $0.sortOrder > $1.sortOrder }
         
         for index in stride(from: 0, to: cardTasteInfo.count, by: 2) {
             if cardTasteInfo[index].isChoose {
@@ -75,6 +74,7 @@ extension BackCardCell {
         
         for index in 0..<tasteLabels.count {
             tasteLabels[index].text = cardTasteInfo[index].cardTasteName
+            tasteLabels[index].textColor = cardTasteInfo[index].isChoose ? .tasteLabel :  .tasteLabel.withAlphaComponent(0.5)
         }
         
         if let tmi {

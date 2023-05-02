@@ -14,7 +14,7 @@ class MoreViewController: UIViewController {
     let defaults = UserDefaults.standard
     
     var firstItems = ["개인정보 처리방침", "서비스 이용약관", "Team NADA", "오픈소스 라이브러리"]
-    var secondItems = ["로그아웃", "받은 명함 초기화", "모든 명함 삭제하기"]
+    var secondItems = ["로그아웃", "받은 명함 초기화", "회원탈퇴"]
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var moreListTableView: UITableView!
@@ -111,10 +111,8 @@ extension MoreViewController {
         makeOKCancelAlert(title: "", message: "로그아웃 하시겠습니까?", okAction: { _ in
             self.makeOKAlert(title: "", message: "로그아웃이 완료 되었습니다.") { _ in
                 if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) {
-                    self.logoutUserWithAPI(token: acToken)
-                    
                     self.defaults.removeObject(forKey: Const.UserDefaultsKey.accessToken)
-                    self.defaults.removeObject(forKey: Const.UserDefaultsKey.refreshToken)
+//                    self.defaults.removeObject(forKey: Const.UserDefaultsKey.refreshToken)
                     self.defaults.removeObject(forKey: Const.UserDefaultsKey.darkModeState)
                     
                     let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
@@ -126,39 +124,26 @@ extension MoreViewController {
     }
     
     func setResetClicked() {
-        makeOKCancelAlert(title: "", message: "받은 명함과 그룹이 모두 초기화됩니다. 정말 초기화하시겠습니까?", okAction: { _ in
-            UserApi.shared.logout { (error) in
-                if let error = error {
-                    print(error)
-                } else {
-                    self.makeOKAlert(title: "", message: "받은 명함이 초기화 되었습니다.")
-                    if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) {
-                    }
+        makeOKCancelAlert(title: "", message: "받은 명함과 명함 모음 그룹이 모두 초기화됩니다. 정말 초기화하시겠습니까?", okAction: { [weak self] _ in
+            self?.groupResetWithAPI {
+                self?.makeOKAlert(title: "", message: "받은 명함이 초기화 되었습니다.") { _ in
+                    self?.tabBarController?.selectedIndex = 2
                 }
             }
         })
     }
     
     func setDeleteCicked() {
-        makeOKCancelAlert(title: "", message: "내 명함과 받은 명함이 모두 삭제됩니다. 삭제 하시겠습니까?", okAction: { _ in
-            UserApi.shared.logout { (error) in
-                if let error = error {
-                    print(error)
-                } else {
-                    self.makeOKAlert(title: "", message: "모든 명함이 삭제되었습니다.") { _ in
-                        // TODO: - KeyChain 적용
-                        if let acToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) {
-                            self.deleteUserWithAPI(token: acToken)
-                            
-                            self.defaults.removeObject(forKey: Const.UserDefaultsKey.accessToken)
-                            self.defaults.removeObject(forKey: Const.UserDefaultsKey.refreshToken)
-                            self.defaults.removeObject(forKey: Const.UserDefaultsKey.darkModeState)
-                            
-                            let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
-                            nextVC.modalPresentationStyle = .overFullScreen
-                            self.navigationController?.changeRootViewController(nextVC)
-                        }
-                    }
+        makeOKCancelAlert(title: "", message: "정말 탈퇴하시겠습니까?\n앱 내 정보가 모두 삭제되며, 이후 복구는 불가합니다.", okAction: { [weak self ]_ in
+            self?.deleteUserWithAPI {
+                self?.makeOKAlert(title: "", message: "나다를 이용해주셔서 감사합니다.\n다음에 또 뵈어요! 🥹") { _ in
+                    self?.defaults.removeObject(forKey: Const.UserDefaultsKey.accessToken)
+//                        self.defaults.removeObject(forKey: Const.UserDefaultsKey.refreshToken)
+                    self?.defaults.removeObject(forKey: Const.UserDefaultsKey.darkModeState)
+                    
+                    let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
+                    nextVC.modalPresentationStyle = .overFullScreen
+                    self?.navigationController?.changeRootViewController(nextVC)
                 }
             }
         })
@@ -203,11 +188,12 @@ extension MoreViewController: UITableViewDataSource {
 
 // MARK: - Network
 extension MoreViewController {
-    func deleteUserWithAPI(token: String) {
-        UserAPI.shared.userDelete(token: token) { response in
+    func deleteUserWithAPI(completion: @escaping () -> Void) {
+        UserAPI.shared.userDelete { response in
             switch response {
             case .success:
                 print("deleteUserWithAPI - success")
+                completion()
             case .requestErr(let message):
                 print("deleteUserWithAPI - requestErr: \(message)")
             case .pathErr:
@@ -220,11 +206,12 @@ extension MoreViewController {
         }
     }
     
-    func groupResetWithAPI(token: String) {
-        GroupAPI.shared.groupReset(token: token) { response in
+    func groupResetWithAPI(completion: @escaping () -> Void) {
+        GroupAPI.shared.groupReset { response in
             switch response {
             case .success:
                 print("groupResetWithAPI - success")
+                completion()
             case .requestErr(let message):
                 print("groupResetWithAPI - requestErr: \(message)")
             case .pathErr:
@@ -236,22 +223,4 @@ extension MoreViewController {
             }
         }
     }
-    
-    func logoutUserWithAPI(token: String) {
-        UserAPI.shared.userLogout(token: token) { response in
-            switch response {
-            case .success:
-                print("logoutUserWithAPI - success")
-            case .requestErr(let message):
-                print("logoutUserWithAPI - requestErr: \(message)")
-            case .pathErr:
-                print("logoutUserWithAPI - pathErr")
-            case .serverErr:
-                print("logoutUserWithAPI - serverErr")
-            case .networkFail:
-                print("logoutUserWithAPI - networkFail")
-            }
-        }
-    }
-    
 }

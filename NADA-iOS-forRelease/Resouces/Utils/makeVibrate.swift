@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-  public func makeVibrate(degree: UIImpactFeedbackGenerator.FeedbackStyle = .medium) {
+    public func makeVibrate(degree: UIImpactFeedbackGenerator.FeedbackStyle = .medium) {
         let generator = UIImpactFeedbackGenerator(style: degree)
         generator.impactOccurred()
     }

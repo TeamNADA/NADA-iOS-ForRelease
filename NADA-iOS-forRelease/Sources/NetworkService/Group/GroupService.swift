@@ -15,7 +15,7 @@ enum GroupService {
     case groupEdit(groupRequest: GroupEditRequest)
     case cardAddInGroup(cardRequest: CardAddInGroupRequest)
     case cardListFetchInGroup(cardListInGroupRequest: CardListInGroupRequest)
-    case cardDeleteInGroup(cardUuid: String, cardGroupName: String)
+    case cardDeleteInGroup(cardUUID: String, cardGroupName: String)
     case groupReset
 }
 

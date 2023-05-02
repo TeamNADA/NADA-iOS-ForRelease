@@ -5,7 +5,10 @@ disabled_rules:
 - function_parameter_count
 - function_body_length
 - cyclomatic_complexity
-- force_cast
+- type_body_length
+- file_length
+- identifier_name
+- large_tuple
 excluded:
 - Pods
 - NADA-iOS-forRelease/Sources/AppDelegate.swift

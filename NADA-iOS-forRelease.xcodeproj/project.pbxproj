@@ -82,12 +82,16 @@
 		77703157275005AA002CBD19 /* CardResultBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77703156275005AA002CBD19 /* CardResultBottomSheetViewController.swift */; };
 		7770315927500C49002CBD19 /* QRScan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7770315827500C49002CBD19 /* QRScan.storyboard */; };
 		7770315B27500C7B002CBD19 /* QRScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7770315A27500C7B002CBD19 /* QRScanViewController.swift */; };
+		777B2C222A00E15000A6AB27 /* NearByRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777B2C212A00E15000A6AB27 /* NearByRequest.swift */; };
+		777B2C242A00E7C700A6AB27 /* NearByUUIDResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777B2C232A00E7C700A6AB27 /* NearByUUIDResponse.swift */; };
 		777FF89B27359B7800BF69D3 /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89A27359B7800BF69D3 /* Groups.swift */; };
 		777FF89D2735B16B00BF69D3 /* GroupAddRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89C2735B16B00BF69D3 /* GroupAddRequest.swift */; };
 		777FF89F27364B7B00BF69D3 /* GroupEditRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89E27364B7B00BF69D3 /* GroupEditRequest.swift */; };
 		77812947275F6EA3004B34F4 /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77812946275F6EA3004B34F4 /* CardDetailViewController.swift */; };
 		7781294A275F6ED7004B34F4 /* CardDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77812949275F6ED7004B34F4 /* CardDetail.storyboard */; };
 		77A196C429F4DB2E000DEF49 /* GroupEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A196C329F4DB2E000DEF49 /* GroupEditViewModel.swift */; };
+		77A196C729F661DC000DEF49 /* NearbyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A196C629F661DC000DEF49 /* NearbyAPI.swift */; };
+		77A196C929F661E3000DEF49 /* NearbyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A196C829F661E3000DEF49 /* NearbyService.swift */; };
 		77A4D5EB29AE20CB00367B7C /* makeVibrate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5EA29AE20CB00367B7C /* makeVibrate.swift */; };
 		77A4D5EF29AE269B00367B7C /* AroundMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5EE29AE269B00367B7C /* AroundMeViewController.swift */; };
 		77A4D5F429AE291F00367B7C /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D5F329AE291F00367B7C /* CustomNavigationBar.swift */; };
@@ -98,6 +102,7 @@
 		77A4D60429BD743600367B7C /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D60329BD743600367B7C /* ModuleFactory.swift */; };
 		77A4D60629BD747300367B7C /* controllerFromStoryBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D60529BD747300367B7C /* controllerFromStoryBoard.swift */; };
 		77A4D60829BD74BC00367B7C /* getClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D60729BD74BC00367B7C /* getClassName.swift */; };
+		77A4D60A29C09D2900367B7C /* calculateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4D60929C09D2900367B7C /* calculateTime.swift */; };
 		77AA68EA273E0EC4009C89B0 /* CardAddInGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */; };
 		77B4E7482990E420006098DC /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B4E7472990E420006098DC /* Home.storyboard */; };
 		77B4E74B2990E50E006098DC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B4E74A2990E50E006098DC /* HomeViewController.swift */; };
@@ -330,12 +335,16 @@
 		7770315827500C49002CBD19 /* QRScan.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QRScan.storyboard; sourceTree = "<group>"; };
 		7770315A27500C7B002CBD19 /* QRScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScanViewController.swift; sourceTree = "<group>"; };
 		777B2C202A00BEB300A6AB27 /* IntentsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IntentsExtension.entitlements; sourceTree = "<group>"; };
+		777B2C212A00E15000A6AB27 /* NearByRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByRequest.swift; sourceTree = "<group>"; };
+		777B2C232A00E7C700A6AB27 /* NearByUUIDResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByUUIDResponse.swift; sourceTree = "<group>"; };
 		777FF89A27359B7800BF69D3 /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
 		777FF89C2735B16B00BF69D3 /* GroupAddRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAddRequest.swift; sourceTree = "<group>"; };
 		777FF89E27364B7B00BF69D3 /* GroupEditRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEditRequest.swift; sourceTree = "<group>"; };
 		77812946275F6EA3004B34F4 /* CardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
 		77812949275F6ED7004B34F4 /* CardDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardDetail.storyboard; sourceTree = "<group>"; };
 		77A196C329F4DB2E000DEF49 /* GroupEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEditViewModel.swift; sourceTree = "<group>"; };
+		77A196C629F661DC000DEF49 /* NearbyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyAPI.swift; sourceTree = "<group>"; };
+		77A196C829F661E3000DEF49 /* NearbyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyService.swift; sourceTree = "<group>"; };
 		77A4D5EA29AE20CB00367B7C /* makeVibrate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = makeVibrate.swift; sourceTree = "<group>"; };
 		77A4D5EE29AE269B00367B7C /* AroundMeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundMeViewController.swift; sourceTree = "<group>"; };
 		77A4D5F329AE291F00367B7C /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
@@ -346,6 +355,7 @@
 		77A4D60329BD743600367B7C /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
 		77A4D60529BD747300367B7C /* controllerFromStoryBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = controllerFromStoryBoard.swift; sourceTree = "<group>"; };
 		77A4D60729BD74BC00367B7C /* getClassName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getClassName.swift; sourceTree = "<group>"; };
+		77A4D60929C09D2900367B7C /* calculateTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calculateTime.swift; sourceTree = "<group>"; };
 		77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddInGroupRequest.swift; sourceTree = "<group>"; };
 		77B4E7422990E00B006098DC /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		77B4E7432990E015006098DC /* Beta.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Beta.xcconfig; sourceTree = "<group>"; };
@@ -805,11 +815,21 @@
 			path = VC;
 			sourceTree = "<group>";
 		};
+		77A196C529F661C4000DEF49 /* Nearby */ = {
+			isa = PBXGroup;
+			children = (
+				77A196C629F661DC000DEF49 /* NearbyAPI.swift */,
+				77A196C829F661E3000DEF49 /* NearbyService.swift */,
+			);
+			path = Nearby;
+			sourceTree = "<group>";
+		};
 		77A4D5E929AE20A600367B7C /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				77A4D5EA29AE20CB00367B7C /* makeVibrate.swift */,
 				77A4D60729BD74BC00367B7C /* getClassName.swift */,
+				77A4D60929C09D2900367B7C /* calculateTime.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -869,6 +889,8 @@
 			isa = PBXGroup;
 			children = (
 				77A4D60029BD708C00367B7C /* AroundMeResponse.swift */,
+				777B2C212A00E15000A6AB27 /* NearByRequest.swift */,
+				777B2C232A00E7C700A6AB27 /* NearByUUIDResponse.swift */,
 			);
 			path = AroundMe;
 			sourceTree = "<group>";
@@ -1329,6 +1351,7 @@
 				F8C83FB0272F9CB10009DF0D /* Card */,
 				F8C83FB3272F9CF30009DF0D /* Group */,
 				F8C83FB4272F9E250009DF0D /* Util */,
+				77A196C529F661C4000DEF49 /* Nearby */,
 				F8F00C3C29DD487E00A15377 /* Update */,
 			);
 			path = NetworkService;
@@ -1745,6 +1768,7 @@
 				F8C83FCB272FA32C0009DF0D /* GroupService.swift in Sources */,
 				F88C8DE929B8919700196A33 /* ViewModelType.swift in Sources */,
 				F858079E2700354E00872484 /* BackgroundCollectionViewCell.swift in Sources */,
+				77A196C929F661E3000DEF49 /* NearbyService.swift in Sources */,
 				F8C83FBD272F9F430009DF0D /* GenericResponse.swift in Sources */,
 				77A4D5F629BC304C00367B7C /* UIStackView+Extension.swift in Sources */,
 				F835EF6F29800F51001ABAAF /* UIApplication+Extension.swift in Sources */,
@@ -1753,6 +1777,7 @@
 				7713E8482752E2A900724C8B /* SelectGroupBottomSheetViewController.swift in Sources */,
 				39007F2C27080D8200E7143E /* UIViewController+Extension.swift in Sources */,
 				F8C83FB6272F9E380009DF0D /* UtilService.swift in Sources */,
+				77A4D60A29C09D2900367B7C /* calculateTime.swift in Sources */,
 				3958F239270FFBBF00B100B2 /* GroupViewController.swift in Sources */,
 				3909242F26FA15E800236C51 /* UIView+Extension.swift in Sources */,
 				39523E09270184A700536900 /* CardListViewController.swift in Sources */,
@@ -1843,6 +1868,7 @@
 				F84BAFAD26FDB543004CA335 /* FrontCardCreationCollectionViewCell.swift in Sources */,
 				F8518054275D040C006BD5ED /* OnboardingCollectionViewCell.swift in Sources */,
 				77703157275005AA002CBD19 /* CardResultBottomSheetViewController.swift in Sources */,
+				777B2C222A00E15000A6AB27 /* NearByRequest.swift in Sources */,
 				F8D74DD8276C7FB60071E5FC /* UIImageView+Extension.swift in Sources */,
 				F8F00C3929DD474700A15377 /* UpdateNote.swift in Sources */,
 				39D13565273FDB9C00B1A148 /* User.swift in Sources */,
@@ -1856,11 +1882,13 @@
 				F8915A23275728F20013D609 /* SelectMBTIBottomViewController.swift in Sources */,
 				393E3345275F69EE00965BBF /* SplashViewController.swift in Sources */,
 				F8C83FB8272F9E3F0009DF0D /* UtilAPI.swift in Sources */,
+				77A196C729F661DC000DEF49 /* NearbyAPI.swift in Sources */,
 				F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */,
 				77A4D5F929BC320600367B7C /* AroundMeCollectionViewCell.swift in Sources */,
 				39C394D4277CD33500DBA566 /* EmptyCardListTableViewCell.swift in Sources */,
 				77B4E74B2990E50E006098DC /* HomeViewController.swift in Sources */,
 				7734D5B427778EFB004360E4 /* HarmonyResponse.swift in Sources */,
+				777B2C242A00E7C700A6AB27 /* NearByUUIDResponse.swift in Sources */,
 				397B75132763A916004AEB03 /* OpenSourceTableViewCell.swift in Sources */,
 				F811720027383097002742CF /* ChangeGroupRequest.swift in Sources */,
 			);

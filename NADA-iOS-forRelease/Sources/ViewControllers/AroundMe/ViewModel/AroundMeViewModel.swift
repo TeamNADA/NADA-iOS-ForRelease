@@ -12,32 +12,13 @@ final class AroundMeViewModel: ViewModelType {
     
     // MARK: - Properties
     
-//    private let useCase: StadiumUseCase
-    let dummyList = [AroundMeResponse(profileImage: "imgProfileSmall",
-                                      myName: "내 이름(닉네임)",
-                                      cardName: "명함 이름"),
-                     AroundMeResponse(profileImage: "imgProfileSmall",
-                                      myName: "내 이름(닉네임)",
-                                      cardName: "명함 이름"),
-                     AroundMeResponse(profileImage: "imgProfileSmall",
-                                      myName: "내 이름(닉네임)",
-                                      cardName: "명함 이름"),
-                     AroundMeResponse(profileImage: "imgProfileSmall",
-                                      myName: "내 이름(닉네임)",
-                                      cardName: "명함 이름"),
-                     AroundMeResponse(profileImage: "imgProfileSmall",
-                                      myName: "내 이름(닉네임)",
-                                      cardName: "명함 이름"),
-                     AroundMeResponse(profileImage: "imgProfileSmall",
-                                      myName: "내 이름(닉네임)",
-                                      cardName: "명함 이름")]
-    
+    private var cardList: [AroundMeResponse] = []
     private let disposeBag = DisposeBag()
     
     // MARK: - Inputs
     
     struct Input {
-        let viewDidLoadEvent: Observable<Void>
+        let viewWillAppearEvent: Observable<Void>
         let refreshButtonTapEvent: Observable<Void>
     }
     
@@ -58,33 +39,24 @@ final class AroundMeViewModel: ViewModelType {
 extension AroundMeViewModel {
     func transform(input: Input) -> Output {
         let output = Output()
-        self.bindOutput(output: output, disposeBag: disposeBag)
         
-        input.viewDidLoadEvent
+        input.viewWillAppearEvent
             .withUnretained(self)
             .subscribe { owner, _ in
 //            self.useCase.getStadiumList()
+                // get 서버통신
+            output.cardList.accept(owner.cardList)
         }.disposed(by: self.disposeBag)
         
         input.refreshButtonTapEvent
             .withUnretained(self)
             .subscribe { owner, _ in
 //            self.useCase.getStadiumList()
+                // get 서버통신
+            
+            output.cardList.accept(owner.cardList)
         }.disposed(by: self.disposeBag)
         
         return output
-    }
-    
-    private func bindOutput(output: Output, disposeBag: DisposeBag) {
-//        let stadiumListRelay = useCase.stadiumList
-//        let ingStadiumRelay = useCase.ingStadium
-//
-//        stadiumListRelay.subscribe { model in
-//            output.stadiumLists.accept(model)
-//        }.disposed(by: self.disposeBag)
-//
-//        ingStadiumRelay.subscribe { model in
-//            output.ingStadium.accept(model)
-//        }.disposed(by: self.disposeBag)
     }
 }

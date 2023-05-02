@@ -25,7 +25,8 @@ import UIKit
 extension UIViewController {
     
     private class func instantiateControllerInStoryboard<T: UIViewController>(_ storyboard: UIStoryboard, identifier: String) -> T {
-        return storyboard.instantiateViewController(withIdentifier: identifier) as! T
+        guard let viewcontroller = storyboard.instantiateViewController(withIdentifier: identifier) as? T else { return T() }
+        return viewcontroller
     }
     
     class func controllerInStoryboard(_ storyboard: UIStoryboard, identifier: String) -> Self {

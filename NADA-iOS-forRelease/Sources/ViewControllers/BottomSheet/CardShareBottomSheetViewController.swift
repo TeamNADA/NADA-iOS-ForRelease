@@ -168,13 +168,13 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         
         idLabel.text = cardDataModel?.cardUUID ?? ""
         
-        setCardActivationUI(with: isActivate ?? false)
+        setCardActivationUIWithAPI(with: isActivate ?? false)
         
         setupLayout()
         setQRImage()
     }
     
-    private func setCardActivationUI(with isActivate: Bool) {
+    private func setCardActivationUIWithAPI(with isActivate: Bool) {
         nearByBackgroundView.backgroundColor = isActivate ? .mainColorNadaMain.withAlphaComponent(0.15) : .card
         
         nearByImage.image = isActivate ? UIImage(named: "icnNearbyOn") : UIImage(named: "icnNearbyOff")
@@ -214,6 +214,39 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         }
     }
     
+    private func setCardActivationUI(with isActivate: Bool, response: NearByUUIDResponse) {
+        nearByBackgroundView.backgroundColor = isActivate ? .mainColorNadaMain.withAlphaComponent(0.15) : .card
+        
+        nearByImage.image = isActivate ? UIImage(named: "icnNearbyOn") : UIImage(named: "icnNearbyOff")
+        
+        nearByLabel.text = isActivate ? "내 근처의 명함 ON" : "내 근처의 명함 OFF"
+        nearByLabel.textColor = isActivate ? .mainColorNadaMain : .tertiary
+        nearByTimeLabel.isHidden = !isActivate
+        
+        nearBySwitch.setOn(isActivate, animated: false)
+        
+        lottieImage.isHidden = isActivate ? false : true
+        _ = isActivate ? lottieImage.play() : lottieImage.stop()
+        
+        if isActivate {
+            //TODO: 여기서 활성화된 명함 정보/위치정보 API로 쏴주기
+            nearByTimeLabel.text = response.activeTime
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(processTimer), userInfo: nil, repeats: true)
+            
+            print("✅ activated")
+            print("✅ latitude: ", latitude)
+            print("✅ longitude: ", longitude)
+        } else {
+            // TODO: 여기서 비활성화된 명함 정보/위치정보 API로 쏴주기
+            timer?.invalidate()
+            seconds = 0
+            nearByTimeLabel.text = "10:00"
+            print("✅✅ deactivated")
+            print("✅ latitude: ", latitude)
+            print("✅ longitude: ", longitude)
+        }
+    }
+    
     func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground(_:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
@@ -233,10 +266,14 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         print(savedTime)
         print(calculateMinuteTime(sec: calculateMinuteTimeToInt(time: savedTime) - seconds))
         print(seconds)
-        DispatchQueue.main.async {
-            self.nearByTimeLabel.text = calculateMinuteTime(sec: calculateMinuteTimeToInt(time: self.savedTime) - seconds)
+
+        if seconds >= 600 {
+            postNearByCardWithAPI(nearByRequest: NearByRequest(cardUUID: cardDataModel?.cardUUID ?? "", isActive: false, latitude: latitude, longitude: longitude))
+        } else {
+            DispatchQueue.main.async {
+                self.nearByTimeLabel.text = calculateMinuteTime(sec: calculateMinuteTimeToInt(time: self.savedTime) - seconds)
+            }
         }
-        print(nearByTimeLabel.text)
     }
     
     private func setupLayout() {
@@ -459,7 +496,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     }
     
     @objc func touchSwitch(_ sender: UISwitch) {
-        setCardActivationUI(with: sender.isOn)
+        setCardActivationUIWithAPI(with: sender.isOn)
     }
     
     @objc
@@ -492,15 +529,15 @@ extension CardShareBottomSheetViewController {
         NearbyAPI.shared.postNearByCard(nearByRequest: nearByRequest) { response in
             switch response {
             case .success:
-                print("groupListFetchWithAPI - success")
+                print("postNearByCardWithAPI - success")
             case .requestErr(let message):
-                print("groupListFetchWithAPI - requestErr: \(message)")
+                print("postNearByCardWithAPI - requestErr: \(message)")
             case .pathErr:
-                print("groupListFetchWithAPI - pathErr")
+                print("postNearByCardWithAPI - pathErr")
             case .serverErr:
-                print("groupListFetchWithAPI - serverErr")
+                print("postNearByCardWithAPI - serverErr")
             case .networkFail:
-                print("groupListFetchWithAPI - networkFail")
+                print("postNearByCardWithAPI - networkFail")
             }
         }
     }
@@ -509,19 +546,20 @@ extension CardShareBottomSheetViewController {
         NearbyAPI.shared.nearByUUIDFetch(cardUUID: cardUUID) { response in
             switch response {
             case .success(let data):
-                if let response = data as? NearByUUIDResponse {
+                if let nearByUUIDResponse = data as? NearByUUIDResponse {
                     print("✅✅✅")
                     print(response)
+                    self.setCardActivationUI(with: nearByUUIDResponse.isActive, response: nearByUUIDResponse)
                 }
-                print("groupListFetchWithAPI - success")
+                print("nearByUUIDFetchWithAPI - success")
             case .requestErr(let message):
-                print("groupListFetchWithAPI - requestErr: \(message)")
+                print("nearByUUIDFetchWithAPI - requestErr: \(message)")
             case .pathErr:
-                print("groupListFetchWithAPI - pathErr")
+                print("nearByUUIDFetchWithAPI - pathErr")
             case .serverErr:
-                print("groupListFetchWithAPI - serverErr")
+                print("nearByUUIDFetchWithAPI - serverErr")
             case .networkFail:
-                print("groupListFetchWithAPI - networkFail")
+                print("nearByUUIDFetchWithAPI - networkFail")
             }
         }
     }

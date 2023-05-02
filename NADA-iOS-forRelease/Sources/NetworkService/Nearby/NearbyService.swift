@@ -11,6 +11,7 @@ import Moya
 enum NearbyService {
     case cardNearByFetch(longitude: Double, latitude: Double)
     case postNearByCard(nearByRequest: NearByRequest)
+    case nearByUUIDFetch(cardUUID: String)
 }
 
 extension NearbyService: TargetType {
@@ -28,12 +29,14 @@ extension NearbyService: TargetType {
             return "/card/nearby/point/longitude/\(longitude)/latitude/\(latitude)"
         case .postNearByCard:
             return "/card/nearby"
+        case .nearByUUIDFetch(let cardUUID):
+            return "/card/nearby/\(cardUUID)"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .cardNearByFetch:
+        case .cardNearByFetch, .nearByUUIDFetch:
             return .get
         case .postNearByCard:
             return .post
@@ -42,7 +45,7 @@ extension NearbyService: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case .cardNearByFetch:
+        case .cardNearByFetch, .nearByUUIDFetch:
             return .requestPlain
         case .postNearByCard(let nearByRequest):
             return .requestParameters(parameters: ["cardUuid": nearByRequest.cardUUID,
@@ -55,7 +58,7 @@ extension NearbyService: TargetType {
     
     var headers: [String: String]? {
         switch self {
-        case .cardNearByFetch, .postNearByCard:
+        case .cardNearByFetch, .postNearByCard, .nearByUUIDFetch:
             return Const.Header.bearerHeader()
         }
     }

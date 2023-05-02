@@ -150,6 +150,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         setNotification()
+        nearByUUIDFetchWithAPI(cardUUID: cardDataModel?.cardUUID ?? "")
     }
     
     // MARK: - @Functions
@@ -199,7 +200,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
             print("✅ activated")
             print("✅ latitude: ", latitude)
             print("✅ longitude: ", longitude)
-            groupListFetchWithAPI(nearByRequest: NearByRequest(cardUUID: cardDataModel?.cardUUID ?? "", isActive: true, latitude: latitude, longitude: longitude))
+            postNearByCardWithAPI(nearByRequest: NearByRequest(cardUUID: cardDataModel?.cardUUID ?? "", isActive: true, latitude: latitude, longitude: longitude))
             
         } else {
             // TODO: 여기서 비활성화된 명함 정보/위치정보 API로 쏴주기
@@ -209,7 +210,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
             print("✅✅ deactivated")
             print("✅ latitude: ", latitude)
             print("✅ longitude: ", longitude)
-            groupListFetchWithAPI(nearByRequest: NearByRequest(cardUUID: cardDataModel?.cardUUID ?? "", isActive: false, latitude: latitude, longitude: longitude))
+            postNearByCardWithAPI(nearByRequest: NearByRequest(cardUUID: cardDataModel?.cardUUID ?? "", isActive: false, latitude: latitude, longitude: longitude))
         }
     }
     
@@ -487,10 +488,31 @@ extension CardShareBottomSheetViewController: CLLocationManagerDelegate {
 // MARK: - Network
 
 extension CardShareBottomSheetViewController {
-    func groupListFetchWithAPI(nearByRequest: NearByRequest) {
+    func postNearByCardWithAPI(nearByRequest: NearByRequest) {
         NearbyAPI.shared.postNearByCard(nearByRequest: nearByRequest) { response in
             switch response {
             case .success:
+                print("groupListFetchWithAPI - success")
+            case .requestErr(let message):
+                print("groupListFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("groupListFetchWithAPI - pathErr")
+            case .serverErr:
+                print("groupListFetchWithAPI - serverErr")
+            case .networkFail:
+                print("groupListFetchWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func nearByUUIDFetchWithAPI(cardUUID: String) {
+        NearbyAPI.shared.nearByUUIDFetch(cardUUID: cardUUID) { response in
+            switch response {
+            case .success(let data):
+                if let response = data as? NearByUUIDResponse {
+                    print("✅✅✅")
+                    print(response)
+                }
                 print("groupListFetchWithAPI - success")
             case .requestErr(let message):
                 print("groupListFetchWithAPI - requestErr: \(message)")

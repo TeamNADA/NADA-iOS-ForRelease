@@ -265,6 +265,7 @@ extension CardCreationCategoryViewController {
             make.trailing.equalToSuperview().inset(24)
             make.top.equalToSuperview().inset(11)
             make.bottom.equalToSuperview().inset(9)
+            make.width.equalTo(basicImageView.snp.height).multipliedBy(118.0 / 97.0)
         }
         
         fanBackgroundView.snp.makeConstraints { make in
@@ -282,6 +283,7 @@ extension CardCreationCategoryViewController {
             make.trailing.equalToSuperview().inset(24)
             make.top.equalToSuperview().inset(11)
             make.bottom.equalToSuperview().inset(9)
+            make.width.equalTo(fanImageView.snp.height).multipliedBy(118.0 / 97.0)
         }
         
         companyBackgroundView.snp.makeConstraints { make in
@@ -299,6 +301,7 @@ extension CardCreationCategoryViewController {
             make.trailing.equalToSuperview().inset(24)
             make.top.equalToSuperview().inset(11)
             make.bottom.equalToSuperview().inset(9)
+            make.width.equalTo(companyImageView.snp.height).multipliedBy(118.0 / 97.0)
         }
         
         checkMarkImageView.snp.makeConstraints { make in

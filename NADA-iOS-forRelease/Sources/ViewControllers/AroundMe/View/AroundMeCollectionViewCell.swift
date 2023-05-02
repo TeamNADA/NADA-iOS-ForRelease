@@ -14,11 +14,13 @@ class AroundMeCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties
     
     var cardUUID: String = ""
+    var addCardMethod: (() -> Void)?
     
     // MARK: - UI Components
     
     private let plusButton = UIButton().then {
         $0.setImage(UIImage(named: "icnPlusCircle"), for: .normal)
+        $0.addTarget(self, action: #selector(touchPlusButton), for: .touchUpInside)
     }
     
     private var profileImageView = UIImageView().then {
@@ -99,4 +101,12 @@ class AroundMeCollectionViewCell: UICollectionViewCell {
             make.height.equalTo(1)
         }
     }
+    
+    // MARK: - @objc
+    
+    @objc
+    private func touchPlusButton() {
+        addCardMethod?()
+    }
+    
 }

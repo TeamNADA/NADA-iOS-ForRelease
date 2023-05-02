@@ -158,19 +158,6 @@ extension AroundMeViewController {
             },
             refreshButtonTapEvent: self.rx.methodInvoked(#selector(UIViewController.viewWillAppear)).map { _ in})
         let output = self.viewModel.transform(input: input)
-        
-//        output.cardList
-//            .compactMap { $0 }
-//            .withUnretained(self)
-//            .subscribe { owner, list in
-//                owner.setData(cardList: list)
-//            }.disposed(by: self.disposeBag)
-//
-//        output.cardList
-//            .bind(to: aroundMeCollectionView.rx.items(cellIdentifier: AroundMeCollectionViewCell.className, cellType: AroundMeCollectionViewCell.self)) { _, model, cell in
-//                cell.setData(model)
-//            }
-//            .disposed(by: disposeBag)
     }
 }
 
@@ -206,6 +193,11 @@ extension AroundMeViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         cardCell.setData(cardsNearBy[indexPath.row])
+        cardCell.addCardMethod = { [weak self] in
+            let index = indexPath.row
+            print("\(index) Call Back Method")
+            // 여기서 카드 추가 API
+        }
         return cardCell
     }
     

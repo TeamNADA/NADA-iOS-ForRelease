@@ -57,7 +57,7 @@ extension BackCardCell {
         tmiTitleLabel.textColor = .white
         
         tmiLabel.font = .textRegular04
-        tmiLabel.textColor = .background
+        tmiLabel.textColor = .white
         tmiLabel.numberOfLines = 0
     }
     

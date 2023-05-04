@@ -18,6 +18,9 @@ extension Const {
         static let isKakaoLogin = "isKakaoLogin"
         static let dynamicLinkCardUUID = "dynamicLinkCardUUID"
         static let accessToken = "AccessToken"
+        static let openQRCodeWidget = "openQRCodeWidget"
+        static let openMyCardWidget = "openMyCardWidget"
+        static let widgetCardUUID = "widgetCardUUID"
         static let refreshToken = "refreshToken"
     }
 }

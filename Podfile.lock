@@ -1,17 +1,17 @@
 PODS:
   - Alamofire (5.6.4)
-  - Firebase/CoreOnly (10.8.0):
-    - FirebaseCore (= 10.8.0)
-  - Firebase/DynamicLinks (10.8.0):
+  - Firebase/CoreOnly (10.9.0):
+    - FirebaseCore (= 10.9.0)
+  - Firebase/DynamicLinks (10.9.0):
     - Firebase/CoreOnly
-    - FirebaseDynamicLinks (~> 10.8.0)
-  - FirebaseCore (10.8.0):
+    - FirebaseDynamicLinks (~> 10.9.0)
+  - FirebaseCore (10.9.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/Logger (~> 7.8)
-  - FirebaseCoreInternal (10.8.0):
+  - FirebaseCoreInternal (10.9.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
-  - FirebaseDynamicLinks (10.8.0):
+  - FirebaseDynamicLinks (10.9.0):
     - FirebaseCore (~> 10.0)
   - FlexLayout (1.3.31)
   - GoogleUtilities/Environment (7.11.1):
@@ -32,7 +32,7 @@ PODS:
   - KakaoSDKUser (2.15.0):
     - KakaoSDKAuth (= 2.15.0)
   - Kingfisher (7.6.2)
-  - lottie-ios (4.1.3)
+  - lottie-ios (4.2.0)
   - Moya (15.0.0):
     - Moya/Core (= 15.0.0)
   - Moya/Core (15.0.0):
@@ -122,10 +122,10 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
-  Firebase: b49ef44e5ec9a3d0c1f6450f410337e97872279c
-  FirebaseCore: e78636a990b54be427ce300aa09a0e359f4e0e87
-  FirebaseCoreInternal: fa2899eb1f340054858d289e5a0fb935a0a74e52
-  FirebaseDynamicLinks: 8c7e16503fd057c44727b6bc8dc8e7ff2a667955
+  Firebase: bd152f0f3d278c4060c5c71359db08ebcfd5a3e2
+  FirebaseCore: b68d3616526ec02e4d155166bbafb8eca64af557
+  FirebaseCoreInternal: d2b4acb827908e72eca47a9fd896767c3053921e
+  FirebaseDynamicLinks: 8cb66c4f403aa6ddf86ff3bc3c383a652f344ce9
   FlexLayout: 8010187077ecf09710cdf0e9c8ffe2c9b92ec5db
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
   IQKeyboardManagerSwift: c7955c0bdbf7b2eb29bb7daaa44e3d90f55a9a85
@@ -133,7 +133,7 @@ SPEC CHECKSUMS:
   KakaoSDKCommon: 89d863b7f34398e6fb93a0acb28a204908551a39
   KakaoSDKUser: a997ca5c4c18ece2ab30646ff74841bc29d4399d
   Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
-  lottie-ios: d0954d3150061f662ed0adf96ef98d7421864c47
+  lottie-ios: 809ecf2d460ed650a6aed7aa88b2ec45fab4779c
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   PinLayout: f8a677ce0cd1cfe96b58435d029b4ceb4ce9c04c
@@ -153,4 +153,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 6aac9570b93049853d9fa383fd5b608dbdbcd63d
 
-COCOAPODS: 1.12.0
+COCOAPODS: 1.12.1

@@ -8,5 +8,5 @@
 import Foundation
 
 extension UserDefaults {
-    static var appGroup = UserDefaults(suiteName: "group.NADA-iOS-forRelease")!
+    static var appGroup = UserDefaults(suiteName: "group.YJC.NADA-iOS-forRelease")!
 }

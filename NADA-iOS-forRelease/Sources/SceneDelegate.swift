@@ -17,7 +17,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     let defaults = UserDefaults.standard
     
+    private let myCardURL = "openMyCardWidget"
+    private let qrCodeURL = "openQRCodeWidget"
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
+        if let url = connectionOptions.urlContexts.first?.url {
+            if url.absoluteString == qrCodeURL {
+                UserDefaults.standard.setValue(true, forKey: Const.UserDefaultsKey.openQRCodeWidget)
+            } else if url.absoluteString.starts(with: myCardURL) {
+                guard let queryItems = URLComponents(string: url.absoluteString)?.queryItems,
+                      let cardUUID = queryItems.filter({ $0.name == "cardUUID" }).first?.value else { return }
+                
+                UserDefaults.standard.setValue(true, forKey: Const.UserDefaultsKey.openMyCardWidget)
+                UserDefaults.standard.setValue(cardUUID, forKey: Const.UserDefaultsKey.widgetCardUUID)
+            }
+        }
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
@@ -46,9 +62,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-        let myCardURL = "openMyCardWidget"
-        let qrCodeURL = "openQRCodeWidget"
-
         guard let url = URLContexts.first?.url,
               let urlComponents = URLComponents(string: url.absoluteString) else { return }
         

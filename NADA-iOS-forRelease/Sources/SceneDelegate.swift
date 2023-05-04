@@ -94,15 +94,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let nextVC = CardShareBottomSheetViewController()
                 .setTitle("명함공유")
                 .setHeight(606.0)
-
-            nextVC.cardDataModel = Card(birth: "", cardID: 0, cardUUID: cardUUID, cardImage: "imgCardBg01", cardName: "첫 번째 카드", cardTastes: [CardTasteInfo(cardTasteName: "", isChoose: false, sortOrder: 0)], cardType: "", departmentName: "", isRepresentative: false, mailAddress: "", mbti: "", phoneNumber: "", instagram: "", twitter: "", tmi: "", urls: [], userName: "1현규")
             
-            nextVC.isActivate = false
-            nextVC.modalPresentationStyle = .overFullScreen
-            
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-                let topVC = UIApplication.mostTopViewController()
-                topVC?.present(nextVC, animated: true)
+            cardDetailFetchWithAPI(cardUUID: cardUUID) { cardDataModel in
+                nextVC.isActivate = false
+                nextVC.modalPresentationStyle = .overFullScreen
+                nextVC.cardDataModel = cardDataModel
+                
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                    let topVC = UIApplication.mostTopViewController()
+                    topVC?.present(nextVC, animated: true)
+                }
             }
         } else {
             if (AuthApi.isKakaoTalkLoginUrl(url)) {
@@ -164,5 +165,29 @@ extension SceneDelegate {
         let cardUUID = queryItems?.filter { $0.name == "cardUUID" }.first?.value
         
         return cardUUID
+    }
+}
+
+// MARK: - Network
+
+extension SceneDelegate {
+    private func cardDetailFetchWithAPI(cardUUID: String, completion: @escaping (Card) -> Void) {
+        CardAPI.shared.cardDetailFetch(cardUUID: cardUUID) { response in
+            switch response {
+            case .success(let data):
+                if let cardDataModel = data as? Card {
+                    completion(cardDataModel)
+                }
+                print("cardDetailFetchWithAPI - success")
+            case .requestErr(let message):
+                print("cardDetailFetchWithAPI - requestErr", message)
+            case .pathErr:
+                print("cardDetailFetchWithAPI - pathErr")
+            case .serverErr:
+                print("cardDetailFetchWithAPI - serverErr")
+            case .networkFail:
+                print("deleteGroupWithAPI - networkFail")
+            }
+        }
     }
 }

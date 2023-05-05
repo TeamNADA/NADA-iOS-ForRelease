@@ -232,6 +232,33 @@ extension HomeViewController {
         cardDetailVC.cardDataModel = cardDataModel
         self.present(cardDetailVC, animated: true)
     }
+    
+    private func presentQRScanVC() {
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .denied:
+            makeOKCancelAlert(title: "카메라 권한이 허용되어 있지 않아요.",
+                        message: "QR코드 인식을 위해 카메라 권한이 필요합니다. 앱 설정으로 이동해 허용해 주세요.",
+                        okAction: { _ in UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)},
+                        cancelAction: nil,
+                        completion: nil)
+        case .authorized:
+            guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.qrScan, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.qrScanViewController) as? QRScanViewController else { return }
+            nextVC.modalPresentationStyle = .overFullScreen
+            self.present(nextVC, animated: true, completion: nil)
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video) { granted in
+                if granted {
+                    DispatchQueue.main.async {
+                        guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.qrScan, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.qrScanViewController) as? QRScanViewController else { return }
+                        nextVC.modalPresentationStyle = .overFullScreen
+                        self.present(nextVC, animated: true, completion: nil)
+                    }
+                }
+            }
+        default:
+            break
+        }
+    }
 }
 
 // MARK: - Network

@@ -5,6 +5,7 @@
 //  Created by Yi Joon Choi on 2023/02/06.
 //
 
+import Photos
 import UIKit
 
 import RxSwift
@@ -66,7 +67,7 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         setLayout()
         bindActions()
-        checkUpdateVersion()
+        checkUpdateVersionAndSetting()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -175,7 +176,7 @@ extension HomeViewController {
             }.disposed(by: self.disposeBag)
     }
     
-    private func checkUpdateVersion() {
+    private func checkUpdateVersionAndSetting() {
         updateUserInfoFetchWithAPI { [weak self] checkUpdateNote in
             if !checkUpdateNote {
                 self?.updateNoteFetchWithAPI { [weak self] updateNote in
@@ -186,11 +187,35 @@ extension HomeViewController {
                         if let dynamicLinkCardUUID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.dynamicLinkCardUUID) {
                             self?.checkDynamicLink(dynamicLinkCardUUID)
                         }
+                        
+                        if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.openQRCodeWidget) {
+                            self?.presentQRScanVC()
+                            UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.openQRCodeWidget)
+                        }
+                        
+                        if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.openMyCardWidget),
+                           let widgetCardUUID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.widgetCardUUID) {
+                            self?.presentCardShareBottomSheetVC(with: widgetCardUUID)
+                            UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.openMyCardWidget)
+                            UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.widgetCardUUID)
+                        }
                     }
                 }
             } else {
                 if let dynamicLinkCardUUID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.dynamicLinkCardUUID) {
                     self?.checkDynamicLink(dynamicLinkCardUUID)
+                }
+                
+                if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.openQRCodeWidget) {
+                    self?.presentQRScanVC()
+                    UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.openQRCodeWidget)
+                }
+                
+                if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.openMyCardWidget),
+                   let widgetCardUUID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.widgetCardUUID) {
+                    self?.presentCardShareBottomSheetVC(with: widgetCardUUID)
+                    UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.openMyCardWidget)
+                    UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.widgetCardUUID)
                 }
             }
         }

@@ -44,9 +44,23 @@ extension IntentHandler: MyCardIntentHandling {
         }
     }
     
-    // 위젯 편집할때 호출. 기본값 설정.
+    // 위젯 추가할때 호출. 기본값 설정.
     func defaultMyCard(for intent: MyCardIntent) -> MyCard? {
         var myCard: MyCard?
+        
+        cardListFetchWithAPI { [weak self] result in
+            switch result {
+            case .success(let result):
+                if let result {
+                    self?.cardItems = result.data
+                    myCard = MyCard(identifier: self?.cardItems?[0].cardUUID ?? "", display: self?.cardItems?[0].cardName ?? "")
+                    myCard?.userName = self?.cardItems?[0].userName
+                    myCard?.cardImage = self?.cardItems?[0].cardImage
+                }
+            case .failure(let err):
+                print(err)
+            }
+        }
         
         if let cardItems {
             myCard = MyCard(identifier: cardItems[0].cardUUID, display: cardItems[0].cardName)

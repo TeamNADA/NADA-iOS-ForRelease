@@ -80,11 +80,11 @@ extension FanFrontCardCell {
         snsLabel.lineBreakMode = .byTruncatingTail
         firstURLLabel.font = .textRegular04
         firstURLLabel.textColor = .white
-        firstURLLabel.numberOfLines = 2
+        firstURLLabel.numberOfLines = 1
         firstURLLabel.lineBreakMode = .byTruncatingTail
         secondURLLabel.font = .textRegular04
         secondURLLabel.textColor = .white
-        secondURLLabel.numberOfLines = 2
+        secondURLLabel.numberOfLines = 1
         secondURLLabel.lineBreakMode = .byTruncatingTail
         
         firstURLStackView.alignment = .center

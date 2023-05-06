@@ -8,6 +8,6 @@
 import SwiftUI
 
 extension Font {
-    static let cardName = Font.custom("SpoqaHanSansNeo-Regular", size: 15)
+    static let cardName = Font.custom("SpoqaHanSansNeo-Medium", size: 15)
     static let userName = Font.custom("SpoqaHanSansNeo-Bold", size: 15)
 }

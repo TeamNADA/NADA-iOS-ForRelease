@@ -17,18 +17,6 @@ class IntentHandler: INExtension {
         // This is the default implementation.  If you want different objects to handle different intents,
         // you can override this and return the handler you want for that particular intent.
         
-        cardListFetchWithAPI { [weak self] result in
-            switch result {
-            case .success(let result):
-                if let result {
-                    self?.cardItems = result.data
-                    print(self?.cardItems)
-                }
-            case .failure(let err):
-                print(err)
-            }
-        }
-        
         return self
     }
 }

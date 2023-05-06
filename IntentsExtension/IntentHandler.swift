@@ -24,23 +24,19 @@ class IntentHandler: INExtension {
 extension IntentHandler: MyCardIntentHandling {
     // 내 명함 목록 선택할 때 호출.
     func provideMyCardOptionsCollection(for intent: MyCardIntent, with completion: @escaping (INObjectCollection<MyCard>?, Error?) -> Void) {
-        cardListFetchWithAPI { [weak self] result in
+        cardListFetchWithAPI { result in
             switch result {
             case .success(let result):
-                if let result {
-                    self?.cardItems = result.data
-                    
-                    if let cardItems = self?.cardItems {
-                        let myCards = cardItems.map { card in
-                            let myCard = MyCard(identifier: card.cardUUID, display: card.cardName)
-                            myCard.userName = card.userName
-                            myCard.cardImage = card.cardImage
-                            
-                            return myCard
-                        }
-                        let collection = INObjectCollection(items: myCards)
-                        completion(collection, nil)
+                if let cardItems = result?.data {
+                    let myCards = cardItems.map { card in
+                        let myCard = MyCard(identifier: card.cardUUID, display: card.cardName)
+                        myCard.userName = card.userName
+                        myCard.cardImage = card.cardImage
+                        
+                        return myCard
                     }
+                    let collection = INObjectCollection(items: myCards)
+                    completion(collection, nil)
                 }
             case .failure(let err):
                 print(err)

@@ -104,9 +104,9 @@
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="D6j-Cz-d99" secondAttribute="trailing" constant="20" id="Frl-ja-0Kb"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="D6j-Cz-d99" secondAttribute="trailing" id="Frl-ja-0Kb"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7Qd-rb-YOy" secondAttribute="trailing" id="Oqw-oH-SoH"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="32s-jO-RgD" secondAttribute="trailing" constant="20" id="p6L-xc-Oo3"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="32s-jO-RgD" secondAttribute="trailing" id="p6L-xc-Oo3"/>
                         </constraints>
                     </stackView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconMbti" translatesAutoresizingMaskIntoConstraints="NO" id="SXl-Ls-Qsz">

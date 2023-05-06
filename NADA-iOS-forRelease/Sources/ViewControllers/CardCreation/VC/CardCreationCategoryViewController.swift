@@ -154,6 +154,15 @@ extension CardCreationCategoryViewController {
         basicBackgroundView.backgroundColor = .cardCreationUnclicked
         companyBackgroundView.backgroundColor = .cardCreationUnclicked
         fanBackgroundView.backgroundColor = .cardCreationUnclicked
+        
+        if UITraitCollection.current.userInterfaceStyle == .light {
+            contentTextlabel.isHidden = false
+            checkMarkImageView.isHidden = false
+        } else {
+            contentTextlabel.isHidden = true
+            checkMarkImageView.isHidden = true
+        }
+        
     }
     
     private func setAddTargets() {

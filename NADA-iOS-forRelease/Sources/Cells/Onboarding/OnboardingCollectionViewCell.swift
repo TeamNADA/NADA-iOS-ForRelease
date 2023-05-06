@@ -84,17 +84,21 @@ extension OnboardingCollectionViewCell {
     }
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(playOnboardingSecondLottieView), name: .scrollToSecondIndex, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(playOnboardingFirstLottieView), name: .scrollToFirstIndex, object: nil)
     }
     
     // MARK: - @objc Methods
     
     @objc
+    func playOnboardingFirstLottieView() {
+        onboardingFirstLottieView.stop()
+        onboardingFirstLottieView.play()
+    }
+    
+    @objc
     func playOnboardingSecondLottieView() {
-        if playSecondOnboardingLottie {
-            onboardingSecondLottieView.play()
-        }
-        playSecondOnboardingLottie = false
-        print("playOnboardingSecondLottieView")
+        onboardingSecondLottieView.stop()
+        onboardingSecondLottieView.play()
     }
 }
 

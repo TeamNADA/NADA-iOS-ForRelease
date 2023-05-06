@@ -91,7 +91,7 @@ extension FrontCardCell {
         phoneNumberLabel.lineBreakMode = .byTruncatingTail
         linkURLLabel.font = .textRegular04
         linkURLLabel.textColor = .white
-        linkURLLabel.numberOfLines = 2
+        linkURLLabel.numberOfLines = 1
         linkURLLabel.lineBreakMode = .byTruncatingTail
         
         linkURLStackView.alignment = .center

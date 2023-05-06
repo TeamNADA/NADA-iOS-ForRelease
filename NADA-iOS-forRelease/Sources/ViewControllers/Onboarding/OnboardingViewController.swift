@@ -74,6 +74,10 @@ extension OnboardingViewController: UICollectionViewDelegate {
             offset = CGPoint(x: CGFloat.zero, y: currentIndex * (Size.cellHeigth + Size.cellLineSpacing) - Size.topSafeArea)
         }
         
+        if currentIndex == 0 {
+            NotificationCenter.default.post(name: .scrollToFirstIndex, object: nil)
+        }
+        
         if currentIndex == 1 {
             NotificationCenter.default.post(name: .scrollToSecondIndex, object: nil)
         }

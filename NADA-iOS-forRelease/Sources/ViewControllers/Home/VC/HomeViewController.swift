@@ -38,6 +38,10 @@ final class HomeViewController: UIViewController {
         $0.backgroundColor = .cardCreationUnclicked
         $0.layer.cornerRadius = 15
     }
+    private let stackview = UIStackView().then {
+        $0.spacing = 15
+        $0.distribution = .fillEqually
+    }
     private let giveCardLabel = UILabel().then {
         $0.text = "명함 보내기"
         $0.font = UIFont.title02
@@ -87,7 +91,8 @@ extension HomeViewController {
     }
     
     private func setLayout() {
-        view.addSubviews([nadaIcon, giveCardView, takeCardView, aroundMeView])
+        stackview.addArrangedSubviews([giveCardView, takeCardView])
+        view.addSubviews([nadaIcon, stackview, aroundMeView])
         giveCardView.addSubviews([giveCardLabel, giveCardIcon])
         takeCardView.addSubviews([takeCardLabel, takeCardIcon])
         aroundMeView.addSubviews([aroundMeLabel, aroundMeIcon])
@@ -96,16 +101,10 @@ extension HomeViewController {
             make.top.equalTo(self.view.safeAreaLayoutGuide).inset(12)
             make.leading.equalToSuperview().inset(19)
         }
-        giveCardView.snp.makeConstraints { make in
+        stackview.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
             make.top.equalTo(nadaIcon.snp.bottom).offset(150)
             make.leading.equalToSuperview().inset(24)
-            make.width.equalTo(157)
-            make.height.equalTo(205)
-        }
-        takeCardView.snp.makeConstraints { make in
-            make.top.equalTo(nadaIcon.snp.bottom).offset(150)
-            make.trailing.equalToSuperview().inset(24)
-            make.width.equalTo(157)
             make.height.equalTo(205)
         }
         aroundMeView.snp.makeConstraints { make in

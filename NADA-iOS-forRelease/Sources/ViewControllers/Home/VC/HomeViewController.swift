@@ -147,6 +147,7 @@ extension HomeViewController {
                 owner.makeVibrate()
                 owner.giveCardView.backgroundColor = .cardCreationClicked
                 print("명함 주기")
+                owner.tabBarController?.selectedIndex = 1
             }.disposed(by: self.disposeBag)
         
         takeCardView.rx.tapGesture()

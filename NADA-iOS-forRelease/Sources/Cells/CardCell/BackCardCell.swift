@@ -22,16 +22,12 @@ class BackCardCell: CardCell {
     @IBOutlet var tasteImageViews: [UIImageView]!
     @IBOutlet var tasteLabels: [UILabel]!
     @IBOutlet weak var tmiTitleLabel: UILabel!
-    @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var tmiLabel: UILabel!
     
     // MARK: - View Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
         setUI()
-    }
-    @IBAction func touchShareButton(_ sender: Any) {
-        NotificationCenter.default.post(name: Notification.Name.presentCardShare, object: cardData, userInfo: nil)
     }
     
     // MARK: - Functions
@@ -83,7 +79,6 @@ extension BackCardCell {
             tmiLabel.text = ""
         }
         
-        shareButton.isHidden = !isShareable
     }
     
     // TODO: - 로컬에서 image 를 가지고 있게 되면 사용할 메서드.

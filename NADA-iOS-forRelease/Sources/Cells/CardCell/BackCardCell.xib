@@ -71,14 +71,6 @@
                             <constraint firstAttribute="height" constant="35" id="c3k-g5-uGj"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3tv-wQ-4Ka">
-                        <rect key="frame" x="279" y="16" width="24" height="24"/>
-                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                        <state key="normal" image="iconShare"/>
-                        <connections>
-                            <action selector="touchShareButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="9we-bF-B51"/>
-                        </connections>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나의 취향" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHb-jJ-jng">
                         <rect key="frame" x="24" y="50" width="67" height="22"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -156,7 +148,6 @@
                 <constraint firstAttribute="bottom" secondItem="Rmd-7u-oYx" secondAttribute="bottom" id="6sP-l0-YJZ"/>
                 <constraint firstAttribute="trailing" secondItem="bNI-yG-96K" secondAttribute="trailing" constant="24" id="7eM-YI-3Qt"/>
                 <constraint firstItem="Q9H-oG-tzn" firstAttribute="leading" secondItem="Rmd-7u-oYx" secondAttribute="leading" id="7x9-tr-J5n"/>
-                <constraint firstAttribute="trailing" secondItem="3tv-wQ-4Ka" secondAttribute="trailing" constant="24" id="8M2-5e-Gzt"/>
                 <constraint firstItem="Z3d-Jw-0bl" firstAttribute="top" secondItem="Sfm-fL-vo0" secondAttribute="bottom" constant="16" id="8qH-Jg-J7V"/>
                 <constraint firstItem="FfP-9G-1a3" firstAttribute="top" secondItem="dHb-jJ-jng" secondAttribute="bottom" constant="2.5" id="9Bq-4m-Efc"/>
                 <constraint firstItem="trU-Am-jlp" firstAttribute="leading" secondItem="yWc-gu-ca5" secondAttribute="leading" id="9yw-5u-T00"/>
@@ -174,7 +165,6 @@
                 <constraint firstItem="XT5-iW-6kG" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="24" id="Y36-eF-FL8"/>
                 <constraint firstItem="19t-Fx-dQ8" firstAttribute="centerY" secondItem="Z3d-Jw-0bl" secondAttribute="centerY" id="Y3l-pu-rSB"/>
                 <constraint firstItem="bNI-yG-96K" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="24" id="YH6-4Z-GcG"/>
-                <constraint firstItem="3tv-wQ-4Ka" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="Yho-5j-Btr"/>
                 <constraint firstItem="dHb-jJ-jng" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="50" id="ZLX-Il-oq0"/>
                 <constraint firstAttribute="trailing" secondItem="FfP-9G-1a3" secondAttribute="trailing" constant="24" id="Zh6-xa-VD9"/>
                 <constraint firstItem="5Bo-yc-zB1" firstAttribute="leading" secondItem="sLy-tM-Foc" secondAttribute="leading" id="aKZ-4f-bRM"/>
@@ -207,7 +197,6 @@
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="backgroundImageView" destination="Rmd-7u-oYx" id="Ci4-HW-97h"/>
-                <outlet property="shareButton" destination="3tv-wQ-4Ka" id="uQj-kM-ZBL"/>
                 <outlet property="tasteTitleLabel" destination="dHb-jJ-jng" id="s2A-b9-Osl"/>
                 <outlet property="tmiLabel" destination="Ch6-5U-VOL" id="soW-Sy-5Zm"/>
                 <outlet property="tmiTitleLabel" destination="XT5-iW-6kG" id="75E-sq-FUS"/>
@@ -227,7 +216,4 @@
             <point key="canvasLocation" x="131.15942028985509" y="79.6875"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="iconShare" width="24" height="24"/>
-    </resources>
 </document>

@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>&quot;사용자의 위치를 받아오려고 합니다.&quot;</string>
+	<string>내 근처의 명함을 받아오기 위해 위치 권한이 필요합니다. (허용하지 않을 경우 내 근처의 명함 기능을 사용할 수 없습니다.)</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>&quot;사용자의 위치를 받아오려고 합니다.&quot;</string>
+	<string>내 근처의 명함을 받아오기 위해 위치 권한이 필요합니다. (허용하지 않을 경우 내 근처의 명함 기능을 사용할 수 없습니다.)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>ko_KR</string>
 	<key>CFBundleDisplayName</key>

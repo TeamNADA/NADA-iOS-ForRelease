@@ -38,9 +38,7 @@ class BackCardCell: CardCell {
 
 // MARK: - Extensions
 extension BackCardCell {
-    private func setUI() {
-        backgroundImageView.image = UIImage(named: "backCardBg")
-        
+    private func setUI() {        
         tasteTitleLabel.font = .title02
         tasteTitleLabel.textColor = .white
         
@@ -57,7 +55,12 @@ extension BackCardCell {
         tmiLabel.numberOfLines = 0
     }
     
-    func initCell(cardTasteInfo: [CardTasteInfo], tmi: String?, isShareable: Bool = false) {
+    /// 명함 미리보기 시 사용.
+    func initCell(_ backgroundImage: UIImage?,
+                  _ cardTasteInfo: [CardTasteInfo],
+                  _ tmi: String?) {
+        backgroundImageView.image = backgroundImage
+        
         let cardTasteInfo: [CardTasteInfo] = cardTasteInfo.sorted { $0.sortOrder > $1.sortOrder }
         
         for index in stride(from: 0, to: cardTasteInfo.count, by: 2) {
@@ -73,12 +76,37 @@ extension BackCardCell {
             tasteLabels[index].textColor = cardTasteInfo[index].isChoose ? .tasteLabel :  .tasteLabel.withAlphaComponent(0.5)
         }
         
-        if let tmi {
-            tmiLabel.text = tmi
+        tmiLabel.text = tmi
+    }
+    
+    /// 명함 조회 시 사용.
+    func initCell(_ backgroundImage: String,
+                  _ cardTasteInfo: [CardTasteInfo],
+                  _ tmi: String?) {
+        if backgroundImage.hasPrefix("https://") {
+            self.backgroundImageView.updateServerImage(backgroundImage)
         } else {
-            tmiLabel.text = ""
+            if let bgImage = UIImage(named: backgroundImage) {
+                self.backgroundImageView.image = bgImage
+            }
         }
         
+        let cardTasteInfo: [CardTasteInfo] = cardTasteInfo.sorted { $0.sortOrder > $1.sortOrder }
+        
+        for index in stride(from: 0, to: cardTasteInfo.count, by: 2) {
+            if cardTasteInfo[index].isChoose {
+                tasteImageViews[index / 2].image = UIImage(named: "imgBalanceLeft")
+            } else {
+                tasteImageViews[index / 2].image = UIImage(named: "imgBalanceRight")
+            }
+        }
+        
+        for index in 0..<tasteLabels.count {
+            tasteLabels[index].text = cardTasteInfo[index].cardTasteName
+            tasteLabels[index].textColor = cardTasteInfo[index].isChoose ? .tasteLabel :  .tasteLabel.withAlphaComponent(0.5)
+        }
+        
+        tmiLabel.text = tmi
     }
     
     // TODO: - 로컬에서 image 를 가지고 있게 되면 사용할 메서드.

@@ -83,6 +83,11 @@
 		7770315927500C49002CBD19 /* QRScan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7770315827500C49002CBD19 /* QRScan.storyboard */; };
 		7770315B27500C7B002CBD19 /* QRScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7770315A27500C7B002CBD19 /* QRScanViewController.swift */; };
 		7773124F2A083357002C094B /* NewCardHarmonyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7773124E2A083357002C094B /* NewCardHarmonyViewController.swift */; };
+		777312512A08D42D002C094B /* gunghap_0_20.json in Resources */ = {isa = PBXBuildFile; fileRef = 777312502A08D42D002C094B /* gunghap_0_20.json */; };
+		777312562A08D432002C094B /* gunghap_61_80.json in Resources */ = {isa = PBXBuildFile; fileRef = 777312522A08D432002C094B /* gunghap_61_80.json */; };
+		777312572A08D432002C094B /* gunghap_21_40.json in Resources */ = {isa = PBXBuildFile; fileRef = 777312532A08D432002C094B /* gunghap_21_40.json */; };
+		777312582A08D432002C094B /* gunghap_81_100.json in Resources */ = {isa = PBXBuildFile; fileRef = 777312542A08D432002C094B /* gunghap_81_100.json */; };
+		777312592A08D432002C094B /* gunghap_41_60.json in Resources */ = {isa = PBXBuildFile; fileRef = 777312552A08D432002C094B /* gunghap_41_60.json */; };
 		777B2C222A00E15000A6AB27 /* NearByRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777B2C212A00E15000A6AB27 /* NearByRequest.swift */; };
 		777B2C242A00E7C700A6AB27 /* NearByUUIDResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777B2C232A00E7C700A6AB27 /* NearByUUIDResponse.swift */; };
 		777FF89B27359B7800BF69D3 /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89A27359B7800BF69D3 /* Groups.swift */; };
@@ -339,6 +344,11 @@
 		7770315827500C49002CBD19 /* QRScan.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QRScan.storyboard; sourceTree = "<group>"; };
 		7770315A27500C7B002CBD19 /* QRScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScanViewController.swift; sourceTree = "<group>"; };
 		7773124E2A083357002C094B /* NewCardHarmonyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardHarmonyViewController.swift; sourceTree = "<group>"; };
+		777312502A08D42D002C094B /* gunghap_0_20.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gunghap_0_20.json; sourceTree = "<group>"; };
+		777312522A08D432002C094B /* gunghap_61_80.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gunghap_61_80.json; sourceTree = "<group>"; };
+		777312532A08D432002C094B /* gunghap_21_40.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gunghap_21_40.json; sourceTree = "<group>"; };
+		777312542A08D432002C094B /* gunghap_81_100.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gunghap_81_100.json; sourceTree = "<group>"; };
+		777312552A08D432002C094B /* gunghap_41_60.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gunghap_41_60.json; sourceTree = "<group>"; };
 		777B2C202A00BEB300A6AB27 /* IntentsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IntentsExtension.entitlements; sourceTree = "<group>"; };
 		777B2C212A00E15000A6AB27 /* NearByRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByRequest.swift; sourceTree = "<group>"; };
 		777B2C232A00E7C700A6AB27 /* NearByUUIDResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByUUIDResponse.swift; sourceTree = "<group>"; };
@@ -1065,6 +1075,11 @@
 				F8562C95296ADD1000DA1109 /* nearby.json */,
 				F80C679129F21BB7002C5ECC /* onboarding01.json */,
 				F80C679229F21BB7002C5ECC /* onboarding02.json */,
+				777312502A08D42D002C094B /* gunghap_0_20.json */,
+				777312532A08D432002C094B /* gunghap_21_40.json */,
+				777312552A08D432002C094B /* gunghap_41_60.json */,
+				777312522A08D432002C094B /* gunghap_61_80.json */,
+				777312542A08D432002C094B /* gunghap_81_100.json */,
 			);
 			path = Lottie;
 			sourceTree = "<group>";
@@ -1614,6 +1629,7 @@
 				F8518058275D042B006BD5ED /* Onboarding.storyboard in Resources */,
 				F8FC43BF26C025180033E151 /* .swiftlint.yml in Resources */,
 				F88101F92987CBAF007266B5 /* GoogleService-Info.plist in Resources */,
+				777312572A08D432002C094B /* gunghap_21_40.json in Resources */,
 				397B75142763A916004AEB03 /* OpenSourceTableViewCell.xib in Resources */,
 				F85711A7274A6B3400F59F0B /* CardCreationPreview.storyboard in Resources */,
 				77607EDB274A68BE00204CD2 /* GroupCollectionViewCell.xib in Resources */,
@@ -1644,13 +1660,17 @@
 				F8562C96296ADD1000DA1109 /* nearby.json in Resources */,
 				7766A410274FEBE200714912 /* CardInGroupCollectionViewCell.xib in Resources */,
 				7705CF402752C844005195DF /* CardView.xib in Resources */,
+				777312562A08D432002C094B /* gunghap_61_80.json in Resources */,
+				777312582A08D432002C094B /* gunghap_81_100.json in Resources */,
 				397B750D2763A5AF004AEB03 /* OpenSource.storyboard in Resources */,
 				F8B3F40D29F67B6F006586BB /* CompanyFrontCardCreationCollectionViewCell.xib in Resources */,
+				777312592A08D432002C094B /* gunghap_41_60.json in Resources */,
 				393E334A275F6A6600965BBF /* Splash.storyboard in Resources */,
 				39523E5C2701A48900536900 /* CardListTableViewCell.xib in Resources */,
 				F8B3F41229F67F8D006586BB /* CompanyFrontCardCell.xib in Resources */,
 				F8FC439226C01CDE0033E151 /* LaunchScreen.storyboard in Resources */,
 				F8FC438F26C01CDE0033E151 /* Assets.xcassets in Resources */,
+				777312512A08D42D002C094B /* gunghap_0_20.json in Resources */,
 				F8518055275D040C006BD5ED /* OnboardingCollectionViewCell.xib in Resources */,
 				39F5A3D1271461EA00191F94 /* BackCardCell.xib in Resources */,
 				39369939274A4FCB00684420 /* Spoqa Han Sans Neo Regular.otf in Resources */,

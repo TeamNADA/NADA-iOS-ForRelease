@@ -28,11 +28,7 @@ class CardDetailViewController: UIViewController {
     }
     
     @IBAction func presentHarmonyViewController(_ sender: Any) {
-//        cardHarmonyFetchWithAPI(myCard: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.firstCardID) ?? "",
-//                                yourCard: cardDataModel?.cardUUID ?? "")
-        let nextVC = NewCardHarmonyViewController()
-        nextVC.modalPresentationStyle = .overFullScreen
-        self.present(nextVC, animated: false, completion: nil)
+        cardHarmonyFetchWithAPI(cardUUID: cardDataModel?.cardUUID ?? "")
     }
     
     @IBOutlet weak var optionButton: UIButton!
@@ -83,14 +79,13 @@ extension CardDetailViewController {
         }
     }
     
-    func cardHarmonyFetchWithAPI(myCard: String, yourCard: String) {
-        UtilAPI.shared.cardHarmonyFetch(myCard: myCard, yourCard: yourCard) { response in
+    func cardHarmonyFetchWithAPI(cardUUID: String) {
+        UtilAPI.shared.cardHarmonyFetch(cardUUID: cardUUID) { response in
             switch response {
             case .success(let data):
-                if let harmony = data as? HarmonyResponse {
-//                    guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardHarmony, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardHarmonyViewController) as? CardHarmonyViewController else { return }
-//                    nextVC.harmonyData = self.updateHarmony(percentage: harmony.harmony)
+                if let harmony = data as? Double {
                     let nextVC = NewCardHarmonyViewController()
+                    nextVC.harmonyData = self.updateHarmony(percentage: harmony, cardtype: self.cardDataModel?.cardType ?? "BASIC")
                     nextVC.modalPresentationStyle = .overFullScreen
                     self.present(nextVC, animated: false, completion: nil)
                 }
@@ -190,26 +185,26 @@ extension CardDetailViewController {
         swipeRightGestureRecognizer.direction = .right
         self.cardView.addGestureRecognizer(swipeRightGestureRecognizer)
     }
-    private func updateHarmony(percentage: Int) -> HarmonyData {
+    private func updateHarmony(percentage: Double, cardtype: String) -> HarmonyData {
         switch percentage {
         case 0 ... 20:
-            return HarmonyData(icon: "icnHarmonyRed", percentage: "\(String(percentage))%",
-                               color: .harmonyRed, description: "좀 더 친해지길 바라..😅")
+            return HarmonyData(lottie: 0, score: percentage,
+                               color: .harmonyRed, description: "좀 더 친해지길 바라..😅", cardtype: cardtype)
         case 21 ... 40:
-            return HarmonyData(icon: "icnHarmonyOrange", percentage: "\(String(percentage))%",
-                               color: .harmonyOrange, description: "마음만은 찰떡궁합!🙃")
+            return HarmonyData(lottie: 21, score: percentage,
+                               color: .harmonyOrange, description: "마음만은 찰떡궁합!🙃", cardtype: cardtype)
         case 41 ... 60:
-            return HarmonyData(icon: "icnHarmonyGreen", percentage: "\(String(percentage))%",
-                               color: .harmonyGreen, description: "이 정도면 제법 친한 사이😛")
+            return HarmonyData(lottie: 41, score: percentage,
+                               color: .harmonyGreen, description: "이 정도면 제법 친한 사이😛", cardtype: cardtype)
         case 61 ... 80:
-            return HarmonyData(icon: "icnHarmonyYellow", percentage: "\(String(percentage))%",
-                               color: .harmonyYellow, description: "우리 사이 척하면 척!😝")
+            return HarmonyData(lottie: 61, score: percentage,
+                               color: .harmonyYellow, description: "우리 사이 척하면 척!😝", cardtype: cardtype)
         case 81 ... 100:
-            return HarmonyData(icon: "icnHarmonyPurple", percentage: "\(String(percentage))%",
-                               color: .harmonyPurple, description: "더할 나위 없이 완벽한 사이!😍")
+            return HarmonyData(lottie: 81, score: percentage,
+                               color: .harmonyPurple, description: "더할 나위 없이 완벽한 사이!😍", cardtype: cardtype)
         default:
-            return HarmonyData(icon: "icnHarmonyRed", percentage: "\(String(percentage))%",
-                               color: .harmonyRed, description: "")
+            return HarmonyData(lottie: 0, score: percentage,
+                               color: .harmonyRed, description: "", cardtype: "BASIC")
         }
    
     }

@@ -21,6 +21,8 @@ class NewCardHarmonyViewController: UIViewController {
 
     // MARK: - Properties
     
+    var harmonyData: HarmonyData?
+    
     // MARK: - Components
     
     private let xButton = UIButton().then {
@@ -142,6 +144,31 @@ extension NewCardHarmonyViewController {
         nadaHarmonyLottie4160.loopMode = .playOnce
         nadaHarmonyLottie6180.loopMode = .playOnce
         nadaHarmonyLottie81100.loopMode = .playOnce
+        scoreTitleLabel.text = "우리 궁합은 \(harmonyData?.score ?? 00)점!"
+        switch harmonyData?.lottie {
+        case 0:
+            scoreTitleLabel.textColor = harmonyData?.color
+            scoreDescLabel.text = harmonyData?.description
+            setAnimation(nadaHarmonyLottie020)
+        case 21:
+            scoreTitleLabel.textColor = harmonyData?.color
+            scoreDescLabel.text = harmonyData?.description
+            setAnimation(nadaHarmonyLottie2140)
+        case 41:
+            scoreTitleLabel.textColor = harmonyData?.color
+            scoreDescLabel.text = harmonyData?.description
+            setAnimation(nadaHarmonyLottie4160)
+        case 61:
+            scoreTitleLabel.textColor = harmonyData?.color
+            scoreDescLabel.text = harmonyData?.description
+            setAnimation(nadaHarmonyLottie6180)
+        case 81:
+            scoreTitleLabel.textColor = harmonyData?.color
+            scoreDescLabel.text = harmonyData?.description
+            setAnimation(nadaHarmonyLottie81100)
+        default:
+            setAnimation(nadaHarmonyLottie020)
+        }
     }
     
     private func setLayout() {

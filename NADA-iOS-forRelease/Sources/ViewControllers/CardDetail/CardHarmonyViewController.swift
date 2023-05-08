@@ -39,9 +39,9 @@ class CardHarmonyViewController: UIViewController {
 
 extension CardHarmonyViewController {
     private func setUI() {
-        harmonyImageView.image = UIImage(named: harmonyData?.icon ?? "icnHarmonyRed")
-        harmonyPercentLabel.text = harmonyData?.percentage ?? ""
-        harmonyPercentLabel.textColor = harmonyData?.color ?? .harmonyRed
-        harmonyDescriptionLabel.text = harmonyData?.description ?? ""
+//        harmonyImageView.image = UIImage(named: harmonyData?.icon ?? "icnHarmonyRed")
+//        harmonyPercentLabel.text = harmonyData?.percentage ?? ""
+//        harmonyPercentLabel.textColor = harmonyData?.color ?? .harmonyRed
+//        harmonyDescriptionLabel.text = harmonyData?.description ?? ""
     }
 }

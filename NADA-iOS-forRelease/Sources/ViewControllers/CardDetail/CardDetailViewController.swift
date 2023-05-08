@@ -137,7 +137,7 @@ extension CardDetailViewController {
                 // 명함 삭제 서버통신
                 self.cardDeleteInGroupWithAPI(cardUUID: self.cardDataModel?.cardUUID ?? "", cardGroupName: self.groupName ?? "")
             }) })
-        let options = UIMenu(title: "options", options: .displayInline, children: [changeGroup, deleteCard])
+        let options = UIMenu(title: "", options: .displayInline, children: [changeGroup, deleteCard])
         
         let cancel = UIAction(title: "취소", attributes: .destructive, handler: { _ in print("취소") })
         

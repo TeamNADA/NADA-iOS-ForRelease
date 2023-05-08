@@ -82,6 +82,7 @@
 		77703157275005AA002CBD19 /* CardResultBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77703156275005AA002CBD19 /* CardResultBottomSheetViewController.swift */; };
 		7770315927500C49002CBD19 /* QRScan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7770315827500C49002CBD19 /* QRScan.storyboard */; };
 		7770315B27500C7B002CBD19 /* QRScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7770315A27500C7B002CBD19 /* QRScanViewController.swift */; };
+		7773124F2A083357002C094B /* NewCardHarmonyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7773124E2A083357002C094B /* NewCardHarmonyViewController.swift */; };
 		777B2C222A00E15000A6AB27 /* NearByRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777B2C212A00E15000A6AB27 /* NearByRequest.swift */; };
 		777B2C242A00E7C700A6AB27 /* NearByUUIDResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777B2C232A00E7C700A6AB27 /* NearByUUIDResponse.swift */; };
 		777FF89B27359B7800BF69D3 /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89A27359B7800BF69D3 /* Groups.swift */; };
@@ -337,6 +338,7 @@
 		77703156275005AA002CBD19 /* CardResultBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardResultBottomSheetViewController.swift; sourceTree = "<group>"; };
 		7770315827500C49002CBD19 /* QRScan.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QRScan.storyboard; sourceTree = "<group>"; };
 		7770315A27500C7B002CBD19 /* QRScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScanViewController.swift; sourceTree = "<group>"; };
+		7773124E2A083357002C094B /* NewCardHarmonyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardHarmonyViewController.swift; sourceTree = "<group>"; };
 		777B2C202A00BEB300A6AB27 /* IntentsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IntentsExtension.entitlements; sourceTree = "<group>"; };
 		777B2C212A00E15000A6AB27 /* NearByRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByRequest.swift; sourceTree = "<group>"; };
 		777B2C232A00E7C700A6AB27 /* NearByUUIDResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByUUIDResponse.swift; sourceTree = "<group>"; };
@@ -379,7 +381,6 @@
 		F81171FF27383097002742CF /* ChangeGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeGroupRequest.swift; sourceTree = "<group>"; };
 		F822E7A82709CEB60020452C /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		F8268DB827730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCardAlertBottomSheetViewController.swift; sourceTree = "<group>"; };
-		F82AF6A029FBBAF50051545B /* IntentsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IntentsExtension.entitlements; sourceTree = "<group>"; };
 		F82AF6A129FBBEE50051545B /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		F82FEB4A27639F3100DA7847 /* MainCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardCell.swift; sourceTree = "<group>"; };
 		F82FEB4B27639F3100DA7847 /* MainCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCardCell.xib; sourceTree = "<group>"; };
@@ -791,6 +792,7 @@
 			children = (
 				77812946275F6EA3004B34F4 /* CardDetailViewController.swift */,
 				77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */,
+				7773124E2A083357002C094B /* NewCardHarmonyViewController.swift */,
 			);
 			path = CardDetail;
 			sourceTree = "<group>";
@@ -1894,6 +1896,7 @@
 				77A196C729F661DC000DEF49 /* NearbyAPI.swift in Sources */,
 				F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */,
 				77A4D5F929BC320600367B7C /* AroundMeCollectionViewCell.swift in Sources */,
+				7773124F2A083357002C094B /* NewCardHarmonyViewController.swift in Sources */,
 				39C394D4277CD33500DBA566 /* EmptyCardListTableViewCell.swift in Sources */,
 				77B4E74B2990E50E006098DC /* HomeViewController.swift in Sources */,
 				7734D5B427778EFB004360E4 /* HarmonyResponse.swift in Sources */,

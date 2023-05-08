@@ -101,19 +101,19 @@ struct MyCardEntryView: View {
                 VStack {
                     HStack {
                         Text(widgetCard.title)
-                            .font(.system(size: 15))
-                            .foregroundColor(.init(white: 1.0, opacity: 0.8))
+                            .font(.cardName)
+                            .foregroundColor(.init(white: 1.0))
                             .padding(EdgeInsets(top: 12, leading: 10, bottom: 0, trailing: 0))
                             .lineLimit(1)
                         Spacer()
                         Image("logoNada")
-                            .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 10))
+                            .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 10))
                     }
                     Spacer()
                     HStack {
                         Spacer()
                         Text(widgetCard.userName)
-                            .font(.system(size: 15))
+                            .font(.userName)
                             .foregroundColor(.userNameColor(for: colorScheme))
                             .padding(EdgeInsets(top: 0, leading: 10, bottom: 11, trailing: 10))
                             .lineLimit(1)

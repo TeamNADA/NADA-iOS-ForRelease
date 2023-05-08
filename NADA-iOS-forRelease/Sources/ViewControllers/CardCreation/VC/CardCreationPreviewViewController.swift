@@ -198,8 +198,7 @@ extension CardCreationPreviewViewController {
                                                    isChoose: backCardDataModel.tastes.contains(tasteInfo[index].tasteName),
                                                    sortOrder: tasteInfo[index].sortOrder))
             }
-            
-            backCard.initCell(cardTasteInfo: cardTasteInfo, tmi: backCardDataModel.tmi)
+            backCard.initCell(cardBackgroundImage, cardTasteInfo, backCardDataModel.tmi)
             
             cardView.addSubview(backCard)
             isFront = false

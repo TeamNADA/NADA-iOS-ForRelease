@@ -201,6 +201,14 @@
 		F8C83FC7272FA2A20009DF0D /* CardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FC6272FA2A20009DF0D /* CardService.swift */; };
 		F8C83FC9272FA3190009DF0D /* GroupAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FC8272FA3190009DF0D /* GroupAPI.swift */; };
 		F8C83FCB272FA32C0009DF0D /* GroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FCA272FA32C0009DF0D /* GroupService.swift */; };
+		F8D62F982A049CB800F9DF11 /* NotoSansCJKkr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 39369930274A4FCB00684420 /* NotoSansCJKkr-Bold.otf */; };
+		F8D62F992A049CB800F9DF11 /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 39369931274A4FCB00684420 /* NotoSansCJKkr-Regular.otf */; };
+		F8D62F9A2A049CB800F9DF11 /* Spoqa Han Sans Neo Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 39369933274A4FCB00684420 /* Spoqa Han Sans Neo Bold.otf */; };
+		F8D62F9B2A049CB800F9DF11 /* Spoqa Han Sans Neo Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 39369934274A4FCB00684420 /* Spoqa Han Sans Neo Regular.otf */; };
+		F8D62F9C2A049CB800F9DF11 /* NotoSansCJKkr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 39369932274A4FCB00684420 /* NotoSansCJKkr-Medium.otf */; };
+		F8D62F9E2A049D5C00F9DF11 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D62F9D2A049D5C00F9DF11 /* Font+Extension.swift */; };
+		F8D62FA62A06742000F9DF11 /* Spoqa Han Sans Neo Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F8D62FA52A06742000F9DF11 /* Spoqa Han Sans Neo Medium.otf */; };
+		F8D62FA82A06742600F9DF11 /* Spoqa Han Sans Neo Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F8D62FA52A06742000F9DF11 /* Spoqa Han Sans Neo Medium.otf */; };
 		F8D74DD8276C7FB60071E5FC /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D74DD7276C7FB60071E5FC /* UIImageView+Extension.swift */; };
 		F8D92E0A29D5324E002ACC73 /* Taste.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D92E0929D5324E002ACC73 /* Taste.swift */; };
 		F8F00C3929DD474700A15377 /* UpdateNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F00C3829DD474700A15377 /* UpdateNote.swift */; };
@@ -459,6 +467,8 @@
 		F8C83FC6272FA2A20009DF0D /* CardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardService.swift; sourceTree = "<group>"; };
 		F8C83FC8272FA3190009DF0D /* GroupAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAPI.swift; sourceTree = "<group>"; };
 		F8C83FCA272FA32C0009DF0D /* GroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupService.swift; sourceTree = "<group>"; };
+		F8D62F9D2A049D5C00F9DF11 /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
+		F8D62FA52A06742000F9DF11 /* Spoqa Han Sans Neo Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Spoqa Han Sans Neo Medium.otf"; sourceTree = "<group>"; };
 		F8D74DD7276C7FB60071E5FC /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		F8D92E0929D5324E002ACC73 /* Taste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Taste.swift; sourceTree = "<group>"; };
 		F8F00C3829DD474700A15377 /* UpdateNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNote.swift; sourceTree = "<group>"; };
@@ -736,6 +746,7 @@
 				39369931274A4FCB00684420 /* NotoSansCJKkr-Regular.otf */,
 				39369933274A4FCB00684420 /* Spoqa Han Sans Neo Bold.otf */,
 				39369934274A4FCB00684420 /* Spoqa Han Sans Neo Regular.otf */,
+				F8D62FA52A06742000F9DF11 /* Spoqa Han Sans Neo Medium.otf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -1110,6 +1121,7 @@
 			isa = PBXGroup;
 			children = (
 				F87D2222298EA616001A882B /* Color+Extension.swift */,
+				F8D62F9D2A049D5C00F9DF11 /* Font+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1587,6 +1599,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F838B66C298E5C5400D84340 /* Assets.xcassets in Resources */,
+				F8D62F9B2A049CB800F9DF11 /* Spoqa Han Sans Neo Regular.otf in Resources */,
+				F8D62F9A2A049CB800F9DF11 /* Spoqa Han Sans Neo Bold.otf in Resources */,
+				F8D62F992A049CB800F9DF11 /* NotoSansCJKkr-Regular.otf in Resources */,
+				F8D62F982A049CB800F9DF11 /* NotoSansCJKkr-Bold.otf in Resources */,
+				F8D62F9C2A049CB800F9DF11 /* NotoSansCJKkr-Medium.otf in Resources */,
+				F8D62FA82A06742600F9DF11 /* Spoqa Han Sans Neo Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1652,6 +1670,7 @@
 				F8518055275D040C006BD5ED /* OnboardingCollectionViewCell.xib in Resources */,
 				39F5A3D1271461EA00191F94 /* BackCardCell.xib in Resources */,
 				39369939274A4FCB00684420 /* Spoqa Han Sans Neo Regular.otf in Resources */,
+				F8D62FA62A06742000F9DF11 /* Spoqa Han Sans Neo Medium.otf in Resources */,
 				39369938274A4FCB00684420 /* Spoqa Han Sans Neo Bold.otf in Resources */,
 				F8458D6229F5183B000D53A7 /* FanCardCreation.storyboard in Resources */,
 				7781294A275F6ED7004B34F4 /* CardDetail.storyboard in Resources */,
@@ -1737,6 +1756,7 @@
 				F838B66E298E5C5400D84340 /* Widgets.intentdefinition in Sources */,
 				F838B667298E5C5300D84340 /* WidgetsLiveActivity.swift in Sources */,
 				F8BCDD25298FFAF90044D0B4 /* WidgetsBundle.swift in Sources */,
+				F8D62F9E2A049D5C00F9DF11 /* Font+Extension.swift in Sources */,
 				F8BCDD22298FFA830044D0B4 /* QRCodeWidget.swift in Sources */,
 				F8BCDD26298FFB0B0044D0B4 /* MyCardWidget.swift in Sources */,
 				F8257750299546920067E145 /* Card.swift in Sources */,

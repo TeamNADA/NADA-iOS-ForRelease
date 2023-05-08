@@ -17,18 +17,6 @@ class IntentHandler: INExtension {
         // This is the default implementation.  If you want different objects to handle different intents,
         // you can override this and return the handler you want for that particular intent.
         
-        cardListFetchWithAPI { [weak self] result in
-            switch result {
-            case .success(let result):
-                if let result {
-                    self?.cardItems = result.data
-                    print(self?.cardItems)
-                }
-            case .failure(let err):
-                print(err)
-            }
-        }
-        
         return self
     }
 }
@@ -36,37 +24,53 @@ class IntentHandler: INExtension {
 extension IntentHandler: MyCardIntentHandling {
     // 내 명함 목록 선택할 때 호출.
     func provideMyCardOptionsCollection(for intent: MyCardIntent, with completion: @escaping (INObjectCollection<MyCard>?, Error?) -> Void) {
-        cardListFetchWithAPI { [weak self] result in
+        cardListFetchWithAPI { result in
             switch result {
             case .success(let result):
-                if let result {
-                    self?.cardItems = result.data
-                    
-                    if let cardItems = self?.cardItems {
-                        let myCards = cardItems.map { card in
-                            let myCard = MyCard(identifier: card.cardUUID, display: card.cardName)
-                            myCard.userName = card.userName
-                            myCard.cardImage = card.cardImage
-                            
-                            return myCard
-                        }
-                        let collection = INObjectCollection(items: myCards)
-                        completion(collection, nil)
+                if let cardItems = result?.data {
+                    let myCards = cardItems.map { card in
+                        let myCard = MyCard(identifier: card.cardUUID, display: card.cardName)
+                        myCard.userName = card.userName
+                        myCard.cardImage = card.cardImage
+                        
+                        return myCard
                     }
+                    let collection = INObjectCollection(items: myCards)
+                    completion(collection, nil)
                 }
             case .failure(let err):
                 print(err)
+                completion(nil, nil)
             }
         }
     }
     
-    // 위젯 편집할때 호출. 기본값 설정.
+    // 위젯 추가할때 호출. 기본값 설정.
     func defaultMyCard(for intent: MyCardIntent) -> MyCard? {
         var myCard: MyCard?
         
-        if let cardItems {
-            myCard = MyCard(identifier: cardItems[0].cardUUID, display: cardItems[0].cardName)
+        let group = DispatchGroup()
+        
+        DispatchQueue.global().async(group: group) { [weak self] in
+            group.enter()
+            
+            self?.cardListFetchWithAPI { [weak self] result in
+                switch result {
+                case .success(let result):
+                    if let result {
+                        self?.cardItems = result.data
+                        myCard = MyCard(identifier: self?.cardItems?[0].cardUUID ?? "", display: self?.cardItems?[0].cardName ?? "")
+                        myCard?.userName = self?.cardItems?[0].userName
+                        myCard?.cardImage = self?.cardItems?[0].cardImage
+                    }
+                case .failure(let err):
+                    print(err)
+                }
+                group.leave()
+            }
         }
+        
+        _ = group.wait(timeout: .now() + 60)
         
         return myCard
     }
@@ -85,7 +89,7 @@ extension IntentHandler {
         guard let url = URL(string: "http://3.35.107.3:8080/api/v1/card") else { return }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
-        urlRequest.addValue("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEwfQ.rq__Rzvunpxq3paeo2fK4i_oeupyDlHp3q1RW6uSHSQ", forHTTPHeaderField: "Authorization")
+        urlRequest.addValue("Bearer \(UserDefaults.appGroup.string(forKey: "accessToken") ?? "")", forHTTPHeaderField: "Authorization")
         print("😀", UserDefaults.appGroup.string(forKey: "accessToken") ?? "")
         
         URLSession.shared.dataTask(with: urlRequest) { data, response, error in
@@ -103,7 +107,13 @@ extension IntentHandler {
                                                                     message: result?.message ?? "none message")))
                     } else {
                         if let result {
-                            completion(.success(result))
+                            if result.status != 200 {
+                                completion(.failure(WidgetError.networkFail(status: status,
+                                                                            code: result.code ?? "none code",
+                                                                            message: result.message ?? "none message")))
+                            } else {
+                                completion(.success(result))
+                            }
                         } else {
                             completion(.failure(WidgetError.decodeFail(status: status)))
                         }

@@ -5,6 +5,7 @@
 //  Created by kimhyungyu on 2021/08/08.
 //
 
+import Photos
 import UIKit
 
 import FirebaseDynamicLinks
@@ -16,7 +17,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     let defaults = UserDefaults.standard
     
+    private let myCardURL = "openMyCardWidget"
+    private let qrCodeURL = "openQRCodeWidget"
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
+        if let url = connectionOptions.urlContexts.first?.url {
+            if url.absoluteString == qrCodeURL {
+                UserDefaults.standard.setValue(true, forKey: Const.UserDefaultsKey.openQRCodeWidget)
+            } else if url.absoluteString.starts(with: myCardURL) {
+                guard let queryItems = URLComponents(string: url.absoluteString)?.queryItems,
+                      let cardUUID = queryItems.filter({ $0.name == "cardUUID" }).first?.value else { return }
+                
+                UserDefaults.standard.setValue(true, forKey: Const.UserDefaultsKey.openMyCardWidget)
+                UserDefaults.standard.setValue(cardUUID, forKey: Const.UserDefaultsKey.widgetCardUUID)
+            }
+        }
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
@@ -45,7 +62,63 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-        if let url = URLContexts.first?.url {
+        guard let url = URLContexts.first?.url,
+              let urlComponents = URLComponents(string: url.absoluteString) else { return }
+        
+        if qrCodeURL == url.absoluteString {
+            // qr code 위젯.
+            switch AVCaptureDevice.authorizationStatus(for: .video) {
+            case .denied:
+                window?.rootViewController?.makeOKCancelAlert(title: "카메라 권한이 허용되어 있지 않아요.",
+                            message: "QR코드 인식을 위해 카메라 권한이 필요합니다. 앱 설정으로 이동해 허용해 주세요.",
+                            okAction: { _ in UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)},
+                            cancelAction: nil,
+                            completion: nil)
+            case .authorized:
+                guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.qrScan, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.qrScanViewController) as? QRScanViewController else { return }
+                nextVC.modalPresentationStyle = .overFullScreen
+                
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                    let topVC = UIApplication.mostTopViewController()
+                    topVC?.present(nextVC, animated: true)
+                }
+            case .notDetermined:
+                AVCaptureDevice.requestAccess(for: .video) { granted in
+                    if granted {
+                        DispatchQueue.main.async {
+                            guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.qrScan, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.qrScanViewController) as? QRScanViewController else { return }
+                            nextVC.modalPresentationStyle = .overFullScreen
+                            
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                                let topVC = UIApplication.mostTopViewController()
+                                topVC?.present(nextVC, animated: true)
+                            }
+                        }
+                    }
+                }
+            default:
+                break
+            }
+        } else if url.absoluteString.starts(with: myCardURL) {
+            // 내 명함 위젯.
+            guard let queryItems = urlComponents.queryItems,
+                  let cardUUID = queryItems.filter({ $0.name == "cardUUID" }).first?.value else { return }
+            
+            let nextVC = CardShareBottomSheetViewController()
+                .setTitle("명함공유")
+                .setHeight(606.0)
+            
+            cardDetailFetchWithAPI(cardUUID: cardUUID) { cardDataModel in
+                nextVC.isActivate = false
+                nextVC.modalPresentationStyle = .overFullScreen
+                nextVC.cardDataModel = cardDataModel
+                
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                    let topVC = UIApplication.mostTopViewController()
+                    topVC?.present(nextVC, animated: true)
+                }
+            }
+        } else {
             if (AuthApi.isKakaoTalkLoginUrl(url)) {
                 _ = AuthController.handleOpenUrl(url: url)
             }
@@ -105,5 +178,29 @@ extension SceneDelegate {
         let cardUUID = queryItems?.filter { $0.name == "cardUUID" }.first?.value
         
         return cardUUID
+    }
+}
+
+// MARK: - Network
+
+extension SceneDelegate {
+    private func cardDetailFetchWithAPI(cardUUID: String, completion: @escaping (Card) -> Void) {
+        CardAPI.shared.cardDetailFetch(cardUUID: cardUUID) { response in
+            switch response {
+            case .success(let data):
+                if let cardDataModel = data as? Card {
+                    completion(cardDataModel)
+                }
+                print("cardDetailFetchWithAPI - success")
+            case .requestErr(let message):
+                print("cardDetailFetchWithAPI - requestErr", message)
+            case .pathErr:
+                print("cardDetailFetchWithAPI - pathErr")
+            case .serverErr:
+                print("cardDetailFetchWithAPI - serverErr")
+            case .networkFail:
+                print("deleteGroupWithAPI - networkFail")
+            }
+        }
     }
 }

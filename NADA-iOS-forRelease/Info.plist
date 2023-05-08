@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>&quot;사용자의 위치를 받아오려고 합니다.&quot;</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>&quot;사용자의 위치를 받아오려고 합니다.&quot;</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>ko_KR</string>
 	<key>CFBundleDisplayName</key>
@@ -52,6 +48,10 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>QR코드를 인식하여 명함을 추가하기 위해 카메라 권한 허용이 필요해요.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>"사용자의 위치를 받아오려고 합니다."</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>"사용자의 위치를 받아오려고 합니다."</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>명함을 이미지로 저장하기 위해 갤러리 권한 허용이 필요해요.</string>
 	<key>NSPhotoLibraryUsageDescription</key>

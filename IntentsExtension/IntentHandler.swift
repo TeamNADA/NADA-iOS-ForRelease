@@ -40,6 +40,7 @@ extension IntentHandler: MyCardIntentHandling {
                 }
             case .failure(let err):
                 print(err)
+                completion(nil, nil)
             }
         }
     }
@@ -48,23 +49,28 @@ extension IntentHandler: MyCardIntentHandling {
     func defaultMyCard(for intent: MyCardIntent) -> MyCard? {
         var myCard: MyCard?
         
-        cardListFetchWithAPI { [weak self] result in
-            switch result {
-            case .success(let result):
-                if let result {
-                    self?.cardItems = result.data
-                    myCard = MyCard(identifier: self?.cardItems?[0].cardUUID ?? "", display: self?.cardItems?[0].cardName ?? "")
-                    myCard?.userName = self?.cardItems?[0].userName
-                    myCard?.cardImage = self?.cardItems?[0].cardImage
+        let group = DispatchGroup()
+        
+        DispatchQueue.global().async(group: group) { [weak self] in
+            group.enter()
+            
+            self?.cardListFetchWithAPI { [weak self] result in
+                switch result {
+                case .success(let result):
+                    if let result {
+                        self?.cardItems = result.data
+                        myCard = MyCard(identifier: self?.cardItems?[0].cardUUID ?? "", display: self?.cardItems?[0].cardName ?? "")
+                        myCard?.userName = self?.cardItems?[0].userName
+                        myCard?.cardImage = self?.cardItems?[0].cardImage
+                    }
+                case .failure(let err):
+                    print(err)
                 }
-            case .failure(let err):
-                print(err)
+                group.leave()
             }
         }
         
-        if let cardItems {
-            myCard = MyCard(identifier: cardItems[0].cardUUID, display: cardItems[0].cardName)
-        }
+        _ = group.wait(timeout: .now() + 60)
         
         return myCard
     }
@@ -101,7 +107,13 @@ extension IntentHandler {
                                                                     message: result?.message ?? "none message")))
                     } else {
                         if let result {
-                            completion(.success(result))
+                            if result.status != 200 {
+                                completion(.failure(WidgetError.networkFail(status: status,
+                                                                            code: result.code ?? "none code",
+                                                                            message: result.message ?? "none message")))
+                            } else {
+                                completion(.success(result))
+                            }
                         } else {
                             completion(.failure(WidgetError.decodeFail(status: status)))
                         }

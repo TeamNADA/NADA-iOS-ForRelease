@@ -10,6 +10,8 @@ import UIKit
 class FirstCardAlertBottomSheetViewController: CommonBottomSheetViewController {
 
     // MARK: - Properties
+    
+    private var bottomSheetViewTopConstraint: NSLayoutConstraint?
 
     private let cardImageView: UIImageView = {
         let imageView = UIImageView()
@@ -71,6 +73,7 @@ class FirstCardAlertBottomSheetViewController: CommonBottomSheetViewController {
         super.viewDidLoad()
         
         setupUI()
+        setHideAnimationDuration(0.5)
     }
     
     // MARK: - Methods

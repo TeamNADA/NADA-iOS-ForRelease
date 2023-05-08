@@ -26,6 +26,7 @@ class CommonBottomSheetViewController: UIViewController {
     
     // bottomSheet가 view의 상단에서 떨어진 거리
     private var bottomSheetViewTopConstraint: NSLayoutConstraint!
+    private var hideAnimationDuration: Float = 0.2
     
     // 기존 화면을 흐려지게 만들기 위한 뷰
     let dimmedBackView: UIView = {
@@ -176,12 +177,17 @@ class CommonBottomSheetViewController: UIViewController {
         })
     }
     
+    // 바텀 시트 사라지는 속도 조절
+    func setHideAnimationDuration(_ duration: Float) {
+        self.hideAnimationDuration = duration
+    }
+    
     // 바텀 시트 사라지는 애니메이션
     func hideBottomSheetAndGoBack() {
         let safeAreaHeight = view.safeAreaLayoutGuide.layoutFrame.height
         let bottomPadding = view.safeAreaInsets.bottom
         bottomSheetViewTopConstraint.constant = safeAreaHeight + bottomPadding
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: TimeInterval(hideAnimationDuration), delay: 0, options: .curveEaseOut, animations: {
             self.dimmedBackView.alpha = 0.0
             self.view.layoutIfNeeded()
             self.bottomSheetCoverView.isHidden = false
@@ -197,7 +203,7 @@ class CommonBottomSheetViewController: UIViewController {
         let safeAreaHeight = view.safeAreaLayoutGuide.layoutFrame.height
         let bottomPadding = view.safeAreaInsets.bottom
         bottomSheetViewTopConstraint.constant = safeAreaHeight + bottomPadding
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: TimeInterval(hideAnimationDuration), delay: 0, options: .curveEaseOut, animations: {
             self.dimmedBackView.alpha = 0.0
             self.view.layoutIfNeeded()
             self.bottomSheetCoverView.isHidden = false
@@ -217,7 +223,7 @@ class CommonBottomSheetViewController: UIViewController {
         let safeAreaHeight = view.safeAreaLayoutGuide.layoutFrame.height
         let bottomPadding = view.safeAreaInsets.bottom
         bottomSheetViewTopConstraint.constant = safeAreaHeight + bottomPadding
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: TimeInterval(hideAnimationDuration), delay: 0, options: .curveEaseOut, animations: {
             self.dimmedBackView.alpha = 0.0
             self.view.layoutIfNeeded()
             self.bottomSheetCoverView.isHidden = false

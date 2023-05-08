@@ -40,6 +40,7 @@ extension IntentHandler: MyCardIntentHandling {
                 }
             case .failure(let err):
                 print(err)
+                completion(nil, nil)
             }
         }
     }

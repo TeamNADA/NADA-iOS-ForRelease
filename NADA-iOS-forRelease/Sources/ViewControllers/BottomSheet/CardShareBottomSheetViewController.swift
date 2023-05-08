@@ -69,7 +69,6 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         let label = UILabel()
         label.font = .button02
         label.textColor = .mainColorNadaMain
-        label.text = "10:00"
         label.sizeToFit()
         
         return label
@@ -198,7 +197,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
             //TODO: 여기서 활성화된 명함 정보/위치정보 API로 쏴주기
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(processTimer), userInfo: nil, repeats: true)
             
-            print("✅ activated")
+            print("✅✅ activated")
             print("✅ latitude: ", latitude)
             print("✅ longitude: ", longitude)
             postNearByCardWithAPI(nearByRequest: NearByRequest(cardUUID: cardDataModel?.cardUUID ?? "", isActive: true, latitude: latitude, longitude: longitude))
@@ -207,8 +206,9 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
             // TODO: 여기서 비활성화된 명함 정보/위치정보 API로 쏴주기
             timer?.invalidate()
             seconds = 0
+            timesLeft = 600
             nearByTimeLabel.text = "10:00"
-            print("✅✅ deactivated")
+            print("✅✅✅ deactivated")
             print("✅ latitude: ", latitude)
             print("✅ longitude: ", longitude)
             postNearByCardWithAPI(nearByRequest: NearByRequest(cardUUID: cardDataModel?.cardUUID ?? "", isActive: false, latitude: latitude, longitude: longitude))
@@ -231,10 +231,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         
         if isActivate {
             //TODO: 여기서 활성화된 명함 정보/위치정보 API로 쏴주기
-            print(calculateMinuteTime(sec: calculateMinuteTimeToInt(time: savedTime) - secondsLeft))
-            print(secondsLeft)
-
-            if secondsLeft >= 600 {
+            if secondsLeft < 0 {
                 postNearByCardWithAPI(nearByRequest: NearByRequest(cardUUID: cardDataModel?.cardUUID ?? "", isActive: false, latitude: latitude, longitude: longitude))
             }
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(processTimer), userInfo: nil, repeats: true)
@@ -246,6 +243,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
             // TODO: 여기서 비활성화된 명함 정보/위치정보 API로 쏴주기
             timer?.invalidate()
             seconds = 0
+            timesLeft = 600
             nearByTimeLabel.text = "10:00"
             print("✅✅ deactivated")
         }
@@ -259,7 +257,6 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     @objc func applicationDidEnterBackground(_ notification: NotificationCenter) {
         appDidEnterBackgroundDate = Date()
         savedTime = nearByTimeLabel.text ?? "00:00"
-        print(savedTime)
     }
 
     @objc func applicationWillEnterForeground(_ notification: NotificationCenter) {
@@ -267,9 +264,6 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         let calendar = Calendar.current
         let difference = calendar.dateComponents([.second], from: previousDate, to: Date())
         let seconds = difference.second!
-        print(savedTime)
-        print(calculateMinuteTime(sec: calculateMinuteTimeToInt(time: savedTime) - seconds))
-        print(seconds)
 
         if seconds >= 600 {
             postNearByCardWithAPI(nearByRequest: NearByRequest(cardUUID: cardDataModel?.cardUUID ?? "", isActive: false, latitude: latitude, longitude: longitude))
@@ -505,8 +499,13 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     
     @objc
     func processTimer() {
-        seconds += 1
-        nearByTimeLabel.text = calculateMinuteTime(sec: timesLeft - seconds)
+        if timesLeft > 0 {
+            seconds += 1
+            timesLeft -= 1
+            nearByTimeLabel.text = calculateMinuteTime(sec: timesLeft)
+        } else {
+            setCardActivationUIWithAPI(with: false)
+        }
     }
 }
 
@@ -552,9 +551,13 @@ extension CardShareBottomSheetViewController {
             case .success(let data):
                 if let nearByUUIDResponse = data as? NearByUUIDResponse {
                     print("✅✅✅")
-                    let interval = Date() - (nearByUUIDResponse.activeTime.toDate() ?? Date())
-                    self.setCardActivationUI(with: nearByUUIDResponse.isActive, secondsLeft: interval.second ?? 0)
-                    self.timesLeft = interval.second ?? 600
+                    let interval = Date() - (nearByUUIDResponse.activeTime?.toDate() ?? Date())
+                    self.timesLeft = 600 - (interval.second ?? 0) ?? 600
+                    print("✅ now: ", Date())
+                    print("✅ activated Time: ", nearByUUIDResponse.activeTime?.toDate())
+                    print("✅ timesleft: ", self.timesLeft)
+                    self.nearByTimeLabel.text = ""
+                    self.setCardActivationUI(with: nearByUUIDResponse.isActive, secondsLeft: self.timesLeft ?? 0)
                 }
                 print("nearByUUIDFetchWithAPI - success")
             case .requestErr(let message):

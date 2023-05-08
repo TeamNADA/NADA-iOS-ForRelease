@@ -15,14 +15,14 @@ public class UtilAPI {
     
     public init() { }
     
-    func cardHarmonyFetch(myCard: String, yourCard: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        utilProvider.request(.cardHarmonyFetch(myCard: myCard, yourCard: yourCard)) { (result) in
+    func cardHarmonyFetch(cardUUID: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        utilProvider.request(.cardHarmonyFetch(cardUUID: cardUUID)) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeStatus(by: statusCode, data)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: Double.self)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -32,11 +32,10 @@ public class UtilAPI {
     }
     
     // MARK: - JudgeStatus methods
-    
-    private func judgeStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
-        
+  
+    private func judgeStatus<T: Codable>(by statusCode: Int, data: Data, type: T.Type) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<HarmonyResponse>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<T>.self, from: data)
         else { return .pathErr }
         
         switch statusCode {

@@ -9,6 +9,6 @@ import Foundation
 
 // MARK: - NearByUUIDResponse
 struct NearByUUIDResponse: Codable {
-    let activeTime, inactiveTime: String
+    let activeTime, inactiveTime: String?
     let isActive: Bool
 }

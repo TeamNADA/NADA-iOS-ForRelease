@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+import Lottie
+
 // MARK: - HarmonyResponse
 struct HarmonyResponse: Codable {
     let harmony: Int
@@ -18,8 +20,9 @@ struct HarmonyResponse: Codable {
 }
 
 struct HarmonyData {
-    let icon: String
-    let percentage: String
+    let lottie: Int
+    let score: Double
     let color: UIColor
     let description: String
+    let cardtype: String
 }

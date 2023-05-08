@@ -9,7 +9,7 @@ import Foundation
 import Moya
 
 enum UtilService {
-    case cardHarmonyFetch(myCard: String, yourCard: String)
+    case cardHarmonyFetch(cardUUID: String)
 }
 
 extension UtilService: TargetType {
@@ -26,8 +26,8 @@ extension UtilService: TargetType {
     
     var path: String {
         switch self {
-        case .cardHarmonyFetch:
-            return "/card/util"
+        case .cardHarmonyFetch(let cardUUID):
+            return "/card/compatibility/\(cardUUID)"
         }
     }
     
@@ -44,10 +44,8 @@ extension UtilService: TargetType {
     
     var task: Task {
         switch self {
-        case .cardHarmonyFetch(let myCard, let yourCard):
-            return .requestParameters(parameters: ["myCard": myCard,
-                                                   "yourCard": yourCard],
-                                                   encoding: URLEncoding.queryString)
+        case .cardHarmonyFetch:
+            return .requestPlain
         }
     }
     

@@ -7,6 +7,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import Then
 
 class CardResultBottomSheetViewController: CommonBottomSheetViewController {
 
@@ -23,10 +24,15 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
         return label
     }()
     
-    private let cardView: CardView = {
-        let view = CardView()
-        return view
-    }()
+    private let cardViewCollevctionViewFlowLayout = UICollectionViewFlowLayout().then {
+        $0.estimatedItemSize = .zero
+    }
+    
+    private lazy var cardViewCollevctionView = UICollectionView(frame: .zero, collectionViewLayout: cardViewCollevctionViewFlowLayout).then {
+        $0.showsHorizontalScrollIndicator = false
+        $0.clipsToBounds = false
+        $0.isScrollEnabled = false
+    }
     
     private let addButton: UIButton = {
         let button = UIButton()
@@ -40,6 +46,7 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        registerCell()
     }
     
     override func hideBottomSheetAndGoBack() {
@@ -52,35 +59,35 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
     // UI 세팅 작업
     private func setupUI() {
         view.addSubview(groupLabel)
-        view.addSubview(cardView)
+        view.addSubview(cardViewCollevctionView)
         view.addSubview(addButton)
         setupLayout()
         
         groupLabel.text = cardDataModel?.departmentName
-        setCardView()
+//        setCardView()
     }
     
-    private func setCardView() {
-        guard let cardDataModel else { return }
-        
-        cardView.backgroundImageView.updateServerImage(cardDataModel.cardImage)
-        cardView.titleLabel.text = cardDataModel.cardName
-        cardView.descriptionLabel.text = cardDataModel.departmentName ?? ""
-        cardView.userNameLabel.text = cardDataModel.userName
-        cardView.birthLabel.text = cardDataModel.birth
-        cardView.mbtiLabel.text = cardDataModel.mbti ?? ""
-        cardView.instagramIDLabel.text = cardDataModel.instagram ?? ""
-        if let urls = cardDataModel.urls {
-            cardView.lineURLLabel.text = urls[0]
-        }
-        
-        if cardDataModel.instagram == nil {
-            cardView.instagramIcon.isHidden = true
-        }
-        if cardDataModel.urls == nil {
-            cardView.urlIcon.isHidden = true
-        }
-    }
+//    private func setCardView() {
+//        guard let cardDataModel else { return }
+//
+//        cardView.backgroundImageView.updateServerImage(cardDataModel.cardImage)
+//        cardView.titleLabel.text = cardDataModel.cardName
+//        cardView.descriptionLabel.text = cardDataModel.departmentName ?? ""
+//        cardView.userNameLabel.text = cardDataModel.userName
+//        cardView.birthLabel.text = cardDataModel.birth
+//        cardView.mbtiLabel.text = cardDataModel.mbti ?? ""
+//        cardView.instagramIDLabel.text = cardDataModel.instagram ?? ""
+//        if let urls = cardDataModel.urls {
+//            cardView.lineURLLabel.text = urls[0]
+//        }
+//
+//        if cardDataModel.instagram == nil {
+//            cardView.instagramIcon.isHidden = true
+//        }
+//        if cardDataModel.urls == nil {
+//            cardView.urlIcon.isHidden = true
+//        }
+//    }
     
     // 레이아웃 세팅
     private func setupLayout() {
@@ -90,21 +97,30 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
             groupLabel.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor)
         ])
         
-        cardView.translatesAutoresizingMaskIntoConstraints = false
+        cardViewCollevctionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            cardView.topAnchor.constraint(equalTo: groupLabel.bottomAnchor, constant: 20),
-            cardView.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor),
-            cardView.widthAnchor.constraint(equalToConstant: 201),
-            cardView.heightAnchor.constraint(equalToConstant: 332)
+            cardViewCollevctionView.topAnchor.constraint(equalTo: groupLabel.bottomAnchor, constant: 20),
+            cardViewCollevctionView.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor),
+            cardViewCollevctionView.widthAnchor.constraint(equalToConstant: 201),
+            cardViewCollevctionView.heightAnchor.constraint(equalToConstant: 332)
         ])
         
         addButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            addButton.topAnchor.constraint(equalTo: cardView.bottomAnchor, constant: 30),
+            addButton.topAnchor.constraint(equalTo: cardViewCollevctionView.bottomAnchor, constant: 30),
             addButton.centerXAnchor.constraint(equalTo: bottomSheetView.centerXAnchor),
             addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24)
         ])
+    }
+    
+    private func registerCell() {
+        cardViewCollevctionView.delegate = self
+        cardViewCollevctionView.dataSource = self
+         
+        cardViewCollevctionView.register(FrontCardCell.nib(), forCellWithReuseIdentifier: FrontCardCell.className)
+        cardViewCollevctionView.register(FanFrontCardCell.nib(), forCellWithReuseIdentifier: FanFrontCardCell.className)
+        cardViewCollevctionView.register(CompanyFrontCardCell.nib(), forCellWithReuseIdentifier: CompanyFrontCardCell.className)
     }
     
     @objc func presentGroupSelectBottomSheet() {
@@ -113,6 +129,57 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
 
 }
 
+// MARK: - UICollectionViewDelegate
+extension CardResultBottomSheetViewController: UICollectionViewDelegate {
+    
+}
+
+// MARK: - UICollectionViewDataSource
+extension CardResultBottomSheetViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let frontCard = cardDataModel else { return UICollectionViewCell() }
+        switch frontCard.cardType {
+        case "BASIC":
+            guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: FrontCardCell.className, for: indexPath) as? FrontCardCell else {
+                return UICollectionViewCell()
+            }
+            cardCell.initCellFromServer(cardData: frontCard, isShareable: false)
+            cardCell.setConstraints()
+            return cardCell
+        case "FAN":
+            guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: FanFrontCardCell.className, for: indexPath) as? FanFrontCardCell else {
+                return UICollectionViewCell()
+            }
+            cardCell.initCellFromServer(cardData: frontCard, isShareable: false)
+            cardCell.setConstraints()
+            return cardCell
+        case "COMPANY":
+            guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: CompanyFrontCardCell.className, for: indexPath) as? CompanyFrontCardCell else {
+                return UICollectionViewCell()
+            }
+            cardCell.initCellFromServer(cardData: frontCard, isShareable: false)
+            cardCell.setConstraints()
+            return cardCell
+        default:
+            return UICollectionViewCell()
+        }
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension CardResultBottomSheetViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 201, height: 332)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .zero
+    }
+}
+    
 extension CardResultBottomSheetViewController {
     func groupListFetchWithAPI() {
         GroupAPI.shared.groupListFetch { response in

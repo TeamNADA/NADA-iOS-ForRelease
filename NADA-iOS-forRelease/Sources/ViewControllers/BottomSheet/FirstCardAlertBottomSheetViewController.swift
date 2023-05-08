@@ -97,8 +97,7 @@ class FirstCardAlertBottomSheetViewController: CommonBottomSheetViewController {
         cardImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             cardImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
-            cardImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 70),
-            cardImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -70)
+            cardImageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
         ])
         
         bgView.translatesAutoresizingMaskIntoConstraints = false

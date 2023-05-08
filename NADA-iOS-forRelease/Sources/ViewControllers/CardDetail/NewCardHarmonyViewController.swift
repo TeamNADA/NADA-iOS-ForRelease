@@ -35,6 +35,7 @@ class NewCardHarmonyViewController: UIViewController {
     
     private let mbtiIcon = UIImageView().then {
         $0.image = UIImage(named: "iconMbtiBlack")
+        $0.alpha = 0
     }
     
     private let mbtiTitleLabel = UILabel().then {
@@ -42,6 +43,7 @@ class NewCardHarmonyViewController: UIViewController {
         $0.text = "MBTI 점수"
         $0.textColor = .secondary
         $0.sizeToFit()
+        $0.alpha = 0
     }
     
     private let mbtiScoreLabel = UILabel().then {
@@ -49,14 +51,17 @@ class NewCardHarmonyViewController: UIViewController {
         $0.text = "NN점"
         $0.textColor = .secondary
         $0.sizeToFit()
+        $0.alpha = 0
     }
     
     private let dividerLine = UIView().then {
         $0.backgroundColor = .quaternary
+        $0.alpha = 0
     }
     
     private let starIcon = UIImageView().then {
         $0.image = UIImage(named: "iconStar")
+        $0.alpha = 0
     }
     
     private let starTitleLabel = UILabel().then {
@@ -64,6 +69,7 @@ class NewCardHarmonyViewController: UIViewController {
         $0.text = "별자리 점수"
         $0.textColor = .secondary
         $0.sizeToFit()
+        $0.alpha = 0
     }
     
     private let starScoreLabel = UILabel().then {
@@ -71,6 +77,7 @@ class NewCardHarmonyViewController: UIViewController {
         $0.text = "NN점"
         $0.textColor = .secondary
         $0.sizeToFit()
+        $0.alpha = 0
     }
     
     private let nadaDescLabel = UILabel().then {
@@ -78,10 +85,11 @@ class NewCardHarmonyViewController: UIViewController {
         $0.text = "NADA만의 랜덤 점수까지 더하면!"
         $0.textColor = .tertiary
         $0.sizeToFit()
+        $0.alpha = 0
     }
     
     private let nadaHarmonyLottie020 = LottieAnimationView(name: Const.Lottie.nadaHarmonyLottie020).then {
-        $0.isHidden = false
+        $0.isHidden = true
     }
     private let nadaHarmonyLottie2140 = LottieAnimationView(name: Const.Lottie.nadaHarmonyLottie2140).then {
         $0.isHidden = true
@@ -101,6 +109,7 @@ class NewCardHarmonyViewController: UIViewController {
         $0.text = "우리 궁합은 nn점!"
         $0.textColor = .harmonyRed
         $0.sizeToFit()
+        $0.alpha = 0
     }
     
     private let scoreDescLabel = UILabel().then {
@@ -108,6 +117,7 @@ class NewCardHarmonyViewController: UIViewController {
         $0.text = "좀 더 친해지길 바래"
         $0.textColor = .primary
         $0.sizeToFit()
+        $0.alpha = 0
     }
     
     // MARK: - View Life Cycles
@@ -132,15 +142,13 @@ extension NewCardHarmonyViewController {
         nadaHarmonyLottie4160.loopMode = .playOnce
         nadaHarmonyLottie6180.loopMode = .playOnce
         nadaHarmonyLottie81100.loopMode = .playOnce
-        
-        nadaHarmonyLottie020.play()
     }
     
     private func setLayout() {
         view.addSubviews([popUpView])
         popUpView.addSubviews([xButton, mbtiIcon, mbtiTitleLabel, mbtiScoreLabel,
                                dividerLine, starIcon, starTitleLabel, starScoreLabel,
-                               nadaDescLabel,nadaHarmonyLottie020, nadaHarmonyLottie2140, nadaHarmonyLottie4160,
+                               nadaDescLabel, nadaHarmonyLottie020, nadaHarmonyLottie2140, nadaHarmonyLottie4160,
                                nadaHarmonyLottie6180, nadaHarmonyLottie81100, scoreTitleLabel, scoreDescLabel])
         
         popUpView.snp.makeConstraints { make in
@@ -225,6 +233,38 @@ extension NewCardHarmonyViewController {
     }
     
     // MARK: - Methods
+    
+    private func setAnimation(_ lottie: LottieAnimationView) {
+        UIView.animate(withDuration: 0.6, animations: {
+            self.mbtiIcon.alpha = 1
+            self.mbtiTitleLabel.alpha = 1
+            self.mbtiScoreLabel.alpha = 1
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.6, delay: 1.0, animations: {
+                self.dividerLine.alpha = 1
+            }, completion: { _ in
+                UIView.animate(withDuration: 0.6, delay: 1.0, animations: {
+                    self.starIcon.alpha = 1
+                    self.starTitleLabel.alpha = 1
+                    self.starScoreLabel.alpha = 1
+                }, completion: { _ in
+                    UIView.animate(withDuration: 0.6, delay: 1.0, animations: {
+                        self.nadaDescLabel.alpha = 1
+                    }, completion: { _ in
+                        UIView.animate(withDuration: 3.0, delay: 1.5, animations: {
+                            lottie.isHidden = false
+                            lottie.play()
+                        }, completion: { _ in
+                            UIView.animate(withDuration: 0.6, delay: 1.0, animations: {
+                                self.scoreTitleLabel.alpha = 1
+                                self.scoreDescLabel.alpha = 1
+                            })
+                        })
+                    })
+                })
+            })
+        })
+    }
     
     // MARK: - @objc
     

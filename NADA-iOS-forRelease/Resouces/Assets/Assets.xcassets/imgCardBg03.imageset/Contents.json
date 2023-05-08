@@ -2,22 +2,22 @@
   "images" : [
     {
       "filename" : "imgCardBg03.png",
-      "scale" : "1x",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "scale" : "1x"
     },
     {
-      "scale" : "2x",
+      "filename" : "imgCardBg03@2x.png",
       "idiom" : "universal",
-      "filename" : "imgCardBg03@2x.png"
+      "scale" : "2x"
     },
     {
-      "scale" : "3x",
+      "filename" : "imgCardBg03@3x.png",
       "idiom" : "universal",
-      "filename" : "imgCardBg03@3x.png"
+      "scale" : "3x"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }

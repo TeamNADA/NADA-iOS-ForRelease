@@ -169,6 +169,7 @@ extension NewCardHarmonyViewController {
         default:
             setAnimation(nadaHarmonyLottie020)
         }
+        nadaDescLabel.addCharacterColor(color: .mainColorNadaMain, range: "NADA")
     }
     
     private func setLayout() {

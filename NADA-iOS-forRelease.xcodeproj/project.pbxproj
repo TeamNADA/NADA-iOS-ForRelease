@@ -88,6 +88,7 @@
 		777312572A08D432002C094B /* gunghap_21_40.json in Resources */ = {isa = PBXBuildFile; fileRef = 777312532A08D432002C094B /* gunghap_21_40.json */; };
 		777312582A08D432002C094B /* gunghap_81_100.json in Resources */ = {isa = PBXBuildFile; fileRef = 777312542A08D432002C094B /* gunghap_81_100.json */; };
 		777312592A08D432002C094B /* gunghap_41_60.json in Resources */ = {isa = PBXBuildFile; fileRef = 777312552A08D432002C094B /* gunghap_41_60.json */; };
+		7773125B2A08E97C002C094B /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7773125A2A08E97C002C094B /* UILabel+Extension.swift */; };
 		777B2C222A00E15000A6AB27 /* NearByRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777B2C212A00E15000A6AB27 /* NearByRequest.swift */; };
 		777B2C242A00E7C700A6AB27 /* NearByUUIDResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777B2C232A00E7C700A6AB27 /* NearByUUIDResponse.swift */; };
 		777FF89B27359B7800BF69D3 /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777FF89A27359B7800BF69D3 /* Groups.swift */; };
@@ -349,6 +350,7 @@
 		777312532A08D432002C094B /* gunghap_21_40.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gunghap_21_40.json; sourceTree = "<group>"; };
 		777312542A08D432002C094B /* gunghap_81_100.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gunghap_81_100.json; sourceTree = "<group>"; };
 		777312552A08D432002C094B /* gunghap_41_60.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gunghap_41_60.json; sourceTree = "<group>"; };
+		7773125A2A08E97C002C094B /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		777B2C202A00BEB300A6AB27 /* IntentsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IntentsExtension.entitlements; sourceTree = "<group>"; };
 		777B2C212A00E15000A6AB27 /* NearByRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByRequest.swift; sourceTree = "<group>"; };
 		777B2C232A00E7C700A6AB27 /* NearByUUIDResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByUUIDResponse.swift; sourceTree = "<group>"; };
@@ -1472,6 +1474,7 @@
 				F835EF6E29800F51001ABAAF /* UIApplication+Extension.swift */,
 				77A4D5F529BC304C00367B7C /* UIStackView+Extension.swift */,
 				F82AF6A129FBBEE50051545B /* UserDefaults+Extension.swift */,
+				7773125A2A08E97C002C094B /* UILabel+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1850,6 +1853,7 @@
 				77BFDFEF29E57A3600663D6E /* ReceiveCardBottomSheetViewController.swift in Sources */,
 				77A196C429F4DB2E000DEF49 /* GroupEditViewModel.swift in Sources */,
 				777FF89D2735B16B00BF69D3 /* GroupAddRequest.swift in Sources */,
+				7773125B2A08E97C002C094B /* UILabel+Extension.swift in Sources */,
 				7734D5AA27719520004360E4 /* CardShareBottomSheetViewController.swift in Sources */,
 				77A4D5F429AE291F00367B7C /* CustomNavigationBar.swift in Sources */,
 				F8F5D0AA270800FD00D99D2E /* Xib.swift in Sources */,

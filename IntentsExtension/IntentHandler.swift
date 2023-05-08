@@ -89,8 +89,7 @@ extension IntentHandler {
         guard let url = URL(string: "http://3.35.107.3:8080/api/v1/card") else { return }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
-        urlRequest.addValue("Bearer \(UserDefaults.appGroup.string(forKey: "accessToken") ?? "")", forHTTPHeaderField: "Authorization")
-        print("😀", UserDefaults.appGroup.string(forKey: "accessToken") ?? "")
+        urlRequest.addValue("Bearer \(UserDefaults.appGroup.string(forKey: "AccessToken") ?? "")", forHTTPHeaderField: "Authorization")
         
         URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             guard let status = (response as? HTTPURLResponse)?.statusCode else { return }

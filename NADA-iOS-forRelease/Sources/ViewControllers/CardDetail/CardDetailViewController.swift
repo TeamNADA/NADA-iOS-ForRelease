@@ -28,8 +28,11 @@ class CardDetailViewController: UIViewController {
     }
     
     @IBAction func presentHarmonyViewController(_ sender: Any) {
-        cardHarmonyFetchWithAPI(myCard: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.firstCardID) ?? "",
-                                yourCard: cardDataModel?.cardUUID ?? "")
+//        cardHarmonyFetchWithAPI(myCard: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.firstCardID) ?? "",
+//                                yourCard: cardDataModel?.cardUUID ?? "")
+        let nextVC = NewCardHarmonyViewController()
+        nextVC.modalPresentationStyle = .overFullScreen
+        self.present(nextVC, animated: false, completion: nil)
     }
     
     @IBOutlet weak var optionButton: UIButton!
@@ -85,8 +88,9 @@ extension CardDetailViewController {
             switch response {
             case .success(let data):
                 if let harmony = data as? HarmonyResponse {
-                    guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardHarmony, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardHarmonyViewController) as? CardHarmonyViewController else { return }
-                    nextVC.harmonyData = self.updateHarmony(percentage: harmony.harmony)
+//                    guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardHarmony, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardHarmonyViewController) as? CardHarmonyViewController else { return }
+//                    nextVC.harmonyData = self.updateHarmony(percentage: harmony.harmony)
+                    let nextVC = NewCardHarmonyViewController()
                     nextVC.modalPresentationStyle = .overFullScreen
                     self.present(nextVC, animated: false, completion: nil)
                 }

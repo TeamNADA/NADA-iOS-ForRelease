@@ -9,6 +9,10 @@ import Foundation
 import UIKit
 
 extension UIFont {
+    
+    @nonobjc class var harmonyTitle01: UIFont {
+    return UIFont(name: "SpoqaHanSansNeo-Bold", size: 30.0)!
+  }
 
     @nonobjc class var title01: UIFont {
     return UIFont(name: "SpoqaHanSansNeo-Bold", size: 20.0)!

@@ -34,7 +34,7 @@ class NewCardHarmonyViewController: UIViewController {
     }
     
     private let mbtiIcon = UIImageView().then {
-        $0.image = UIImage(named: "iconMbti")
+        $0.image = UIImage(named: "iconMbtiBlack")
     }
     
     private let mbtiTitleLabel = UILabel().then {
@@ -80,11 +80,35 @@ class NewCardHarmonyViewController: UIViewController {
         $0.sizeToFit()
     }
     
-    private let nadaHarmonyLottie020 = LottieAnimationView(name: Const.Lottie.onboarding01)
-    private let nadaHarmonyLottie2140 = LottieAnimationView(name: Const.Lottie.nadaHarmonyLottie2140)
-    private let nadaHarmonyLottie4160 = LottieAnimationView(name: Const.Lottie.nadaHarmonyLottie4160)
-    private let nadaHarmonyLottie6180 = LottieAnimationView(name: Const.Lottie.nadaHarmonyLottie6180)
-    private let nadaHarmonyLottie81100 = LottieAnimationView(name: Const.Lottie.nadaHarmonyLottie81100)
+    private let nadaHarmonyLottie020 = LottieAnimationView(name: Const.Lottie.nadaHarmonyLottie020).then {
+        $0.isHidden = false
+    }
+    private let nadaHarmonyLottie2140 = LottieAnimationView(name: Const.Lottie.nadaHarmonyLottie2140).then {
+        $0.isHidden = true
+    }
+    private let nadaHarmonyLottie4160 = LottieAnimationView(name: Const.Lottie.nadaHarmonyLottie4160).then {
+        $0.isHidden = true
+    }
+    private let nadaHarmonyLottie6180 = LottieAnimationView(name: Const.Lottie.nadaHarmonyLottie6180).then {
+        $0.isHidden = true
+    }
+    private let nadaHarmonyLottie81100 = LottieAnimationView(name: Const.Lottie.nadaHarmonyLottie81100).then {
+        $0.isHidden = true
+    }
+    
+    private let scoreTitleLabel = UILabel().then {
+        $0.font = .harmonyTitle01
+        $0.text = "우리 궁합은 nn점!"
+        $0.textColor = .harmonyRed
+        $0.sizeToFit()
+    }
+    
+    private let scoreDescLabel = UILabel().then {
+        $0.font = .textBold01
+        $0.text = "좀 더 친해지길 바래"
+        $0.textColor = .primary
+        $0.sizeToFit()
+    }
     
     // MARK: - View Life Cycles
     
@@ -102,18 +126,105 @@ extension NewCardHarmonyViewController {
     // MARK: UI & Layout
     
     private func setUI() {
+        view.backgroundColor = .black.withAlphaComponent(0.4)
         nadaHarmonyLottie020.loopMode = .playOnce
         nadaHarmonyLottie2140.loopMode = .playOnce
         nadaHarmonyLottie4160.loopMode = .playOnce
         nadaHarmonyLottie6180.loopMode = .playOnce
         nadaHarmonyLottie81100.loopMode = .playOnce
         
-//        onboardingFirstLottieView.play()
+        nadaHarmonyLottie020.play()
     }
     
     private func setLayout() {
+        view.addSubviews([popUpView])
+        popUpView.addSubviews([xButton, mbtiIcon, mbtiTitleLabel, mbtiScoreLabel,
+                               dividerLine, starIcon, starTitleLabel, starScoreLabel,
+                               nadaDescLabel,nadaHarmonyLottie020, nadaHarmonyLottie2140, nadaHarmonyLottie4160,
+                               nadaHarmonyLottie6180, nadaHarmonyLottie81100, scoreTitleLabel, scoreDescLabel])
         
+        popUpView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.leading.equalToSuperview().inset(17)
+            make.height.equalTo(470)
+        }
+        xButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().inset(20)
+            make.width.height.equalTo(24)
+        }
+        mbtiIcon.snp.makeConstraints { make in
+            make.top.equalTo(xButton.snp.bottom).offset(31)
+            make.leading.equalToSuperview().inset(52)
+            make.width.height.equalTo(18)
+        }
+        mbtiTitleLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(mbtiIcon.snp.centerY)
+            make.leading.equalTo(mbtiIcon.snp.trailing).offset(2)
+        }
+        mbtiScoreLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(mbtiIcon.snp.centerY)
+            make.trailing.equalToSuperview().inset(52)
+        }
+        dividerLine.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(mbtiIcon.snp.bottom).offset(11.5)
+            make.leading.equalToSuperview().inset(24)
+            make.height.equalTo(1)
+        }
+        starIcon.snp.makeConstraints { make in
+            make.top.equalTo(dividerLine.snp.bottom).offset(10.5)
+            make.leading.equalToSuperview().inset(52)
+            make.width.height.equalTo(18)
+        }
+        starTitleLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(starIcon.snp.centerY)
+            make.leading.equalTo(starIcon.snp.trailing).offset(2)
+        }
+        starScoreLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(starIcon.snp.centerY)
+            make.trailing.equalToSuperview().inset(52)
+        }
+        nadaDescLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(starIcon.snp.bottom).offset(24)
+        }
+        nadaHarmonyLottie020.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(nadaDescLabel.snp.bottom).offset(20)
+            make.width.height.equalTo(147)
+        }
+        nadaHarmonyLottie2140.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(nadaDescLabel.snp.bottom).offset(20)
+            make.width.height.equalTo(147)
+        }
+        nadaHarmonyLottie4160.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(nadaDescLabel.snp.bottom).offset(20)
+            make.width.height.equalTo(147)
+        }
+        nadaHarmonyLottie6180.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(nadaDescLabel.snp.bottom).offset(20)
+            make.width.height.equalTo(147)
+        }
+        nadaHarmonyLottie81100.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(nadaDescLabel.snp.bottom).offset(20)
+            make.width.height.equalTo(147)
+        }
+        scoreDescLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().inset(37)
+        }
+        scoreTitleLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(scoreDescLabel.snp.top).offset(-10)
+        }
     }
+    
+    // MARK: - Methods
     
     // MARK: - @objc
     

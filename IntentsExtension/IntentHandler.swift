@@ -107,7 +107,13 @@ extension IntentHandler {
                                                                     message: result?.message ?? "none message")))
                     } else {
                         if let result {
-                            completion(.success(result))
+                            if result.status != 200 {
+                                completion(.failure(WidgetError.networkFail(status: status,
+                                                                            code: result.code ?? "none code",
+                                                                            message: result.message ?? "none message")))
+                            } else {
+                                completion(.success(result))
+                            }
                         } else {
                             completion(.failure(WidgetError.decodeFail(status: status)))
                         }

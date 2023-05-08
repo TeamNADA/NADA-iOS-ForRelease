@@ -73,7 +73,7 @@ extension BackCardCreationCollectionViewCell {
         optionalInfoTextLabel.font = .textBold01
         
         tmiTextView.tintColor = .primary
-        tmiTextView.textContainerInset = UIEdgeInsets(top: 12, left: 24, bottom: 12, right: 24)
+        tmiTextView.textContainerInset = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
         tmiTextView.backgroundColor = .textBox
         tmiTextView.font = .textRegular04
         tmiTextView.text = "조금 더 다채로운 모습을 담아볼까요?"

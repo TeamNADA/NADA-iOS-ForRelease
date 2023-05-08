@@ -444,7 +444,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return UIImage() }
         backCard.frame = CGRect(x: 0, y: 0, width: 327, height: 540)
         guard let cardDataModel = cardDataModel else { return UIImage() }
-        backCard.initCell(cardTasteInfo: cardDataModel.cardTastes, tmi: cardDataModel.tmi, isShareable: isShareable)
+        backCard.initCell(cardDataModel.cardImage, cardDataModel.cardTastes, cardDataModel.tmi)
 
         let backCardView = UIView(frame: CGRect(x: 0, y: 0, width: 327, height: 540))
         backCardView.addSubview(backCard)

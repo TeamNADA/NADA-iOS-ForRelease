@@ -11,7 +11,7 @@ import Intents
 
 struct MyCardProvider: IntentTimelineProvider {
     func placeholder(in context: Context) -> MyCardEntry {
-        MyCardEntry(date: Date(), widgetCard: WidgetCard(cardID: "", title: "일이삼사오육칠팔구", userName: "일이삼사오육", backgroundImage: UIImage()))
+        MyCardEntry(date: Date(), widgetCard: WidgetCard(cardUUID: "", title: "일이삼사오육칠팔구", userName: "일이삼사오육", backgroundImage: UIImage()))
     }
 
     func getSnapshot(for configuration: MyCardIntent, in context: Context, completion: @escaping (MyCardEntry) -> Void) {
@@ -19,7 +19,7 @@ struct MyCardProvider: IntentTimelineProvider {
         
         if let card = configuration.myCard {
             entry = MyCardEntry(date: Date(),
-                                widgetCard: WidgetCard(cardID: card.identifier ?? "",
+                                widgetCard: WidgetCard(cardUUID: card.identifier ?? "",
                                                        title: card.displayString,
                                                        userName: card.userName ?? "",
                                                        backgroundImage: fetchImage(card.cardImage ?? "")))
@@ -39,7 +39,7 @@ struct MyCardProvider: IntentTimelineProvider {
             for hourOffset in 0 ..< 5 {
                 let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate) ?? Date()
                 let entry = MyCardEntry(date: entryDate,
-                                        widgetCard: WidgetCard(cardID: card.identifier ?? "",
+                                        widgetCard: WidgetCard(cardUUID: card.identifier ?? "",
                                                                title: card.displayString,
                                                                userName: card.userName ?? "",
                                                                backgroundImage: fetchImage(card.cardImage ?? "")))
@@ -68,7 +68,7 @@ extension MyCardProvider {
 }
 
 struct WidgetCard {
-    let cardID: String
+    let cardUUID: String
     let title: String
     let userName: String
     let backgroundImage: UIImage
@@ -101,26 +101,26 @@ struct MyCardEntryView: View {
                 VStack {
                     HStack {
                         Text(widgetCard.title)
-                            .font(.system(size: 15))
-                            .foregroundColor(.init(white: 1.0, opacity: 0.8))
+                            .font(.cardName)
+                            .foregroundColor(.init(white: 1.0))
                             .padding(EdgeInsets(top: 12, leading: 10, bottom: 0, trailing: 0))
                             .lineLimit(1)
                         Spacer()
                         Image("logoNada")
-                            .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 10))
+                            .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 10))
                     }
                     Spacer()
                     HStack {
                         Spacer()
                         Text(widgetCard.userName)
-                            .font(.system(size: 15))
+                            .font(.userName)
                             .foregroundColor(.userNameColor(for: colorScheme))
                             .padding(EdgeInsets(top: 0, leading: 10, bottom: 11, trailing: 10))
                             .lineLimit(1)
                     }
                 }
             }
-            .widgetURL(URL(string: "openMyCardWidget"))
+            .widgetURL(URL(string: "openMyCardWidget://?cardUUID=\(widgetCard.cardUUID)"))
         } else {
             Image("widgetEmpty")
                 .resizable()
@@ -148,7 +148,7 @@ struct MyCardWidget_Previews: PreviewProvider {
     static var previews: some View {
         MyCardEntryView(entry: MyCardEntry(date: Date(), widgetCard: nil))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
-        MyCardEntryView(entry: MyCardEntry(date: Date(), widgetCard: WidgetCard(cardID: Card.mockData[0].cardUUID, title: Card.mockData[0].cardName, userName: Card.mockData[0].userName, backgroundImage: UIImage(named: Card.mockData[2].cardImage) ?? UIImage())))
+        MyCardEntryView(entry: MyCardEntry(date: Date(), widgetCard: WidgetCard(cardUUID: Card.mockData[0].cardUUID, title: Card.mockData[0].cardName, userName: Card.mockData[0].userName, backgroundImage: UIImage(named: Card.mockData[2].cardImage) ?? UIImage())))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

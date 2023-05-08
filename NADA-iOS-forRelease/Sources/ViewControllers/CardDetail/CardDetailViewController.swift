@@ -221,7 +221,7 @@ extension CardDetailViewController {
             guard let backCard = BackCardCell.nib().instantiate(withOwner: self, options: nil).first as? BackCardCell else { return }
             backCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
             guard let cardDataModel = cardDataModel else { return }
-            backCard.initCell(cardTasteInfo: cardDataModel.cardTastes, tmi: cardDataModel.tmi)
+            backCard.initCell(cardDataModel.cardImage, cardDataModel.cardTastes, cardDataModel.tmi)
             
             cardView.addSubview(backCard)
             isFront = false

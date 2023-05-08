@@ -12,13 +12,15 @@ extension Const {
         static let darkModeState = "darkModeState"
         static let userID = "userID"
         static let isFirstCard = "isFirstCard"
-        static let isOnboarding = "isOnboarding"
+        static let isOnboarding = "isOnboardingAvailable"
         static let firstCardID = "firstCardID"
         static let isAppleLogin = "isAppleLogin"
         static let isKakaoLogin = "isKakaoLogin"
         static let dynamicLinkCardUUID = "dynamicLinkCardUUID"
-        // TODO: - KeyChain 적용
-        static let accessToken = "accessToken"
+        static let accessToken = "AccessToken"
+        static let openQRCodeWidget = "openQRCodeWidget"
+        static let openMyCardWidget = "openMyCardWidget"
+        static let widgetCardUUID = "widgetCardUUID"
         static let refreshToken = "refreshToken"
     }
 }

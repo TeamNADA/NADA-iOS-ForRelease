@@ -11,11 +11,11 @@ extension Color {
     static func backgroundColor(for colorScheme: ColorScheme) -> Color {
         switch colorScheme {
         case .light:
-            return Color(red: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0)
+            return Color(red: 241.0 / 255.0, green: 243.0 / 255.0, blue: 245.0 / 255.0)
         case .dark:
-            return Color(red: 19.0 / 255.0, green: 20.0 / 255.0, blue: 22.0 / 255.0, opacity: 0.5)
+            return Color(red: 43.0 / 255.0, green: 45.0 / 255.0, blue: 49.0 / 255.0)
         @unknown default:
-            return Color(red: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0)
+            return Color(red: 241.0 / 255.0, green: 243.0 / 255.0, blue: 245.0 / 255.0)
         }
     }
     

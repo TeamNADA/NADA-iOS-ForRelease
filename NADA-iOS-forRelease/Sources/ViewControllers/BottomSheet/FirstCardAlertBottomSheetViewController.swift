@@ -10,6 +10,8 @@ import UIKit
 class FirstCardAlertBottomSheetViewController: CommonBottomSheetViewController {
 
     // MARK: - Properties
+    
+    private var bottomSheetViewTopConstraint: NSLayoutConstraint?
 
     private let cardImageView: UIImageView = {
         let imageView = UIImageView()
@@ -71,6 +73,7 @@ class FirstCardAlertBottomSheetViewController: CommonBottomSheetViewController {
         super.viewDidLoad()
         
         setupUI()
+        setHideAnimationDuration(0.5)
     }
     
     // MARK: - Methods
@@ -94,8 +97,7 @@ class FirstCardAlertBottomSheetViewController: CommonBottomSheetViewController {
         cardImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             cardImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
-            cardImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 70),
-            cardImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -70)
+            cardImageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
         ])
         
         bgView.translatesAutoresizingMaskIntoConstraints = false

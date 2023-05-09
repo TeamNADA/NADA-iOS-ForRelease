@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>내 근처의 명함을 받아오기 위해 위치 권한이 필요합니다. (허용하지 않을 경우 내 근처의 명함 기능을 사용할 수 없습니다.)</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>내 근처의 명함을 받아오기 위해 위치 권한이 필요합니다. (허용하지 않을 경우 내 근처의 명함 기능을 사용할 수 없습니다.)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>ko_KR</string>
 	<key>CFBundleDisplayName</key>

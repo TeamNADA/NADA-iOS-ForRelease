@@ -103,7 +103,7 @@ extension FrontCardCell {
         let constraints = [titleLabelTop, titleLabelLeading, descLabelTop,
                            usernameLabelTop, birthdayImageTop, mbtiImageLeading, totalStackViewBottom, totalStackViewLeading, totalStackViewTrailing]
         let labels = [titleLabel, descriptionLabel, userNameLabel, birthLabel, mbtiLabel, instagramIDLabel, phoneNumberLabel, linkURLLabel]
-        let widths = [birthdayImageWidth, phoneImageWidth, urlImageWidth, mbtiImageWidth]
+        let widths = [instagramImageWidth, birthdayImageWidth, phoneImageWidth, urlImageWidth, mbtiImageWidth]
         
         constraints.forEach {
             $0?.constant = ($0?.constant ?? 0) * 0.6

@@ -121,7 +121,7 @@ extension TabBarViewController {
         }
     }
     private func cardAddInGroupWithAPI(cardUUID: String, completion: @escaping () -> Void) {
-        GroupAPI.shared.cardAddInGroup(cardRequest: CardAddInGroupRequest(cardGroupName: nil, cardUUID: cardUUID)) { response in
+        GroupAPI.shared.cardAddInGroup(cardRequest: CardAddInGroupRequest(cardGroupName: "미분류", cardUUID: cardUUID)) { response in
             switch response {
             case .success:
                 completion()

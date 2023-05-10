@@ -11,10 +11,10 @@ import SwiftUI
 @main
 struct WidgetsBundle: WidgetBundle {
     var body: some Widget {
-        MyCardWidget()
         if #available(iOSApplicationExtension 16.0, *) {
-            OpenAppLockScreenWidget()
+            return WidgetBundleBuilder.buildBlock(MyCardWidget(), OpenAppLockScreenWidget(), QRCodeWidget())
+        } else {
+            return WidgetBundleBuilder.buildBlock(MyCardWidget(), QRCodeWidget())
         }
-        QRCodeWidget()
     }
 }

@@ -12,8 +12,9 @@ import SwiftUI
 struct WidgetsBundle: WidgetBundle {
     var body: some Widget {
         MyCardWidget()
-        OpenAppLockScreenWidget()
+        if #available(iOSApplicationExtension 16.0, *) {
+            OpenAppLockScreenWidget()
+        }
         QRCodeWidget()
-        WidgetsLiveActivity()
     }
 }

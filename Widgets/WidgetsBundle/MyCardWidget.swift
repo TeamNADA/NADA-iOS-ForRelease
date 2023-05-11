@@ -57,6 +57,8 @@ struct MyCardProvider: IntentTimelineProvider {
     }
 }
 
+// MARK: - Network
+
 extension MyCardProvider {
     private func fetchImage(_ urlString: String) -> UIImage {
         guard let url = URL(string: urlString),
@@ -64,6 +66,49 @@ extension MyCardProvider {
               let image = UIImage(data: data) else { return UIImage() }
         
         return image
+    }
+    
+    enum WidgetError: Error {
+        case networkFail(status: Int, code: String, message: String)
+        case decodeFail(status: Int)
+        case error(status: Int, error: Error)
+    }
+    
+    func cardListFetchWithAPI(completion: @escaping (Result<GenericResponse<[Card]>?, Error>) -> Void) {
+        guard let url = URL(string: "http://3.35.107.3:8080/api/v1/card") else { return }
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        urlRequest.addValue("Bearer \(UserDefaults.appGroup.string(forKey: "AccessToken") ?? "")", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            guard let status = (response as? HTTPURLResponse)?.statusCode else { return }
+            
+            if let error = error {
+                completion(.failure(WidgetError.error(status: status, error: error)))
+            } else {
+                if let data {
+                    let result = try? JSONDecoder().decode(GenericResponse<[Card]>.self, from: data)
+                    
+                    if status != 200 {
+                        completion(.failure(WidgetError.networkFail(status: status,
+                                                                    code: result?.code ?? "none code",
+                                                                    message: result?.message ?? "none message")))
+                    } else {
+                        if let result {
+                            if result.status != 200 {
+                                completion(.failure(WidgetError.networkFail(status: result.status,
+                                                                            code: result.code ?? "none code",
+                                                                            message: result.message ?? "none message")))
+                            } else {
+                                completion(.success(result))
+                            }
+                        } else {
+                            completion(.failure(WidgetError.decodeFail(status: status)))
+                        }
+                    }
+                }
+            }
+        }.resume()
     }
 }
 

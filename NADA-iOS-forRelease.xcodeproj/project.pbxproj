@@ -222,6 +222,8 @@
 		F8F00C3B29DD483000A15377 /* UpdateUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F00C3A29DD483000A15377 /* UpdateUserInfo.swift */; };
 		F8F00C3E29DD489200A15377 /* UpdateAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F00C3D29DD489200A15377 /* UpdateAPI.swift */; };
 		F8F00C4129DD48A000A15377 /* UpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F00C4029DD48A000A15377 /* UpdateService.swift */; };
+		F8F0ACB22A0BB909001B8266 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FBC272F9F430009DF0D /* GenericResponse.swift */; };
+		F8F0ACB32A0BB916001B8266 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82AF6A129FBBEE50051545B /* UserDefaults+Extension.swift */; };
 		F8F5D0AA270800FD00D99D2E /* Xib.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F5D0A9270800FD00D99D2E /* Xib.swift */; };
 		F8FC438626C01CDD0033E151 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC438526C01CDD0033E151 /* AppDelegate.swift */; };
 		F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC438726C01CDD0033E151 /* SceneDelegate.swift */; };
@@ -1779,8 +1781,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8F0ACB22A0BB909001B8266 /* GenericResponse.swift in Sources */,
 				F8BCDD24298FFA940044D0B4 /* OpenAppLockScreenWidget.swift in Sources */,
 				F8BCDD27298FFB280044D0B4 /* Color+Extension.swift in Sources */,
+				F8F0ACB32A0BB916001B8266 /* UserDefaults+Extension.swift in Sources */,
 				F838B66E298E5C5400D84340 /* Widgets.intentdefinition in Sources */,
 				F838B667298E5C5300D84340 /* WidgetsLiveActivity.swift in Sources */,
 				F8BCDD25298FFAF90044D0B4 /* WidgetsBundle.swift in Sources */,

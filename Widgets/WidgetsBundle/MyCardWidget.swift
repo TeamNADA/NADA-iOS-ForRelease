@@ -34,26 +34,53 @@ struct MyCardProvider: IntentTimelineProvider {
         var entries: [MyCardEntry] = []
 
         let currentDate = Date()
+        let entryDate = Calendar.current.date(byAdding: .second, value: 5, to: currentDate) ?? Date()
         
         if let card = configuration.myCard {
-            for hourOffset in 0 ..< 5 {
-                let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate) ?? Date()
-                let entry = MyCardEntry(date: entryDate,
-                                        widgetCard: WidgetCard(cardUUID: card.identifier ?? "",
-                                                               title: card.displayString,
-                                                               userName: card.userName ?? "",
-                                                               backgroundImage: fetchImage(card.cardImage ?? "")))
-                entries.append(entry)
+            cardListFetchWithAPI { result in
+                switch result {
+                case .success(let response):
+                    if let data = response?.data {
+                        if data.contains(where: { cardDataModel in
+                            return cardDataModel.cardUUID == card.identifier
+                        }) {
+                            // 명함이 있음
+                            let entry = MyCardEntry(date: entryDate,
+                                                    widgetCard: WidgetCard(cardUUID: card.identifier ?? "",
+                                                                           title: card.displayString,
+                                                                           userName: card.userName ?? "",
+                                                                           backgroundImage: fetchImage(card.cardImage ?? "")))
+                            entries = [entry]
+                            let timeline = Timeline(entries: entries, policy: .atEnd)
+                            completion(timeline)
+                        } else {
+                            // 해당 명함이 삭제되어 없음. -> 대표 명함(첫 번째 명함)을 보여주도록 함
+                            let entry = MyCardEntry(date: entryDate,
+                                                   widgetCard: WidgetCard(cardUUID: data[0].cardUUID,
+                                                                           title: data[0].cardName,
+                                                                           userName: data[0].userName,
+                                                                           backgroundImage: fetchImage(data[0].cardImage)))
+                            entries = [entry]
+                            let timeline = Timeline(entries: entries, policy: .atEnd)
+                            completion(timeline)
+                        }
+                    }
+                case .failure(let error):
+                    print(error)
+                    // 회원 탈퇴, 로그아웃
+                    let entry = MyCardEntry(date: entryDate, widgetCard: nil)
+                    entries = [entry]
+                    let timeline = Timeline(entries: entries, policy: .atEnd)
+                    completion(timeline)
+                }
             }
         } else {
-            for hourOffset in 0 ..< 5 {
-                let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate) ?? Date()
-                entries.append(MyCardEntry(date: entryDate, widgetCard: nil))
-            }
+            // Configuration 로 부터 card 받지 못함.(=로그인 전 위젯 생성 시)
+            let entry = MyCardEntry(date: entryDate, widgetCard: nil)
+            entries = [entry]
+            let timeline = Timeline(entries: entries, policy: .atEnd)
+            completion(timeline)
         }
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        
-        completion(timeline)
     }
 }
 

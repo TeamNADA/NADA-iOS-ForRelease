@@ -73,6 +73,10 @@ final class AroundMeViewController: UIViewController {
         bindViewModels()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.post(name: .backToHome, object: nil, userInfo: nil)
+    }
 }
 
 extension AroundMeViewController {

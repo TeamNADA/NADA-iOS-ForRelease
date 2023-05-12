@@ -287,16 +287,18 @@ extension HomeViewController {
     }
     
     private func presentCardShareBottomSheetVC(with cardUUID: String) {
-        self.cardDetailFetchWithAPI(cardUUID: cardUUID) { [weak self] cardDataModel in
-            let nextVC = CardShareBottomSheetViewController()
-                .setTitle("명함공유")
-                .setHeight(606.0)
-            
-            nextVC.isActivate = false
-            nextVC.modalPresentationStyle = .overFullScreen
-            nextVC.cardDataModel = cardDataModel
-            
-            self?.present(nextVC, animated: true)
+        if UserDefaults.appGroup.string(forKey: Const.UserDefaultsKey.accessToken) != nil {
+            self.cardDetailFetchWithAPI(cardUUID: cardUUID) { [weak self] cardDataModel in
+                let nextVC = CardShareBottomSheetViewController()
+                    .setTitle("명함공유")
+                    .setHeight(606.0)
+                
+                nextVC.isActivate = false
+                nextVC.modalPresentationStyle = .overFullScreen
+                nextVC.cardDataModel = cardDataModel
+                
+                self?.present(nextVC, animated: true)
+            }
         }
     }
     

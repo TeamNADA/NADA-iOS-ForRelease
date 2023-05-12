@@ -40,35 +40,6 @@ extension IntentHandler: MyCardIntentHandling {
             }
         }
     }
-    
-    // 위젯 추가할때 호출. 기본값 설정.
-    func defaultMyCard(for intent: MyCardIntent) -> MyCard? {
-        var myCard: MyCard?
-        
-        let group = DispatchGroup()
-        
-        DispatchQueue.global().async(group: group) { [weak self] in
-            group.enter()
-            
-            self?.cardListFetchWithAPI { result in
-                switch result {
-                case .success(let result):
-                    if let cardItmes = result?.data {
-                        myCard = MyCard(identifier: cardItmes[0].cardUUID, display: cardItmes[0].cardName)
-                        myCard?.userName = cardItmes[0].userName
-                        myCard?.cardImage = cardItmes[0].cardImage
-                    }
-                case .failure(let err):
-                    print(err)
-                }
-                group.leave()
-            }
-        }
-        
-        _ = group.wait(timeout: .now() + 60)
-        
-        return myCard
-    }
 }
 
 // MARK: - Newtwork

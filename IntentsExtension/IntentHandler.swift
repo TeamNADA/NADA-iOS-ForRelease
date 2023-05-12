@@ -9,10 +9,6 @@ import Intents
 
 class IntentHandler: INExtension {
     
-    // MARK: - Properties
-    
-    var cardItems: [Card]?
-    
     override func handler(for intent: INIntent) -> Any {
         // This is the default implementation.  If you want different objects to handle different intents,
         // you can override this and return the handler you want for that particular intent.
@@ -54,14 +50,13 @@ extension IntentHandler: MyCardIntentHandling {
         DispatchQueue.global().async(group: group) { [weak self] in
             group.enter()
             
-            self?.cardListFetchWithAPI { [weak self] result in
+            self?.cardListFetchWithAPI { result in
                 switch result {
                 case .success(let result):
-                    if let result {
-                        self?.cardItems = result.data
-                        myCard = MyCard(identifier: self?.cardItems?[0].cardUUID ?? "", display: self?.cardItems?[0].cardName ?? "")
-                        myCard?.userName = self?.cardItems?[0].userName
-                        myCard?.cardImage = self?.cardItems?[0].cardImage
+                    if let cardItmes = result?.data {
+                        myCard = MyCard(identifier: cardItmes[0].cardUUID, display: cardItmes[0].cardName)
+                        myCard?.userName = cardItmes[0].userName
+                        myCard?.cardImage = cardItmes[0].cardImage
                     }
                 case .failure(let err):
                     print(err)

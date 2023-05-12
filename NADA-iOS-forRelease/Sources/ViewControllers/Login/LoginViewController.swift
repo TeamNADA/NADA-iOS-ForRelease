@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import WidgetKit
+
 import KakaoSDKCommon
 import KakaoSDKAuth
 import KakaoSDKUser
@@ -197,6 +199,7 @@ extension LoginViewController {
                 if let userData = loginData as? AccessToken {
                     UserDefaults.standard.set(socialID, forKey: Const.UserDefaultsKey.userID)
                     UserDefaults.appGroup.set(userData.accessToken, forKey: Const.UserDefaultsKey.accessToken)
+                    WidgetCenter.shared.reloadTimelines(ofKind: "MyCardWidget")
 //                    UserDefaults.standard.set(userData.user.token.refreshToken, forKey: Const.UserDefaultsKey.refreshToken)
                     self.presentToMain()
                 }

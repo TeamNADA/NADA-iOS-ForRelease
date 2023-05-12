@@ -42,15 +42,22 @@ struct QRCodeEntryView: View {
     @Environment(\.widgetFamily) var widgetFamily
     
     var body: some View {
-        switch widgetFamily {
-        case .accessoryCircular:
-            ZStack {
-                AccessoryWidgetBackground()
-                Image("widgetQrLockscreenWhite")
+        if #available(iOSApplicationExtension 16.0, *) {
+            switch widgetFamily {
+            case .accessoryCircular:
+                ZStack {
+                    AccessoryWidgetBackground()
+                    Image("widgetQrLockscreenWhite")
+                        .resizable()
+                        .widgetURL(URL(string: "openQRCodeWidget"))
+                }
+            default:
+                Image("widgetQr")
                     .resizable()
+                    .scaledToFill()
                     .widgetURL(URL(string: "openQRCodeWidget"))
             }
-        default:
+        } else {
             Image("widgetQr")
                 .resizable()
                 .scaledToFill()
@@ -60,6 +67,14 @@ struct QRCodeEntryView: View {
 }
 
 struct QRCodeWidget: Widget {
+    private let supportedFamilies: [WidgetFamily] = {
+        if #available(iOSApplicationExtension 16.0, *) {
+            return [.systemSmall, .accessoryCircular]
+        } else {
+            return [.systemSmall]
+        }
+    }()
+    
     let kind: String = "QRCodeWidget"
     
     var body: some WidgetConfiguration {
@@ -69,7 +84,7 @@ struct QRCodeWidget: Widget {
         }
         .configurationDisplayName("QR Code 위젯")
         .description("QR Code 를 인식할 수 있도록 카메라로 빠르게 접근합니다.")
-        .supportedFamilies([.systemSmall, .accessoryCircular])
+        .supportedFamilies(supportedFamilies)
     }
 }
 
@@ -77,7 +92,9 @@ struct QRCodeWidget_Previews: PreviewProvider {
     static var previews: some View {
         QRCodeEntryView(entry: QRCodeEntry(date: Date()))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
-        QRCodeEntryView(entry: QRCodeEntry(date: Date()))
-            .previewContext(WidgetPreviewContext(family: .accessoryCircular))
+        if #available(iOSApplicationExtension 16.0, *) {
+            QRCodeEntryView(entry: QRCodeEntry(date: Date()))
+                .previewContext(WidgetPreviewContext(family: .accessoryCircular))
+        }
     }
 }

@@ -115,17 +115,7 @@ extension AroundMeViewController {
     private func setLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        
-        DispatchQueue.global().async {
-            if CLLocationManager.locationServicesEnabled() {
-                print("location on")
-                self.locationManager.startUpdatingLocation()
-                print(self.locationManager.location?.coordinate)
-            } else {
-                print("location off")
-            }
-        }
+        locationManager.requestLocation()
     }
     
     private func setDelegate() {
@@ -239,6 +229,8 @@ extension AroundMeViewController {
                     print(cards)
                     if cards.isEmpty {
                         self.aroundMeCollectionView.isHidden = true
+                    } else {
+                        self.aroundMeCollectionView.isHidden = false
                     }
                     self.aroundMeCollectionView.reloadData()
                 }

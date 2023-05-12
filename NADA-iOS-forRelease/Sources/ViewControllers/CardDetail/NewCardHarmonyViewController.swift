@@ -281,11 +281,11 @@ extension NewCardHarmonyViewController {
                     UIView.animate(withDuration: 0.6, delay: 1.0, animations: {
                         self.nadaDescLabel.alpha = 1
                     }, completion: { _ in
-                        UIView.animate(withDuration: 10.0, delay: 1.5, animations: {
+                        UIView.animate(withDuration: 4.0, delay: 1.5, animations: {
                             lottie.isHidden = false
                             lottie.play()
                         }, completion: { _ in
-                            UIView.animate(withDuration: 0.6, delay: 1.0, animations: {
+                            UIView.animate(withDuration: 6.0, delay: 0.5, animations: {
                                 self.scoreTitleLabel.alpha = 1
                                 self.scoreDescLabel.alpha = 1
                             })

@@ -144,8 +144,14 @@ extension NewCardHarmonyViewController {
         nadaHarmonyLottie4160.loopMode = .playOnce
         nadaHarmonyLottie6180.loopMode = .playOnce
         nadaHarmonyLottie81100.loopMode = .playOnce
-        mbtiScoreLabel.text = "\(harmonyData?.mbtiGrade ?? 00)점"
-        starScoreLabel.text = "\(harmonyData?.constellationGrade ?? 00)점"
+        if harmonyData?.cardtype == "FAN" {
+            mbtiScoreLabel.isHidden = true
+        } else {
+            mbtiScoreLabel.isHidden = false
+            mbtiScoreLabel.text = "\(harmonyData?.mbtiGrade ?? 00)점"
+            starScoreLabel.text = "\(harmonyData?.constellationGrade ?? 00)점"
+        }
+        
         scoreTitleLabel.text = "우리 궁합은 \(harmonyData?.totalGrade ?? 00)점!"
         switch harmonyData?.lottie {
         case 0:

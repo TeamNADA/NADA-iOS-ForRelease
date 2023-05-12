@@ -8,6 +8,6 @@
 import Foundation
 
 struct CardAddInGroupRequest: Codable {
-    var cardGroupName: String?
+    var cardGroupName: String
     var cardUUID: String
 }

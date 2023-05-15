@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>900084768088-b2bb5tkqu6ar55j05fn07aacaept7ahi.apps.googleusercontent.com</string>
+	<string>750439700308-oam5ig2o1rmrpg91r7p491rj5h5mrrfg.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.900084768088-b2bb5tkqu6ar55j05fn07aacaept7ahi</string>
+	<string>com.googleusercontent.apps.750439700308-oam5ig2o1rmrpg91r7p491rj5h5mrrfg</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCgjeaGYq8lcEYim6AfrBDs0rKCOPvcnVs</string>
+	<string>AIzaSyATSoJ0-Ygl29Ba2ua0_3-fQG6wAgnY7Hc</string>
 	<key>GCM_SENDER_ID</key>
-	<string>900084768088</string>
+	<string>750439700308</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>YJC.NADA-iOS-forRelease</string>
 	<key>PROJECT_ID</key>
-	<string>nada-7f9c8</string>
+	<string>nada-49bf8</string>
 	<key>STORAGE_BUCKET</key>
-	<string>nada-7f9c8.appspot.com</string>
+	<string>nada-49bf8.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:900084768088:ios:a52d55f364646a8931592d</string>
+	<string>1:750439700308:ios:f643da30295cb764389ac1</string>
 </dict>
 </plist>

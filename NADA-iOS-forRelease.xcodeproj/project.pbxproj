@@ -180,6 +180,7 @@
 		F87D223B298ECAFB001A882B /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F87D2239298ECAFB001A882B /* MainInterface.storyboard */; };
 		F87D223F298ECAFB001A882B /* IntentsExtensionUI.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F87D2233298ECAFB001A882B /* IntentsExtensionUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F87D2242298ECAFB001A882B /* IntentsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F87D2228298ECAFB001A882B /* IntentsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F88B17D02A12004C009178D5 /* UserLoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88B17CF2A12004C009178D5 /* UserLoginRequest.swift */; };
 		F88C8DE929B8919700196A33 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88C8DE829B8919700196A33 /* ViewModelType.swift */; };
 		F8915A22275728F20013D609 /* SelectBirthBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */; };
 		F8915A23275728F20013D609 /* SelectMBTIBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */; };
@@ -456,6 +457,7 @@
 		F87D2237298ECAFB001A882B /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
 		F87D223A298ECAFB001A882B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		F87D223C298ECAFB001A882B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F88B17CF2A12004C009178D5 /* UserLoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginRequest.swift; sourceTree = "<group>"; };
 		F88C8DE829B8919700196A33 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectBirthBottomViewController.swift; sourceTree = "<group>"; };
 		F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMBTIBottomViewController.swift; sourceTree = "<group>"; };
@@ -704,6 +706,7 @@
 				39D13564273FDB9C00B1A148 /* User.swift */,
 				39D13567273FDCB800B1A148 /* UserWithTokenRequest.swift */,
 				3918F66627719C4B00984648 /* UserReissueToken.swift */,
+				F88B17CF2A12004C009178D5 /* UserLoginRequest.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1943,6 +1946,7 @@
 				77A4D5F929BC320600367B7C /* AroundMeCollectionViewCell.swift in Sources */,
 				7773124F2A083357002C094B /* NewCardHarmonyViewController.swift in Sources */,
 				39C394D4277CD33500DBA566 /* EmptyCardListTableViewCell.swift in Sources */,
+				F88B17D02A12004C009178D5 /* UserLoginRequest.swift in Sources */,
 				77B4E74B2990E50E006098DC /* HomeViewController.swift in Sources */,
 				7734D5B427778EFB004360E4 /* HarmonyResponse.swift in Sources */,
 				777B2C242A00E7C700A6AB27 /* NearByUUIDResponse.swift in Sources */,

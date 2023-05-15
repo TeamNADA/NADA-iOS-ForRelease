@@ -5,11 +5,13 @@
 //  Created by 민 on 2021/09/21.
 //
 
+import AuthenticationServices
 import UIKit
+
+import FirebaseMessaging
 import KakaoSDKCommon
 import KakaoSDKAuth
 import KakaoSDKUser
-import AuthenticationServices
 
 class LoginViewController: UIViewController {
     
@@ -22,9 +24,12 @@ class LoginViewController: UIViewController {
         
         setUI()
     }
+}
     
-    // MARK: - Functions
-    func setUI() {
+// MARK: - Methods
+
+extension LoginViewController {
+    private func setUI() {
         let kakaoButton = UIButton()
         kakaoButton.setImage(UIImage(named: "btn_kakaologin"), for: .normal)
         kakaoButton.cornerRadius = 15
@@ -71,9 +76,22 @@ class LoginViewController: UIViewController {
         }
     }
     
+    private func setFcmTokenAndPostAPI(socialID: String, socialType: String) {
+        Messaging.messaging().token { [weak self] token, error in
+            if let error = error {
+                print("Error fetching FCM registration token: \(error)")
+            } else if let token = token {
+//                print("FCM registration token: \(token)")
+                self?.postUserSignUpWithAPI(request: UserLoginRequest(socialID: socialID, socialType: socialType, fcmToken: ""))
+            }
+        }
+    }
+    
+    // MARK: - @objc Mehotds
+    
     // 카카오 로그인 버튼 클릭 시
     @objc
-    func kakaoSignInButtonPress() {
+    private func kakaoSignInButtonPress() {
         // 카카오톡 설치 여부 확인
         if UserApi.isKakaoTalkLoginAvailable() {
             // 카카오톡 로그인. api 호출 결과를 클로저로 전달.
@@ -108,12 +126,12 @@ extension LoginViewController {
             } else {
                 print("loginWithKakaoTalk() success.")
                 
-                UserApi.shared.me {(user, error) in
+                UserApi.shared.me { [weak self] (user, error) in
                     if let error = error {
                         print(error)
                     } else {
                         if let userID = user?.id {
-                            self.postUserSignUpWithAPI(socialID: String(userID), socialType: "KAKAO")
+                            self?.setFcmTokenAndPostAPI(socialID: String(userID), socialType: "KAKAO")
                             UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isAppleLogin)
                             UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.isKakaoLogin)
                         }
@@ -136,7 +154,7 @@ extension LoginViewController {
                         print(error)
                     } else {
                         if let userID = user?.id {
-                            self.postUserSignUpWithAPI(socialID: String(userID), socialType: "KAKAO")
+                            self?.setFcmTokenAndPostAPI(socialID: String(userID), socialType: "KAKAO")
                             UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isAppleLogin)
                             UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.isKakaoLogin)
                         }
@@ -172,7 +190,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
             
             let userIdentifier = appleIDCredential.user
-            postUserSignUpWithAPI(socialID: userIdentifier, socialType: "APPLE")
+            setFcmTokenAndPostAPI(socialID: userIdentifier, socialType: "APPLE")
             UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.isAppleLogin)
             UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isKakaoLogin)
             
@@ -188,14 +206,15 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
 }
 
 // MARK: - Network
+
 extension LoginViewController {
-    func postUserSignUpWithAPI(socialID: String, socialType: String) {
-        UserAPI.shared.userSocialSignUp(socialID: socialID, socialType: socialType) { response in
+    func postUserSignUpWithAPI(request userLoginRequest: UserLoginRequest) {
+        UserAPI.shared.userSocialSignUp(userLoginRequest: userLoginRequest) { response in
             switch response {
             case .success(let loginData):
                 print("postUserSignUpWithAPI - success")
                 if let userData = loginData as? AccessToken {
-                    UserDefaults.standard.set(socialID, forKey: Const.UserDefaultsKey.userID)
+                    UserDefaults.standard.set(userLoginRequest.socialID, forKey: Const.UserDefaultsKey.userID)
                     UserDefaults.appGroup.set(userData.accessToken, forKey: Const.UserDefaultsKey.accessToken)
 //                    UserDefaults.standard.set(userData.user.token.refreshToken, forKey: Const.UserDefaultsKey.refreshToken)
                     self.presentToMain()

@@ -16,9 +16,11 @@ import KakaoSDKUser
 class LoginViewController: UIViewController {
     
     // MARK: - IBOutlet Properties
+    
     @IBOutlet weak var nadaImageView: UIImageView!
     
     // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -114,7 +116,6 @@ extension LoginViewController {
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
     }
-    
 }
 
 // MARK: - KakaoSignIn
@@ -178,6 +179,7 @@ extension LoginViewController {
 }
 
 // MARK: - AppleSignIn
+
 extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!

@@ -70,7 +70,7 @@ extension LoginViewController {
     }
     
     // 메인 화면으로 전환 함수
-    func presentToMain() {
+    private func presentToMain() {
         let nextVC = UIStoryboard(name: Const.Storyboard.Name.tabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.tabBarViewController)
         nextVC.modalPresentationStyle = .overFullScreen
         self.present(nextVC, animated: true) {
@@ -106,7 +106,7 @@ extension LoginViewController {
         
     // 애플 로그인 버튼 클릭 시
     @objc
-    func appleSignInButtonPress() {
+    private func appleSignInButtonPress() {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
@@ -120,7 +120,7 @@ extension LoginViewController {
 
 // MARK: - KakaoSignIn
 extension LoginViewController {
-    func loginWithApp() {
+    private func loginWithApp() {
         UserApi.shared.loginWithKakaoTalk {(_, error) in
             if let error = error {
                 print(error)
@@ -143,7 +143,7 @@ extension LoginViewController {
         
     }
     
-    func loginWithWeb() {
+    private func loginWithWeb() {
         UserApi.shared.loginWithKakaoAccount {(_, error) in
             if let error = error {
                 print(error)
@@ -166,7 +166,7 @@ extension LoginViewController {
     }
     
     // 카카오 로그인 표출 함수
-    func signUp() {
+    private func signUp() {
         // 카카오톡 설치 여부 확인
         if UserApi.isKakaoTalkLoginAvailable() {
             // 카카오톡 로그인. api 호출 결과를 클로저로 전달.

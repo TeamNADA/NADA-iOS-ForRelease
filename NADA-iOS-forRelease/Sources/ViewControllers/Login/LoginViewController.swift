@@ -7,6 +7,7 @@
 
 import AuthenticationServices
 import UIKit
+import WidgetKit
 
 import FirebaseMessaging
 import KakaoSDKCommon
@@ -210,6 +211,7 @@ extension LoginViewController {
                 if let userData = loginData as? AccessToken {
                     UserDefaults.standard.set(userLoginRequest.socialID, forKey: Const.UserDefaultsKey.userID)
                     UserDefaults.appGroup.set(userData.accessToken, forKey: Const.UserDefaultsKey.accessToken)
+                    WidgetCenter.shared.reloadTimelines(ofKind: "MyCardWidget")
 //                    UserDefaults.standard.set(userData.user.token.refreshToken, forKey: Const.UserDefaultsKey.refreshToken)
                     self.presentToMain()
                 }

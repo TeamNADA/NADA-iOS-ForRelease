@@ -37,6 +37,7 @@ struct OpenAppLockScreenEntry: TimelineEntry {
     let date: Date
 }
 
+@available(iOSApplicationExtension 16.0, *)
 struct OpenAppLockScreenEntryView: View {
     var entry: OpenAppLockScreenProvider.Entry
     @Environment(\.widgetFamily) var widgetFamily
@@ -55,6 +56,7 @@ struct OpenAppLockScreenEntryView: View {
     }
 }
 
+@available(iOSApplicationExtension 16.0, *)
 struct OpenAppLockScreenWidget: Widget {
     let kind: String = "OpenAppLockScreen"
     
@@ -69,6 +71,7 @@ struct OpenAppLockScreenWidget: Widget {
     }
 }
 
+@available(iOSApplicationExtension 16.0, *)
 struct OpenAppLockScreenWidget_Previews: PreviewProvider {
     static var previews: some View {
         OpenAppLockScreenEntryView(entry: OpenAppLockScreenEntry(date: Date()))

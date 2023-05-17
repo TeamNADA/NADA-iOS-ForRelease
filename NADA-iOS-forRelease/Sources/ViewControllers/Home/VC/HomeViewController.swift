@@ -72,6 +72,7 @@ final class HomeViewController: UIViewController {
         setLayout()
         bindActions()
         checkUpdateVersionAndSetting()
+        setNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -297,6 +298,17 @@ extension HomeViewController {
             
             self?.present(nextVC, animated: true)
         }
+    }
+    
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(backToHome), name: .backToHome, object: nil)
+    }
+    
+    // MARK: - @objc Methods
+    
+    @objc
+    private func backToHome(_ notification: Notification) {
+        setUI()
     }
 }
 

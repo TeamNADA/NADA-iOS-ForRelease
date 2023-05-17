@@ -15,47 +15,83 @@ struct MyCardProvider: IntentTimelineProvider {
     }
 
     func getSnapshot(for configuration: MyCardIntent, in context: Context, completion: @escaping (MyCardEntry) -> Void) {
-        let entry: MyCardEntry
-        
-        if let card = configuration.myCard {
-            entry = MyCardEntry(date: Date(),
-                                widgetCard: WidgetCard(cardUUID: card.identifier ?? "",
-                                                       title: card.displayString,
-                                                       userName: card.userName ?? "",
-                                                       backgroundImage: fetchImage(card.cardImage ?? "")))
-        } else {
-            entry = MyCardEntry(date: Date(), widgetCard: nil)
+        cardListFetchWithAPI { result in
+            switch result {
+            case .success(let response):
+                if let data = response?.data {
+                    if !data.isEmpty {
+                        let entry = MyCardEntry(date: Date(), widgetCard: WidgetCard(cardUUID: data[0].cardUUID,
+                                                                                     title: data[0].cardName,
+                                                                                     userName: data[0].userName,
+                                                                                     backgroundImage: fetchImage(data[0].cardImage)))
+                        completion(entry)
+                    } else {
+                        completion(MyCardEntry(date: Date(), widgetCard: nil))
+                    }
+                }
+            case .failure(let error):
+                print(error)
+
+                completion(MyCardEntry(date: Date(), widgetCard: nil))
+            }
         }
-        
-        completion(entry)
     }
 
     func getTimeline(for configuration: MyCardIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
         var entries: [MyCardEntry] = []
 
         let currentDate = Date()
+        let entryDate = Calendar.current.date(byAdding: .second, value: 5, to: currentDate) ?? Date()
         
         if let card = configuration.myCard {
-            for hourOffset in 0 ..< 5 {
-                let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate) ?? Date()
-                let entry = MyCardEntry(date: entryDate,
-                                        widgetCard: WidgetCard(cardUUID: card.identifier ?? "",
-                                                               title: card.displayString,
-                                                               userName: card.userName ?? "",
-                                                               backgroundImage: fetchImage(card.cardImage ?? "")))
-                entries.append(entry)
+            cardListFetchWithAPI { result in
+                switch result {
+                case .success(let response):
+                    if let data = response?.data {
+                        if data.contains(where: { cardDataModel in
+                            return cardDataModel.cardUUID == card.identifier
+                        }) {
+                            // 명함이 있음
+                            let entry = MyCardEntry(date: entryDate,
+                                                    widgetCard: WidgetCard(cardUUID: card.identifier ?? "",
+                                                                           title: card.displayString,
+                                                                           userName: card.userName ?? "",
+                                                                           backgroundImage: fetchImage(card.cardImage ?? "")))
+                            entries = [entry]
+                            let timeline = Timeline(entries: entries, policy: .atEnd)
+                            completion(timeline)
+                        } else {
+                            // 해당 명함이 삭제되어 없음. -> 대표 명함(첫 번째 명함)을 보여주도록 함
+                            let entry = MyCardEntry(date: entryDate,
+                                                   widgetCard: WidgetCard(cardUUID: data[0].cardUUID,
+                                                                           title: data[0].cardName,
+                                                                           userName: data[0].userName,
+                                                                           backgroundImage: fetchImage(data[0].cardImage)))
+                            entries = [entry]
+                            let timeline = Timeline(entries: entries, policy: .atEnd)
+                            completion(timeline)
+                        }
+                    }
+                case .failure(let error):
+                    print(error)
+                    // 회원 탈퇴, 로그아웃
+                    let entry = MyCardEntry(date: entryDate, widgetCard: nil)
+                    entries = [entry]
+                    let timeline = Timeline(entries: entries, policy: .atEnd)
+                    completion(timeline)
+                }
             }
         } else {
-            for hourOffset in 0 ..< 5 {
-                let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate) ?? Date()
-                entries.append(MyCardEntry(date: entryDate, widgetCard: nil))
-            }
+            // Configuration 로 부터 card 받지 못함.(=로그인 전 위젯 생성 시)
+            let entry = MyCardEntry(date: entryDate, widgetCard: nil)
+            entries = [entry]
+            let timeline = Timeline(entries: entries, policy: .atEnd)
+            completion(timeline)
         }
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        
-        completion(timeline)
     }
 }
+
+// MARK: - Network
 
 extension MyCardProvider {
     private func fetchImage(_ urlString: String) -> UIImage {
@@ -64,6 +100,49 @@ extension MyCardProvider {
               let image = UIImage(data: data) else { return UIImage() }
         
         return image
+    }
+    
+    enum WidgetError: Error {
+        case networkFail(status: Int, code: String, message: String)
+        case decodeFail(status: Int)
+        case error(status: Int, error: Error)
+    }
+    
+    func cardListFetchWithAPI(completion: @escaping (Result<GenericResponse<[Card]>?, Error>) -> Void) {
+        guard let url = URL(string: "http://3.35.107.3:8080/api/v1/card") else { return }
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        urlRequest.addValue("Bearer \(UserDefaults.appGroup.string(forKey: "AccessToken") ?? "")", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            guard let status = (response as? HTTPURLResponse)?.statusCode else { return }
+            
+            if let error = error {
+                completion(.failure(WidgetError.error(status: status, error: error)))
+            } else {
+                if let data {
+                    let result = try? JSONDecoder().decode(GenericResponse<[Card]>.self, from: data)
+                    
+                    if status != 200 {
+                        completion(.failure(WidgetError.networkFail(status: status,
+                                                                    code: result?.code ?? "none code",
+                                                                    message: result?.message ?? "none message")))
+                    } else {
+                        if let result {
+                            if result.status != 200 {
+                                completion(.failure(WidgetError.networkFail(status: result.status,
+                                                                            code: result.code ?? "none code",
+                                                                            message: result.message ?? "none message")))
+                            } else {
+                                completion(.success(result))
+                            }
+                        } else {
+                            completion(.failure(WidgetError.decodeFail(status: status)))
+                        }
+                    }
+                }
+            }
+        }.resume()
     }
 }
 

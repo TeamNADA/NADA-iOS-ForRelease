@@ -7,4 +7,6 @@
 
 import Foundation
 
-struct Tracking { }
+struct Tracking {
+    private init() { }
+}

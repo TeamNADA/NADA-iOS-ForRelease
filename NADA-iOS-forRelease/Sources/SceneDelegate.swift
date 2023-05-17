@@ -101,21 +101,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         } else if url.absoluteString.starts(with: myCardURL) {
             // 내 명함 위젯.
-            guard let queryItems = urlComponents.queryItems,
-                  let cardUUID = queryItems.filter({ $0.name == "cardUUID" }).first?.value else { return }
-            
-            let nextVC = CardShareBottomSheetViewController()
-                .setTitle("명함공유")
-                .setHeight(606.0)
-            
-            cardDetailFetchWithAPI(cardUUID: cardUUID) { cardDataModel in
-                nextVC.isActivate = false
-                nextVC.modalPresentationStyle = .overFullScreen
-                nextVC.cardDataModel = cardDataModel
+            if UserDefaults.appGroup.string(forKey: Const.UserDefaultsKey.accessToken) != nil {
+                guard let queryItems = urlComponents.queryItems,
+                      let cardUUID = queryItems.filter({ $0.name == "cardUUID" }).first?.value else { return }
                 
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-                    let topVC = UIApplication.mostTopViewController()
-                    topVC?.present(nextVC, animated: true)
+                let nextVC = CardShareBottomSheetViewController()
+                    .setTitle("명함공유")
+                    .setHeight(606.0)
+                
+                cardDetailFetchWithAPI(cardUUID: cardUUID) { cardDataModel in
+                    nextVC.isActivate = false
+                    nextVC.modalPresentationStyle = .overFullScreen
+                    nextVC.cardDataModel = cardDataModel
+                    
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                        let topVC = UIApplication.mostTopViewController()
+                        topVC?.present(nextVC, animated: true)
+                    }
                 }
             }
         } else {

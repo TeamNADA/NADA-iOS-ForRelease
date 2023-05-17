@@ -144,7 +144,15 @@ extension NewCardHarmonyViewController {
         nadaHarmonyLottie4160.loopMode = .playOnce
         nadaHarmonyLottie6180.loopMode = .playOnce
         nadaHarmonyLottie81100.loopMode = .playOnce
-        scoreTitleLabel.text = "우리 궁합은 \(harmonyData?.score ?? 00)점!"
+        if harmonyData?.cardtype == "FAN" {
+            mbtiScoreLabel.isHidden = true
+        } else {
+            mbtiScoreLabel.isHidden = false
+            mbtiScoreLabel.text = "\(harmonyData?.mbtiGrade ?? 00)점"
+            starScoreLabel.text = "\(harmonyData?.constellationGrade ?? 00)점"
+        }
+        
+        scoreTitleLabel.text = "우리 궁합은 \(harmonyData?.totalGrade ?? 00)점!"
         switch harmonyData?.lottie {
         case 0:
             scoreTitleLabel.textColor = harmonyData?.color
@@ -279,11 +287,11 @@ extension NewCardHarmonyViewController {
                     UIView.animate(withDuration: 0.6, delay: 1.0, animations: {
                         self.nadaDescLabel.alpha = 1
                     }, completion: { _ in
-                        UIView.animate(withDuration: 3.0, delay: 1.5, animations: {
+                        UIView.animate(withDuration: 4.0, delay: 1.5, animations: {
                             lottie.isHidden = false
                             lottie.play()
                         }, completion: { _ in
-                            UIView.animate(withDuration: 0.6, delay: 1.0, animations: {
+                            UIView.animate(withDuration: 6.0, delay: 0.5, animations: {
                                 self.scoreTitleLabel.alpha = 1
                                 self.scoreDescLabel.alpha = 1
                             })

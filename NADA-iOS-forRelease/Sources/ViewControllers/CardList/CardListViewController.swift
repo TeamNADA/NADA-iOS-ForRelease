@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import WidgetKit
+
 import Moya
 import KakaoSDKCommon
 
@@ -211,6 +213,7 @@ extension CardListViewController {
             case .success:
                 self.cardListFetchWithAPI()
                 self.cardListTableView.reloadData()
+                WidgetCenter.shared.reloadTimelines(ofKind: "MyCardWidget")
                 print("deleteGroupWithAPI - success")
             case .requestErr(let message):
                 print("deleteGroupWithAPI - requestErr", message)

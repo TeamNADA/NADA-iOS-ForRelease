@@ -9,6 +9,7 @@ import ActivityKit
 import WidgetKit
 import SwiftUI
 
+@available(iOSApplicationExtension 16.2, *)
 struct WidgetsAttributes: ActivityAttributes {
     public struct ContentState: Codable, Hashable {
         // Dynamic stateful properties about your activity go here!
@@ -19,6 +20,7 @@ struct WidgetsAttributes: ActivityAttributes {
     var name: String
 }
 
+@available(iOSApplicationExtension 16.2, *)
 struct WidgetsLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: WidgetsAttributes.self) { context in
@@ -56,6 +58,7 @@ struct WidgetsLiveActivity: Widget {
     }
 }
 
+@available(iOSApplicationExtension 16.2, *)
 struct WidgetsLiveActivity_Previews: PreviewProvider {
     static let attributes = WidgetsAttributes(name: "Me")
     static let contentState = WidgetsAttributes.ContentState(value: 3)

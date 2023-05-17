@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import WidgetKit
+
 import KakaoSDKUser
 
 class MoreViewController: UIViewController {
@@ -112,6 +114,7 @@ extension MoreViewController {
             self.makeOKAlert(title: "", message: "로그아웃이 완료 되었습니다.") { _ in
                 if let acToken = UserDefaults.appGroup.string(forKey: Const.UserDefaultsKey.accessToken) {
                     UserDefaults.appGroup.removeObject(forKey: Const.UserDefaultsKey.accessToken)
+                    WidgetCenter.shared.reloadTimelines(ofKind: "MyCardWidget")
 //                    self.defaults.removeObject(forKey: Const.UserDefaultsKey.refreshToken)
                     self.defaults.removeObject(forKey: Const.UserDefaultsKey.darkModeState)
                     
@@ -138,6 +141,7 @@ extension MoreViewController {
             self?.deleteUserWithAPI {
                 self?.makeOKAlert(title: "", message: "나다를 이용해주셔서 감사합니다.\n다음에 또 뵈어요! 🥹") { _ in
                     UserDefaults.appGroup.removeObject(forKey: Const.UserDefaultsKey.accessToken)
+                    WidgetCenter.shared.reloadTimelines(ofKind: "MyCardWidget")
 //                        self.defaults.removeObject(forKey: Const.UserDefaultsKey.refreshToken)
                     self?.defaults.removeObject(forKey: Const.UserDefaultsKey.darkModeState)
                     

@@ -124,6 +124,7 @@
 		F80C679329F21BB7002C5ECC /* onboarding01.json in Resources */ = {isa = PBXBuildFile; fileRef = F80C679129F21BB7002C5ECC /* onboarding01.json */; };
 		F80C679429F21BB7002C5ECC /* onboarding02.json in Resources */ = {isa = PBXBuildFile; fileRef = F80C679229F21BB7002C5ECC /* onboarding02.json */; };
 		F811720027383097002742CF /* ChangeGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81171FF27383097002742CF /* ChangeGroupRequest.swift */; };
+		F81AB2D52A124AD8009AD66A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F81AB2D42A124AD8009AD66A /* GoogleService-Info.plist */; };
 		F822E7A92709CEB60020452C /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F822E7A82709CEB60020452C /* Notification.swift */; };
 		F8257750299546920067E145 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87122752733046300A24E74 /* Card.swift */; };
 		F8257751299546930067E145 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87122752733046300A24E74 /* Card.swift */; };
@@ -179,7 +180,6 @@
 		F87D223B298ECAFB001A882B /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F87D2239298ECAFB001A882B /* MainInterface.storyboard */; };
 		F87D223F298ECAFB001A882B /* IntentsExtensionUI.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F87D2233298ECAFB001A882B /* IntentsExtensionUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F87D2242298ECAFB001A882B /* IntentsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F87D2228298ECAFB001A882B /* IntentsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		F88101F92987CBAF007266B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F88101F82987CBAF007266B5 /* GoogleService-Info.plist */; };
 		F88C8DE929B8919700196A33 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88C8DE829B8919700196A33 /* ViewModelType.swift */; };
 		F8915A22275728F20013D609 /* SelectBirthBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */; };
 		F8915A23275728F20013D609 /* SelectMBTIBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */; };
@@ -401,6 +401,7 @@
 		F80C679129F21BB7002C5ECC /* onboarding01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding01.json; sourceTree = "<group>"; };
 		F80C679229F21BB7002C5ECC /* onboarding02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding02.json; sourceTree = "<group>"; };
 		F81171FF27383097002742CF /* ChangeGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeGroupRequest.swift; sourceTree = "<group>"; };
+		F81AB2D42A124AD8009AD66A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F822E7A82709CEB60020452C /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		F8268DB827730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCardAlertBottomSheetViewController.swift; sourceTree = "<group>"; };
 		F82AF6A129FBBEE50051545B /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
@@ -457,7 +458,6 @@
 		F87D2237298ECAFB001A882B /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
 		F87D223A298ECAFB001A882B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		F87D223C298ECAFB001A882B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F88101F82987CBAF007266B5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F88C8DE829B8919700196A33 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		F8915A20275728F20013D609 /* SelectBirthBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectBirthBottomViewController.swift; sourceTree = "<group>"; };
 		F8915A21275728F20013D609 /* SelectMBTIBottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMBTIBottomViewController.swift; sourceTree = "<group>"; };
@@ -1331,7 +1331,7 @@
 		F8FC439926C01E2B0033E151 /* Resouces */ = {
 			isa = PBXGroup;
 			children = (
-				F88101F82987CBAF007266B5 /* GoogleService-Info.plist */,
+				F81AB2D42A124AD8009AD66A /* GoogleService-Info.plist */,
 				F857FC8A26C03A5C00A48D01 /* Assets */,
 				39DA4D7B2747D7060082D572 /* Font */,
 				F8562C94296ADC0A00DA1109 /* Lottie */,
@@ -1654,7 +1654,6 @@
 			files = (
 				F8518058275D042B006BD5ED /* Onboarding.storyboard in Resources */,
 				F8FC43BF26C025180033E151 /* .swiftlint.yml in Resources */,
-				F88101F92987CBAF007266B5 /* GoogleService-Info.plist in Resources */,
 				777312572A08D432002C094B /* gunghap_21_40.json in Resources */,
 				397B75142763A916004AEB03 /* OpenSourceTableViewCell.xib in Resources */,
 				F85711A7274A6B3400F59F0B /* CardCreationPreview.storyboard in Resources */,
@@ -1685,6 +1684,7 @@
 				39D88B642745FDD400A72164 /* TabBar.storyboard in Resources */,
 				F8562C96296ADD1000DA1109 /* nearby.json in Resources */,
 				7766A410274FEBE200714912 /* CardInGroupCollectionViewCell.xib in Resources */,
+				F81AB2D52A124AD8009AD66A /* GoogleService-Info.plist in Resources */,
 				7705CF402752C844005195DF /* CardView.xib in Resources */,
 				777312562A08D432002C094B /* gunghap_61_80.json in Resources */,
 				777312582A08D432002C094B /* gunghap_81_100.json in Resources */,

@@ -11,9 +11,10 @@ import SwiftUI
 @main
 struct WidgetsBundle: WidgetBundle {
     var body: some Widget {
-        MyCardWidget()
-        OpenAppLockScreenWidget()
-        QRCodeWidget()
-        WidgetsLiveActivity()
+        if #available(iOSApplicationExtension 16.0, *) {
+            return WidgetBundleBuilder.buildBlock(MyCardWidget(), OpenAppLockScreenWidget(), QRCodeWidget())
+        } else {
+            return WidgetBundleBuilder.buildBlock(MyCardWidget(), QRCodeWidget())
+        }
     }
 }

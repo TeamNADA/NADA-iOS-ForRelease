@@ -22,7 +22,7 @@ public class UtilAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeStatus(by: statusCode, data: data, type: Double.self)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: HarmonyResponse.self)
                 completion(networkResult)
                 
             case .failure(let err):

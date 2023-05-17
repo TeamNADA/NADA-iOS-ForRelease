@@ -65,6 +65,9 @@ extension OnboardingViewController {
                             AnalyticsParameterScreenName: Tracking.Screen.onboarding
                            ])
     }
+    private func touchOnbardingStartEventTracking() {
+        Analytics.logEvent(Tracking.Event.touchOnboardingStart, parameters: nil)
+    }
 }
 
 // MARK: - UICollectionViewDelegate
@@ -113,6 +116,8 @@ extension OnboardingViewController: UICollectionViewDataSource {
         cell.initCell(image: onboardingList[indexPath.item], index: indexPath.item)
         
         if indexPath.item == 4 {
+            touchOnbardingStartEventTracking()
+            
             cell.presentToLoginViewController = {
                 guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController) as? LoginViewController else { return }
                 nextVC.modalTransitionStyle = .crossDissolve

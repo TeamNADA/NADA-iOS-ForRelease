@@ -7,6 +7,8 @@
 
 import UIKit
 
+import FirebaseAnalytics
+
 class OnboardingViewController: UIViewController {
 
     // MARK: - Properties
@@ -34,6 +36,12 @@ class OnboardingViewController: UIViewController {
         setUI()
         collectionViewDelegate()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setTracking()
+    }
 }
 
 // MARK: - Extensions
@@ -50,6 +58,12 @@ extension OnboardingViewController {
         onboardingCollectionView.dataSource = self
         
         onboardingCollectionView.register(OnboardingCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.onboardingCollectionViewCell)
+    }
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.onboarding
+                           ])
     }
 }
 

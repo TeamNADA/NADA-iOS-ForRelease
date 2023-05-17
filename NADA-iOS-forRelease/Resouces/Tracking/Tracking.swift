@@ -6,3 +6,5 @@
 //
 
 import Foundation
+
+struct Tracking { }

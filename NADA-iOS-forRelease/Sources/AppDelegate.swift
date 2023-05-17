@@ -25,6 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         application.registerForRemoteNotifications()
         Messaging.messaging().delegate = self
+        // TODO: - 명시적으로 알림 권한 동의를 얻을 후에 토큰을 생성하고 싶다면 info.plist 수정
+        // FirebaseMessagingAutoInitEnabled = NO
+//        Messaging.messaging().autoInitEnabled = true
+//        UNUserNotificationCenter.current().delegate = self
+//        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+//        UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: { _, _ in })
 
         KakaoSDK.initSDK(appKey: "5b8dd8cc878344bb7532eeca4365a4aa")
         
@@ -107,3 +113,15 @@ extension AppDelegate: MessagingDelegate {
         UserDefaults.standard.setValue(fcmToken, forKey: Const.UserDefaultsKey.fcmToken)
     }
 }
+
+// MARK: - UNUserNotificationCenterDelegate
+
+//extension AppDelegate: UNUserNotificationCenterDelegate {
+//  func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+//      completionHandler([.banner, .sound, .list])
+//  }
+//
+//  func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+//    completionHandler()
+//  }
+//}

@@ -78,17 +78,6 @@ extension LoginViewController {
         }
     }
     
-    private func setFcmTokenAndPostAPI(socialID: String, socialType: String) {
-        Messaging.messaging().token { [weak self] token, error in
-            if let error = error {
-                print("Error fetching FCM registration token: \(error)")
-            } else if let token = token {
-//                print("FCM registration token: \(token)")
-                self?.postUserSignUpWithAPI(request: UserLoginRequest(socialID: socialID, socialType: socialType, fcmToken: ""))
-            }
-        }
-    }
-    
     // MARK: - @objc Mehotds
     
     // 카카오 로그인 버튼 클릭 시
@@ -132,7 +121,8 @@ extension LoginViewController {
                         print(error)
                     } else {
                         if let userID = user?.id {
-                            self?.setFcmTokenAndPostAPI(socialID: String(userID), socialType: "KAKAO")
+                            let fcmToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.fcmToken)
+                            self?.postUserSignUpWithAPI(request: UserLoginRequest(socialID: String(userID), socialType: "KAKAO", fcmToken: fcmToken ?? ""))
                             UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isAppleLogin)
                             UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.isKakaoLogin)
                         }
@@ -150,12 +140,13 @@ extension LoginViewController {
             } else {
                 print("loginWithKakaoAccount() success.")
                 
-                UserApi.shared.me {(user, error) in
+                UserApi.shared.me { [weak self] (user, error) in
                     if let error = error {
                         print(error)
                     } else {
                         if let userID = user?.id {
-                            self?.setFcmTokenAndPostAPI(socialID: String(userID), socialType: "KAKAO")
+                            let fcmToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.fcmToken)
+                            self?.postUserSignUpWithAPI(request: UserLoginRequest(socialID: String(userID), socialType: "KAKAO", fcmToken: fcmToken ?? ""))
                             UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isAppleLogin)
                             UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.isKakaoLogin)
                         }
@@ -192,7 +183,8 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
             
             let userIdentifier = appleIDCredential.user
-            setFcmTokenAndPostAPI(socialID: userIdentifier, socialType: "APPLE")
+            let fcmToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.fcmToken)
+            self.postUserSignUpWithAPI(request: UserLoginRequest(socialID: userIdentifier, socialType: "APPLE", fcmToken: fcmToken ?? ""))
             UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.isAppleLogin)
             UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isKakaoLogin)
             

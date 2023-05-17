@@ -25,4 +25,5 @@ extension Notification.Name {
     static let scrollToFirstIndex = Notification.Name("scrollToFirstIndex")
     static let presentMail = Notification.Name("presentMail")
     static let presentDynamicLink = Notification.Name("presentDynamicLink")
+    static let backToHome = Notification.Name("backToHome")
 }

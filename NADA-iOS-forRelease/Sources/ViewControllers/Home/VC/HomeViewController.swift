@@ -72,6 +72,7 @@ final class HomeViewController: UIViewController {
         setLayout()
         bindActions()
         checkUpdateVersionAndSetting()
+        setNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -286,17 +287,30 @@ extension HomeViewController {
     }
     
     private func presentCardShareBottomSheetVC(with cardUUID: String) {
-        self.cardDetailFetchWithAPI(cardUUID: cardUUID) { [weak self] cardDataModel in
-            let nextVC = CardShareBottomSheetViewController()
-                .setTitle("명함공유")
-                .setHeight(606.0)
-            
-            nextVC.isActivate = false
-            nextVC.modalPresentationStyle = .overFullScreen
-            nextVC.cardDataModel = cardDataModel
-            
-            self?.present(nextVC, animated: true)
+        if UserDefaults.appGroup.string(forKey: Const.UserDefaultsKey.accessToken) != nil {
+            self.cardDetailFetchWithAPI(cardUUID: cardUUID) { [weak self] cardDataModel in
+                let nextVC = CardShareBottomSheetViewController()
+                    .setTitle("명함공유")
+                    .setHeight(606.0)
+                
+                nextVC.isActivate = false
+                nextVC.modalPresentationStyle = .overFullScreen
+                nextVC.cardDataModel = cardDataModel
+                
+                self?.present(nextVC, animated: true)
+            }
         }
+    }
+    
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(backToHome), name: .backToHome, object: nil)
+    }
+    
+    // MARK: - @objc Methods
+    
+    @objc
+    private func backToHome(_ notification: Notification) {
+        setUI()
     }
 }
 

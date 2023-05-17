@@ -152,7 +152,11 @@ public class GroupAPI {
         
         switch statusCode {
         case 200:
-            return .success(decodedData.data ?? "None-Data")
+            if decodedData.status == 400 {
+                return .requestErr(decodedData.message ?? "error message")
+            } else {
+                return .success(decodedData.data ?? "None-Data")
+            }
         case 400..<500:
             return .requestErr(decodedData.message ?? "error message")
         case 500:

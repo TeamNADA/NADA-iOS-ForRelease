@@ -93,11 +93,21 @@ extension LoginViewController {
                            ])
     }
     
+    private func touchKakaoEventTraking() {
+        Analytics.logEvent(Tracking.Event.touchKakaoLogin, parameters: nil)
+    }
+    
+    private func touchAppleEventTracking() {
+        Analytics.logEvent(Tracking.Event.touchAppleLogin, parameters: nil)
+    }
+    
     // MARK: - @objc Mehotds
     
     // 카카오 로그인 버튼 클릭 시
     @objc
     private func kakaoSignInButtonPress() {
+        touchKakaoEventTraking()
+        
         // 카카오톡 설치 여부 확인
         if UserApi.isKakaoTalkLoginAvailable() {
             // 카카오톡 로그인. api 호출 결과를 클로저로 전달.
@@ -111,6 +121,8 @@ extension LoginViewController {
     // 애플 로그인 버튼 클릭 시
     @objc
     private func appleSignInButtonPress() {
+        touchAppleEventTracking()
+        
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]

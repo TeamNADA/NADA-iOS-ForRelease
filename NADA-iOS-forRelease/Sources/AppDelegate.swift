@@ -9,6 +9,7 @@ import AuthenticationServices
 import UIKit
 
 import Firebase
+import FirebaseMessaging
 import KakaoSDKCommon
 import KakaoSDKAuth
 import KakaoSDKUser
@@ -22,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         FirebaseApp.configure()
+        application.registerForRemoteNotifications()
+        Messaging.messaging().delegate = self
 
         KakaoSDK.initSDK(appKey: "5b8dd8cc878344bb7532eeca4365a4aa")
         
@@ -88,5 +91,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    }
+    
+    // MARK: - APNs
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+    }
+}
+
+// MARK: - MessagingDelegate
+
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        UserDefaults.standard.setValue(fcmToken, forKey: Const.UserDefaultsKey.fcmToken)
     }
 }

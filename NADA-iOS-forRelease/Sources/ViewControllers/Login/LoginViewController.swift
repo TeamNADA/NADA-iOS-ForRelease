@@ -9,6 +9,7 @@ import AuthenticationServices
 import UIKit
 import WidgetKit
 
+import FirebaseAnalytics
 import FirebaseMessaging
 import KakaoSDKCommon
 import KakaoSDKAuth
@@ -26,6 +27,12 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         setUI()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setTracking()
     }
 }
     
@@ -69,7 +76,7 @@ extension LoginViewController {
             }
         }
     }
-    
+
     // 메인 화면으로 전환 함수
     private func presentToMain() {
         let nextVC = UIStoryboard(name: Const.Storyboard.Name.tabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.tabBarViewController)
@@ -77,6 +84,13 @@ extension LoginViewController {
         self.present(nextVC, animated: true) {
             UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isOnboarding)
         }
+    }
+    
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.login
+                           ])
     }
     
     // MARK: - @objc Mehotds
@@ -109,6 +123,7 @@ extension LoginViewController {
 }
 
 // MARK: - KakaoSignIn
+
 extension LoginViewController {
     private func loginWithApp() {
         UserApi.shared.loginWithKakaoTalk {(_, error) in

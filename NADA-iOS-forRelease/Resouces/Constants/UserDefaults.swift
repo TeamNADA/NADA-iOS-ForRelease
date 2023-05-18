@@ -22,5 +22,6 @@ extension Const {
         static let openMyCardWidget = "openMyCardWidget"
         static let widgetCardUUID = "widgetCardUUID"
         static let refreshToken = "refreshToken"
+        static let fcmToken = "fcmToken"
     }
 }

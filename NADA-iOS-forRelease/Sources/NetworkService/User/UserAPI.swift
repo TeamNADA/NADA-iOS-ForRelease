@@ -31,8 +31,8 @@ public class UserAPI {
         }
     }
     
-    func userSocialSignUp(socialID: String, socialType: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        userProvider.request(.userSocialSignUp(socialID: socialID, socialType: socialType)) { result in
+    func userSocialSignUp(userLoginRequest: UserLoginRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
+        userProvider.request(.userSocialSignUp(reqeust: userLoginRequest)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode

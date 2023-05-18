@@ -16,7 +16,6 @@ target 'NADA-iOS-forRelease' do
   pod 'IQKeyboardManagerSwift'
   pod 'Kingfisher'
   pod 'NVActivityIndicatorView'
-  pod 'Firebase/DynamicLinks'
   pod 'lottie-ios'
   pod 'Then'
   pod 'SnapKit'
@@ -27,4 +26,7 @@ target 'NADA-iOS-forRelease' do
   pod 'PinLayout'
   pod 'RxGesture'
   pod 'YPImagePicker'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/DynamicLinks'
+  pod 'Firebase/Messaging'
 end

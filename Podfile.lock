@@ -1,10 +1,36 @@
 PODS:
   - Alamofire (5.7.1)
+  - Firebase/Analytics (10.9.0):
+    - Firebase/Core
+  - Firebase/Core (10.9.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (~> 10.9.0)
   - Firebase/CoreOnly (10.9.0):
     - FirebaseCore (= 10.9.0)
   - Firebase/DynamicLinks (10.9.0):
     - Firebase/CoreOnly
     - FirebaseDynamicLinks (~> 10.9.0)
+  - Firebase/Messaging (10.9.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 10.9.0)
+  - FirebaseAnalytics (10.9.0):
+    - FirebaseAnalytics/AdIdSupport (= 10.9.0)
+    - FirebaseCore (~> 10.0)
+    - FirebaseInstallations (~> 10.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
+    - GoogleUtilities/MethodSwizzler (~> 7.11)
+    - GoogleUtilities/Network (~> 7.11)
+    - "GoogleUtilities/NSData+zlib (~> 7.11)"
+    - nanopb (< 2.30910.0, >= 2.30908.0)
+  - FirebaseAnalytics/AdIdSupport (10.9.0):
+    - FirebaseCore (~> 10.0)
+    - FirebaseInstallations (~> 10.0)
+    - GoogleAppMeasurement (= 10.9.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
+    - GoogleUtilities/MethodSwizzler (~> 7.11)
+    - GoogleUtilities/Network (~> 7.11)
+    - "GoogleUtilities/NSData+zlib (~> 7.11)"
+    - nanopb (< 2.30910.0, >= 2.30908.0)
   - FirebaseCore (10.9.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
@@ -13,12 +39,64 @@ PODS:
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
   - FirebaseDynamicLinks (10.9.0):
     - FirebaseCore (~> 10.0)
+  - FirebaseInstallations (10.9.0):
+    - FirebaseCore (~> 10.0)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GoogleUtilities/UserDefaults (~> 7.8)
+    - PromisesObjC (~> 2.1)
+  - FirebaseMessaging (10.9.0):
+    - FirebaseCore (~> 10.0)
+    - FirebaseInstallations (~> 10.0)
+    - GoogleDataTransport (~> 9.2)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GoogleUtilities/Reachability (~> 7.8)
+    - GoogleUtilities/UserDefaults (~> 7.8)
+    - nanopb (< 2.30910.0, >= 2.30908.0)
   - FlexLayout (1.3.32)
+  - GoogleAppMeasurement (10.9.0):
+    - GoogleAppMeasurement/AdIdSupport (= 10.9.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
+    - GoogleUtilities/MethodSwizzler (~> 7.11)
+    - GoogleUtilities/Network (~> 7.11)
+    - "GoogleUtilities/NSData+zlib (~> 7.11)"
+    - nanopb (< 2.30910.0, >= 2.30908.0)
+  - GoogleAppMeasurement/AdIdSupport (10.9.0):
+    - GoogleAppMeasurement/WithoutAdIdSupport (= 10.9.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
+    - GoogleUtilities/MethodSwizzler (~> 7.11)
+    - GoogleUtilities/Network (~> 7.11)
+    - "GoogleUtilities/NSData+zlib (~> 7.11)"
+    - nanopb (< 2.30910.0, >= 2.30908.0)
+  - GoogleAppMeasurement/WithoutAdIdSupport (10.9.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
+    - GoogleUtilities/MethodSwizzler (~> 7.11)
+    - GoogleUtilities/Network (~> 7.11)
+    - "GoogleUtilities/NSData+zlib (~> 7.11)"
+    - nanopb (< 2.30910.0, >= 2.30908.0)
+  - GoogleDataTransport (9.2.3):
+    - GoogleUtilities/Environment (~> 7.7)
+    - nanopb (< 2.30910.0, >= 2.30908.0)
+    - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUtilities/AppDelegateSwizzler (7.11.1):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
   - GoogleUtilities/Environment (7.11.1):
     - PromisesObjC (< 3.0, >= 1.2)
   - GoogleUtilities/Logger (7.11.1):
     - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (7.11.1):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (7.11.1):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
   - "GoogleUtilities/NSData+zlib (7.11.1)"
+  - GoogleUtilities/Reachability (7.11.1):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (7.11.1):
+    - GoogleUtilities/Logger
   - IQKeyboardManagerSwift (6.5.11)
   - KakaoSDKAuth (2.15.0):
     - KakaoSDKCommon (= 2.15.0)
@@ -40,6 +118,11 @@ PODS:
   - Moya/RxSwift (15.0.0):
     - Moya/Core
     - RxSwift (~> 6.0)
+  - nanopb (2.30909.0):
+    - nanopb/decode (= 2.30909.0)
+    - nanopb/encode (= 2.30909.0)
+  - nanopb/decode (2.30909.0)
+  - nanopb/encode (2.30909.0)
   - NVActivityIndicatorView (5.1.1):
     - NVActivityIndicatorView/Base (= 5.1.1)
   - NVActivityIndicatorView/Base (5.1.1)
@@ -58,7 +141,7 @@ PODS:
   - SkeletonView (1.30.4)
   - SnapKit (5.6.0)
   - SteviaLayout (4.7.3)
-  - SwiftLint (0.52.0)
+  - SwiftLint (0.52.2)
   - Then (3.0.0)
   - VerticalCardSwiper (2.3.1)
   - YPImagePicker (5.2.1):
@@ -66,7 +149,9 @@ PODS:
     - SteviaLayout (= 4.7.3)
 
 DEPENDENCIES:
+  - Firebase/Analytics
   - Firebase/DynamicLinks
+  - Firebase/Messaging
   - FlexLayout
   - IQKeyboardManagerSwift
   - KakaoSDKAuth
@@ -92,10 +177,15 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Firebase
+    - FirebaseAnalytics
     - FirebaseCore
     - FirebaseCoreInternal
     - FirebaseDynamicLinks
+    - FirebaseInstallations
+    - FirebaseMessaging
     - FlexLayout
+    - GoogleAppMeasurement
+    - GoogleDataTransport
     - GoogleUtilities
     - IQKeyboardManagerSwift
     - KakaoSDKAuth
@@ -104,6 +194,7 @@ SPEC REPOS:
     - Kingfisher
     - lottie-ios
     - Moya
+    - nanopb
     - NVActivityIndicatorView
     - PinLayout
     - PromisesObjC
@@ -123,10 +214,15 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
   Firebase: bd152f0f3d278c4060c5c71359db08ebcfd5a3e2
+  FirebaseAnalytics: 5ea0db4893825e7b0149d575352cd838236313dc
   FirebaseCore: b68d3616526ec02e4d155166bbafb8eca64af557
   FirebaseCoreInternal: d2b4acb827908e72eca47a9fd896767c3053921e
   FirebaseDynamicLinks: 8cb66c4f403aa6ddf86ff3bc3c383a652f344ce9
+  FirebaseInstallations: c58489c9caacdbf27d1da60891a87318e20218e0
+  FirebaseMessaging: 6b7052cc3da7bc8e5f72bef871243e8f04a14eed
   FlexLayout: 9184986cace599a581164c8e4af8c860698837af
+  GoogleAppMeasurement: 373bcbead1bb6a85be7a64d5d8f96284b762ea9c
+  GoogleDataTransport: f0308f5905a745f94fb91fea9c6cbaf3831cb1bd
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
   IQKeyboardManagerSwift: c7955c0bdbf7b2eb29bb7daaa44e3d90f55a9a85
   KakaoSDKAuth: 0fe5cf1756e8a9f66f8fc77826061aafa93034f3
@@ -135,6 +231,7 @@ SPEC CHECKSUMS:
   Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
   lottie-ios: 809ecf2d460ed650a6aed7aa88b2ec45fab4779c
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
+  nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   PinLayout: f8a677ce0cd1cfe96b58435d029b4ceb4ce9c04c
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
@@ -146,11 +243,11 @@ SPEC CHECKSUMS:
   SkeletonView: 5a050f6411e697abd4cda0a8d767013399dccd69
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
-  SwiftLint: 13280e21cdda6786ad908dc6e416afe5acd1fcb7
+  SwiftLint: 1ac76dac888ca05cb0cf24d0c85887ec1209961d
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
   VerticalCardSwiper: 68df635b354500f86934ea044ade37a264c044c6
   YPImagePicker: f36043210c10b0783034eb1947d6e06e31c461e4
 
-PODFILE CHECKSUM: 6aac9570b93049853d9fa383fd5b608dbdbcd63d
+PODFILE CHECKSUM: 3c4e2f98148cb251f82fb6acc511b6af83fc7b64
 
 COCOAPODS: 1.12.1

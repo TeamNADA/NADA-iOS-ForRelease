@@ -10,7 +10,7 @@ import Moya
 
 enum UserSevice {
     case userDelete
-    case userSocialSignUp(socialID: String, socialType: String)
+    case userSocialSignUp(reqeust: UserLoginRequest)
 }
 
 extension UserSevice: TargetType {
@@ -45,10 +45,8 @@ extension UserSevice: TargetType {
         switch self {
         case .userDelete:
             return .requestPlain
-        case .userSocialSignUp(let socialID, let socialType):
-            return .requestParameters(parameters: ["socialId": socialID,
-                                                   "socialType": socialType],
-                                      encoding: JSONEncoding.default)
+        case .userSocialSignUp(let request):
+            return .requestJSONEncodable(request)
         }
     }
     

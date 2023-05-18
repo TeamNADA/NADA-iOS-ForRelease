@@ -185,38 +185,32 @@ extension HomeViewController {
                         self?.presentToUpdateVC(with: updateNote)
                         UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.dynamicLinkCardUUID)
                     } else {
-                        if let dynamicLinkCardUUID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.dynamicLinkCardUUID) {
-                            self?.checkDynamicLink(dynamicLinkCardUUID)
-                        }
-                        
                         if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.openQRCodeWidget) {
                             self?.presentQRScanVC()
-                            UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.openQRCodeWidget)
                         }
                         
                         if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.openMyCardWidget),
                            let widgetCardUUID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.widgetCardUUID) {
                             self?.presentCardShareBottomSheetVC(with: widgetCardUUID)
-                            UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.openMyCardWidget)
-                            UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.widgetCardUUID)
+                        }
+                        
+                        if let dynamicLinkCardUUID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.dynamicLinkCardUUID) {
+                            self?.checkDynamicLink(dynamicLinkCardUUID)
                         }
                     }
                 }
             } else {
-                if let dynamicLinkCardUUID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.dynamicLinkCardUUID) {
-                    self?.checkDynamicLink(dynamicLinkCardUUID)
-                }
-                
                 if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.openQRCodeWidget) {
                     self?.presentQRScanVC()
-                    UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.openQRCodeWidget)
                 }
                 
                 if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.openMyCardWidget),
                    let widgetCardUUID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.widgetCardUUID) {
                     self?.presentCardShareBottomSheetVC(with: widgetCardUUID)
-                    UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.openMyCardWidget)
-                    UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.widgetCardUUID)
+                }
+                
+                if let dynamicLinkCardUUID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.dynamicLinkCardUUID) {
+                    self?.checkDynamicLink(dynamicLinkCardUUID)
                 }
             }
         }
@@ -263,21 +257,27 @@ extension HomeViewController {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .denied:
             makeOKCancelAlert(title: "카메라 권한이 허용되어 있지 않아요.",
-                        message: "QR코드 인식을 위해 카메라 권한이 필요합니다. 앱 설정으로 이동해 허용해 주세요.",
-                        okAction: { _ in UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)},
-                        cancelAction: nil,
-                        completion: nil)
+                              message: "QR코드 인식을 위해 카메라 권한이 필요합니다. 앱 설정으로 이동해 허용해 주세요.",
+                              okAction: { _ in UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)},
+                              cancelAction: nil,
+                              completion: {
+                UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.openQRCodeWidget)
+            })
         case .authorized:
             guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.qrScan, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.qrScanViewController) as? QRScanViewController else { return }
             nextVC.modalPresentationStyle = .overFullScreen
-            self.present(nextVC, animated: true, completion: nil)
+            self.present(nextVC, animated: true) {
+                UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.openQRCodeWidget)
+            }
         case .notDetermined:
             AVCaptureDevice.requestAccess(for: .video) { granted in
                 if granted {
                     DispatchQueue.main.async {
                         guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.qrScan, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.qrScanViewController) as? QRScanViewController else { return }
                         nextVC.modalPresentationStyle = .overFullScreen
-                        self.present(nextVC, animated: true, completion: nil)
+                        self.present(nextVC, animated: true) {
+                            UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.openQRCodeWidget)
+                        }
                     }
                 }
             }
@@ -287,16 +287,21 @@ extension HomeViewController {
     }
     
     private func presentCardShareBottomSheetVC(with cardUUID: String) {
-        self.cardDetailFetchWithAPI(cardUUID: cardUUID) { [weak self] cardDataModel in
-            let nextVC = CardShareBottomSheetViewController()
-                .setTitle("명함공유")
-                .setHeight(606.0)
-            
-            nextVC.isActivate = false
-            nextVC.modalPresentationStyle = .overFullScreen
-            nextVC.cardDataModel = cardDataModel
-            
-            self?.present(nextVC, animated: true)
+        if UserDefaults.appGroup.string(forKey: Const.UserDefaultsKey.accessToken) != nil {
+            self.cardDetailFetchWithAPI(cardUUID: cardUUID) { [weak self] cardDataModel in
+                let nextVC = CardShareBottomSheetViewController()
+                    .setTitle("명함공유")
+                    .setHeight(606.0)
+                
+                nextVC.isActivate = false
+                nextVC.modalPresentationStyle = .overFullScreen
+                nextVC.cardDataModel = cardDataModel
+                
+                self?.present(nextVC, animated: true) {
+                    UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.openMyCardWidget)
+                    UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.widgetCardUUID)
+                }
+            }
         }
     }
     

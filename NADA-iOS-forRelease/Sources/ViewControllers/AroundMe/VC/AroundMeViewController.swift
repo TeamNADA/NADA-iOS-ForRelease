@@ -7,8 +7,7 @@
 import UIKit
 import CoreLocation
 
-import UIKit
-
+import NVActivityIndicatorView
 import RxSwift
 import RxRelay
 import RxCocoa
@@ -59,7 +58,22 @@ final class AroundMeViewController: UIViewController {
         $0.clipsToBounds = false
         $0.backgroundColor = .background
     }
+    lazy var loadingBgView: UIView = {
+        let bgView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        bgView.backgroundColor = .loadingBackground
+        
+        return bgView
+    }()
     
+    lazy var activityIndicator: NVActivityIndicatorView = {
+        let activityIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40),
+                                                        type: .ballBeat,
+                                                        color: .mainColorNadaMain,
+                                                        padding: .zero)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        return activityIndicator
+    }()
     // MARK: - View Life Cycles
     
     override func viewDidLoad() {
@@ -71,6 +85,7 @@ final class AroundMeViewController: UIViewController {
         setRegister()
         bindActions()
         bindViewModels()
+        setActivityIndicator()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -116,6 +131,18 @@ extension AroundMeViewController {
     
     // MARK: - Methods
     
+    private func setActivityIndicator() {
+        view.addSubview(loadingBgView)
+        loadingBgView.addSubview(activityIndicator)
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        
+        activityIndicator.startAnimating()
+    }
+    
     private func setLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -141,6 +168,7 @@ extension AroundMeViewController {
             .withUnretained(self)
             .subscribe { owner, _ in
                 owner.makeVibrate(degree: .medium)
+                owner.setActivityIndicator()
                 owner.cardNearByFetchWithAPI(longitude: self.longitude, latitude: self.latitude)
             }.disposed(by: self.disposeBag)
     }
@@ -228,6 +256,8 @@ extension AroundMeViewController {
         NearbyAPI.shared.cardNearByFetch(longitde: longitude, latitude: latitude) { response in
             switch response {
             case .success(let data):
+                self.activityIndicator.stopAnimating()
+                self.loadingBgView.removeFromSuperview()
                 if let cards = data as? [AroundMeResponse] {
                     self.cardsNearBy = cards
                     print(cards)

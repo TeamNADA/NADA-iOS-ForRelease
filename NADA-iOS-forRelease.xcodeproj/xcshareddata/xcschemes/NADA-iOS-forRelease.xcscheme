@@ -50,12 +50,6 @@
             ReferencedContainer = "container:NADA-iOS-forRelease.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-FIRAnalyticsDebugEnabled"
-            isEnabled = "NO">
-         </CommandLineArgument>
-      </CommandLineArguments>
       <AdditionalOptions>
          <AdditionalOption
             key = "NSZombieEnabled"

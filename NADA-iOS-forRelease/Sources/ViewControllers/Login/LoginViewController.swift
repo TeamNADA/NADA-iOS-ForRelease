@@ -9,6 +9,7 @@ import AuthenticationServices
 import UIKit
 import WidgetKit
 
+import FirebaseAnalytics
 import FirebaseMessaging
 import KakaoSDKCommon
 import KakaoSDKAuth
@@ -26,6 +27,12 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         setUI()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setTracking()
     }
 }
     
@@ -69,7 +76,7 @@ extension LoginViewController {
             }
         }
     }
-    
+
     // 메인 화면으로 전환 함수
     private func presentToMain() {
         let nextVC = UIStoryboard(name: Const.Storyboard.Name.tabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.tabBarViewController)
@@ -79,11 +86,28 @@ extension LoginViewController {
         }
     }
     
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.login
+                           ])
+    }
+    
+    private func touchKakaoEventTraking() {
+        Analytics.logEvent(Tracking.Event.touchKakaoLogin, parameters: nil)
+    }
+    
+    private func touchAppleEventTracking() {
+        Analytics.logEvent(Tracking.Event.touchAppleLogin, parameters: nil)
+    }
+    
     // MARK: - @objc Mehotds
     
     // 카카오 로그인 버튼 클릭 시
     @objc
     private func kakaoSignInButtonPress() {
+        touchKakaoEventTraking()
+        
         // 카카오톡 설치 여부 확인
         if UserApi.isKakaoTalkLoginAvailable() {
             // 카카오톡 로그인. api 호출 결과를 클로저로 전달.
@@ -97,6 +121,8 @@ extension LoginViewController {
     // 애플 로그인 버튼 클릭 시
     @objc
     private func appleSignInButtonPress() {
+        touchAppleEventTracking()
+        
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
@@ -109,6 +135,7 @@ extension LoginViewController {
 }
 
 // MARK: - KakaoSignIn
+
 extension LoginViewController {
     private func loginWithApp() {
         UserApi.shared.loginWithKakaoTalk {(_, error) in

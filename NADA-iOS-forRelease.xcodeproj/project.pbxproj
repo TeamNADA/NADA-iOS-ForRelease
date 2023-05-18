@@ -147,6 +147,9 @@
 		F838B66E298E5C5400D84340 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F838B66A298E5C5300D84340 /* Widgets.intentdefinition */; };
 		F838B66F298E5C5400D84340 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F838B66A298E5C5300D84340 /* Widgets.intentdefinition */; };
 		F838B672298E5C5400D84340 /* WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F838B65E298E5C5300D84340 /* WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F84066E72A153274008BCE16 /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84066E62A153274008BCE16 /* Tracking.swift */; };
+		F84066E92A15333A008BCE16 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84066E82A15333A008BCE16 /* Event.swift */; };
+		F84066EB2A1533DA008BCE16 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84066EA2A1533DA008BCE16 /* Screen.swift */; };
 		F843DD6D29A5F83000D8D20D /* CardCreationCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F843DD6C29A5F83000D8D20D /* CardCreationCategoryViewModel.swift */; };
 		F8458D6229F5183B000D53A7 /* FanCardCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8458D6129F5183B000D53A7 /* FanCardCreation.storyboard */; };
 		F8458D6429F51870000D53A7 /* FanCardCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8458D6329F51870000D53A7 /* FanCardCreationViewController.swift */; };
@@ -423,6 +426,9 @@
 		F838B66A298E5C5300D84340 /* Widgets.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Widgets.intentdefinition; sourceTree = "<group>"; };
 		F838B66B298E5C5400D84340 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F838B66D298E5C5400D84340 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F84066E62A153274008BCE16 /* Tracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracking.swift; sourceTree = "<group>"; };
+		F84066E82A15333A008BCE16 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		F84066EA2A1533DA008BCE16 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		F843DD6C29A5F83000D8D20D /* CardCreationCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreationCategoryViewModel.swift; sourceTree = "<group>"; };
 		F8458D6129F5183B000D53A7 /* FanCardCreation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FanCardCreation.storyboard; sourceTree = "<group>"; };
 		F8458D6329F51870000D53A7 /* FanCardCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FanCardCreationViewController.swift; sourceTree = "<group>"; };
@@ -1027,6 +1033,16 @@
 			path = Widgets;
 			sourceTree = "<group>";
 		};
+		F84066E52A153265008BCE16 /* Tracking */ = {
+			isa = PBXGroup;
+			children = (
+				F84066E62A153274008BCE16 /* Tracking.swift */,
+				F84066EA2A1533DA008BCE16 /* Screen.swift */,
+				F84066E82A15333A008BCE16 /* Event.swift */,
+			);
+			path = Tracking;
+			sourceTree = "<group>";
+		};
 		F84BAF9E26FDB425004CA335 /* CardCreation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1340,6 +1356,7 @@
 				F8562C94296ADC0A00DA1109 /* Lottie */,
 				F8FC43A326C01F420033E151 /* Constants */,
 				F8FC43A426C01F5B0033E151 /* Extensions */,
+				F84066E52A153265008BCE16 /* Tracking */,
 				77A4D5E929AE20A600367B7C /* Utils */,
 				F8FC43A226C01F2B0033E151 /* Storyboards */,
 			);
@@ -1867,6 +1884,7 @@
 				F8F00C3B29DD483000A15377 /* UpdateUserInfo.swift in Sources */,
 				F8562C98296ADD6700DA1109 /* Lottie.swift in Sources */,
 				770E58862778A78900498C2E /* Status.swift in Sources */,
+				F84066E92A15333A008BCE16 /* Event.swift in Sources */,
 				F851805B275D047C006BD5ED /* OnboardingViewController.swift in Sources */,
 				392BAF7B2793E90D0013DCB3 /* KeyChainKey.swift in Sources */,
 				F8B3F40A29F67B1C006586BB /* CompanyCardCreationViewController.swift in Sources */,
@@ -1875,6 +1893,7 @@
 				F8B3F40E29F67B6F006586BB /* CompanyFrontCardCreationCollectionViewCell.swift in Sources */,
 				39C1E88F270EC762006D2089 /* UIColor+Extension.swift in Sources */,
 				F8C83FC9272FA3190009DF0D /* GroupAPI.swift in Sources */,
+				F84066E72A153274008BCE16 /* Tracking.swift in Sources */,
 				F8B3F41129F67F8D006586BB /* CompanyFrontCardCell.swift in Sources */,
 				F8F00C3E29DD489200A15377 /* UpdateAPI.swift in Sources */,
 				F8FC43B826C0227D0033E151 /* Const.swift in Sources */,
@@ -1922,6 +1941,7 @@
 				77A4D60129BD708C00367B7C /* AroundMeResponse.swift in Sources */,
 				7734D5B82777A8E8004360E4 /* String+Extension.swift in Sources */,
 				77A4D60429BD743600367B7C /* ModuleFactory.swift in Sources */,
+				F84066EB2A1533DA008BCE16 /* Screen.swift in Sources */,
 				F8C83FC3272FA17B0009DF0D /* URL.swift in Sources */,
 				392F7FB4274621F1008CDBF5 /* MoreListTableViewCell.swift in Sources */,
 				77AA68EA273E0EC4009C89B0 /* CardAddInGroupRequest.swift in Sources */,

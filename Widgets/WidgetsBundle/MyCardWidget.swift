@@ -15,25 +15,13 @@ struct MyCardProvider: IntentTimelineProvider {
     }
 
     func getSnapshot(for configuration: MyCardIntent, in context: Context, completion: @escaping (MyCardEntry) -> Void) {
-        cardListFetchWithAPI { result in
-            switch result {
-            case .success(let response):
-                if let data = response?.data {
-                    if !data.isEmpty {
-                        let entry = MyCardEntry(date: Date(), widgetCard: WidgetCard(cardUUID: data[0].cardUUID,
-                                                                                     title: data[0].cardName,
-                                                                                     userName: data[0].userName,
-                                                                                     backgroundImage: fetchImage(data[0].cardImage)))
-                        completion(entry)
-                    } else {
-                        completion(MyCardEntry(date: Date(), widgetCard: nil))
-                    }
-                }
-            case .failure(let error):
-                print(error)
-
-                completion(MyCardEntry(date: Date(), widgetCard: nil))
-            }
+        if let myCard = configuration.myCard {
+            completion(MyCardEntry(date: Date(), widgetCard: WidgetCard(cardUUID: myCard.identifier ?? "",
+                                                                        title: myCard.displayString,
+                                                                        userName: myCard.userName ?? "",
+                                                                        backgroundImage: fetchImage(myCard.cardImage ?? ""))))
+        } else {
+            completion(MyCardEntry(date: Date(), widgetCard: nil))
         }
     }
 

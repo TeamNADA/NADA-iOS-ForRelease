@@ -7,6 +7,8 @@
 
 import UIKit
 
+import FirebaseAnalytics
+
 class OnboardingViewController: UIViewController {
 
     // MARK: - Properties
@@ -34,6 +36,12 @@ class OnboardingViewController: UIViewController {
         setUI()
         collectionViewDelegate()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setTracking()
+    }
 }
 
 // MARK: - Extensions
@@ -50,6 +58,15 @@ extension OnboardingViewController {
         onboardingCollectionView.dataSource = self
         
         onboardingCollectionView.register(OnboardingCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.onboardingCollectionViewCell)
+    }
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.onboarding
+                           ])
+    }
+    private func touchOnbardingStartEventTracking() {
+        Analytics.logEvent(Tracking.Event.touchOnboardingStart, parameters: nil)
     }
 }
 
@@ -99,6 +116,8 @@ extension OnboardingViewController: UICollectionViewDataSource {
         cell.initCell(image: onboardingList[indexPath.item], index: indexPath.item)
         
         if indexPath.item == 4 {
+            touchOnbardingStartEventTracking()
+            
             cell.presentToLoginViewController = {
                 guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController) as? LoginViewController else { return }
                 nextVC.modalTransitionStyle = .crossDissolve

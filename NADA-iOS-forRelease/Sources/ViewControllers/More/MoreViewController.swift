@@ -8,6 +8,7 @@
 import UIKit
 import WidgetKit
 
+import FirebaseAnalytics
 import KakaoSDKUser
 
 class MoreViewController: UIViewController {
@@ -29,6 +30,12 @@ class MoreViewController: UIViewController {
         
         setUI()
         setModeSwitch()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setTracking()
     }
     
     // MARK: - @IBAction Properties
@@ -62,6 +69,13 @@ extension MoreViewController {
             }
         }
     }
+    
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.more
+                           ])
+    }
 }
 
 // MARK: - TableView Delegate
@@ -75,20 +89,36 @@ extension MoreViewController: UITableViewDelegate {
         
         if indexPath.section == 0 {
             switch indexPath.row {
-            case 0: openURL(link: URL(string: Const.URL.policyURL)!)
-            case 1: openURL(link: URL(string: Const.URL.serviceURL)!)
-            case 2: pushView(nextSB: Const.Storyboard.Name.teamNADA,
-                             nextVC: Const.ViewController.Identifier.teamNADAViewController)
-            case 3: pushView(nextSB: Const.Storyboard.Name.openSource,
-                             nextVC: Const.ViewController.Identifier.openSourceViewController)
-            default: print("default!")
+            case 0:
+                openURL(link: URL(string: Const.URL.policyURL)!)
+                Analytics.logEvent(Tracking.Event.touchPrivacyPolicy, parameters: nil)
+            case 1:
+                openURL(link: URL(string: Const.URL.serviceURL)!)
+                Analytics.logEvent(Tracking.Event.touchTermsOfUse, parameters: nil)
+            case 2:
+                pushView(nextSB: Const.Storyboard.Name.teamNADA,
+                         nextVC: Const.ViewController.Identifier.teamNADAViewController)
+                Analytics.logEvent(Tracking.Event.touchTeamNADA, parameters: nil)
+            case 3:
+                pushView(nextSB: Const.Storyboard.Name.openSource,
+                         nextVC: Const.ViewController.Identifier.openSourceViewController)
+                Analytics.logEvent(Tracking.Event.touchOpenSource, parameters: nil)
+            default:
+                print("default!")
             }
         } else if indexPath.section == 1 {
             switch indexPath.row {
-            case 0: setLogoutClicked()
-            case 1: setResetClicked()
-            case 2: setDeleteCicked()
-            default: print("default!")
+            case 0:
+                setLogoutClicked()
+                Analytics.logEvent(Tracking.Event.touchLogout, parameters: nil)
+            case 1:
+                setResetClicked()
+                Analytics.logEvent(Tracking.Event.touchReset, parameters: nil)
+            case 2:
+                setDeleteCicked()
+                Analytics.logEvent(Tracking.Event.touchDelete, parameters: nil)
+            default:
+                print("default!")
             }
         }
     }

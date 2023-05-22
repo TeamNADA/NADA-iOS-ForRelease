@@ -9,6 +9,7 @@ import CoreLocation
 import UIKit
 import Photos
 
+import FirebaseAnalytics
 import FirebaseDynamicLinks
 import Lottie
 
@@ -151,6 +152,12 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     override func viewWillAppear(_ animated: Bool) {
         setNotification()
         nearByUUIDFetchWithAPI(cardUUID: cardDataModel?.cardUUID ?? "")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setTracking()
     }
     
     // MARK: - @Functions
@@ -351,6 +358,11 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
             lottieImage.centerXAnchor.constraint(equalTo: nearByImage.centerXAnchor),
             lottieImage.centerYAnchor.constraint(equalTo: nearByImage.centerYAnchor)
         ])
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.cardShareBottomSheet
+                           ])
     }
     
     private func setQRImage() {
@@ -477,11 +489,15 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     private func copyId() {
         UIPasteboard.general.string = cardDataModel?.cardUUID ?? ""
         showToast(message: "명함 아이디가 복사되었습니다.", font: UIFont.button02, view: "copyID")
+        
+        Analytics.logEvent(Tracking.Event.touchCopyCardID, parameters: nil)
     }
     
     @objc
     private func saveAsImage() {
         setImageWriteToSavedPhotosAlbum()
+        
+        Analytics.logEvent(Tracking.Event.touchSaveCardAsImage, parameters: nil)
     }
 
     @objc
@@ -493,8 +509,16 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         }
     }
     
-    @objc func touchSwitch(_ sender: UISwitch) {
+    @objc
+    private func touchSwitch(_ sender: UISwitch) {
         setCardActivationUIWithAPI(with: sender.isOn)
+        
+        if sender.isOn {
+            Analytics.logEvent(Tracking.Event.touchCardShareOn, parameters: nil)
+        } else {
+            Analytics.logEvent(Tracking.Event.touchCardShareOff, parameters: nil)
+        }
+        
     }
     
     @objc

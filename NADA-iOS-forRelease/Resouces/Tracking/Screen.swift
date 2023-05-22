@@ -14,6 +14,7 @@ extension Tracking {
         static let onboarding = "A2 온보딩"
         static let login = "A3 로그인"
         static let myCard = "C1 내 명함"
+        static let cardShareBottomSheet = "C2 명함공유 모달"
         static let more = "E1 설정"
         static let myCardWidget = "F1 명함 위젯"
         static let qrcodeWidget = "F2 QR 위젯"

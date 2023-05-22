@@ -8,6 +8,7 @@
 import UIKit
 import WidgetKit
 
+import FirebaseAnalytics
 import Moya
 import KakaoSDKCommon
 
@@ -94,6 +95,8 @@ class CardListViewController: UIViewController {
             }
             cardReorderWithAPI(request: newCardItems)
         }
+        
+        Analytics.logEvent(Tracking.Event.touchCardListPin, parameters: nil)
     }
 }
 

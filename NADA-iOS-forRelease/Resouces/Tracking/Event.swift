@@ -24,6 +24,7 @@ extension Tracking {
         static let touchBasicCategory = "C3 명함만들기_기본"
         static let touchFanCategory = "C3 명함만들기_덕질"
         static let touchCompanyCategory = "C3 명함만들기_직장"
+        static let touchCardListPin = "C9 명함리스트_핀"
         static let touchDarkmode = "E1 설정_다크모드"
         static let touchPrivacyPolicy = "E1 설정_개인정보"
         static let touchTermsOfUse = "E1 설정_이용약관"
@@ -32,5 +33,6 @@ extension Tracking {
         static let touchLogout = "E1 설정_로그아웃"
         static let touchReset = "E1 설정_초기화"
         static let touchDelete = "E1 설정_탈퇴"
+        static let changeMyCard = "F1 명함위젯_명함바꾸기"
     }
 }

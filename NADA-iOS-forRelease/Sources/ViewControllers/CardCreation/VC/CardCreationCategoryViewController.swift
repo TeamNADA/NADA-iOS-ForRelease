@@ -5,11 +5,12 @@
 //  Created by kimhyungyu on 2023/02/20.
 //
 
+import UIKit
+
+import FirebaseAnalytics
 import SnapKit
 import RxSwift
 import RxCocoa
-
-import UIKit
 
 class CardCreationCategoryViewController: UIViewController {
     
@@ -192,6 +193,8 @@ extension CardCreationCategoryViewController {
             .bind(with: self, onNext: { owner, _ in
                 owner.basicBackgroundView.backgroundColor = .cardCreationClicked
                 owner.presentToBasicCardCreationViewController()
+                
+                Analytics.logEvent(Tracking.Event.touchBasicCategory, parameters: nil)
             })
             .disposed(by: disposeBag)
         
@@ -199,6 +202,8 @@ extension CardCreationCategoryViewController {
             .bind(with: self, onNext: { owner, _ in
                 owner.companyBackgroundView.backgroundColor = .cardCreationClicked
                 owner.presentTocompanyCardCreationViewController()
+                
+                Analytics.logEvent(Tracking.Event.touchCompanyCategory, parameters: nil)
             })
             .disposed(by: disposeBag)
 
@@ -206,6 +211,8 @@ extension CardCreationCategoryViewController {
             .bind(with: self, onNext: { owner, _ in
                 owner.fanBackgroundView.backgroundColor = .cardCreationClicked
                 owner.presentTofanCardCreationViewController()
+                
+                Analytics.logEvent(Tracking.Event.touchFanCategory, parameters: nil)
             })
             .disposed(by: disposeBag)
     }
@@ -230,6 +237,8 @@ extension CardCreationCategoryViewController {
     @objc
     private func touchBackButton() {
         self.navigationController?.popViewController(animated: true)
+        
+        Analytics.logEvent(Tracking.Event.touchCreateCardCategoryBack, parameters: nil)
     }
 }
 

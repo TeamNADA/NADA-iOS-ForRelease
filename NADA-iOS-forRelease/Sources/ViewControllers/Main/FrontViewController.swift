@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import KakaoSDKCommon
 import NVActivityIndicatorView
 import VerticalCardSwiper
@@ -74,11 +75,19 @@ class FrontViewController: UIViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setTracking()
+    }
+    
     // MARK: - @IBAction Properties
     // 명함 생성 뷰로 화면 전환
     @IBAction func presentToCardCreationCategoryViewController(_ sender: Any) {
         let nextVC = CardCreationCategoryViewController()
         self.navigationController?.pushViewController(nextVC, animated: true)
+        
+        Analytics.logEvent(Tracking.Event.touchCreateCard, parameters: nil)
     }
     
     // 명함 리스트 뷰로 화면 전환
@@ -86,6 +95,8 @@ class FrontViewController: UIViewController {
         let nextVC = UIStoryboard(name: Const.Storyboard.Name.cardList, bundle: nil).instantiateViewController(identifier: Const.ViewController.Identifier.cardListViewController)
         
         self.navigationController?.pushViewController(nextVC, animated: true)
+        
+        Analytics.logEvent(Tracking.Event.touchCardList, parameters: nil)
     }
 }
 
@@ -116,6 +127,13 @@ extension FrontViewController {
         ])
         
         activityIndicator.startAnimating()
+    }
+    
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.myCard
+                           ])
     }
     
     // MARK: - @objc Methods
@@ -207,6 +225,10 @@ extension FrontViewController {
                 if let cardData = data as? [Card] {
                     self.cardDataList?.append(contentsOf: cardData)
                     self.cardSwiper.reloadData()
+                    
+                    if !cardData.isEmpty {
+                        Analytics.logEvent(Tracking.Event.scrollMyCard + String(pageNumber), parameters: nil)
+                    }
                 }
                 completion()
             case .requestErr(let message):

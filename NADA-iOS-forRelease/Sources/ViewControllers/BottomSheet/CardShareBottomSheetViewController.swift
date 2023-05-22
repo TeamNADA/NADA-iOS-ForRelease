@@ -256,108 +256,11 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         }
     }
     
-    func setNotification() {
+    private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground(_:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
-
-    @objc func applicationDidEnterBackground(_ notification: NotificationCenter) {
-        appDidEnterBackgroundDate = Date()
-        savedTime = nearByTimeLabel.text ?? "00:00"
-    }
-
-    @objc func applicationWillEnterForeground(_ notification: NotificationCenter) {
-        guard let previousDate = appDidEnterBackgroundDate else { return }
-        let calendar = Calendar.current
-        let difference = calendar.dateComponents([.second], from: previousDate, to: Date())
-        let seconds = difference.second!
-
-        if seconds >= 600 {
-            postNearByCardWithAPI(nearByRequest: NearByRequest(cardUUID: cardDataModel?.cardUUID ?? "", isActive: false, latitude: latitude, longitude: longitude))
-        } else {
-            DispatchQueue.main.async {
-                self.nearByTimeLabel.text = calculateMinuteTime(sec: calculateMinuteTimeToInt(time: self.savedTime) - seconds)
-            }
-        }
-    }
     
-    private func setupLayout() {
-        cardBackgroundView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            cardBackgroundView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20.0),
-            cardBackgroundView.leadingAnchor.constraint(equalTo: bottomSheetView.leadingAnchor, constant: 24.0),
-            cardBackgroundView.trailingAnchor.constraint(equalTo: bottomSheetView.trailingAnchor, constant: -24.0),
-            cardBackgroundView.heightAnchor.constraint(equalToConstant: 384.0)
-        ])
-        
-        nadaLogoImage.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            nadaLogoImage.topAnchor.constraint(equalTo: cardBackgroundView.topAnchor, constant: 18.0),
-            nadaLogoImage.leadingAnchor.constraint(equalTo: cardBackgroundView.leadingAnchor, constant: 18.0),
-            nadaLogoImage.widthAnchor.constraint(equalToConstant: 84.0),
-            nadaLogoImage.heightAnchor.constraint(equalToConstant: 30.0)
-        ])
-        
-        qrImage.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            qrImage.topAnchor.constraint(equalTo: cardBackgroundView.topAnchor, constant: 64.0),
-            qrImage.centerXAnchor.constraint(equalTo: cardBackgroundView.centerXAnchor),
-            qrImage.widthAnchor.constraint(equalToConstant: 189.0),
-            qrImage.heightAnchor.constraint(equalToConstant: 189.0)
-        ])
-        
-        idStackView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            idStackView.topAnchor.constraint(equalTo: qrImage.bottomAnchor, constant: 15.0),
-            idStackView.centerXAnchor.constraint(equalTo: cardBackgroundView.centerXAnchor)
-        ])
-        
-        saveAsImageButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            saveAsImageButton.topAnchor.constraint(equalTo: idStackView.bottomAnchor, constant: 20.0),
-            saveAsImageButton.centerXAnchor.constraint(equalTo: cardBackgroundView.centerXAnchor)
-        ])
-        
-        nearByBackgroundView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            nearByBackgroundView.topAnchor.constraint(equalTo: cardBackgroundView.bottomAnchor, constant: 12.0),
-            nearByBackgroundView.leadingAnchor.constraint(equalTo: bottomSheetView.leadingAnchor, constant: 24.0),
-            nearByBackgroundView.trailingAnchor.constraint(equalTo: bottomSheetView.trailingAnchor, constant: -24.0),
-            nearByBackgroundView.heightAnchor.constraint(equalToConstant: 60.0)
-        ])
-        
-        nearByImage.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            nearByImage.centerYAnchor.constraint(equalTo: nearByBackgroundView.centerYAnchor),
-            nearByImage.heightAnchor.constraint(equalToConstant: 54.0),
-            nearByImage.widthAnchor.constraint(equalToConstant: 54.0)
-        ])
-        
-        nearByLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            nearByLabel.centerYAnchor.constraint(equalTo: nearByBackgroundView.centerYAnchor),
-            nearByLabel.leadingAnchor.constraint(equalTo: nearByImage.trailingAnchor)
-        ])
-                
-        nearBySwitch.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            nearBySwitch.centerYAnchor.constraint(equalTo: nearByBackgroundView.centerYAnchor),
-            nearBySwitch.trailingAnchor.constraint(equalTo: nearByBackgroundView.trailingAnchor, constant: -20.0),
-            nearBySwitch.heightAnchor.constraint(equalToConstant: 31.0),
-            nearBySwitch.widthAnchor.constraint(equalToConstant: 51.0)
-        ])
-        
-        nearByTimeLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            nearByTimeLabel.centerYAnchor.constraint(equalTo: nearByBackgroundView.centerYAnchor),
-            nearByTimeLabel.trailingAnchor.constraint(equalTo: nearBySwitch.leadingAnchor, constant: -5.0)
-        ])
-        
-        lottieImage.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            lottieImage.centerXAnchor.constraint(equalTo: nearByImage.centerXAnchor),
-            lottieImage.centerYAnchor.constraint(equalTo: nearByImage.centerYAnchor)
-        ])
     private func setTracking() {
         Analytics.logEvent(AnalyticsEventScreenView,
                            parameters: [
@@ -484,6 +387,28 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     }
     
     // MARK: - @objc Methods
+
+    @objc
+    private func applicationDidEnterBackground(_ notification: NotificationCenter) {
+        appDidEnterBackgroundDate = Date()
+        savedTime = nearByTimeLabel.text ?? "00:00"
+    }
+
+    @objc
+    private func applicationWillEnterForeground(_ notification: NotificationCenter) {
+        guard let previousDate = appDidEnterBackgroundDate else { return }
+        let calendar = Calendar.current
+        let difference = calendar.dateComponents([.second], from: previousDate, to: Date())
+        let seconds = difference.second!
+
+        if seconds >= 600 {
+            postNearByCardWithAPI(nearByRequest: NearByRequest(cardUUID: cardDataModel?.cardUUID ?? "", isActive: false, latitude: latitude, longitude: longitude))
+        } else {
+            DispatchQueue.main.async {
+                self.nearByTimeLabel.text = calculateMinuteTime(sec: calculateMinuteTimeToInt(time: self.savedTime) - seconds)
+            }
+        }
+    }
     
     @objc
     private func copyId() {
@@ -522,7 +447,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     }
     
     @objc
-    func processTimer() {
+    private func processTimer() {
         if timesLeft > 0 {
             seconds += 1
             timesLeft -= 1
@@ -532,6 +457,91 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         }
     }
 }
+
+// MARK: - Layout
+
+extension CardShareBottomSheetViewController {
+    private func setupLayout() {
+        cardBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            cardBackgroundView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20.0),
+            cardBackgroundView.leadingAnchor.constraint(equalTo: bottomSheetView.leadingAnchor, constant: 24.0),
+            cardBackgroundView.trailingAnchor.constraint(equalTo: bottomSheetView.trailingAnchor, constant: -24.0),
+            cardBackgroundView.heightAnchor.constraint(equalToConstant: 384.0)
+        ])
+        
+        nadaLogoImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nadaLogoImage.topAnchor.constraint(equalTo: cardBackgroundView.topAnchor, constant: 18.0),
+            nadaLogoImage.leadingAnchor.constraint(equalTo: cardBackgroundView.leadingAnchor, constant: 18.0),
+            nadaLogoImage.widthAnchor.constraint(equalToConstant: 84.0),
+            nadaLogoImage.heightAnchor.constraint(equalToConstant: 30.0)
+        ])
+        
+        qrImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            qrImage.topAnchor.constraint(equalTo: cardBackgroundView.topAnchor, constant: 64.0),
+            qrImage.centerXAnchor.constraint(equalTo: cardBackgroundView.centerXAnchor),
+            qrImage.widthAnchor.constraint(equalToConstant: 189.0),
+            qrImage.heightAnchor.constraint(equalToConstant: 189.0)
+        ])
+        
+        idStackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            idStackView.topAnchor.constraint(equalTo: qrImage.bottomAnchor, constant: 15.0),
+            idStackView.centerXAnchor.constraint(equalTo: cardBackgroundView.centerXAnchor)
+        ])
+        
+        saveAsImageButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            saveAsImageButton.topAnchor.constraint(equalTo: idStackView.bottomAnchor, constant: 20.0),
+            saveAsImageButton.centerXAnchor.constraint(equalTo: cardBackgroundView.centerXAnchor)
+        ])
+        
+        nearByBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nearByBackgroundView.topAnchor.constraint(equalTo: cardBackgroundView.bottomAnchor, constant: 12.0),
+            nearByBackgroundView.leadingAnchor.constraint(equalTo: bottomSheetView.leadingAnchor, constant: 24.0),
+            nearByBackgroundView.trailingAnchor.constraint(equalTo: bottomSheetView.trailingAnchor, constant: -24.0),
+            nearByBackgroundView.heightAnchor.constraint(equalToConstant: 60.0)
+        ])
+        
+        nearByImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nearByImage.centerYAnchor.constraint(equalTo: nearByBackgroundView.centerYAnchor),
+            nearByImage.heightAnchor.constraint(equalToConstant: 54.0),
+            nearByImage.widthAnchor.constraint(equalToConstant: 54.0)
+        ])
+        
+        nearByLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nearByLabel.centerYAnchor.constraint(equalTo: nearByBackgroundView.centerYAnchor),
+            nearByLabel.leadingAnchor.constraint(equalTo: nearByImage.trailingAnchor)
+        ])
+                
+        nearBySwitch.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nearBySwitch.centerYAnchor.constraint(equalTo: nearByBackgroundView.centerYAnchor),
+            nearBySwitch.trailingAnchor.constraint(equalTo: nearByBackgroundView.trailingAnchor, constant: -20.0),
+            nearBySwitch.heightAnchor.constraint(equalToConstant: 31.0),
+            nearBySwitch.widthAnchor.constraint(equalToConstant: 51.0)
+        ])
+        
+        nearByTimeLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nearByTimeLabel.centerYAnchor.constraint(equalTo: nearByBackgroundView.centerYAnchor),
+            nearByTimeLabel.trailingAnchor.constraint(equalTo: nearBySwitch.leadingAnchor, constant: -5.0)
+        ])
+        
+        lottieImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            lottieImage.centerXAnchor.constraint(equalTo: nearByImage.centerXAnchor),
+            lottieImage.centerYAnchor.constraint(equalTo: nearByImage.centerYAnchor)
+        ])
+    }
+}
+
+// MARK: - CLLocationManagerDelegate
 
 extension CardShareBottomSheetViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -552,7 +562,7 @@ extension CardShareBottomSheetViewController: CLLocationManagerDelegate {
 // MARK: - Network
 
 extension CardShareBottomSheetViewController {
-    func postNearByCardWithAPI(nearByRequest: NearByRequest) {
+    private func postNearByCardWithAPI(nearByRequest: NearByRequest) {
         NearbyAPI.shared.postNearByCard(nearByRequest: nearByRequest) { response in
             switch response {
             case .success:
@@ -569,7 +579,7 @@ extension CardShareBottomSheetViewController {
         }
     }
     
-    func nearByUUIDFetchWithAPI(cardUUID: String) {
+    private func nearByUUIDFetchWithAPI(cardUUID: String) {
         NearbyAPI.shared.nearByUUIDFetch(cardUUID: cardUUID) { response in
             switch response {
             case .success(let data):

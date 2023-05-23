@@ -210,7 +210,7 @@ class TeamNADAViewController: UIViewController {
 
 // MARK: - Extensions
 extension TeamNADAViewController {
-    func navigationBackSwipeMotion() {
+    private func navigationBackSwipeMotion() {
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     

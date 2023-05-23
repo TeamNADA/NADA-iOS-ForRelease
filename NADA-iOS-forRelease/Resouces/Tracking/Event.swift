@@ -20,6 +20,10 @@ extension Tracking {
         static let touchBasicCardShare = "C1 내명함_친구_공유"
         static let touchBasicCardSNS = "C1 내명함_친구_SNS"
         static let touchBasicCardURL = "C1 내명함_친구_url"
+        static let touchFanCardShare = "C1 내명함_덕질_공유"
+        static let touchFanCardSNS = "C1 내명함_덕질_SNS"
+        static let touchFanCardURL1 = "C1 내명함_덕질_url_1"
+        static let touchFanCardURL2 = "C1 내명함_덕질_url_2"
         
         static let touchCopyCardID = "C2 명함공유 모달_복사"
         static let touchSaveCardAsImage = "C2 명함공유 모달_저장"

@@ -110,7 +110,7 @@ extension FrontCardCell {
         
         linkURLStackView.alignment = .center
     }
-    private func setConstraints() {
+    func setConstraints() {
         if setConstraintDone { return }
         setConstraintDone = true
         

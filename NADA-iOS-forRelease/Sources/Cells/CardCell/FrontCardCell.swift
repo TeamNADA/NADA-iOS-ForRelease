@@ -6,6 +6,8 @@
 //
 
 import UIKit
+
+import FirebaseAnalytics
 import VerticalCardSwiper
 import Kingfisher
 
@@ -16,7 +18,10 @@ class FrontCardCell: CardCell {
     private var cardData: Card?
     private var setConstraintDone = false
     
+    public var cardContext: CardContext?
+    
     // MARK: - @IBOutlet Properties
+    
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -60,8 +65,17 @@ class FrontCardCell: CardCell {
         setUI()
         setTapGesture()
     }
+    
     @IBAction func touchShareButton(_ sender: Any) {
         NotificationCenter.default.post(name: Notification.Name.presentCardShare, object: cardData, userInfo: nil)
+        
+        guard let cardContext else { return }
+        
+        // TODO: - CardContext
+        switch cardContext {
+        case .myCard:
+            Analytics.logEvent(Tracking.Event.touchBasicCardShare, parameters: nil)
+        }
     }
     
     static func nib() -> UINib {
@@ -96,7 +110,7 @@ extension FrontCardCell {
         
         linkURLStackView.alignment = .center
     }
-    func setConstraints() {
+    private func setConstraints() {
         if setConstraintDone { return }
         setConstraintDone = true
         
@@ -115,7 +129,6 @@ extension FrontCardCell {
             $0?.constant = 12
         }
         totalStackView.spacing = 5
-        print("✅✅")
     }
     private func setTapGesture() {
         instagramIDLabel.isUserInteractionEnabled = true
@@ -140,6 +153,14 @@ extension FrontCardCell {
         } else {
             UIApplication.shared.open(webURL, options: [:], completionHandler: nil)
         }
+        
+        guard let cardContext else { return }
+        
+        // TODO: - CardContext
+        switch cardContext {
+        case .myCard:
+            Analytics.logEvent(Tracking.Event.touchBasicCardSNS, parameters: nil)
+        }
     }
     @objc
     private func tapLinkURLLabel() {
@@ -155,8 +176,20 @@ extension FrontCardCell {
         if UIApplication.shared.canOpenURL(webURL) {
             UIApplication.shared.open(webURL, options: [:], completionHandler: nil)
         }
+        
+        guard let cardContext else { return }
+        
+        // TODO: - CardContext
+        switch cardContext {
+        case .myCard:
+            Analytics.logEvent(Tracking.Event.touchBasicCardURL, parameters: nil)
+        }
     }
-    
+}
+
+// MARK: - Initiallize
+
+extension FrontCardCell {
     /// 명함 조회 시 사용.
     func initCellFromServer(cardData: Card, isShareable: Bool) {
         self.cardData = cardData

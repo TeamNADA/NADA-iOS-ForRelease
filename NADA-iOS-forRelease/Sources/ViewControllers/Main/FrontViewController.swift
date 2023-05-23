@@ -204,7 +204,8 @@ extension FrontViewController: VerticalCardSwiperDatasource {
             UserDefaults.standard.set(cardDataList[0].cardID, forKey: Const.UserDefaultsKey.firstCardID)
             cell.initCell(cardDataModel: cardDataList[index])
             cell.isShareable = true
-            cell.cardType = CardType(rawValue: cardDataList[index].cardType) 
+            cell.cardType = CardType(rawValue: cardDataList[index].cardType)
+            cell.cardContext = .myCard
             cell.setFrontCard()
             
             return cell

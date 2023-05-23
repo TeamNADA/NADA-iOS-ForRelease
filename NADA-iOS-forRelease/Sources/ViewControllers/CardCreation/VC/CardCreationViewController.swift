@@ -201,14 +201,12 @@ extension CardCreationViewController {
         
         Analytics.logEvent(Tracking.Event.touchFrontCreateBasicCard, parameters: nil)
     }
-    
     @objc
     private func touchBack() {
         dragToBack()
         
         Analytics.logEvent(Tracking.Event.touchBackCreateBasicCard, parameters: nil)
     }
-    
     @objc
     private func dragToBack() {
         let indexPath = IndexPath(item: 1, section: 0)

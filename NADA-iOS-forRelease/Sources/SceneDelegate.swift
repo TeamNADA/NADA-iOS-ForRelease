@@ -8,6 +8,7 @@
 import Photos
 import UIKit
 
+import FirebaseAnalytics
 import FirebaseDynamicLinks
 import IQKeyboardManagerSwift
 import KakaoSDKAuth
@@ -25,12 +26,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let url = connectionOptions.urlContexts.first?.url {
             if url.absoluteString == qrCodeURL {
                 UserDefaults.standard.setValue(true, forKey: Const.UserDefaultsKey.openQRCodeWidget)
+                
+                Analytics.logEvent(AnalyticsEventScreenView,
+                                   parameters: [
+                                    AnalyticsParameterScreenName: Tracking.Screen.qrcodeWidget
+                                   ])
             } else if url.absoluteString.starts(with: myCardURL) {
                 guard let queryItems = URLComponents(string: url.absoluteString)?.queryItems,
                       let cardUUID = queryItems.filter({ $0.name == "cardUUID" }).first?.value else { return }
                 
                 UserDefaults.standard.setValue(true, forKey: Const.UserDefaultsKey.openMyCardWidget)
                 UserDefaults.standard.setValue(cardUUID, forKey: Const.UserDefaultsKey.widgetCardUUID)
+                
+                Analytics.logEvent(AnalyticsEventScreenView,
+                                   parameters: [
+                                    AnalyticsParameterScreenName: Tracking.Screen.myCardWidget
+                                   ])
             }
         }
         
@@ -99,6 +110,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             default:
                 break
             }
+            
+            Analytics.logEvent(AnalyticsEventScreenView,
+                               parameters: [
+                                AnalyticsParameterScreenName: Tracking.Screen.qrcodeWidget
+                               ])
         } else if url.absoluteString.starts(with: myCardURL) {
             // 내 명함 위젯.
             if UserDefaults.appGroup.string(forKey: Const.UserDefaultsKey.accessToken) != nil {
@@ -120,6 +136,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     }
                 }
             }
+            
+            Analytics.logEvent(AnalyticsEventScreenView,
+                               parameters: [
+                                AnalyticsParameterScreenName: Tracking.Screen.myCardWidget
+                               ])
         } else {
             if (AuthApi.isKakaoTalkLoginUrl(url)) {
                 _ = AuthController.handleOpenUrl(url: url)

@@ -22,6 +22,7 @@ class MainCardCell: CardCell {
     public var isShareable: Bool?
     public var cardDataModel: Card?
     public var cardType: CardType?
+    public var cardContext: CardContext?
     
     // MARK: - View Life Cycle
     
@@ -58,6 +59,7 @@ extension MainCardCell {
             frontCard.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
             guard let cardDataModel = cardDataModel else { return }
             frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable ?? false)
+            frontCard.cardContext = cardContext
             
             contentView.addSubview(frontCard)
         case .company:
@@ -66,6 +68,7 @@ extension MainCardCell {
             frontCard.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
             guard let cardDataModel = cardDataModel else { return }
             frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable ?? false)
+            frontCard.cardContext = cardContext
             
             contentView.addSubview(frontCard)
         case .fan:
@@ -74,6 +77,7 @@ extension MainCardCell {
             frontCard.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
             guard let cardDataModel = cardDataModel else { return }
             frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable ?? false)
+            frontCard.cardContext = cardContext
             
             contentView.addSubview(frontCard)
         }

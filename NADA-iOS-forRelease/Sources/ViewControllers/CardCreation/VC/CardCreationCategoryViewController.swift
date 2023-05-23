@@ -5,11 +5,12 @@
 //  Created by kimhyungyu on 2023/02/20.
 //
 
+import UIKit
+
+import FirebaseAnalytics
 import SnapKit
 import RxSwift
 import RxCocoa
-
-import UIKit
 
 class CardCreationCategoryViewController: UIViewController {
     
@@ -144,6 +145,12 @@ class CardCreationCategoryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         setUI()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setTracking()
+    }
 }
 
 // MARK: - Extension
@@ -192,20 +199,26 @@ extension CardCreationCategoryViewController {
             .bind(with: self, onNext: { owner, _ in
                 owner.basicBackgroundView.backgroundColor = .cardCreationClicked
                 owner.presentToBasicCardCreationViewController()
+                
+                Analytics.logEvent(Tracking.Event.touchBasicCategory, parameters: nil)
             })
             .disposed(by: disposeBag)
         
         output.touchcompany
             .bind(with: self, onNext: { owner, _ in
                 owner.companyBackgroundView.backgroundColor = .cardCreationClicked
-                owner.presentTocompanyCardCreationViewController()
+                owner.presentToCompanyCardCreationViewController()
+                
+                Analytics.logEvent(Tracking.Event.touchCompanyCategory, parameters: nil)
             })
             .disposed(by: disposeBag)
 
         output.touchfan
             .bind(with: self, onNext: { owner, _ in
                 owner.fanBackgroundView.backgroundColor = .cardCreationClicked
-                owner.presentTofanCardCreationViewController()
+                owner.presentToFanCardCreationViewController()
+                
+                Analytics.logEvent(Tracking.Event.touchFanCategory, parameters: nil)
             })
             .disposed(by: disposeBag)
     }
@@ -215,14 +228,21 @@ extension CardCreationCategoryViewController {
         self.navigationController?.present(navigationController, animated: true)
     }
     
-    private func presentTocompanyCardCreationViewController() {
+    private func presentToCompanyCardCreationViewController() {
         let navigationController = ModuleFactory.shared.makeCardCreationVC(cardType: .company)
         self.navigationController?.present(navigationController, animated: true)
     }
     
-    private func presentTofanCardCreationViewController() {
+    private func presentToFanCardCreationViewController() {
         let navigationController = ModuleFactory.shared.makeCardCreationVC(cardType: .fan)
         self.navigationController?.present(navigationController, animated: true)
+    }
+    
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.createCardCategory
+                           ])
     }
     
     // MARK: - @objc methods
@@ -230,6 +250,8 @@ extension CardCreationCategoryViewController {
     @objc
     private func touchBackButton() {
         self.navigationController?.popViewController(animated: true)
+        
+        Analytics.logEvent(Tracking.Event.touchCreateCardCategoryBack, parameters: nil)
     }
 }
 

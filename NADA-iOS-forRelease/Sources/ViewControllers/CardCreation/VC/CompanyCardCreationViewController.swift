@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import YPImagePicker
 
 class CompanyCardCreationViewController: UIViewController {
@@ -69,6 +70,12 @@ class CompanyCardCreationViewController: UIViewController {
         tasteFetchWithAPI(cardType: cardType)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setTracking()
+    }
+    
     // MARK: - @IBAction Properties
 
     @IBAction func dismissToPreviousView(_ sender: Any) {
@@ -79,6 +86,8 @@ class CompanyCardCreationViewController: UIViewController {
         } else {
             self.dismiss(animated: true, completion: nil)
         }
+        
+        Analytics.logEvent(Tracking.Event.touchExitCreateCompanyCard, parameters: nil)
     }
     @IBAction func pushToCardCompletionView(_ sender: Any) {
         guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.cardCreationPreview, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.cardCreationPreviewViewController) as? CardCreationPreviewViewController else { return }
@@ -89,6 +98,8 @@ class CompanyCardCreationViewController: UIViewController {
         nextVC.tasteInfo = tasteInfo
         nextVC.cardType = cardType
         navigationController?.pushViewController(nextVC, animated: true)
+        
+        Analytics.logEvent(Tracking.Event.touchCompanyCardPreview, parameters: nil)
     }
 }
 
@@ -165,19 +176,37 @@ extension CompanyCardCreationViewController {
         cardCreationCollectionView.register(BackCardCreationCollectionViewCell.nib(), forCellWithReuseIdentifier: BackCardCreationCollectionViewCell.className)
     }
     private func setTextLabelGesture() {
-        let tapFrontTextLabelGesture = UITapGestureRecognizer(target: self, action: #selector(dragToFront))
+        let tapFrontTextLabelGesture = UITapGestureRecognizer(target: self, action: #selector(touchFront))
         frontTextLabel.addGestureRecognizer(tapFrontTextLabelGesture)
         frontTextLabel.isUserInteractionEnabled = true
-        let tapBackTextLabelGesture = UITapGestureRecognizer(target: self, action: #selector(dragToBack))
+        let tapBackTextLabelGesture = UITapGestureRecognizer(target: self, action: #selector(touchBack))
         backTextLabel.addGestureRecognizer(tapBackTextLabelGesture)
         backTextLabel.isUserInteractionEnabled = true
     }
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(presentToImagePicker), name: .presentingImagePicker, object: nil)
     }
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.createCompanyCard
+                           ])
+    }  
     
     // MARK: - @objc Methods
     
+    @objc
+    private func touchFront() {
+        dragToFront()
+        
+        Analytics.logEvent(Tracking.Event.touchFrontCreateCompanyCard, parameters: nil)
+    }
+    @objc
+    private func touchBack() {
+        dragToBack()
+        
+        Analytics.logEvent(Tracking.Event.touchBackCreateCompanyCard, parameters: nil)
+    }
     @objc
     private func dragToBack() {
         let indexPath = IndexPath(item: 1, section: 0)
@@ -187,8 +216,8 @@ extension CompanyCardCreationViewController {
                 self.statusMovedView.transform = CGAffineTransform(translationX: self.backTextLabel.frame.origin.x - self.statusMovedView.frame.origin.x - 5, y: 0)
             }
             currentIndex = 1
-             self.frontTextLabel.textColor = .quaternary
-             self.backTextLabel.textColor = .secondary
+            self.frontTextLabel.textColor = .quaternary
+            self.backTextLabel.textColor = .secondary
         }
     }
     @objc
@@ -307,6 +336,7 @@ extension CompanyCardCreationViewController: UICollectionViewDataSource {
                 if let tasteInfo {
                     backCreationCell.flavorList = tasteInfo.map { $0.tasteName }
                 }
+                backCreationCell.cardType = cardType
                 
                 return backCreationCell
             }

@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import IQKeyboardManagerSwift
 
 class BackCardCreationCollectionViewCell: UICollectionViewCell {
@@ -15,7 +16,8 @@ class BackCardCreationCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "BackCardCreationCollectionViewCell"
     
-    var flavorList: [String]?
+    public var cardType: CardType?
+    public var flavorList: [String]?
     private let maxLength: Int = 140
     private var requiredCollectionViewList = [UICollectionView]()
     
@@ -134,6 +136,17 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDelegate {
             backCardCreationDelegate?.backCardCreation(requiredInfo: false)
         }
         checkBackCardStatus()
+        
+        guard let cardType else { return }
+        
+        switch cardType {
+        case .basic:
+            Analytics.logEvent(Tracking.Event.touchBasicTasteInfo + (flavorList?[indexPath.item] ?? ""), parameters: nil)
+        case .company:
+            Analytics.logEvent(Tracking.Event.touchCompanyTasteInfo + (flavorList?[indexPath.item] ?? ""), parameters: nil)
+        case .fan:
+            Analytics.logEvent(Tracking.Event.touchFanTasteInfo + (flavorList?[indexPath.item] ?? ""), parameters: nil)
+        }
     }
 }
 

@@ -83,7 +83,7 @@ class TeamNADAViewController: UIViewController {
                                       phoneNumber: "",
                                       instagram: "chedda_92",
                                       twitter: "",
-                                      tmi: nil,
+                                      tmi: "나다에서 요리조리를 담당하고 있습니다🤗",
                                       urls: [""],
                                       userName: "최다인"),
                                  // 홍영준
@@ -133,7 +133,7 @@ class TeamNADAViewController: UIViewController {
                                       phoneNumber: "",
                                       instagram: "dlwns33",
                                       twitter: "",
-                                      tmi: nil,
+                                      tmi: "축구하러가자⚽️",
                                       urls: ["https://github.com/dlwns33"],
                                       userName: "최이준"),
                                  // 김현규

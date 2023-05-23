@@ -11,6 +11,7 @@ import VerticalCardSwiper
 class TeamNADAViewController: UIViewController {
     
     // MARK: - Properteis
+    
     var cardDataList: [Card]? = [Card(birth: "06월 07일",
                                       cardID: 1,
                                       cardUUID: "",
@@ -187,9 +188,11 @@ class TeamNADAViewController: UIViewController {
                                       userName: "김현규")]
     
     // MARK: - @IBOutlet Properties
+    
     @IBOutlet weak var cardSwiper: VerticalCardSwiper!
     
     // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -198,6 +201,7 @@ class TeamNADAViewController: UIViewController {
     }
     
     // MARK: - @IBAction Properties
+    
     @IBAction func dismissToPreviousView(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }

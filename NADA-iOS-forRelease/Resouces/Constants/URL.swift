@@ -22,8 +22,6 @@ extension Const {
         static let kingfisherURL = "https://github.com/onevcat/Kingfisher"
         static let indicatorURL = "https://github.com/ninjaprox/NVActivityIndicatorView"
         static let dynamicLinkURLPrefix = "https://itzmenada.page.link"
-        
-        // FIXME: - 동적링크를 웹에서 여는 경우 홍보 페이지로 이동할 수 있는 URL 로 릴리즈 전에 변경. 현재 과거 홍보 페이지 URL 로 설정해둠.
-        static let opendDynamicLinkOnWebURL = "https://www.notion.so/nadaitzme/NADA-22c9c7fc3e00453fa12d885e6e58fe86"
+        static let opendDynamicLinkOnWebURL = "https://instagram.com/nada.haseyo"
     }
 }

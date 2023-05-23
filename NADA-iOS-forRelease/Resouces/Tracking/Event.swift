@@ -32,6 +32,8 @@ extension Tracking {
         static let touchBasicDefaultImage = "C4 명함만들기_기본_이미지"
         static let touchBasicTasteInfo = "C4 명함만들기_기본_"
         static let touchBasicCardPreview = "C4 명함만들기_기본_미리보기"
+        static let touchPreviewBackFromBasic = "C5 명함만들기_기본_미리보기_뒤로가기"
+        static let touchPreviewBasicComplete = "C5 명함만들기_기본_미리보기_완료"
         static let touchDarkmode = "E1 설정_다크모드"
         static let touchPrivacyPolicy = "E1 설정_개인정보"
         static let touchTermsOfUse = "E1 설정_이용약관"

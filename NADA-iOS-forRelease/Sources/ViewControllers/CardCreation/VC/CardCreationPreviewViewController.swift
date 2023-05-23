@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import NVActivityIndicatorView
 
 class CardCreationPreviewViewController: UIViewController {
@@ -53,6 +54,15 @@ class CardCreationPreviewViewController: UIViewController {
         setFrontCard()
         setGestureRecognizer()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setTracking()
+    }
+    
+    // MARK: - @IBAction Methods
+    
     @IBAction func touchCompleteButton(_ sender: Any) {
         guard let frontCardDataModel = frontCardDataModel, let backCardDataModel = backCardDataModel else { return }
 
@@ -66,9 +76,31 @@ class CardCreationPreviewViewController: UIViewController {
                 self.cardCreationWithAPI(request: cardCreationRequest)
             }
         }
+        
+        guard let cardType else { return }
+        
+        switch cardType {
+        case .basic:
+            Analytics.logEvent(Tracking.Event.touchPreviewBasicComplete, parameters: nil)
+        case .company:
+            Analytics.logEvent(Tracking.Event.touchPreviewCompanyComplete, parameters: nil)
+        case .fan:
+            Analytics.logEvent(Tracking.Event.touchPreviewFanComplete, parameters: nil)
+        }
     }
     @IBAction func touchBackButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+        
+        guard let cardType else { return }
+        
+        switch cardType {
+        case .basic:
+            Analytics.logEvent(Tracking.Event.touchBackFromBasicPreview, parameters: nil)
+        case .company:
+            Analytics.logEvent(Tracking.Event.touchBackFromCompanyPreview, parameters: nil)
+        case .fan:
+            Analytics.logEvent(Tracking.Event.touchBackFromFanPreview, parameters: nil)
+        }
     }
 }
 
@@ -179,6 +211,25 @@ extension CardCreationPreviewViewController {
         ])
         
         activityIndicator.startAnimating()
+    }
+    private func setTracking() {
+        let parameters: String
+        
+        guard let cardType else { return }
+        
+        switch cardType {
+        case .basic:
+            parameters = Tracking.Screen.createBasicCardPreview
+        case .company:
+            parameters = Tracking.Screen.createCompanyCardPreview
+        case .fan:
+            parameters = Tracking.Screen.createFanCardPreview
+        }
+        
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: parameters
+                           ])
     }
 
     // MARK: - @objc Methods

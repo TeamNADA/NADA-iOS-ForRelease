@@ -41,6 +41,8 @@ class MoreViewController: UIViewController {
     // MARK: - @IBAction Properties
     @IBAction func darkModeChangeSwitch(_ sender: UISwitch) {
         changeInterfaceStyle()
+        
+        Analytics.logEvent(Tracking.Event.touchDarkmode, parameters: nil)
     }
 }
 

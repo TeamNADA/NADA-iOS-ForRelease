@@ -145,6 +145,12 @@ class CardCreationCategoryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         setUI()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setTracking()
+    }
 }
 
 // MARK: - Extension
@@ -230,6 +236,13 @@ extension CardCreationCategoryViewController {
     private func presentTofanCardCreationViewController() {
         let navigationController = ModuleFactory.shared.makeCardCreationVC(cardType: .fan)
         self.navigationController?.present(navigationController, animated: true)
+    }
+    
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.createCardCategory
+                           ])
     }
     
     // MARK: - @objc methods

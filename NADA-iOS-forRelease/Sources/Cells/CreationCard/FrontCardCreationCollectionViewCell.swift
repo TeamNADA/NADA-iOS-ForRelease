@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import IQKeyboardManagerSwift
 
 class FrontCardCreationCollectionViewCell: UICollectionViewCell {
@@ -363,6 +364,17 @@ extension FrontCardCreationCollectionViewCell: UICollectionViewDelegate {
             return
         }
         checkFrontCradStatus()
+        
+        if let defaultImageIndex {
+            if defaultImageIndex == 0 {
+                Analytics.logEvent(Tracking.Event.touchBasicCameraImage, parameters: nil)
+            } else {
+                Analytics.logEvent(Tracking.Event.touchBasicDefaultImage,
+                                   parameters: [
+                                    "기본_이미지_asn": defaultImageIndex
+                                   ])
+            }
+        }
     }
 }
 

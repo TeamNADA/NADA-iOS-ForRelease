@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import IQKeyboardManagerSwift
 
 class FanFrontCardCreationCollectionViewCell: UICollectionViewCell {
@@ -357,6 +358,17 @@ extension FanFrontCardCreationCollectionViewCell: UICollectionViewDelegate {
             return
         }
         checkFrontCradStatus()
+        
+        if let defaultImageIndex {
+            if defaultImageIndex == 0 {
+                Analytics.logEvent(Tracking.Event.touchFanCameraImage, parameters: nil)
+            } else {
+                Analytics.logEvent(Tracking.Event.touchFanDefaultImage,
+                                   parameters: [
+                                    "덕질_이미지_asn": defaultImageIndex
+                                   ])
+            }
+        }
     }
 }
 

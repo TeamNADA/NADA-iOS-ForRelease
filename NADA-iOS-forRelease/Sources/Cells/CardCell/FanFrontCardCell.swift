@@ -6,6 +6,8 @@
 //
 
 import UIKit
+
+import FirebaseAnalytics
 import VerticalCardSwiper
 import Kingfisher
 
@@ -15,6 +17,8 @@ class FanFrontCardCell: CardCell {
     
     private var cardData: Card?
     private var setConstraintDone = false
+    
+    public var cardContext: CardContext?
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var backgroundImageView: UIImageView!
@@ -58,6 +62,14 @@ class FanFrontCardCell: CardCell {
     }
     @IBAction func touchShareButton(_ sender: Any) {
         NotificationCenter.default.post(name: Notification.Name.presentCardShare, object: cardData, userInfo: nil)
+        
+        guard let cardContext else { return }
+        
+        // TODO: - CardContext
+        switch cardContext {
+        case .myCard:
+            Analytics.logEvent(Tracking.Event.touchFanCardShare, parameters: nil)
+        }
     }
     
     static func nib() -> UINib {
@@ -109,7 +121,6 @@ extension FanFrontCardCell {
             $0?.constant = 12
         }
         totalStackView.spacing = 5
-        print("✅✅")
     }
     private func setTapGesture() {
         snsLabel.isUserInteractionEnabled = true
@@ -148,14 +159,38 @@ extension FanFrontCardCell {
         } else {
             UIApplication.shared.open(webURL, options: [:], completionHandler: nil)
         }
+        
+        guard let cardContext else { return }
+        
+        // TODO: - CardContext
+        switch cardContext {
+        case .myCard:
+            Analytics.logEvent(Tracking.Event.touchFanCardSNS, parameters: nil)
+        }
     }
     @objc
     private func touchFirstURLLabel() {
         tapLinkURLLabel(with: firstURLLabel.text ?? "")
+        
+        guard let cardContext else { return }
+        
+        // TODO: - CardContext
+        switch cardContext {
+        case .myCard:
+            Analytics.logEvent(Tracking.Event.touchFanCardURL1, parameters: nil)
+        }
     }
     @objc
     private func touchSecondURLLabel() {
         tapLinkURLLabel(with: secondURLLabel.text ?? "")
+        
+        guard let cardContext else { return }
+        
+        // TODO: - CardContext
+        switch cardContext {
+        case .myCard:
+            Analytics.logEvent(Tracking.Event.touchFanCardURL2, parameters: nil)
+        }
     }
     @objc
     private func tapLinkURLLabel(with text: String) {

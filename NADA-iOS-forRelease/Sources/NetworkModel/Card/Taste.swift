@@ -12,12 +12,6 @@ struct Taste: Codable {
     let tasteInfos: [TasteInfo]
 }
 
-enum CardType: String {
-    case basic = "BASIC"
-    case company = "COMPANY"
-    case fan = "FAN"
-}
-
 struct TasteInfo: Codable {
     let sortOrder: Int
     let tasteName: String

@@ -17,6 +17,7 @@ extension Tracking {
         static let cardShareBottomSheet = "C2 명함공유 모달"
         static let createCardCategory = "C3 명함만들기"
         static let cardList = "C9 명함리스트"
+        static let createBasicCard = "C4 명함만들기_기본"
         static let more = "E1 설정"
         static let myCardWidget = "F1 명함 위젯"
         static let qrcodeWidget = "F2 QR 위젯"

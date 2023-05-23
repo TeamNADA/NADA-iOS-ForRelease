@@ -365,7 +365,7 @@ extension FanFrontCardCreationCollectionViewCell: UICollectionViewDelegate {
             } else {
                 Analytics.logEvent(Tracking.Event.touchFanDefaultImage,
                                    parameters: [
-                                    "기본_이미지_asn": defaultImageIndex
+                                    "덕질_이미지_asn": defaultImageIndex
                                    ])
             }
         }

@@ -44,6 +44,11 @@ class CardListViewController: UIViewController {
     }
     
     // MARK: - IBAction Properties
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setTracking()
+    }
     @IBAction func dismissToPreviousView(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -77,6 +82,13 @@ class CardListViewController: UIViewController {
     }
     
     @objc func pinButtonClicked(_ sender: UIButton) {
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.cardList
+                           ])
+    }
+    
         let contentView = sender.superview
         guard let cell = contentView?.superview as? UITableViewCell else { return }
         let index = cardListTableView.indexPath(for: cell)

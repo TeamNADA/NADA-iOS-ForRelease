@@ -52,6 +52,9 @@ extension Tracking {
         static let touchCompanyTasteInfo = "C8 명함만들기_직장"
         static let touchCompanyCardPreview = "C8 명함만들기_직장_미리보기"
         
+        static let touchBackFromCompanyPreview = "C9 명함만들기_직장_미리보기_뒤로가기"
+        static let touchPreviewCompanyComplete = "C9 명함만들기_덕질_미리보기_완료"
+        
         static let touchDarkmode = "E1 설정_다크모드"
         static let touchPrivacyPolicy = "E1 설정_개인정보"
         static let touchTermsOfUse = "E1 설정_이용약관"

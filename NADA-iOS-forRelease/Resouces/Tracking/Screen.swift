@@ -22,6 +22,7 @@ extension Tracking {
         static let createFanCard = "C6 명함만들기_덕질"
         static let createFanCardPreview = "C7 명함만들기_덕질_미리보기"
         static let createCompanyCard = "C8 명함만들기_직장"
+        static let createCompanyCardPreview = "C9 명함만들기_직장_미리보기"
         static let more = "E1 설정"
         static let myCardWidget = "F1 명함 위젯"
         static let qrcodeWidget = "F2 QR 위젯"

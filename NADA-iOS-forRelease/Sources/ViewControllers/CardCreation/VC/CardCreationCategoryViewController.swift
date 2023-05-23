@@ -228,12 +228,12 @@ extension CardCreationCategoryViewController {
         self.navigationController?.present(navigationController, animated: true)
     }
     
-    private func presentTocompanyCardCreationViewController() {
+    private func presentToCompanyCardCreationViewController() {
         let navigationController = ModuleFactory.shared.makeCardCreationVC(cardType: .company)
         self.navigationController?.present(navigationController, animated: true)
     }
     
-    private func presentTofanCardCreationViewController() {
+    private func presentToFanCardCreationViewController() {
         let navigationController = ModuleFactory.shared.makeCardCreationVC(cardType: .fan)
         self.navigationController?.present(navigationController, animated: true)
     }

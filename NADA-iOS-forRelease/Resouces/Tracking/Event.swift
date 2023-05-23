@@ -18,9 +18,9 @@ extension Tracking {
         static let touchCreateCard = "C1 내명함_추가"
         static let touchCardList = "C1 내명함_목록"
         static let scrollMyCard = "C1 내명함_imp_"
-        static let touchBasicCardShare = "C1 내명함_친구_공유"
-        static let touchBasicCardSNS = "C1 내명함_친구_SNS"
-        static let touchBasicCardURL = "C1 내명함_친구_url"
+        static let touchBasicCardShare = "C1 내명함_기본_공유"
+        static let touchBasicCardSNS = "C1 내명함_기본_SNS"
+        static let touchBasicCardURL = "C1 내명함_기본_url"
         static let touchFanCardShare = "C1 내명함_덕질_공유"
         static let touchFanCardSNS = "C1 내명함_덕질_SNS"
         static let touchFanCardURL1 = "C1 내명함_덕질_url_1"
@@ -69,7 +69,7 @@ extension Tracking {
         static let touchCompanyCardPreview = "C8 명함만들기_직장_미리보기"
         
         static let touchBackFromCompanyPreview = "C9 명함만들기_직장_미리보기_뒤로가기"
-        static let touchPreviewCompanyComplete = "C9 명함만들기_덕질_미리보기_완료"
+        static let touchPreviewCompanyComplete = "C9 명함만들기_직장_미리보기_완료"
         
         static let touchCardListPin = "C10 명함리스트_핀"
         

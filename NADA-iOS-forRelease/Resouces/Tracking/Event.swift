@@ -24,6 +24,8 @@ extension Tracking {
         static let touchFanCardSNS = "C1 내명함_덕질_SNS"
         static let touchFanCardURL1 = "C1 내명함_덕질_url_1"
         static let touchFanCardURL2 = "C1 내명함_덕질_url_2"
+        static let touchCompanyCardShare = "C1 내명함_직장_공유"
+        static let touchCompanyCardURL = "C1 내명함_직장_url"
         
         static let touchCopyCardID = "C2 명함공유 모달_복사"
         static let touchSaveCardAsImage = "C2 명함공유 모달_저장"

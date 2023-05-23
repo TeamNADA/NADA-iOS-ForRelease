@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import VerticalCardSwiper
 import Kingfisher
 
@@ -16,6 +17,8 @@ class CompanyFrontCardCell: CardCell {
     
     private var cardData: Card?
     private var setConstraintDone = false
+    
+    public var cardContext: CardContext?
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var backgroundImageView: UIImageView!
@@ -63,6 +66,14 @@ class CompanyFrontCardCell: CardCell {
     }
     @IBAction func touchShareButton(_ sender: Any) {
         NotificationCenter.default.post(name: Notification.Name.presentCardShare, object: cardData, userInfo: nil)
+        
+        guard let cardContext else { return }
+        
+        // TODO: - CardContext
+        switch cardContext {
+        case .myCard:
+            Analytics.logEvent(Tracking.Event.touchCompanyCardShare, parameters: nil)
+        }
     }
     
     static func nib() -> UINib {
@@ -116,7 +127,6 @@ extension CompanyFrontCardCell {
             $0?.constant = 12
         }
         totalStackView.spacing = 5
-        print("✅✅")
     }
     private func setTapGesture() {
         mailLabel.isUserInteractionEnabled = true
@@ -146,6 +156,14 @@ extension CompanyFrontCardCell {
         
         if UIApplication.shared.canOpenURL(webURL) {
             UIApplication.shared.open(webURL, options: [:], completionHandler: nil)
+        }
+        
+        guard let cardContext else { return }
+        
+        // TODO: - CardContext
+        switch cardContext {
+        case .myCard:
+            Analytics.logEvent(Tracking.Event.touchCompanyCardURL, parameters: nil)
         }
     }
     

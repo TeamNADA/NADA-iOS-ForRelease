@@ -43,6 +43,15 @@ extension Tracking {
         static let touchFanCardPreview = "C6 명함만들기_덕질_미리보기"
         static let touchBackFromFanPreview = "C7 명함만들기_덕질_미리보기_뒤로가기"
         static let touchPreviewFanComplete = "C7 명함만들기_덕질_미리보기_완료"
+        
+        static let touchExitCreateCompanyCard = "C8 명함만들기_직장_종료"
+        static let touchFrontCreateCompanyCard = "C8 명함만들기_직장_앞면"
+        static let touchBackCreateCompanyCard = "C8 명함만들기_직장_뒷면"
+        static let touchCompanyCameraImage = "C8 명함만들기_직장_사진"
+        static let touchCompanyDefaultImage = "C8 명함만들기_직장_이미지"
+        static let touchCompanyTasteInfo = "C8 명함만들기_직장"
+        static let touchCompanyCardPreview = "C8 명함만들기_직장_미리보기"
+        
         static let touchDarkmode = "E1 설정_다크모드"
         static let touchPrivacyPolicy = "E1 설정_개인정보"
         static let touchTermsOfUse = "E1 설정_이용약관"

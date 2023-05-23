@@ -371,7 +371,7 @@ extension CompanyFrontCardCreationCollectionViewCell: UICollectionViewDelegate {
             } else {
                 Analytics.logEvent(Tracking.Event.touchCompanyDefaultImage,
                                    parameters: [
-                                    "기본_이미지_asn": defaultImageIndex
+                                    "직장_이미지_asn": defaultImageIndex
                                    ])
             }
         }

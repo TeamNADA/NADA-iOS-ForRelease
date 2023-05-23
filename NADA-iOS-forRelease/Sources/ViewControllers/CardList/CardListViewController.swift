@@ -15,13 +15,16 @@ import KakaoSDKCommon
 class CardListViewController: UIViewController {
         
     // MARK: - Properties
+    
     var cardItems: [Card] = []
     var newCardItems: [CardReorderInfo] = []
     
     // MARK: - IBOutlet Properties
+    
     @IBOutlet weak var cardListTableView: UITableView!
     
     // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,29 +46,32 @@ class CardListViewController: UIViewController {
         cardListTableView.reloadData()
     }
     
-    // MARK: - IBAction Properties
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         setTracking()
     }
+    
+    // MARK: - IBAction Methods
+    
     @IBAction func dismissToPreviousView(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
     
-    // MARK: - Functions
-    func setLongPressGesture() {
+    // MARK: - Methods
+     
+    private func setLongPressGesture() {
         self.cardListTableView.allowsSelection = false
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressCalled(gestureRecognizer:)))
         cardListTableView.addGestureRecognizer(longPressGesture)
     }
     
-    func navigationBackSwipeMotion() {
+    private func navigationBackSwipeMotion() {
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     
-    func snapShotOfCall(_ inputView: UIView) -> UIView {
+    private func snapShotOfCall(_ inputView: UIView) -> UIView {
         UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, false, 0.0)
         inputView.layer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()!
@@ -81,7 +87,6 @@ class CardListViewController: UIViewController {
         return cellSnapshot
     }
     
-    @objc func pinButtonClicked(_ sender: UIButton) {
     private func setTracking() {
         Analytics.logEvent(AnalyticsEventScreenView,
                            parameters: [
@@ -89,6 +94,8 @@ class CardListViewController: UIViewController {
                            ])
     }
     
+    @objc
+    private func pinButtonClicked(_ sender: UIButton) {
         let contentView = sender.superview
         guard let cell = contentView?.superview as? UITableViewCell else { return }
         let index = cardListTableView.indexPath(for: cell)
@@ -113,6 +120,7 @@ class CardListViewController: UIViewController {
 }
 
 // MARK: - UITableViewDelegate
+
 extension CardListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if cardItems.isEmpty {
@@ -146,6 +154,7 @@ extension CardListViewController: UITableViewDelegate {
 }
 
 // MARK: - UITableViewDataSource
+
 extension CardListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let count = cardItems.count
@@ -183,8 +192,9 @@ extension CardListViewController: UITableViewDataSource {
 }
 
 // MARK: - Network
+
 extension CardListViewController {
-    func cardListFetchWithAPI() {
+    private func cardListFetchWithAPI() {
         CardAPI.shared.cardListFetch { response in
             switch response {
             case .success(let data):
@@ -205,7 +215,7 @@ extension CardListViewController {
         }
     }
     
-    func cardReorderWithAPI(request: [CardReorderInfo]) {
+    private func cardReorderWithAPI(request: [CardReorderInfo]) {
         CardAPI.shared.cardReorder(request: request) { response in
             switch response {
             case .success(let data):
@@ -222,7 +232,7 @@ extension CardListViewController {
         }
     }
     
-    func deleteCardWithAPI(cardID: Int) {
+    private func deleteCardWithAPI(cardID: Int) {
         CardAPI.shared.cardDelete(cardID: cardID) { response in
             switch response {
             case .success:

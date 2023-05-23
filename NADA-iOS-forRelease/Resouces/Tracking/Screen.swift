@@ -10,8 +10,9 @@ import Foundation
 extension Tracking {
     struct Screen {
         private init() { }
-        static let splash = "A1.스플래시"
-        static let onboarding = "A2.온보딩"
-        static let login = "A3.로그인"
+        static let splash = "A1 스플래시"
+        static let onboarding = "A2 온보딩"
+        static let login = "A3 로그인"
+        static let more = "E1 설정"
     }
 }

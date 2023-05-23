@@ -207,7 +207,7 @@ extension CardCreationCategoryViewController {
         output.touchcompany
             .bind(with: self, onNext: { owner, _ in
                 owner.companyBackgroundView.backgroundColor = .cardCreationClicked
-                owner.presentTocompanyCardCreationViewController()
+                owner.presentToCompanyCardCreationViewController()
                 
                 Analytics.logEvent(Tracking.Event.touchCompanyCategory, parameters: nil)
             })
@@ -216,7 +216,7 @@ extension CardCreationCategoryViewController {
         output.touchfan
             .bind(with: self, onNext: { owner, _ in
                 owner.fanBackgroundView.backgroundColor = .cardCreationClicked
-                owner.presentTofanCardCreationViewController()
+                owner.presentToFanCardCreationViewController()
                 
                 Analytics.logEvent(Tracking.Event.touchFanCategory, parameters: nil)
             })

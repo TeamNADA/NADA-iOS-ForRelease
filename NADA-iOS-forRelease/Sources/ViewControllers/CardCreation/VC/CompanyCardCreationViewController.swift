@@ -216,8 +216,8 @@ extension CompanyCardCreationViewController {
                 self.statusMovedView.transform = CGAffineTransform(translationX: self.backTextLabel.frame.origin.x - self.statusMovedView.frame.origin.x - 5, y: 0)
             }
             currentIndex = 1
-             self.frontTextLabel.textColor = .quaternary
-             self.backTextLabel.textColor = .secondary
+            self.frontTextLabel.textColor = .quaternary
+            self.backTextLabel.textColor = .secondary
         }
     }
     @objc

@@ -229,8 +229,8 @@ extension FanCardCreationViewController {
                 self.statusMovedView.transform = .identity
             }
             currentIndex = 0
-             self.frontTextLabel.textColor = .secondary
-             self.backTextLabel.textColor = .quaternary
+            self.frontTextLabel.textColor = .secondary
+            self.backTextLabel.textColor = .quaternary
         }
     }
     @objc

@@ -6,6 +6,8 @@
 //
 
 import UIKit
+
+import FirebaseAnalytics
 import IQKeyboardManagerSwift
 import Then
 
@@ -47,6 +49,7 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
         super.viewDidLoad()
         setupUI()
         registerCell()
+        setTracking()
     }
     
     override func hideBottomSheetAndGoBack() {
@@ -65,6 +68,13 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
         
         groupLabel.text = cardDataModel?.departmentName
 //        setCardView()
+    }
+    
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.cardResultBottomSheet
+                           ])
     }
     
 //    private func setCardView() {
@@ -124,6 +134,7 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
     }
     
     @objc func presentGroupSelectBottomSheet() {
+        Analytics.logEvent(Tracking.Event.touchAddCard, parameters: nil)
         groupListFetchWithAPI()
     }
 

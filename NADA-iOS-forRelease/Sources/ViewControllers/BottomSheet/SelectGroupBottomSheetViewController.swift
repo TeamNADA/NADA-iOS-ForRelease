@@ -7,6 +7,8 @@
 
 import UIKit
 
+import FirebaseAnalytics
+
 class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
 
     // MARK: - Properties
@@ -37,6 +39,7 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setTracking()
     }
     
     override func hideBottomSheetAndGoBack() {
@@ -59,6 +62,13 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
         groupPicker.delegate = self
         groupPicker.dataSource = self
         setupLayout()
+    }
+    
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.selectGroupBottomSheet
+                           ])
     }
     
     // 레이아웃 세팅
@@ -89,6 +99,7 @@ class SelectGroupBottomSheetViewController: CommonBottomSheetViewController {
                                cardGroupName: groupName ?? "",
                                changingTo: selectedGroup)
         case .add, .addWithQR:
+            Analytics.logEvent(Tracking.Event.touchSelectGroup, parameters: nil)
             cardAddInGroupWithAPI(cardRequest: CardAddInGroupRequest(cardGroupName: selectedGroup,
                                                                      cardUUID: cardDataModel?.cardUUID ?? ""))
         case .group:

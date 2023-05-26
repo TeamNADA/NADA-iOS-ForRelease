@@ -162,6 +162,7 @@
 		F84BAFAE26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F84BAFAC26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib */; };
 		F84BAFB126FDB552004CA335 /* BackCardCreationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84BAFAF26FDB552004CA335 /* BackCardCreationCollectionViewCell.swift */; };
 		F84BAFB226FDB552004CA335 /* BackCardCreationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F84BAFB026FDB552004CA335 /* BackCardCreationCollectionViewCell.xib */; };
+		F8507B042A213B9300E5A599 /* nada_logo_motion.json in Resources */ = {isa = PBXBuildFile; fileRef = F8507B032A213B9300E5A599 /* nada_logo_motion.json */; };
 		F8518054275D040C006BD5ED /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8518052275D040C006BD5ED /* OnboardingCollectionViewCell.swift */; };
 		F8518055275D040C006BD5ED /* OnboardingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8518053275D040C006BD5ED /* OnboardingCollectionViewCell.xib */; };
 		F8518058275D042B006BD5ED /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8518057275D042B006BD5ED /* Onboarding.storyboard */; };
@@ -443,6 +444,7 @@
 		F84BAFAC26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FrontCardCreationCollectionViewCell.xib; sourceTree = "<group>"; };
 		F84BAFAF26FDB552004CA335 /* BackCardCreationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackCardCreationCollectionViewCell.swift; sourceTree = "<group>"; };
 		F84BAFB026FDB552004CA335 /* BackCardCreationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackCardCreationCollectionViewCell.xib; sourceTree = "<group>"; };
+		F8507B032A213B9300E5A599 /* nada_logo_motion.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nada_logo_motion.json; sourceTree = "<group>"; };
 		F8518052275D040C006BD5ED /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		F8518053275D040C006BD5ED /* OnboardingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingCollectionViewCell.xib; sourceTree = "<group>"; };
 		F8518057275D042B006BD5ED /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
@@ -1120,6 +1122,7 @@
 				777312552A08D432002C094B /* gunghap_41_60.json */,
 				777312522A08D432002C094B /* gunghap_61_80.json */,
 				777312542A08D432002C094B /* gunghap_81_100.json */,
+				F8507B032A213B9300E5A599 /* nada_logo_motion.json */,
 			);
 			path = Lottie;
 			sourceTree = "<group>";
@@ -1735,6 +1738,7 @@
 				39F5A3D1271461EA00191F94 /* BackCardCell.xib in Resources */,
 				39369939274A4FCB00684420 /* Spoqa Han Sans Neo Regular.otf in Resources */,
 				F8D62FA62A06742000F9DF11 /* Spoqa Han Sans Neo Medium.otf in Resources */,
+				F8507B042A213B9300E5A599 /* nada_logo_motion.json in Resources */,
 				39369938274A4FCB00684420 /* Spoqa Han Sans Neo Bold.otf in Resources */,
 				F8458D6229F5183B000D53A7 /* FanCardCreation.storyboard in Resources */,
 				7781294A275F6ED7004B34F4 /* CardDetail.storyboard in Resources */,

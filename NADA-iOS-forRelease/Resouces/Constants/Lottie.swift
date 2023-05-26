@@ -19,5 +19,6 @@ extension Const {
         static let nadaHarmonyLottie4160 = "gunghap_41_60.json"
         static let nadaHarmonyLottie6180 = "gunghap_61_80.json"
         static let nadaHarmonyLottie81100 = "gunghap_81_100.json"
+        static let nadaLogo = "nada_logo_motion.json"
     }
 }

@@ -36,7 +36,7 @@ class NewCardHarmonyViewController: UIViewController {
     }
     
     private let mbtiIcon = UIImageView().then {
-        $0.image = UIImage(named: "iconMbtiBlack")
+        $0.image = UIImage(named: "iconMbti")
         $0.alpha = 0
     }
     

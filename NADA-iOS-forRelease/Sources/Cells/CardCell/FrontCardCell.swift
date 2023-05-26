@@ -118,8 +118,7 @@ extension FrontCardCell {
         
         linkURLStackView.alignment = .center
         
-        guard let backgroundCornerRadius else { return }
-        backgroundImageView.cornerRadius = backgroundCornerRadius
+        backgroundImageView.cornerRadius = backgroundCornerRadius ?? 20
     }
     func setConstraints() {
         if setConstraintDone { return }

@@ -17,6 +17,7 @@ class FanFrontCardCell: CardCell {
     
     private var cardData: Card?
     private var setConstraintDone = false
+    private var backgroundCornerRaidus: CGFloat?
     
     public var cardContext: CardContext?
     
@@ -83,24 +84,33 @@ extension FanFrontCardCell {
     private func setUI() {
         titleLabel.font = .title02
         titleLabel.textColor = .white
+        
         userNameLabel.font = .title01
         userNameLabel.textColor = .white
+        
         birthLabel.font = .textRegular03
         birthLabel.textColor = .white
+        
         snsLabel.font = .textRegular03
         snsLabel.textColor = .white
         snsLabel.lineBreakMode = .byTruncatingTail
+        
         firstURLLabel.font = .textRegular04
         firstURLLabel.textColor = .white
         firstURLLabel.numberOfLines = 1
         firstURLLabel.lineBreakMode = .byTruncatingTail
+        
         secondURLLabel.font = .textRegular04
         secondURLLabel.textColor = .white
         secondURLLabel.numberOfLines = 1
         secondURLLabel.lineBreakMode = .byTruncatingTail
         
         firstURLStackView.alignment = .center
+        
         secondURLStackView.alignment = .center
+        
+        guard let backgroundCornerRaidus else { return }
+        backgroundImageView.cornerRadius = backgroundCornerRaidus
     }
     func setConstraints() {
         if setConstraintDone { return }
@@ -134,6 +144,9 @@ extension FanFrontCardCell {
         secondURLLabel.isUserInteractionEnabled = true
         let secondURLTapGesture = UITapGestureRecognizer(target: self, action: #selector(touchSecondURLLabel))
         secondURLLabel.addGestureRecognizer(secondURLTapGesture)
+    }
+    public func setCornerRadius(_ cornerRadius: CGFloat) {
+        backgroundCornerRaidus = cornerRadius
     }
     
     // MARK: - @objc Methods

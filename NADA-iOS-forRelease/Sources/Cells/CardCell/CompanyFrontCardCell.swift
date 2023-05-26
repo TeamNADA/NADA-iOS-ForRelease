@@ -17,6 +17,7 @@ class CompanyFrontCardCell: CardCell {
     
     private var cardData: Card?
     private var setConstraintDone = false
+    private var backgroundCornerRaidus: CGFloat?
     
     public var cardContext: CardContext?
     
@@ -87,26 +88,36 @@ extension CompanyFrontCardCell {
     private func setUI() {
         titleLabel.font = .title02
         titleLabel.textColor = .white
+        
         descriptionLabel.font = .textRegular03
         descriptionLabel.textColor = .white
+        
         userNameLabel.font = .title01
         userNameLabel.textColor = .white
+        
         birthLabel.font = .textRegular03
         birthLabel.textColor = .white
+        
         mbtiLabel.font = .textRegular03
         mbtiLabel.textColor = .white
+        
         mailLabel.font = .textRegular04
         mailLabel.textColor = .white
         mailLabel.lineBreakMode = .byTruncatingTail
+        
         phoneNumberLabel.font = .textRegular04
         phoneNumberLabel.textColor = .white
         phoneNumberLabel.lineBreakMode = .byTruncatingTail
+        
         linkURLLabel.font = .textRegular04
         linkURLLabel.textColor = .white
         linkURLLabel.numberOfLines = 1
         linkURLLabel.lineBreakMode = .byTruncatingTail
         
         linkURLStackView.alignment = .center
+        
+        guard let backgroundCornerRaidus else { return }
+        backgroundImageView.cornerRadius = backgroundCornerRaidus
     }
     func setConstraints() {
         if setConstraintDone { return }
@@ -136,6 +147,9 @@ extension CompanyFrontCardCell {
         linkURLLabel.isUserInteractionEnabled = true
         let linkURLTapGesture = UITapGestureRecognizer(target: self, action: #selector(tapLinkURLLabel))
         linkURLLabel.addGestureRecognizer(linkURLTapGesture)
+    }
+    public func setCornerRadius(_ cornerRadius: CGFloat) {
+        backgroundCornerRaidus = cornerRadius
     }
     
     // MARK: - @objc Methods

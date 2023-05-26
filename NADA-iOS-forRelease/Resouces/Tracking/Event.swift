@@ -89,18 +89,12 @@ extension Tracking {
         static let touchCardListPin = "C10 명함리스트_핀"
         
         static let touchEditGroup = "D1_명함모음_그룹편집"
-        static let cardGroupList = "D1_명함모음"
-        static let touchGroup2 = "D1_명함모음_그룹2"
-        static let touchGroup3 = "D1_명함모음_그룹3"
-        static let touchGroup4 = "D1_명함모음_그룹4"
-        static let touchGroupCard = "D1_명함모음"
+        static let touchGroup = "D1_명함모음_그룹"
+        static let touchGroupCard = "D1_명함모음_"
         
         static let touchEditGroupBack = "D2_그룹편집_뒤로가기"
         static let touchEditGroupAdd = "D2_그룹편집_그룹추가"
-        static let touchEditGroup1 = "D2_그룹편집_그룹1"
-        static let touchEditGroup2 = "D2_그룹편집_그룹2"
-        static let touchEditGroup3 = "D2_그룹편집_그룹3"
-        static let touchEditGroup4 = "D2_그룹편집_그룹4"
+        static let touchEditGroupNumber = "D2_그룹편집_그룹"
         
         static let touchCardDetailClose = "D3_명함상세_종료"
         static let touchCardDetailEdit = "D3_명함상세_수정"

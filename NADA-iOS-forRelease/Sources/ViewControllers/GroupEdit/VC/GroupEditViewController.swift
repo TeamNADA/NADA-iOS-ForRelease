@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import RxSwift
 import RxRelay
 import RxCocoa
@@ -32,14 +33,17 @@ class GroupEditViewController: UIViewController {
         setRegister()
         bindViewModels()
         serverGroupList()
+        setTracking()
     }
     
     // MARK: - @IBAction Properties
     @IBAction func dismissToPreviousView(_ sender: UIButton) {
+        Analytics.logEvent(Tracking.Event.touchEditGroupBack, parameters: nil)
         self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func presentToAddGroupBottom(_ sender: UIButton) {
+        Analytics.logEvent(Tracking.Event.touchEditGroupAdd, parameters: nil)
         if serverGroups?.count == 4 {
             makeOKAlert(title: "", message: "새로운 그룹은 최대 4개까지만 등록 가능합니다.")
         } else {
@@ -85,6 +89,13 @@ class GroupEditViewController: UIViewController {
         groupEditTableView.register(GroupEditTableViewCell.nib(), forCellReuseIdentifier: GroupEditTableViewCell.className)
         groupEditTableView.register(EmptyGroupEditTableViewCell.nib(), forCellReuseIdentifier: EmptyGroupEditTableViewCell.className)
     }
+    
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.editGroupList
+                           ])
+    }
 }
 
 // MARK: - TableView Delegate
@@ -122,6 +133,7 @@ extension GroupEditViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if serverGroups?.isEmpty == false {
+            Analytics.logEvent(Tracking.Event.touchEditGroupNumber + String(indexPath.row + 1), parameters: nil)
             let nextVC = GroupNameEditBottomSheetViewController()
                 .setTitle("그룹명 변경")
                 .setHeight(184)

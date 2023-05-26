@@ -230,7 +230,7 @@ extension AroundMeViewController: UICollectionViewDataSource {
             let index = indexPath.row
             print("\(index) Call Back Method")
             Analytics.logEvent(Tracking.Event.touchAroundMeAdd, parameters: [
-                "내근처의명함_추가_asn": indexPath.row
+                "내근처의명함_추가_asn": indexPath.row + 1
                ])
             // 여기서 카드 추가 API
             self?.cardDetailFetchWithAPI(cardUUID: self?.cardsNearBy[indexPath.row].cardUUID ?? "")

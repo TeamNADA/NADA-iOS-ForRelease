@@ -8,6 +8,7 @@
 import Photos
 import UIKit
 
+import FirebaseAnalytics
 import Kingfisher
 import NVActivityIndicatorView
 import RxSwift
@@ -62,6 +63,7 @@ class GroupViewController: UIViewController {
     
     // 중간 그룹 이름들 나열된 뷰
     @IBAction func pushToGroupEdit(_ sender: Any) {
+        Analytics.logEvent(Tracking.Event.touchEditGroup, parameters: nil)
         let groupEditVC = self.moduleFactory.makeGroupEditVC(groupList: serverGroups ?? [])
         navigationController?.pushViewController(groupEditVC, animated: true)
     }
@@ -106,6 +108,7 @@ class GroupViewController: UIViewController {
         registerCell()
         setNotification()
         setUI()
+        setTracking()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -127,6 +130,13 @@ class GroupViewController: UIViewController {
 // MARK: - Extensions
 
 extension GroupViewController {
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.cardGroupList
+                           ])
+    }
+    
     private func registerCell() {
         groupCollectionView.delegate = self
         groupCollectionView.dataSource = self
@@ -349,6 +359,7 @@ extension GroupViewController: UICollectionViewDataSource {
             self.groupName = serverGroups?[indexPath.row] ?? ""
             offset = 0
             frontCards?.removeAll()
+            Analytics.logEvent(Tracking.Event.touchGroup + String(indexPath.row+1), parameters: nil)
             
             DispatchQueue.main.async {
                 self.setActivityIndicator()
@@ -361,6 +372,7 @@ extension GroupViewController: UICollectionViewDataSource {
                 }
             }
         case cardsCollectionView:
+            Analytics.logEvent(Tracking.Event.touchGroupCard + String(indexPath.row+1), parameters: nil)
             cardDetailFetchWithAPI(cardUUID: frontCards?[indexPath.row].cardUUID ?? "")
         default:
             return

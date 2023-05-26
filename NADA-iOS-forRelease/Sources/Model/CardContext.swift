@@ -10,5 +10,5 @@ import Foundation
 @frozen
 public enum CardContext {
     case myCard
-//    case group
+    case group
 }

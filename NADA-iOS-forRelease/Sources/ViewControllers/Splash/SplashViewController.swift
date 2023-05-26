@@ -8,12 +8,16 @@
 import UIKit
 
 import FirebaseAnalytics
+import Lottie
+import SnapKit
 
 class SplashViewController: UIViewController {
 
     // MARK: - Properties
     
     private weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
+    private let nadaLogoLottieView = LottieAnimationView(name: Const.Lottie.nadaLogo)
+    
     let defaults = UserDefaults.standard
  
     // MARK: - View Life Cycle
@@ -21,22 +25,8 @@ class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-         super.viewWillAppear(animated)
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-            if self.appDelegate?.isLogin == true {
-                self.presentToMain()
-            } else {
-                if UserDefaults.standard.object(forKey: Const.UserDefaultsKey.isOnboarding) != nil {
-                    self.presentToLogin()
-                } else {
-                    self.presentToOnboarding()
-                }
-            }
-        }
+        setLayout()
+        setLottie()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -47,6 +37,22 @@ class SplashViewController: UIViewController {
     
     // MARK: - Functions
     
+    private func setLottie() {
+        nadaLogoLottieView.play { [weak self] _ in
+            self?.presentScreen()
+        }
+    }
+    private func presentScreen() {
+        if self.appDelegate?.isLogin == true {
+            self.presentToMain()
+        } else {
+            if UserDefaults.standard.object(forKey: Const.UserDefaultsKey.isOnboarding) != nil {
+                self.presentToLogin()
+            } else {
+                self.presentToOnboarding()
+            }
+        }
+    }
     private func presentToMain() {
         guard let mainVC = UIStoryboard(name: Const.Storyboard.Name.tabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.tabBarViewController) as? TabBarViewController else { return }
         mainVC.modalPresentationStyle = .fullScreen
@@ -70,5 +76,18 @@ class SplashViewController: UIViewController {
                            parameters: [
                             AnalyticsParameterScreenName: Tracking.Screen.splash
                            ])
+    }
+}
+
+// MARK: - Layout
+
+extension SplashViewController {
+    private func setLayout() {
+        view.addSubview(nadaLogoLottieView)
+        
+        nadaLogoLottieView.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.width.height.equalTo(160)
+        }
     }
 }

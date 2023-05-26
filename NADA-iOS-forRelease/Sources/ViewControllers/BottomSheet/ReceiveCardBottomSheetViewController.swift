@@ -8,6 +8,7 @@
 import Photos
 import UIKit
 
+import FirebaseAnalytics
 import RxSwift
 import RxRelay
 import RxCocoa
@@ -52,6 +53,7 @@ class ReceiveCardBottomSheetViewController: CommonBottomSheetViewController {
         super.viewDidLoad()
         setLayout()
         bindActions()
+        setTracking()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -77,11 +79,19 @@ extension ReceiveCardBottomSheetViewController {
     
     // MARK: - Methods
     
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.receiveCardBottomSheet
+                           ])
+    }
+    
     private func bindActions() {
         byIdButton.rx.tap
             .withUnretained(self)
             .subscribe { owner, _ in
                 owner.makeVibrate(degree: .medium)
+                Analytics.logEvent(Tracking.Event.touchAddByID, parameters: nil)
                 let nextVC = AddWithIdBottomSheetViewController()
                 self.hideBottomSheetAndPresent(nextBottomSheet: nextVC, title: "ID로 명함 추가", height: 184)
             }.disposed(by: self.disposeBag)
@@ -90,6 +100,7 @@ extension ReceiveCardBottomSheetViewController {
             .withUnretained(self)
             .subscribe { owner, _ in
                 owner.makeVibrate(degree: .medium)
+                Analytics.logEvent(Tracking.Event.touchAddByQR, parameters: nil)
                 switch AVCaptureDevice.authorizationStatus(for: .video) {
                 case .denied:
                     owner.makeOKCancelAlert(title: "카메라 권한이 허용되어 있지 않아요.",

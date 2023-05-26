@@ -326,6 +326,7 @@ extension HomeViewController {
     @objc
     private func backToHome(_ notification: Notification) {
         setUI()
+        setTracking()
     }
 }
 

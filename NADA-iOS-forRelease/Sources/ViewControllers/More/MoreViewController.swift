@@ -171,7 +171,7 @@ extension MoreViewController {
     func setDeleteCicked() {
         makeOKCancelAlert(title: "", message: "정말 탈퇴하시겠습니까?\n앱 내 정보가 모두 삭제되며, 이후 복구는 불가합니다.", okAction: { [weak self ]_ in
             self?.deleteUserWithAPI {
-                self?.makeOKAlert(title: "", message: "나다를 이용해주셔서 감사합니다.\n다음에 또 뵈어요! 🥹") { _ in
+                self?.makeOKAlert(title: "", message: "나다를 이용해주셔서 감사합니다.\n다음에 또 뵈어요! 🥺") { _ in
                     UserDefaults.appGroup.removeObject(forKey: Const.UserDefaultsKey.accessToken)
                     WidgetCenter.shared.reloadTimelines(ofKind: "MyCardWidget")
 //                        self.defaults.removeObject(forKey: Const.UserDefaultsKey.refreshToken)

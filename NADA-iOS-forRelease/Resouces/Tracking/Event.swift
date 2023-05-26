@@ -15,6 +15,21 @@ extension Tracking {
         static let touchKakaoLogin = "A3 로그인_카카오"
         static let touchAppleLogin = "A3 로그인_애플"
         
+        static let touchGiveCard = "B1_메인탭_명함주기"
+        static let touchTakeCard = "B1_메인탭_명함받기"
+        static let touchAroundMe = "B1_메인탭_내근처의명함"
+        
+        static let touchAddByID = "B2 명함받기모달_ID로받기"
+        static let touchAddByQR = "B2_명함받기모달_QR로받기"
+        
+        static let touchAddCard = "B5_명함받기모달_추가"
+        
+        static let touchSelectGroup = "B6_그룹선택모달_완료"
+        
+        static let touchAroundMeClose = "B7_내근처의명함_닫기"
+        static let touchAroundMeRefresh = "B7_내근처의명함_새로고침"
+        static let touchAroundMeAdd = "B7_내근처의명함_추가"
+        
         static let touchCreateCard = "C1 내명함_추가"
         static let touchCardList = "C1 내명함_목록"
         static let scrollMyCard = "C1 내명함_imp_"
@@ -72,6 +87,33 @@ extension Tracking {
         static let touchPreviewCompanyComplete = "C9 명함만들기_직장_미리보기_완료"
         
         static let touchCardListPin = "C10 명함리스트_핀"
+        
+        static let touchEditGroup = "D1_명함모음_그룹편집"
+        static let cardGroupList = "D1_명함모음"
+        static let touchGroup2 = "D1_명함모음_그룹2"
+        static let touchGroup3 = "D1_명함모음_그룹3"
+        static let touchGroup4 = "D1_명함모음_그룹4"
+        static let touchGroupCard = "D1_명함모음"
+        
+        static let touchEditGroupBack = "D2_그룹편집_뒤로가기"
+        static let touchEditGroupAdd = "D2_그룹편집_그룹추가"
+        static let touchEditGroup1 = "D2_그룹편집_그룹1"
+        static let touchEditGroup2 = "D2_그룹편집_그룹2"
+        static let touchEditGroup3 = "D2_그룹편집_그룹3"
+        static let touchEditGroup4 = "D2_그룹편집_그룹4"
+        
+        static let touchCardDetailClose = "D3_명함상세_종료"
+        static let touchCardDetailEdit = "D3_명함상세_수정"
+        static let touchCardDetailEditGroup = "D3_명함상세_그룹변경"
+        static let touchCardDetailDelete = "D3_명함상세_명함삭제"
+        static let touchCardDetailCancel = "D3_명함상세_취소"
+        static let touchCardDetailHarmony = "D3_명함상세_궁합"
+        static let touchCardDetailBasicSNS = "D3_명함상세_SNS"
+        static let touchCardDetailBasicUrl = "D3_명함상세_기본Url"
+        static let touchCardDetailFanSNS = "D3_명함상세_덕질_SNS"
+        static let touchCardDetailFanUrl1 = "D3_명함상세_덕질_Url1"
+        static let touchCardDetailFanUrl2 = "D3_명함상세_덕질_Url2"
+        static let touchCardDetailCompanyUrl = "D3_명함상세_직장_Url"
         
         static let touchDarkmode = "E1 설정_다크모드"
         static let touchPrivacyPolicy = "E1 설정_개인정보"

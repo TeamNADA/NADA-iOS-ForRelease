@@ -13,7 +13,7 @@ extension Tracking {
         static let splash = "A1 스플래시"
         static let onboarding = "A2 온보딩"
         static let login = "A3 로그인"
-        static let main = "B1_메인탭"
+        static let home = "B1_메인탭"
         static let receiveCardBottomSheet = "B2_명함받기모달"
         static let cardResultBottomSheet = "B5_명함추가모달"
         static let selectGroupBottomSheet = "B6_그룹선택모달"

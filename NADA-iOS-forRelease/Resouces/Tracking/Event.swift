@@ -29,6 +29,7 @@ extension Tracking {
         static let touchAroundMeClose = "B7_내근처의명함_닫기"
         static let touchAroundMeRefresh = "B7_내근처의명함_새로고침"
         static let touchAroundMeAdd = "B7_내근처의명함_추가"
+        
         static let touchCreateCard = "C1_내명함_추가"
         static let touchCardList = "C1_내명함_목록"
         static let scrollMyCard = "C1_내명함_imp_"

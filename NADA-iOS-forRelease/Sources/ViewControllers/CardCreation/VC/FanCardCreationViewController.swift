@@ -113,7 +113,7 @@ extension FanCardCreationViewController {
         cardCreationCollectionView.backgroundColor = .background
         cardCreationCollectionView.isPagingEnabled = true
         
-        creationTextLabel.text = "명함 생성"
+        creationTextLabel.text = "명함 만들기"
         creationTextLabel.font = .title02
         creationTextLabel.textColor = .primary
         

@@ -195,7 +195,7 @@ extension FanFrontCardCell {
         case .myCard:
             Analytics.logEvent(Tracking.Event.touchFanCardURL1, parameters: nil)
         case .group:
-            Analytics.logEvent(Tracking.Event.touchCardDetailFanUrl1, parameters: nil)
+            Analytics.logEvent(Tracking.Event.touchCardDetailFanURL1, parameters: nil)
         }
     }
     @objc
@@ -209,7 +209,7 @@ extension FanFrontCardCell {
         case .myCard:
             Analytics.logEvent(Tracking.Event.touchFanCardURL2, parameters: nil)
         case .group:
-            Analytics.logEvent(Tracking.Event.touchCardDetailFanUrl2, parameters: nil)
+            Analytics.logEvent(Tracking.Event.touchCardDetailFanURL2, parameters: nil)
         }
     }
     @objc

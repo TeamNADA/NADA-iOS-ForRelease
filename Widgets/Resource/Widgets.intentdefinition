@@ -9,7 +9,7 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>88xZPY</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>22D68</string>
+	<string>22E261</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
 	<string>14E222b</string>
 	<key>INIntentDefinitionToolsVersion</key>
@@ -101,7 +101,7 @@
 	<array>
 		<dict>
 			<key>INTypeDisplayName</key>
-			<string>MyCard</string>
+			<string>내 명함</string>
 			<key>INTypeDisplayNameID</key>
 			<string>J1deG2</string>
 			<key>INTypeLastPropertyTag</key>

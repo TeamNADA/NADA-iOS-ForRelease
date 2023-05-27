@@ -180,7 +180,7 @@ extension CompanyFrontCardCell {
         case .myCard:
             Analytics.logEvent(Tracking.Event.touchCompanyCardURL, parameters: nil)
         case .group:
-            Analytics.logEvent(Tracking.Event.touchCardDetailCompanyUrl, parameters: nil)
+            Analytics.logEvent(Tracking.Event.touchCardDetailCompanyURL, parameters: nil)
         }
     }
     

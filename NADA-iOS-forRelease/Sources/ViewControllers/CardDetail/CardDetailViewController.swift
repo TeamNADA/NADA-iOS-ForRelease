@@ -105,6 +105,11 @@ extension CardDetailViewController {
                 }
             case .requestErr(let message):
                 print("cardHarmonyFetchWithAPI - requestErr: \(message)")
+                self.makeOKAlert(title: "", message: "내 명함이 없어 궁합을 볼 수 없어요!\n지금 명함을 만들러 가볼까요?", okAction: {_ in
+                    self.tabBarController?.selectedIndex = 1
+                    self.navigationController?.popViewController(animated: true)
+                }, completion: nil)
+                
             case .pathErr:
                 print("cardHarmonyFetchWithAPI - pathErr")
             case .serverErr:
@@ -162,8 +167,7 @@ extension CardDetailViewController {
         let options = UIMenu(title: "", options: .displayInline, children: [changeGroup, deleteCard])
         
         let cancel = UIAction(title: "취소", attributes: .destructive, handler: { _ in
-            Analytics.logEvent(Tracking.Event.touchCardDetailCancel, parameters: nil)
-            print("취소") })
+            Analytics.logEvent(Tracking.Event.touchCardDetailCancel, parameters: nil)})
         
         optionButton.menu = UIMenu(identifier: nil,
                                    options: .displayInline,

@@ -180,6 +180,7 @@ extension GroupViewController {
     
     @objc func didRecieveDataNotification(_ notification: Notification) {
         selectedRow = notification.object as? Int ?? 0
+        groupName = serverGroups?[selectedRow] ?? ""
     }
     
     @objc

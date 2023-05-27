@@ -375,15 +375,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
     private func setLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            print("location on")
-            locationManager.startUpdatingLocation()
-            print(locationManager.location?.coordinate)
-        } else {
-            print("location off")
-        }
+        locationManager.requestLocation()
     }
     
     // MARK: - @objc Methods

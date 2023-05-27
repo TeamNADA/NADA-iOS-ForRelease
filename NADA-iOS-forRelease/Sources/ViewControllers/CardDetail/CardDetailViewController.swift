@@ -7,6 +7,8 @@
 
 import UIKit
 
+import FirebaseAnalytics
+
 class CardDetailViewController: UIViewController {
     
     // MARK: - Properties
@@ -14,6 +16,7 @@ class CardDetailViewController: UIViewController {
     @IBAction func touchBackButton(_ sender: Any) {
         switch status {
         case .group:
+            Analytics.logEvent(Tracking.Event.touchCardDetailClose, parameters: nil)
             self.navigationController?.popViewController(animated: true)
         case .add:
             NotificationCenter.default.post(name: .reloadGroupViewController, object: nil)
@@ -27,7 +30,12 @@ class CardDetailViewController: UIViewController {
         }
     }
     
+    @IBAction func touchOptionMenu(_ sender: UIButton) {
+        Analytics.logEvent(Tracking.Event.touchCardDetailEdit, parameters: nil)
+    }
+    
     @IBAction func presentHarmonyViewController(_ sender: Any) {
+        Analytics.logEvent(Tracking.Event.touchCardDetailHarmony, parameters: nil)
         cardHarmonyFetchWithAPI(cardUUID: cardDataModel?.cardUUID ?? "")
     }
     
@@ -56,6 +64,12 @@ class CardDetailViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(didRecieveDataNotification(_:)), name: Notification.Name.passDataToDetail, object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setTracking()
     }
 }
 
@@ -91,6 +105,11 @@ extension CardDetailViewController {
                 }
             case .requestErr(let message):
                 print("cardHarmonyFetchWithAPI - requestErr: \(message)")
+                self.makeOKAlert(title: "", message: "내 명함이 없어 궁합을 볼 수 없어요!\n지금 명함을 만들러 가볼까요?", okAction: {_ in
+                    self.tabBarController?.selectedIndex = 1
+                    self.navigationController?.popViewController(animated: true)
+                }, completion: nil)
+                
             case .pathErr:
                 print("cardHarmonyFetchWithAPI - pathErr")
             case .serverErr:
@@ -103,6 +122,13 @@ extension CardDetailViewController {
 }
 
 extension CardDetailViewController {
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.cardDetail
+                           ])
+    }
+    
     private func setUI() {
         switch status {
         case .group:
@@ -118,6 +144,7 @@ extension CardDetailViewController {
     private func setMenu() {
         let changeGroup = UIAction(title: "그룹 변경",
                                    handler: { _ in
+            Analytics.logEvent(Tracking.Event.touchCardDetailEditGroup, parameters: nil)
             let nextVC = SelectGroupBottomSheetViewController()
                         .setTitle("그룹선택")
                         .setHeight(386)
@@ -134,11 +161,13 @@ extension CardDetailViewController {
                                        message: "명함을 정말 삭제하시겠습니까?",
                                        deleteAction: { _ in
                 // 명함 삭제 서버통신
+                Analytics.logEvent(Tracking.Event.touchCardDetailDelete, parameters: nil)
                 self.cardDeleteInGroupWithAPI(cardUUID: self.cardDataModel?.cardUUID ?? "", cardGroupName: self.groupName ?? "")
             }) })
         let options = UIMenu(title: "", options: .displayInline, children: [changeGroup, deleteCard])
         
-        let cancel = UIAction(title: "취소", attributes: .destructive, handler: { _ in print("취소") })
+        let cancel = UIAction(title: "취소", attributes: .destructive, handler: { _ in
+            Analytics.logEvent(Tracking.Event.touchCardDetailCancel, parameters: nil)})
         
         optionButton.menu = UIMenu(identifier: nil,
                                    options: .displayInline,
@@ -156,6 +185,7 @@ extension CardDetailViewController {
             frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
             guard let cardDataModel = cardDataModel else { return }
             frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
+            frontCard.cardContext = .group
             
             cardView.addSubview(frontCard)
         case .company:
@@ -164,6 +194,7 @@ extension CardDetailViewController {
             frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
             guard let cardDataModel = cardDataModel else { return }
             frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
+            frontCard.cardContext = .group
             
             cardView.addSubview(frontCard)
         case .fan:
@@ -172,6 +203,7 @@ extension CardDetailViewController {
             frontCard.frame = CGRect(x: 0, y: 0, width: cardView.frame.width, height: cardView.frame.height)
             guard let cardDataModel = cardDataModel else { return }
             frontCard.initCellFromServer(cardData: cardDataModel, isShareable: isShareable)
+            frontCard.cardContext = .group
             
             cardView.addSubview(frontCard)
         }

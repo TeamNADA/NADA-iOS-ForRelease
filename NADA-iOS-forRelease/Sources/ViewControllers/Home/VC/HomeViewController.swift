@@ -8,6 +8,7 @@
 import Photos
 import UIKit
 
+import FirebaseAnalytics
 import RxSwift
 import RxRelay
 import RxCocoa
@@ -78,6 +79,12 @@ final class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         setUI()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setTracking()
+    }
 }
 
 extension HomeViewController {
@@ -141,6 +148,13 @@ extension HomeViewController {
     
     // MARK: - Methods
     
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.home
+                           ])
+    }
+    
     private func bindActions() {
         giveCardView.rx.tapGesture()
             .when(.recognized) // bind시에도 이벤트가 발생하기 때문 .skip(1)으로도 처리 가능
@@ -148,6 +162,7 @@ extension HomeViewController {
             .bind { owner, _ in
                 owner.makeVibrate()
                 owner.giveCardView.backgroundColor = .cardCreationClicked
+                Analytics.logEvent(Tracking.Event.touchGiveCard, parameters: nil)
                 print("명함 주기")
                 owner.tabBarController?.selectedIndex = 1
             }.disposed(by: self.disposeBag)
@@ -158,6 +173,7 @@ extension HomeViewController {
             .bind { owner, _ in
                 owner.makeVibrate()
                 owner.takeCardView.backgroundColor = .cardCreationClicked
+                Analytics.logEvent(Tracking.Event.touchTakeCard, parameters: nil)
                 print("명함 받기")
                 let nextVC = ReceiveCardBottomSheetViewController()
                             .setTitle("명함 받기")
@@ -172,6 +188,7 @@ extension HomeViewController {
             .bind { owner, _ in
                 owner.makeVibrate()
                 owner.aroundMeView.backgroundColor = .cardCreationClicked
+                Analytics.logEvent(Tracking.Event.touchAroundMe, parameters: nil)
                 let aroundMeVC = self.moduleFactory.makeAroundMeVC()
                 owner.present(aroundMeVC, animated: true)
             }.disposed(by: self.disposeBag)
@@ -314,6 +331,7 @@ extension HomeViewController {
     @objc
     private func backToHome(_ notification: Notification) {
         setUI()
+        setTracking()
     }
 }
 

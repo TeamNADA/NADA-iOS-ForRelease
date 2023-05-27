@@ -76,6 +76,8 @@ class FrontCardCell: CardCell {
         switch cardContext {
         case .myCard:
             Analytics.logEvent(Tracking.Event.touchBasicCardShare, parameters: nil)
+        case .group:
+            return
         }
     }
     
@@ -173,6 +175,8 @@ extension FrontCardCell {
         switch cardContext {
         case .myCard:
             Analytics.logEvent(Tracking.Event.touchBasicCardSNS, parameters: nil)
+        case .group:
+            Analytics.logEvent(Tracking.Event.touchCardDetailBasicSNS, parameters: nil)
         }
     }
     @objc
@@ -196,6 +200,8 @@ extension FrontCardCell {
         switch cardContext {
         case .myCard:
             Analytics.logEvent(Tracking.Event.touchBasicCardURL, parameters: nil)
+        case .group:
+            Analytics.logEvent(Tracking.Event.touchCardDetailBasicUrl, parameters: nil)
         }
     }
 }

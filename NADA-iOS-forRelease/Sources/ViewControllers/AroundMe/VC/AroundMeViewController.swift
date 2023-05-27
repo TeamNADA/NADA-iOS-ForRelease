@@ -7,6 +7,7 @@
 import UIKit
 import CoreLocation
 
+import FirebaseAnalytics
 import NVActivityIndicatorView
 import RxSwift
 import RxRelay
@@ -92,6 +93,12 @@ final class AroundMeViewController: UIViewController {
         super.viewWillDisappear(animated)
         NotificationCenter.default.post(name: .backToHome, object: nil, userInfo: nil)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setTracking()
+    }
 }
 
 extension AroundMeViewController {
@@ -103,6 +110,7 @@ extension AroundMeViewController {
         self.navigationController?.navigationBar.isHidden = true
         navigationBar.setUI("내 근처의 명함", leftImage: UIImage(named: "iconClear"), rightImage: UIImage(named: "iconRefreshLocation"))
         navigationBar.leftButtonAction = {
+            Analytics.logEvent(Tracking.Event.touchAroundMeClose, parameters: nil)
             self.dismiss(animated: true)
         }
         navigationBar.rightButtonAction = {
@@ -130,6 +138,13 @@ extension AroundMeViewController {
     }
     
     // MARK: - Methods
+    
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.aroundMe
+                           ])
+    }
     
     private func setActivityIndicator() {
         view.addSubview(loadingBgView)
@@ -169,6 +184,7 @@ extension AroundMeViewController {
             .subscribe { owner, _ in
                 owner.makeVibrate(degree: .medium)
                 owner.setActivityIndicator()
+                Analytics.logEvent(Tracking.Event.touchAroundMeRefresh, parameters: nil)
                 owner.cardNearByFetchWithAPI(longitude: self.longitude, latitude: self.latitude)
             }.disposed(by: self.disposeBag)
     }
@@ -218,6 +234,9 @@ extension AroundMeViewController: UICollectionViewDataSource {
         cardCell.addCardMethod = { [weak self] in
             let index = indexPath.row
             print("\(index) Call Back Method")
+            Analytics.logEvent(Tracking.Event.touchAroundMeAdd, parameters: [
+                "내근처의명함_추가_asn": indexPath.row + 1
+               ])
             // 여기서 카드 추가 API
             self?.cardDetailFetchWithAPI(cardUUID: self?.cardsNearBy[indexPath.row].cardUUID ?? "")
         }

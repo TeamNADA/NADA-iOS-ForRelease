@@ -6,6 +6,8 @@
 //
 
 import UIKit
+
+import FirebaseAnalytics
 import IQKeyboardManagerSwift
 
 class AddWithIdBottomSheetViewController: CommonBottomSheetViewController, UITextFieldDelegate {
@@ -51,6 +53,7 @@ class AddWithIdBottomSheetViewController: CommonBottomSheetViewController, UITex
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        setTracking()
         self.addWithIdTextField.becomeFirstResponder()
     }
     
@@ -89,6 +92,13 @@ class AddWithIdBottomSheetViewController: CommonBottomSheetViewController, UITex
             explainLabel.topAnchor.constraint(equalTo: addWithIdTextField.bottomAnchor, constant: 8),
             explainLabel.leadingAnchor.constraint(equalTo: errorImageView.trailingAnchor, constant: 5)
         ])
+    }
+    
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.addByIdBottomSheet
+                           ])
     }
 }
 

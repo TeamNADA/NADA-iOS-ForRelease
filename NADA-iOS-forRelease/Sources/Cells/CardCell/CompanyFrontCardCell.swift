@@ -17,7 +17,7 @@ class CompanyFrontCardCell: CardCell {
     
     private var cardData: Card?
     private var setConstraintDone = false
-    private var backgroundCornerRaidus: CGFloat?
+    private var backgroundCornerRadius: CGFloat?
     
     public var cardContext: CardContext?
     
@@ -116,7 +116,7 @@ extension CompanyFrontCardCell {
         
         linkURLStackView.alignment = .center
         
-        backgroundImageView.cornerRadius = backgroundCornerRaidus ?? 20
+        backgroundImageView.cornerRadius = backgroundCornerRadius ?? 20
     }
     func setConstraints() {
         if setConstraintDone { return }
@@ -148,7 +148,7 @@ extension CompanyFrontCardCell {
         linkURLLabel.addGestureRecognizer(linkURLTapGesture)
     }
     public func setCornerRadius(_ cornerRadius: CGFloat) {
-        backgroundCornerRaidus = cornerRadius
+        backgroundCornerRadius = cornerRadius
     }
     
     // MARK: - @objc Methods

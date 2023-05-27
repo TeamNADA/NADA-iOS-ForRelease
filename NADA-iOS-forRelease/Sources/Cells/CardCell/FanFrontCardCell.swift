@@ -17,7 +17,7 @@ class FanFrontCardCell: CardCell {
     
     private var cardData: Card?
     private var setConstraintDone = false
-    private var backgroundCornerRaidus: CGFloat?
+    private var backgroundCornerRadius: CGFloat?
     
     public var cardContext: CardContext?
     
@@ -109,7 +109,7 @@ extension FanFrontCardCell {
         
         secondURLStackView.alignment = .center
         
-        backgroundImageView.cornerRadius = backgroundCornerRaidus ?? 20
+        backgroundImageView.cornerRadius = backgroundCornerRadius ?? 20
     }
     func setConstraints() {
         if setConstraintDone { return }
@@ -145,7 +145,7 @@ extension FanFrontCardCell {
         secondURLLabel.addGestureRecognizer(secondURLTapGesture)
     }
     public func setCornerRadius(_ cornerRadius: CGFloat) {
-        backgroundCornerRaidus = cornerRadius
+        backgroundCornerRadius = cornerRadius
     }
     
     // MARK: - @objc Methods

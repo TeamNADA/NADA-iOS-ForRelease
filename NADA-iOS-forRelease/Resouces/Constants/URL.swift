@@ -10,7 +10,7 @@ import Foundation
 extension Const {
     struct URL {
 //        static let baseURL = "https://nada-api.n-e.kr/api/v1"
-        #if DEBUG || BETA
+        #if DEBUG
         static let baseURL = "http://3.35.107.3:8080//api/v1"
         #else
         static let baseURL = "https://nada-api.n-e.kr/api/v1"

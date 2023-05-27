@@ -33,9 +33,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7H-Yr-sYB">
-                        <rect key="frame" x="127" y="302" width="121.5" height="29"/>
+                        <rect key="frame" x="129" y="302" width="117" height="29"/>
                         <string key="text">홈 탭에서 + 버튼을 통해
-명함을 생성할 수 있어요.</string>
+명함을 만들 수 있어요.</string>
                         <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="12"/>
                         <color key="textColor" name="quaternary"/>
                         <nil key="highlightedColor"/>

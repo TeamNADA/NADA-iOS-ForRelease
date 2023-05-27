@@ -319,6 +319,8 @@ extension GroupViewController: UICollectionViewDataSource {
                 }
                 cardCell.initCellFromServer(cardData: frontCards[indexPath.row], isShareable: false)
                 cardCell.setConstraints()
+                cardCell.setCornerRadius(15)
+                
                 return cardCell
             case "FAN":
                 guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: FanFrontCardCell.className, for: indexPath) as? FanFrontCardCell else {
@@ -326,6 +328,8 @@ extension GroupViewController: UICollectionViewDataSource {
                 }
                 cardCell.initCellFromServer(cardData: frontCards[indexPath.row], isShareable: false)
                 cardCell.setConstraints()
+                cardCell.setCornerRadius(15)
+                
                 return cardCell
             case "COMPANY":
                 guard let cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: CompanyFrontCardCell.className, for: indexPath) as? CompanyFrontCardCell else {
@@ -333,6 +337,8 @@ extension GroupViewController: UICollectionViewDataSource {
                 }
                 cardCell.initCellFromServer(cardData: frontCards[indexPath.row], isShareable: false)
                 cardCell.setConstraints()
+                cardCell.setCornerRadius(15)
+                
                 return cardCell
             default:
                 return UICollectionViewCell()

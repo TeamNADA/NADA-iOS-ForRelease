@@ -201,7 +201,7 @@ extension FrontCardCell {
         case .myCard:
             Analytics.logEvent(Tracking.Event.touchBasicCardURL, parameters: nil)
         case .group:
-            Analytics.logEvent(Tracking.Event.touchCardDetailBasicUrl, parameters: nil)
+            Analytics.logEvent(Tracking.Event.touchCardDetailBasicURL, parameters: nil)
         }
     }
 }

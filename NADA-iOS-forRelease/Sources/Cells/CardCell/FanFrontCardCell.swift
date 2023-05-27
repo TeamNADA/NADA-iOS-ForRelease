@@ -66,7 +66,6 @@ class FanFrontCardCell: CardCell {
         
         guard let cardContext else { return }
         
-        // TODO: - CardContext
         switch cardContext {
         case .myCard:
             Analytics.logEvent(Tracking.Event.touchFanCardShare, parameters: nil)
@@ -176,7 +175,6 @@ extension FanFrontCardCell {
         
         guard let cardContext else { return }
         
-        // TODO: - CardContext
         switch cardContext {
         case .myCard:
             Analytics.logEvent(Tracking.Event.touchFanCardSNS, parameters: nil)
@@ -190,7 +188,6 @@ extension FanFrontCardCell {
         
         guard let cardContext else { return }
         
-        // TODO: - CardContext
         switch cardContext {
         case .myCard:
             Analytics.logEvent(Tracking.Event.touchFanCardURL1, parameters: nil)
@@ -204,7 +201,6 @@ extension FanFrontCardCell {
         
         guard let cardContext else { return }
         
-        // TODO: - CardContext
         switch cardContext {
         case .myCard:
             Analytics.logEvent(Tracking.Event.touchFanCardURL2, parameters: nil)

@@ -70,6 +70,8 @@ class FanFrontCardCell: CardCell {
         switch cardContext {
         case .myCard:
             Analytics.logEvent(Tracking.Event.touchFanCardShare, parameters: nil)
+        case .group:
+            return
         }
     }
     
@@ -178,6 +180,8 @@ extension FanFrontCardCell {
         switch cardContext {
         case .myCard:
             Analytics.logEvent(Tracking.Event.touchFanCardSNS, parameters: nil)
+        case .group:
+            Analytics.logEvent(Tracking.Event.touchCardDetailFanSNS, parameters: nil)
         }
     }
     @objc
@@ -190,6 +194,8 @@ extension FanFrontCardCell {
         switch cardContext {
         case .myCard:
             Analytics.logEvent(Tracking.Event.touchFanCardURL1, parameters: nil)
+        case .group:
+            Analytics.logEvent(Tracking.Event.touchCardDetailFanUrl1, parameters: nil)
         }
     }
     @objc
@@ -202,6 +208,8 @@ extension FanFrontCardCell {
         switch cardContext {
         case .myCard:
             Analytics.logEvent(Tracking.Event.touchFanCardURL2, parameters: nil)
+        case .group:
+            Analytics.logEvent(Tracking.Event.touchCardDetailFanUrl2, parameters: nil)
         }
     }
     @objc

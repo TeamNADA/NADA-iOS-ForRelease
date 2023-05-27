@@ -108,12 +108,12 @@ class GroupViewController: UIViewController {
         registerCell()
         setNotification()
         setUI()
-        setTracking()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        setTracking()
         DispatchQueue.main.async {
             self.setActivityIndicator()
             

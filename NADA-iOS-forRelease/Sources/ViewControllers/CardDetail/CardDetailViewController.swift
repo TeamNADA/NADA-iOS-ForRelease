@@ -162,8 +162,7 @@ extension CardDetailViewController {
         let options = UIMenu(title: "", options: .displayInline, children: [changeGroup, deleteCard])
         
         let cancel = UIAction(title: "취소", attributes: .destructive, handler: { _ in
-            Analytics.logEvent(Tracking.Event.touchCardDetailCancel, parameters: nil)
-            print("취소") })
+            Analytics.logEvent(Tracking.Event.touchCardDetailCancel, parameters: nil)})
         
         optionButton.menu = UIMenu(identifier: nil,
                                    options: .displayInline,

@@ -16,6 +16,8 @@ extension Tracking {
         
         static let home = "B1_메인탭"
         static let receiveCardBottomSheet = "B2_명함받기모달"
+        static let addByIdBottomSheet = "B3_ID로받기"
+        static let addByQRBottomSheet = "B4_QR로받기"
         static let cardResultBottomSheet = "B5_명함추가모달"
         static let selectGroupBottomSheet = "B6_그룹선택모달"
         static let aroundMe = "B7_내근처의명함"

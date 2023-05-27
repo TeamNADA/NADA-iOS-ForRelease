@@ -8,6 +8,7 @@
 import UIKit
 import AVFoundation
 
+import FirebaseAnalytics
 import FirebaseDynamicLinks
 
 class QRScanViewController: UIViewController {
@@ -36,6 +37,7 @@ class QRScanViewController: UIViewController {
         
         basicSetting()
         setNotification()
+        setTracking()
     }
 }
 
@@ -46,6 +48,12 @@ extension QRScanViewController {
 }
 
 extension QRScanViewController {
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.addByQRBottomSheet
+                           ])
+    }
     
     private func basicSetting() {
         guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {

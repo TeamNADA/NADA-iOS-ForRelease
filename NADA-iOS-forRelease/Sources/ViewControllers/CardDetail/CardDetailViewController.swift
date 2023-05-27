@@ -60,11 +60,16 @@ class CardDetailViewController: UIViewController {
         setMenu()
         setFrontCard()
         setGestureRecognizer()
-        setTracking()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(didRecieveDataNotification(_:)), name: Notification.Name.passDataToDetail, object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setTracking()
     }
 }
 

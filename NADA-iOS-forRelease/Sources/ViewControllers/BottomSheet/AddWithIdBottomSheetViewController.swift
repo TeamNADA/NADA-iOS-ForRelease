@@ -46,7 +46,6 @@ class AddWithIdBottomSheetViewController: CommonBottomSheetViewController, UITex
         super.viewDidLoad()
 
         setupUI()
-        setTracking()
         addWithIdTextField.delegate = self
         IQKeyboardManager.shared.shouldResignOnTouchOutside = false
     }
@@ -54,6 +53,7 @@ class AddWithIdBottomSheetViewController: CommonBottomSheetViewController, UITex
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        setTracking()
         self.addWithIdTextField.becomeFirstResponder()
     }
     

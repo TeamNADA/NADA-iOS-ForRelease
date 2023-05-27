@@ -49,6 +49,11 @@ class CardResultBottomSheetViewController: CommonBottomSheetViewController {
         super.viewDidLoad()
         setupUI()
         registerCell()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         setTracking()
     }
     

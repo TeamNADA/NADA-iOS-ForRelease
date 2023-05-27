@@ -37,6 +37,11 @@ class QRScanViewController: UIViewController {
         
         basicSetting()
         setNotification()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         setTracking()
     }
 }

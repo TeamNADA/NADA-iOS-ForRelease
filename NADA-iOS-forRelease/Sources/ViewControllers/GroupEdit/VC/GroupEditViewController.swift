@@ -33,6 +33,11 @@ class GroupEditViewController: UIViewController {
         setRegister()
         bindViewModels()
         serverGroupList()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         setTracking()
     }
     

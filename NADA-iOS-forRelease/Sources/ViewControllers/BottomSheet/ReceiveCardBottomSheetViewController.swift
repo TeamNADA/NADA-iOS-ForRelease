@@ -53,6 +53,11 @@ class ReceiveCardBottomSheetViewController: CommonBottomSheetViewController {
         super.viewDidLoad()
         setLayout()
         bindActions()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         setTracking()
     }
     

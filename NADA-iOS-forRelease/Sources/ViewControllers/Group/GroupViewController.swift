@@ -113,7 +113,6 @@ class GroupViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        setTracking()
         DispatchQueue.main.async {
             self.setActivityIndicator()
             
@@ -124,6 +123,12 @@ class GroupViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.groupListFetchWithAPI()
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setTracking()
     }
 }
 

@@ -148,7 +148,7 @@ public class CardAPI {
         
         switch statusCode {
         case 200:
-            if decodedData.status != 200 {
+            if decodedData.status >= 400 {
                 return .requestErr(decodedData.message ?? "error message")
             } else {
                 return .success(decodedData.data ?? "None-Data")

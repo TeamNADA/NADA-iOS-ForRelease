@@ -46,7 +46,6 @@ public class UtilAPI {
                 return .success(decodedData.data ?? "None-Data")
             }
         case 400..<500:
-            print("🇰🇷🇰🇷🇰🇷🇰🇷")
             return .requestErr(decodedData.message ?? "error message")
         case 500:
             return .serverErr

@@ -70,7 +70,6 @@ class CompanyFrontCardCell: CardCell {
         
         guard let cardContext else { return }
         
-        // TODO: - CardContext
         switch cardContext {
         case .myCard:
             Analytics.logEvent(Tracking.Event.touchCompanyCardShare, parameters: nil)
@@ -175,7 +174,6 @@ extension CompanyFrontCardCell {
         
         guard let cardContext else { return }
         
-        // TODO: - CardContext
         switch cardContext {
         case .myCard:
             Analytics.logEvent(Tracking.Event.touchCompanyCardURL, parameters: nil)

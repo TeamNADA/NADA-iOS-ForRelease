@@ -120,25 +120,32 @@ extension CardCreationPreviewViewController {
         attributeString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributeString.length))
         noticeLabel.attributedText = attributeString
         
-        completeButton.titleLabel?.font = .button01
         // MARK: - #available(iOS 15.0, *)
+
         if #available(iOS 15.0, *) {
             var config = UIButton.Configuration.filled()
+            var attributedString = AttributedString("완료")
+            
+            attributedString.font = .button01
             config.background.cornerRadius = 15
-            config.baseBackgroundColor = .mainColorNadaMain
+            config.attributedTitle = attributedString
             config.baseForegroundColor = .white
-            completeButton.configuration = config
             
             let configHandler: UIButton.ConfigurationUpdateHandler = { button in
                 switch button.state {
+                case .disabled:
+                    button.configuration = config
+                    button.configuration?.baseBackgroundColor = .textBox
                 default:
-                    button.configuration?.title = "생성"
+                    button.configuration = config
+                    button.configuration?.baseBackgroundColor = .mainColorNadaMain
                 }
             }
             completeButton.configurationUpdateHandler = configHandler
         } else {
             // TODO: - QA/iOS 13 테스트. selected 설정.
-            completeButton.setTitle("생성", for: .normal)
+            completeButton.titleLabel?.font = .button01
+            completeButton.setTitle("완료", for: .normal)
             completeButton.layer.cornerRadius = 15
             completeButton.setBackgroundImage(UIImage(named: "enableButtonBackground"), for: .normal)
             completeButton.setTitleColor(.white, for: .normal)

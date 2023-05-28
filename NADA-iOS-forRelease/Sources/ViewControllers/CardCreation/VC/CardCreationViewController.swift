@@ -128,36 +128,39 @@ extension CardCreationViewController {
         closeButton.setImage(UIImage(named: "iconClear"), for: .normal)
         closeButton.setTitle("", for: .normal)
         
-        completeButton.titleLabel?.font = .button01
         completeButton.isEnabled = false
         
         // MARK: - #available(iOS 15.0, *)
+
         if #available(iOS 15.0, *) {
             var config = UIButton.Configuration.filled()
+            var attributedString = AttributedString("미리보기")
+            
+            attributedString.font = .button01
             config.background.cornerRadius = 15
-            completeButton.configuration = config
+            config.attributedTitle = attributedString
+            config.baseForegroundColor = .white
 
             let configHandler: UIButton.ConfigurationUpdateHandler = { button in
                 switch button.state {
                 case .disabled:
-                    button.configuration?.title = "완료"
+                    button.configuration = config
                     button.configuration?.baseBackgroundColor = .textBox
-                    button.configuration?.baseForegroundColor = .white
                 default:
-                    button.configuration?.title = "완료"
+                    button.configuration = config
                     button.configuration?.baseBackgroundColor = .mainColorNadaMain
-                    button.configuration?.baseForegroundColor = .white
                 }
             }
             completeButton.configurationUpdateHandler = configHandler
         } else {
+            completeButton.titleLabel?.font = .button01
             completeButton.layer.cornerRadius = 15
             
-            completeButton.setTitle("완료", for: .normal)
+            completeButton.setTitle("미리보기", for: .normal)
             completeButton.setTitleColor(.white, for: .normal)
             completeButton.setBackgroundImage(UIImage(named: "enableButtonBackground"), for: .normal)
             
-            completeButton.setTitle("완료", for: .disabled)
+            completeButton.setTitle("미리보기", for: .disabled)
             completeButton.setTitleColor(.white, for: .disabled)
             completeButton.setBackgroundImage(UIImage(named: "disableButtonBackground"), for: .disabled)
         }

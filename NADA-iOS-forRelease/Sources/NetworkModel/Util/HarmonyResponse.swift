@@ -12,7 +12,7 @@ import Lottie
 
 // MARK: - HarmonyResponse
 struct HarmonyResponse: Codable {
-    let mbtiGrade: Int
+    let mbtiGrade: Int?
     let constellationGrade: Int
     let totalGrade: Int
     

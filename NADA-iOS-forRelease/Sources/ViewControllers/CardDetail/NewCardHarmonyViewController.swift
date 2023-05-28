@@ -145,13 +145,8 @@ extension NewCardHarmonyViewController {
         nadaHarmonyLottie6180.loopMode = .playOnce
         nadaHarmonyLottie81100.loopMode = .playOnce
         if harmonyData?.cardtype == "FAN" {
-//            mbtiIcon.isHidden = true
-//            mbtiTitleLabel.isHidden = true
-            mbtiScoreLabel.isHidden = true
+            mbtiScoreLabel.text = "-"
         } else {
-//            mbtiIcon.isHidden = false
-//            mbtiTitleLabel.isHidden = false
-            mbtiScoreLabel.isHidden = false
             mbtiScoreLabel.text = "\(harmonyData?.mbtiGrade ?? 00)점"
         }
         

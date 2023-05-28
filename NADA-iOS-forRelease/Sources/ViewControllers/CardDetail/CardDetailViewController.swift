@@ -220,27 +220,27 @@ extension CardDetailViewController {
     private func updateHarmony(percentage: HarmonyResponse, cardtype: String) -> HarmonyData {
         switch percentage.totalGrade {
         case 0 ... 20:
-            return HarmonyData(lottie: 0, mbtiGrade: percentage.mbtiGrade, constellationGrade: percentage.constellationGrade,
+            return HarmonyData(lottie: 0, mbtiGrade: percentage.mbtiGrade ?? -1, constellationGrade: percentage.constellationGrade,
                                totalGrade: percentage.totalGrade,
                                color: .harmonyRed, description: "좀 더 친해지길 바라..😅", cardtype: cardtype)
         case 21 ... 40:
-            return HarmonyData(lottie: 21, mbtiGrade: percentage.mbtiGrade, constellationGrade: percentage.constellationGrade,
+            return HarmonyData(lottie: 21, mbtiGrade: percentage.mbtiGrade ?? -1, constellationGrade: percentage.constellationGrade,
                                totalGrade: percentage.totalGrade,
                                color: .harmonyOrange, description: "마음만은 찰떡궁합!🙃", cardtype: cardtype)
         case 41 ... 60:
-            return HarmonyData(lottie: 41, mbtiGrade: percentage.mbtiGrade, constellationGrade: percentage.constellationGrade,
+            return HarmonyData(lottie: 41, mbtiGrade: percentage.mbtiGrade ?? -1, constellationGrade: percentage.constellationGrade,
                                totalGrade: percentage.totalGrade,
                                color: .harmonyGreen, description: "이 정도면 제법 친한 사이😛", cardtype: cardtype)
         case 61 ... 80:
-            return HarmonyData(lottie: 61, mbtiGrade: percentage.mbtiGrade, constellationGrade: percentage.constellationGrade,
+            return HarmonyData(lottie: 61, mbtiGrade: percentage.mbtiGrade ?? -1, constellationGrade: percentage.constellationGrade,
                                totalGrade: percentage.totalGrade,
                                color: .harmonyYellow, description: "우리 사이 척하면 척!😝", cardtype: cardtype)
         case 81 ... 100:
-            return HarmonyData(lottie: 81, mbtiGrade: percentage.mbtiGrade, constellationGrade: percentage.constellationGrade,
+            return HarmonyData(lottie: 81, mbtiGrade: percentage.mbtiGrade ?? -1, constellationGrade: percentage.constellationGrade,
                                totalGrade: percentage.totalGrade,
                                color: .harmonyPurple, description: "더할 나위 없이 완벽한 사이!😍", cardtype: cardtype)
         default:
-            return HarmonyData(lottie: 0, mbtiGrade: percentage.mbtiGrade, constellationGrade: percentage.constellationGrade,
+            return HarmonyData(lottie: 0, mbtiGrade: percentage.mbtiGrade ?? -1, constellationGrade: percentage.constellationGrade,
                                totalGrade: percentage.totalGrade,
                                color: .harmonyRed, description: "", cardtype: "BASIC")
         }

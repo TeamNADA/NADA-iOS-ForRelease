@@ -77,6 +77,13 @@ class FanFrontCardCell: CardCell {
     static func nib() -> UINib {
         return UINib(nibName: FanFrontCardCell.className, bundle: Bundle(for: FanFrontCardCell.self))
     }
+    
+    override func prepareForReuse() {
+        snsStackView.isHidden = false
+        firstURLStackView.isHidden = false
+        secondURLStackView.isHidden = false
+        totalStackView.isHidden = false
+    }
 }
 
 // MARK: - Extensions

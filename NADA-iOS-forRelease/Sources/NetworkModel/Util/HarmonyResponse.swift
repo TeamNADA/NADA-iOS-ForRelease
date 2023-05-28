@@ -12,9 +12,9 @@ import Lottie
 
 // MARK: - HarmonyResponse
 struct HarmonyResponse: Codable {
-    let mbtiGrade: Double
-    let constellationGrade: Double
-    let totalGrade: Double
+    let mbtiGrade: Int
+    let constellationGrade: Int
+    let totalGrade: Int
     
     enum CodingKeys: String, CodingKey {
         case mbtiGrade
@@ -25,9 +25,9 @@ struct HarmonyResponse: Codable {
 
 struct HarmonyData {
     let lottie: Int
-    let mbtiGrade: Double
-    let constellationGrade: Double
-    let totalGrade: Double
+    let mbtiGrade: Int
+    let constellationGrade: Int
+    let totalGrade: Int
     let color: UIColor
     let description: String
     let cardtype: String

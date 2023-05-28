@@ -81,6 +81,13 @@ class CompanyFrontCardCell: CardCell {
     static func nib() -> UINib {
         return UINib(nibName: CompanyFrontCardCell.className, bundle: Bundle(for: CompanyFrontCardCell.self))
     }
+    
+    override func prepareForReuse() {
+        mailStackView.isHidden = false
+        phoneNumberStackView.isHidden = false
+        linkURLStackView.isHidden = false
+        totalStackView.isHidden = false
+    }
 }
 
 // MARK: - Extensions

@@ -83,6 +83,13 @@ class FrontCardCell: CardCell {
     static func nib() -> UINib {
         return UINib(nibName: Const.Xib.frontCardCell, bundle: Bundle(for: FrontCardCell.self))
     }
+    
+    override func prepareForReuse() {
+        instagramStackView.isHidden = false
+        phoneNumberStackView.isHidden = false
+        linkURLStackView.isHidden = false
+        totalStackView.isHidden = false
+    }
 }
 
 // MARK: - Extensions

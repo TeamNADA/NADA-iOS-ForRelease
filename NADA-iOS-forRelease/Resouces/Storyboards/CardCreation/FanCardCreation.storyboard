@@ -43,7 +43,7 @@
                                     <constraint firstAttribute="height" constant="2" id="Hm8-0C-mLG"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJP-GW-J4W">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJP-GW-J4W">
                                 <rect key="frame" x="24" y="724" width="327" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="5Vp-dw-6P6"/>
@@ -52,9 +52,6 @@
                                 <state key="normal" title="Button">
                                     <color key="titleColor" systemColor="linkColor"/>
                                 </state>
-                                <buttonConfiguration key="configuration" style="plain" title="Button">
-                                    <color key="baseForegroundColor" systemColor="linkColor"/>
-                                </buttonConfiguration>
                                 <connections>
                                     <action selector="pushToCardCompletionView:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="mWh-HD-gMb"/>
                                 </connections>

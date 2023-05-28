@@ -232,7 +232,6 @@ extension CardDetailViewController {
                                totalGrade: percentage.totalGrade,
                                color: .harmonyGreen, description: "이 정도면 제법 친한 사이😛", cardtype: cardtype)
         case 61 ... 80:
-            print("🇰🇷", percentage.constellationGrade)
             return HarmonyData(lottie: 61, mbtiGrade: percentage.mbtiGrade ?? 0, constellationGrade: percentage.constellationGrade,
                                totalGrade: percentage.totalGrade,
                                color: .harmonyYellow, description: "우리 사이 척하면 척!😝", cardtype: cardtype)

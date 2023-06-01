@@ -81,7 +81,7 @@ enum WidgetError: Error {
 
 extension IntentHandler {
     func cardListFetchWithAPI(completion: @escaping (Result<GenericResponse<[Card]>?, Error>) -> Void) {
-        guard let url = URL(string: Const.URL.baseURL) else { return }
+        guard let url = URL(string: Const.URL.baseURL + "/card") else { return }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
         urlRequest.addValue("Bearer \(UserDefaults.appGroup.string(forKey: "AccessToken") ?? "")", forHTTPHeaderField: "Authorization")

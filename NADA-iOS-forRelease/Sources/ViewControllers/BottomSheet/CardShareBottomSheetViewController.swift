@@ -536,6 +536,10 @@ extension CardShareBottomSheetViewController {
 // MARK: - CLLocationManagerDelegate
 
 extension CardShareBottomSheetViewController: CLLocationManagerDelegate {
+    func getLocationUsagePermission() {
+        self.locationManager.requestWhenInUseAuthorization()
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             print("✅ 위도: ", location.coordinate.latitude)
@@ -549,6 +553,23 @@ extension CardShareBottomSheetViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
     }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+         //location5
+         switch status {
+         case .authorizedAlways, .authorizedWhenInUse:
+             print("GPS 권한 설정됨")
+             self.locationManager.startUpdatingLocation() // 중요!
+         case .restricted, .notDetermined:
+             print("GPS 권한 설정되지 않음")
+             getLocationUsagePermission()
+         case .denied:
+             print("GPS 권한 요청 거부됨")
+             getLocationUsagePermission()
+         default:
+             print("GPS: Default")
+         }
+     }
 }
 
 // MARK: - Network

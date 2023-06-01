@@ -174,6 +174,8 @@
 		F85711A7274A6B3400F59F0B /* CardCreationPreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F85711A6274A6B3400F59F0B /* CardCreationPreview.storyboard */; };
 		F858079E2700354E00872484 /* BackgroundCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858079C2700354E00872484 /* BackgroundCollectionViewCell.swift */; };
 		F858079F2700354E00872484 /* BackgroundCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F858079D2700354E00872484 /* BackgroundCollectionViewCell.xib */; };
+		F86F97B42A28C8F700F13719 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FC2272FA17B0009DF0D /* URL.swift */; };
+		F86F97B52A28C96B00F13719 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43B726C0227D0033E151 /* Const.swift */; };
 		F87122762733046300A24E74 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87122752733046300A24E74 /* Card.swift */; };
 		F871227827330A3800A24E74 /* CardCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F871227727330A3800A24E74 /* CardCreationRequest.swift */; };
 		F8719DDB274F92E90081AD51 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8719DDA274F92E90081AD51 /* UITextField+Extension.swift */; };
@@ -1842,6 +1844,8 @@
 				F8257751299546930067E145 /* Card.swift in Sources */,
 				F82AF6A329FBC1710051545B /* UserDefaults+Extension.swift in Sources */,
 				F87D222D298ECAFB001A882B /* IntentHandler.swift in Sources */,
+				F86F97B42A28C8F700F13719 /* URL.swift in Sources */,
+				F86F97B52A28C96B00F13719 /* Const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

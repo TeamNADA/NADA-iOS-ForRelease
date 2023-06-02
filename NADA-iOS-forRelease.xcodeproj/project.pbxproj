@@ -174,6 +174,8 @@
 		F85711A7274A6B3400F59F0B /* CardCreationPreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F85711A6274A6B3400F59F0B /* CardCreationPreview.storyboard */; };
 		F858079E2700354E00872484 /* BackgroundCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858079C2700354E00872484 /* BackgroundCollectionViewCell.swift */; };
 		F858079F2700354E00872484 /* BackgroundCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F858079D2700354E00872484 /* BackgroundCollectionViewCell.xib */; };
+		F867C4CB2A29E8870061E37C /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FC2272FA17B0009DF0D /* URL.swift */; };
+		F867C4CC2A29E8A60061E37C /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43B726C0227D0033E151 /* Const.swift */; };
 		F86F97B42A28C8F700F13719 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FC2272FA17B0009DF0D /* URL.swift */; };
 		F86F97B52A28C96B00F13719 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43B726C0227D0033E151 /* Const.swift */; };
 		F87122762733046300A24E74 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87122752733046300A24E74 /* Card.swift */; };
@@ -1832,6 +1834,8 @@
 				F8BCDD22298FFA830044D0B4 /* QRCodeWidget.swift in Sources */,
 				F8BCDD26298FFB0B0044D0B4 /* MyCardWidget.swift in Sources */,
 				F8257750299546920067E145 /* Card.swift in Sources */,
+				F867C4CB2A29E8870061E37C /* URL.swift in Sources */,
+				F867C4CC2A29E8A60061E37C /* Const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

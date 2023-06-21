@@ -50,7 +50,7 @@ platform :ios do
     if options[:version]
       increment_version_number(
         version_number: options[:version],
-        xcodeproj: "NADA-iOS-forRelease.xcworkspace"
+        xcodeproj: "NADA-iOS-forRelease.xcodeproj"
       )
     else
       version = get_version_number(
@@ -72,6 +72,63 @@ platform :ios do
     )
   end
 
+  # beta
+  desc "Push a new beta build to the TestFlight"
+  lane :beta do |options|
+    increment_build_number(xcodeproj: "NADA-iOS-forRelease.xcodeproj")
+
+    build_app(
+      workspace: "NADA-iOS-forRelease.xcworkspace",
+      scheme: "NADA-iOS-forRelease (Beta)",
+      export_method: "app-store",
+      export_options: {
+        provisioningProfiles: {
+          "YJC.NADA-iOS-forRelease" => "match AppStore YJC.NADA-iOS-forRelease",
+          "YJC.NADA-iOS-forRelease.Widgets" => "match AppStore YJC.NADA-iOS-forRelease.Widgets",
+          "YJC.NADA-iOS-forRelease.IntentsExtension" => "match AppStore YJC.NADA-iOS-forRelease.IntentsExtension",
+          "YJC.NADA-iOS-forRelease.IntentsExtensionUI" => "match AppStore YJC.NADA-iOS-forRelease.IntentsExtensionUI"
+        }
+      }
+    )
+
+    # changelog 사용 시 반영, 미사용시 빈값.
+    if options[:changelog]
+      upload_to_testflight(
+        distribute_external: false, # default
+        changelog: "changelog"
+      )
+    else
+      upload_to_testflight(
+        distribute_external: false, # default
+        changelog: ""
+      )
+    end
+
+    # version 사용 시 반영, 미사용 시 현재 프로젝트 버전 사용.
+    if options[:version]
+      increment_version_number(
+        version_number: options[:version],
+        xcodeproj: "NADA-iOS-forRelease.xcodeproj"
+      )
+    else
+      version = get_version_number(
+                  target: "NADA-iOS-forRelease"
+                )
+    end
+
+    build = get_build_number
+
+    slack(
+      username: "fastlane",
+      icon_url: "https://github.com/hyun99999/algorithm-Swift/assets/69136340/f997e95e-3c09-432b-aa35-9c67ea381e0d",
+      message: "성공적으로 TestFlight 에 등록되었습니다!🔥",
+      success: true, # default
+      slack_url: "https://hooks.slack.com/services/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",
+      payload: {
+	"Version": version + "(" + build + ")"
+      }
+    )
+  end
 
   # install
   desc "Add certificates and provisioning profiles on a new machine"

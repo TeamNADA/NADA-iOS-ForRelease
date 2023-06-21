@@ -61,8 +61,8 @@ platform :ios do
     build = get_build_number
 
     slack(
-      username: "fastlane",
-      icon_url: "https://github.com/hyun99999/algorithm-Swift/assets/69136340/f997e95e-3c09-432b-aa35-9c67ea381e0d",
+      username: "약한녀석의 말은 듣지 않는 워그레이몬🦖",
+      icon_url: "https://github.com/hyun99999/algorithm-Swift/assets/69136340/0c947bbc-9406-465a-b918-d154a26f7320",
       message: "성공적으로 앱을 등록했습니다!💫",
       success: true, # default
       slack_url: "https://hooks.slack.com/services/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",
@@ -119,8 +119,8 @@ platform :ios do
     build = get_build_number
 
     slack(
-      username: "fastlane",
-      icon_url: "https://github.com/hyun99999/algorithm-Swift/assets/69136340/f997e95e-3c09-432b-aa35-9c67ea381e0d",
+      username: "약한녀석의 말은 듣지 않는 워그레이몬🦖",
+      icon_url: "https://github.com/hyun99999/algorithm-Swift/assets/69136340/0c947bbc-9406-465a-b918-d154a26f7320",
       message: "성공적으로 TestFlight 에 등록되었습니다!🔥",
       success: true, # default
       slack_url: "https://hooks.slack.com/services/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",
@@ -149,8 +149,8 @@ platform :ios do
     build = get_build_number 
 
     slack(
-      username: "fastlane",
-      icon_url: "https://github.com/hyun99999/algorithm-Swift/assets/69136340/f997e95e-3c09-432b-aa35-9c67ea381e0d",
+      username: "약한녀석의 말은 듣지 않는 워그레이몬🦖",
+      icon_url: "https://github.com/hyun99999/algorithm-Swift/assets/69136340/0c947bbc-9406-465a-b918-d154a26f7320",
       message: "에러 발생!!! 발생!!🚨 : #{exception}",
       success: false,
       slack_url: "https://hooks.slack.com/services/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",

@@ -16,11 +16,62 @@
 default_platform(:ios)
 
 platform :ios do
+
+  # release
   desc "Push a new release build to the App Store"
-  lane :release do
+  lane :release do |options|
+
     increment_build_number(xcodeproj: "NADA-iOS-forRelease.xcodeproj")
-    build_app(workspace: "NADA-iOS-forRelease.xcworkspace", scheme: "NADA-iOS-forRelease")
-    upload_to_app_store
+
+    build_app(
+      workspace: "NADA-iOS-forRelease.xcworkspace",
+      scheme: "NADA-iOS-forRelease (Release)",
+      export_method: "app-store",
+      export_options: {
+        provisioningProfiles: {
+          "YJC.NADA-iOS-forRelease" => "match AppStore YJC.NADA-iOS-forRelease",
+          "YJC.NADA-iOS-forRelease.Widgets" => "match AppStore YJC.NADA-iOS-forRelease.Widgets",
+          "YJC.NADA-iOS-forRelease.IntentsExtension" => "match AppStore YJC.NADA-iOS-forRelease.IntentsExtension",
+          "YJC.NADA-iOS-forRelease.IntentsExtensionUI" => "match AppStore YJC.NADA-iOS-forRelease.IntentsExtensionUI"
+        }
+      }
+    )
+
+    upload_to_app_store(
+      skip_metadata: false, #default
+      skip_screenshots: true,
+      submit_for_review: true,
+      automatic_release: false,
+      force: true,
+      precheck_include_in_app_purchases: false,
+      submission_information: { add_id_info_uses_idfa: false }
+    )
+
+    if options[:version]
+      increment_version_number(
+        version_number: options[:version],
+        xcodeproj: "NADA-iOS-forRelease.xcworkspace"
+      )
+    else
+      version = get_version_number(
+                  target: "NADA-iOS-forRelease"
+                )
+    end
+
+    build = get_build_number
+
+    slack(
+      username: "fastlane",
+      icon_url: "https://github.com/hyun99999/algorithm-Swift/assets/69136340/f997e95e-3c09-432b-aa35-9c67ea381e0d",
+      message: "성공적으로 앱을 등록했습니다!💫",
+      success: true, # default
+      slack_url: "https://hooks.slack.com/services/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",
+      payload: {
+	"Version": version + "(" + build + ")"
+      }
+    )
+  end
+
 
   # install
   desc "Add certificates and provisioning profiles on a new machine"

@@ -22,6 +22,17 @@ platform :ios do
     build_app(workspace: "NADA-iOS-forRelease.xcworkspace", scheme: "NADA-iOS-forRelease")
     upload_to_app_store
 
+  # install
+  desc "Add certificates and provisioning profiles on a new machine"
+  lane :install do
+    match(type: "appstore",
+          app_identifier:["YJC.NADA-iOS-forRelease", "YJC.NADA-iOS-forRelease.Widgets", "YJC.NADA-iOS-forRelease.IntentsExtension", "YJC.NADA-iOS-forRelease.IntentsExtensionUI"],
+          readonly: true)
+    match(type: "development",
+          app_identifier:["YJC.NADA-iOS-forRelease", "YJC.NADA-iOS-forRelease.Widgets", "YJC.NADA-iOS-forRelease.IntentsExtension", "YJC.NADA-iOS-forRelease.IntentsExtensionUI"],
+          readonly: true)
+  end
+
   # error
   error do |lane, exception, options|
     version = get_version_number(

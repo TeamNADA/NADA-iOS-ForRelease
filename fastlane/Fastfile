@@ -53,6 +53,7 @@ platform :ios do
         version_number: options[:version],
         xcodeproj: "NADA-iOS-forRelease.xcodeproj"
       )
+      version = options[:version]
     else
       version = get_version_number(
                   target: "NADA-iOS-forRelease"
@@ -113,6 +114,7 @@ platform :ios do
         version_number: options[:version],
         xcodeproj: "NADA-iOS-forRelease.xcodeproj"
       )
+      version = options[:version]
     else
       version = get_version_number(
                   target: "NADA-iOS-forRelease"

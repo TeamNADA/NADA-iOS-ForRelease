@@ -97,7 +97,7 @@ platform :ios do
       upload_to_testflight(
         api_key_path: "fastlane/key.json",
         distribute_external: false, # default
-        changelog: "changelog"
+        changelog: options[:changelog]
       )
     else
       upload_to_testflight(

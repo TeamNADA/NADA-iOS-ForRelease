@@ -66,7 +66,7 @@ platform :ios do
       icon_url: "https://github.com/hyun99999/algorithm-Swift/assets/69136340/0c947bbc-9406-465a-b918-d154a26f7320",
       message: "성공적으로 앱을 등록했습니다!💫",
       success: true, # default
-      slack_url: "https://hooks.slack.com/services/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",
+      slack_url: "https://hooks.slack.com/services/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",
       payload: {
 	"Version": version + "(" + build + ")"
       }
@@ -126,7 +126,7 @@ platform :ios do
       icon_url: "https://github.com/hyun99999/algorithm-Swift/assets/69136340/0c947bbc-9406-465a-b918-d154a26f7320",
       message: "성공적으로 TestFlight 에 등록되었습니다!🔥",
       success: true, # default
-      slack_url: "https://hooks.slack.com/services/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",
+      slack_url: "https://hooks.slack.com/services/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",
       payload: {
 	"Version": version + "(" + build + ")"
       }
@@ -156,7 +156,7 @@ platform :ios do
       icon_url: "https://github.com/hyun99999/algorithm-Swift/assets/69136340/0c947bbc-9406-465a-b918-d154a26f7320",
       message: "에러 발생!!! 발생!!🚨 : #{exception}",
       success: false,
-      slack_url: "https://hooks.slack.com/services/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",
+      slack_url: "https://hooks.slack.com/services/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",
       payload: {
 	"Version": version + "(" + build + ")"
       }

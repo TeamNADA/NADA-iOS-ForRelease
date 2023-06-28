@@ -10,7 +10,7 @@ import UIKit
 class OpenSourceViewController: UIViewController {
 
     // MARK: - Properteis
-    var openSourceList = ["Moya", "SkeletonView", "SwiftLint", "VerticalCardSwiper", "KakaoSDK", "IQKeyboardManagerSwift", "Kingfisher", "NVActivityIndicatorView"]
+    var openSourceList = ["Moya", "SkeletonView", "SwiftLint", "VerticalCardSwiper", "KakaoSDK", "IQKeyboardManagerSwift", "Kingfisher", "NVActivityIndicatorView", "lottie-ios", "Then", "SnapKit", "RxSwift", "FlexLayout", "PinLayout", "RxGesture", "YPImagePicker", "Firebase-ios-sdk"]
 
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var openSourceTableView: UITableView!
@@ -69,6 +69,15 @@ extension OpenSourceViewController: UITableViewDelegate {
         case 5: openURL(link: URL(string: Const.URL.keyboardURL)!)
         case 6: openURL(link: URL(string: Const.URL.kingfisherURL)!)
         case 7: openURL(link: URL(string: Const.URL.indicatorURL)!)
+        case 8: openURL(link: URL(string: Const.URL.lottieURL)!)
+        case 9: openURL(link: URL(string: Const.URL.thenURL)!)
+        case 10: openURL(link: URL(string: Const.URL.snapKitURL)!)
+        case 11: openURL(link: URL(string: Const.URL.rxSwiftURL)!)
+        case 12: openURL(link: URL(string: Const.URL.flexLayoutURL)!)
+        case 13: openURL(link: URL(string: Const.URL.pinLayoutURL)!)
+        case 14: openURL(link: URL(string: Const.URL.rxGestureURL)!)
+        case 15: openURL(link: URL(string: Const.URL.ypImagePickerURL)!)
+        case 16: openURL(link: URL(string: Const.URL.firebaseURL)!)
         default: print("default!")
             
         }

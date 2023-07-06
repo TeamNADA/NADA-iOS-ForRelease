@@ -16,10 +16,152 @@
 default_platform(:ios)
 
 platform :ios do
+
+  # release
   desc "Push a new release build to the App Store"
-  lane :release do
+  lane :release do |options|
+
     increment_build_number(xcodeproj: "NADA-iOS-forRelease.xcodeproj")
-    build_app(workspace: "NADA-iOS-forRelease.xcworkspace", scheme: "NADA-iOS-forRelease")
-    upload_to_app_store
+
+    build_app(
+      workspace: "NADA-iOS-forRelease.xcworkspace",
+      scheme: "NADA-iOS-forRelease (Release)",
+      export_method: "app-store",
+      export_options: {
+        provisioningProfiles: {
+          "YJC.NADA-iOS-forRelease" => "match AppStore YJC.NADA-iOS-forRelease",
+          "YJC.NADA-iOS-forRelease.Widgets" => "match AppStore YJC.NADA-iOS-forRelease.Widgets",
+          "YJC.NADA-iOS-forRelease.IntentsExtension" => "match AppStore YJC.NADA-iOS-forRelease.IntentsExtension",
+          "YJC.NADA-iOS-forRelease.IntentsExtensionUI" => "match AppStore YJC.NADA-iOS-forRelease.IntentsExtensionUI"
+        }
+      }
+    )
+
+    upload_to_app_store(
+      api_key_path: "fastlane/key.json",
+      skip_metadata: false, #default
+      skip_screenshots: true,
+      submit_for_review: true,
+      automatic_release: false,
+      force: true,
+      precheck_include_in_app_purchases: false,
+      submission_information: { add_id_info_uses_idfa: false }
+    )
+
+    if options[:version]
+      increment_version_number(
+        version_number: options[:version],
+        xcodeproj: "NADA-iOS-forRelease.xcodeproj"
+      )
+      version = options[:version]
+    else
+      version = get_version_number(
+                  target: "NADA-iOS-forRelease"
+                )
+    end
+
+    build = get_build_number
+
+    slack(
+      username: "약한녀석의 말은 듣지 않는 워그레이몬🦖",
+      icon_url: "https://github.com/hyun99999/algorithm-Swift/assets/69136340/0c947bbc-9406-465a-b918-d154a26f7320",
+      message: "성공적으로 앱을 등록했습니다!💫",
+      success: true, # default
+      slack_url: "https://hooks.slack.com/services/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",
+      payload: {
+	"Version": version + "(" + build + ")"
+      }
+    )
+  end
+
+  # beta
+  desc "Push a new beta build to the TestFlight"
+  lane :beta do |options|
+    increment_build_number(xcodeproj: "NADA-iOS-forRelease.xcodeproj")
+
+    build_app(
+      workspace: "NADA-iOS-forRelease.xcworkspace",
+      scheme: "NADA-iOS-forRelease (Beta)",
+      export_method: "app-store",
+      export_options: {
+        provisioningProfiles: {
+          "YJC.NADA-iOS-forRelease" => "match AppStore YJC.NADA-iOS-forRelease",
+          "YJC.NADA-iOS-forRelease.Widgets" => "match AppStore YJC.NADA-iOS-forRelease.Widgets",
+          "YJC.NADA-iOS-forRelease.IntentsExtension" => "match AppStore YJC.NADA-iOS-forRelease.IntentsExtension",
+          "YJC.NADA-iOS-forRelease.IntentsExtensionUI" => "match AppStore YJC.NADA-iOS-forRelease.IntentsExtensionUI"
+        }
+      }
+    )
+
+    # changelog 사용 시 반영, 미사용시 빈값.
+    if options[:changelog]
+      upload_to_testflight(
+        api_key_path: "fastlane/key.json",
+        distribute_external: false, # default
+        changelog: options[:changelog]
+      )
+    else
+      upload_to_testflight(
+        api_key_path: "fastlane/key.json",
+        distribute_external: false, # default
+        changelog: ""
+      )
+    end
+
+    # version 사용 시 반영, 미사용 시 현재 프로젝트 버전 사용.
+    if options[:version]
+      increment_version_number(
+        version_number: options[:version],
+        xcodeproj: "NADA-iOS-forRelease.xcodeproj"
+      )
+      version = options[:version]
+    else
+      version = get_version_number(
+                  target: "NADA-iOS-forRelease"
+                )
+    end
+
+    build = get_build_number
+
+    slack(
+      username: "약한녀석의 말은 듣지 않는 워그레이몬🦖",
+      icon_url: "https://github.com/hyun99999/algorithm-Swift/assets/69136340/0c947bbc-9406-465a-b918-d154a26f7320",
+      message: "성공적으로 TestFlight 에 등록되었습니다!🔥",
+      success: true, # default
+      slack_url: "https://hooks.slack.com/services/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",
+      payload: {
+	"Version": version + "(" + build + ")"
+      }
+    )
+  end
+
+  # install
+  desc "Add certificates and provisioning profiles on a new machine"
+  lane :install do
+    match(type: "appstore",
+          app_identifier:["YJC.NADA-iOS-forRelease", "YJC.NADA-iOS-forRelease.Widgets", "YJC.NADA-iOS-forRelease.IntentsExtension", "YJC.NADA-iOS-forRelease.IntentsExtensionUI"],
+          readonly: true)
+    match(type: "development",
+          app_identifier:["YJC.NADA-iOS-forRelease", "YJC.NADA-iOS-forRelease.Widgets", "YJC.NADA-iOS-forRelease.IntentsExtension", "YJC.NADA-iOS-forRelease.IntentsExtensionUI"],
+          readonly: true)
+  end
+
+  # error
+  error do |lane, exception, options|
+    version = get_version_number(
+                target: "NADA-iOS-forRelease"
+              )
+    build = get_build_number 
+
+    slack(
+      username: "약한녀석의 말은 듣지 않는 워그레이몬🦖",
+      icon_url: "https://github.com/hyun99999/algorithm-Swift/assets/69136340/0c947bbc-9406-465a-b918-d154a26f7320",
+      message: "에러 발생!!! 발생!!🚨 : #{exception}",
+      success: false,
+      slack_url: "https://hooks.slack.com/services/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",
+      payload: {
+	"Version": version + "(" + build + ")"
+      }
+    )
   end
 end

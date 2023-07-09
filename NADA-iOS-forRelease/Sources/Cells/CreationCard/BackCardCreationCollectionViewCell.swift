@@ -132,8 +132,7 @@ extension BackCardCreationCollectionViewCell {
     }
     @objc
     private func touchRefreshButton() {
-//        NotificationCenter.default.post(name: .touchRefreshButton, object: nil)
-        backCardCreationDelegate?.backCardCreationTouchRefresh(with: tmiTextView.text == "조금 더 다채로운 모습을 담아볼까요?" ? nil : tmiTextView.text)
+        backCardCreationDelegate?.backCardCreationTouchRefresh()
     }
 }
 

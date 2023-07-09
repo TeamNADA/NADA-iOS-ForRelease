@@ -389,6 +389,9 @@ extension CompanyCardCreationViewController: FrontCardCreationDelegate {
 // MARK: - BackCardCreationDelegate
 
 extension CompanyCardCreationViewController: BackCardCreationDelegate {
+    func backCardCreationTouchRefresh() {
+        tasteFetchWithAPI(cardType: cardType)
+    }
     func backCardCreation(requiredInfo valid: Bool) {
         backCardRequiredIsEmpty = !valid
         if frontCardRequiredIsEmpty == false && backCardRequiredIsEmpty == false {

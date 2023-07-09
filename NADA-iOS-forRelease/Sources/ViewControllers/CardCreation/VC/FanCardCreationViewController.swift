@@ -382,6 +382,9 @@ extension FanCardCreationViewController: FrontCardCreationDelegate {
 // MARK: - BackCardCreationDelegate
 
 extension FanCardCreationViewController: BackCardCreationDelegate {
+    func backCardCreationTouchRefresh() {
+        tasteFetchWithAPI(cardType: cardType)
+    }
     func backCardCreation(requiredInfo valid: Bool) {
         backCardRequiredIsEmpty = !valid
         if frontCardRequiredIsEmpty == false && backCardRequiredIsEmpty == false {

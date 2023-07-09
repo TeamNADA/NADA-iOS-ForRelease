@@ -334,6 +334,11 @@ extension FanCardCreationViewController: UICollectionViewDataSource {
                 }
                 backCreationCell.cardType = cardType
                 
+                backCreationCell.firstTasteCollectionView.reloadData()
+                backCreationCell.secondTasteCollectionView.reloadData()
+                backCreationCell.thirdTasteCollectionView.reloadData()
+                backCreationCell.fourthTasteCollectionView.reloadData()
+                
                 return backCreationCell
             }
         }

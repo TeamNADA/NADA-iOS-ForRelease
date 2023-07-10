@@ -408,7 +408,7 @@ extension CardCreationViewController: BackCardCreationDelegate {
     func backCardCreation(withRequired requiredInfo: [String], withOptional optionalInfo: String?) {
         backCard = BackCardDataModel(tastes: requiredInfo, tmi: optionalInfo)
     }
-    func backCardCreationTouchRefresh(with optionalInfo: String?) {
+    func backCardCreationTouchRefresh() {
         tasteFetchWithAPI(cardType: cardType)
     }
 }

@@ -133,6 +133,7 @@ extension BackCardCreationCollectionViewCell {
     @objc
     private func touchRefreshButton() {
         backCardCreationDelegate?.backCardCreationTouchRefresh()
+        backCardCreationDelegate?.backCardCreation(requiredInfo: false)
     }
 }
 

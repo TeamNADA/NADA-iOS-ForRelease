@@ -199,8 +199,8 @@ extension CardCreationViewController {
     private func setTastInfo() {
         // FIXME: - test 를 위한 mock.
         preCardDataModel = Card(birth: "birth", cardID: 17, cardUUID: "7c79c4", cardImage: "Mock", cardName: "cardName", cardTastes: [
-            CardTasteInfo(cardTasteName: "0읽씹", isChoose: true, sortOrder: 6),
-            CardTasteInfo(cardTasteName: "0안읽씹", isChoose: false, sortOrder: 5),
+            CardTasteInfo(cardTasteName: "읽씹", isChoose: true, sortOrder: 6),
+            CardTasteInfo(cardTasteName: "안읽씹", isChoose: false, sortOrder: 5),
             CardTasteInfo(cardTasteName: "100% 1억", isChoose: true, sortOrder: 8),
             CardTasteInfo(cardTasteName: "25% 100억", isChoose: false, sortOrder: 7),
             CardTasteInfo(cardTasteName: "어떻게 죽을지", isChoose: true, sortOrder: 4),
@@ -380,9 +380,14 @@ extension CardCreationViewController: UICollectionViewDataSource {
                 }
                 backCreationCell.backCardCreationDelegate = self
                 if let tasteInfo {
-                    backCreationCell.flavorList = tasteInfo.map { $0.tasteName }
+                    backCreationCell.tasteInfo = tasteInfo.map { $0.tasteName }
                 }
                 backCreationCell.cardType = cardType
+                
+                if let preCardDataModel {
+                    let tastes: [CardTasteInfo] = preCardDataModel.cardTastes.sorted { $0.sortOrder > $1.sortOrder }
+                    backCreationCell.setPreBackCard(tastes: tastes, tmi: preCardDataModel.tmi)
+                }
                 
                 return backCreationCell
             }

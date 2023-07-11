@@ -185,12 +185,33 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDataSource {
         switch collectionView {
         case firstTasteCollectionView:
             cell.initCell(flavor: tasteInfo?[indexPath.item] ?? "")
+            
+            if preTasteInfo?[indexPath.item].isChoose ?? false {
+                cell.isSelected = true
+                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
+            }
+            
         case secondTasteCollectionView:
             cell.initCell(flavor: tasteInfo?[indexPath.item + 2] ?? "")
+            
+            if preTasteInfo?[indexPath.item + 2].isChoose ?? false {
+                cell.isSelected = true
+                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
+            }
         case thirdTasteCollectionView:
             cell.initCell(flavor: tasteInfo?[indexPath.item + 4] ?? "")
+            
+            if preTasteInfo?[indexPath.item + 4].isChoose ?? false {
+                cell.isSelected = true
+                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
+            }
         case fourthTasteCollectionView:
             cell.initCell(flavor: tasteInfo?[indexPath.item + 6] ?? "")
+            
+            if preTasteInfo?[indexPath.item + 6].isChoose ?? false {
+                cell.isSelected = true
+                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
+            }
         default:
             return UICollectionViewCell()
         }

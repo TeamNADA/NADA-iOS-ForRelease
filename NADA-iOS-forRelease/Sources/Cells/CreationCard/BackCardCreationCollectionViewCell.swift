@@ -21,6 +21,7 @@ class BackCardCreationCollectionViewCell: UICollectionViewCell {
     
     private let maxLength: Int = 140
     private var requiredCollectionViewList = [UICollectionView]()
+    private var preTasteInfo: [CardTasteInfo]?
     
     public weak var backCardCreationDelegate: BackCardCreationDelegate?
     
@@ -105,15 +106,32 @@ extension BackCardCreationCollectionViewCell {
         NotificationCenter.default.addObserver(self, selector: #selector(dismissKeyboard), name: .touchRequiredView, object: nil)
     }
     private func checkBackCardStatus() {
+        guard let tasteInfo else { return }
+        
         backCardCreationDelegate?.backCardCreation(withRequired: [
-            firstTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? tasteInfo?[0] ?? "" : tasteInfo?[1] ?? "",
-            secondTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? tasteInfo?[2] ?? "" : tasteInfo?[3] ?? "",
-            thirdTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? tasteInfo?[4] ?? "" : tasteInfo?[5] ?? "",
-            fourthTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? tasteInfo?[6] ?? "" : tasteInfo?[7] ?? ""
+            firstTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? tasteInfo[0] : tasteInfo[1],
+            secondTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? tasteInfo[2] : tasteInfo[3],
+            thirdTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? tasteInfo[4] : tasteInfo[5],
+            fourthTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? tasteInfo[6] : tasteInfo[7]
         ], withOptional: tmiTextView.text == "조금 더 다채로운 모습을 담아볼까요?" ? nil : tmiTextView.text)
     }
     static func nib() -> UINib {
         return UINib(nibName: Const.Xib.backCardCreationCollectionViewCell, bundle: Bundle(for: BackCardCreationCollectionViewCell.self))
+    }
+    public func setPreBackCard(tastes: [CardTasteInfo], tmi: String?) {
+        preTasteInfo = tastes
+                
+        if let tmi {
+            tmiTextView.text = tmi
+            tmiTextView.textColor = .primary
+        } else {
+            tmiTextView.text = "조금 더 다채로운 모습을 담아볼까요?"
+        }
+        
+        backCardCreationDelegate?.backCardCreation(requiredInfo: true)
+        
+        var choosedTastes: [String] = tastes.filter { $0.isChoose == true }.map { $0.cardTasteName}
+        backCardCreationDelegate?.backCardCreation(withRequired: choosedTastes, withOptional: tmi)
     }
     
     // MARK: - @objc Methods

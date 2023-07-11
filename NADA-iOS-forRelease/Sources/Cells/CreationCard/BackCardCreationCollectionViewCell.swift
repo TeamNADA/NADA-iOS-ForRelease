@@ -18,6 +18,7 @@ class BackCardCreationCollectionViewCell: UICollectionViewCell {
     
     public var cardType: CardType?
     public var tasteInfo: [String]?
+    
     private let maxLength: Int = 140
     private var requiredCollectionViewList = [UICollectionView]()
     
@@ -116,6 +117,7 @@ extension BackCardCreationCollectionViewCell {
     }
     
     // MARK: - @objc Methods
+    
     @objc
     private func dismissKeyboard() {
         tmiTextView.resignFirstResponder()
@@ -123,6 +125,7 @@ extension BackCardCreationCollectionViewCell {
 }
 
 // MARK: - UICollectionViewDelegate
+
 extension BackCardCreationCollectionViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
@@ -151,6 +154,7 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDelegate {
 }
 
 // MARK: - UICollectionViewDataSource
+
 extension BackCardCreationCollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
@@ -177,6 +181,7 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
+
 extension BackCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
@@ -196,6 +201,7 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayout
 }
 
 // MARK: - UITextViewDelegate
+
 extension BackCardCreationCollectionViewCell: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == "조금 더 다채로운 모습을 담아볼까요?" {

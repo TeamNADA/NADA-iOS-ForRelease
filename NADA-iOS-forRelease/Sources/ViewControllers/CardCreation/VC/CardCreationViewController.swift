@@ -330,6 +330,21 @@ extension CardCreationViewController: UICollectionViewDataSource {
                     self.present(nextVC, animated: false, completion: nil)
                 }
                 
+                // TODO: - defaultImageIndex 수정
+                if let preCardDataModel {
+                    frontCreationCell.setPreFrontCard(FrontCardDataModel(birth: preCardDataModel.birth,
+                                                                       cardName: preCardDataModel.cardName,
+                                                                       userName: preCardDataModel.userName,
+                                                                       departmentName: preCardDataModel.departmentName,
+                                                                       mailAddress: nil,
+                                                                       mbti: preCardDataModel.mbti,
+                                                                       phoneNumber: preCardDataModel.phoneNumber,
+                                                                       instagram: preCardDataModel.instagram,
+                                                                       twitter: nil,
+                                                                       urls: preCardDataModel.urls,
+                                                                       defaultImageIndex: 0))
+                }
+                
                 return frontCreationCell
             } else if indexPath.item == 1 {
                 guard let backCreationCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.backCardCreationCollectionViewCell, for: indexPath) as? BackCardCreationCollectionViewCell else {

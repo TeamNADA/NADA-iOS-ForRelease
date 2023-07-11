@@ -231,6 +231,44 @@ extension FrontCardCreationCollectionViewCell {
     static func nib() -> UINib {
         return UINib(nibName: Const.Xib.frontCardCreationCollectionViewCell, bundle: Bundle(for: FrontCardCreationCollectionViewCell.self))
     }
+    public func setPreFrontCard(_ preFrontCardDataModel: FrontCardDataModel) {
+        
+        // TODO: - defaultImageIndex 설정하기
+        cardTitleTextField.text = preFrontCardDataModel.cardName
+        userNameTextField.text = preFrontCardDataModel.userName
+        birthLabel.text = preFrontCardDataModel.birth
+        birthLabel.textColor = .primary
+        mbtiLabel.text = preFrontCardDataModel.mbti
+        mbtiLabel.textColor = .primary
+        
+        if let departmentName = preFrontCardDataModel.departmentName,
+           !departmentName.isEmpty {
+            descriptionTextField.text = departmentName
+        } else {
+            descriptionTextField.text = "학교 전공/동아리 기수 등 (15자)"
+        }
+        
+        if let instagram = preFrontCardDataModel.instagram,
+           !instagram.isEmpty {
+            instagramIDTextField.text = instagram
+        } else {
+            instagramIDTextField.text = "Instagram (@ 제외)"
+        }
+        
+        if let phoneNumber = preFrontCardDataModel.phoneNumber,
+           !phoneNumber.isEmpty {
+            phoneNumberTextField.text = phoneNumber
+        } else {
+            phoneNumberTextField.text = "전화번호"
+        }
+        
+        if let url = preFrontCardDataModel.urls,
+           !url.isEmpty {
+            linkURLTextField.text = url[0]
+        } else {
+            linkURLTextField.text = "URL (Github, Blog 등)"
+        }
+    }
     
     // MARK: - @objc Methods
     

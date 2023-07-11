@@ -14,12 +14,12 @@ class CardCreationViewController: UIViewController {
 
     // MARK: - Properties
     
-    enum ButtonState {
+    private enum ButtonState {
         case enable
         case disable
     }
     
-    var completeButtonIsEnabled: ButtonState = .disable {
+    private var completeButtonIsEnabled: ButtonState = .disable {
         didSet {
             if completeButtonIsEnabled == .disable {
                 completeButton.isEnabled = false

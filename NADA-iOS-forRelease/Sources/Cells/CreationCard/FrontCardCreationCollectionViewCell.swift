@@ -268,6 +268,9 @@ extension FrontCardCreationCollectionViewCell {
         } else {
             linkURLTextField.text = "URL (Github, Blog 등)"
         }
+        
+        frontCardCreationDelegate?.frontCardCreation(requiredInfo: true)
+        checkFrontCradStatus()
     }
     
     // MARK: - @objc Methods

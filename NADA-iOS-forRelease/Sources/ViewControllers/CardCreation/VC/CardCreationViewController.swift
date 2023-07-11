@@ -270,6 +270,7 @@ extension CardCreationViewController {
 }
 
 // MARK: - YPImagePickerDelegate
+
 extension CardCreationViewController: YPImagePickerDelegate {
     func imagePickerHasNoItemsInLibrary(_ picker: YPImagePicker) {
         self.makeOKAlert(title: "", message: "가져올 수 있는 사진이 없습니다.")
@@ -281,6 +282,7 @@ extension CardCreationViewController: YPImagePickerDelegate {
 }
 
 // MARK: - UICollectionViewDelegate
+
 extension CardCreationViewController: UICollectionViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let targetIndex = targetContentOffset.pointee.x / scrollView.frame.size.width
@@ -303,6 +305,7 @@ extension CardCreationViewController: UICollectionViewDelegate {
 }
 
 // MARK: - UICollectionViewDataSource
+
 extension CardCreationViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
@@ -364,6 +367,7 @@ extension CardCreationViewController: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
+
 extension CardCreationViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = collectionView.frame.height

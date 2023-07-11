@@ -69,7 +69,6 @@
 		7705CF402752C844005195DF /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7705CF3F2752C844005195DF /* CardView.xib */; };
 		770E58862778A78900498C2E /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770E58852778A78900498C2E /* Status.swift */; };
 		7713E8482752E2A900724C8B /* SelectGroupBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7713E8472752E2A900724C8B /* SelectGroupBottomSheetViewController.swift */; };
-		7729171F2743D604001593E0 /* CardsInGroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7729171E2743D604001593E0 /* CardsInGroupResponse.swift */; };
 		7734D5AA27719520004360E4 /* CardShareBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7734D5A927719520004360E4 /* CardShareBottomSheetViewController.swift */; };
 		7734D5B427778EFB004360E4 /* HarmonyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7734D5B327778EFB004360E4 /* HarmonyResponse.swift */; };
 		7734D5B627779EF0004360E4 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7734D5B527779EF0004360E4 /* QRCodeView.swift */; };
@@ -355,7 +354,6 @@
 		7705CF3F2752C844005195DF /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
 		770E58852778A78900498C2E /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		7713E8472752E2A900724C8B /* SelectGroupBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGroupBottomSheetViewController.swift; sourceTree = "<group>"; };
-		7729171E2743D604001593E0 /* CardsInGroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsInGroupResponse.swift; sourceTree = "<group>"; };
 		7734D5A927719520004360E4 /* CardShareBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardShareBottomSheetViewController.swift; sourceTree = "<group>"; };
 		7734D5B327778EFB004360E4 /* HarmonyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmonyResponse.swift; sourceTree = "<group>"; };
 		7734D5B527779EF0004360E4 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
@@ -826,7 +824,6 @@
 				777FF89E27364B7B00BF69D3 /* GroupEditRequest.swift */,
 				F8A9FE192743DC6B00BC60CE /* CardListInGroupRequest.swift */,
 				77AA68E9273E0EC4009C89B0 /* CardAddInGroupRequest.swift */,
-				7729171E2743D604001593E0 /* CardsInGroupResponse.swift */,
 				F81171FF27383097002742CF /* ChangeGroupRequest.swift */,
 			);
 			path = Group;
@@ -1988,7 +1985,6 @@
 				77812947275F6EA3004B34F4 /* CardDetailViewController.swift in Sources */,
 				F822E7A92709CEB60020452C /* Notification.swift in Sources */,
 				F8C83FC5272FA2940009DF0D /* CardAPI.swift in Sources */,
-				7729171F2743D604001593E0 /* CardsInGroupResponse.swift in Sources */,
 				F8915A22275728F20013D609 /* SelectBirthBottomViewController.swift in Sources */,
 				F8FC438626C01CDD0033E151 /* AppDelegate.swift in Sources */,
 				F8915A23275728F20013D609 /* SelectMBTIBottomViewController.swift in Sources */,

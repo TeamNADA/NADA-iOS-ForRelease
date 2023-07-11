@@ -17,7 +17,7 @@ class BackCardCreationCollectionViewCell: UICollectionViewCell {
     static let identifier = "BackCardCreationCollectionViewCell"
     
     public var cardType: CardType?
-    public var flavorList: [String]?
+    public var tasteInfo: [String]?
     private let maxLength: Int = 140
     private var requiredCollectionViewList = [UICollectionView]()
     
@@ -105,10 +105,10 @@ extension BackCardCreationCollectionViewCell {
     }
     private func checkBackCardStatus() {
         backCardCreationDelegate?.backCardCreation(withRequired: [
-            firstTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? flavorList?[0] ?? "" : flavorList?[1] ?? "",
-            secondTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? flavorList?[2] ?? "" : flavorList?[3] ?? "",
-            thirdTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? flavorList?[4] ?? "" : flavorList?[5] ?? "",
-            fourthTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? flavorList?[6] ?? "" : flavorList?[7] ?? ""
+            firstTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? tasteInfo?[0] ?? "" : tasteInfo?[1] ?? "",
+            secondTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? tasteInfo?[2] ?? "" : tasteInfo?[3] ?? "",
+            thirdTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? tasteInfo?[4] ?? "" : tasteInfo?[5] ?? "",
+            fourthTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? tasteInfo?[6] ?? "" : tasteInfo?[7] ?? ""
         ], withOptional: tmiTextView.text == "조금 더 다채로운 모습을 담아볼까요?" ? nil : tmiTextView.text)
     }
     static func nib() -> UINib {
@@ -141,11 +141,11 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDelegate {
         
         switch cardType {
         case .basic:
-            Analytics.logEvent(Tracking.Event.touchBasicTasteInfo + (flavorList?[indexPath.item] ?? ""), parameters: nil)
+            Analytics.logEvent(Tracking.Event.touchBasicTasteInfo + (tasteInfo?[indexPath.item] ?? ""), parameters: nil)
         case .company:
-            Analytics.logEvent(Tracking.Event.touchCompanyTasteInfo + (flavorList?[indexPath.item] ?? ""), parameters: nil)
+            Analytics.logEvent(Tracking.Event.touchCompanyTasteInfo + (tasteInfo?[indexPath.item] ?? ""), parameters: nil)
         case .fan:
-            Analytics.logEvent(Tracking.Event.touchFanTasteInfo + (flavorList?[indexPath.item] ?? ""), parameters: nil)
+            Analytics.logEvent(Tracking.Event.touchFanTasteInfo + (tasteInfo?[indexPath.item] ?? ""), parameters: nil)
         }
     }
 }
@@ -162,13 +162,13 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDataSource {
         }
         switch collectionView {
         case firstTasteCollectionView:
-            cell.initCell(flavor: flavorList?[indexPath.item] ?? "")
+            cell.initCell(flavor: tasteInfo?[indexPath.item] ?? "")
         case secondTasteCollectionView:
-            cell.initCell(flavor: flavorList?[indexPath.item + 2] ?? "")
+            cell.initCell(flavor: tasteInfo?[indexPath.item + 2] ?? "")
         case thirdTasteCollectionView:
-            cell.initCell(flavor: flavorList?[indexPath.item + 4] ?? "")
+            cell.initCell(flavor: tasteInfo?[indexPath.item + 4] ?? "")
         case fourthTasteCollectionView:
-            cell.initCell(flavor: flavorList?[indexPath.item + 6] ?? "")
+            cell.initCell(flavor: tasteInfo?[indexPath.item + 6] ?? "")
         default:
             return UICollectionViewCell()
         }

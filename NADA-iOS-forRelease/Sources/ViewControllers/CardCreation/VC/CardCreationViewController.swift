@@ -447,11 +447,13 @@ extension CardCreationViewController: UICollectionViewDelegateFlowLayout {
 
 extension CardCreationViewController: FrontCardCreationDelegate {
     func frontCardCreation(requiredInfo valid: Bool) {
-        frontCardRequiredIsEmpty = !valid
-        if frontCardRequiredIsEmpty == false && backCardRequiredIsEmpty == false {
-            completeButtonIsEnabled = .enable
-        } else {
-            completeButtonIsEnabled = .disable
+        if preCardDataModel == nil {
+            frontCardRequiredIsEmpty = !valid
+            if frontCardRequiredIsEmpty == false && backCardRequiredIsEmpty == false {
+                completeButtonIsEnabled = .enable
+            } else {
+                completeButtonIsEnabled = .disable
+            }
         }
     }
     func frontCardCreation(endEditing valid: Bool) {

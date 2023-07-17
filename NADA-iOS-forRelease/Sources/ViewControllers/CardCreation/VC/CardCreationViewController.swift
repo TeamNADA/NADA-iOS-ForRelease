@@ -34,8 +34,8 @@ class CardCreationViewController: UIViewController {
             }
         }
     }
-    public var preCardDataModel: Card?
     
+    private var preCardDataModel: Card?
     private var frontCardRequiredIsEmpty = true
     private var backCardRequiredIsEmpty = true
     private var isEditingMode = false
@@ -220,6 +220,32 @@ extension CardCreationViewController {
         } else {
             tasteFetchWithAPI(cardType: cardType)
         }
+    }
+    public func setPreCardDataModel(_ preCardDataModel: Card) {
+        self.preCardDataModel = preCardDataModel
+        
+        frontCard = FrontCardDataModel(birth: preCardDataModel.birth,
+                                       cardName: preCardDataModel.cardName,
+                                       userName: preCardDataModel.userName,
+                                       departmentName: preCardDataModel.departmentName,
+                                       mailAddress: preCardDataModel.mailAddress,
+                                       mbti: preCardDataModel.mbti,
+                                       phoneNumber: preCardDataModel.phoneNumber,
+                                       instagram: preCardDataModel.instagram,
+                                       twitter: preCardDataModel.twitter,
+                                       urls: preCardDataModel.urls,
+                                       defaultImageIndex: 0)
+        
+        let tastes: [String] = preCardDataModel.cardTastes.filter { $0.isChoose }.map { $0.cardTasteName }
+        
+        backCard = BackCardDataModel(tastes: tastes,
+                                     tmi: preCardDataModel.tmi)
+        
+        backgroundImage = UIImage()
+        
+        frontCardRequiredIsEmpty = false
+        backCardRequiredIsEmpty = false
+        completeButtonIsEnabled = .enable
     }
     
     // MARK: - @objc Methods

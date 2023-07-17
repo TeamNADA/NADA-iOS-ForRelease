@@ -105,6 +105,7 @@ class CardCreationViewController: UIViewController {
 }
 
 // MARK: - Extensions
+
 extension CardCreationViewController {
     private func setUI() {
         navigationController?.navigationBar.isHidden = true

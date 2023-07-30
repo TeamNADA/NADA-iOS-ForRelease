@@ -269,6 +269,49 @@ extension FanFrontCardCreationCollectionViewCell {
     static func nib() -> UINib {
         return UINib(nibName: FanFrontCardCreationCollectionViewCell.className, bundle: Bundle(for: FanFrontCardCreationCollectionViewCell.self))
     }
+    public func setPreFrontCard(_ preFrontCardDataModel: FrontCardDataModel) {
+        cardTitleTextField.text = preFrontCardDataModel.cardName
+        userNameTextField.text = preFrontCardDataModel.userName
+        birthLabel.text = preFrontCardDataModel.birth
+        birthLabel.textColor = .primary
+        
+        if let instagram = preFrontCardDataModel.instagram {
+            isInstagram = true
+            instagramButton.isSelected.toggle()
+            snsTextField.text = instagram
+        }
+        
+        if let twitter = preFrontCardDataModel.twitter {
+            isInstagram = false
+            twitterButton.isSelected.toggle()
+            snsTextField.text = twitter
+        }
+        
+        if let url = preFrontCardDataModel.urls {
+            if url.count == 0 {
+                firstURLTextField.attributedPlaceholder = NSAttributedString(string: "URL 1 (fancafe, youtube)",
+                                                                            attributes: [
+                                                                                NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                            ])
+                secondURLTextField.attributedPlaceholder = NSAttributedString(string: "URL 2 (fancafe, youtube)",
+                                                                            attributes: [
+                                                                                NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                            ])
+            } else if url.count == 1 {
+                firstURLTextField.text = url[0]
+                secondURLTextField.attributedPlaceholder = NSAttributedString(string: "URL 2 (fancafe, youtube)",
+                                                                            attributes: [
+                                                                                NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                            ])
+            } else if url.count == 2 {
+                firstURLTextField.text = url[0]
+                secondURLTextField.text = url[1]
+            }
+        }
+        
+        frontCardCreationDelegate?.frontCardCreation(requiredInfo: true)
+        checkFrontCradStatus()
+    }
     
     // MARK: - @objc Methods
     

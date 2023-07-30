@@ -231,6 +231,57 @@ extension CompanyFrontCardCreationCollectionViewCell {
     static func nib() -> UINib {
         return UINib(nibName: CompanyFrontCardCreationCollectionViewCell.className, bundle: Bundle(for: CompanyFrontCardCreationCollectionViewCell.self))
     }
+    public func setPreFrontCard(_ preFrontCardDataModel: FrontCardDataModel) {
+        cardTitleTextField.text = preFrontCardDataModel.cardName
+        userNameTextField.text = preFrontCardDataModel.userName
+        birthLabel.text = preFrontCardDataModel.birth
+        birthLabel.textColor = .primary
+        mbtiLabel.text = preFrontCardDataModel.mbti
+        mbtiLabel.textColor = .primary
+        
+        if let departmentName = preFrontCardDataModel.departmentName,
+           !departmentName.isEmpty {
+            descriptionTextField.text = departmentName
+        } else {
+            descriptionTextField.attributedPlaceholder = NSAttributedString(string: "부서명 (15자)",
+                                                                            attributes: [
+                                                                                NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                            ])
+        }
+        
+        if let mailAddress = preFrontCardDataModel.mailAddress,
+           !mailAddress.isEmpty {
+            mailTextField.text = mailAddress
+        } else {
+            mailTextField.attributedPlaceholder = NSAttributedString(string: "메일주소",
+                                                                     attributes: [
+                                                                         NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                     ])
+        }
+       
+        if let phoneNumber = preFrontCardDataModel.phoneNumber,
+           !phoneNumber.isEmpty {
+            phoneNumberTextField.text = phoneNumber
+        } else {
+            phoneNumberTextField.attributedPlaceholder = NSAttributedString(string: "전화번호",
+                                                                            attributes: [
+                                                                                NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                            ])
+        }
+        
+        if let url = preFrontCardDataModel.urls,
+           !url.isEmpty {
+            linkURLTextField.text = url[0]
+        } else {
+            linkURLTextField.attributedPlaceholder = NSAttributedString(string: "URL (Github, Blog, Linkedin)",
+                                                                        attributes: [
+                                                                            NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                        ])
+        }
+        
+        frontCardCreationDelegate?.frontCardCreation(requiredInfo: true)
+        checkFrontCradStatus()
+    }
     
     // MARK: - @objc Methods
     

@@ -497,7 +497,7 @@ extension CardCreationViewController {
         CardAPI.shared.tasteFetch(cardType: cardType) { response in
             switch response {
             case .success(let data):
-                print("cardCreationWithAPI - success")
+                print("tasteFetchWithAPI - success")
                 if let tastes = data as? Taste {
                     self.tasteInfo = tastes.tasteInfos.sorted { $0.sortOrder > $1.sortOrder }
                     DispatchQueue.main.async { [weak self] in

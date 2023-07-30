@@ -243,28 +243,40 @@ extension FrontCardCreationCollectionViewCell {
            !departmentName.isEmpty {
             descriptionTextField.text = departmentName
         } else {
-            descriptionTextField.text = "학교 전공/동아리 기수 등 (15자)"
+            descriptionTextField.attributedPlaceholder = NSAttributedString(string: "학교 전공/동아리 기수 등 (15자)",
+                                                                            attributes: [
+                                                                                NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                            ])
         }
         
         if let instagram = preFrontCardDataModel.instagram,
            !instagram.isEmpty {
             instagramIDTextField.text = instagram
         } else {
-            instagramIDTextField.text = "Instagram (@ 제외)"
+            instagramIDTextField.attributedPlaceholder = NSAttributedString(string: "Instagram (@ 제외)",
+                                                                            attributes: [
+                                                                                NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                            ])
         }
         
         if let phoneNumber = preFrontCardDataModel.phoneNumber,
            !phoneNumber.isEmpty {
             phoneNumberTextField.text = phoneNumber
         } else {
-            phoneNumberTextField.text = "전화번호"
+            phoneNumberTextField.attributedPlaceholder = NSAttributedString(string: "전화번호",
+                                                                            attributes: [
+                                                                                NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                            ])
         }
         
         if let url = preFrontCardDataModel.urls,
            !url.isEmpty {
             linkURLTextField.text = url[0]
         } else {
-            linkURLTextField.text = "URL (Github, Blog 등)"
+            linkURLTextField.attributedPlaceholder = NSAttributedString(string: "URL (Github, Blog 등)",
+                                                                        attributes: [
+                                                                            NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                        ])
         }
         
         frontCardCreationDelegate?.frontCardCreation(requiredInfo: true)

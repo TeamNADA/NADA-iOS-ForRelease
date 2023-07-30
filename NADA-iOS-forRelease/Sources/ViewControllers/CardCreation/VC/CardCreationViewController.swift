@@ -395,7 +395,6 @@ extension CardCreationViewController: UICollectionViewDataSource {
                     self.present(nextVC, animated: false, completion: nil)
                 }
                 
-                // TODO: - defaultImageIndex 수정
                 if let preCardDataModel {
                     frontCreationCell.setPreFrontCard(FrontCardDataModel(birth: preCardDataModel.birth,
                                                                        cardName: preCardDataModel.cardName,

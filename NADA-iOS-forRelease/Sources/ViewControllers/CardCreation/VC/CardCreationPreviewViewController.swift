@@ -273,7 +273,6 @@ extension CardCreationPreviewViewController {
                 self.cardView.subviews[0].removeFromSuperview()
             }
         }
-        
     }
     
     // MARK: - Network

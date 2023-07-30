@@ -38,7 +38,6 @@ class CardListViewController: UIViewController {
         
         cardListTableView.delegate = self
         cardListTableView.dataSource = self
-        
         cardListFetchWithAPI()
     }
     

@@ -130,7 +130,7 @@ extension BackCardCreationCollectionViewCell {
         
         backCardCreationDelegate?.backCardCreation(requiredInfo: true)
         
-        var choosedTastes: [String] = tastes.filter { $0.isChoose == true }.map { $0.cardTasteName}
+        let choosedTastes: [String] = tastes.filter { $0.isChoose == true }.map { $0.cardTasteName }
         backCardCreationDelegate?.backCardCreation(withRequired: choosedTastes, withOptional: tmi)
     }
     

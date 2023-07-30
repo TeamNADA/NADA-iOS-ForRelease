@@ -343,6 +343,7 @@ extension CompanyFrontCardCreationCollectionViewCell {
 }
 
 // MARK: - UICollectionViewDelegate
+
 extension CompanyFrontCardCreationCollectionViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.item {
@@ -379,6 +380,7 @@ extension CompanyFrontCardCreationCollectionViewCell: UICollectionViewDelegate {
 }
 
 // MARK: - UICollectionViewDataSource
+
 extension CompanyFrontCardCreationCollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return backgroundList.count
@@ -405,6 +407,7 @@ extension CompanyFrontCardCreationCollectionViewCell: UICollectionViewDataSource
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
+
 extension CompanyFrontCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 26, bottom: 0, right: 26)
@@ -421,6 +424,7 @@ extension CompanyFrontCardCreationCollectionViewCell: UICollectionViewDelegateFl
 }
 
 // MARK: - UITextFieldDelegate
+
 extension CompanyFrontCardCreationCollectionViewCell: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
             textField.borderWidth = 1

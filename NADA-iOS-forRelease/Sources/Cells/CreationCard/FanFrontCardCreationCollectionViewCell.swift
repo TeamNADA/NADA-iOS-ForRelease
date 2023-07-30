@@ -337,6 +337,7 @@ extension FanFrontCardCreationCollectionViewCell {
 }
 
 // MARK: - UICollectionViewDelegate
+
 extension FanFrontCardCreationCollectionViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.item {
@@ -373,6 +374,7 @@ extension FanFrontCardCreationCollectionViewCell: UICollectionViewDelegate {
 }
 
 // MARK: - UICollectionViewDataSource
+
 extension FanFrontCardCreationCollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return backgroundList.count
@@ -399,6 +401,7 @@ extension FanFrontCardCreationCollectionViewCell: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
+
 extension FanFrontCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 26, bottom: 0, right: 26)
@@ -415,6 +418,7 @@ extension FanFrontCardCreationCollectionViewCell: UICollectionViewDelegateFlowLa
 }
 
 // MARK: - UITextFieldDelegate
+
 extension FanFrontCardCreationCollectionViewCell: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
             textField.borderWidth = 1

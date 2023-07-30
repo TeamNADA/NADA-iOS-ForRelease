@@ -104,6 +104,7 @@ class CompanyCardCreationViewController: UIViewController {
 }
 
 // MARK: - Extensions
+
 extension CompanyCardCreationViewController {
     private func setUI() {
         navigationController?.navigationBar.isHidden = true
@@ -270,6 +271,7 @@ extension CompanyCardCreationViewController {
 }
 
 // MARK: - YPImagePickerDelegate
+
 extension CompanyCardCreationViewController: YPImagePickerDelegate {
     func imagePickerHasNoItemsInLibrary(_ picker: YPImagePicker) {
         self.makeOKAlert(title: "", message: "가져올 수 있는 사진이 없습니다.")
@@ -281,6 +283,7 @@ extension CompanyCardCreationViewController: YPImagePickerDelegate {
 }
 
 // MARK: - UICollectionViewDelegate
+
 extension CompanyCardCreationViewController: UICollectionViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let targetIndex = targetContentOffset.pointee.x / scrollView.frame.size.width
@@ -303,6 +306,7 @@ extension CompanyCardCreationViewController: UICollectionViewDelegate {
 }
 
 // MARK: - UICollectionViewDataSource
+
 extension CompanyCardCreationViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
@@ -349,6 +353,7 @@ extension CompanyCardCreationViewController: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
+
 extension CompanyCardCreationViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = collectionView.frame.height

@@ -232,8 +232,6 @@ extension FrontCardCreationCollectionViewCell {
         return UINib(nibName: Const.Xib.frontCardCreationCollectionViewCell, bundle: Bundle(for: FrontCardCreationCollectionViewCell.self))
     }
     public func setPreFrontCard(_ preFrontCardDataModel: FrontCardDataModel) {
-        
-        // TODO: - defaultImageIndex 설정하기
         cardTitleTextField.text = preFrontCardDataModel.cardName
         userNameTextField.text = preFrontCardDataModel.userName
         birthLabel.text = preFrontCardDataModel.birth

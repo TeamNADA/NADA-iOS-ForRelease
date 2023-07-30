@@ -38,13 +38,12 @@ class CardListViewController: UIViewController {
         
         cardListTableView.delegate = self
         cardListTableView.dataSource = self
-        cardListFetchWithAPI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        cardListTableView.reloadData()
+        cardListFetchWithAPI()
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -71,20 +71,9 @@ final class ModuleFactory: ModuleFactoryProtocol {
         switch cardType {
         case .basic:
             let basicCardCreationVC = CardCreationViewController.controllerFromStoryboard(.cardCreation)
-            if preCardDataModel != nil {
-                // FIXME: - mock 데이터 삭제.
-//                basicCardCreationVC.setPreCardDataModel(preCardDataModel)
-                
-                basicCardCreationVC.setPreCardDataModel(Card(birth: "birth", cardID: 17, cardUUID: "7c79c4", cardImage: "Mock", cardName: "cardName", cardTastes: [
-                    CardTasteInfo(cardTasteName: "읽씹", isChoose: true, sortOrder: 6),
-                    CardTasteInfo(cardTasteName: "안읽씹", isChoose: false, sortOrder: 5),
-                    CardTasteInfo(cardTasteName: "100% 1억", isChoose: true, sortOrder: 8),
-                    CardTasteInfo(cardTasteName: "25% 100억", isChoose: false, sortOrder: 7),
-                    CardTasteInfo(cardTasteName: "어떻게 죽을지", isChoose: true, sortOrder: 4),
-                    CardTasteInfo(cardTasteName: "언제 죽을지 알기", isChoose: false, sortOrder: 3),
-                    CardTasteInfo(cardTasteName: "모르는 게 약", isChoose: true, sortOrder: 2),
-                    CardTasteInfo(cardTasteName: "아는게 힘", isChoose: false, sortOrder: 1)
-                ], cardType: "BASIC", departmentName: "departmentName", isRepresentative: false, mailAddress: nil, mbti: "mbti", phoneNumber: "phoneNumber", instagram: "instagram", twitter: nil, tmi: "tmi tmi tmi\ntmi", urls: ["urls"], userName: "userName"))
+            
+            if let preCardDataModel {
+                basicCardCreationVC.setPreCardDataModel(preCardDataModel)
                 basicCardCreationVC.setCreationType(.modify)
             }
             cardCreationVC = basicCardCreationVC

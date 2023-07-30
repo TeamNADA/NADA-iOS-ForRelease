@@ -197,7 +197,7 @@ extension HomeViewController {
     private func checkUpdateVersionAndSetting() {
         updateUserInfoFetchWithAPI { [weak self] checkUpdateNote in
             if !checkUpdateNote {
-                self?.updateNoteFetchWithAPI { [weak self] updateNote in
+                self?.updateNoteFetchWithAPI { updateNote in
                     if self?.checkUpdateAvailable(updateNote.latestVersion) ?? false {
                         self?.presentToUpdateVC(with: updateNote)
                         UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.dynamicLinkCardUUID)
@@ -256,7 +256,7 @@ extension HomeViewController {
     
     private func checkDynamicLink(_ dynamicLinkCardUUID: String) {
         self.cardDetailFetchWithAPI(cardUUID: dynamicLinkCardUUID) { [weak self] cardDataModel in
-            self?.cardAddInGroupWithAPI(cardUUID: dynamicLinkCardUUID) { [weak self] in
+            self?.cardAddInGroupWithAPI(cardUUID: dynamicLinkCardUUID) {
                 UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.dynamicLinkCardUUID)
                 self?.presentToCardDetailVC(cardDataModel: cardDataModel)
             }

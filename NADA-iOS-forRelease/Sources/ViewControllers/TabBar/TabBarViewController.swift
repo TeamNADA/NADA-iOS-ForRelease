@@ -64,7 +64,7 @@ extension TabBarViewController {
     
     private func checkDynamicLink(_ dynamicLinkCardUUID: String) {
         self.cardDetailFetchWithAPI(cardUUID: dynamicLinkCardUUID) { [weak self] cardDataModel in
-            self?.cardAddInGroupWithAPI(cardUUID: dynamicLinkCardUUID) { [weak self] in
+            self?.cardAddInGroupWithAPI(cardUUID: dynamicLinkCardUUID) {
                 self?.presentToCardDetailVC(cardDataModel: cardDataModel)
             }
         }

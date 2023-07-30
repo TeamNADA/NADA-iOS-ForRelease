@@ -38,12 +38,15 @@ class BackCardCreationCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var thirdTasteCollectionView: UICollectionView!
     @IBOutlet weak var fourthTasteCollectionView: UICollectionView!
     
+    @IBOutlet weak var refreshButton: UIButton!
+    
     // MARK: - Cell Life Cycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         setUI()
+        setAddTargets()
         registerCell()
         textViewDelegate()
         setNotification()
@@ -69,6 +72,9 @@ extension BackCardCreationCollectionViewCell {
         requiredAttributeString.addAttribute(.foregroundColor, value: UIColor.secondary, range: NSRange(location: 1, length: requiredAttributeString.length - 1))
         requiredInfoTextLabel.attributedText = requiredAttributeString
         requiredInfoTextLabel.font = .textBold01
+        
+        refreshButton.setTitle("", for: .normal)
+        refreshButton.setBackgroundImage(UIImage(named: "icnRandom"), for: .normal)
         
         optionalInfoTextLabel.text = "나의 재밌는 TMI를 알려주세요."
         optionalInfoTextLabel.textColor = .secondary
@@ -111,18 +117,28 @@ extension BackCardCreationCollectionViewCell {
             fourthTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? flavorList?[6] ?? "" : flavorList?[7] ?? ""
         ], withOptional: tmiTextView.text == "조금 더 다채로운 모습을 담아볼까요?" ? nil : tmiTextView.text)
     }
+    private func setAddTargets() {
+        refreshButton.addTarget(self, action: #selector(touchRefreshButton), for: .touchUpInside)
+    }
     static func nib() -> UINib {
         return UINib(nibName: Const.Xib.backCardCreationCollectionViewCell, bundle: Bundle(for: BackCardCreationCollectionViewCell.self))
     }
     
     // MARK: - @objc Methods
+    
     @objc
     private func dismissKeyboard() {
         tmiTextView.resignFirstResponder()
     }
+    @objc
+    private func touchRefreshButton() {
+        backCardCreationDelegate?.backCardCreationTouchRefresh()
+        backCardCreationDelegate?.backCardCreation(requiredInfo: false)
+    }
 }
 
 // MARK: - UICollectionViewDelegate
+
 extension BackCardCreationCollectionViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
@@ -151,6 +167,7 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDelegate {
 }
 
 // MARK: - UICollectionViewDataSource
+
 extension BackCardCreationCollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
@@ -177,6 +194,7 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
+
 extension BackCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
@@ -196,6 +214,7 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayout
 }
 
 // MARK: - UITextViewDelegate
+
 extension BackCardCreationCollectionViewCell: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == "조금 더 다채로운 모습을 담아볼까요?" {

@@ -341,6 +341,11 @@ extension CompanyCardCreationViewController: UICollectionViewDataSource {
                 }
                 backCreationCell.cardType = cardType
                 
+                backCreationCell.firstTasteCollectionView.reloadData()
+                backCreationCell.secondTasteCollectionView.reloadData()
+                backCreationCell.thirdTasteCollectionView.reloadData()
+                backCreationCell.fourthTasteCollectionView.reloadData()
+                
                 return backCreationCell
             }
         }
@@ -389,6 +394,9 @@ extension CompanyCardCreationViewController: FrontCardCreationDelegate {
 // MARK: - BackCardCreationDelegate
 
 extension CompanyCardCreationViewController: BackCardCreationDelegate {
+    func backCardCreationTouchRefresh() {
+        tasteFetchWithAPI(cardType: cardType)
+    }
     func backCardCreation(requiredInfo valid: Bool) {
         backCardRequiredIsEmpty = !valid
         if frontCardRequiredIsEmpty == false && backCardRequiredIsEmpty == false {

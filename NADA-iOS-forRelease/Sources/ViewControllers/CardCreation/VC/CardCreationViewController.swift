@@ -46,6 +46,7 @@ class CardCreationViewController: UIViewController {
     private var birthText: String?
     private var backgroundImage: UIImage?
     private var tasteInfo: [TasteInfo]?
+    private var creationType: CreationType = .create
     
     private let cardType: CardType = .basic
     
@@ -130,7 +131,12 @@ extension CardCreationViewController {
         closeButton.setImage(UIImage(named: "iconClear"), for: .normal)
         closeButton.setTitle("", for: .normal)
         
-        completeButton.isEnabled = false
+        switch creationType {
+        case .create:
+            completeButton.isEnabled = false
+        case .modify:
+            completeButton.isEnabled = true
+        }
         
         // MARK: - #available(iOS 15.0, *)
 
@@ -245,7 +251,9 @@ extension CardCreationViewController {
         
         frontCardRequiredIsEmpty = false
         backCardRequiredIsEmpty = false
-        completeButtonIsEnabled = .enable
+    }
+    public func setCreationType(_ creationType: CreationType) {
+        self.creationType = creationType
     }
     
     // MARK: - @objc Methods

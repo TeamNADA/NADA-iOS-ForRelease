@@ -8,6 +8,8 @@
 import UIKit
 
 import FirebaseAnalytics
+import RxAlamofire
+import RxSwift
 import YPImagePicker
 
 class CardCreationViewController: UIViewController {
@@ -49,6 +51,7 @@ class CardCreationViewController: UIViewController {
     private var creationType: CreationType = .create
     
     private let cardType: CardType = .basic
+    private let disposedBag = DisposeBag()
     
     // MARK: - @IBOutlet Properties
     
@@ -237,7 +240,16 @@ extension CardCreationViewController {
         backCard = BackCardDataModel(tastes: tastes,
                                      tmi: preCardDataModel.tmi)
         
-        backgroundImage = UIImage()
+        guard let url = URL(string: preCardDataModel.cardImage) else { return }
+        
+        RxAlamofire.requestData(.get, url)
+            .map { $1 }
+            .bind(with: self, onNext: { owner, data in
+                let image = UIImage(data: data)
+                owner.backgroundImage = image
+                NotificationCenter.default.post(name: .sendNewImage, object: image)
+            })
+            .disposed(by: disposedBag)
         
         frontCardRequiredIsEmpty = false
         backCardRequiredIsEmpty = false
@@ -445,13 +457,11 @@ extension CardCreationViewController: UICollectionViewDelegateFlowLayout {
 
 extension CardCreationViewController: FrontCardCreationDelegate {
     func frontCardCreation(requiredInfo valid: Bool) {
-        if preCardDataModel == nil {
-            frontCardRequiredIsEmpty = !valid
-            if frontCardRequiredIsEmpty == false && backCardRequiredIsEmpty == false {
-                completeButtonIsEnabled = .enable
-            } else {
-                completeButtonIsEnabled = .disable
-            }
+        frontCardRequiredIsEmpty = !valid
+        if frontCardRequiredIsEmpty == false && backCardRequiredIsEmpty == false {
+            completeButtonIsEnabled = .enable
+        } else {
+            completeButtonIsEnabled = .disable
         }
     }
     func frontCardCreation(endEditing valid: Bool) {

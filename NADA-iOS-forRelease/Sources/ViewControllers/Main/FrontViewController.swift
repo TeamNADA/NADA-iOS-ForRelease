@@ -73,6 +73,7 @@ class FrontViewController: UIViewController {
                 }
             }
         }
+        self.isAfterCreation = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -164,7 +165,6 @@ extension FrontViewController {
         
         cardListPageFetchWithAPI(pageNumber: pageNumber, pageSize: pageSize) {
             _ = self.cardSwiper.scrollToCard(at: 1, animated: false)
-            self.isAfterCreation = false
         }
     }
 }

@@ -22,6 +22,7 @@ class FanFrontCardCell: CardCell {
     public var cardContext: CardContext?
     
     // MARK: - @IBOutlet Properties
+    
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -47,7 +48,6 @@ class FanFrontCardCell: CardCell {
     @IBOutlet weak var totalStackviewBottom: NSLayoutConstraint!
     @IBOutlet weak var totalStackviewLeading: NSLayoutConstraint!
     @IBOutlet weak var totalStackviewTrailing: NSLayoutConstraint!
-    
     @IBOutlet weak var birthImageViewWidth: NSLayoutConstraint!
     @IBOutlet weak var snsImageViewWidth: NSLayoutConstraint!
     @IBOutlet weak var firstUrlWidth: NSLayoutConstraint!
@@ -61,6 +61,7 @@ class FanFrontCardCell: CardCell {
         setUI()
         setTapGesture()
     }
+    
     @IBAction func touchShareButton(_ sender: Any) {
         NotificationCenter.default.post(name: Notification.Name.presentCardShare, object: cardData, userInfo: nil)
         
@@ -232,7 +233,11 @@ extension FanFrontCardCell {
             UIApplication.shared.open(webURL, options: [:], completionHandler: nil)
         }
     }
+}
+
+// MARK: - Initialize
     
+extension FanFrontCardCell {
     /// 명함 조회 시 사용.
     func initCellFromServer(cardData: Card, isShareable: Bool) {
         self.cardData = cardData

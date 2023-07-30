@@ -204,18 +204,6 @@ extension CardCreationViewController {
                            ])
     }
     private func setTastInfo() {
-        // FIXME: - test 를 위한 mock.
-        preCardDataModel = Card(birth: "birth", cardID: 17, cardUUID: "7c79c4", cardImage: "Mock", cardName: "cardName", cardTastes: [
-            CardTasteInfo(cardTasteName: "읽씹", isChoose: true, sortOrder: 6),
-            CardTasteInfo(cardTasteName: "안읽씹", isChoose: false, sortOrder: 5),
-            CardTasteInfo(cardTasteName: "100% 1억", isChoose: true, sortOrder: 8),
-            CardTasteInfo(cardTasteName: "25% 100억", isChoose: false, sortOrder: 7),
-            CardTasteInfo(cardTasteName: "어떻게 죽을지", isChoose: true, sortOrder: 4),
-            CardTasteInfo(cardTasteName: "언제 죽을지 알기", isChoose: false, sortOrder: 3),
-            CardTasteInfo(cardTasteName: "모르는 게 약", isChoose: true, sortOrder: 2),
-            CardTasteInfo(cardTasteName: "아는게 힘", isChoose: false, sortOrder: 1)
-        ], cardType: "BASIC", departmentName: "departmentName", isRepresentative: false, mailAddress: nil, mbti: "mbti", phoneNumber: "phoneNumber", instagram: "instagram", twitter: nil, tmi: "tmi tmi tmi\ntmi", urls: ["urls"], userName: "userName")
-        
         if let preCardDataModel {
             let tastes: [CardTasteInfo] = preCardDataModel.cardTastes.sorted { $0.sortOrder > $1.sortOrder }
             tasteInfo = tastes.map { TasteInfo(sortOrder: $0.sortOrder, tasteName: $0.cardTasteName) }

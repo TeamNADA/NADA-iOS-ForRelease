@@ -8,6 +8,8 @@
 import UIKit
 
 import FirebaseAnalytics
+import RxAlamofire
+import RxSwift
 import YPImagePicker
 
 class FanCardCreationViewController: UIViewController {
@@ -35,6 +37,7 @@ class FanCardCreationViewController: UIViewController {
         }
     }
     
+    private var preCardDataModel: Card?
     private var frontCardRequiredIsEmpty = true
     private var backCardRequiredIsEmpty = true
     private var isEditingMode = false
@@ -45,8 +48,10 @@ class FanCardCreationViewController: UIViewController {
     private var birthText: String?
     private var backgroundImage: UIImage?
     private var tasteInfo: [TasteInfo]?
+    private var creationType: CreationType = .create
     
     private let cardType: CardType = .fan
+    private let disposedBag = DisposeBag()
     
     // MARK: - @IBOutlet Properties
     
@@ -67,7 +72,7 @@ class FanCardCreationViewController: UIViewController {
         registerCell()
         setTextLabelGesture()
         setNotification()
-        tasteFetchWithAPI(cardType: cardType)
+        setTastInfo()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -97,6 +102,8 @@ class FanCardCreationViewController: UIViewController {
         nextVC.cardBackgroundImage = backgroundImage
         nextVC.tasteInfo = tasteInfo
         nextVC.cardType = cardType
+        nextVC.setCreationType(creationType)
+        
         navigationController?.pushViewController(nextVC, animated: true)
         
         Analytics.logEvent(Tracking.Event.touchFanCardPreview, parameters: nil)
@@ -129,7 +136,12 @@ extension FanCardCreationViewController {
         closeButton.setImage(UIImage(named: "iconClear"), for: .normal)
         closeButton.setTitle("", for: .normal)
         
-        completeButton.isEnabled = false
+        switch creationType {
+        case .create:
+            completeButton.isEnabled = false
+        case .modify:
+            completeButton.isEnabled = true
+        }
         
         // MARK: - #available(iOS 15.0, *)
 
@@ -195,7 +207,56 @@ extension FanCardCreationViewController {
                            parameters: [
                             AnalyticsParameterScreenName: Tracking.Screen.createFanCard
                            ])
-    }    
+    }
+    private func setTastInfo() {
+        if let preCardDataModel {
+            let tastes: [CardTasteInfo] = preCardDataModel.cardTastes.sorted { $0.sortOrder > $1.sortOrder }
+            tasteInfo = tastes.map { TasteInfo(sortOrder: $0.sortOrder, tasteName: $0.cardTasteName) }
+            
+            isEditingMode = true
+            
+            cardCreationCollectionView.reloadData()
+        } else {
+            tasteFetchWithAPI(cardType: cardType)
+        }
+    }
+    public func setPreCardDataModel(_ preCardDataModel: Card) {
+        self.preCardDataModel = preCardDataModel
+        
+        frontCard = FrontCardDataModel(birth: preCardDataModel.birth,
+                                       cardName: preCardDataModel.cardName,
+                                       userName: preCardDataModel.userName,
+                                       departmentName: preCardDataModel.departmentName,
+                                       mailAddress: preCardDataModel.mailAddress,
+                                       mbti: preCardDataModel.mbti,
+                                       phoneNumber: preCardDataModel.phoneNumber,
+                                       instagram: preCardDataModel.instagram,
+                                       twitter: preCardDataModel.twitter,
+                                       urls: preCardDataModel.urls,
+                                       defaultImageIndex: 0)
+        
+        let tastes: [String] = preCardDataModel.cardTastes.filter { $0.isChoose }.map { $0.cardTasteName }
+        
+        backCard = BackCardDataModel(tastes: tastes,
+                                     tmi: preCardDataModel.tmi)
+        
+        guard let url = URL(string: preCardDataModel.cardImage) else { return }
+        
+        RxAlamofire.requestData(.get, url)
+            .map { $1 }
+            .bind(with: self, onNext: { owner, data in
+                let image = UIImage(data: data)
+                owner.backgroundImage = image
+                NotificationCenter.default.post(name: .sendNewImage, object: image)
+            })
+            .disposed(by: disposedBag)
+        
+        frontCardRequiredIsEmpty = false
+        backCardRequiredIsEmpty = false
+    }
+    public func setCreationType(_ creationType: CreationType) {
+        self.creationType = creationType
+    }
     
     // MARK: - @objc Methods
     
@@ -327,6 +388,20 @@ extension FanCardCreationViewController: UICollectionViewDataSource {
                     self.present(nextVC, animated: false, completion: nil)
                 }
                 
+                if let preCardDataModel {
+                    frontCreationCell.setPreFrontCard(FrontCardDataModel(birth: preCardDataModel.birth,
+                                                                         cardName: preCardDataModel.cardName,
+                                                                         userName: preCardDataModel.userName,
+                                                                         departmentName: preCardDataModel.departmentName,
+                                                                         mailAddress: preCardDataModel.mailAddress,
+                                                                         mbti: preCardDataModel.mbti,
+                                                                         phoneNumber: preCardDataModel.phoneNumber,
+                                                                         instagram: preCardDataModel.instagram,
+                                                                         twitter: preCardDataModel.twitter,
+                                                                         urls: preCardDataModel.urls,
+                                                                         defaultImageIndex: 0))
+                }
+                
                 return frontCreationCell
             } else if indexPath.item == 1 {
                 guard let backCreationCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.backCardCreationCollectionViewCell, for: indexPath) as? BackCardCreationCollectionViewCell else {
@@ -337,6 +412,11 @@ extension FanCardCreationViewController: UICollectionViewDataSource {
                     backCreationCell.tasteInfo = tasteInfo.map { $0.tasteName }
                 }
                 backCreationCell.cardType = cardType
+                
+                if let preCardDataModel {
+                    let tastes: [CardTasteInfo] = preCardDataModel.cardTastes.sorted { $0.sortOrder > $1.sortOrder }
+                    backCreationCell.setPreBackCard(tastes: tastes, tmi: preCardDataModel.tmi)
+                }
                 
                 return backCreationCell
             }

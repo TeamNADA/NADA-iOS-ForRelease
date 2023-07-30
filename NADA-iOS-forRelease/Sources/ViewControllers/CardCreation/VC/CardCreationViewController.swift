@@ -397,16 +397,16 @@ extension CardCreationViewController: UICollectionViewDataSource {
                 
                 if let preCardDataModel {
                     frontCreationCell.setPreFrontCard(FrontCardDataModel(birth: preCardDataModel.birth,
-                                                                       cardName: preCardDataModel.cardName,
-                                                                       userName: preCardDataModel.userName,
-                                                                       departmentName: preCardDataModel.departmentName,
-                                                                       mailAddress: nil,
-                                                                       mbti: preCardDataModel.mbti,
-                                                                       phoneNumber: preCardDataModel.phoneNumber,
-                                                                       instagram: preCardDataModel.instagram,
-                                                                       twitter: nil,
-                                                                       urls: preCardDataModel.urls,
-                                                                       defaultImageIndex: 0))
+                                                                         cardName: preCardDataModel.cardName,
+                                                                         userName: preCardDataModel.userName,
+                                                                         departmentName: preCardDataModel.departmentName,
+                                                                         mailAddress: preCardDataModel.mailAddress,
+                                                                         mbti: preCardDataModel.mbti,
+                                                                         phoneNumber: preCardDataModel.phoneNumber,
+                                                                         instagram: preCardDataModel.instagram,
+                                                                         twitter: preCardDataModel.twitter,
+                                                                         urls: preCardDataModel.urls,
+                                                                         defaultImageIndex: 0))
                 }
                 
                 return frontCreationCell

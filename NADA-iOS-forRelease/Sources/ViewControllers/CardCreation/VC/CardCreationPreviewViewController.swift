@@ -20,6 +20,7 @@ class CardCreationPreviewViewController: UIViewController {
     
     private var isFront = true
     private var isShareable = false
+    private var creationType: CreationType = .create
     
     lazy var loadingBgView: UIView = {
         let bgView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
@@ -237,6 +238,9 @@ extension CardCreationPreviewViewController {
                            parameters: [
                             AnalyticsParameterScreenName: parameters
                            ])
+    }
+    public func setCreationType(_ creationType: CreationType) {
+        self.creationType = creationType
     }
 
     // MARK: - @objc Methods

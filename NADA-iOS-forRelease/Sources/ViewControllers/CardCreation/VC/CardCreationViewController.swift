@@ -99,6 +99,8 @@ class CardCreationViewController: UIViewController {
         nextVC.cardBackgroundImage = backgroundImage
         nextVC.tasteInfo = tasteInfo
         nextVC.cardType = cardType
+        nextVC.setCreationType(creationType)
+        
         navigationController?.pushViewController(nextVC, animated: true)
         
         Analytics.logEvent(Tracking.Event.touchBasicCardPreview, parameters: nil)

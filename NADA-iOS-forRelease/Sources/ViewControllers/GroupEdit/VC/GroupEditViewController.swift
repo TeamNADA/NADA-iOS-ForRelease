@@ -153,22 +153,6 @@ extension GroupEditViewController: UITableViewDelegate {
             return swipeActions
         }
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if serverGroups?.isEmpty == false {
-            Analytics.logEvent(Tracking.Event.touchEditGroupNumber + String(indexPath.row + 1), parameters: nil)
-            let nextVC = GroupNameEditBottomSheetViewController()
-                .setTitle("그룹명 변경")
-                .setHeight(184)
-            nextVC.modalPresentationStyle = .overFullScreen
-            nextVC.text = serverGroups?[indexPath.row] ?? ""
-            nextVC.returnToGroupEditViewController = {
-                self.groupListFetchWithAPI()
-            }
-            nextVC.nowGroup = serverGroups?[indexPath.row]
-            self.present(nextVC, animated: false, completion: nil)
-        }
-    }
 }
 
 // MARK: - TableView DataSource

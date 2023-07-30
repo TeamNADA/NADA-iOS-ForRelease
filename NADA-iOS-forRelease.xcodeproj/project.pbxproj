@@ -234,6 +234,7 @@
 		F8F00C4129DD48A000A15377 /* UpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F00C4029DD48A000A15377 /* UpdateService.swift */; };
 		F8F0ACB22A0BB909001B8266 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FBC272F9F430009DF0D /* GenericResponse.swift */; };
 		F8F0ACB32A0BB916001B8266 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82AF6A129FBBEE50051545B /* UserDefaults+Extension.swift */; };
+		F8F0AF812A76388B005A0881 /* CreationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F0AF802A76388B005A0881 /* CreationType.swift */; };
 		F8F5D0AA270800FD00D99D2E /* Xib.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F5D0A9270800FD00D99D2E /* Xib.swift */; };
 		F8FC438626C01CDD0033E151 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC438526C01CDD0033E151 /* AppDelegate.swift */; };
 		F8FC438826C01CDD0033E151 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC438726C01CDD0033E151 /* SceneDelegate.swift */; };
@@ -508,6 +509,7 @@
 		F8F00C3D29DD489200A15377 /* UpdateAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAPI.swift; sourceTree = "<group>"; };
 		F8F00C4029DD48A000A15377 /* UpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateService.swift; sourceTree = "<group>"; };
 		F8F0ACB42A0CAC7C001B8266 /* WidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WidgetsExtension.entitlements; sourceTree = "<group>"; };
+		F8F0AF802A76388B005A0881 /* CreationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationType.swift; sourceTree = "<group>"; };
 		F8F5D0A9270800FD00D99D2E /* Xib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Xib.swift; sourceTree = "<group>"; };
 		F8FC438226C01CDD0033E151 /* NADA-iOS-forRelease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NADA-iOS-forRelease.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8FC438526C01CDD0033E151 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1243,6 +1245,7 @@
 			children = (
 				F8988B282A1C89F700CBF583 /* CardType.swift */,
 				F8988B2A2A1C8A7E00CBF583 /* CardContext.swift */,
+				F8F0AF802A76388B005A0881 /* CreationType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1963,6 +1966,7 @@
 				3927A7D7275F2A9B008BCD2A /* UserDefaults.swift in Sources */,
 				F8458D6429F51870000D53A7 /* FanCardCreationViewController.swift in Sources */,
 				77A4D60129BD708C00367B7C /* AroundMeResponse.swift in Sources */,
+				F8F0AF812A76388B005A0881 /* CreationType.swift in Sources */,
 				7734D5B82777A8E8004360E4 /* String+Extension.swift in Sources */,
 				77A4D60429BD743600367B7C /* ModuleFactory.swift in Sources */,
 				F84066EB2A1533DA008BCE16 /* Screen.swift in Sources */,

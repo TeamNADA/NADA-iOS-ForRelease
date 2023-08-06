@@ -417,6 +417,11 @@ extension FanCardCreationViewController: UICollectionViewDataSource {
                     let tastes: [CardTasteInfo] = preCardDataModel.cardTastes.sorted { $0.sortOrder > $1.sortOrder }
                     backCreationCell.setPreBackCard(tastes: tastes, tmi: preCardDataModel.tmi)
                 }
+
+                backCreationCell.firstTasteCollectionView.reloadData()
+                backCreationCell.secondTasteCollectionView.reloadData()
+                backCreationCell.thirdTasteCollectionView.reloadData()
+                backCreationCell.fourthTasteCollectionView.reloadData()
                 
                 return backCreationCell
             }
@@ -467,6 +472,9 @@ extension FanCardCreationViewController: FrontCardCreationDelegate {
 // MARK: - BackCardCreationDelegate
 
 extension FanCardCreationViewController: BackCardCreationDelegate {
+    func backCardCreationTouchRefresh() {
+        tasteFetchWithAPI(cardType: cardType)
+    }
     func backCardCreation(requiredInfo valid: Bool) {
         backCardRequiredIsEmpty = !valid
         if frontCardRequiredIsEmpty == false && backCardRequiredIsEmpty == false {

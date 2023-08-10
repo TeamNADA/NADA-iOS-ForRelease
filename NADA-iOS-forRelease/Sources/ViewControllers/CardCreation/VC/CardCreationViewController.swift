@@ -416,6 +416,7 @@ extension CardCreationViewController: UICollectionViewDataSource {
                     return UICollectionViewCell()
                 }
                 backCreationCell.backCardCreationDelegate = self
+                
                 if let tasteInfo {
                     backCreationCell.setTasteInfo(tasteInfo.map { $0.tasteName })
                 }

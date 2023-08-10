@@ -153,6 +153,7 @@ extension BackCardCreationCollectionViewCell {
     }
     @objc
     private func touchRefreshButton() {
+        preTasteInfo = nil
         backCardCreationDelegate?.backCardCreationTouchRefresh()
         backCardCreationDelegate?.backCardCreation(requiredInfo: false)
     }
@@ -205,14 +206,19 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDataSource {
             if preTasteInfo?[indexPath.item].isChoose ?? false {
                 cell.isSelected = true
                 collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
+            } else {
+                cell.isSelected = false
+                collectionView.deselectItem(at: indexPath, animated: false)
             }
-            
         case secondTasteCollectionView:
             cell.initCell(flavor: tasteInfo?[indexPath.item + 2] ?? "")
             
             if preTasteInfo?[indexPath.item + 2].isChoose ?? false {
                 cell.isSelected = true
                 collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
+            } else {
+                cell.isSelected = false
+                collectionView.deselectItem(at: indexPath, animated: false)
             }
         case thirdTasteCollectionView:
             cell.initCell(flavor: tasteInfo?[indexPath.item + 4] ?? "")
@@ -220,6 +226,9 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDataSource {
             if preTasteInfo?[indexPath.item + 4].isChoose ?? false {
                 cell.isSelected = true
                 collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
+            } else {
+                cell.isSelected = false
+                collectionView.deselectItem(at: indexPath, animated: false)
             }
         case fourthTasteCollectionView:
             cell.initCell(flavor: tasteInfo?[indexPath.item + 6] ?? "")
@@ -227,6 +236,9 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDataSource {
             if preTasteInfo?[indexPath.item + 6].isChoose ?? false {
                 cell.isSelected = true
                 collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
+            } else {
+                cell.isSelected = false
+                collectionView.deselectItem(at: indexPath, animated: false)
             }
         default:
             return UICollectionViewCell()

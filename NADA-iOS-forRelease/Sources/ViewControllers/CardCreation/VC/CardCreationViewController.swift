@@ -49,6 +49,7 @@ class CardCreationViewController: UIViewController {
     private var backgroundImage: UIImage?
     private var tasteInfo: [TasteInfo]?
     private var creationType: CreationType = .create
+    private var isRefresh = false
     
     private let cardType: CardType = .basic
     private let disposedBag = DisposeBag()
@@ -420,9 +421,11 @@ extension CardCreationViewController: UICollectionViewDataSource {
                 }
                 backCreationCell.cardType = cardType
                 
-                if let preCardDataModel {
-                    let tastes: [CardTasteInfo] = preCardDataModel.cardTastes.sorted { $0.sortOrder > $1.sortOrder }
-                    backCreationCell.setPreBackCard(tastes: tastes, tmi: preCardDataModel.tmi)
+                if !isRefresh {
+                    if let preCardDataModel {
+                        let tastes: [CardTasteInfo] = preCardDataModel.cardTastes.sorted { $0.sortOrder > $1.sortOrder }
+                        backCreationCell.setPreBackCard(tastes: tastes, tmi: preCardDataModel.tmi)
+                    }
                 }
                 
                 backCreationCell.firstTasteCollectionView.reloadData()
@@ -495,6 +498,7 @@ extension CardCreationViewController: BackCardCreationDelegate {
     }
     func backCardCreationTouchRefresh() {
         tasteFetchWithAPI(cardType: cardType)
+        isRefresh = true
     }
 }
 

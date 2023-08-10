@@ -17,8 +17,8 @@ class BackCardCreationCollectionViewCell: UICollectionViewCell {
     static let identifier = "BackCardCreationCollectionViewCell"
     
     public var cardType: CardType?
-    public var tasteInfo: [String]?
     
+    private var tasteInfo: [String]?
     private let maxLength: Int = 140
     private var requiredCollectionViewList = [UICollectionView]()
     private var preTasteInfo: [CardTasteInfo]?
@@ -142,7 +142,9 @@ extension BackCardCreationCollectionViewCell {
         let choosedTastes: [String] = tastes.filter { $0.isChoose == true }.map { $0.cardTasteName }
         backCardCreationDelegate?.backCardCreation(withRequired: choosedTastes, withOptional: tmi)
     }
-    
+    public func setTasteInfo(_ tasteInfo: [String]) {
+        self.tasteInfo = tasteInfo
+    }
     // MARK: - @objc Methods
     
     @objc

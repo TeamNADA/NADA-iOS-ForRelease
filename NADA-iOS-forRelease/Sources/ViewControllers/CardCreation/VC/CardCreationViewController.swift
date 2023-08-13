@@ -49,6 +49,7 @@ class CardCreationViewController: UIViewController {
     private var backgroundImage: UIImage?
     private var tasteInfo: [TasteInfo]?
     private var creationType: CreationType = .create
+    private var isRefresh = false
     
     private let cardType: CardType = .basic
     private let disposedBag = DisposeBag()
@@ -415,15 +416,23 @@ extension CardCreationViewController: UICollectionViewDataSource {
                     return UICollectionViewCell()
                 }
                 backCreationCell.backCardCreationDelegate = self
+                
                 if let tasteInfo {
-                    backCreationCell.tasteInfo = tasteInfo.map { $0.tasteName }
+                    backCreationCell.setTasteInfo(tasteInfo.map { $0.tasteName })
                 }
                 backCreationCell.cardType = cardType
                 
-                if let preCardDataModel {
-                    let tastes: [CardTasteInfo] = preCardDataModel.cardTastes.sorted { $0.sortOrder > $1.sortOrder }
-                    backCreationCell.setPreBackCard(tastes: tastes, tmi: preCardDataModel.tmi)
+                if !isRefresh {
+                    if let preCardDataModel {
+                        let tastes: [CardTasteInfo] = preCardDataModel.cardTastes.sorted { $0.sortOrder > $1.sortOrder }
+                        backCreationCell.setPreBackCard(tastes: tastes, tmi: preCardDataModel.tmi)
+                    }
                 }
+                
+                backCreationCell.firstTasteCollectionView.reloadData()
+                backCreationCell.secondTasteCollectionView.reloadData()
+                backCreationCell.thirdTasteCollectionView.reloadData()
+                backCreationCell.fourthTasteCollectionView.reloadData()
                 
                 return backCreationCell
             }
@@ -487,6 +496,10 @@ extension CardCreationViewController: BackCardCreationDelegate {
     }
     func backCardCreation(withRequired requiredInfo: [String], withOptional optionalInfo: String?) {
         backCard = BackCardDataModel(tastes: requiredInfo, tmi: optionalInfo)
+    }
+    func backCardCreationTouchRefresh() {
+        tasteFetchWithAPI(cardType: cardType)
+        isRefresh = true
     }
 }
 

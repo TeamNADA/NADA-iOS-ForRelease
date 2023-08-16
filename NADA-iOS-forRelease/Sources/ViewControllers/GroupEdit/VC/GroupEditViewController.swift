@@ -129,26 +129,28 @@ extension GroupEditViewController: UITableViewDelegate {
             })
             deleteAction.backgroundColor = .red
             
-            let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
+            let editAction = UIContextualAction(style: .normal, title: "수정", handler: { (_ action, _ view, _ success) in 
+                if self.serverGroups?.isEmpty == false {
+                    Analytics.logEvent(Tracking.Event.touchEditGroupNumber + String(indexPath.row + 1), parameters: nil)
+                    let nextVC = GroupNameEditBottomSheetViewController()
+                        .setTitle("그룹명 변경")
+                        .setHeight(184)
+                    nextVC.modalPresentationStyle = .overFullScreen
+                    nextVC.text = self.serverGroups?[indexPath.row] ?? ""
+                    nextVC.returnToGroupEditViewController = {
+                        self.groupListFetchWithAPI()
+                    }
+                    nextVC.nowGroup = self.serverGroups?[indexPath.row]
+                    self.present(nextVC, animated: false, completion: nil)
+                }
+            })
+            // TODO: 풀받고 버튼 색깔 바꾸기
+            editAction.backgroundColor = .systemGray
+            
+            let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
             swipeActions.performsFirstActionWithFullSwipe = false
             
             return swipeActions
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if serverGroups?.isEmpty == false {
-            Analytics.logEvent(Tracking.Event.touchEditGroupNumber + String(indexPath.row + 1), parameters: nil)
-            let nextVC = GroupNameEditBottomSheetViewController()
-                .setTitle("그룹명 변경")
-                .setHeight(184)
-            nextVC.modalPresentationStyle = .overFullScreen
-            nextVC.text = serverGroups?[indexPath.row] ?? ""
-            nextVC.returnToGroupEditViewController = {
-                self.groupListFetchWithAPI()
-            }
-            nextVC.nowGroup = serverGroups?[indexPath.row]
-            self.present(nextVC, animated: false, completion: nil)
         }
     }
 }

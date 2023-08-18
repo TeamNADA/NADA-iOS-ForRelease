@@ -22,6 +22,7 @@ class CompanyFrontCardCell: CardCell {
     public var cardContext: CardContext?
     
     // MARK: - @IBOutlet Properties
+    
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -65,6 +66,7 @@ class CompanyFrontCardCell: CardCell {
         setUI()
         setTapGesture()
     }
+    
     @IBAction func touchShareButton(_ sender: Any) {
         NotificationCenter.default.post(name: Notification.Name.presentCardShare, object: cardData, userInfo: nil)
         
@@ -188,7 +190,11 @@ extension CompanyFrontCardCell {
             Analytics.logEvent(Tracking.Event.touchCardDetailCompanyURL, parameters: nil)
         }
     }
+}
+
+// MARK: - Initialize
     
+extension CompanyFrontCardCell {
     /// 명함 조회 시 사용.
     func initCellFromServer(cardData: Card, isShareable: Bool) {
         self.cardData = cardData

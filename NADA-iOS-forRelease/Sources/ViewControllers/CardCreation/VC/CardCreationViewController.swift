@@ -8,18 +8,20 @@
 import UIKit
 
 import FirebaseAnalytics
+import RxAlamofire
+import RxSwift
 import YPImagePicker
 
 class CardCreationViewController: UIViewController {
 
     // MARK: - Properties
     
-    enum ButtonState {
+    private enum ButtonState {
         case enable
         case disable
     }
     
-    var completeButtonIsEnabled: ButtonState = .disable {
+    private var completeButtonIsEnabled: ButtonState = .disable {
         didSet {
             if completeButtonIsEnabled == .disable {
                 completeButton.isEnabled = false
@@ -35,6 +37,7 @@ class CardCreationViewController: UIViewController {
         }
     }
     
+    private var preCardDataModel: Card?
     private var frontCardRequiredIsEmpty = true
     private var backCardRequiredIsEmpty = true
     private var isEditingMode = false
@@ -45,8 +48,11 @@ class CardCreationViewController: UIViewController {
     private var birthText: String?
     private var backgroundImage: UIImage?
     private var tasteInfo: [TasteInfo]?
+    private var creationType: CreationType = .create
+    private var isRefresh = false
     
     private let cardType: CardType = .basic
+    private let disposedBag = DisposeBag()
     
     // MARK: - @IBOutlet Properties
     
@@ -67,7 +73,7 @@ class CardCreationViewController: UIViewController {
         registerCell()
         setTextLabelGesture()
         setNotification()
-        tasteFetchWithAPI(cardType: cardType)
+        setTastInfo()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -97,6 +103,8 @@ class CardCreationViewController: UIViewController {
         nextVC.cardBackgroundImage = backgroundImage
         nextVC.tasteInfo = tasteInfo
         nextVC.cardType = cardType
+        nextVC.setCreationType(creationType)
+        
         navigationController?.pushViewController(nextVC, animated: true)
         
         Analytics.logEvent(Tracking.Event.touchBasicCardPreview, parameters: nil)
@@ -104,6 +112,7 @@ class CardCreationViewController: UIViewController {
 }
 
 // MARK: - Extensions
+
 extension CardCreationViewController {
     private func setUI() {
         navigationController?.navigationBar.isHidden = true
@@ -128,7 +137,12 @@ extension CardCreationViewController {
         closeButton.setImage(UIImage(named: "iconClear"), for: .normal)
         closeButton.setTitle("", for: .normal)
         
-        completeButton.isEnabled = false
+        switch creationType {
+        case .create:
+            completeButton.isEnabled = false
+        case .modify:
+            completeButton.isEnabled = true
+        }
         
         // MARK: - #available(iOS 15.0, *)
 
@@ -194,6 +208,55 @@ extension CardCreationViewController {
                            parameters: [
                             AnalyticsParameterScreenName: Tracking.Screen.createBasicCard
                            ])
+    }
+    private func setTastInfo() {
+        if let preCardDataModel {
+            let tastes: [CardTasteInfo] = preCardDataModel.cardTastes.sorted { $0.sortOrder > $1.sortOrder }
+            tasteInfo = tastes.map { TasteInfo(sortOrder: $0.sortOrder, tasteName: $0.cardTasteName) }
+            
+            isEditingMode = true
+            
+            cardCreationCollectionView.reloadData()
+        } else {
+            tasteFetchWithAPI(cardType: cardType)
+        }
+    }
+    public func setPreCardDataModel(_ preCardDataModel: Card) {
+        self.preCardDataModel = preCardDataModel
+        
+        frontCard = FrontCardDataModel(birth: preCardDataModel.birth,
+                                       cardName: preCardDataModel.cardName,
+                                       userName: preCardDataModel.userName,
+                                       departmentName: preCardDataModel.departmentName,
+                                       mailAddress: preCardDataModel.mailAddress,
+                                       mbti: preCardDataModel.mbti,
+                                       phoneNumber: preCardDataModel.phoneNumber,
+                                       instagram: preCardDataModel.instagram,
+                                       twitter: preCardDataModel.twitter,
+                                       urls: preCardDataModel.urls,
+                                       defaultImageIndex: 0)
+        
+        let tastes: [String] = preCardDataModel.cardTastes.filter { $0.isChoose }.map { $0.cardTasteName }
+        
+        backCard = BackCardDataModel(tastes: tastes,
+                                     tmi: preCardDataModel.tmi)
+        
+        guard let url = URL(string: preCardDataModel.cardImage) else { return }
+        
+        RxAlamofire.requestData(.get, url)
+            .map { $1 }
+            .bind(with: self, onNext: { owner, data in
+                let image = UIImage(data: data)
+                owner.backgroundImage = image
+                NotificationCenter.default.post(name: .sendNewImage, object: image)
+            })
+            .disposed(by: disposedBag)
+        
+        frontCardRequiredIsEmpty = false
+        backCardRequiredIsEmpty = false
+    }
+    public func setCreationType(_ creationType: CreationType) {
+        self.creationType = creationType
     }
     
     // MARK: - @objc Methods
@@ -270,6 +333,7 @@ extension CardCreationViewController {
 }
 
 // MARK: - YPImagePickerDelegate
+
 extension CardCreationViewController: YPImagePickerDelegate {
     func imagePickerHasNoItemsInLibrary(_ picker: YPImagePicker) {
         self.makeOKAlert(title: "", message: "가져올 수 있는 사진이 없습니다.")
@@ -281,6 +345,7 @@ extension CardCreationViewController: YPImagePickerDelegate {
 }
 
 // MARK: - UICollectionViewDelegate
+
 extension CardCreationViewController: UICollectionViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let targetIndex = targetContentOffset.pointee.x / scrollView.frame.size.width
@@ -303,6 +368,7 @@ extension CardCreationViewController: UICollectionViewDelegate {
 }
 
 // MARK: - UICollectionViewDataSource
+
 extension CardCreationViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
@@ -330,16 +396,38 @@ extension CardCreationViewController: UICollectionViewDataSource {
                     self.present(nextVC, animated: false, completion: nil)
                 }
                 
+                if let preCardDataModel {
+                    frontCreationCell.setPreFrontCard(FrontCardDataModel(birth: preCardDataModel.birth,
+                                                                         cardName: preCardDataModel.cardName,
+                                                                         userName: preCardDataModel.userName,
+                                                                         departmentName: preCardDataModel.departmentName,
+                                                                         mailAddress: preCardDataModel.mailAddress,
+                                                                         mbti: preCardDataModel.mbti,
+                                                                         phoneNumber: preCardDataModel.phoneNumber,
+                                                                         instagram: preCardDataModel.instagram,
+                                                                         twitter: preCardDataModel.twitter,
+                                                                         urls: preCardDataModel.urls,
+                                                                         defaultImageIndex: 0))
+                }
+                
                 return frontCreationCell
             } else if indexPath.item == 1 {
                 guard let backCreationCell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.backCardCreationCollectionViewCell, for: indexPath) as? BackCardCreationCollectionViewCell else {
                     return UICollectionViewCell()
                 }
                 backCreationCell.backCardCreationDelegate = self
+                
                 if let tasteInfo {
-                    backCreationCell.flavorList = tasteInfo.map { $0.tasteName }
+                    backCreationCell.setTasteInfo(tasteInfo.map { $0.tasteName })
                 }
                 backCreationCell.cardType = cardType
+                
+                if !isRefresh {
+                    if let preCardDataModel {
+                        let tastes: [CardTasteInfo] = preCardDataModel.cardTastes.sorted { $0.sortOrder > $1.sortOrder }
+                        backCreationCell.setPreBackCard(tastes: tastes, tmi: preCardDataModel.tmi)
+                    }
+                }
                 
                 backCreationCell.firstTasteCollectionView.reloadData()
                 backCreationCell.secondTasteCollectionView.reloadData()
@@ -354,6 +442,7 @@ extension CardCreationViewController: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
+
 extension CardCreationViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = collectionView.frame.height
@@ -410,6 +499,7 @@ extension CardCreationViewController: BackCardCreationDelegate {
     }
     func backCardCreationTouchRefresh() {
         tasteFetchWithAPI(cardType: cardType)
+        isRefresh = true
     }
 }
 
@@ -420,7 +510,7 @@ extension CardCreationViewController {
         CardAPI.shared.tasteFetch(cardType: cardType) { response in
             switch response {
             case .success(let data):
-                print("cardCreationWithAPI - success")
+                print("tasteFetchWithAPI - success")
                 if let tastes = data as? Taste {
                     self.tasteInfo = tastes.tasteInfos.sorted { $0.sortOrder > $1.sortOrder }
                     DispatchQueue.main.async { [weak self] in

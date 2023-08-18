@@ -20,6 +20,7 @@ class CardCreationPreviewViewController: UIViewController {
     
     private var isFront = true
     private var isShareable = false
+    private var creationType: CreationType = .create
     
     lazy var loadingBgView: UIView = {
         let bgView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
@@ -73,7 +74,14 @@ class CardCreationPreviewViewController: UIViewController {
                 guard let cardType else { return }
                 
                 let cardCreationRequest = CardCreationRequest(cardImageURL: imageURL, cardType: cardType.rawValue, frontCard: frontCardDataModel, backCard: backCardDataModel)
-                self.cardCreationWithAPI(request: cardCreationRequest)
+                
+                switch creationType {
+                case .create:
+                    self.cardCreationWithAPI(request: cardCreationRequest)
+                case .modify:
+                    // FIXME: - 명함 수정 API 로 수정.
+                    self.cardModifyWithAPI(request: cardCreationRequest)
+                }
             }
         }
         
@@ -238,6 +246,9 @@ extension CardCreationPreviewViewController {
                             AnalyticsParameterScreenName: parameters
                            ])
     }
+    public func setCreationType(_ creationType: CreationType) {
+        self.creationType = creationType
+    }
 
     // MARK: - @objc Methods
     
@@ -273,7 +284,6 @@ extension CardCreationPreviewViewController {
                 self.cardView.subviews[0].removeFromSuperview()
             }
         }
-        
     }
     
     // MARK: - Network
@@ -316,6 +326,25 @@ extension CardCreationPreviewViewController {
                 print("cardCreationWithAPI - serverErr")
             case .networkFail:
                 print("cardCreationWithAPI - networkFail")
+            }
+        }
+    }
+    private func cardModifyWithAPI(request: CardCreationRequest) {
+        // FIXME: - 명함 생성 API 로 교체.
+        CardAPI.shared.cardCreation(request: request) { response in
+            switch response {
+            case .success:
+                print("cardModifyWithAPI - success")
+                
+                self.dismiss(animated: true)
+            case .requestErr(let message):
+                print("cardModifyWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("cardModifyWithAPI - pathErr")
+            case .serverErr:
+                print("cardModifyWithAPI - serverErr")
+            case .networkFail:
+                print("cardModifyWithAPI - networkFail")
             }
         }
     }

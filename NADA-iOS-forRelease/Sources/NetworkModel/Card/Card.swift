@@ -8,6 +8,7 @@
 import Foundation
 
 // MARK: - Card
+
 struct Card: Codable {
     let birth: String
     let cardID: Int
@@ -39,6 +40,8 @@ struct Card: Codable {
         Card(birth: "", cardID: 2, cardUUID: "id3", cardImage: "imgCardBg03", cardName: "세 번째 카드", cardTastes: [CardTasteInfo(cardTasteName: "", isChoose: false, sortOrder: 0)], cardType: "", departmentName: "", isRepresentative: false, mailAddress: "", mbti: "", phoneNumber: "", instagram: "", twitter: "", tmi: "", urls: [], userName: "3현규")
     ]
 }
+
+// MARK: - CardTasteInfo
 
 struct CardTasteInfo: Codable {
     let cardTasteName: String

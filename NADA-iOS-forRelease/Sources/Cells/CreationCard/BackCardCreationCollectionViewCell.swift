@@ -17,9 +17,11 @@ class BackCardCreationCollectionViewCell: UICollectionViewCell {
     static let identifier = "BackCardCreationCollectionViewCell"
     
     public var cardType: CardType?
-    public var flavorList: [String]?
+    
+    private var tasteInfo: [String]?
     private let maxLength: Int = 140
     private var requiredCollectionViewList = [UICollectionView]()
+    private var preTasteInfo: [CardTasteInfo]?
     
     public weak var backCardCreationDelegate: BackCardCreationDelegate?
     
@@ -110,11 +112,13 @@ extension BackCardCreationCollectionViewCell {
         NotificationCenter.default.addObserver(self, selector: #selector(dismissKeyboard), name: .touchRequiredView, object: nil)
     }
     private func checkBackCardStatus() {
+        guard let tasteInfo else { return }
+        
         backCardCreationDelegate?.backCardCreation(withRequired: [
-            firstTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? flavorList?[0] ?? "" : flavorList?[1] ?? "",
-            secondTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? flavorList?[2] ?? "" : flavorList?[3] ?? "",
-            thirdTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? flavorList?[4] ?? "" : flavorList?[5] ?? "",
-            fourthTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? flavorList?[6] ?? "" : flavorList?[7] ?? ""
+            firstTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? tasteInfo[0] : tasteInfo[1],
+            secondTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? tasteInfo[2] : tasteInfo[3],
+            thirdTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? tasteInfo[4] : tasteInfo[5],
+            fourthTasteCollectionView.indexPathsForSelectedItems == [[0, 0]] ? tasteInfo[6] : tasteInfo[7]
         ], withOptional: tmiTextView.text == "조금 더 다채로운 모습을 담아볼까요?" ? nil : tmiTextView.text)
     }
     private func setAddTargets() {
@@ -123,7 +127,24 @@ extension BackCardCreationCollectionViewCell {
     static func nib() -> UINib {
         return UINib(nibName: Const.Xib.backCardCreationCollectionViewCell, bundle: Bundle(for: BackCardCreationCollectionViewCell.self))
     }
-    
+    public func setPreBackCard(tastes: [CardTasteInfo], tmi: String?) {
+        preTasteInfo = tastes
+                
+        if let tmi {
+            tmiTextView.text = tmi
+            tmiTextView.textColor = .primary
+        } else {
+            tmiTextView.text = "조금 더 다채로운 모습을 담아볼까요?"
+        }
+        
+        backCardCreationDelegate?.backCardCreation(requiredInfo: true)
+        
+        let choosedTastes: [String] = tastes.filter { $0.isChoose == true }.map { $0.cardTasteName }
+        backCardCreationDelegate?.backCardCreation(withRequired: choosedTastes, withOptional: tmi)
+    }
+    public func setTasteInfo(_ tasteInfo: [String]) {
+        self.tasteInfo = tasteInfo
+    }
     // MARK: - @objc Methods
     
     @objc
@@ -132,6 +153,7 @@ extension BackCardCreationCollectionViewCell {
     }
     @objc
     private func touchRefreshButton() {
+        preTasteInfo = nil
         backCardCreationDelegate?.backCardCreationTouchRefresh()
         backCardCreationDelegate?.backCardCreation(requiredInfo: false)
     }
@@ -157,11 +179,11 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDelegate {
         
         switch cardType {
         case .basic:
-            Analytics.logEvent(Tracking.Event.touchBasicTasteInfo + (flavorList?[indexPath.item] ?? ""), parameters: nil)
+            Analytics.logEvent(Tracking.Event.touchBasicTasteInfo + (tasteInfo?[indexPath.item] ?? ""), parameters: nil)
         case .company:
-            Analytics.logEvent(Tracking.Event.touchCompanyTasteInfo + (flavorList?[indexPath.item] ?? ""), parameters: nil)
+            Analytics.logEvent(Tracking.Event.touchCompanyTasteInfo + (tasteInfo?[indexPath.item] ?? ""), parameters: nil)
         case .fan:
-            Analytics.logEvent(Tracking.Event.touchFanTasteInfo + (flavorList?[indexPath.item] ?? ""), parameters: nil)
+            Analytics.logEvent(Tracking.Event.touchFanTasteInfo + (tasteInfo?[indexPath.item] ?? ""), parameters: nil)
         }
     }
 }
@@ -179,13 +201,45 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDataSource {
         }
         switch collectionView {
         case firstTasteCollectionView:
-            cell.initCell(flavor: flavorList?[indexPath.item] ?? "")
+            cell.initCell(flavor: tasteInfo?[indexPath.item] ?? "")
+            
+            if preTasteInfo?[indexPath.item].isChoose ?? false {
+                cell.isSelected = true
+                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
+            } else {
+                cell.isSelected = false
+                collectionView.deselectItem(at: indexPath, animated: false)
+            }
         case secondTasteCollectionView:
-            cell.initCell(flavor: flavorList?[indexPath.item + 2] ?? "")
+            cell.initCell(flavor: tasteInfo?[indexPath.item + 2] ?? "")
+            
+            if preTasteInfo?[indexPath.item + 2].isChoose ?? false {
+                cell.isSelected = true
+                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
+            } else {
+                cell.isSelected = false
+                collectionView.deselectItem(at: indexPath, animated: false)
+            }
         case thirdTasteCollectionView:
-            cell.initCell(flavor: flavorList?[indexPath.item + 4] ?? "")
+            cell.initCell(flavor: tasteInfo?[indexPath.item + 4] ?? "")
+            
+            if preTasteInfo?[indexPath.item + 4].isChoose ?? false {
+                cell.isSelected = true
+                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
+            } else {
+                cell.isSelected = false
+                collectionView.deselectItem(at: indexPath, animated: false)
+            }
         case fourthTasteCollectionView:
-            cell.initCell(flavor: flavorList?[indexPath.item + 6] ?? "")
+            cell.initCell(flavor: tasteInfo?[indexPath.item + 6] ?? "")
+            
+            if preTasteInfo?[indexPath.item + 6].isChoose ?? false {
+                cell.isSelected = true
+                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
+            } else {
+                cell.isSelected = false
+                collectionView.deselectItem(at: indexPath, animated: false)
+            }
         default:
             return UICollectionViewCell()
         }

@@ -65,16 +65,37 @@ final class ModuleFactory: ModuleFactoryProtocol {
         return groupEditVC
     }
     
-    func makeCardCreationVC(cardType: CardType) -> UINavigationController {
+    func makeCardCreationVC(cardType: CardType, preCardDataModel: Card? = nil) -> UINavigationController {
         let cardCreationVC: UIViewController
         
         switch cardType {
         case .basic:
-            cardCreationVC = CardCreationViewController.controllerFromStoryboard(.cardCreation)
+            let basicCardCreationVC = CardCreationViewController.controllerFromStoryboard(.cardCreation)
+            
+            if let preCardDataModel {
+                basicCardCreationVC.setPreCardDataModel(preCardDataModel)
+                basicCardCreationVC.setCreationType(.modify)
+            }
+            
+            cardCreationVC = basicCardCreationVC
         case .company:
-            cardCreationVC = CompanyCardCreationViewController.controllerFromStoryboard(.companyCardCreation)
+            let companyCardCreationVC = CompanyCardCreationViewController.controllerFromStoryboard(.companyCardCreation)
+            
+            if let preCardDataModel {
+                companyCardCreationVC.setPreCardDataModel(preCardDataModel)
+                companyCardCreationVC.setCreationType(.modify)
+            }
+            
+            cardCreationVC = companyCardCreationVC
         case .fan:
-            cardCreationVC = FanCardCreationViewController.controllerFromStoryboard(.fanCardCreation)
+            let fanCardCreationVC = FanCardCreationViewController.controllerFromStoryboard(.fanCardCreation)
+            
+            if let preCardDataModel {
+                fanCardCreationVC.setPreCardDataModel(preCardDataModel)
+                fanCardCreationVC.setCreationType(.modify)
+            }
+            
+            cardCreationVC = fanCardCreationVC
         }
         
         let navigationController = UINavigationController(rootViewController: cardCreationVC)

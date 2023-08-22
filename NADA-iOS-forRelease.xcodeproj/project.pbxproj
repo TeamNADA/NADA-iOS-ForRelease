@@ -65,6 +65,7 @@
 		39D88B6B274600B100A72164 /* CommonBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D88B6A274600B100A72164 /* CommonBottomSheetViewController.swift */; };
 		39F5A3D0271461EA00191F94 /* BackCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5A3CE271461EA00191F94 /* BackCardCell.swift */; };
 		39F5A3D1271461EA00191F94 /* BackCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39F5A3CF271461EA00191F94 /* BackCardCell.xib */; };
+		7701665D2A94EC2400D7E72C /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7701665C2A94EC2400D7E72C /* BannerCollectionViewCell.swift */; };
 		7705CF3E2752C7DB005195DF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7705CF3D2752C7DB005195DF /* CardView.swift */; };
 		7705CF402752C844005195DF /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7705CF3F2752C844005195DF /* CardView.xib */; };
 		770E58862778A78900498C2E /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770E58852778A78900498C2E /* Status.swift */; };
@@ -351,6 +352,7 @@
 		39D88B6A274600B100A72164 /* CommonBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonBottomSheetViewController.swift; sourceTree = "<group>"; };
 		39F5A3CE271461EA00191F94 /* BackCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackCardCell.swift; sourceTree = "<group>"; };
 		39F5A3CF271461EA00191F94 /* BackCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackCardCell.xib; sourceTree = "<group>"; };
+		7701665C2A94EC2400D7E72C /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewCell.swift; sourceTree = "<group>"; };
 		7705CF3D2752C7DB005195DF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		7705CF3F2752C844005195DF /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
 		770E58852778A78900498C2E /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
@@ -799,6 +801,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7701665B2A94EC0600D7E72C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7701665C2A94EC2400D7E72C /* BannerCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		7734D5B027778EC8004360E4 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -967,6 +977,7 @@
 		77B4E7492990E4FC006098DC /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				7701665B2A94EC0600D7E72C /* View */,
 				77C6E34D299B84CA00E059F9 /* ViewModel */,
 				77C6E34E299B84D500E059F9 /* VC */,
 			);
@@ -1983,6 +1994,7 @@
 				777B2C222A00E15000A6AB27 /* NearByRequest.swift in Sources */,
 				F8D74DD8276C7FB60071E5FC /* UIImageView+Extension.swift in Sources */,
 				F8F00C3929DD474700A15377 /* UpdateNote.swift in Sources */,
+				7701665D2A94EC2400D7E72C /* BannerCollectionViewCell.swift in Sources */,
 				39D13565273FDB9C00B1A148 /* User.swift in Sources */,
 				F805588529C993E7002E8EA3 /* UpdateViewController.swift in Sources */,
 				77812947275F6EA3004B34F4 /* CardDetailViewController.swift in Sources */,

@@ -264,6 +264,15 @@ extension HomeViewController {
                 let aroundMeVC = self.moduleFactory.makeAroundMeVC()
                 owner.present(aroundMeVC, animated: true)
             }.disposed(by: self.disposeBag)
+        
+        tryCardView.rx.tapGesture()
+            .when(.recognized)
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.makeVibrate()
+                let cardcreationcategoryVC = self.moduleFactory.makeCardCreationCategoryVC()
+                owner.navigationController?.pushViewController(cardcreationcategoryVC, animated: true)
+            }.disposed(by: self.disposeBag)
     }
     
     private func checkUpdateVersionAndSetting() {

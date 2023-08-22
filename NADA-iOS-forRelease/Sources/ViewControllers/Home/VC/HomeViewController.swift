@@ -121,11 +121,31 @@ extension HomeViewController {
     
     private func setLayout() {
         stackview.addArrangedSubviews([giveCardView, takeCardView])
-        view.addSubviews([nadaIcon, stackview, aroundMeView])
+//        view.addSubviews([nadaIcon, stackview, aroundMeView])
+        bannerView.addSubviews([bannerTypeLabel, bannerTextLabel])
+        bannerBackView.addSubviews([nadaIcon, bannerView, dateLabel, stackview, aroundMeView])
+        view.addSubviews([bannerBackView, bannerView, stackview, aroundMeView])
         giveCardView.addSubviews([giveCardLabel, giveCardIcon])
         takeCardView.addSubviews([takeCardLabel, takeCardIcon])
         aroundMeView.addSubviews([aroundMeLabel, aroundMeIcon])
         
+        bannerBackView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(172)
+        }
+        bannerTypeLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalToSuperview().inset(8)
+        }
+        bannerTextLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(bannerTypeLabel.snp.trailing).offset(8)
+            make.trailing.equalToSuperview().inset(8)
+        }
+        dateLabel.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(24)
+            make.bottom.equalToSuperview().inset(8)
+        }
         nadaIcon.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide).inset(12)
             make.leading.equalToSuperview().inset(19)

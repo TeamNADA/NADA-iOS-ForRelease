@@ -28,23 +28,20 @@ final class HomeViewController: UIViewController {
     private let bannerBackView = UIView().then {
         $0.backgroundColor = .card
     }
-    
-    private let bannerView = UIView().then {
-        $0.backgroundColor = .white
+    private let bannerCollevtionViewFlowLayout = UICollectionViewFlowLayout().then {
+        $0.estimatedItemSize = .zero
+        $0.scrollDirection = .horizontal
     }
-    
-    private let bannerTypeLabel = UILabel().then {
-        $0.backgroundColor = .mainColorNadaMain
+    private lazy var bannerCollectionView = UICollectionView(frame: .zero, collectionViewLayout: bannerCollevtionViewFlowLayout).then {
+        $0.isPagingEnabled = true
+        $0.backgroundColor = .green
+        $0.showsHorizontalScrollIndicator = false
     }
-    
-    private let bannerTextLabel = UILabel().then {
-        $0.font = .textRegular04
-    }
-    
-    private var dateLabel = UILabel().then {
+    private var bannerPageLabel = UILabel().then {
         $0.font = .textRegular05
+        $0.textColor = .quaternary
+        $0.text = "NN/NN"
     }
-    
     private let nadaIcon = UIImageView().then {
         $0.image = UIImage(named: "nadaLogoTxt")
     }
@@ -121,10 +118,8 @@ extension HomeViewController {
     
     private func setLayout() {
         stackview.addArrangedSubviews([giveCardView, takeCardView])
-//        view.addSubviews([nadaIcon, stackview, aroundMeView])
-        bannerView.addSubviews([bannerTypeLabel, bannerTextLabel])
-        bannerBackView.addSubviews([nadaIcon, bannerView, dateLabel, stackview, aroundMeView])
-        view.addSubviews([bannerBackView, bannerView, stackview, aroundMeView])
+        bannerBackView.addSubviews([nadaIcon, bannerCollectionView, bannerPageLabel])
+        view.addSubviews([bannerBackView, stackview, aroundMeView])
         giveCardView.addSubviews([giveCardLabel, giveCardIcon])
         takeCardView.addSubviews([takeCardLabel, takeCardIcon])
         aroundMeView.addSubviews([aroundMeLabel, aroundMeIcon])
@@ -133,22 +128,20 @@ extension HomeViewController {
             make.top.leading.trailing.equalToSuperview()
             make.height.equalTo(172)
         }
-        bannerTypeLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().inset(8)
-        }
-        bannerTextLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.leading.equalTo(bannerTypeLabel.snp.trailing).offset(8)
-            make.trailing.equalToSuperview().inset(8)
-        }
-        dateLabel.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(24)
-            make.bottom.equalToSuperview().inset(8)
-        }
         nadaIcon.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide).inset(12)
             make.leading.equalToSuperview().inset(19)
+        }
+        bannerPageLabel.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(24)
+            make.bottom.equalToSuperview().inset(8)
+        }
+        bannerCollectionView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(nadaIcon.snp.bottom).offset(11)
+            make.bottom.equalTo(bannerPageLabel.snp.top).inset(-8)
+            make.leading.equalToSuperview().inset(24)
+            make.trailing.equalToSuperview()
         }
         stackview.snp.makeConstraints { make in
             make.centerX.equalToSuperview()

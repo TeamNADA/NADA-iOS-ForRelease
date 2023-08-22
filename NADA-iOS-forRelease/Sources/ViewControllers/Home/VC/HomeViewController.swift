@@ -42,6 +42,19 @@ final class HomeViewController: UIViewController {
         $0.textColor = .quaternary
         $0.text = "NN/NN"
     }
+    private let tryCardView = UIView().then {
+        $0.backgroundColor = .green
+        $0.layer.cornerRadius = 15
+    }
+    private let tryCardIcon = UIImageView().then {
+        $0.image = UIImage(named: "icnTryCard")
+    }
+    private let tryCardLabel = UILabel().then {
+        $0.text = "내 명함을 만들어 보세요!"
+    }
+    private let tryCardArrowIcon = UIImageView().then {
+        $0.image = UIImage(named: "iconArrowRight")
+    }
     private let nadaIcon = UIImageView().then {
         $0.image = UIImage(named: "nadaLogoTxt")
     }
@@ -119,7 +132,8 @@ extension HomeViewController {
     private func setLayout() {
         stackview.addArrangedSubviews([giveCardView, takeCardView])
         bannerBackView.addSubviews([nadaIcon, bannerCollectionView, bannerPageLabel])
-        view.addSubviews([bannerBackView, stackview, aroundMeView])
+        tryCardView.addSubviews([tryCardIcon, tryCardLabel, tryCardArrowIcon])
+        view.addSubviews([bannerBackView, tryCardView, stackview, aroundMeView])
         giveCardView.addSubviews([giveCardLabel, giveCardIcon])
         takeCardView.addSubviews([takeCardLabel, takeCardIcon])
         aroundMeView.addSubviews([aroundMeLabel, aroundMeIcon])
@@ -143,9 +157,15 @@ extension HomeViewController {
             make.leading.equalToSuperview().inset(24)
             make.trailing.equalToSuperview()
         }
+        tryCardView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(bannerBackView.snp.bottom).offset(24)
+            make.leading.equalToSuperview().inset(24)
+            make.height.equalTo(54)
+        }
         stackview.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(nadaIcon.snp.bottom).offset(150)
+            make.top.equalTo(tryCardView.snp.bottom).offset(24)
             make.leading.equalToSuperview().inset(24)
             make.height.equalTo(205)
         }
@@ -154,6 +174,18 @@ extension HomeViewController {
             make.top.equalTo(giveCardView.snp.bottom).offset(14)
             make.leading.equalToSuperview().inset(24)
             make.height.equalTo(100)
+        }
+        tryCardIcon.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalToSuperview().inset(24)
+        }
+        tryCardLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(tryCardIcon.snp.trailing).offset(5)
+        }
+        tryCardArrowIcon.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().inset(10)
         }
         giveCardLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(18)

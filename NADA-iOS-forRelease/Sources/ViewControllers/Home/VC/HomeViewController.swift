@@ -43,8 +43,14 @@ final class HomeViewController: UIViewController {
         $0.text = "NN/NN"
     }
     private let tryCardView = UIView().then {
-        $0.backgroundColor = .green
+        $0.backgroundColor = .white
         $0.layer.cornerRadius = 15
+        $0.layer.borderWidth = 0.05
+        $0.layer.masksToBounds = false
+        $0.layer.shadowColor = UIColor.black.cgColor
+        $0.layer.shadowOffset = CGSize(width: 0, height: 1)
+        $0.layer.shadowOpacity = 0.1
+        $0.layer.shadowRadius = 15
     }
     private let tryCardIcon = UIImageView().then {
         $0.image = UIImage(named: "icnTryCard")

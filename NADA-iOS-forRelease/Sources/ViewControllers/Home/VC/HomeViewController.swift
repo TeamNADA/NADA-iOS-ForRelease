@@ -25,6 +25,26 @@ final class HomeViewController: UIViewController {
     
     // MARK: - UI Components
     
+    private let bannerBackView = UIView().then {
+        $0.backgroundColor = .card
+    }
+    
+    private let bannerView = UIView().then {
+        $0.backgroundColor = .white
+    }
+    
+    private let bannerTypeLabel = UILabel().then {
+        $0.backgroundColor = .mainColorNadaMain
+    }
+    
+    private let bannerTextLabel = UILabel().then {
+        $0.font = .textRegular04
+    }
+    
+    private var dateLabel = UILabel().then {
+        $0.font = .textRegular05
+    }
+    
     private let nadaIcon = UIImageView().then {
         $0.image = UIImage(named: "nadaLogoTxt")
     }

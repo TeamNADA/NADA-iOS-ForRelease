@@ -21,6 +21,7 @@ class CardCreationPreviewViewController: UIViewController {
     private var isFront = true
     private var isShareable = false
     private var creationType: CreationType = .create
+    private var cardUUID: String?
     
     lazy var loadingBgView: UIView = {
         let bgView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
@@ -79,8 +80,7 @@ class CardCreationPreviewViewController: UIViewController {
                 case .create:
                     self.cardCreationWithAPI(request: cardCreationRequest)
                 case .modify:
-                    // FIXME: - 명함 수정 API 로 수정.
-                    self.cardModifyWithAPI(request: cardCreationRequest)
+                    self.cardModifyWithAPI(request: cardCreationRequest, cardUUID: cardUUID)
                 }
             }
         }
@@ -249,6 +249,9 @@ extension CardCreationPreviewViewController {
     public func setCreationType(_ creationType: CreationType) {
         self.creationType = creationType
     }
+    public func setCardUUID(_ cardUUID: String) {
+        self.cardUUID = cardUUID
+    }
 
     // MARK: - @objc Methods
     
@@ -329,9 +332,8 @@ extension CardCreationPreviewViewController {
             }
         }
     }
-    private func cardModifyWithAPI(request: CardCreationRequest) {
-        // FIXME: - 명함 생성 API 로 교체.
-        CardAPI.shared.cardCreation(request: request) { response in
+    private func cardModifyWithAPI(request: CardCreationRequest, cardUUID: String?) {
+        CardAPI.shared.cardCreation(request: request, type: .modify, cardUUID: cardUUID) { response in
             switch response {
             case .success:
                 print("cardModifyWithAPI - success")

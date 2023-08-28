@@ -10,7 +10,7 @@ import Moya
 
 enum CardService {
     case cardDetailFetch(cardUUID: String)
-    case cardCreation(request: CardCreationRequest)
+    case cardCreation(request: CardCreationRequest, type: CreationType, cardUUID: String? = nil)
     case cardListPageFetch(pageNumber: Int, pageSize: Int)
     case cardListFetch
     case cardReorder(request: [CardReorderInfo])
@@ -50,7 +50,14 @@ extension CardService: TargetType {
         switch self {
         case .cardDetailFetch, .cardListPageFetch, .cardListFetch, .tasteFetch:
             return .get
-        case .cardCreation, .cardReorder, .imageUpload:
+        case .cardCreation(_, let creationType, _):
+            switch creationType {
+            case .create:
+                return .post
+            case .modify:
+                return .put
+            }
+        case .cardReorder, .imageUpload:
             return .post
         case .cardDelete:
             return .delete
@@ -65,7 +72,7 @@ extension CardService: TargetType {
         switch self {
         case .cardDetailFetch, .cardDelete, .tasteFetch, .cardListFetch:
             return .requestPlain
-        case .cardCreation(let request):
+        case .cardCreation(let request, let creationType, let cardUUID):
             var parameters: [String: Any] = ["birth": request.frontCard.birth,
                                              "cardImage": request.cardImageURL,
                                              "cardName": request.frontCard.cardName,
@@ -103,6 +110,10 @@ extension CardService: TargetType {
             
             if let urls = request.frontCard.urls {
                 parameters["urls"] = urls
+            }
+            
+            if creationType == .modify, let cardUUID {
+                parameters["cardUuid"] = cardUUID
             }
             
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)

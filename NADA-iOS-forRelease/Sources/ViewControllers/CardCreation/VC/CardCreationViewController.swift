@@ -104,6 +104,9 @@ class CardCreationViewController: UIViewController {
         nextVC.tasteInfo = tasteInfo
         nextVC.cardType = cardType
         nextVC.setCreationType(creationType)
+        if let cardUUID = preCardDataModel?.cardUUID {
+            nextVC.setCardUUID(cardUUID)
+        }
         
         navigationController?.pushViewController(nextVC, animated: true)
         

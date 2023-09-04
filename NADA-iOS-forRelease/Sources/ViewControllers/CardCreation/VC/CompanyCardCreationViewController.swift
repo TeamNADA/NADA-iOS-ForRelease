@@ -103,6 +103,9 @@ class CompanyCardCreationViewController: UIViewController {
         nextVC.tasteInfo = tasteInfo
         nextVC.cardType = cardType
         nextVC.setCreationType(creationType)
+        if let cardUUID = preCardDataModel?.cardUUID {
+            nextVC.setCardUUID(cardUUID)
+        }
         
         navigationController?.pushViewController(nextVC, animated: true)
         
@@ -415,7 +418,7 @@ extension CompanyCardCreationViewController: UICollectionViewDataSource {
                 }
                 backCreationCell.backCardCreationDelegate = self
                 if let tasteInfo {
-                    backCreationCell.tasteInfo = tasteInfo.map { $0.tasteName }
+                    backCreationCell.setTasteInfo(tasteInfo.map { $0.tasteName })
                 }
                 backCreationCell.cardType = cardType
                 

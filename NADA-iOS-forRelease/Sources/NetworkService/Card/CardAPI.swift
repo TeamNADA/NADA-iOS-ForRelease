@@ -30,8 +30,8 @@ public class CardAPI {
         }
     }
     
-    func cardCreation(request: CardCreationRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
-        cardProvider.request(.cardCreation(request: request)) { (result) in
+    func cardCreation(request: CardCreationRequest, type: CreationType = .create, cardUUID: String? = nil, completion: @escaping (NetworkResult<Any>) -> Void) {
+        cardProvider.request(.cardCreation(request: request, type: type, cardUUID: cardUUID)) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode

@@ -16,14 +16,25 @@ class BannerCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Components
     
+    private let stackview = UIStackView().then {
+        $0.spacing = 8
+        $0.distribution = .fillEqually
+        $0.backgroundColor = .blue
+        $0.axis = .horizontal
+    }
+    
     private var bannerTitleLabel = UILabel().then {
         $0.font = .textBold03
-        $0.backgroundColor = .mainColorNadaMain.withAlphaComponent(0.3)
+//        $0.backgroundColor = .mainColorNadaMain.withAlphaComponent(0.3)
+        $0.backgroundColor = .mainColorNadaMain
         $0.textColor = .mainColorNadaMain
+        $0.layer.cornerRadius = 12
+        $0.text = "type"
     }
     
     private var bannerTextLabel = UILabel().then {
         $0.font = .textRegular04
+        $0.text = "banner text"
     }
     
     // MARK: - Initialize
@@ -58,16 +69,13 @@ class BannerCollectionViewCell: UICollectionViewCell {
     }
     
     private func setLayout() {
-        self.addSubviews([bannerTitleLabel, bannerTextLabel])
-        
-        bannerTitleLabel.snp.makeConstraints { make in
+        stackview.addSubviews([bannerTitleLabel, bannerTextLabel])
+        self.addSubview(stackview)
+
+        stackview.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().inset(8)
-            make.trailing.equalTo(bannerTextLabel.snp.leading).offset(8)
-        }
-        bannerTextLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().inset(16)
+            make.top.leading.equalToSuperview().inset(8)
+            make.trailing.equalToSuperview()
         }
     }
     

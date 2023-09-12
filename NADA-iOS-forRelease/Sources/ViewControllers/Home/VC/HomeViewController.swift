@@ -109,6 +109,8 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         setLayout()
         bindActions()
+        setDelegate()
+        setRegister()
         checkUpdateVersionAndSetting()
         setNotification()
     }
@@ -219,6 +221,15 @@ extension HomeViewController {
     }
     
     // MARK: - Methods
+    
+    private func setDelegate() {
+        bannerCollectionView.dataSource = self
+        bannerCollectionView.delegate = self
+    }
+    
+    private func setRegister() {
+        bannerCollectionView.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: BannerCollectionViewCell.className)
+    }
     
     private func setTracking() {
         Analytics.logEvent(AnalyticsEventScreenView,
@@ -413,6 +424,46 @@ extension HomeViewController {
     private func backToHome(_ notification: Notification) {
         setUI()
         setTracking()
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width: CGFloat = UIScreen.main.bounds.width - 48
+        let height: CGFloat = 40
+        
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 12
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 12)
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+
+extension HomeViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let bannerCell = collectionView.dequeueReusableCell(withReuseIdentifier: BannerCollectionViewCell.className, for: indexPath) as? BannerCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        
+        return bannerCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("selected")
     }
 }
 

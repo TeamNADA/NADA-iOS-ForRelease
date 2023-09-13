@@ -9,6 +9,7 @@ import Photos
 import UIKit
 
 import FirebaseAnalytics
+import GoogleMobileAds
 import RxSwift
 import RxRelay
 import RxCocoa
@@ -104,6 +105,11 @@ final class HomeViewController: UIViewController {
     }
     private let aroundMeIcon = UIImageView().then {
         $0.image = UIImage(named: "imgNearby")
+    }
+    private var googleAdView = GADBannerView().then {
+        let googleAdmobAppId = Bundle.main.object(forInfoDictionaryKey: "GADApplicationIdentifier") as? String
+        $0.adUnitID = googleAdmobAppId
+        $0.load(GADRequest())
     }
     
     // MARK: - View Life Cycles
@@ -228,6 +234,7 @@ extension HomeViewController {
     private func setDelegate() {
         bannerCollectionView.dataSource = self
         bannerCollectionView.delegate = self
+        googleAdView.delegate = self
     }
     
     private func setRegister() {
@@ -427,6 +434,17 @@ extension HomeViewController {
     private func backToHome(_ notification: Notification) {
         setUI()
         setTracking()
+    }
+}
+
+// MARK: - GADBannerViewDelegate
+
+extension HomeViewController: GADBannerViewDelegate {
+    public func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        googleAdView.alpha = 0
+        UIView.animate(withDuration: 1) {
+            bannerView.alpha = 1
+        }
     }
 }
 

@@ -110,6 +110,7 @@ final class HomeViewController: UIViewController {
         let googleAdmobAppId = Bundle.main.object(forInfoDictionaryKey: "GADApplicationIdentifier") as? String
         $0.adUnitID = googleAdmobAppId
         $0.load(GADRequest())
+        $0.backgroundColor = .blue
     }
     
     // MARK: - View Life Cycles
@@ -151,7 +152,7 @@ extension HomeViewController {
         stackview.addArrangedSubviews([giveCardView, takeCardView])
         bannerBackView.addSubviews([nadaIcon, bannerCollectionView, bannerPageLabel])
         tryCardView.addSubviews([tryCardIcon, tryCardLabel, tryCardArrowIcon])
-        view.addSubviews([bannerBackView, tryCardView, stackview, aroundMeView])
+        view.addSubviews([bannerBackView, tryCardView, stackview, aroundMeView, googleAdView])
         giveCardView.addSubviews([giveCardLabel, giveCardIcon])
         takeCardView.addSubviews([takeCardLabel, takeCardIcon])
         aroundMeView.addSubviews([aroundMeLabel, aroundMeIcon])
@@ -226,6 +227,11 @@ extension HomeViewController {
         aroundMeIcon.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().inset(24)
+        }
+        googleAdView.snp.makeConstraints { make in
+            make.top.equalTo(aroundMeView.snp.bottom).offset(69)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(12)
         }
     }
     

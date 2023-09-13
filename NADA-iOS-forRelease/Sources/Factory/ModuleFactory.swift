@@ -71,7 +71,7 @@ final class ModuleFactory: ModuleFactoryProtocol {
         return cardCreationCategoryVC
     }
     
-    func makeCardCreationVC(cardType: CardType) -> UINavigationController {
+    func makeCardCreationVC(cardType: CardType, preCardDataModel: Card? = nil) -> UINavigationController {
         let cardCreationVC: UIViewController
         
         switch cardType {

@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -33,6 +33,14 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aNM-Fl-RCk">
+                        <rect key="frame" x="255" y="16" width="48" height="38"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="iconTag"/>
+                        <connections>
+                            <action selector="touchTagButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="2ha-0N-lxY"/>
+                        </connections>
+                    </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FfP-9G-1a3">
                         <rect key="frame" x="24" y="74.5" width="279" height="1"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -142,6 +150,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Rmd-7u-oYx" secondAttribute="trailing" id="0jt-23-iuI"/>
                 <constraint firstItem="sLy-tM-Foc" firstAttribute="top" secondItem="FfP-9G-1a3" secondAttribute="bottom" constant="19.5" id="0qQ-GA-Jqc"/>
+                <constraint firstItem="aNM-Fl-RCk" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="0wf-Nl-5GA"/>
                 <constraint firstItem="0VZ-Iq-YfG" firstAttribute="centerY" secondItem="sLy-tM-Foc" secondAttribute="centerY" id="2l1-Uh-a1X"/>
                 <constraint firstItem="Z3d-Jw-0bl" firstAttribute="leading" secondItem="sLy-tM-Foc" secondAttribute="leading" id="3yS-Lv-c0f"/>
                 <constraint firstItem="cJI-Zc-w2j" firstAttribute="centerY" secondItem="Sfm-fL-vo0" secondAttribute="centerY" id="4Ik-if-OEk"/>
@@ -155,6 +164,7 @@
                 <constraint firstItem="Q9H-oG-tzn" firstAttribute="bottom" secondItem="Rmd-7u-oYx" secondAttribute="bottom" id="GEn-g5-aCr"/>
                 <constraint firstItem="Rmd-7u-oYx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="GZC-tY-5Ql"/>
                 <constraint firstItem="EUO-lM-Tml" firstAttribute="trailing" secondItem="0VZ-Iq-YfG" secondAttribute="trailing" id="Ged-YL-iLB"/>
+                <constraint firstAttribute="trailing" secondItem="aNM-Fl-RCk" secondAttribute="trailing" constant="24" id="Itj-02-GFe"/>
                 <constraint firstItem="6T0-dr-P6W" firstAttribute="leading" secondItem="yWc-gu-ca5" secondAttribute="leading" id="JMR-rX-vVC"/>
                 <constraint firstItem="FfP-9G-1a3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="24" id="JZc-Zj-0OC"/>
                 <constraint firstItem="trU-Am-jlp" firstAttribute="centerY" secondItem="Sfm-fL-vo0" secondAttribute="centerY" id="JjA-np-XJG"/>
@@ -197,6 +207,7 @@
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="backgroundImageView" destination="Rmd-7u-oYx" id="Ci4-HW-97h"/>
+                <outlet property="tagButton" destination="aNM-Fl-RCk" id="ua1-4D-XLB"/>
                 <outlet property="tasteTitleLabel" destination="dHb-jJ-jng" id="s2A-b9-Osl"/>
                 <outlet property="tmiLabel" destination="Ch6-5U-VOL" id="soW-Sy-5Zm"/>
                 <outlet property="tmiTitleLabel" destination="XT5-iW-6kG" id="75E-sq-FUS"/>
@@ -216,4 +227,7 @@
             <point key="canvasLocation" x="131.15942028985509" y="79.6875"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="iconTag" width="24" height="24"/>
+    </resources>
 </document>

@@ -13,8 +13,8 @@ import Kingfisher
 class BackCardCell: CardCell {
     
     // MARK: - Properties
-    
-    private var cardData: Card?
+//    private var cardData: Card?
+    private var cardUUID: String?
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var backgroundImageView: UIImageView!
@@ -23,6 +23,7 @@ class BackCardCell: CardCell {
     @IBOutlet var tasteLabels: [UILabel]!
     @IBOutlet weak var tmiTitleLabel: UILabel!
     @IBOutlet weak var tmiLabel: UILabel!
+    @IBOutlet weak var tagButton: UIButton!
     
     // MARK: - View Life Cycle
     override func awakeFromNib() {
@@ -31,6 +32,10 @@ class BackCardCell: CardCell {
     }
     
     // MARK: - Functions
+    @IBAction func touchTagButton(_ sender: Any) {
+        NotificationCenter.default.post(name: .presentToTagSheet, object: cardUUID)
+    }
+    
     static func nib() -> UINib {
         return UINib(nibName: Const.Xib.backCardCell, bundle: Bundle(for: BackCardCell.self))
     }

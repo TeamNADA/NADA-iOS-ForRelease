@@ -10,3 +10,4 @@
 
 #include "Pods/Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.debug.xcconfig"
 KAKAO_NATIVE_APP_KEY = kakao5b8dd8cc878344bb7532eeca4365a4aa
+GOOGLE_ADMOB_APPID = ca-app-pub-5891144455629757~7328762156

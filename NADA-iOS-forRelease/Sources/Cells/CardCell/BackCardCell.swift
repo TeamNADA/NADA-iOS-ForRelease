@@ -43,7 +43,9 @@ class BackCardCell: CardCell {
 
 // MARK: - Extensions
 extension BackCardCell {
-    private func setUI() {        
+    private func setUI() {
+        tagButton.isHidden = true
+        
         tasteTitleLabel.font = .title02
         tasteTitleLabel.textColor = .white
         
@@ -87,7 +89,13 @@ extension BackCardCell {
     /// 명함 조회 시 사용.
     func initCell(_ backgroundImage: String,
                   _ cardTasteInfo: [CardTasteInfo],
-                  _ tmi: String?) {
+                  _ tmi: String?,
+                  _ cardUUID: String? = nil) {
+        if let cardUUID {
+            self.cardUUID = cardUUID
+            tagButton.isHidden = false
+        }
+        
         if backgroundImage.hasPrefix("https://") {
             self.backgroundImageView.updateServerImage(backgroundImage)
         } else {

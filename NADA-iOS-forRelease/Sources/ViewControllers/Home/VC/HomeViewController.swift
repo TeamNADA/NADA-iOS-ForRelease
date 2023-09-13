@@ -33,9 +33,13 @@ final class HomeViewController: UIViewController {
         $0.scrollDirection = .horizontal
     }
     private lazy var bannerCollectionView = UICollectionView(frame: .zero, collectionViewLayout: bannerCollevtionViewFlowLayout).then {
-        $0.isPagingEnabled = true
+        $0.isPagingEnabled = false
+        $0.clipsToBounds = true
+        $0.decelerationRate = .fast
         $0.backgroundColor = .green
+        $0.contentInsetAdjustmentBehavior = .never
         $0.showsHorizontalScrollIndicator = false
+        $0.translatesAutoresizingMaskIntoConstraints = false
     }
     private var bannerPageLabel = UILabel().then {
         $0.font = .textRegular05
@@ -464,6 +468,15 @@ extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("selected")
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegate {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let scrolledOffsetX = targetContentOffset.pointee.x + scrollView.contentInset.left
+        let cellWidth = UIScreen.main.bounds.width - 36
+        let index = round(scrolledOffsetX / cellWidth)
+        targetContentOffset.pointee = CGPoint(x: index * cellWidth - scrollView.contentInset.left, y: scrollView.contentInset.top)
     }
 }
 

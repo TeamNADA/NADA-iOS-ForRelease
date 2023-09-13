@@ -12,8 +12,6 @@ import Then
 
 class BannerCollectionViewCell: UICollectionViewCell {
     
-    // MARK: - Properties
-    
     // MARK: - UI Components
     
     private let stackview = UIStackView().then {

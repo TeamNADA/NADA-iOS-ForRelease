@@ -17,24 +17,24 @@ class BannerCollectionViewCell: UICollectionViewCell {
     // MARK: - UI Components
     
     private let stackview = UIStackView().then {
-        $0.spacing = 8
-        $0.distribution = .fillEqually
-        $0.backgroundColor = .blue
+        $0.distribution = .fill
         $0.axis = .horizontal
+    }
+    
+    private let bannerTitleBackView = UIView().then {
+        $0.backgroundColor = .mainColorNadaMain.withAlphaComponent(0.3)
+        $0.layer.cornerRadius = 12
     }
     
     private var bannerTitleLabel = UILabel().then {
         $0.font = .textBold03
-//        $0.backgroundColor = .mainColorNadaMain.withAlphaComponent(0.3)
-        $0.backgroundColor = .mainColorNadaMain
         $0.textColor = .mainColorNadaMain
-        $0.layer.cornerRadius = 12
-        $0.text = "type"
+        $0.text = "Label"
     }
     
     private var bannerTextLabel = UILabel().then {
         $0.font = .textRegular04
-        $0.text = "banner text"
+        $0.text = "Placeholder text"
     }
     
     // MARK: - Initialize
@@ -69,13 +69,27 @@ class BannerCollectionViewCell: UICollectionViewCell {
     }
     
     private func setLayout() {
-        stackview.addSubviews([bannerTitleLabel, bannerTextLabel])
+        bannerTitleBackView.addSubview(bannerTitleLabel)
+        stackview.addSubviews([bannerTitleBackView, bannerTextLabel])
         self.addSubview(stackview)
-
+        
+        bannerTitleLabel.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.top.equalToSuperview().inset(5)
+            make.leading.equalToSuperview().inset(8)
+        }
         stackview.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.top.leading.equalToSuperview().inset(8)
             make.trailing.equalToSuperview()
+        }
+        bannerTitleBackView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.top.leading.equalToSuperview()
+        }
+        bannerTextLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(bannerTitleBackView.snp.trailing).offset(8)
         }
     }
     

@@ -25,6 +25,46 @@ final class HomeViewController: UIViewController {
     
     // MARK: - UI Components
     
+    private let bannerBackView = UIView().then {
+        $0.backgroundColor = .card
+    }
+    private let bannerCollevtionViewFlowLayout = UICollectionViewFlowLayout().then {
+        $0.estimatedItemSize = .zero
+        $0.scrollDirection = .horizontal
+    }
+    private lazy var bannerCollectionView = UICollectionView(frame: .zero, collectionViewLayout: bannerCollevtionViewFlowLayout).then {
+        $0.isPagingEnabled = false
+        $0.clipsToBounds = true
+        $0.decelerationRate = .fast
+        $0.backgroundColor = .green
+        $0.contentInsetAdjustmentBehavior = .never
+        $0.showsHorizontalScrollIndicator = false
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    private var bannerPageLabel = UILabel().then {
+        $0.font = .textRegular05
+        $0.textColor = .quaternary
+        $0.text = "NN/NN"
+    }
+    private let tryCardView = UIView().then {
+        $0.backgroundColor = .white
+        $0.layer.cornerRadius = 15
+        $0.layer.masksToBounds = false
+        $0.layer.shadowColor = UIColor.black.cgColor
+        $0.layer.shadowOffset = CGSize(width: 0, height: 1)
+        $0.layer.shadowOpacity = 0.1
+        $0.layer.shadowRadius = 15
+    }
+    private let tryCardIcon = UIImageView().then {
+        $0.image = UIImage(named: "icnTryCard")
+    }
+    private let tryCardLabel = UILabel().then {
+        $0.text = "내 명함을 만들어 보세요!"
+        $0.addCharacterColor(color: .mainColorNadaMain, range: "내 명함")
+    }
+    private let tryCardArrowIcon = UIImageView().then {
+        $0.image = UIImage(named: "iconArrowRight")
+    }
     private let nadaIcon = UIImageView().then {
         $0.image = UIImage(named: "nadaLogoTxt")
     }
@@ -72,6 +112,8 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         setLayout()
         bindActions()
+        setDelegate()
+        setRegister()
         checkUpdateVersionAndSetting()
         setNotification()
     }
@@ -101,18 +143,41 @@ extension HomeViewController {
     
     private func setLayout() {
         stackview.addArrangedSubviews([giveCardView, takeCardView])
-        view.addSubviews([nadaIcon, stackview, aroundMeView])
+        bannerBackView.addSubviews([nadaIcon, bannerCollectionView, bannerPageLabel])
+        tryCardView.addSubviews([tryCardIcon, tryCardLabel, tryCardArrowIcon])
+        view.addSubviews([bannerBackView, tryCardView, stackview, aroundMeView])
         giveCardView.addSubviews([giveCardLabel, giveCardIcon])
         takeCardView.addSubviews([takeCardLabel, takeCardIcon])
         aroundMeView.addSubviews([aroundMeLabel, aroundMeIcon])
         
+        bannerBackView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(172)
+        }
         nadaIcon.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide).inset(12)
             make.leading.equalToSuperview().inset(19)
         }
+        bannerPageLabel.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(24)
+            make.bottom.equalToSuperview().inset(8)
+        }
+        bannerCollectionView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(nadaIcon.snp.bottom).offset(11)
+            make.bottom.equalTo(bannerPageLabel.snp.top).inset(-8)
+            make.leading.equalToSuperview().inset(24)
+            make.trailing.equalToSuperview()
+        }
+        tryCardView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(bannerBackView.snp.bottom).offset(24)
+            make.leading.equalToSuperview().inset(24)
+            make.height.equalTo(54)
+        }
         stackview.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(nadaIcon.snp.bottom).offset(150)
+            make.top.equalTo(tryCardView.snp.bottom).offset(24)
             make.leading.equalToSuperview().inset(24)
             make.height.equalTo(205)
         }
@@ -121,6 +186,18 @@ extension HomeViewController {
             make.top.equalTo(giveCardView.snp.bottom).offset(14)
             make.leading.equalToSuperview().inset(24)
             make.height.equalTo(100)
+        }
+        tryCardIcon.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalToSuperview().inset(24)
+        }
+        tryCardLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(tryCardIcon.snp.trailing).offset(5)
+        }
+        tryCardArrowIcon.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().inset(10)
         }
         giveCardLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(18)
@@ -147,6 +224,15 @@ extension HomeViewController {
     }
     
     // MARK: - Methods
+    
+    private func setDelegate() {
+        bannerCollectionView.dataSource = self
+        bannerCollectionView.delegate = self
+    }
+    
+    private func setRegister() {
+        bannerCollectionView.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: BannerCollectionViewCell.className)
+    }
     
     private func setTracking() {
         Analytics.logEvent(AnalyticsEventScreenView,
@@ -191,6 +277,15 @@ extension HomeViewController {
                 Analytics.logEvent(Tracking.Event.touchAroundMe, parameters: nil)
                 let aroundMeVC = self.moduleFactory.makeAroundMeVC()
                 owner.present(aroundMeVC, animated: true)
+            }.disposed(by: self.disposeBag)
+        
+        tryCardView.rx.tapGesture()
+            .when(.recognized)
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.makeVibrate()
+                let cardcreationcategoryVC = self.moduleFactory.makeCardCreationCategoryVC()
+                owner.navigationController?.pushViewController(cardcreationcategoryVC, animated: true)
             }.disposed(by: self.disposeBag)
     }
     
@@ -332,6 +427,55 @@ extension HomeViewController {
     private func backToHome(_ notification: Notification) {
         setUI()
         setTracking()
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width: CGFloat = UIScreen.main.bounds.width - 48
+        let height: CGFloat = 40
+        
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 12
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 12)
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+
+extension HomeViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let bannerCell = collectionView.dequeueReusableCell(withReuseIdentifier: BannerCollectionViewCell.className, for: indexPath) as? BannerCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        
+        return bannerCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("selected")
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegate {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let scrolledOffsetX = targetContentOffset.pointee.x + scrollView.contentInset.left
+        let cellWidth = UIScreen.main.bounds.width - 36
+        let index = round(scrolledOffsetX / cellWidth)
+        targetContentOffset.pointee = CGPoint(x: index * cellWidth - scrollView.contentInset.left, y: scrollView.contentInset.top)
     }
 }
 

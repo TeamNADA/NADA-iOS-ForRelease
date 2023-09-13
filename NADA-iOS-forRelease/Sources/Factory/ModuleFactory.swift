@@ -25,6 +25,7 @@ protocol ModuleFactoryProtocol {
     func makeAroundMeVC() -> AroundMeViewController
     func makeUpdateVC() -> UpdateViewController
     func makeCardDetailVC() -> CardDetailViewController
+    func makeCardCreationCategoryVC() -> CardCreationCategoryViewController
     func makeGroupEditVC(groupList: [String]) -> GroupEditViewController
 }
 
@@ -63,6 +64,11 @@ final class ModuleFactory: ModuleFactoryProtocol {
         let groupEditVC = GroupEditViewController.controllerFromStoryboard(.groupEdit)
         groupEditVC.viewModel = viewModel
         return groupEditVC
+    }
+    
+    func makeCardCreationCategoryVC() -> CardCreationCategoryViewController {
+        let cardCreationCategoryVC = CardCreationCategoryViewController()
+        return cardCreationCategoryVC
     }
     
     func makeCardCreationVC(cardType: CardType, preCardDataModel: Card? = nil) -> UINavigationController {

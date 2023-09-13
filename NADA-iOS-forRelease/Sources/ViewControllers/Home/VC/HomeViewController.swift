@@ -49,7 +49,6 @@ final class HomeViewController: UIViewController {
     private let tryCardView = UIView().then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 15
-        $0.layer.borderWidth = 0.05
         $0.layer.masksToBounds = false
         $0.layer.shadowColor = UIColor.black.cgColor
         $0.layer.shadowOffset = CGSize(width: 0, height: 1)

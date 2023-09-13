@@ -7,10 +7,14 @@
 
 import Foundation
 
+// MARK: - Taste
+
 struct Taste: Codable {
     let cardType: String
     let tasteInfos: [TasteInfo]
 }
+
+// MARK: - TasteInfo
 
 struct TasteInfo: Codable {
     let sortOrder: Int

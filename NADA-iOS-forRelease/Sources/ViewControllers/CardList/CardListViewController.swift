@@ -19,6 +19,8 @@ class CardListViewController: UIViewController {
     var cardItems: [Card] = []
     var newCardItems: [CardReorderInfo] = []
     
+    private let moduleFactory = ModuleFactory.shared
+    
     // MARK: - IBOutlet Properties
     
     @IBOutlet weak var cardListTableView: UITableView!
@@ -36,14 +38,12 @@ class CardListViewController: UIViewController {
         
         cardListTableView.delegate = self
         cardListTableView.dataSource = self
-        
-        cardListFetchWithAPI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        cardListTableView.reloadData()
+        cardListFetchWithAPI()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -145,7 +145,13 @@ extension CardListViewController: UITableViewDelegate {
             })
             deleteAction.backgroundColor = .red
             
-            let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
+            let modifyAction = UIContextualAction(style: .normal, title: "수정") { _, _, _ in
+                let navigationController = self.moduleFactory.makeCardCreationVC(cardType: CardType(rawValue: self.cardItems[indexPath.row].cardType) ?? .basic, preCardDataModel: self.cardItems[indexPath.row])
+                self.navigationController?.present(navigationController, animated: true)
+            }
+            modifyAction.backgroundColor = .cardModify
+            
+            let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction, modifyAction])
             swipeActions.performsFirstActionWithFullSwipe = false
             
             return swipeActions

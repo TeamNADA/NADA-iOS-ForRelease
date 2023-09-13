@@ -7,7 +7,8 @@
 
 import Foundation
 
-// MARK: - CardCreation
+// MARK: - CardCreationRequest
+
 struct CardCreationRequest: Codable {
     let cardImageURL: String
     let cardType: String
@@ -15,7 +16,8 @@ struct CardCreationRequest: Codable {
     let backCard: BackCardDataModel
 }
 
-// MARK: - FrontCard
+// MARK: - FrontCardDataModel
+
 struct FrontCardDataModel: Codable {
     let birth, cardName, userName: String
     
@@ -24,7 +26,8 @@ struct FrontCardDataModel: Codable {
     let defaultImageIndex: Int
 }
     
-// MARK: - BackCard
+// MARK: - BackCardDataModel
+
 struct BackCardDataModel: Codable {
     let tastes: [String]
     let tmi: String?

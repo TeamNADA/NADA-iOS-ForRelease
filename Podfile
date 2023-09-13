@@ -6,7 +6,6 @@ target 'NADA-iOS-forRelease' do
   use_frameworks!
 
   # Pods for NADA-iOS-forRelease
-  pod 'Moya'
   pod 'SkeletonView'
   pod 'SwiftLint'
   pod 'VerticalCardSwiper'
@@ -20,6 +19,7 @@ target 'NADA-iOS-forRelease' do
   pod 'Then'
   pod 'SnapKit'
   pod 'RxSwift'
+  pod 'RxAlamofire'
   pod 'RxCocoa'
   pod 'Moya/RxSwift'
   pod 'FlexLayout'

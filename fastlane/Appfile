@@ -1,5 +1,5 @@
 app_identifier("YJC.NADA-iOS-forRelease") # The bundle identifier of your app
-apple_id("choi990406@gmail.com") # Your Apple Developer Portal username
+apple_id(ENV['APPLE_ID']) # Your Apple Developer Portal username
 
 itc_team_id("123531096") # App Store Connect Team ID
 team_id("T3VFJ764ZC") # Developer Portal Team ID

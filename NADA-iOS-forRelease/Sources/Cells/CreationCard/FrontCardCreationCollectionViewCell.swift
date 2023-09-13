@@ -231,6 +231,57 @@ extension FrontCardCreationCollectionViewCell {
     static func nib() -> UINib {
         return UINib(nibName: Const.Xib.frontCardCreationCollectionViewCell, bundle: Bundle(for: FrontCardCreationCollectionViewCell.self))
     }
+    public func setPreFrontCard(_ preFrontCardDataModel: FrontCardDataModel) {
+        cardTitleTextField.text = preFrontCardDataModel.cardName
+        userNameTextField.text = preFrontCardDataModel.userName
+        birthLabel.text = preFrontCardDataModel.birth
+        birthLabel.textColor = .primary
+        mbtiLabel.text = preFrontCardDataModel.mbti
+        mbtiLabel.textColor = .primary
+        
+        if let departmentName = preFrontCardDataModel.departmentName,
+           !departmentName.isEmpty {
+            descriptionTextField.text = departmentName
+        } else {
+            descriptionTextField.attributedPlaceholder = NSAttributedString(string: "학교 전공/동아리 기수 등 (15자)",
+                                                                            attributes: [
+                                                                                NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                            ])
+        }
+        
+        if let instagram = preFrontCardDataModel.instagram,
+           !instagram.isEmpty {
+            instagramIDTextField.text = instagram
+        } else {
+            instagramIDTextField.attributedPlaceholder = NSAttributedString(string: "Instagram (@ 제외)",
+                                                                            attributes: [
+                                                                                NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                            ])
+        }
+        
+        if let phoneNumber = preFrontCardDataModel.phoneNumber,
+           !phoneNumber.isEmpty {
+            phoneNumberTextField.text = phoneNumber
+        } else {
+            phoneNumberTextField.attributedPlaceholder = NSAttributedString(string: "전화번호",
+                                                                            attributes: [
+                                                                                NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                            ])
+        }
+        
+        if let url = preFrontCardDataModel.urls,
+           !url.isEmpty {
+            linkURLTextField.text = url[0]
+        } else {
+            linkURLTextField.attributedPlaceholder = NSAttributedString(string: "URL (Github, Blog 등)",
+                                                                        attributes: [
+                                                                            NSAttributedString.Key.foregroundColor: UIColor.quaternary
+                                                                        ])
+        }
+        
+        frontCardCreationDelegate?.frontCardCreation(requiredInfo: true)
+        checkFrontCradStatus()
+    }
     
     // MARK: - @objc Methods
     
@@ -343,6 +394,7 @@ extension FrontCardCreationCollectionViewCell {
 }
 
 // MARK: - UICollectionViewDelegate
+
 extension FrontCardCreationCollectionViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.item {
@@ -379,6 +431,7 @@ extension FrontCardCreationCollectionViewCell: UICollectionViewDelegate {
 }
 
 // MARK: - UICollectionViewDataSource
+
 extension FrontCardCreationCollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return backgroundList.count
@@ -405,6 +458,7 @@ extension FrontCardCreationCollectionViewCell: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
+
 extension FrontCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 26, bottom: 0, right: 26)
@@ -421,6 +475,7 @@ extension FrontCardCreationCollectionViewCell: UICollectionViewDelegateFlowLayou
 }
 
 // MARK: - UITextFieldDelegate
+
 extension FrontCardCreationCollectionViewCell: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
             textField.borderWidth = 1

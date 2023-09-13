@@ -11,4 +11,5 @@ protocol BackCardCreationDelegate: AnyObject {
     func backCardCreation(requiredInfo valid: Bool)
     func backCardCreation(endEditing valid: Bool)
     func backCardCreation(withRequired requiredInfo: [String], withOptional optionalInfo: String?)
+    func backCardCreationTouchRefresh()
 }

@@ -20,6 +20,8 @@ class CardCreationPreviewViewController: UIViewController {
     
     private var isFront = true
     private var isShareable = false
+    private var creationType: CreationType = .create
+    private var cardUUID: String?
     
     lazy var loadingBgView: UIView = {
         let bgView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
@@ -73,7 +75,13 @@ class CardCreationPreviewViewController: UIViewController {
                 guard let cardType else { return }
                 
                 let cardCreationRequest = CardCreationRequest(cardImageURL: imageURL, cardType: cardType.rawValue, frontCard: frontCardDataModel, backCard: backCardDataModel)
-                self.cardCreationWithAPI(request: cardCreationRequest)
+                
+                switch creationType {
+                case .create:
+                    self.cardCreationWithAPI(request: cardCreationRequest)
+                case .modify:
+                    self.cardModifyWithAPI(request: cardCreationRequest, cardUUID: cardUUID)
+                }
             }
         }
         
@@ -238,6 +246,12 @@ extension CardCreationPreviewViewController {
                             AnalyticsParameterScreenName: parameters
                            ])
     }
+    public func setCreationType(_ creationType: CreationType) {
+        self.creationType = creationType
+    }
+    public func setCardUUID(_ cardUUID: String) {
+        self.cardUUID = cardUUID
+    }
 
     // MARK: - @objc Methods
     
@@ -273,7 +287,6 @@ extension CardCreationPreviewViewController {
                 self.cardView.subviews[0].removeFromSuperview()
             }
         }
-        
     }
     
     // MARK: - Network
@@ -316,6 +329,24 @@ extension CardCreationPreviewViewController {
                 print("cardCreationWithAPI - serverErr")
             case .networkFail:
                 print("cardCreationWithAPI - networkFail")
+            }
+        }
+    }
+    private func cardModifyWithAPI(request: CardCreationRequest, cardUUID: String?) {
+        CardAPI.shared.cardCreation(request: request, type: .modify, cardUUID: cardUUID) { response in
+            switch response {
+            case .success:
+                print("cardModifyWithAPI - success")
+                
+                self.dismiss(animated: true)
+            case .requestErr(let message):
+                print("cardModifyWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("cardModifyWithAPI - pathErr")
+            case .serverErr:
+                print("cardModifyWithAPI - serverErr")
+            case .networkFail:
+                print("cardModifyWithAPI - networkFail")
             }
         }
     }

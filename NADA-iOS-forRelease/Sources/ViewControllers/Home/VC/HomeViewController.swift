@@ -106,12 +106,7 @@ final class HomeViewController: UIViewController {
     private let aroundMeIcon = UIImageView().then {
         $0.image = UIImage(named: "imgNearby")
     }
-    private var googleAdView = GADBannerView().then {
-        let googleAdmobAppId = Bundle.main.object(forInfoDictionaryKey: "GADApplicationIdentifier") as? String
-        $0.adUnitID = googleAdmobAppId
-        $0.load(GADRequest())
-        $0.backgroundColor = .blue
-    }
+    private var googleAdView = GADBannerView()
     
     // MARK: - View Life Cycles
     
@@ -141,6 +136,8 @@ extension HomeViewController {
     // MARK: - UI & Layout
     
     private func setUI() {
+        setGoogleAd()
+        addBannerViewToView(googleAdView)
         self.view.backgroundColor = .background
         self.navigationController?.navigationBar.isHidden = true
         giveCardView.backgroundColor = .cardCreationUnclicked
@@ -228,19 +225,49 @@ extension HomeViewController {
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().inset(24)
         }
+    }
+    
+    // MARK: - Methods
+    
+    private func setGoogleAd() {
+        let adSize = GADAdSizeFromCGSize(CGSize(width: UIScreen.main.bounds.width, height: 50))
+        googleAdView = GADBannerView(adSize: adSize)
+        let adUnitID = Bundle.main.object(forInfoDictionaryKey: "GADSDKIdentifier") as? String
+        googleAdView.adUnitID = adUnitID
+        googleAdView.rootViewController = self
+        googleAdView.load(GADRequest())
+        googleAdView.delegate = self
+    }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints(
+          [NSLayoutConstraint(item: bannerView,
+                              attribute: .bottom,
+                              relatedBy: .equal,
+                              toItem: view.safeAreaLayoutGuide,
+                              attribute: .bottom,
+                              multiplier: 1,
+                              constant: 0),
+           NSLayoutConstraint(item: bannerView,
+                              attribute: .centerX,
+                              relatedBy: .equal,
+                              toItem: view,
+                              attribute: .centerX,
+                              multiplier: 1,
+                              constant: 0)
+          ])
         googleAdView.snp.makeConstraints { make in
             make.top.equalTo(aroundMeView.snp.bottom).offset(69)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(12)
         }
-    }
-    
-    // MARK: - Methods
-    
+       }
+       
     private func setDelegate() {
         bannerCollectionView.dataSource = self
         bannerCollectionView.delegate = self
-        googleAdView.delegate = self
     }
     
     private func setRegister() {

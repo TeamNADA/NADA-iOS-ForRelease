@@ -150,6 +150,7 @@
 		F84066E72A153274008BCE16 /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84066E62A153274008BCE16 /* Tracking.swift */; };
 		F84066E92A15333A008BCE16 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84066E82A15333A008BCE16 /* Event.swift */; };
 		F84066EB2A1533DA008BCE16 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84066EA2A1533DA008BCE16 /* Screen.swift */; };
+		F84275D12AB1DAF90060AC59 /* FetchTagSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84275D02AB1DAF90060AC59 /* FetchTagSheetVC.swift */; };
 		F843DD6D29A5F83000D8D20D /* CardCreationCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F843DD6C29A5F83000D8D20D /* CardCreationCategoryViewModel.swift */; };
 		F8458D6229F5183B000D53A7 /* FanCardCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8458D6129F5183B000D53A7 /* FanCardCreation.storyboard */; };
 		F8458D6429F51870000D53A7 /* FanCardCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8458D6329F51870000D53A7 /* FanCardCreationViewController.swift */; };
@@ -437,6 +438,7 @@
 		F84066E62A153274008BCE16 /* Tracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracking.swift; sourceTree = "<group>"; };
 		F84066E82A15333A008BCE16 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		F84066EA2A1533DA008BCE16 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
+		F84275D02AB1DAF90060AC59 /* FetchTagSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTagSheetVC.swift; sourceTree = "<group>"; };
 		F843DD6C29A5F83000D8D20D /* CardCreationCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreationCategoryViewModel.swift; sourceTree = "<group>"; };
 		F8458D6129F5183B000D53A7 /* FanCardCreation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FanCardCreation.storyboard; sourceTree = "<group>"; };
 		F8458D6329F51870000D53A7 /* FanCardCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FanCardCreationViewController.swift; sourceTree = "<group>"; };
@@ -1063,6 +1065,14 @@
 			path = Tracking;
 			sourceTree = "<group>";
 		};
+		F84275CD2AB1CAA80060AC59 /* PresentationSheet */ = {
+			isa = PBXGroup;
+			children = (
+				F84275D02AB1DAF90060AC59 /* FetchTagSheetVC.swift */,
+			);
+			path = PresentationSheet;
+			sourceTree = "<group>";
+		};
 		F84BAF9E26FDB425004CA335 /* CardCreation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1478,6 +1488,7 @@
 				F84BAFB326FDB8AA004CA335 /* CardCreation */,
 				39523E072701848E00536900 /* CardList */,
 				3979709426FA0BD8003FB4F5 /* Login */,
+				F84275CD2AB1CAA80060AC59 /* PresentationSheet */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1917,6 +1928,7 @@
 				F8C310C0273A7360008EC5BA /* FrontCardCreationDelegate.swift in Sources */,
 				F8C83FBF272FA0670009DF0D /* UserSevice.swift in Sources */,
 				39F5A3D0271461EA00191F94 /* BackCardCell.swift in Sources */,
+				F84275D12AB1DAF90060AC59 /* FetchTagSheetVC.swift in Sources */,
 				F8268DB927730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift in Sources */,
 				F8F00C3B29DD483000A15377 /* UpdateUserInfo.swift in Sources */,
 				F8562C98296ADD6700DA1109 /* Lottie.swift in Sources */,

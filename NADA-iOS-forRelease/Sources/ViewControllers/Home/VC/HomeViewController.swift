@@ -249,7 +249,7 @@ extension HomeViewController {
                               toItem: view.safeAreaLayoutGuide,
                               attribute: .bottom,
                               multiplier: 1,
-                              constant: 0),
+                              constant: -14),
            NSLayoutConstraint(item: bannerView,
                               attribute: .centerX,
                               relatedBy: .equal,
@@ -258,11 +258,6 @@ extension HomeViewController {
                               multiplier: 1,
                               constant: 0)
           ])
-        googleAdView.snp.makeConstraints { make in
-            make.top.equalTo(aroundMeView.snp.bottom).offset(69)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(12)
-        }
        }
        
     private func setDelegate() {

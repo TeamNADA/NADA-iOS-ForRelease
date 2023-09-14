@@ -116,6 +116,7 @@ extension FrontViewController {
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(didRecievePresentCardShare(_:)), name: .presentCardShare, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setCreationReloadMainCardSwiper), name: .creationReloadMainCardSwiper, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(presentToTagSheet(_:)), name: .presentToTagSheet, object: nil)
     }
     
     private func setActivityIndicator() {
@@ -166,6 +167,10 @@ extension FrontViewController {
         cardListPageFetchWithAPI(pageNumber: pageNumber, pageSize: pageSize) {
             _ = self.cardSwiper.scrollToCard(at: 1, animated: false)
         }
+    }
+    
+    @objc
+    private func presentToTagSheet(_ notification: Notification) {
     }
 }
 

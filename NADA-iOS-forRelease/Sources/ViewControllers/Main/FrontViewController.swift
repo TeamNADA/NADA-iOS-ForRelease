@@ -171,6 +171,18 @@ extension FrontViewController {
     
     @objc
     private func presentToTagSheet(_ notification: Notification) {
+        if let cardUUID = notification.object as? String {
+            let tagSheet = FetchTagSheetVC()
+            
+            if let sheet = tagSheet.sheetPresentationController {
+                sheet.detents = [.medium(), .large()] // detent 설정
+                sheet.preferredCornerRadius = 30 // 둥글기 수정
+            }
+            tagSheet.setCardUUID(cardUUID)
+            tagSheet.modalPresentationStyle = .pageSheet
+            
+            present(tagSheet, animated: true)
+        }
     }
 }
 

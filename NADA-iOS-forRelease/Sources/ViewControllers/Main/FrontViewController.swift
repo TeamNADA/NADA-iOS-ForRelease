@@ -177,6 +177,8 @@ extension FrontViewController {
             if let sheet = tagSheet.sheetPresentationController {
                 sheet.detents = [.medium(), .large()] // detent 설정
                 sheet.preferredCornerRadius = 30 // 둥글기 수정
+                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                let safeAreaBottom = windowScene?.windows.first?.safeAreaInsets.bottom ?? 0
             }
             tagSheet.setCardUUID(cardUUID)
             tagSheet.modalPresentationStyle = .pageSheet

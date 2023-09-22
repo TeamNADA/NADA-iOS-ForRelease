@@ -24,7 +24,7 @@ final class HomeViewController: UIViewController {
     private var moduleFactory = ModuleFactory.shared
     private let disposeBag = DisposeBag()
     
-    private var banners: [BannerResponse]? = []
+    private var banners: [BannerResponse] = []
     
     // MARK: - UI Components
     
@@ -503,14 +503,14 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return banners?.count ?? 0
+        return banners.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let bannerCell = collectionView.dequeueReusableCell(withReuseIdentifier: BannerCollectionViewCell.className, for: indexPath) as? BannerCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
+        bannerCell.setData(banners[indexPath.row])
         return bannerCell
     }
     

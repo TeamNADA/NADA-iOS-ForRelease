@@ -541,6 +541,7 @@ extension HomeViewController {
             switch response {
             case .success(let data):
                 guard let bannerInfo = data as? [BannerResponse] else { return }
+                self.bannerPageLabel.text = "0/\(bannerInfo.count)"
                 self.banners = bannerInfo
                 self.bannerCollectionView.reloadData()
             case .requestErr(let message):

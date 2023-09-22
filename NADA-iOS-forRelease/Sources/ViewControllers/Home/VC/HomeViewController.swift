@@ -118,6 +118,7 @@ final class HomeViewController: UIViewController {
         setRegister()
         checkUpdateVersionAndSetting()
         setNotification()
+        bannerFetchWithAPI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -527,6 +528,24 @@ extension HomeViewController: UICollectionViewDelegate {
 
 // MARK: - Network
 extension HomeViewController {
+    private func bannerFetchWithAPI() {
+        UpdateAPI.shared.bannerFetch { response in
+            switch response {
+            case .success(let data):
+                guard let bannerInfo = data as? [BannerResponse] else { return }
+                print("bannerFetchWithAPI - success")
+                print(bannerInfo)
+            case .requestErr(let message):
+                print("bannerFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("bannerFetchWithAPI - pathErr")
+            case .serverErr:
+                print("bannerFetchWithAPI - serverErr")
+            case .networkFail:
+                print("bannerFetchWithAPI - networkFail")
+            }
+        }
+    }
     private func updateUserInfoFetchWithAPI(completion: @escaping (Bool) -> Void) {
         UpdateAPI.shared.updateUserInfoFetch { response in
             switch response {

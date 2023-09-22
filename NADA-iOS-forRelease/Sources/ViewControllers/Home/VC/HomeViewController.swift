@@ -137,7 +137,6 @@ extension HomeViewController {
     
     private func setUI() {
         setGoogleAd()
-        addBannerViewToView(googleAdView)
         self.view.backgroundColor = .background
         self.navigationController?.navigationBar.isHidden = true
         giveCardView.backgroundColor = .cardCreationUnclicked
@@ -237,6 +236,7 @@ extension HomeViewController {
         googleAdView.rootViewController = self
         googleAdView.load(GADRequest())
         googleAdView.delegate = self
+        addBannerViewToView(googleAdView)
     }
     
     func addBannerViewToView(_ bannerView: GADBannerView) {

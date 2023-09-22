@@ -24,6 +24,8 @@ final class HomeViewController: UIViewController {
     private var moduleFactory = ModuleFactory.shared
     private let disposeBag = DisposeBag()
     
+    private var banners: [BannerResponse]? = []
+    
     // MARK: - UI Components
     
     private let bannerBackView = UIView().then {
@@ -501,7 +503,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return banners?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -533,8 +535,8 @@ extension HomeViewController {
             switch response {
             case .success(let data):
                 guard let bannerInfo = data as? [BannerResponse] else { return }
-                print("bannerFetchWithAPI - success")
-                print(bannerInfo)
+                self.banners = bannerInfo
+                self.bannerCollectionView.reloadData()
             case .requestErr(let message):
                 print("bannerFetchWithAPI - requestErr: \(message)")
             case .pathErr:

@@ -279,6 +279,12 @@ extension HomeViewController {
                            ])
     }
     
+    private func openURL(link: URL) {
+        if UIApplication.shared.canOpenURL(link) {
+            UIApplication.shared.open(link, options: [:], completionHandler: nil)
+        }
+    }
+    
     private func bindActions() {
         giveCardView.rx.tapGesture()
             .when(.recognized) // bind시에도 이벤트가 발생하기 때문 .skip(1)으로도 처리 가능
@@ -515,7 +521,7 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("selected")
+        openURL(link: URL(string: banners[indexPath.row].url)!)
     }
 }
 

@@ -229,7 +229,7 @@ extension HomeViewController {
     // MARK: - Methods
     
     private func setGoogleAd() {
-        let adSize = GADAdSizeFromCGSize(CGSize(width: UIScreen.main.bounds.width, height: 50))
+        let adSize = GADAdSizeFromCGSize(CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 812 * 50))
         googleAdView = GADBannerView(adSize: adSize)
         let adUnitID = Bundle.main.object(forInfoDictionaryKey: "GADSDKIdentifier") as? String
         googleAdView.adUnitID = adUnitID

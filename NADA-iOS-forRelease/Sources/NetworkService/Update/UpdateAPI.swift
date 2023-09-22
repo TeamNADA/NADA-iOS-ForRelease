@@ -67,7 +67,7 @@ public final class UpdateAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeStatus(by: statusCode, data: data, type: String.self)
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: [BannerResponse].self)
                 completion(networkResult)
             case .failure(let err):
                 print(err)

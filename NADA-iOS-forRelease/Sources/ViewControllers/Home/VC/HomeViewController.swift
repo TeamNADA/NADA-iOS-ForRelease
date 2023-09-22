@@ -39,7 +39,7 @@ final class HomeViewController: UIViewController {
         $0.isPagingEnabled = false
         $0.clipsToBounds = true
         $0.decelerationRate = .fast
-        $0.backgroundColor = .green
+        $0.backgroundColor = .background
         $0.contentInsetAdjustmentBehavior = .never
         $0.showsHorizontalScrollIndicator = false
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +50,7 @@ final class HomeViewController: UIViewController {
         $0.text = "NN/NN"
     }
     private let tryCardView = UIView().then {
-        $0.backgroundColor = .white
+        $0.backgroundColor = .cardCreationUnclicked
         $0.layer.cornerRadius = 15
         $0.layer.masksToBounds = false
         $0.layer.shadowColor = UIColor.black.cgColor
@@ -531,6 +531,9 @@ extension HomeViewController: UICollectionViewDelegate {
         let cellWidth = UIScreen.main.bounds.width - 36
         let index = round(scrolledOffsetX / cellWidth)
         targetContentOffset.pointee = CGPoint(x: index * cellWidth - scrollView.contentInset.left, y: scrollView.contentInset.top)
+        DispatchQueue.main.async {
+            self.bannerPageLabel.text = "\(Int(index+1))/\(self.banners.count)"
+        }
     }
 }
 
@@ -541,7 +544,7 @@ extension HomeViewController {
             switch response {
             case .success(let data):
                 guard let bannerInfo = data as? [BannerResponse] else { return }
-                self.bannerPageLabel.text = "0/\(bannerInfo.count)"
+                self.bannerPageLabel.text = "1/\(bannerInfo.count)"
                 self.banners = bannerInfo
                 self.bannerCollectionView.reloadData()
             case .requestErr(let message):

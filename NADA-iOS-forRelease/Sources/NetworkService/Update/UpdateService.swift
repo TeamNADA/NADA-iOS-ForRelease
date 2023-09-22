@@ -34,7 +34,7 @@ extension UpdateService: TargetType {
         case .checkUpdateNote:
              return "/app/update/check"
         case .bannerFetch:
-             return "/app/update/check"
+             return "/banner/advertising"
         }
     }
     

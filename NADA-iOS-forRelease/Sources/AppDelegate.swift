@@ -10,6 +10,7 @@ import UIKit
 
 import Firebase
 import FirebaseMessaging
+import GoogleMobileAds
 import KakaoSDKCommon
 import KakaoSDKAuth
 import KakaoSDKUser
@@ -22,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         FirebaseApp.configure()
         application.registerForRemoteNotifications()
         Messaging.messaging().delegate = self

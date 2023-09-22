@@ -9,6 +9,7 @@ import Photos
 import UIKit
 
 import FirebaseAnalytics
+import GoogleMobileAds
 import RxSwift
 import RxRelay
 import RxCocoa
@@ -105,6 +106,7 @@ final class HomeViewController: UIViewController {
     private let aroundMeIcon = UIImageView().then {
         $0.image = UIImage(named: "imgNearby")
     }
+    private var googleAdView = GADBannerView()
     
     // MARK: - View Life Cycles
     
@@ -134,6 +136,7 @@ extension HomeViewController {
     // MARK: - UI & Layout
     
     private func setUI() {
+        setGoogleAd()
         self.view.backgroundColor = .background
         self.navigationController?.navigationBar.isHidden = true
         giveCardView.backgroundColor = .cardCreationUnclicked
@@ -145,7 +148,7 @@ extension HomeViewController {
         stackview.addArrangedSubviews([giveCardView, takeCardView])
         bannerBackView.addSubviews([nadaIcon, bannerCollectionView, bannerPageLabel])
         tryCardView.addSubviews([tryCardIcon, tryCardLabel, tryCardArrowIcon])
-        view.addSubviews([bannerBackView, tryCardView, stackview, aroundMeView])
+        view.addSubviews([bannerBackView, tryCardView, stackview, aroundMeView, googleAdView])
         giveCardView.addSubviews([giveCardLabel, giveCardIcon])
         takeCardView.addSubviews([takeCardLabel, takeCardIcon])
         aroundMeView.addSubviews([aroundMeLabel, aroundMeIcon])
@@ -225,6 +228,38 @@ extension HomeViewController {
     
     // MARK: - Methods
     
+    private func setGoogleAd() {
+        let adSize = GADAdSizeFromCGSize(CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 812 * 50))
+        googleAdView = GADBannerView(adSize: adSize)
+        let adUnitID = Bundle.main.object(forInfoDictionaryKey: "GADSDKIdentifier") as? String
+        googleAdView.adUnitID = adUnitID
+        googleAdView.rootViewController = self
+        googleAdView.load(GADRequest())
+        googleAdView.delegate = self
+        addBannerViewToView(googleAdView)
+    }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints(
+          [NSLayoutConstraint(item: bannerView,
+                              attribute: .bottom,
+                              relatedBy: .equal,
+                              toItem: view.safeAreaLayoutGuide,
+                              attribute: .bottom,
+                              multiplier: 1,
+                              constant: -14),
+           NSLayoutConstraint(item: bannerView,
+                              attribute: .centerX,
+                              relatedBy: .equal,
+                              toItem: view,
+                              attribute: .centerX,
+                              multiplier: 1,
+                              constant: 0)
+          ])
+       }
+       
     private func setDelegate() {
         bannerCollectionView.dataSource = self
         bannerCollectionView.delegate = self
@@ -427,6 +462,17 @@ extension HomeViewController {
     private func backToHome(_ notification: Notification) {
         setUI()
         setTracking()
+    }
+}
+
+// MARK: - GADBannerViewDelegate
+
+extension HomeViewController: GADBannerViewDelegate {
+    public func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        googleAdView.alpha = 0
+        UIView.animate(withDuration: 1) {
+            bannerView.alpha = 1
+        }
     }
 }
 

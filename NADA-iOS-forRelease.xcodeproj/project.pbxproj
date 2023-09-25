@@ -153,7 +153,7 @@
 		F84275D12AB1DAF90060AC59 /* FetchTagSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84275D02AB1DAF90060AC59 /* FetchTagSheetVC.swift */; };
 		F843DD6D29A5F83000D8D20D /* CardCreationCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F843DD6C29A5F83000D8D20D /* CardCreationCategoryViewModel.swift */; };
 		F84427062AC1887A00396F8E /* TagTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84427052AC1887A00396F8E /* TagTVC.swift */; };
-		F84427092AC1C74000396F8E /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84427082AC1C74000396F8E /* Tag.swift */; };
+		F84427092AC1C74000396F8E /* ReceivedTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84427082AC1C74000396F8E /* ReceivedTag.swift */; };
 		F8458D6229F5183B000D53A7 /* FanCardCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8458D6129F5183B000D53A7 /* FanCardCreation.storyboard */; };
 		F8458D6429F51870000D53A7 /* FanCardCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8458D6329F51870000D53A7 /* FanCardCreationViewController.swift */; };
 		F8458D6729F51B2F000D53A7 /* FanFrontCardCreationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8458D6529F51B2F000D53A7 /* FanFrontCardCreationCollectionViewCell.swift */; };
@@ -165,6 +165,8 @@
 		F84BAFAE26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F84BAFAC26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib */; };
 		F84BAFB126FDB552004CA335 /* BackCardCreationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84BAFAF26FDB552004CA335 /* BackCardCreationCollectionViewCell.swift */; };
 		F84BAFB226FDB552004CA335 /* BackCardCreationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F84BAFB026FDB552004CA335 /* BackCardCreationCollectionViewCell.xib */; };
+		F84CD83E2AC1E59D008A2CB7 /* CreateTagRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84CD83D2AC1E59D008A2CB7 /* CreateTagRequest.swift */; };
+		F84CD8402AC1E64C008A2CB7 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84CD83F2AC1E64C008A2CB7 /* Tag.swift */; };
 		F8507B042A213B9300E5A599 /* nada_logo_motion.json in Resources */ = {isa = PBXBuildFile; fileRef = F8507B032A213B9300E5A599 /* nada_logo_motion.json */; };
 		F8518054275D040C006BD5ED /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8518052275D040C006BD5ED /* OnboardingCollectionViewCell.swift */; };
 		F8518055275D040C006BD5ED /* OnboardingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8518053275D040C006BD5ED /* OnboardingCollectionViewCell.xib */; };
@@ -443,7 +445,7 @@
 		F84275D02AB1DAF90060AC59 /* FetchTagSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTagSheetVC.swift; sourceTree = "<group>"; };
 		F843DD6C29A5F83000D8D20D /* CardCreationCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreationCategoryViewModel.swift; sourceTree = "<group>"; };
 		F84427052AC1887A00396F8E /* TagTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTVC.swift; sourceTree = "<group>"; };
-		F84427082AC1C74000396F8E /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		F84427082AC1C74000396F8E /* ReceivedTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedTag.swift; sourceTree = "<group>"; };
 		F8458D6129F5183B000D53A7 /* FanCardCreation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FanCardCreation.storyboard; sourceTree = "<group>"; };
 		F8458D6329F51870000D53A7 /* FanCardCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FanCardCreationViewController.swift; sourceTree = "<group>"; };
 		F8458D6529F51B2F000D53A7 /* FanFrontCardCreationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FanFrontCardCreationCollectionViewCell.swift; path = "NADA-iOS-forRelease/Sources/Cells/CreationCard/FanFrontCardCreationCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
@@ -455,6 +457,8 @@
 		F84BAFAC26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FrontCardCreationCollectionViewCell.xib; sourceTree = "<group>"; };
 		F84BAFAF26FDB552004CA335 /* BackCardCreationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackCardCreationCollectionViewCell.swift; sourceTree = "<group>"; };
 		F84BAFB026FDB552004CA335 /* BackCardCreationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackCardCreationCollectionViewCell.xib; sourceTree = "<group>"; };
+		F84CD83D2AC1E59D008A2CB7 /* CreateTagRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTagRequest.swift; sourceTree = "<group>"; };
+		F84CD83F2AC1E64C008A2CB7 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		F8507B032A213B9300E5A599 /* nada_logo_motion.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nada_logo_motion.json; sourceTree = "<group>"; };
 		F8518052275D040C006BD5ED /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		F8518053275D040C006BD5ED /* OnboardingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1088,7 +1092,9 @@
 		F84427072AC1C71100396F8E /* Tag */ = {
 			isa = PBXGroup;
 			children = (
-				F84427082AC1C74000396F8E /* Tag.swift */,
+				F84427082AC1C74000396F8E /* ReceivedTag.swift */,
+				F84CD83D2AC1E59D008A2CB7 /* CreateTagRequest.swift */,
+				F84CD83F2AC1E64C008A2CB7 /* Tag.swift */,
 			);
 			path = Tag;
 			sourceTree = "<group>";
@@ -1128,6 +1134,13 @@
 				F885C8A829B827030079FA35 /* VC */,
 			);
 			path = CardCreation;
+			sourceTree = "<group>";
+		};
+		F84CD83C2AC1E566008A2CB7 /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tag;
 			sourceTree = "<group>";
 		};
 		F8518051275D039D006BD5ED /* Onboarding */ = {
@@ -1477,6 +1490,7 @@
 				F8C83FB4272F9E250009DF0D /* Util */,
 				77A196C529F661C4000DEF49 /* Nearby */,
 				F8F00C3C29DD487E00A15377 /* Update */,
+				F84CD83C2AC1E566008A2CB7 /* Tag */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -1946,6 +1960,7 @@
 				3979709626FA0BE5003FB4F5 /* LoginViewController.swift in Sources */,
 				39488E352706E17200BDC917 /* UIAlertController+Extension.swift in Sources */,
 				3903CC202769F4F40094C458 /* EmptyCardCell.swift in Sources */,
+				F84CD8402AC1E64C008A2CB7 /* Tag.swift in Sources */,
 				F82AF6A229FBBEE50051545B /* UserDefaults+Extension.swift in Sources */,
 				F8C310C0273A7360008EC5BA /* FrontCardCreationDelegate.swift in Sources */,
 				F8C83FBF272FA0670009DF0D /* UserSevice.swift in Sources */,
@@ -2006,7 +2021,8 @@
 				39D13568273FDCB800B1A148 /* UserWithTokenRequest.swift in Sources */,
 				F84BAFB126FDB552004CA335 /* BackCardCreationCollectionViewCell.swift in Sources */,
 				F8FC43BC26C022A20033E151 /* Storyboard.swift in Sources */,
-				F84427092AC1C74000396F8E /* Tag.swift in Sources */,
+				F84427092AC1C74000396F8E /* ReceivedTag.swift in Sources */,
+				F84CD83E2AC1E59D008A2CB7 /* CreateTagRequest.swift in Sources */,
 				F8C83FC1272FA06E0009DF0D /* UserAPI.swift in Sources */,
 				392BAF792793BAF80013DCB3 /* KeyChain.swift in Sources */,
 				7766A40F274FEBE200714912 /* CardInGroupCollectionViewCell.swift in Sources */,

@@ -28,6 +28,8 @@ class TagTVC: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+
+        selectedBgView.isHidden = false
     }
 
     override func prepareForReuse() {

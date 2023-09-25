@@ -22,6 +22,8 @@ class TagTVC: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        setUI()
+        setLayout()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,6 +37,18 @@ class TagTVC: UITableViewCell {
 // MARK: - extension
 
 extension TagTVC {
+    private func setUI() {
+        bgView.layer.cornerRadius = bgView.frame.height / 2
+        
+        tagLabel.font = .textBold02
+        tagLabel.textColor = .background
+        
+        selectedBgView.isHidden = true
+        selectedBgView.backgroundColor = .black.withAlphaComponent(0.6)
+        selectedBgView.layer.cornerRadius = bgView.frame.height / 2
+        
+        checkImageView.image = UIImage(named: "icnTagCheck")
+    }
     private func setLayout() {
         contentView.addSubviews([bgView, tagImageView, tagLabel, selectedBgView])
         

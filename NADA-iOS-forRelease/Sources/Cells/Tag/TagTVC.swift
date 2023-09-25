@@ -36,6 +36,31 @@ class TagTVC: UITableViewCell {
         super.prepareForReuse()
     }
 }
+
+// MARK: - Initialize
+
+extension TagTVC {
+    func initCell(_ adjective: String,
+                  noun: String,
+                  _ icon: String,
+                  _ lr: Int, _ lg: Int, _ lb: Int,
+                  _ dr: Int, _ dg: Int, _ db: Int) {
+        tagLabel.text = adjective + " " + noun
+        
+        tagImageView.image = UIImage(named: icon)
+        
+        if #available(iOS 13, *) {
+            if traitCollection.userInterfaceStyle == .light {
+                backgroundView?.backgroundColor = UIColor(red: CGFloat(lr) / 255.0, green: CGFloat(lg) / 255.0, blue: CGFloat(lb) / 255.0, alpha: 1.0)
+            } else {
+                backgroundView?.backgroundColor = UIColor(red: CGFloat(dr) / 255.0, green: CGFloat(dg) / 255.0, blue: CGFloat(db) / 255.0, alpha: 1.0)
+            }
+        } else {
+            backgroundView?.backgroundColor = UIColor(red: CGFloat(lr) / 255.0, green: CGFloat(lg) / 255.0, blue: CGFloat(lb) / 255.0, alpha: 1.0)
+        }
+    }
+}
+
 // MARK: - extension
 
 extension TagTVC {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CreatTagRequest: Codable {
+struct CreateTagRequest: Codable {
     let adjective: String
     let cardUUID: String
     let icon: String

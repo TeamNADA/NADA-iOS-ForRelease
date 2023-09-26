@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Tag: Codable {
+public struct Tag: Codable {
     let darkB: Int
     let darkG: Int
     let darkR: Int

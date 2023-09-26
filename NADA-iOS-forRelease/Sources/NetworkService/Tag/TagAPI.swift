@@ -16,20 +16,20 @@ public class TagAPI {
     
     private init() { }
     
-    func tagFetch(completion: @escaping (NetworkResult<[Tag]>) -> Void) {
+    public func tagFetch(completion: @escaping (NetworkResult<[Tag]>) -> Void) {
         tagProvider.request(.tagFetch) { result in
             <#code#>
         }
     }
     
-    func receivedTagFetch(cardUUID: String, completion: @escaping (NetworkResult<[ReceivedTag]>) -> Void) {
+    public func receivedTagFetch(cardUUID: String, completion: @escaping (NetworkResult<[ReceivedTag]>) -> Void) {
         tagProvider.request(.receivedTagFetch(cardUUID: cardUUID)) { result in
             <#code#>
         }
         
     }
     
-    func TagCreation(request: CreationTagRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
+    public func TagCreation(request: CreationTagRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
         tagProvider.request(.tagCreation(request: request)) { result in
             <#code#>
         }

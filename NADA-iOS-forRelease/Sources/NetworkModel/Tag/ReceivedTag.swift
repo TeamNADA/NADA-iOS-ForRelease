@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ReceivedTag: Codable {
+public struct ReceivedTag: Codable {
     let adjective: String
     let cardTagId: Int
     let darkB: Int

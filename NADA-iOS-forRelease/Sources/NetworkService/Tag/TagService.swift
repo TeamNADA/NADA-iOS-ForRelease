@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 enum TagService {
-    case tagCreation(request: CreateTagRequest)
+    case tagCreation(request: CreationTagRequest)
     case tagFetch
     case receivedTagFetch(cardUUID: String)
 }

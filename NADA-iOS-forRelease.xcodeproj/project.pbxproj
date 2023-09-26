@@ -165,7 +165,7 @@
 		F84BAFAE26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F84BAFAC26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib */; };
 		F84BAFB126FDB552004CA335 /* BackCardCreationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84BAFAF26FDB552004CA335 /* BackCardCreationCollectionViewCell.swift */; };
 		F84BAFB226FDB552004CA335 /* BackCardCreationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F84BAFB026FDB552004CA335 /* BackCardCreationCollectionViewCell.xib */; };
-		F84CD83E2AC1E59D008A2CB7 /* CreateTagRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84CD83D2AC1E59D008A2CB7 /* CreateTagRequest.swift */; };
+		F84CD83E2AC1E59D008A2CB7 /* CreationTagRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84CD83D2AC1E59D008A2CB7 /* CreationTagRequest.swift */; };
 		F84CD8402AC1E64C008A2CB7 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84CD83F2AC1E64C008A2CB7 /* Tag.swift */; };
 		F84CD8422AC1E70D008A2CB7 /* TagAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84CD8412AC1E70D008A2CB7 /* TagAPI.swift */; };
 		F84CD8442AC1E713008A2CB7 /* TagService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84CD8432AC1E713008A2CB7 /* TagService.swift */; };
@@ -459,7 +459,7 @@
 		F84BAFAC26FDB543004CA335 /* FrontCardCreationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FrontCardCreationCollectionViewCell.xib; sourceTree = "<group>"; };
 		F84BAFAF26FDB552004CA335 /* BackCardCreationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackCardCreationCollectionViewCell.swift; sourceTree = "<group>"; };
 		F84BAFB026FDB552004CA335 /* BackCardCreationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackCardCreationCollectionViewCell.xib; sourceTree = "<group>"; };
-		F84CD83D2AC1E59D008A2CB7 /* CreateTagRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTagRequest.swift; sourceTree = "<group>"; };
+		F84CD83D2AC1E59D008A2CB7 /* CreationTagRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationTagRequest.swift; sourceTree = "<group>"; };
 		F84CD83F2AC1E64C008A2CB7 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		F84CD8412AC1E70D008A2CB7 /* TagAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagAPI.swift; sourceTree = "<group>"; };
 		F84CD8432AC1E713008A2CB7 /* TagService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagService.swift; sourceTree = "<group>"; };
@@ -1097,7 +1097,7 @@
 			isa = PBXGroup;
 			children = (
 				F84427082AC1C74000396F8E /* ReceivedTag.swift */,
-				F84CD83D2AC1E59D008A2CB7 /* CreateTagRequest.swift */,
+				F84CD83D2AC1E59D008A2CB7 /* CreationTagRequest.swift */,
 				F84CD83F2AC1E64C008A2CB7 /* Tag.swift */,
 			);
 			path = Tag;
@@ -2030,7 +2030,7 @@
 				F84BAFB126FDB552004CA335 /* BackCardCreationCollectionViewCell.swift in Sources */,
 				F8FC43BC26C022A20033E151 /* Storyboard.swift in Sources */,
 				F84427092AC1C74000396F8E /* ReceivedTag.swift in Sources */,
-				F84CD83E2AC1E59D008A2CB7 /* CreateTagRequest.swift in Sources */,
+				F84CD83E2AC1E59D008A2CB7 /* CreationTagRequest.swift in Sources */,
 				F8C83FC1272FA06E0009DF0D /* UserAPI.swift in Sources */,
 				392BAF792793BAF80013DCB3 /* KeyChain.swift in Sources */,
 				7766A40F274FEBE200714912 /* CardInGroupCollectionViewCell.swift in Sources */,

@@ -41,7 +41,7 @@ class TagTVC: UITableViewCell {
 
 extension TagTVC {
     func initCell(_ adjective: String,
-                  noun: String,
+                  _ noun: String,
                   _ icon: String,
                   _ lr: Int, _ lg: Int, _ lb: Int,
                   _ dr: Int, _ dg: Int, _ db: Int) {

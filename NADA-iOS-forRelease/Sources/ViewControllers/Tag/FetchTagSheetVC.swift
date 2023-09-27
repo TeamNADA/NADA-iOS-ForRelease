@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Moya
+import RxSwift
 import SnapKit
 import Then
 
@@ -38,7 +40,9 @@ class FetchTagSheetVC: UIViewController {
     // MARK: - Properties
     
     private var cardUUID: String?
-//    private var tagList:
+    private var tagList: [Tag]?
+    
+    private let disposeBag = DisposeBag()
     
     // MARK: - Life Cycle
     
@@ -47,7 +51,7 @@ class FetchTagSheetVC: UIViewController {
 
         setUI()
         setLayout()
-        fetchTagListWithAPI()
+        receivedTagFetchWithAPI()
     }
 }
 
@@ -108,7 +112,32 @@ extension FetchTagSheetVC {
 // MARK: - Network
 
 extension FetchTagSheetVC {
-    private func fetchTagListWithAPI() {
+    private func receivedTagFetchWithAPI() {
+        var tagProvider = MoyaProvider<TagService>(plugins: [MoyaLoggerPlugin()])
         
+        tagProvider.rx.request(.receivedTagFetch(cardUUID: self.cardUUID ?? ""))
+            .subscribe { event in
+                switch event {
+                case .success(let response):
+                    let decoder = JSONDecoder()
+                    guard let decodedData = try? decoder.decode(GenericResponse<[Tag]>.self, from: response.data) else { print("receivedTagFetchWithAPI - pathErr") }
+                    
+                    switch decodedData.status {
+                    case 200..<300:
+                        print("receivedTagFetchWithAPI - success")
+                        
+                        self.tagList = decodedData.data
+                    case 400..<500:
+                        print("receivedTagFetchWithAPI - requestErr")
+                    case 500:
+                        print("receivedTagFetchWithAPI - serverErr")
+                    default:
+                        print("receivedTagFetchWithAPI - networkFail")
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+            .disposed(by: disposeBag)
     }
 }

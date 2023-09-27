@@ -1,5 +1,5 @@
 //
-//  TagTVC.swift
+//  TagCVC.swift
 //  NADA-iOS-forRelease
 //
 //  Created by kimhyungyu on 2023/09/25.
@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-class TagTVC: UITableViewCell {
+class TagCVC: UICollectionViewCell {
     
     // MARK: - Components
     
@@ -25,11 +25,11 @@ class TagTVC: UITableViewCell {
         setUI()
         setLayout()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        selectedBgView.isHidden = false
+    
+    override var isSelected: Bool {
+        didSet {
+            selectedBgView.isHidden = isSelected ? false : true
+        }
     }
 
     override func prepareForReuse() {
@@ -39,7 +39,7 @@ class TagTVC: UITableViewCell {
 
 // MARK: - Initialize
 
-extension TagTVC {
+extension TagCVC {
     func initCell(_ adjective: String,
                   _ noun: String,
                   _ icon: String,
@@ -63,7 +63,7 @@ extension TagTVC {
 
 // MARK: - extension
 
-extension TagTVC {
+extension TagCVC {
     private func setUI() {
         bgView.layer.cornerRadius = bgView.frame.height / 2
         

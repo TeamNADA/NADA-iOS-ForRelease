@@ -152,7 +152,7 @@
 		F84066EB2A1533DA008BCE16 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84066EA2A1533DA008BCE16 /* Screen.swift */; };
 		F84275D12AB1DAF90060AC59 /* FetchTagSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84275D02AB1DAF90060AC59 /* FetchTagSheetVC.swift */; };
 		F843DD6D29A5F83000D8D20D /* CardCreationCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F843DD6C29A5F83000D8D20D /* CardCreationCategoryViewModel.swift */; };
-		F84427062AC1887A00396F8E /* TagTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84427052AC1887A00396F8E /* TagTVC.swift */; };
+		F84427062AC1887A00396F8E /* TagCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84427052AC1887A00396F8E /* TagCVC.swift */; };
 		F84427092AC1C74000396F8E /* ReceivedTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84427082AC1C74000396F8E /* ReceivedTag.swift */; };
 		F8458D6229F5183B000D53A7 /* FanCardCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8458D6129F5183B000D53A7 /* FanCardCreation.storyboard */; };
 		F8458D6429F51870000D53A7 /* FanCardCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8458D6329F51870000D53A7 /* FanCardCreationViewController.swift */; };
@@ -446,7 +446,7 @@
 		F84066EA2A1533DA008BCE16 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		F84275D02AB1DAF90060AC59 /* FetchTagSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTagSheetVC.swift; sourceTree = "<group>"; };
 		F843DD6C29A5F83000D8D20D /* CardCreationCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreationCategoryViewModel.swift; sourceTree = "<group>"; };
-		F84427052AC1887A00396F8E /* TagTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTVC.swift; sourceTree = "<group>"; };
+		F84427052AC1887A00396F8E /* TagCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCVC.swift; sourceTree = "<group>"; };
 		F84427082AC1C74000396F8E /* ReceivedTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedTag.swift; sourceTree = "<group>"; };
 		F8458D6129F5183B000D53A7 /* FanCardCreation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FanCardCreation.storyboard; sourceTree = "<group>"; };
 		F8458D6329F51870000D53A7 /* FanCardCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FanCardCreationViewController.swift; sourceTree = "<group>"; };
@@ -1088,7 +1088,7 @@
 		F84427042AC1886300396F8E /* Tag */ = {
 			isa = PBXGroup;
 			children = (
-				F84427052AC1887A00396F8E /* TagTVC.swift */,
+				F84427052AC1887A00396F8E /* TagCVC.swift */,
 			);
 			path = Tag;
 			sourceTree = "<group>";
@@ -1983,7 +1983,7 @@
 				F8B3F40A29F67B1C006586BB /* CompanyCardCreationViewController.swift in Sources */,
 				77A4D5FC29BD6F4600367B7C /* AroundMeViewModel.swift in Sources */,
 				F843DD6D29A5F83000D8D20D /* CardCreationCategoryViewModel.swift in Sources */,
-				F84427062AC1887A00396F8E /* TagTVC.swift in Sources */,
+				F84427062AC1887A00396F8E /* TagCVC.swift in Sources */,
 				F8B3F40E29F67B6F006586BB /* CompanyFrontCardCreationCollectionViewCell.swift in Sources */,
 				39C1E88F270EC762006D2089 /* UIColor+Extension.swift in Sources */,
 				F8C83FC9272FA3190009DF0D /* GroupAPI.swift in Sources */,

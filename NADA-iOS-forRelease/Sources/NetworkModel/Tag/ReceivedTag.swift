@@ -9,13 +9,24 @@ import Foundation
 
 public struct ReceivedTag: Codable {
     let adjective: String
-    let cardTagId: Int
-    let darkB: Int
-    let darkG: Int
-    let darkR: Int
+    let cardTagID: Int
+    let db: Int
+    let dg: Int
+    let dr: Int
     let icon: String
     let noun: String
-    let whiteB: Int
-    let whiteG: Int
-    let whiteR: Int
+    let lb: Int
+    let lg: Int
+    let lr: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case adjective, icon, noun
+        case cardTagID = "cardTagId"
+        case db = "darkB"
+        case dg = "darkG"
+        case dr = "darkR"
+        case lb = "whiteB"
+        case lg = "whiteG"
+        case lr = "whiteR"
+    }
 }

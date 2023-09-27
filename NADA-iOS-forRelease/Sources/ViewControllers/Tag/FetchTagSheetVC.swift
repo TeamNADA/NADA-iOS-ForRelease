@@ -84,28 +84,8 @@ extension FetchTagSheetVC {
     }
 }
 
-// MARK: - Layout
 
-extension FetchTagSheetVC {
-    private func setLayout() {
-        view.addSubviews([grabber, titleLabel, cancelButton, deleteButton, tableView])
         
-        grabber.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(12)
-            make.centerX.equalToSuperview()
-        }
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(47)
-            make.centerX.equalToSuperview()
-        }
-        cancelButton.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(24)
-            make.centerY.equalTo(titleLabel)
-        }
-        deleteButton.snp.makeConstraints { make in
-            make.right.equalToSuperview().inset(24)
-            make.centerY.equalTo(titleLabel)
-        }
     }
 }
 
@@ -140,5 +120,35 @@ extension FetchTagSheetVC {
                 }
             }
             .disposed(by: disposeBag)
+    }
+}
+
+// MARK: - Layout
+
+extension FetchTagSheetVC {
+    private func setLayout() {
+        view.addSubviews([grabber, titleLabel, cancelButton, deleteButton, tableView])
+        
+        grabber.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(12)
+            make.centerX.equalToSuperview()
+        }
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(47)
+            make.centerX.equalToSuperview()
+        }
+        cancelButton.snp.makeConstraints { make in
+            make.left.equalToSuperview().inset(24)
+            make.centerY.equalTo(titleLabel)
+        }
+        deleteButton.snp.makeConstraints { make in
+            make.right.equalToSuperview().inset(24)
+            make.centerY.equalTo(titleLabel)
+        }
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(20)
+            make.left.right.equalToSuperview().inset(24)
+            make.bottom.equalToSuperview().inset(73)
+        }
     }
 }

@@ -40,7 +40,7 @@ class FetchTagSheetVC: UIViewController {
     // MARK: - Properties
     
     private var cardUUID: String?
-    private var tagList: [Tag]?
+    private var receivedTagList: [ReceivedTag]?
     
     private let disposeBag = DisposeBag()
     
@@ -120,13 +120,14 @@ extension FetchTagSheetVC {
                 switch event {
                 case .success(let response):
                     let decoder = JSONDecoder()
-                    guard let decodedData = try? decoder.decode(GenericResponse<[Tag]>.self, from: response.data) else { print("receivedTagFetchWithAPI - pathErr") }
+                    guard let decodedData = try? decoder.decode(GenericResponse<[ReceivedTag]>.self, from: response.data) else { print("receivedTagFetchWithAPI - pathErr") }
                     
                     switch decodedData.status {
                     case 200..<300:
                         print("receivedTagFetchWithAPI - success")
                         
-                        self.tagList = decodedData.data
+                        self.receivedTagList = decodedData.data
+                        self.tableView.reloadData()
                     case 400..<500:
                         print("receivedTagFetchWithAPI - requestErr")
                     case 500:

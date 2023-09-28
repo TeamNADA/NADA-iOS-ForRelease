@@ -108,7 +108,18 @@ extension FetchTagSheetVC {
 
 // MARK: - UICollectionViewDelegate
 
-extension FetchTagSheetVC: UICollectionViewDelegate { }
+extension FetchTagSheetVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            cancelButton.isHidden = false
+            deleteButton.isEnabled = true
+    }
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if collectionView.indexPathsForSelectedItems?.isEmpty == true {
+            cancelButton.isHidden = true
+            deleteButton.isEnabled = false
+        }
+    }
+}
 
 // MARK: - UICollectionViewDataSource
 

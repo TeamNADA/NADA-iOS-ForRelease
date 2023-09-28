@@ -35,7 +35,12 @@ class FetchTagSheetVC: UIViewController {
         $0.titleLabel?.font = .button02
         $0.setTitleColor(.quaternary, for: .normal)
     }
-    private let tableView: UITableView = UITableView()
+    private let collevtionViewFlowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout().then {
+        $0.estimatedItemSize = .zero
+    }
+    private lazy var collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: collevtionViewFlowLayout).then {
+        $0.showsVerticalScrollIndicator = false
+    }
     
     // MARK: - Properties
     
@@ -52,6 +57,7 @@ class FetchTagSheetVC: UIViewController {
         setUI()
         setLayout()
         receivedTagFetchWithAPI()
+        setDelegate()
     }
 }
 
@@ -60,12 +66,17 @@ class FetchTagSheetVC: UIViewController {
 extension FetchTagSheetVC {
     private func setUI() {
         view.backgroundColor = .background
+        
         cancelButton.isHidden = true
     }
     private func setAddTargets() {
         cancelButton.addTarget(self, action: #selector(touchCancelButton), for: .touchUpInside)
         deleteButton.addTarget(self, action: #selector(touchDeleteButton), for: .touchUpInside)
         
+    }
+    private func setDelegate() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
     
     // MARK: - @objc
@@ -84,8 +95,47 @@ extension FetchTagSheetVC {
     }
 }
 
+// MARK: - UICollectionViewDelegate
 
+extension FetchTagSheetVC: UICollectionViewDelegate { }
+
+// MARK: - UICollectionViewDataSource
+
+extension FetchTagSheetVC: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return receivedTagList?.count ?? 0
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCVC", for: indexPath) as? TagCVC, let receivedTagList else { return UICollectionViewCell() }
         
+        cell.initCell(receivedTagList[indexPath.item].adjective,
+                      receivedTagList[indexPath.item].noun,
+                      receivedTagList[indexPath.item].icon,
+                      receivedTagList[indexPath.item].lr,
+                      receivedTagList[indexPath.item].lg,
+                      receivedTagList[indexPath.item].lb,
+                      receivedTagList[indexPath.item].dr,
+                      receivedTagList[indexPath.item].dg,
+                      receivedTagList[indexPath.item].db)
+        
+        return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension FetchTagSheetVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 6
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.width / 327 * 48)
     }
 }
 
@@ -107,7 +157,7 @@ extension FetchTagSheetVC {
                         print("receivedTagFetchWithAPI - success")
                         
                         self.receivedTagList = decodedData.data
-                        self.tableView.reloadData()
+                        self.collectionView.reloadData()
                     case 400..<500:
                         print("receivedTagFetchWithAPI - requestErr")
                     case 500:
@@ -127,7 +177,7 @@ extension FetchTagSheetVC {
 
 extension FetchTagSheetVC {
     private func setLayout() {
-        view.addSubviews([grabber, titleLabel, cancelButton, deleteButton, tableView])
+        view.addSubviews([grabber, titleLabel, cancelButton, deleteButton, collectionView])
         
         grabber.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(12)
@@ -145,7 +195,7 @@ extension FetchTagSheetVC {
             make.right.equalToSuperview().inset(24)
             make.centerY.equalTo(titleLabel)
         }
-        tableView.snp.makeConstraints { make in
+        collectionView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.left.right.equalToSuperview().inset(24)
             make.bottom.equalToSuperview().inset(73)

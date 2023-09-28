@@ -19,8 +19,15 @@ class TagCVC: UICollectionViewCell {
     private let selectedBgView = UIView()
     private let checkImageView = UIImageView()
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        setUI()
+        setLayout()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: .zero)
         
         setUI()
         setLayout()

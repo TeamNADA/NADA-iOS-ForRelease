@@ -33,13 +33,15 @@ class FetchTagSheetVC: UIViewController {
     private let deleteButton: UIButton = UIButton().then {
         $0.setTitle("삭제", for: .normal)
         $0.titleLabel?.font = .button02
-        $0.setTitleColor(.quaternary, for: .normal)
+        $0.setTitleColor(.stateColorError, for: .normal)
+        $0.setTitleColor(.quaternary, for: .disabled)
     }
     private let collevtionViewFlowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout().then {
         $0.estimatedItemSize = .zero
     }
     private lazy var collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: collevtionViewFlowLayout).then {
         $0.showsVerticalScrollIndicator = false
+        $0.allowsMultipleSelection = true
     }
     
     // MARK: - Properties
@@ -56,6 +58,7 @@ class FetchTagSheetVC: UIViewController {
 
         setUI()
         setLayout()
+        setAddTargets()
         receivedTagFetchWithAPI()
         setDelegate()
     }
@@ -68,6 +71,8 @@ extension FetchTagSheetVC {
         view.backgroundColor = .background
         
         cancelButton.isHidden = true
+        
+        deleteButton.isEnabled = false
     }
     private func setAddTargets() {
         cancelButton.addTarget(self, action: #selector(touchCancelButton), for: .touchUpInside)
@@ -84,11 +89,16 @@ extension FetchTagSheetVC {
     
     @objc
     private func touchCancelButton() {
-        
+        collectionView.reloadData()
+        cancelButton.isHidden = true
     }
     @objc
     private func touchDeleteButton() {
-        
+//        deleteTagWithAPI(cardUUID: "", cardTagID: 0)
+        // FIXME: - 삭제 후에 조회하도록 수정
+        receivedTagFetchWithAPI()
+        cancelButton.isHidden = true
+        deleteButton.isEnabled = false
     }
     
     public func setCardUUID(_ cardUUID: String) {
@@ -130,10 +140,10 @@ extension FetchTagSheetVC: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 6
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 6
+        return 0
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.width / 327 * 48)
@@ -176,6 +186,9 @@ extension FetchTagSheetVC {
                 }
             }
             .disposed(by: disposeBag)
+    }
+    private func deleteTagWithAPI(cardUUID: String, cardTagID: Int) {
+        
     }
 }
 

@@ -8,6 +8,7 @@
 import UIKit
 
 import Moya
+import RxCocoa
 import RxSwift
 import SnapKit
 import Then
@@ -58,7 +59,7 @@ class FetchTagSheetVC: UIViewController {
 
         setUI()
         setLayout()
-        setAddTargets()
+        setAction()
         receivedTagFetchWithAPI()
         setDelegate()
     }
@@ -74,33 +75,29 @@ extension FetchTagSheetVC {
         
         deleteButton.isEnabled = false
     }
-    private func setAddTargets() {
-        cancelButton.addTarget(self, action: #selector(touchCancelButton), for: .touchUpInside)
-        deleteButton.addTarget(self, action: #selector(touchDeleteButton), for: .touchUpInside)
+    private func setAction() {
+        cancelButton.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.collectionView.reloadData()
+                owner.cancelButton.isHidden = true
+            }
+            .disposed(by: disposeBag)
         
+        deleteButton.rx.tap
+            .bind(with: self) { owner, _ in
+//                owner.deleteTagWithAPI(cardUUID: "", cardTagID: 0)
+                // FIXME: - 삭제 후에 조회하도록 수정
+                owner.receivedTagFetchWithAPI()
+                owner.cancelButton.isHidden = true
+                owner.deleteButton.isEnabled = false
+            }
+            .disposed(by: disposeBag)
     }
     private func setDelegate() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(TagCVC.self, forCellWithReuseIdentifier: "TagCVC")
     }
-    
-    // MARK: - @objc
-    
-    @objc
-    private func touchCancelButton() {
-        collectionView.reloadData()
-        cancelButton.isHidden = true
-    }
-    @objc
-    private func touchDeleteButton() {
-//        deleteTagWithAPI(cardUUID: "", cardTagID: 0)
-        // FIXME: - 삭제 후에 조회하도록 수정
-        receivedTagFetchWithAPI()
-        cancelButton.isHidden = true
-        deleteButton.isEnabled = false
-    }
-    
     public func setCardUUID(_ cardUUID: String) {
         self.cardUUID = cardUUID
     }

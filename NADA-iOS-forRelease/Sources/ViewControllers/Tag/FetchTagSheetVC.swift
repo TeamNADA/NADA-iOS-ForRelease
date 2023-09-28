@@ -144,10 +144,10 @@ extension FetchTagSheetVC: UICollectionViewDelegateFlowLayout {
 
 extension FetchTagSheetVC {
     private func receivedTagFetchWithAPI() {
-        var tagProvider = MoyaProvider<TagService>(plugins: [MoyaLoggerPlugin()])
+        let tagProvider = MoyaProvider<TagService>(plugins: [MoyaLoggerPlugin()])
         
         tagProvider.rx.request(.receivedTagFetch(cardUUID: self.cardUUID ?? ""))
-            .subscribe { event in
+            .subscribe { [weak self] event in
                 switch event {
                 case .success(let response):
                     let decoder = JSONDecoder()
@@ -160,8 +160,10 @@ extension FetchTagSheetVC {
                     case 200..<300:
                         print("receivedTagFetchWithAPI - success")
                         
-                        self.receivedTagList = decodedData.data
-                        self.collectionView.reloadData()
+                        self?.receivedTagList = decodedData.data
+                        DispatchQueue.main.async {
+                            self?.collectionView.reloadData()
+                        }
                     case 400..<500:
                         print("receivedTagFetchWithAPI - requestErr")
                     case 500:

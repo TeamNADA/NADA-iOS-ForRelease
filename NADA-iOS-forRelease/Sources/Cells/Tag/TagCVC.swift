@@ -58,12 +58,12 @@ extension TagCVC {
         
         if #available(iOS 13, *) {
             if traitCollection.userInterfaceStyle == .light {
-                backgroundView?.backgroundColor = UIColor(red: CGFloat(lr) / 255.0, green: CGFloat(lg) / 255.0, blue: CGFloat(lb) / 255.0, alpha: 1.0)
+                bgView.backgroundColor = UIColor(red: CGFloat(lr) / 255.0, green: CGFloat(lg) / 255.0, blue: CGFloat(lb) / 255.0, alpha: 1.0)
             } else {
-                backgroundView?.backgroundColor = UIColor(red: CGFloat(dr) / 255.0, green: CGFloat(dg) / 255.0, blue: CGFloat(db) / 255.0, alpha: 1.0)
+                bgView.backgroundColor = UIColor(red: CGFloat(dr) / 255.0, green: CGFloat(dg) / 255.0, blue: CGFloat(db) / 255.0, alpha: 1.0)
             }
         } else {
-            backgroundView?.backgroundColor = UIColor(red: CGFloat(lr) / 255.0, green: CGFloat(lg) / 255.0, blue: CGFloat(lb) / 255.0, alpha: 1.0)
+            bgView.backgroundColor = UIColor(red: CGFloat(lr) / 255.0, green: CGFloat(lg) / 255.0, blue: CGFloat(lb) / 255.0, alpha: 1.0)
         }
     }
 }
@@ -72,14 +72,17 @@ extension TagCVC {
 
 extension TagCVC {
     private func setUI() {
-        bgView.layer.cornerRadius = bgView.frame.height / 2
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        let width = windowScene?.windows.first?.frame.width ?? 0
+        
+        bgView.layer.cornerRadius = ((width - 48) / 327 * 48) / 2
         
         tagLabel.font = .textBold02
         tagLabel.textColor = .background
         
         selectedBgView.isHidden = true
         selectedBgView.backgroundColor = .black.withAlphaComponent(0.6)
-        selectedBgView.layer.cornerRadius = bgView.frame.height / 2
+        selectedBgView.layer.cornerRadius = ((width - 48) / 327 * 48) / 2
         
         checkImageView.image = UIImage(named: "icnTagCheck")
     }
@@ -107,6 +110,7 @@ extension TagCVC {
         
         checkImageView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(14)
+            make.centerX.equalToSuperview()
             make.width.equalTo(checkImageView.snp.height)
         }
     }

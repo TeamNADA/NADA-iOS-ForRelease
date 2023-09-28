@@ -150,7 +150,10 @@ extension FetchTagSheetVC {
                 switch event {
                 case .success(let response):
                     let decoder = JSONDecoder()
-                    guard let decodedData = try? decoder.decode(GenericResponse<[ReceivedTag]>.self, from: response.data) else { print("receivedTagFetchWithAPI - pathErr") }
+                    guard let decodedData = try? decoder.decode(GenericResponse<[ReceivedTag]>.self, from: response.data) else {
+                        print("receivedTagFetchWithAPI - pathErr")
+                        return
+                    }
                     
                     switch decodedData.status {
                     case 200..<300:

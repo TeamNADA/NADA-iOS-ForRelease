@@ -54,7 +54,7 @@ extension TagService: TargetType {
         }
     }
     
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         switch self {
         case .tagCreation:
             return Const.Header.basicHeader()

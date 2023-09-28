@@ -77,6 +77,7 @@ extension FetchTagSheetVC {
     private func setDelegate() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.register(TagCVC.self, forCellWithReuseIdentifier: "TagCVC")
     }
     
     // MARK: - @objc

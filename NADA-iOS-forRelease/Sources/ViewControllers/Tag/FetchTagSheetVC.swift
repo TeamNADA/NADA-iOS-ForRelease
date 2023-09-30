@@ -145,7 +145,10 @@ extension FetchTagSheetVC: UICollectionViewDataSource {
 
 extension FetchTagSheetVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        let safeAreaBottom = windowScene?.windows.first?.safeAreaInsets.bottom ?? 0
+        
+        return UIEdgeInsets(top: 0, left: 0, bottom: safeAreaBottom + 39, right: 0)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 12
@@ -225,7 +228,7 @@ extension FetchTagSheetVC {
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.left.right.equalToSuperview().inset(24)
-            make.bottom.equalToSuperview().inset(73)
+            make.bottom.equalToSuperview()
         }
     }
 }

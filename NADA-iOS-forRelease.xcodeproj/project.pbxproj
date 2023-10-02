@@ -125,6 +125,7 @@
 		F80C679429F21BB7002C5ECC /* onboarding02.json in Resources */ = {isa = PBXBuildFile; fileRef = F80C679229F21BB7002C5ECC /* onboarding02.json */; };
 		F811720027383097002742CF /* ChangeGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81171FF27383097002742CF /* ChangeGroupRequest.swift */; };
 		F81AB2D52A124AD8009AD66A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F81AB2D42A124AD8009AD66A /* GoogleService-Info.plist */; };
+		F81EEFA42ACADF6400F06BD1 /* TagDeletionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81EEFA32ACADF6400F06BD1 /* TagDeletionRequest.swift */; };
 		F822E7A92709CEB60020452C /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F822E7A82709CEB60020452C /* Notification.swift */; };
 		F8257750299546920067E145 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87122752733046300A24E74 /* Card.swift */; };
 		F8257751299546930067E145 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87122752733046300A24E74 /* Card.swift */; };
@@ -421,6 +422,7 @@
 		F80C679229F21BB7002C5ECC /* onboarding02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding02.json; sourceTree = "<group>"; };
 		F81171FF27383097002742CF /* ChangeGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeGroupRequest.swift; sourceTree = "<group>"; };
 		F81AB2D42A124AD8009AD66A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F81EEFA32ACADF6400F06BD1 /* TagDeletionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDeletionRequest.swift; sourceTree = "<group>"; };
 		F822E7A82709CEB60020452C /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		F8268DB827730B0100BF114B /* FirstCardAlertBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCardAlertBottomSheetViewController.swift; sourceTree = "<group>"; };
 		F82AF6A129FBBEE50051545B /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
@@ -1099,6 +1101,7 @@
 				F84427082AC1C74000396F8E /* ReceivedTag.swift */,
 				F84CD83D2AC1E59D008A2CB7 /* CreationTagRequest.swift */,
 				F84CD83F2AC1E64C008A2CB7 /* Tag.swift */,
+				F81EEFA32ACADF6400F06BD1 /* TagDeletionRequest.swift */,
 			);
 			path = Tag;
 			sourceTree = "<group>";
@@ -2046,6 +2049,7 @@
 				77AA68EA273E0EC4009C89B0 /* CardAddInGroupRequest.swift in Sources */,
 				77A4D5EF29AE269B00367B7C /* AroundMeViewController.swift in Sources */,
 				77A4D60629BD747300367B7C /* controllerFromStoryBoard.swift in Sources */,
+				F81EEFA42ACADF6400F06BD1 /* TagDeletionRequest.swift in Sources */,
 				3936993E274A53E000684420 /* GroupEditViewController.swift in Sources */,
 				F8458D6729F51B2F000D53A7 /* FanFrontCardCreationCollectionViewCell.swift in Sources */,
 				F8C83FAE272F99940009DF0D /* MoyaLoggerPlugin.swift in Sources */,

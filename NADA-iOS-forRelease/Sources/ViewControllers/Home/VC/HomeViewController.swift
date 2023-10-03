@@ -39,7 +39,7 @@ final class HomeViewController: UIViewController {
         $0.isPagingEnabled = false
         $0.clipsToBounds = true
         $0.decelerationRate = .fast
-        $0.backgroundColor = .background
+        $0.backgroundColor = .card
         $0.contentInsetAdjustmentBehavior = .never
         $0.showsHorizontalScrollIndicator = false
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +50,7 @@ final class HomeViewController: UIViewController {
         $0.text = "NN/NN"
     }
     private let tryCardView = UIView().then {
-        $0.backgroundColor = .cardCreationUnclicked
+        $0.backgroundColor = .background
         $0.layer.cornerRadius = 15
         $0.layer.masksToBounds = false
         $0.layer.shadowColor = UIColor.black.cgColor

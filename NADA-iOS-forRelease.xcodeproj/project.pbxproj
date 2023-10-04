@@ -182,6 +182,7 @@
 		F85711A7274A6B3400F59F0B /* CardCreationPreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F85711A6274A6B3400F59F0B /* CardCreationPreview.storyboard */; };
 		F858079E2700354E00872484 /* BackgroundCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858079C2700354E00872484 /* BackgroundCollectionViewCell.swift */; };
 		F858079F2700354E00872484 /* BackgroundCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F858079D2700354E00872484 /* BackgroundCollectionViewCell.xib */; };
+		F85EFA2B2ACD631D0050E979 /* BasicAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EFA2A2ACD631D0050E979 /* BasicAPI.swift */; };
 		F867C4CB2A29E8870061E37C /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FC2272FA17B0009DF0D /* URL.swift */; };
 		F867C4CC2A29E8A60061E37C /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43B726C0227D0033E151 /* Const.swift */; };
 		F86F97B42A28C8F700F13719 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C83FC2272FA17B0009DF0D /* URL.swift */; };
@@ -477,6 +478,7 @@
 		F85711A6274A6B3400F59F0B /* CardCreationPreview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardCreationPreview.storyboard; sourceTree = "<group>"; };
 		F858079C2700354E00872484 /* BackgroundCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundCollectionViewCell.swift; sourceTree = "<group>"; };
 		F858079D2700354E00872484 /* BackgroundCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackgroundCollectionViewCell.xib; sourceTree = "<group>"; };
+		F85EFA2A2ACD631D0050E979 /* BasicAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicAPI.swift; sourceTree = "<group>"; };
 		F87122752733046300A24E74 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		F871227727330A3800A24E74 /* CardCreationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreationRequest.swift; sourceTree = "<group>"; };
 		F8719DDA274F92E90081AD51 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
@@ -1492,6 +1494,7 @@
 		F8FC439E26C01EF70033E151 /* NetworkService */ = {
 			isa = PBXGroup;
 			children = (
+				F85EFA2A2ACD631D0050E979 /* BasicAPI.swift */,
 				F8C83FAC272F998A0009DF0D /* Plugin */,
 				F8C83FAF272F9C790009DF0D /* User */,
 				F8C83FB0272F9CB10009DF0D /* Card */,
@@ -2027,6 +2030,7 @@
 				3918F66727719C4B00984648 /* UserReissueToken.swift in Sources */,
 				F8988B292A1C89F700CBF583 /* CardType.swift in Sources */,
 				F855AEF129A3185000312D20 /* CardCreationCategoryViewController.swift in Sources */,
+				F85EFA2B2ACD631D0050E979 /* BasicAPI.swift in Sources */,
 				7705CF3E2752C7DB005195DF /* CardView.swift in Sources */,
 				F8FC43BA26C022900033E151 /* ViewController.swift in Sources */,
 				39D13568273FDCB800B1A148 /* UserWithTokenRequest.swift in Sources */,

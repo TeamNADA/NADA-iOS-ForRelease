@@ -8,11 +8,21 @@
 import Foundation
 
 public struct Tag: Codable {
-    let darkB: Int
-    let darkG: Int
-    let darkR: Int
+    let db: Int
+    let dg: Int
+    let dr: Int
     let icon: String
-    let whiteB: Int
-    let whiteG: Int
-    let whiteR: Int
+    let lb: Int
+    let lg: Int
+    let lr: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case db = "darkB"
+        case dg = "darkG"
+        case dr = "darkR"
+        case icon
+        case lb = "whiteB"
+        case lg = "whiteG"
+        case lr = "whiteR"
+    }
 }

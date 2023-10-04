@@ -118,6 +118,7 @@
 		77F2C0EB27632A91007641E3 /* CardHarmonyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */; };
 		77F2C0ED27632AA7007641E3 /* CardHarmony.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */; };
 		77F47D93276C79B600414659 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F47D92276C79B600414659 /* Header.swift */; };
+		F800EA102ACDAEC100A664AD /* SendTagSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F800EA0F2ACDAEC100A664AD /* SendTagSheetVC.swift */; };
 		F805588529C993E7002E8EA3 /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F805588429C993E7002E8EA3 /* UpdateViewController.swift */; };
 		F80975E92990A27400075B93 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F838B66A298E5C5300D84340 /* Widgets.intentdefinition */; };
 		F80975EA2990A27900075B93 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F838B66A298E5C5300D84340 /* Widgets.intentdefinition */; };
@@ -418,6 +419,7 @@
 		77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHarmonyViewController.swift; sourceTree = "<group>"; };
 		77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardHarmony.storyboard; sourceTree = "<group>"; };
 		77F47D92276C79B600414659 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		F800EA0F2ACDAEC100A664AD /* SendTagSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTagSheetVC.swift; sourceTree = "<group>"; };
 		F805588429C993E7002E8EA3 /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		F80C679129F21BB7002C5ECC /* onboarding01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding01.json; sourceTree = "<group>"; };
 		F80C679229F21BB7002C5ECC /* onboarding02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding02.json; sourceTree = "<group>"; };
@@ -1085,6 +1087,7 @@
 			isa = PBXGroup;
 			children = (
 				F84275D02AB1DAF90060AC59 /* FetchTagSheetVC.swift */,
+				F800EA0F2ACDAEC100A664AD /* SendTagSheetVC.swift */,
 			);
 			path = Tag;
 			sourceTree = "<group>";
@@ -2016,6 +2019,7 @@
 				39D88B5F2745FB7E00A72164 /* MoreViewController.swift in Sources */,
 				F8FC43B326C020B90033E151 /* BackCardCreationDelegate.swift in Sources */,
 				39369944274A568900684420 /* GroupEditTableViewCell.swift in Sources */,
+				F800EA102ACDAEC100A664AD /* SendTagSheetVC.swift in Sources */,
 				F8C83FBB272F9F370009DF0D /* NetworkResult.swift in Sources */,
 				39D2E130270B43DA00AD0889 /* UIFont+Extension.swift in Sources */,
 				F82FEB4C27639F3100DA7847 /* MainCardCell.swift in Sources */,

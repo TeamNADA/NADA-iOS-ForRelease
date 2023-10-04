@@ -165,38 +165,28 @@ extension FetchTagSheetVC: UICollectionViewDelegateFlowLayout {
 
 extension FetchTagSheetVC {
     private func receivedTagFetchWithAPI() {
-        let tagProvider = MoyaProvider<TagService>(plugins: [MoyaLoggerPlugin()])
-        
-        tagProvider.rx.request(.receivedTagFetch(cardUUID: self.cardUUID ?? ""))
-            .subscribe { [weak self] event in
-                switch event {
-                case .success(let response):
-                    let decoder = JSONDecoder()
-                    guard let decodedData = try? decoder.decode(GenericResponse<[ReceivedTag]>.self, from: response.data) else {
-                        print("receivedTagFetchWithAPI - pathErr")
-                        return
+        TagAPI.shared.receivedTagFetch(cardUUID: cardUUID ?? "").subscribe(with: self) { owner, event in
+            switch event {
+            case .success(let data):
+                print("receivedTagFetchWithAPI - success")
+                
+                if let data {
+                    owner.receivedTagList = data
+                    DispatchQueue.main.async {
+                        owner.collectionView.reloadData()
                     }
-                    
-                    switch decodedData.status {
-                    case 200..<300:
-                        print("receivedTagFetchWithAPI - success")
-                        
-                        self?.receivedTagList = decodedData.data
-                        DispatchQueue.main.async {
-                            self?.collectionView.reloadData()
-                        }
-                    case 400..<500:
-                        print("receivedTagFetchWithAPI - requestErr")
-                    case 500:
-                        print("receivedTagFetchWithAPI - serverErr")
-                    default:
-                        print("receivedTagFetchWithAPI - networkFail")
-                    }
-                case .failure(let error):
-                    print(error)
                 }
+            case .requestErr:
+                print("receivedTagFetchWithAPI - requestErr")
+            case .pathErr:
+                print("receivedTagFetchWithAPI - pathErr")
+            case .serverErr:
+                print("receivedTagFetchWithAPI - serverErr")
+            case .networkFail:
+                print("receivedTagFetchWithAPI - networkFail")
             }
-            .disposed(by: disposeBag)
+        }
+        .disposed(by: disposeBag)
     }
     private func deleteTagWithAPI(cardUUID: String, cardTagID: Int) {
         

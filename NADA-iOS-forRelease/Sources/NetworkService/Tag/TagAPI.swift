@@ -10,15 +10,26 @@ import Foundation
 import Moya
 import RxSwift
 
-public class TagAPI {
+public class TagAPI: BasicAPI {
     static let shared = TagAPI()
     var tagProvider = MoyaProvider<TagService>(plugins: [MoyaLoggerPlugin()])
     
-    private init() { }
+    private override init() { }
     
-    public func tagFetch(completion: @escaping (NetworkResult<[Tag]>) -> Void) {
-        tagProvider.request(.tagFetch) { result in
-            <#code#>
+    public func receivedTagFetch(cardUUID: String) -> Single<NetworkResult2<[ReceivedTag]?>> {
+        return Single<NetworkResult2<[ReceivedTag]?>>.create { single in
+            self.tagProvider.request(.receivedTagFetch(cardUUID: cardUUID)) { result in
+                switch result {
+                case .success(let response):
+                    let networkResult = self.judgeStatus(response: response, type: [ReceivedTag].self)
+                    single(.success(networkResult))
+                    return
+                case .failure(let error):
+                    single(.failure(error))
+                    return
+                }
+            }
+            return Disposables.create()
         }
     }
     

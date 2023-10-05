@@ -54,6 +54,9 @@ PODS:
     - GoogleUtilities/UserDefaults (~> 7.8)
     - nanopb (< 2.30910.0, >= 2.30908.0)
   - FlexLayout (1.3.33)
+  - Google-Mobile-Ads-SDK (10.10.0):
+    - GoogleAppMeasurement (< 11.0, >= 7.0)
+    - GoogleUserMessagingPlatform (>= 1.1)
   - GoogleAppMeasurement (10.15.0):
     - GoogleAppMeasurement/AdIdSupport (= 10.15.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
@@ -78,6 +81,7 @@ PODS:
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUserMessagingPlatform (2.1.0)
   - GoogleUtilities/AppDelegateSwizzler (7.11.5):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -156,6 +160,7 @@ DEPENDENCIES:
   - Firebase/DynamicLinks
   - Firebase/Messaging
   - FlexLayout
+  - Google-Mobile-Ads-SDK
   - IQKeyboardManagerSwift
   - KakaoSDKAuth
   - KakaoSDKCommon
@@ -187,8 +192,10 @@ SPEC REPOS:
     - FirebaseInstallations
     - FirebaseMessaging
     - FlexLayout
+    - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleDataTransport
+    - GoogleUserMessagingPlatform
     - GoogleUtilities
     - IQKeyboardManagerSwift
     - KakaoSDKAuth
@@ -225,9 +232,11 @@ SPEC CHECKSUMS:
   FirebaseInstallations: cae95cab0f965ce05b805189de1d4c70b11c76fb
   FirebaseMessaging: 0c0ae1eb722ef0c07f7801e5ded8dccd1357d6d4
   FlexLayout: d515437814cc7a6b50d6d2d14da7cd8059f8d6f6
-  GoogleAppMeasurement: 722db6550d1e6d552b08398b69a975ac61039338
-  GoogleDataTransport: 54dee9d48d14580407f8f5fbf2f496e92437a2f2
+  Google-Mobile-Ads-SDK: 509e53bd31c6accb2d9c33b0eb66df1d54dda622
+  GoogleUserMessagingPlatform: dce302b8f1b84d6e945812ee7a15c3f65a102cbf
   GoogleUtilities: 13e2c67ede716b8741c7989e26893d151b2b2084
+  GoogleDataTransport: 54dee9d48d14580407f8f5fbf2f496e92437a2f2
+  GoogleAppMeasurement: 722db6550d1e6d552b08398b69a975ac61039338
   IQKeyboardManagerSwift: 371b08cb39664fb56030f5345c815a4ffc74bbc0
   KakaoSDKAuth: 85c1d89f16b8be3bf266a0c77dff8b5438696b43
   KakaoSDKCommon: 194ccea3710f30036ee63d79cf524ed7ae6c1595
@@ -253,6 +262,6 @@ SPEC CHECKSUMS:
   VerticalCardSwiper: 68df635b354500f86934ea044ade37a264c044c6
   YPImagePicker: f36043210c10b0783034eb1947d6e06e31c461e4
 
-PODFILE CHECKSUM: d80b5640b8e8951cbe4ad0f2674f4e6649a80a81
+PODFILE CHECKSUM: 27d4fca367bb82fb5b8f2ef3c289411d9ee88030
 
 COCOAPODS: 1.12.1

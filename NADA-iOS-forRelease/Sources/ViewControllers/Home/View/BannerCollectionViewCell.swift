@@ -13,6 +13,9 @@ import Then
 class BannerCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Components
+    private var bannerURL: String?
+    
+    // MARK: - UI Components
     
     private let stackview = UIStackView().then {
         $0.distribution = .fill
@@ -53,12 +56,11 @@ class BannerCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Methods
     
-//    public func setData(_ model: AroundMeResponse) {
-//        profileImageView.updateServerImage(model.imageURL)
-//        myNameLabel.text = model.name
-//        cardNameLabel.text = model.cardName
-//        cardUUID = model.cardUUID
-//    }
+    public func setData(_ model: BannerResponse) {
+        bannerTitleLabel.text = model.label
+        bannerTextLabel.text = model.text
+        bannerURL = model.url
+    }
     
     // MARK: - UI & Layout
     

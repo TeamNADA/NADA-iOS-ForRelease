@@ -24,6 +24,8 @@ final class HomeViewController: UIViewController {
     private var moduleFactory = ModuleFactory.shared
     private let disposeBag = DisposeBag()
     
+    private var banners: [BannerResponse] = []
+    
     // MARK: - UI Components
     
     private let bannerBackView = UIView().then {
@@ -37,7 +39,7 @@ final class HomeViewController: UIViewController {
         $0.isPagingEnabled = false
         $0.clipsToBounds = true
         $0.decelerationRate = .fast
-        $0.backgroundColor = .green
+        $0.backgroundColor = .card
         $0.contentInsetAdjustmentBehavior = .never
         $0.showsHorizontalScrollIndicator = false
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +50,7 @@ final class HomeViewController: UIViewController {
         $0.text = "NN/NN"
     }
     private let tryCardView = UIView().then {
-        $0.backgroundColor = .white
+        $0.backgroundColor = .background
         $0.layer.cornerRadius = 15
         $0.layer.masksToBounds = false
         $0.layer.shadowColor = UIColor.black.cgColor
@@ -118,6 +120,7 @@ final class HomeViewController: UIViewController {
         setRegister()
         checkUpdateVersionAndSetting()
         setNotification()
+        bannerFetchWithAPI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -274,6 +277,12 @@ extension HomeViewController {
                            parameters: [
                             AnalyticsParameterScreenName: Tracking.Screen.home
                            ])
+    }
+    
+    private func openURL(link: URL) {
+        if UIApplication.shared.canOpenURL(link) {
+            UIApplication.shared.open(link, options: [:], completionHandler: nil)
+        }
     }
     
     private func bindActions() {
@@ -500,19 +509,19 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return banners.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let bannerCell = collectionView.dequeueReusableCell(withReuseIdentifier: BannerCollectionViewCell.className, for: indexPath) as? BannerCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
+        bannerCell.setData(banners[indexPath.row])
         return bannerCell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("selected")
+        openURL(link: URL(string: banners[indexPath.row].url)!)
     }
 }
 
@@ -522,11 +531,33 @@ extension HomeViewController: UICollectionViewDelegate {
         let cellWidth = UIScreen.main.bounds.width - 36
         let index = round(scrolledOffsetX / cellWidth)
         targetContentOffset.pointee = CGPoint(x: index * cellWidth - scrollView.contentInset.left, y: scrollView.contentInset.top)
+        DispatchQueue.main.async {
+            self.bannerPageLabel.text = "\(Int(index+1))/\(self.banners.count)"
+        }
     }
 }
 
 // MARK: - Network
 extension HomeViewController {
+    private func bannerFetchWithAPI() {
+        UpdateAPI.shared.bannerFetch { response in
+            switch response {
+            case .success(let data):
+                guard let bannerInfo = data as? [BannerResponse] else { return }
+                self.bannerPageLabel.text = "1/\(bannerInfo.count)"
+                self.banners = bannerInfo
+                self.bannerCollectionView.reloadData()
+            case .requestErr(let message):
+                print("bannerFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("bannerFetchWithAPI - pathErr")
+            case .serverErr:
+                print("bannerFetchWithAPI - serverErr")
+            case .networkFail:
+                print("bannerFetchWithAPI - networkFail")
+            }
+        }
+    }
     private func updateUserInfoFetchWithAPI(completion: @escaping (Bool) -> Void) {
         UpdateAPI.shared.updateUserInfoFetch { response in
             switch response {

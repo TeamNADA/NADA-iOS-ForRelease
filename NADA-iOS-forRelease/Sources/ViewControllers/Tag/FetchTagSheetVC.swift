@@ -73,6 +73,8 @@ extension FetchTagSheetVC {
         cancelButton.isHidden = true
         
         deleteButton.isEnabled = false
+        
+        collectionView.backgroundColor = .background
     }
     private func setAction() {
         cancelButton.rx.tap

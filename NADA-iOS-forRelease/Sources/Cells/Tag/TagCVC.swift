@@ -41,6 +41,9 @@ class TagCVC: UICollectionViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        
+        tagLabel.text = ""
+        tagImageView.image = UIImage()
     }
 }
 
@@ -78,7 +81,7 @@ extension TagCVC {
         bgView.layer.cornerRadius = ((width - 48) / 327 * 48) / 2
         
         tagLabel.font = .textBold02
-        tagLabel.textColor = .background
+        tagLabel.textColor = .white
         
         selectedBgView.isHidden = true
         selectedBgView.backgroundColor = .black.withAlphaComponent(0.6)

@@ -139,6 +139,7 @@
 		F82FF81D2701EBCE00E57F8B /* CardCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F82FF81C2701EBCE00E57F8B /* CardCreation.storyboard */; };
 		F82FF8252702000000E57F8B /* RequiredFlavorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FF8232702000000E57F8B /* RequiredFlavorCollectionViewCell.swift */; };
 		F82FF8262702000000E57F8B /* RequiredFlavorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F82FF8242702000000E57F8B /* RequiredFlavorCollectionViewCell.xib */; };
+		F831F46F2ACE83B00093BEEF /* SendTagCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F831F46E2ACE83B00093BEEF /* SendTagCVC.swift */; };
 		F83206AA26F61E3700D61711 /* FrontCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83206A826F61E3700D61711 /* FrontCardCell.swift */; };
 		F83206AB26F61E3700D61711 /* FrontCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F83206A926F61E3700D61711 /* FrontCardCell.xib */; };
 		F835EF6F29800F51001ABAAF /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F835EF6E29800F51001ABAAF /* UIApplication+Extension.swift */; };
@@ -434,6 +435,7 @@
 		F82FF81C2701EBCE00E57F8B /* CardCreation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardCreation.storyboard; sourceTree = "<group>"; };
 		F82FF8232702000000E57F8B /* RequiredFlavorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredFlavorCollectionViewCell.swift; sourceTree = "<group>"; };
 		F82FF8242702000000E57F8B /* RequiredFlavorCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequiredFlavorCollectionViewCell.xib; sourceTree = "<group>"; };
+		F831F46E2ACE83B00093BEEF /* SendTagCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTagCVC.swift; sourceTree = "<group>"; };
 		F83206A826F61E3700D61711 /* FrontCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontCardCell.swift; sourceTree = "<group>"; };
 		F83206A926F61E3700D61711 /* FrontCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FrontCardCell.xib; sourceTree = "<group>"; };
 		F835EF6E29800F51001ABAAF /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
@@ -1096,6 +1098,7 @@
 			isa = PBXGroup;
 			children = (
 				F84427052AC1887A00396F8E /* TagCVC.swift */,
+				F831F46E2ACE83B00093BEEF /* SendTagCVC.swift */,
 			);
 			path = Tag;
 			sourceTree = "<group>";
@@ -1960,6 +1963,7 @@
 				3958F239270FFBBF00B100B2 /* GroupViewController.swift in Sources */,
 				3909242F26FA15E800236C51 /* UIView+Extension.swift in Sources */,
 				39523E09270184A700536900 /* CardListViewController.swift in Sources */,
+				F831F46F2ACE83B00093BEEF /* SendTagCVC.swift in Sources */,
 				F8F00C4129DD48A000A15377 /* UpdateService.swift in Sources */,
 				F8D92E0A29D5324E002ACC73 /* Taste.swift in Sources */,
 				F85711A5274A6B2200F59F0B /* CardCreationPreviewViewController.swift in Sources */,

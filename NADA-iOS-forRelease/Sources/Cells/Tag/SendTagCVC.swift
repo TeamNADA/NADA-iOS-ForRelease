@@ -56,4 +56,20 @@ extension SendTagCVC {
         }
     }
 }
+
+// MARK: - Initialize
+
+extension SendTagCVC {
+    public func initCell(_ lr: Int, _ lg: Int, _ lb: Int,
+                         _ dr: Int, _ dg: Int, _ db: Int) {
+        if #available(iOS 13, *) {
+            if traitCollection.userInterfaceStyle == .light {
+                bgView.backgroundColor = UIColor(red: CGFloat(lr) / 255.0, green: CGFloat(lg) / 255.0, blue: CGFloat(lb) / 255.0, alpha: 1.0)
+            } else {
+                bgView.backgroundColor = UIColor(red: CGFloat(dr) / 255.0, green: CGFloat(dg) / 255.0, blue: CGFloat(db) / 255.0, alpha: 1.0)
+            }
+        } else {
+            bgView.backgroundColor = UIColor(red: CGFloat(lr) / 255.0, green: CGFloat(lg) / 255.0, blue: CGFloat(lb) / 255.0, alpha: 1.0)
+        }
+    }
 }

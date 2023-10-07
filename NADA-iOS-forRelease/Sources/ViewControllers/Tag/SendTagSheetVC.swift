@@ -134,7 +134,39 @@ extension SendTagSheetVC {
     }
 }
 
-    }
-    */
+// MARK: - UICollectionViewDelegate
 
+extension SendTagSheetVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        iconImageView.image = UIImage(named: tags[indexPath.item].icon)
+        
+        if #available(iOS 13, *) {
+            if traitCollection.userInterfaceStyle == .light {
+                colorView.backgroundColor = UIColor(red: CGFloat(tags[indexPath.item].lr) / 255.0, green: CGFloat(tags[indexPath.item].lg) / 255.0, blue: CGFloat(tags[indexPath.item].lb) / 255.0, alpha: 1.0)
+            } else {
+                colorView.backgroundColor = UIColor(red: CGFloat(tags[indexPath.item].dr) / 255.0, green: CGFloat(tags[indexPath.item].dg) / 255.0, blue: CGFloat(tags[indexPath.item].db) / 255.0, alpha: 1.0)
+            }
+        } else {
+            colorView.backgroundColor = UIColor(red: CGFloat(tags[indexPath.item].lr) / 255.0, green: CGFloat(tags[indexPath.item].lg) / 255.0, blue: CGFloat(tags[indexPath.item].lb) / 255.0, alpha: 1.0)
+        }
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+extension SendTagSheetVC: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return tags.count
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SendTagCVC", for: indexPath) as? SendTagCVC else { return UICollectionViewCell() }
+        
+        cell.initCell(tags[indexPath.item].lr,
+                      tags[indexPath.item].lg,
+                      tags[indexPath.item].lb,
+                      tags[indexPath.item].dr,
+                      tags[indexPath.item].dg,
+                      tags[indexPath.item].db)
+        
+        return cell
+    }
 }

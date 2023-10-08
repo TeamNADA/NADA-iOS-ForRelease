@@ -27,7 +27,7 @@ extension UtilService: TargetType {
     var path: String {
         switch self {
         case .cardHarmonyFetch(let cardUUID):
-            return "/card/compatibility/\(cardUUID)"
+            return "/v1/card/compatibility/\(cardUUID)"
         }
     }
     

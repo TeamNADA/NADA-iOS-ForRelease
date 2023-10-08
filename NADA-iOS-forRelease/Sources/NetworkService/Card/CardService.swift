@@ -28,19 +28,19 @@ extension CardService: TargetType {
     var path: String {
         switch self {
         case .cardDetailFetch(let cardUUID):
-            return "/card/\(cardUUID)/search"
+            return "/v1/card/\(cardUUID)/search"
         case .cardCreation:
-            return "/card"
+            return "/v1/card"
         case .cardListPageFetch:
-            return "/card/page"
+            return "/v1/card/page"
         case .cardListFetch:
-            return "/card"
+            return "/v1/card"
         case .cardReorder:
-            return "/card/reorder"
+            return "/v1/card/reorder"
         case .cardDelete(let cardID):
-            return "/card/\(cardID)"
+            return "/v1/card/\(cardID)"
         case .imageUpload:
-            return "/image"
+            return "/v1/image"
         case .tasteFetch(let cardType):
             return "/card/v2/\(cardType.rawValue)/taste"
         }

@@ -42,7 +42,7 @@ extension CardService: TargetType {
         case .imageUpload:
             return "/v1/image"
         case .tasteFetch(let cardType):
-            return "/card/v2/\(cardType.rawValue)/taste"
+            return "v2/card/\(cardType.rawValue)/taste"
         }
     }
     

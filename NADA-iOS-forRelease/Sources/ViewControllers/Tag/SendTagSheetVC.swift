@@ -172,6 +172,32 @@ extension SendTagSheetVC {
             }
         })
     }
+    private func setCompletedUIWithAnimation() {
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: { [weak self] in
+            self?.sendTagLabel.alpha = 0
+            self?.backButton.alpha = 0
+            self?.sendButton.alpha = 0
+            self?.colorView.alpha = 0
+        }, completion: { [weak self] _ in
+            self?.backButton.isHidden = true
+            self?.sendButton.isHidden = true
+            self?.colorView.isHidden = true
+            
+            let attributeString = NSMutableAttributedString(string: "ID \(self?.cardUUID ?? "") 명함에 태그를 보냈어요!")
+            attributeString.addAttribute(.font, value: UIFont.textBold01, range: NSRange(location: 0, length: 2))
+            attributeString.addAttribute(.font, value: UIFont.textRegular03, range: NSRange(location: 2, length: attributeString.length - 2))
+            
+            self?.sendTagLabel.attributedText = attributeString
+            
+            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn) {
+                self?.sendTagLabel.alpha = 1.0
+                self?.checkImageView.isHidden = false
+                self?.checkImageView.alpha = 1.0
+                self?.completeButton.isHidden = false
+                self?.completeButton.alpha = 1.0
+            }
+        })
+    }
     public func setCardUUID(_ cardUUID: String) {
         self.cardUUID = cardUUID
     }

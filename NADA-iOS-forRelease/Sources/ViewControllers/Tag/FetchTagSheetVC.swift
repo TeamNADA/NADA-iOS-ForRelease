@@ -92,8 +92,6 @@ extension FetchTagSheetVC {
                 owner.deleteButton.setTitleColor(.primary, for: .normal)
                 owner.deleteButton.isEnabled = true
                 
-                // 셀 비활성화
-                
                 owner.mode = .fetch
             }
             .disposed(by: disposeBag)
@@ -106,8 +104,6 @@ extension FetchTagSheetVC {
                     owner.deleteButton.setTitleColor(.stateColorError, for: .normal)
                     owner.deleteButton.isEnabled = false
                     owner.cancelButton.isHidden = false
-                    
-                    // 셀 활성화
                     
                     owner.mode = .edit
                 case .edit:
@@ -126,8 +122,6 @@ extension FetchTagSheetVC {
                     owner.deleteButton.setTitleColor(.primary, for: .normal)
                     owner.deleteButton.isEnabled = true
                     owner.cancelButton.isHidden = true
-                    
-                    // 셀 비활성화
                     
                     owner.mode = .fetch
                 }
@@ -176,7 +170,10 @@ extension FetchTagSheetVC {
 
 extension FetchTagSheetVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if mode == .fetch {
+            collectionView.deselectItem(at: indexPath, animated: false)
             deleteButton.isEnabled = true
+        }
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if collectionView.indexPathsForSelectedItems?.isEmpty == true {

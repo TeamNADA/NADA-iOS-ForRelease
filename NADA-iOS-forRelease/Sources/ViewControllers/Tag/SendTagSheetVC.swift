@@ -265,6 +265,32 @@ extension SendTagSheetVC {
 
 extension SendTagSheetVC {
     private func tagFetchWithAPI() {
+        TagAPI.shared.tagFetch().subscribe(onSuccess: { [weak self] networkResult in
+            switch networkResult {
+            case .success(let response):
+                print("tagFetchWithAPI - success")
+                
+                if let data = response.data {
+                    self?.tags = data
+                    DispatchQueue.main.async {
+                        self?.collectionView.reloadData()
+                        
+                        self?.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .left)
+                        self?.collectionView(self?.collectionView ?? UICollectionView(), didSelectItemAt: IndexPath(item: 0, section: 0))
+                    }
+                }
+            case .requestErr:
+                print("tagFetchWithAPI - requestErr")
+            case .pathErr:
+                print("tagFetchWithAPI - pathErr")
+            case .serverErr:
+                print("tagFetchWithAPI - serverErr")
+            case .networkFail:
+                print("tagFetchWithAPI - networkFail")
+            }
+        }, onFailure: { error in
+            print("tagFetchWithAPI - error: \(error)")
+        }).disposed(by: disposeBag)
     }
     private func tagFilteringWithAPI(request: CreationTagRequest, completion: @escaping () -> Void) {
     }

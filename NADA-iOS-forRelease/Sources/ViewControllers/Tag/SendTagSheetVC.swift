@@ -135,6 +135,14 @@ extension SendTagSheetVC {
     public func setCardUUID(_ cardUUID: String) {
         self.cardUUID = cardUUID
     }
+// MARK: - Network
+
+extension SendTagSheetVC {
+    private func tagFetchWithAPI() {
+    }
+    private func tagFilteringWithAPI(request: CreationTagRequest, completion: @escaping () -> Void) {
+    }
+    private func tagCreationWithAPI(request: CreationTagRequest, completion: @escaping () -> Void) {
     }
 }
 

@@ -132,6 +132,28 @@ extension SendTagSheetVC {
         adjectiveTextFiled.delegate = self
         nounTextFiled.delegate = self
     }
+    private func setEditUIWithAnimation() {
+        subtitleLabel.text = "명함을 자유롭게 표현해 보세요"
+        subtitleLabel.textColor = .mainColorButtonText
+        adjectiveTextFiled.becomeFirstResponder()
+        
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: { [weak self] in
+            self?.sendTagLabel.alpha = 0
+            self?.sendButton.alpha = 0
+            self?.backButton.alpha = 0
+        }, completion: { [weak self] _ in
+            self?.sendButton.isHidden = true
+            self?.backButton.isHidden = true
+            
+            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn) {
+                self?.sendTagLabel.isHidden = true
+                self?.subtitleLabel.isHidden = false
+                self?.subtitleLabel.alpha = 1
+                self?.collectionView.isHidden = false
+                self?.collectionView.alpha = 1
+            }
+        })
+    }
     public func setCardUUID(_ cardUUID: String) {
         self.cardUUID = cardUUID
     }

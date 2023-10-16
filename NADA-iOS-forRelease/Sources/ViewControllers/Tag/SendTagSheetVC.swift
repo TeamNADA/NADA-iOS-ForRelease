@@ -103,6 +103,8 @@ class SendTagSheetVC: UIViewController {
     
     private var cardUUID: String?
     private var tags: [Tag] = []
+    
+    private let maxLength: Int = 7
     private let disposeBag = DisposeBag()
     
     // MARK: - View Life Cycle
@@ -113,6 +115,7 @@ class SendTagSheetVC: UIViewController {
         setUI()
         setLayout()
         setDelegate()
+        setNotification()
         tagFetchWithAPI()
     }
     
@@ -136,6 +139,9 @@ extension SendTagSheetVC {
         
         adjectiveTextFiled.delegate = self
         nounTextFiled.delegate = self
+    }
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChangeNotification), name: UITextField.textDidChangeNotification, object: nil)
     }
     private func setEditUIWithAnimation() {
         subtitleLabel.text = "명함을 자유롭게 표현해 보세요"
@@ -206,6 +212,36 @@ extension SendTagSheetVC {
     public func setCardUUID(_ cardUUID: String) {
         self.cardUUID = cardUUID
     }
+                                               
+    // MARK: - @objc
+    
+    @objc
+    private func textDidChangeNotification(_ notification: Notification) {
+        if let textField = notification.object as? UITextField {
+            switch textField {
+            case adjectiveTextFiled:
+                if let text = adjectiveTextFiled.text {
+                    if text.count > maxLength {
+                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
+                        let newString = String(text[text.startIndex..<maxIndex])
+                        adjectiveTextFiled.text = newString
+                    }
+                }
+            case nounTextFiled:
+                if let text = nounTextFiled.text {
+                    if text.count > maxLength {
+                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
+                        let newString = String(text[text.startIndex..<maxIndex])
+                        nounTextFiled.text = newString
+                    }
+                }
+            default:
+                return
+            }
+        }
+    }
+}
+
 // MARK: - Network
 
 extension SendTagSheetVC {

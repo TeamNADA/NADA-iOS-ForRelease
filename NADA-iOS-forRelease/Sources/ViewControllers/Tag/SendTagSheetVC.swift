@@ -128,6 +128,10 @@ extension SendTagSheetVC {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(SendTagCVC.self, forCellWithReuseIdentifier: "SendTagCVC")
+        
+        adjectiveTextFiled.delegate = self
+        nounTextFiled.delegate = self
+    }
     public func setCardUUID(_ cardUUID: String) {
         self.cardUUID = cardUUID
     }
@@ -241,5 +245,30 @@ extension SendTagSheetVC: UICollectionViewDataSource {
                       tags[indexPath.item].db)
         
         return cell
+    }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension SendTagSheetVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let adjectiveText = adjectiveTextFiled.text, let nounText = nounTextFiled.text,
+           !adjectiveText.isEmpty, !nounText.isEmpty {
+            if let items = collectionView.indexPathsForSelectedItems?.map({ index in index.item }) {
+                creationTagRequest = .init(adjective: adjectiveText, cardUUID: cardUUID ?? "", icon: tags[items[0]].icon, noun: nounText)
+
+                tagFilteringWithAPI(request: CreationTagRequest(adjective: adjectiveText,
+                                                                cardUUID: cardUUID ?? "",
+                                                                icon: tags[items[0]].icon,
+                                                                noun: nounText)) { [weak self] in
+                    self?.setSendUIWithAnimation()
+                }
+            }
+        } else {
+            subtitleLabel.text = "형용사, 명사 모두를 입력해 주세요."
+            subtitleLabel.textColor = .stateColorError
+        }
+        
+        return false
     }
 }

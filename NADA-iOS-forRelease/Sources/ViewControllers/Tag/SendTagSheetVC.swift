@@ -138,8 +138,6 @@ extension SendTagSheetVC {
     }
 }
 
-    /*
-    // MARK: - Navigation
 // MARK: - Layout
 
 extension SendTagSheetVC {

@@ -209,13 +209,14 @@ extension FetchTagSheetVC: UICollectionViewDelegateFlowLayout {
 
 extension FetchTagSheetVC {
     private func receivedTagFetchWithAPI() {
-        TagAPI.shared.receivedTagFetch(cardUUID: cardUUID ?? "").subscribe(with: self) { owner, event in
-            switch event {
-            case .success(let data):
+        TagAPI.shared.receivedTagFetch(cardUUID: cardUUID ?? "").subscribe(with: self, onSuccess: { owner, networkResult in
+            switch networkResult {
+            case .success(let response):
                 print("receivedTagFetchWithAPI - success")
                 
-                if let data {
-                    owner.receivedTagList = data
+                if let data = response.data {
+                    owner.receivedTags = data
+                    
                     DispatchQueue.main.async {
                         owner.setCollectionView()
                     }
@@ -229,7 +230,9 @@ extension FetchTagSheetVC {
             case .networkFail:
                 print("receivedTagFetchWithAPI - networkFail")
             }
-        }
+        }, onFailure: { _, error in
+            print("deleteTagWithAPI - error : \(error)")
+        })
         .disposed(by: disposeBag)
     }
     private func deleteTagWithAPI(cardUUID: String, cardTagID: Int) {

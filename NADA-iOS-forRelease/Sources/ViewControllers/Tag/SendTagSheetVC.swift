@@ -113,6 +113,7 @@ class SendTagSheetVC: UIViewController {
         setUI()
         setLayout()
         setDelegate()
+        tagFetchWithAPI()
     }
     
 

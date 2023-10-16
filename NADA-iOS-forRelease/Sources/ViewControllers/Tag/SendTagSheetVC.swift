@@ -101,6 +101,7 @@ class SendTagSheetVC: UIViewController {
     
     // MARK: - Properties
     
+    private var cardUUID: String?
     private var tags: [Tag] = []
     private let disposeBag = DisposeBag()
     
@@ -127,6 +128,9 @@ extension SendTagSheetVC {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(SendTagCVC.self, forCellWithReuseIdentifier: "SendTagCVC")
+    public func setCardUUID(_ cardUUID: String) {
+        self.cardUUID = cardUUID
+    }
     }
 }
 

@@ -103,6 +103,7 @@ class SendTagSheetVC: UIViewController {
     
     private var cardUUID: String?
     private var tags: [Tag] = []
+    private var keyboardOn: Bool = false
     
     private let maxLength: Int = 7
     private let disposeBag = DisposeBag()
@@ -119,6 +120,15 @@ class SendTagSheetVC: UIViewController {
         tagFetchWithAPI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    
+        if !keyboardOn {
+            adjectiveTextFiled.becomeFirstResponder()
+            keyboardOn = true
+        }
+    }
+}
 
 // MARK: - Extension
 

@@ -180,6 +180,7 @@
 		F855AEF129A3185000312D20 /* CardCreationCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F855AEF029A3185000312D20 /* CardCreationCategoryViewController.swift */; };
 		F8562C96296ADD1000DA1109 /* nearby.json in Resources */ = {isa = PBXBuildFile; fileRef = F8562C95296ADD1000DA1109 /* nearby.json */; };
 		F8562C98296ADD6700DA1109 /* Lottie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8562C97296ADD6700DA1109 /* Lottie.swift */; };
+		F856EB6C2AD904FF0039D32E /* CustomDetent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F856EB6B2AD904FF0039D32E /* CustomDetent.swift */; };
 		F85711A5274A6B2200F59F0B /* CardCreationPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85711A4274A6B2200F59F0B /* CardCreationPreviewViewController.swift */; };
 		F85711A7274A6B3400F59F0B /* CardCreationPreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F85711A6274A6B3400F59F0B /* CardCreationPreview.storyboard */; };
 		F858079E2700354E00872484 /* BackgroundCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858079C2700354E00872484 /* BackgroundCollectionViewCell.swift */; };
@@ -478,6 +479,7 @@
 		F855AEF029A3185000312D20 /* CardCreationCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreationCategoryViewController.swift; sourceTree = "<group>"; };
 		F8562C95296ADD1000DA1109 /* nearby.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nearby.json; sourceTree = "<group>"; };
 		F8562C97296ADD6700DA1109 /* Lottie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lottie.swift; sourceTree = "<group>"; };
+		F856EB6B2AD904FF0039D32E /* CustomDetent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDetent.swift; sourceTree = "<group>"; };
 		F85711A4274A6B2200F59F0B /* CardCreationPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreationPreviewViewController.swift; sourceTree = "<group>"; };
 		F85711A6274A6B3400F59F0B /* CardCreationPreview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardCreationPreview.storyboard; sourceTree = "<group>"; };
 		F858079C2700354E00872484 /* BackgroundCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1317,6 +1319,7 @@
 				F8988B282A1C89F700CBF583 /* CardType.swift */,
 				F8988B2A2A1C8A7E00CBF583 /* CardContext.swift */,
 				F8F0AF802A76388B005A0881 /* CreationType.swift */,
+				F856EB6B2AD904FF0039D32E /* CustomDetent.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1978,6 +1981,7 @@
 				77F2C0EB27632A91007641E3 /* CardHarmonyViewController.swift in Sources */,
 				F83206AA26F61E3700D61711 /* FrontCardCell.swift in Sources */,
 				3979709626FA0BE5003FB4F5 /* LoginViewController.swift in Sources */,
+				F856EB6C2AD904FF0039D32E /* CustomDetent.swift in Sources */,
 				39488E352706E17200BDC917 /* UIAlertController+Extension.swift in Sources */,
 				3903CC202769F4F40094C458 /* EmptyCardCell.swift in Sources */,
 				F84CD8402AC1E64C008A2CB7 /* Tag.swift in Sources */,

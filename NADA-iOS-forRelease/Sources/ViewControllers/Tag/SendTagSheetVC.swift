@@ -154,6 +154,24 @@ extension SendTagSheetVC {
             }
         })
     }
+    private func setSendUIWithAnimation() {
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: { [weak self] in
+            self?.subtitleLabel.alpha = 0
+            self?.collectionView.alpha = 0
+        }, completion: { [weak self] _ in
+            self?.subtitleLabel.isHidden = true
+            self?.collectionView.isHidden = true
+            
+            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn) {
+                self?.sendTagLabel.isHidden = false
+                self?.sendTagLabel.alpha = 1
+                self?.backButton.isHidden = false
+                self?.backButton.alpha = 1
+                self?.sendButton.isHidden = false
+                self?.sendButton.alpha = 1
+            }
+        })
+    }
     public func setCardUUID(_ cardUUID: String) {
         self.cardUUID = cardUUID
     }

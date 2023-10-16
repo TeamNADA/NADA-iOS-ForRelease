@@ -54,7 +54,7 @@ class FetchTagSheetVC: UIViewController {
     }
     
     private var cardUUID: String?
-    private var receivedTagList: [ReceivedTag]?
+    private var receivedTags: [ReceivedTag]?
     private var diffableDataSource: UICollectionViewDiffableDataSource<Section, ReceivedTag>?
     private var mode: Mode = .fetch
     

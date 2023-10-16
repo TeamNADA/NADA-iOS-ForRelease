@@ -185,6 +185,7 @@ extension FrontViewController {
                 
                 if let sheet = tagSheet.sheetPresentationController {
                     sheet.detents = [customDetent, .large()] // detent 설정
+                    sheet.detents = [CustomDetent.receivedTagDetent, .large()]
                     sheet.preferredCornerRadius = 30 // 둥글기 수정
                 }
             } else {

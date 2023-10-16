@@ -235,8 +235,26 @@ extension FetchTagSheetVC {
         })
         .disposed(by: disposeBag)
     }
-    private func deleteTagWithAPI(cardUUID: String, cardTagID: Int) {
-        
+    private func deleteTagWithAPI(request: [TagDeletionRequest]) {
+        TagAPI.shared.tagDeletion(request: request).subscribe(with: self, onSuccess: { owner, networkResult in
+            switch networkResult {
+            case .success:
+                print("deleteTagWithAPI - success")
+                
+                owner.receivedTagFetchWithAPI()
+            case .requestErr:
+                print("deleteTagWithAPI - requestErr")
+            case .pathErr:
+                print("deleteTagWithAPI - pathErr")
+            case .serverErr:
+                print("deleteTagWithAPI - serverErr")
+            case .networkFail:
+                print("deleteTagWithAPI - networkFail")
+            }
+        }, onFailure: { _, error in
+            print("deleteTagWithAPI - error : \(error)")
+        })
+        .disposed(by: disposeBag)
     }
 }
 

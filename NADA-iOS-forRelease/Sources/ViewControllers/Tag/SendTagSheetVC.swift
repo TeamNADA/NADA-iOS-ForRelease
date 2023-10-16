@@ -37,15 +37,19 @@ class SendTagSheetVC: UIViewController {
     private let iconImageView = UIImageView()
     private let adjectiveTextFiled = UITextField().then {
         $0.textAlignment = .center
-        $0.text = "형용사"
+        $0.textColor = .white
         $0.font = .title02
-        $0.textColor = .white.withAlphaComponent(0.3)
+        $0.tintColor = .white
+        $0.attributedPlaceholder = NSAttributedString(string: "형용사", attributes: [.foregroundColor: UIColor.white.withAlphaComponent(0.3), .font: UIFont.title02])
+        $0.returnKeyType = .done
     }
     private let nounTextFiled = UITextField().then {
         $0.textAlignment = .center
-        $0.text = "명사"
+        $0.textColor = .white
         $0.font = .title01
-        $0.textColor = .white.withAlphaComponent(0.3)
+        $0.tintColor = .white
+        $0.attributedPlaceholder = NSAttributedString(string: "명사", attributes: [.foregroundColor: UIColor.white.withAlphaComponent(0.3), .font: UIFont.title01])
+        $0.returnKeyType = .done
     }
     private let collectionViewFlowLayout = UICollectionViewFlowLayout().then {
         $0.estimatedItemSize = .zero

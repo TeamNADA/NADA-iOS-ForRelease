@@ -116,6 +116,16 @@ extension FetchTagSheetVC {
         
         collectionView.dataSource = diffableDataSource
     }
+    private func setCollectionView() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, ReceivedTag>()
+        
+        snapshot.appendSections([.main])
+        
+        if let receivedTags {
+            snapshot.appendItems(receivedTags)
+        }
+        
+        diffableDataSource?.apply(snapshot, animatingDifferences: true)
     }
     public func setCardUUID(_ cardUUID: String) {
         self.cardUUID = cardUUID
@@ -169,7 +179,7 @@ extension FetchTagSheetVC {
                 if let data {
                     owner.receivedTagList = data
                     DispatchQueue.main.async {
-                        owner.collectionView.reloadData()
+                        owner.setCollectionView()
                     }
                 }
             case .requestErr:

@@ -295,6 +295,25 @@ extension SendTagSheetVC {
     private func tagFilteringWithAPI(request: CreationTagRequest, completion: @escaping () -> Void) {
     }
     private func tagCreationWithAPI(request: CreationTagRequest, completion: @escaping () -> Void) {
+        TagAPI.shared.tagCreation(request: request).subscribe(onSuccess: { [weak self] networkResult in
+            switch networkResult {
+            case .success:
+                print("tagCreationWithAPI - success")
+                
+                completion()
+            case .requestErr:
+                print("tagCreationWithAPI - requestErr")
+            case .pathErr:
+                print("tagCreationWithAPI - pathErr")
+            case .serverErr:
+                print("tagCreationWithAPI - serverErr")
+            case .networkFail:
+                print("tagCreationWithAPI - networkFail")
+            }
+        }, onFailure: { error in
+            print("tagCreationWithAPI - error: \(error)")
+        })
+        .disposed(by: disposeBag)
     }
 }
 

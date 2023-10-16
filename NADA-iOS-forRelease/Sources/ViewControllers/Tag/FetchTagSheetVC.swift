@@ -48,9 +48,15 @@ class FetchTagSheetVC: UIViewController {
     private enum Section: Hashable {
         case main
     }
+    private enum Mode {
+        case fetch
+        case edit
+    }
+    
     private var cardUUID: String?
     private var receivedTagList: [ReceivedTag]?
     private var diffableDataSource: UICollectionViewDiffableDataSource<Section, ReceivedTag>?
+    private var mode: Mode = .fetch
     
     private let disposeBag = DisposeBag()
     
@@ -82,16 +88,49 @@ extension FetchTagSheetVC {
             .bind(with: self) { owner, _ in
                 owner.collectionView.reloadData()
                 owner.cancelButton.isHidden = true
+                owner.deleteButton.setTitle("편집", for: .normal)
+                owner.deleteButton.setTitleColor(.primary, for: .normal)
+                owner.deleteButton.isEnabled = true
+                
+                // 셀 비활성화
+                
+                owner.mode = .fetch
             }
             .disposed(by: disposeBag)
         
         deleteButton.rx.tap
             .bind(with: self) { owner, _ in
-//                owner.deleteTagWithAPI(cardUUID: "", cardTagID: 0)
-                // FIXME: - 삭제 후에 조회하도록 수정
-                owner.receivedTagFetchWithAPI()
-                owner.cancelButton.isHidden = true
-                owner.deleteButton.isEnabled = false
+                switch owner.mode {
+                case .fetch:
+                    owner.deleteButton.setTitle("삭제", for: .normal)
+                    owner.deleteButton.setTitleColor(.stateColorError, for: .normal)
+                    owner.deleteButton.isEnabled = false
+                    owner.cancelButton.isHidden = false
+                    
+                    // 셀 활성화
+                    
+                    owner.mode = .edit
+                case .edit:
+                    guard let selectedItems = owner.collectionView.indexPathsForSelectedItems else { return }
+                    
+                    var tagDeletionRequests: [TagDeletionRequest] = []
+                    
+                    selectedItems.map { $0.item }.forEach { item in
+                        let request = TagDeletionRequest(cardTagID: owner.receivedTags?[item].cardTagID ?? 0)
+                        tagDeletionRequests.append(request)
+                    }
+                    
+                    owner.deleteTagWithAPI(request: tagDeletionRequests)
+                    
+                    owner.deleteButton.setTitle("편집", for: .normal)
+                    owner.deleteButton.setTitleColor(.primary, for: .normal)
+                    owner.deleteButton.isEnabled = true
+                    owner.cancelButton.isHidden = true
+                    
+                    // 셀 비활성화
+                    
+                    owner.mode = .fetch
+                }
             }
             .disposed(by: disposeBag)
     }

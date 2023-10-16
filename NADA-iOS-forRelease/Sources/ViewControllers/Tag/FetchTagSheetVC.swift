@@ -45,6 +45,9 @@ class FetchTagSheetVC: UIViewController {
     
     // MARK: - Properties
     
+    private enum Section: Hashable {
+        case main
+    }
     private var cardUUID: String?
     private var receivedTagList: [ReceivedTag]?
     private var diffableDataSource: UICollectionViewDiffableDataSource<Section, ReceivedTag>?

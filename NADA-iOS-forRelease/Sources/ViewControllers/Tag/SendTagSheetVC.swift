@@ -124,6 +124,10 @@ extension SendTagSheetVC {
         view.backgroundColor = .background
         
         collectionView.backgroundColor = .background
+        
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = false
+        
+        [sendTagLabel, backButton, sendButton, checkImageView, completeButton].forEach { $0.isHidden = true }
     }
     private func setDelegate() {
         collectionView.delegate = self

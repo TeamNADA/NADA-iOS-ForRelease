@@ -61,6 +61,43 @@ class SendTagSheetVC: UIViewController {
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout).then {
         $0.showsHorizontalScrollIndicator = false
     }
+    private lazy var sendTagLabel = UILabel().then {
+        let attributeString = NSMutableAttributedString(string: "ID \(cardUUID ?? "") 명함에 태그를 보낼까요?")
+        attributeString.addAttribute(.font, value: UIFont.textBold01, range: NSRange(location: 0, length: 2))
+        attributeString.addAttribute(.font, value: UIFont.textRegular03, range: NSRange(location: 2, length: attributeString.length - 2))
+        
+        $0.attributedText = attributeString
+        $0.textColor = .secondary
+        $0.alpha = 0
+    }
+    private let sendButton = UIButton().then {
+        $0.backgroundColor = .mainColorNadaMain
+        $0.setTitleColor(.white, for: .normal)
+        $0.setTitle("보내기", for: .normal)
+        $0.titleLabel?.font = .button01
+        $0.layer.cornerRadius = 15
+        $0.alpha = 0
+    }
+    private let backButton = UIButton().then {
+        $0.backgroundColor = .button
+        $0.setTitleColor(.tertiary, for: .normal)
+        $0.setTitle("뒤로가기", for: .normal)
+        $0.titleLabel?.font = .button01
+        $0.layer.cornerRadius = 15
+        $0.alpha = 0
+    }
+    private let completeButton = UIButton().then {
+        $0.backgroundColor = .mainColorNadaMain
+        $0.setTitleColor(.white, for: .normal)
+        $0.setTitle("완료", for: .normal)
+        $0.titleLabel?.font = .button01
+        $0.layer.cornerRadius = 15
+        $0.alpha = 0
+    }
+    private let checkImageView = UIImageView().then {
+        $0.image = UIImage(named: "imgCheckDone")
+        $0.alpha = 0
+    }
     
     // MARK: - Properties
     
@@ -99,7 +136,7 @@ extension SendTagSheetVC {
 
 extension SendTagSheetVC {
     private func setLayout() {
-        view.addSubviews([grabber, titleLabel, subtitleLabel, colorView, collectionView])
+        view.addSubviews([grabber, titleLabel, subtitleLabel, colorView, collectionView, sendTagLabel, backButton, sendButton, checkImageView, completeButton])
         
         grabber.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(12)
@@ -123,6 +160,31 @@ extension SendTagSheetVC {
             make.left.right.equalToSuperview().inset(39)
             make.height.equalTo(32)
         }
+        sendTagLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(191)
+            make.centerX.equalToSuperview()
+        }
+        backButton.snp.makeConstraints { make in
+            make.top.equalTo(sendTagLabel.snp.bottom).offset(20)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalTo(view.snp.centerX).inset(3.5)
+            make.height.equalTo(54)
+        }
+        sendButton.snp.makeConstraints { make in
+            make.top.equalTo(sendTagLabel.snp.bottom).offset(20)
+            make.right.equalToSuperview().inset(24)
+            make.left.equalTo(view.snp.centerX).offset(3.5)
+            make.height.equalTo(54)
+        }
+        checkImageView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(45)
+            make.centerX.equalToSuperview()
+        }
+        completeButton.snp.makeConstraints { make in
+            make.top.equalTo(sendTagLabel.snp.bottom).offset(20)
+            make.right.left.equalToSuperview().inset(24)
+            make.height.equalTo(54)
+        }
         
         colorView.addSubviews([iconImageView, adjectiveTextFiled, nounTextFiled])
         
@@ -132,11 +194,11 @@ extension SendTagSheetVC {
         }
         adjectiveTextFiled.snp.makeConstraints { make in
             make.top.equalTo(iconImageView.snp.bottom).offset(17)
-            make.centerX.equalToSuperview()
+            make.left.right.equalToSuperview().inset(12.5)
         }
         nounTextFiled.snp.makeConstraints { make in
             make.top.equalTo(adjectiveTextFiled.snp.bottom).offset(8)
-            make.centerX.equalToSuperview()
+            make.left.right.equalToSuperview().inset(12.5)
         }
     }
 }

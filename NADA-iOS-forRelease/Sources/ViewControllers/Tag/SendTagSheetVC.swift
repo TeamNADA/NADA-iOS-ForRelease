@@ -116,7 +116,6 @@ class SendTagSheetVC: UIViewController {
         bind()
         setLayout()
         setDelegate()
-        setNotification()
         tagFetchWithAPI()
     }
     
@@ -151,6 +150,20 @@ extension SendTagSheetVC {
         completeButton.rx.tap.bind { [weak self] in
             self?.dismiss(animated: true)
         }.disposed(by: disposeBag)
+        
+        adjectiveTextFiled.rx.text
+            .orEmpty
+            .distinctUntilChanged()
+            .bind(with: self) { owner, text in
+                owner.countTextFieldText(text, owner.adjectiveTextFiled)
+            }.disposed(by: disposeBag)
+        
+        nounTextFiled.rx.text
+            .orEmpty
+            .distinctUntilChanged()
+            .bind(with: self) { owner, text in
+                owner.countTextFieldText(text, owner.nounTextFiled)
+            }.disposed(by: disposeBag)
     }
     private func setDelegate() {
         collectionView.delegate = self
@@ -159,9 +172,6 @@ extension SendTagSheetVC {
         
         adjectiveTextFiled.delegate = self
         nounTextFiled.delegate = self
-    }
-    private func setNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChangeNotification), name: UITextField.textDidChangeNotification, object: nil)
     }
     private func setEditUIWithAnimation() {
         subtitleLabel.text = "명함을 자유롭게 표현해 보세요"
@@ -229,36 +239,15 @@ extension SendTagSheetVC {
             }
         })
     }
+    private func countTextFieldText(_ text: String, _ textField: UITextField) {
+        if text.count > maxLength {
+            let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
+            let newString = String(text[text.startIndex..<maxIndex])
+            textField.text = newString
+        }
+    }
     public func setCardUUID(_ cardUUID: String) {
         self.cardUUID = cardUUID
-    }
-                                               
-    // MARK: - @objc
-    
-    @objc
-    private func textDidChangeNotification(_ notification: Notification) {
-        if let textField = notification.object as? UITextField {
-            switch textField {
-            case adjectiveTextFiled:
-                if let text = adjectiveTextFiled.text {
-                    if text.count > maxLength {
-                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
-                        let newString = String(text[text.startIndex..<maxIndex])
-                        adjectiveTextFiled.text = newString
-                    }
-                }
-            case nounTextFiled:
-                if let text = nounTextFiled.text {
-                    if text.count > maxLength {
-                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
-                        let newString = String(text[text.startIndex..<maxIndex])
-                        nounTextFiled.text = newString
-                    }
-                }
-            default:
-                return
-            }
-        }
     }
 }
 

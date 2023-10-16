@@ -113,6 +113,7 @@ class SendTagSheetVC: UIViewController {
         super.viewDidLoad()
 
         setUI()
+        bind()
         setLayout()
         setDelegate()
         setNotification()
@@ -131,6 +132,25 @@ extension SendTagSheetVC {
         IQKeyboardManager.shared.shouldResignOnTouchOutside = false
         
         [sendTagLabel, backButton, sendButton, checkImageView, completeButton].forEach { $0.isHidden = true }
+    }
+    private func bind() {
+        backButton.rx.tap.bind { [weak self] in
+            self?.adjectiveTextFiled.isUserInteractionEnabled = true
+            self?.nounTextFiled.isUserInteractionEnabled = true
+            self?.setEditUIWithAnimation()
+        }.disposed(by: disposeBag)
+        
+        sendButton.rx.tap.bind { [weak self] in
+            if let request = self?.creationTagRequest {
+                self?.tagCreationWithAPI(request: request) {
+                    self?.setCompletedUIWithAnimation()
+                }
+            }
+        }.disposed(by: disposeBag)
+        
+        completeButton.rx.tap.bind { [weak self] in
+            self?.dismiss(animated: true)
+        }.disposed(by: disposeBag)
     }
     private func setDelegate() {
         collectionView.delegate = self

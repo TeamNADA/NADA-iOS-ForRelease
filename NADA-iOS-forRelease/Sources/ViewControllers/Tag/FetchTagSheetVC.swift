@@ -30,9 +30,9 @@ class FetchTagSheetVC: UIViewController {
         $0.setTitleColor(.primary, for: .normal)
     }
     private let deleteButton: UIButton = UIButton().then {
-        $0.setTitle("삭제", for: .normal)
+        $0.setTitle("편집", for: .normal)
         $0.titleLabel?.font = .button02
-        $0.setTitleColor(.stateColorError, for: .normal)
+        $0.setTitleColor(.primary, for: .normal)
         $0.setTitleColor(.quaternary, for: .disabled)
     }
     private let collevtionViewFlowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout().then {
@@ -74,8 +74,6 @@ extension FetchTagSheetVC {
         view.backgroundColor = .background
         
         cancelButton.isHidden = true
-        
-        deleteButton.isEnabled = false
         
         collectionView.backgroundColor = .background
     }

@@ -170,8 +170,10 @@ extension FetchTagSheetVC {
 
 extension FetchTagSheetVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if mode == .fetch {
+        switch mode {
+        case .fetch:
             collectionView.deselectItem(at: indexPath, animated: false)
+        case .edit:
             deleteButton.isEnabled = true
         }
     }

@@ -29,4 +29,5 @@ target 'NADA-iOS-forRelease' do
   pod 'Firebase/Analytics'
   pod 'Firebase/DynamicLinks'
   pod 'Firebase/Messaging'
+  pod 'Google-Mobile-Ads-SDK'
 end

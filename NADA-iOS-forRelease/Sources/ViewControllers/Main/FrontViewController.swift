@@ -174,7 +174,6 @@ extension FrontViewController {
         if let cardUUID = notification.object as? String {
             let tagSheet = FetchTagSheetVC()
             
-            // detent custom 생성
             if #available(iOS 16.0, *) {
                 let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
                 let safeAreaBottom = windowScene?.windows.first?.safeAreaInsets.bottom ?? 0
@@ -184,18 +183,13 @@ extension FrontViewController {
                 }
                 
                 if let sheet = tagSheet.sheetPresentationController {
-                    sheet.detents = [customDetent, .large()] // detent 설정
-                    sheet.preferredCornerRadius = 30 // 둥글기 수정
+                    sheet.detents = [customDetent, .large()]
+                    sheet.preferredCornerRadius = 30
                 }
             } else {
                 if let sheet = tagSheet.sheetPresentationController {
-                    sheet.detents = [.medium(), .large()] // detent 설정
-                    // sheet.prefersGrabberVisible = false // 기본값
-                    // grabber 이미지로 대체하였음.
-                    
-                    // 스크롤 상황에서 최대 detent까지 확장하는 여부 결정.
-                    // sheet.prefersScrollingExpandsWhenScrolledToEdge = true // 기본값
-                    sheet.preferredCornerRadius = 30 // 둥글기 수정
+                    sheet.detents = [.medium(), .large()]
+                    sheet.preferredCornerRadius = 30
                 }
             }
             tagSheet.setCardUUID(cardUUID)

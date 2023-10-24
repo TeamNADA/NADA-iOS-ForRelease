@@ -13,8 +13,8 @@ import Kingfisher
 class BackCardCell: CardCell {
     
     // MARK: - Properties
-    
-    private var cardData: Card?
+//    private var cardData: Card?
+    private var cardUUID: String?
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var backgroundImageView: UIImageView!
@@ -23,6 +23,7 @@ class BackCardCell: CardCell {
     @IBOutlet var tasteLabels: [UILabel]!
     @IBOutlet weak var tmiTitleLabel: UILabel!
     @IBOutlet weak var tmiLabel: UILabel!
+    @IBOutlet weak var tagButton: UIButton!
     
     // MARK: - View Life Cycle
     override func awakeFromNib() {
@@ -31,6 +32,10 @@ class BackCardCell: CardCell {
     }
     
     // MARK: - Functions
+    @IBAction func touchTagButton(_ sender: Any) {
+        NotificationCenter.default.post(name: .presentToTagSheet, object: cardUUID)
+    }
+    
     static func nib() -> UINib {
         return UINib(nibName: Const.Xib.backCardCell, bundle: Bundle(for: BackCardCell.self))
     }
@@ -38,7 +43,9 @@ class BackCardCell: CardCell {
 
 // MARK: - Extensions
 extension BackCardCell {
-    private func setUI() {        
+    private func setUI() {
+        tagButton.isHidden = true
+        
         tasteTitleLabel.font = .title02
         tasteTitleLabel.textColor = .white
         
@@ -82,7 +89,13 @@ extension BackCardCell {
     /// 명함 조회 시 사용.
     func initCell(_ backgroundImage: String,
                   _ cardTasteInfo: [CardTasteInfo],
-                  _ tmi: String?) {
+                  _ tmi: String?,
+                  _ cardUUID: String? = nil) {
+        if let cardUUID {
+            self.cardUUID = cardUUID
+            tagButton.isHidden = false
+        }
+        
         if backgroundImage.hasPrefix("https://") {
             self.backgroundImageView.updateServerImage(backgroundImage)
         } else {

@@ -26,4 +26,5 @@ extension Notification.Name {
     static let presentMail = Notification.Name("presentMail")
     static let presentDynamicLink = Notification.Name("presentDynamicLink")
     static let backToHome = Notification.Name("backToHome")
+    static let presentToTagSheet = Notification.Name("presentToTagSheet")
 }

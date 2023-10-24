@@ -116,6 +116,7 @@ extension FrontViewController {
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(didRecievePresentCardShare(_:)), name: .presentCardShare, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setCreationReloadMainCardSwiper), name: .creationReloadMainCardSwiper, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(presentToTagSheet(_:)), name: .presentToTagSheet, object: nil)
     }
     
     private func setActivityIndicator() {
@@ -165,6 +166,42 @@ extension FrontViewController {
         
         cardListPageFetchWithAPI(pageNumber: pageNumber, pageSize: pageSize) {
             _ = self.cardSwiper.scrollToCard(at: 1, animated: false)
+        }
+    }
+    
+    @objc
+    private func presentToTagSheet(_ notification: Notification) {
+        if let cardUUID = notification.object as? String {
+            let tagSheet = FetchTagSheetVC()
+            
+            // detent custom 생성
+            if #available(iOS 16.0, *) {
+                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                let safeAreaBottom = windowScene?.windows.first?.safeAreaInsets.bottom ?? 0
+                let detentIdentifier = UISheetPresentationController.Detent.Identifier("tagSheet")
+                let customDetent = UISheetPresentationController.Detent.custom(identifier: detentIdentifier) { _ in
+                    return 572 - safeAreaBottom
+                }
+                
+                if let sheet = tagSheet.sheetPresentationController {
+                    sheet.detents = [customDetent, .large()] // detent 설정
+                    sheet.preferredCornerRadius = 30 // 둥글기 수정
+                }
+            } else {
+                if let sheet = tagSheet.sheetPresentationController {
+                    sheet.detents = [.medium(), .large()] // detent 설정
+                    // sheet.prefersGrabberVisible = false // 기본값
+                    // grabber 이미지로 대체하였음.
+                    
+                    // 스크롤 상황에서 최대 detent까지 확장하는 여부 결정.
+                    // sheet.prefersScrollingExpandsWhenScrolledToEdge = true // 기본값
+                    sheet.preferredCornerRadius = 30 // 둥글기 수정
+                }
+            }
+            tagSheet.setCardUUID(cardUUID)
+            tagSheet.modalPresentationStyle = .pageSheet
+            
+            present(tagSheet, animated: true)
         }
     }
 }

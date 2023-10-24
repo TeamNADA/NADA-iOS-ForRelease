@@ -54,6 +54,9 @@ PODS:
     - GoogleUtilities/UserDefaults (~> 7.8)
     - nanopb (< 2.30910.0, >= 2.30908.0)
   - FlexLayout (2.0.02)
+  - Google-Mobile-Ads-SDK (10.12.0):
+    - GoogleAppMeasurement (< 11.0, >= 7.0)
+    - GoogleUserMessagingPlatform (>= 1.1)
   - GoogleAppMeasurement (10.16.0):
     - GoogleAppMeasurement/AdIdSupport (= 10.16.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
@@ -78,6 +81,7 @@ PODS:
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUserMessagingPlatform (2.1.0)
   - GoogleUtilities/AppDelegateSwizzler (7.11.5):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -156,6 +160,7 @@ DEPENDENCIES:
   - Firebase/DynamicLinks
   - Firebase/Messaging
   - FlexLayout
+  - Google-Mobile-Ads-SDK
   - IQKeyboardManagerSwift
   - KakaoSDKAuth
   - KakaoSDKCommon
@@ -187,8 +192,10 @@ SPEC REPOS:
     - FirebaseInstallations
     - FirebaseMessaging
     - FlexLayout
+    - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleDataTransport
+    - GoogleUserMessagingPlatform
     - GoogleUtilities
     - IQKeyboardManagerSwift
     - KakaoSDKAuth
@@ -225,8 +232,10 @@ SPEC CHECKSUMS:
   FirebaseInstallations: b822f91a61f7d1ba763e5ccc9d4f2e6f2ed3b3ee
   FirebaseMessaging: 80b4a086d20ed4fd385a702f4bfa920e14f5064d
   FlexLayout: bd1d1738d67a455205e14c42492fe5450e3c1554
+  Google-Mobile-Ads-SDK: 976fdf273815674eed30b8aafffedb3c25b055e4
   GoogleAppMeasurement: 079d7632810e9d9704a99932547ba1554acc4342
   GoogleDataTransport: 54dee9d48d14580407f8f5fbf2f496e92437a2f2
+  GoogleUserMessagingPlatform: dce302b8f1b84d6e945812ee7a15c3f65a102cbf
   GoogleUtilities: 13e2c67ede716b8741c7989e26893d151b2b2084
   IQKeyboardManagerSwift: 79fab21f451441935788dc5d80ded21c32685904
   KakaoSDKAuth: 17becef98c04ce53d2e81081c3d0903f7cda2b0d
@@ -253,6 +262,6 @@ SPEC CHECKSUMS:
   VerticalCardSwiper: 68df635b354500f86934ea044ade37a264c044c6
   YPImagePicker: afc81b3cffab05a6e7261c5daf80dc31b4e917b4
 
-PODFILE CHECKSUM: d80b5640b8e8951cbe4ad0f2674f4e6649a80a81
+PODFILE CHECKSUM: 27d4fca367bb82fb5b8f2ef3c289411d9ee88030
 
 COCOAPODS: 1.13.0

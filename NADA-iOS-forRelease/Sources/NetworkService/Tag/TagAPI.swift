@@ -32,17 +32,17 @@ public class TagAPI: BasicAPI {
             return Disposables.create()
         }
     }
-    
-    public func receivedTagFetch(cardUUID: String, completion: @escaping (NetworkResult<[ReceivedTag]>) -> Void) {
-        tagProvider.request(.receivedTagFetch(cardUUID: cardUUID)) { result in
-            <#code#>
-        }
-        
-    }
-    
-    public func TagCreation(request: CreationTagRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
-        tagProvider.request(.tagCreation(request: request)) { result in
-            <#code#>
-        }
-    }
+//    
+//    public func receivedTagFetch(cardUUID: String, completion: @escaping (NetworkResult<[ReceivedTag]>) -> Void) {
+//        tagProvider.request(.receivedTagFetch(cardUUID: cardUUID)) { result in
+//            <#code#>
+//        }
+//        
+//    }
+//    
+//    public func TagCreation(request: CreationTagRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
+//        tagProvider.request(.tagCreation(request: request)) { result in
+//            <#code#>
+//        }
+//    }
 }

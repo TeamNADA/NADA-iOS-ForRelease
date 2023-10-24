@@ -21,7 +21,6 @@ class FetchTagSheetVC: UIViewController {
         $0.text = "받은 태그"
         $0.font = .title01
         $0.textColor = .primary
-        
     }
     private let cancelButton: UIButton = UIButton().then {
         $0.setTitle("취소", for: .normal)
@@ -61,7 +60,6 @@ extension FetchTagSheetVC {
     private func setAddTargets() {
         cancelButton.addTarget(self, action: #selector(touchCancelButton), for: .touchUpInside)
         deleteButton.addTarget(self, action: #selector(touchDeleteButton), for: .touchUpInside)
-        
     }
     
     // MARK: - @objc

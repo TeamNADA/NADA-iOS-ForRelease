@@ -46,7 +46,8 @@ class FetchTagSheetVC: UIViewController {
     // MARK: - Properties
     
     private var cardUUID: String?
-    private var receivedTagList: [ReceivedTag]?
+    private var receivedTags: [ReceivedTag]?
+    private var diffableDataSource: UICollectionViewDiffableDataSource<Section, ReceivedTag>?
     
     private let disposeBag = DisposeBag()
     
@@ -95,8 +96,36 @@ extension FetchTagSheetVC {
     }
     private func setDelegate() {
         collectionView.delegate = self
-        collectionView.dataSource = self
         collectionView.register(TagCVC.self, forCellWithReuseIdentifier: "TagCVC")
+        
+        diffableDataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { collectionView, indexPath, receivedTag in
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCVC", for: indexPath) as? TagCVC else { return UICollectionViewCell() }
+            
+            cell.initCell(receivedTag.adjective,
+                          receivedTag.noun,
+                          receivedTag.icon,
+                          receivedTag.lr,
+                          receivedTag.lg,
+                          receivedTag.lb,
+                          receivedTag.dr,
+                          receivedTag.dg,
+                          receivedTag.db)
+            
+            return cell
+        }
+        
+        collectionView.dataSource = diffableDataSource
+    }
+    private func setCollectionView() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, ReceivedTag>()
+        
+        snapshot.appendSections([.main])
+        
+        if let receivedTags {
+            snapshot.appendItems(receivedTags)
+        }
+        
+        diffableDataSource?.apply(snapshot, animatingDifferences: true)
     }
     public func setCardUUID(_ cardUUID: String) {
         self.cardUUID = cardUUID
@@ -115,29 +144,6 @@ extension FetchTagSheetVC: UICollectionViewDelegate {
             cancelButton.isHidden = true
             deleteButton.isEnabled = false
         }
-    }
-}
-
-// MARK: - UICollectionViewDataSource
-
-extension FetchTagSheetVC: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return receivedTagList?.count ?? 0
-    }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCVC", for: indexPath) as? TagCVC, let receivedTagList else { return UICollectionViewCell() }
-        
-        cell.initCell(receivedTagList[indexPath.item].adjective,
-                      receivedTagList[indexPath.item].noun,
-                      receivedTagList[indexPath.item].icon,
-                      receivedTagList[indexPath.item].lr,
-                      receivedTagList[indexPath.item].lg,
-                      receivedTagList[indexPath.item].lb,
-                      receivedTagList[indexPath.item].dr,
-                      receivedTagList[indexPath.item].dg,
-                      receivedTagList[indexPath.item].db)
-        
-        return cell
     }
 }
 
@@ -171,9 +177,9 @@ extension FetchTagSheetVC {
                 print("receivedTagFetchWithAPI - success")
                 
                 if let data = response.data {
-                    owner.receivedTagList = data
+                    owner.receivedTags = data
                     DispatchQueue.main.async {
-                        owner.collectionView.reloadData()
+                        owner.setCollectionView()
                     }
                 }
             case .requestErr:

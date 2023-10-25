@@ -38,7 +38,7 @@ class FetchTagSheetVC: UIViewController {
     private let collectionViewFlowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout().then {
         $0.estimatedItemSize = .zero
     }
-    private lazy var collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: collevtionViewFlowLayout).then {
+    private lazy var collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout).then {
         $0.showsVerticalScrollIndicator = false
         $0.allowsMultipleSelection = true
     }

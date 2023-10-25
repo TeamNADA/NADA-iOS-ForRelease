@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+public struct TagDeletionRequest: Codable {
+    let cardTagID: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case cardTagID = "cardTagId"
+    }
+}

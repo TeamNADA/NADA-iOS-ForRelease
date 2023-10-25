@@ -38,7 +38,7 @@ class FetchTagSheetVC: UIViewController {
     private let collectionViewFlowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout().then {
         $0.estimatedItemSize = .zero
     }
-    private lazy var collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: collevtionViewFlowLayout).then {
+    private lazy var collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout).then {
         $0.showsVerticalScrollIndicator = false
         $0.allowsMultipleSelection = true
     }
@@ -167,10 +167,10 @@ extension FetchTagSheetVC {
     private func receivedTagFetchWithAPI() {
         TagAPI.shared.receivedTagFetch(cardUUID: cardUUID ?? "").subscribe(with: self) { owner, event in
             switch event {
-            case .success(let data):
+            case .success(let response):
                 print("receivedTagFetchWithAPI - success")
                 
-                if let data {
+                if let data = response.data {
                     owner.receivedTagList = data
                     DispatchQueue.main.async {
                         owner.collectionView.reloadData()
@@ -188,8 +188,26 @@ extension FetchTagSheetVC {
         }
         .disposed(by: disposeBag)
     }
-    private func deleteTagWithAPI(cardUUID: String, cardTagID: Int) {
-        
+    private func deleteTagWithAPI(request: [TagDeletionRequest]) {
+        TagAPI.shared.tagDeletion(request: request).subscribe(with: self, onSuccess: { owner, networkResult in
+            switch networkResult {
+            case .success:
+                print("deleteTagWithAPI - success")
+                
+                owner.receivedTagFetchWithAPI()
+            case .requestErr:
+                print("deleteTagWithAPI - requestErr")
+            case .pathErr:
+                print("deleteTagWithAPI - pathErr")
+            case .serverErr:
+                print("deleteTagWithAPI - serverErr")
+            case .networkFail:
+                print("deleteTagWithAPI - networkFail")
+            }
+        }, onFailure: { _, error in
+            print("deleteTagWithAPI - error : \(error)")
+        })
+        .disposed(by: disposeBag)
     }
 }
 

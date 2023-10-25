@@ -16,8 +16,8 @@ public class TagAPI: BasicAPI {
     
     private override init() { }
     
-    public func receivedTagFetch(cardUUID: String) -> Single<NetworkResult2<[ReceivedTag]?>> {
-        return Single<NetworkResult2<[ReceivedTag]?>>.create { single in
+    public func receivedTagFetch(cardUUID: String) -> Single<NetworkResult2<GenericResponse<[ReceivedTag]>>> {
+        return Single<NetworkResult2<GenericResponse<[ReceivedTag]>>>.create { single in
             self.tagProvider.request(.receivedTagFetch(cardUUID: cardUUID)) { result in
                 switch result {
                 case .success(let response):
@@ -87,8 +87,6 @@ public class TagAPI: BasicAPI {
                 }
             }
             return Disposables.create()
-        }
-    }
         }
     }
 }

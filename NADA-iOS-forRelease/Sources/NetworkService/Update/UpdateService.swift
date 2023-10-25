@@ -13,6 +13,7 @@ enum UpdateService {
     case updateUserInfoFetch
     case updateNoteFetch
     case checkUpdateNote(isChecked: Bool)
+    case bannerFetch
 }
 
 extension UpdateService: TargetType {
@@ -27,17 +28,19 @@ extension UpdateService: TargetType {
     var path: String {
         switch self {
         case .updateUserInfoFetch:
-            return "/app/update"
+            return "/v1/app/update"
         case .updateNoteFetch:
-            return "/app/update/note"
+            return "/v1/app/update/note"
         case .checkUpdateNote:
-             return "/app/update/check"
+             return "/v1/app/update/check"
+        case .bannerFetch:
+             return "/v1/banner/advertising"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .updateUserInfoFetch, .updateNoteFetch:
+        case .updateUserInfoFetch, .updateNoteFetch, .bannerFetch:
             return .get
         case .checkUpdateNote:
             return .post
@@ -46,7 +49,7 @@ extension UpdateService: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case .updateUserInfoFetch, .updateNoteFetch:
+        case .updateUserInfoFetch, .updateNoteFetch, .bannerFetch:
             return .requestPlain
         case .checkUpdateNote(let isChecked):
             return .requestParameters(parameters: ["checkUpdateNote": isChecked],
@@ -56,7 +59,7 @@ extension UpdateService: TargetType {
     
     var headers: [String: String]? {
         switch self {
-        case .updateUserInfoFetch, .updateNoteFetch, .checkUpdateNote:
+        case .updateUserInfoFetch, .updateNoteFetch, .checkUpdateNote, .bannerFetch:
             return Const.Header.bearerHeader()
         }
     }

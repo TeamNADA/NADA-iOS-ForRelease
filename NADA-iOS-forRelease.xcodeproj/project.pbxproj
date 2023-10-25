@@ -242,6 +242,7 @@
 		F8D62FA82A06742600F9DF11 /* Spoqa Han Sans Neo Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F8D62FA52A06742000F9DF11 /* Spoqa Han Sans Neo Medium.otf */; };
 		F8D74DD8276C7FB60071E5FC /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D74DD7276C7FB60071E5FC /* UIImageView+Extension.swift */; };
 		F8D92E0A29D5324E002ACC73 /* Taste.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D92E0929D5324E002ACC73 /* Taste.swift */; };
+		F8EF42B02AE934380083128B /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EF42AF2AE934380083128B /* Section.swift */; };
 		F8F00C3929DD474700A15377 /* UpdateNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F00C3829DD474700A15377 /* UpdateNote.swift */; };
 		F8F00C3B29DD483000A15377 /* UpdateUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F00C3A29DD483000A15377 /* UpdateUserInfo.swift */; };
 		F8F00C3E29DD489200A15377 /* UpdateAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F00C3D29DD489200A15377 /* UpdateAPI.swift */; };
@@ -532,6 +533,7 @@
 		F8D62FA52A06742000F9DF11 /* Spoqa Han Sans Neo Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Spoqa Han Sans Neo Medium.otf"; sourceTree = "<group>"; };
 		F8D74DD7276C7FB60071E5FC /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		F8D92E0929D5324E002ACC73 /* Taste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Taste.swift; sourceTree = "<group>"; };
+		F8EF42AF2AE934380083128B /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		F8F00C3829DD474700A15377 /* UpdateNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNote.swift; sourceTree = "<group>"; };
 		F8F00C3A29DD483000A15377 /* UpdateUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfo.swift; sourceTree = "<group>"; };
 		F8F00C3D29DD489200A15377 /* UpdateAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAPI.swift; sourceTree = "<group>"; };
@@ -1322,6 +1324,7 @@
 				F8988B2A2A1C8A7E00CBF583 /* CardContext.swift */,
 				F8F0AF802A76388B005A0881 /* CreationType.swift */,
 				F856EB6B2AD904FF0039D32E /* CustomDetent.swift */,
+				F8EF42AF2AE934380083128B /* Section.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1988,6 +1991,7 @@
 				39488E352706E17200BDC917 /* UIAlertController+Extension.swift in Sources */,
 				3903CC202769F4F40094C458 /* EmptyCardCell.swift in Sources */,
 				F84CD8402AC1E64C008A2CB7 /* Tag.swift in Sources */,
+				F8EF42B02AE934380083128B /* Section.swift in Sources */,
 				F82AF6A229FBBEE50051545B /* UserDefaults+Extension.swift in Sources */,
 				F8C310C0273A7360008EC5BA /* FrontCardCreationDelegate.swift in Sources */,
 				F8C83FBF272FA0670009DF0D /* UserSevice.swift in Sources */,

@@ -45,9 +45,6 @@ class FetchTagSheetVC: UIViewController {
     
     // MARK: - Properties
     
-    private enum Section: Hashable {
-        case main
-    }
     private enum Mode {
         case fetch
         case edit

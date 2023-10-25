@@ -24,13 +24,13 @@ extension TagService: TargetType {
     var path: String {
         switch self {
         case .tagCreation:
-            return "/card/tag"
+            return "/v1/card/tag"
         case .tagFetch:
-            return "/tag/image"
+            return "/v1/tag/image"
         case .receivedTagFetch(let cardUUID):
-            return "/card/tag/card/\(cardUUID)"
+            return "/v1/card/tag/card/\(cardUUID)"
         case .tagDelete:
-            return "/card/tag/delete"
+            return "/v1/card/tag/delete"
         }
     }
     

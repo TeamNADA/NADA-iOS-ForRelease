@@ -21,6 +21,7 @@ class SendTagSheetVC: UIViewController {
     private var cardUUID: String?
     private var tags: [Tag] = []
     private var keyboardOn: Bool = false
+    private var creationTagRequest: CreationTagRequest?
     
     private let maxLength: Int = 7
     private let disposeBag = DisposeBag()

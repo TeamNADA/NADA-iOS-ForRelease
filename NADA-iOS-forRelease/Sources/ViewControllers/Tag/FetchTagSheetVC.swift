@@ -46,7 +46,7 @@ class FetchTagSheetVC: UIViewController {
     // MARK: - Properties
     
     private var cardUUID: String?
-    private var receivedTagList: [ReceivedTag]?
+    private var receivedTags: [ReceivedTag]?
     private var diffableDataSource: UICollectionViewDiffableDataSource<Section, ReceivedTag>?
     
     private let disposeBag = DisposeBag()
@@ -177,7 +177,7 @@ extension FetchTagSheetVC {
                 print("receivedTagFetchWithAPI - success")
                 
                 if let data = response.data {
-                    owner.receivedTagList = data
+                    owner.receivedTags = data
                     DispatchQueue.main.async {
                         owner.setCollectionView()
                     }

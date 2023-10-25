@@ -15,6 +15,15 @@ import Then
 import IQKeyboardManagerSwift
 
 class SendTagSheetVC: UIViewController {
+    
+    // MARK: - Properties
+    
+    private var cardUUID: String?
+    private var tags: [Tag] = []
+    private var keyboardOn: Bool = false
+    
+    private let maxLength: Int = 7
+    private let disposeBag = DisposeBag()
 
     // MARK: - Components
     
@@ -98,15 +107,6 @@ class SendTagSheetVC: UIViewController {
         $0.image = UIImage(named: "imgCheckDone")
         $0.alpha = 0
     }
-    
-    // MARK: - Properties
-    
-    private var cardUUID: String?
-    private var tags: [Tag] = []
-    private var keyboardOn: Bool = false
-    
-    private let maxLength: Int = 7
-    private let disposeBag = DisposeBag()
     
     // MARK: - View Life Cycle
     

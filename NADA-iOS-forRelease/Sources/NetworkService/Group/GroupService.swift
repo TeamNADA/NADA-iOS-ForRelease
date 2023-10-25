@@ -36,21 +36,21 @@ extension GroupService: TargetType {
     var path: String {
         switch self {
         case .groupListFetch:
-            return "/card-group/list"
+            return "/v1/card-group/list"
         case .groupReset:
-            return "/card-group/clear"
+            return "/v1/card-group/clear"
         case .groupDelete:
-            return "/card-group"
+            return "/v1/card-group"
         case .groupAdd:
-            return "/card-group"
+            return "/v1/card-group"
         case .groupEdit:
-            return "/card-group/name"
+            return "/v1/card-group/name"
         case .cardAddInGroup:
-            return "/card-group/mapping"
+            return "/v1/card-group/mapping"
         case .cardListFetchInGroup:
-            return "/card-group/cards"
+            return "/v1/card-group/cards"
         case .cardDeleteInGroup(let cardUuid, _):
-            return "/card-group/card/\(cardUuid)"
+            return "/v1/card-group/card/\(cardUuid)"
         }
     }
     

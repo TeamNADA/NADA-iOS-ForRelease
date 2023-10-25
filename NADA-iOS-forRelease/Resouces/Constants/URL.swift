@@ -9,11 +9,10 @@ import Foundation
 
 extension Const {
     struct URL {
-//        static let baseURL = "https://nada-api.n-e.kr/api/v1"
         #if DEBUG
-        static let baseURL = "http://3.35.107.3:8080/api/v1"
+        static let baseURL = "http://3.35.107.3:8080/api"
         #else
-        static let baseURL = "http://3.35.107.3/api/v1"
+        static let baseURL = "http://3.35.107.3/api"
         #endif
         
         static let policyURL = "https://nadaitzme.notion.site/NADA-8385054bc2e44762a62f590534b2a24d"

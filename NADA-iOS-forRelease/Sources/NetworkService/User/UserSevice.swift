@@ -22,9 +22,9 @@ extension UserSevice: TargetType {
     var path: String {
         switch self {
         case .userDelete:
-            return "/member"
+            return "/v1/member"
         case .userSocialSignUp:
-            return "/auth/signup"
+            return "/v1/auth/signup"
         }
     }
     

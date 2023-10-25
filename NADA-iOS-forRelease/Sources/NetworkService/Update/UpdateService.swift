@@ -28,13 +28,13 @@ extension UpdateService: TargetType {
     var path: String {
         switch self {
         case .updateUserInfoFetch:
-            return "/app/update"
+            return "/v1/app/update"
         case .updateNoteFetch:
-            return "/app/update/note"
+            return "/v1/app/update/note"
         case .checkUpdateNote:
-             return "/app/update/check"
+             return "/v1/app/update/check"
         case .bannerFetch:
-             return "/banner/advertising"
+             return "/v1/banner/advertising"
         }
     }
     

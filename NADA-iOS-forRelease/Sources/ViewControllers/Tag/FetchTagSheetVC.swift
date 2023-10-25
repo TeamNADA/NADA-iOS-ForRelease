@@ -37,7 +37,7 @@ class FetchTagSheetVC: UIViewController {
         $0.setTitleColor(.stateColorError, for: .normal)
         $0.setTitleColor(.quaternary, for: .disabled)
     }
-    private let collevtionViewFlowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout().then {
+    private let collectionViewFlowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout().then {
         $0.estimatedItemSize = .zero
     }
     private lazy var collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: collevtionViewFlowLayout).then {

@@ -189,9 +189,7 @@ extension SendTagSheetVC {
         adjectiveTextFiled.becomeFirstResponder()
         
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: { [weak self] in
-            self?.sendTagLabel.alpha = 0
-            self?.sendButton.alpha = 0
-            self?.backButton.alpha = 0
+            [self?.sendTagLabel, self?.sendButton, self?.backButton].forEach { $0?.alpha = 0 }
         }, completion: { [weak self] _ in
             self?.sendButton.isHidden = true
             self?.backButton.isHidden = true
@@ -207,8 +205,7 @@ extension SendTagSheetVC {
     }
     private func setSendUIWithAnimation() {
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: { [weak self] in
-            self?.subtitleLabel.alpha = 0
-            self?.collectionView.alpha = 0
+            [self?.subtitleLabel, self?.collectionView].forEach { $0?.alpha = 0 }
         }, completion: { [weak self] _ in
             self?.subtitleLabel.isHidden = true
             self?.collectionView.isHidden = true
@@ -225,10 +222,7 @@ extension SendTagSheetVC {
     }
     private func setCompletedUIWithAnimation() {
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: { [weak self] in
-            self?.sendTagLabel.alpha = 0
-            self?.backButton.alpha = 0
-            self?.sendButton.alpha = 0
-            self?.colorView.alpha = 0
+            [self?.sendTagLabel, self?.backButton, self?.sendButton, self?.colorView].forEach { $0?.alpha = 0 }
         }, completion: { [weak self] _ in
             self?.backButton.isHidden = true
             self?.sendButton.isHidden = true

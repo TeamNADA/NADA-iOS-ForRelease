@@ -30,9 +30,9 @@ class FetchTagSheetVC: UIViewController {
         $0.setTitleColor(.primary, for: .normal)
     }
     private let deleteButton: UIButton = UIButton().then {
-        $0.setTitle("삭제", for: .normal)
+        $0.setTitle("편집", for: .normal)
         $0.titleLabel?.font = .button02
-        $0.setTitleColor(.stateColorError, for: .normal)
+        $0.setTitleColor(.primary, for: .normal)
         $0.setTitleColor(.quaternary, for: .disabled)
     }
     private let collectionViewFlowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout().then {
@@ -45,9 +45,15 @@ class FetchTagSheetVC: UIViewController {
     
     // MARK: - Properties
     
+    private enum Mode {
+        case fetch
+        case edit
+    }
+    
     private var cardUUID: String?
     private var receivedTags: [ReceivedTag]?
     private var diffableDataSource: UICollectionViewDiffableDataSource<Section, ReceivedTag>?
+    private var mode: Mode = .fetch
     
     private let disposeBag = DisposeBag()
     
@@ -72,8 +78,6 @@ extension FetchTagSheetVC {
         
         cancelButton.isHidden = true
         
-        deleteButton.isEnabled = false
-        
         collectionView.backgroundColor = .background
     }
     private func setAction() {
@@ -81,16 +85,43 @@ extension FetchTagSheetVC {
             .bind(with: self) { owner, _ in
                 owner.collectionView.reloadData()
                 owner.cancelButton.isHidden = true
+                owner.deleteButton.setTitle("편집", for: .normal)
+                owner.deleteButton.setTitleColor(.primary, for: .normal)
+                owner.deleteButton.isEnabled = true
+                
+                owner.mode = .fetch
             }
             .disposed(by: disposeBag)
         
         deleteButton.rx.tap
             .bind(with: self) { owner, _ in
-//                owner.deleteTagWithAPI(cardUUID: "", cardTagID: 0)
-                // FIXME: - 삭제 후에 조회하도록 수정
-                owner.receivedTagFetchWithAPI()
-                owner.cancelButton.isHidden = true
-                owner.deleteButton.isEnabled = false
+                switch owner.mode {
+                case .fetch:
+                    owner.deleteButton.setTitle("삭제", for: .normal)
+                    owner.deleteButton.setTitleColor(.stateColorError, for: .normal)
+                    owner.deleteButton.isEnabled = false
+                    owner.cancelButton.isHidden = false
+                    
+                    owner.mode = .edit
+                case .edit:
+                    guard let selectedItems = owner.collectionView.indexPathsForSelectedItems else { return }
+                    
+                    var tagDeletionRequests: [TagDeletionRequest] = []
+                    
+                    selectedItems.map { $0.item }.forEach { item in
+                        let request = TagDeletionRequest(cardTagID: owner.receivedTags?[item].cardTagID ?? 0)
+                        tagDeletionRequests.append(request)
+                    }
+                    
+                    owner.deleteTagWithAPI(request: tagDeletionRequests)
+                    
+                    owner.deleteButton.setTitle("편집", for: .normal)
+                    owner.deleteButton.setTitleColor(.primary, for: .normal)
+                    owner.deleteButton.isEnabled = true
+                    owner.cancelButton.isHidden = true
+                    
+                    owner.mode = .fetch
+                }
             }
             .disposed(by: disposeBag)
     }
@@ -136,12 +167,15 @@ extension FetchTagSheetVC {
 
 extension FetchTagSheetVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            cancelButton.isHidden = false
+        switch mode {
+        case .fetch:
+            collectionView.deselectItem(at: indexPath, animated: false)
+        case .edit:
             deleteButton.isEnabled = true
+        }
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if collectionView.indexPathsForSelectedItems?.isEmpty == true {
-            cancelButton.isHidden = true
             deleteButton.isEnabled = false
         }
     }
@@ -171,13 +205,14 @@ extension FetchTagSheetVC: UICollectionViewDelegateFlowLayout {
 
 extension FetchTagSheetVC {
     private func receivedTagFetchWithAPI() {
-        TagAPI.shared.receivedTagFetch(cardUUID: cardUUID ?? "").subscribe(with: self) { owner, event in
-            switch event {
+        TagAPI.shared.receivedTagFetch(cardUUID: cardUUID ?? "").subscribe(with: self, onSuccess: { owner, networkResult in
+            switch networkResult {
             case .success(let response):
                 print("receivedTagFetchWithAPI - success")
                 
                 if let data = response.data {
                     owner.receivedTags = data
+                    
                     DispatchQueue.main.async {
                         owner.setCollectionView()
                     }
@@ -191,7 +226,9 @@ extension FetchTagSheetVC {
             case .networkFail:
                 print("receivedTagFetchWithAPI - networkFail")
             }
-        }
+        }, onFailure: { _, error in
+            print("deleteTagWithAPI - error : \(error)")
+        })
         .disposed(by: disposeBag)
     }
     private func deleteTagWithAPI(request: [TagDeletionRequest]) {

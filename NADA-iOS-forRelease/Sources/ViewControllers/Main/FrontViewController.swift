@@ -175,15 +175,9 @@ extension FrontViewController {
             let tagSheet = FetchTagSheetVC()
             
             if #available(iOS 16.0, *) {
-                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-                let safeAreaBottom = windowScene?.windows.first?.safeAreaInsets.bottom ?? 0
-                let detentIdentifier = UISheetPresentationController.Detent.Identifier("tagSheet")
-                let customDetent = UISheetPresentationController.Detent.custom(identifier: detentIdentifier) { _ in
-                    return 572 - safeAreaBottom
-                }
                 
                 if let sheet = tagSheet.sheetPresentationController {
-                    sheet.detents = [customDetent, .large()]
+                    sheet.detents = [CustomDetent.receivedTagDetent, .large()]
                     sheet.preferredCornerRadius = 30
                 }
             } else {

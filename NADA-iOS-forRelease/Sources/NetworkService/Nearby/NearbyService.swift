@@ -26,11 +26,11 @@ extension NearbyService: TargetType {
     var path: String {
         switch self {
         case .cardNearByFetch(let longitude, let latitude):
-            return "/card/nearby/point/longitude/\(longitude)/latitude/\(latitude)"
+            return "/v1/card/nearby/point/longitude/\(longitude)/latitude/\(latitude)"
         case .postNearByCard:
-            return "/card/nearby"
+            return "/v1/card/nearby"
         case .nearByUUIDFetch(let cardUUID):
-            return "/card/nearby/\(cardUUID)"
+            return "/v1/card/nearby/\(cardUUID)"
         }
     }
     

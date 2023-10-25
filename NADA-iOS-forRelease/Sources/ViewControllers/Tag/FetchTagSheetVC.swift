@@ -167,10 +167,10 @@ extension FetchTagSheetVC {
     private func receivedTagFetchWithAPI() {
         TagAPI.shared.receivedTagFetch(cardUUID: cardUUID ?? "").subscribe(with: self) { owner, event in
             switch event {
-            case .success(let data):
+            case .success(let response):
                 print("receivedTagFetchWithAPI - success")
                 
-                if let data {
+                if let data = response.data {
                     owner.receivedTagList = data
                     DispatchQueue.main.async {
                         owner.collectionView.reloadData()

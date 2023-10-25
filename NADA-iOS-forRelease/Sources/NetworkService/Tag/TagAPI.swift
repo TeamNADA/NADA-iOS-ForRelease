@@ -89,6 +89,4 @@ public class TagAPI: BasicAPI {
             return Disposables.create()
         }
     }
-        }
-    }
 }

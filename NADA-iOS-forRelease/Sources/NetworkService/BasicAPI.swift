@@ -13,16 +13,16 @@ public class BasicAPI {
     
     // MARK: - JudgeStatus methods
     
-    public func judgeStatus<T: Codable>(response: Response, type: T.Type) -> NetworkResult2<T?> {
+    public func judgeStatus<T: Codable>(response: Response, type: T.Type) -> NetworkResult2<GenericResponse<T>> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<T>.self, from: response.data) else { return .pathErr }
         
         switch response.statusCode {
         case 200..<300:
             if decodedData.status >= 400 {
-                return .requestErr
+                return .success(decodedData)
             } else {
-                return .success(decodedData.data)
+                return .success(decodedData)
             }
         case 400..<500:
             return .requestErr

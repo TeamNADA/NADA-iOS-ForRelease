@@ -32,17 +32,42 @@ public class TagAPI: BasicAPI {
             return Disposables.create()
         }
     }
-//    
-//    public func receivedTagFetch(cardUUID: String, completion: @escaping (NetworkResult<[ReceivedTag]>) -> Void) {
-//        tagProvider.request(.receivedTagFetch(cardUUID: cardUUID)) { result in
-//            <#code#>
-//        }
-//        
-//    }
-//    
-//    public func TagCreation(request: CreationTagRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
-//        tagProvider.request(.tagCreation(request: request)) { result in
-//            <#code#>
-//        }
-//    }
+    
+    public func tagFetch() -> Single<NetworkResult2<GenericResponse<[Tag]>>> {
+        return Single<NetworkResult2<GenericResponse<[Tag]>>>.create { [weak self] single in
+            self?.tagProvider.request(.tagFetch) { result in
+                switch result {
+                case .success(let response):
+                    let networkResult = self?.judgeStatus(response: response, type: [Tag].self)
+                    if let networkResult {
+                        single(.success(networkResult))
+                        return
+                    }
+                case .failure(let error):
+                    single(.failure(error))
+                    return
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    public func tagCreation(request: CreationTagRequest) -> Single<NetworkResult2<GenericResponse<ReceivedTag>>> {
+        return Single<NetworkResult2<GenericResponse<ReceivedTag>>>.create { [weak self] single in
+            self?.tagProvider.request(.tagCreation(request: request)) { result in
+                switch result {
+                case .success(let response):
+                    let networkResult = self?.judgeStatus(response: response, type: ReceivedTag.self)
+                    if let networkResult {
+                        single(.success(networkResult))
+                        return
+                    }
+                case .failure(let error):
+                    single(.failure(error))
+                    return
+                }
+            }
+            return Disposables.create()
+        }
+    }
 }

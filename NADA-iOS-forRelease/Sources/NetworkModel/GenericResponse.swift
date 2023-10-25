@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GenericResponse<T: Codable>: Codable {
+public struct GenericResponse<T: Codable>: Codable {
     let code: String?
     let message: String?
     let status: Int

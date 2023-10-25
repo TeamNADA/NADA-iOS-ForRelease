@@ -7,7 +7,6 @@
 
 import UIKit
 
-import Moya
 import RxCocoa
 import RxSwift
 import SnapKit
@@ -24,7 +23,6 @@ class FetchTagSheetVC: UIViewController {
         $0.text = "받은 태그"
         $0.font = .title01
         $0.textColor = .primary
-        
     }
     private let cancelButton: UIButton = UIButton().then {
         $0.setTitle("취소", for: .normal)
@@ -74,6 +72,8 @@ extension FetchTagSheetVC {
         cancelButton.isHidden = true
         
         deleteButton.isEnabled = false
+        
+        collectionView.backgroundColor = .background
     }
     private func setAction() {
         cancelButton.rx.tap

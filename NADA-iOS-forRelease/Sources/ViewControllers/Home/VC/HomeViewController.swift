@@ -53,10 +53,6 @@ final class HomeViewController: UIViewController {
         $0.backgroundColor = .background
         $0.layer.cornerRadius = 15
         $0.layer.masksToBounds = false
-        $0.layer.shadowColor = UIColor.black.cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 1)
-        $0.layer.shadowOpacity = 0.1
-        $0.layer.shadowRadius = 15
     }
     private let tryCardIcon = UIImageView().then {
         $0.image = UIImage(named: "icnTryCard")
@@ -146,6 +142,10 @@ extension HomeViewController {
         giveCardView.backgroundColor = .cardCreationUnclicked
         takeCardView.backgroundColor = .cardCreationUnclicked
         aroundMeView.backgroundColor = .cardCreationUnclicked
+        self.traitCollection.performAsCurrent {
+            tryCardView.layer.borderWidth = 1
+            tryCardView.layer.borderColor = UIColor.button.cgColor
+        }
     }
     
     private func setLayout() {

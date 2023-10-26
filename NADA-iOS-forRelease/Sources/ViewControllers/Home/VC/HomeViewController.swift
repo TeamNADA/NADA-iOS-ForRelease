@@ -184,7 +184,7 @@ extension HomeViewController {
         }
         stackview.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(tryCardView.snp.bottom).offset(24)
+            make.top.equalTo(tryCardView.snp.bottom).offset(20)
             make.leading.equalToSuperview().inset(24)
             make.height.equalTo(205)
         }

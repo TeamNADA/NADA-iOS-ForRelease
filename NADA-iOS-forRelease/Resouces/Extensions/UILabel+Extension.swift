@@ -16,4 +16,12 @@ extension UILabel {
             attributedText = attributedStr
         }
     }
+    func addCharacterFontColor(color: UIColor, font: UIFont, range: String) {
+        if let labelText = text, labelText.count > 0 {
+            let attributedStr = NSMutableAttributedString(string: labelText)
+            attributedStr.addAttribute(.font, value: font, range: (labelText as NSString).range(of: range))
+            attributedStr.addAttribute(.foregroundColor, value: color, range: (labelText as NSString).range(of: range))
+            attributedText = attributedStr
+        }
+    }
 }

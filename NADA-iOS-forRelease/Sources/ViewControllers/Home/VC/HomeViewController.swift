@@ -63,7 +63,8 @@ final class HomeViewController: UIViewController {
     }
     private let tryCardLabel = UILabel().then {
         $0.text = "내 명함을 만들어 보세요!"
-        $0.addCharacterColor(color: .mainColorNadaMain, range: "내 명함")
+        $0.font = .textRegular03
+        $0.addCharacterFontColor(color: .mainColorNadaMain, font: .textBold01, range: "내 명함")
     }
     private let tryCardArrowIcon = UIImageView().then {
         $0.image = UIImage(named: "iconArrowRight")

@@ -33,7 +33,7 @@ class BackCardCell: CardCell {
     
     // MARK: - Functions
     @IBAction func touchTagButton(_ sender: Any) {
-        NotificationCenter.default.post(name: .presentToTagSheet, object: cardUUID)
+        NotificationCenter.default.post(name: .presentToReceivedTagSheet, object: cardUUID)
     }
     
     static func nib() -> UINib {

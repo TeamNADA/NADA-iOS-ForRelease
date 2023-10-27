@@ -22,9 +22,16 @@ class SendTagSheetVC: UIViewController {
     private var tags: [Tag] = []
     private var keyboardOn: Bool = false
     private var creationTagRequest: CreationTagRequest?
+    private var mode: Mode = .edit
     
     private let maxLength: Int = 7
     private let disposeBag = DisposeBag()
+    
+    private enum Mode {
+        case edit
+        case send
+        case completed
+    }
 
     // MARK: - Components
     
@@ -71,13 +78,25 @@ class SendTagSheetVC: UIViewController {
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout).then {
         $0.showsHorizontalScrollIndicator = false
     }
+    private let nextButton = UIButton().then {
+        $0.setTitle("다음", for: .normal)
+        $0.backgroundColor = .textBox
+        $0.setTitleColor(.quaternary, for: .normal)
+        $0.titleLabel?.font = .button01
+        $0.layer.cornerRadius = 15
+        $0.isUserInteractionEnabled = false
+    }
+    private var cardNameLabel = UILabel().then {
+        $0.textColor = .mainColorNadaMain
+        $0.font = .textBold01
+        $0.isHidden = true
+        $0.alpha = 0
+    }
     private lazy var sendTagLabel = UILabel().then {
-        let attributeString = NSMutableAttributedString(string: "ID \(cardUUID ?? "") 명함에 태그를 보낼까요?")
-        attributeString.addAttribute(.font, value: UIFont.textBold01, range: NSRange(location: 0, length: 2))
-        attributeString.addAttribute(.font, value: UIFont.textRegular03, range: NSRange(location: 2, length: attributeString.length - 2))
-        
-        $0.attributedText = attributeString
-        $0.textColor = .secondary
+        $0.text = "명함에 태그를 보낼까요?"
+        $0.font = .textRegular04
+        $0.textColor = .primary
+        $0.isHidden = true
         $0.alpha = 0
     }
     private let sendButton = UIButton().then {
@@ -86,6 +105,7 @@ class SendTagSheetVC: UIViewController {
         $0.setTitle("보내기", for: .normal)
         $0.titleLabel?.font = .button01
         $0.layer.cornerRadius = 15
+        $0.isHidden = true
         $0.alpha = 0
     }
     private let backButton = UIButton().then {
@@ -94,6 +114,7 @@ class SendTagSheetVC: UIViewController {
         $0.setTitle("뒤로가기", for: .normal)
         $0.titleLabel?.font = .button01
         $0.layer.cornerRadius = 15
+        $0.isHidden = true
         $0.alpha = 0
     }
     private let completeButton = UIButton().then {
@@ -102,6 +123,7 @@ class SendTagSheetVC: UIViewController {
         $0.setTitle("완료", for: .normal)
         $0.titleLabel?.font = .button01
         $0.layer.cornerRadius = 15
+        $0.isHidden = true
         $0.alpha = 0
     }
     private let checkImageView = UIImageView().then {
@@ -141,9 +163,15 @@ extension SendTagSheetVC {
         
         IQKeyboardManager.shared.shouldResignOnTouchOutside = false
         
+        cardNameLabel.text = cardUUID
+        
         [sendTagLabel, backButton, sendButton, checkImageView, completeButton].forEach { $0.isHidden = true }
     }
     private func bind() {
+        nextButton.rx.tap.bind { [weak self] in
+            self?.checkTag()
+        }.disposed(by: disposeBag)
+        
         backButton.rx.tap.bind { [weak self] in
             self?.adjectiveTextFiled.isUserInteractionEnabled = true
             self?.nounTextFiled.isUserInteractionEnabled = true
@@ -167,6 +195,16 @@ extension SendTagSheetVC {
             .distinctUntilChanged()
             .bind(with: self) { owner, text in
                 owner.countTextFieldText(text, owner.adjectiveTextFiled)
+                
+                if !text.isEmpty && owner.nounTextFiled.hasText {
+                    owner.nextButton.isUserInteractionEnabled = true
+                    owner.nextButton.backgroundColor = .mainColorNadaMain
+                    owner.nextButton.setTitleColor(.white, for: .normal)
+                } else {
+                    owner.nextButton.isUserInteractionEnabled = true
+                    owner.nextButton.backgroundColor = .textBox
+                    owner.nextButton.setTitleColor(.quaternary, for: .normal)
+                }
             }.disposed(by: disposeBag)
         
         nounTextFiled.rx.text
@@ -174,46 +212,71 @@ extension SendTagSheetVC {
             .distinctUntilChanged()
             .bind(with: self) { owner, text in
                 owner.countTextFieldText(text, owner.nounTextFiled)
+                
+                if !text.isEmpty && owner.adjectiveTextFiled.hasText {
+                    owner.nextButton.isUserInteractionEnabled = true
+                    owner.nextButton.backgroundColor = .mainColorNadaMain
+                    owner.nextButton.setTitleColor(.white, for: .normal)
+                } else {
+                    owner.nextButton.isUserInteractionEnabled = true
+                    owner.nextButton.backgroundColor = .textBox
+                    owner.nextButton.setTitleColor(.quaternary, for: .normal)
+                }
             }.disposed(by: disposeBag)
     }
     private func setDelegate() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(SendTagCVC.self, forCellWithReuseIdentifier: "SendTagCVC")
-        
-        adjectiveTextFiled.delegate = self
-        nounTextFiled.delegate = self
     }
     private func setEditUIWithAnimation() {
         subtitleLabel.text = "명함을 자유롭게 표현해 보세요"
         subtitleLabel.textColor = .mainColorButtonText
         adjectiveTextFiled.becomeFirstResponder()
         
+        colorView.snp.updateConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(41)
+        }
+        
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: { [weak self] in
-            [self?.sendTagLabel, self?.sendButton, self?.backButton].forEach { $0?.alpha = 0 }
+            [self?.cardNameLabel, self?.sendTagLabel, self?.sendButton, self?.backButton].forEach { $0?.alpha = 0 }
+            
+            self?.view.layoutIfNeeded()
         }, completion: { [weak self] _ in
+            self?.cardNameLabel.isHidden = true
+            self?.sendTagLabel.isHidden = true
             self?.sendButton.isHidden = true
             self?.backButton.isHidden = true
             
             UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn) {
-                self?.sendTagLabel.isHidden = true
                 self?.subtitleLabel.isHidden = false
                 self?.subtitleLabel.alpha = 1
                 self?.collectionView.isHidden = false
                 self?.collectionView.alpha = 1
+                self?.nextButton.isHidden = false
+                self?.nextButton.alpha = 1
             }
         })
     }
     private func setSendUIWithAnimation() {
+        colorView.snp.updateConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(20)
+        }
+        
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: { [weak self] in
-            [self?.subtitleLabel, self?.collectionView].forEach { $0?.alpha = 0 }
+            [self?.subtitleLabel, self?.collectionView, self?.nextButton].forEach { $0?.alpha = 0 }
+            
+            self?.view.layoutIfNeeded()
         }, completion: { [weak self] _ in
             self?.subtitleLabel.isHidden = true
             self?.collectionView.isHidden = true
+            self?.nextButton.isHidden = true
             
             UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn) {
                 self?.sendTagLabel.isHidden = false
                 self?.sendTagLabel.alpha = 1
+                self?.cardNameLabel.isHidden = false
+                self?.cardNameLabel.alpha = 1
                 self?.backButton.isHidden = false
                 self?.backButton.alpha = 1
                 self?.sendButton.isHidden = false
@@ -223,24 +286,21 @@ extension SendTagSheetVC {
     }
     private func setCompletedUIWithAnimation() {
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: { [weak self] in
-            [self?.sendTagLabel, self?.backButton, self?.sendButton, self?.colorView].forEach { $0?.alpha = 0 }
+            [self?.backButton, self?.sendButton, self?.colorView, self?.sendTagLabel, self?.cardNameLabel].forEach { $0?.alpha = 0 }
         }, completion: { [weak self] _ in
             self?.backButton.isHidden = true
             self?.sendButton.isHidden = true
             self?.colorView.isHidden = true
             
-            let attributeString = NSMutableAttributedString(string: "ID \(self?.cardUUID ?? "") 명함에 태그를 보냈어요!")
-            attributeString.addAttribute(.font, value: UIFont.textBold01, range: NSRange(location: 0, length: 2))
-            attributeString.addAttribute(.font, value: UIFont.textRegular03, range: NSRange(location: 2, length: attributeString.length - 2))
-            
-            self?.sendTagLabel.attributedText = attributeString
+            self?.sendTagLabel.text = "명함에 태그를 보냈어요!"
             
             UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn) {
-                self?.sendTagLabel.alpha = 1.0
                 self?.checkImageView.isHidden = false
                 self?.checkImageView.alpha = 1.0
                 self?.completeButton.isHidden = false
                 self?.completeButton.alpha = 1.0
+                self?.sendTagLabel.alpha = 1.0
+                self?.cardNameLabel.alpha = 1.0
             }
         })
     }
@@ -249,6 +309,21 @@ extension SendTagSheetVC {
             let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
             let newString = String(text[text.startIndex..<maxIndex])
             textField.text = newString
+        }
+    }
+    private func checkTag() {
+        if let adjectiveText = adjectiveTextFiled.text, let nounText = nounTextFiled.text,
+           !adjectiveText.isEmpty, !nounText.isEmpty {
+            if let items = collectionView.indexPathsForSelectedItems?.map({ index in index.item }) {
+                creationTagRequest = .init(adjective: adjectiveText, cardUUID: cardUUID ?? "", icon: tags[items[0]].icon, noun: nounText)
+                
+                tagFilteringWithAPI(request: CreationTagRequest(adjective: adjectiveText,
+                                                                cardUUID: cardUUID ?? "",
+                                                                icon: tags[items[0]].icon,
+                                                                noun: nounText)) { [weak self] in
+                    self?.setSendUIWithAnimation()
+                }
+            }
         }
     }
     public func setCardUUID(_ cardUUID: String) {
@@ -295,6 +370,10 @@ extension SendTagSheetVC {
             case .success:
                 print("tagCreationWithAPI - success")
                 
+                DispatchQueue.main.async {
+                    self?.mode = .completed
+                }
+                
                 completion()
             case .requestErr:
                 print("tagCreationWithAPI - requestErr")
@@ -316,7 +395,7 @@ extension SendTagSheetVC {
 
 extension SendTagSheetVC {
     private func setLayout() {
-        view.addSubviews([grabber, titleLabel, subtitleLabel, colorView, collectionView, sendTagLabel, backButton, sendButton, checkImageView, completeButton])
+        view.addSubviews([grabber, titleLabel, subtitleLabel, colorView, collectionView, nextButton, cardNameLabel, sendTagLabel, backButton, sendButton, checkImageView, completeButton])
         
         grabber.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(12)
@@ -331,7 +410,7 @@ extension SendTagSheetVC {
             make.centerX.equalToSuperview()
         }
         colorView.snp.makeConstraints { make in
-            make.top.equalTo(subtitleLabel.snp.bottom).offset(14)
+            make.top.equalTo(titleLabel.snp.bottom).offset(41)
             make.height.equalTo(132)
             make.left.right.equalToSuperview().inset(41)
         }
@@ -340,28 +419,37 @@ extension SendTagSheetVC {
             make.left.right.equalToSuperview().inset(39)
             make.height.equalTo(32)
         }
+        nextButton.snp.makeConstraints { make in
+            make.top.equalTo(collectionView.snp.bottom).offset(22)
+            make.left.right.equalToSuperview().inset(24)
+            make.height.equalTo(54)
+        }
+        cardNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(170)
+            make.centerX.equalToSuperview()
+        }
         sendTagLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(191)
+            make.top.equalTo(titleLabel.snp.bottom).offset(194)
             make.centerX.equalToSuperview()
         }
         backButton.snp.makeConstraints { make in
-            make.top.equalTo(sendTagLabel.snp.bottom).offset(20)
+            make.top.equalTo(sendTagLabel.snp.bottom).offset(18)
             make.left.equalToSuperview().inset(24)
             make.right.equalTo(view.snp.centerX).inset(3.5)
             make.height.equalTo(54)
         }
         sendButton.snp.makeConstraints { make in
-            make.top.equalTo(sendTagLabel.snp.bottom).offset(20)
+            make.top.equalTo(sendTagLabel.snp.bottom).offset(18)
             make.right.equalToSuperview().inset(24)
             make.left.equalTo(view.snp.centerX).offset(3.5)
             make.height.equalTo(54)
         }
         checkImageView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(45)
+            make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
         }
         completeButton.snp.makeConstraints { make in
-            make.top.equalTo(sendTagLabel.snp.bottom).offset(20)
+            make.top.equalTo(sendTagLabel.snp.bottom).offset(18)
             make.right.left.equalToSuperview().inset(24)
             make.height.equalTo(54)
         }
@@ -417,30 +505,5 @@ extension SendTagSheetVC: UICollectionViewDataSource {
                       tags[indexPath.item].db)
         
         return cell
-    }
-}
-
-// MARK: - UITextFieldDelegate
-
-extension SendTagSheetVC: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let adjectiveText = adjectiveTextFiled.text, let nounText = nounTextFiled.text,
-           !adjectiveText.isEmpty, !nounText.isEmpty {
-            if let items = collectionView.indexPathsForSelectedItems?.map({ index in index.item }) {
-                creationTagRequest = .init(adjective: adjectiveText, cardUUID: cardUUID ?? "", icon: tags[items[0]].icon, noun: nounText)
-
-                tagFilteringWithAPI(request: CreationTagRequest(adjective: adjectiveText,
-                                                                cardUUID: cardUUID ?? "",
-                                                                icon: tags[items[0]].icon,
-                                                                noun: nounText)) { [weak self] in
-                    self?.setSendUIWithAnimation()
-                }
-            }
-        } else {
-            subtitleLabel.text = "형용사, 명사 모두를 입력해 주세요."
-            subtitleLabel.textColor = .stateColorError
-        }
-        
-        return false
     }
 }

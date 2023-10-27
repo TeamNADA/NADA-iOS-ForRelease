@@ -78,13 +78,25 @@ class SendTagSheetVC: UIViewController {
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout).then {
         $0.showsHorizontalScrollIndicator = false
     }
+    private let nextButton = UIButton().then {
+        $0.setTitle("다음", for: .normal)
+        $0.backgroundColor = .textBox
+        $0.titleLabel?.textColor = .quaternary
+        $0.titleLabel?.font = .button01
+        $0.layer.cornerRadius = 15
+        $0.isEnabled = false
+    }
+    private var cardNameLabel = UILabel().then {
+        $0.textColor = .mainColorNadaMain
+        $0.font = .textBold01
+        $0.isHidden = true
+        $0.alpha = 0
+    }
     private lazy var sendTagLabel = UILabel().then {
-        let attributeString = NSMutableAttributedString(string: "ID \(cardUUID ?? "") 명함에 태그를 보낼까요?")
-        attributeString.addAttribute(.font, value: UIFont.textBold01, range: NSRange(location: 0, length: 2))
-        attributeString.addAttribute(.font, value: UIFont.textRegular03, range: NSRange(location: 2, length: attributeString.length - 2))
-        
-        $0.attributedText = attributeString
-        $0.textColor = .secondary
+        $0.text = "명함에 태그를 보낼까요?"
+        $0.font = .textRegular04
+        $0.textColor = .primary
+        $0.isHidden = true
         $0.alpha = 0
     }
     private let sendButton = UIButton().then {
@@ -93,6 +105,7 @@ class SendTagSheetVC: UIViewController {
         $0.setTitle("보내기", for: .normal)
         $0.titleLabel?.font = .button01
         $0.layer.cornerRadius = 15
+        $0.isHidden = true
         $0.alpha = 0
     }
     private let backButton = UIButton().then {
@@ -101,6 +114,7 @@ class SendTagSheetVC: UIViewController {
         $0.setTitle("뒤로가기", for: .normal)
         $0.titleLabel?.font = .button01
         $0.layer.cornerRadius = 15
+        $0.isHidden = true
         $0.alpha = 0
     }
     private let completeButton = UIButton().then {
@@ -109,6 +123,7 @@ class SendTagSheetVC: UIViewController {
         $0.setTitle("완료", for: .normal)
         $0.titleLabel?.font = .button01
         $0.layer.cornerRadius = 15
+        $0.isHidden = true
         $0.alpha = 0
     }
     private let checkImageView = UIImageView().then {
@@ -147,6 +162,8 @@ extension SendTagSheetVC {
         collectionView.backgroundColor = .background
         
         IQKeyboardManager.shared.shouldResignOnTouchOutside = false
+        
+        cardNameLabel.text = cardUUID
         
         [sendTagLabel, backButton, sendButton, checkImageView, completeButton].forEach { $0.isHidden = true }
     }
@@ -327,7 +344,7 @@ extension SendTagSheetVC {
 
 extension SendTagSheetVC {
     private func setLayout() {
-        view.addSubviews([grabber, titleLabel, subtitleLabel, colorView, collectionView, sendTagLabel, backButton, sendButton, checkImageView, completeButton])
+        view.addSubviews([grabber, titleLabel, subtitleLabel, colorView, collectionView, nextButton, cardNameLabel, sendTagLabel, backButton, sendButton, checkImageView, completeButton])
         
         grabber.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(12)
@@ -342,7 +359,7 @@ extension SendTagSheetVC {
             make.centerX.equalToSuperview()
         }
         colorView.snp.makeConstraints { make in
-            make.top.equalTo(subtitleLabel.snp.bottom).offset(14)
+            make.top.equalTo(titleLabel.snp.bottom).offset(41)
             make.height.equalTo(132)
             make.left.right.equalToSuperview().inset(41)
         }
@@ -351,28 +368,37 @@ extension SendTagSheetVC {
             make.left.right.equalToSuperview().inset(39)
             make.height.equalTo(32)
         }
+        nextButton.snp.makeConstraints { make in
+            make.top.equalTo(collectionView.snp.bottom).offset(22)
+            make.left.right.equalToSuperview().inset(24)
+            make.height.equalTo(54)
+        }
+        cardNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(170)
+            make.centerX.equalToSuperview()
+        }
         sendTagLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(191)
+            make.top.equalTo(titleLabel.snp.bottom).offset(194)
             make.centerX.equalToSuperview()
         }
         backButton.snp.makeConstraints { make in
-            make.top.equalTo(sendTagLabel.snp.bottom).offset(20)
+            make.top.equalTo(sendTagLabel.snp.bottom).offset(18)
             make.left.equalToSuperview().inset(24)
             make.right.equalTo(view.snp.centerX).inset(3.5)
             make.height.equalTo(54)
         }
         sendButton.snp.makeConstraints { make in
-            make.top.equalTo(sendTagLabel.snp.bottom).offset(20)
+            make.top.equalTo(sendTagLabel.snp.bottom).offset(18)
             make.right.equalToSuperview().inset(24)
             make.left.equalTo(view.snp.centerX).offset(3.5)
             make.height.equalTo(54)
         }
         checkImageView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(45)
+            make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
         }
         completeButton.snp.makeConstraints { make in
-            make.top.equalTo(sendTagLabel.snp.bottom).offset(20)
+            make.top.equalTo(sendTagLabel.snp.bottom).offset(18)
             make.right.left.equalToSuperview().inset(24)
             make.height.equalTo(54)
         }

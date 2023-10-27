@@ -317,11 +317,27 @@ extension SendTagSheetVC {
             if let items = collectionView.indexPathsForSelectedItems?.map({ index in index.item }) {
                 creationTagRequest = .init(adjective: adjectiveText, cardUUID: cardUUID ?? "", icon: tags[items[0]].icon, noun: nounText)
                 
-                tagFilteringWithAPI(request: CreationTagRequest(adjective: adjectiveText,
-                                                                cardUUID: cardUUID ?? "",
-                                                                icon: tags[items[0]].icon,
-                                                                noun: nounText)) { [weak self] in
-                    self?.setSendUIWithAnimation()
+                tagFilteringWithAPI(text: adjectiveText) { [weak self] in
+                    self?.tagFilteringWithAPI(text: nounText) {
+                        DispatchQueue.main.async {
+                            self?.mode = .send
+                            self?.adjectiveTextFiled.resignFirstResponder()
+                            self?.nounTextFiled.resignFirstResponder()
+                            self?.adjectiveTextFiled.isUserInteractionEnabled = false
+                            self?.nounTextFiled.isUserInteractionEnabled = false
+                            
+                            self?.setSendUIWithAnimation()
+                            
+                            // TODO: - Detent 높이 수정.
+                            if #available(iOS 16.0, *) {
+                                self?.sheetPresentationController?.animateChanges {
+    //                                self?.sheetPresentationController?.invalidateDetents()
+    //                                self?.sheetPresentationController?.selectedDetentIdentifier = .init("sendTagDetent")
+    //                                self?.sheetPresentationController?.selectedDetentIdentifier = .large
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

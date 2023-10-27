@@ -210,31 +210,49 @@ extension SendTagSheetVC {
         subtitleLabel.textColor = .mainColorButtonText
         adjectiveTextFiled.becomeFirstResponder()
         
+        colorView.snp.updateConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(41)
+        }
+        
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: { [weak self] in
-            [self?.sendTagLabel, self?.sendButton, self?.backButton].forEach { $0?.alpha = 0 }
+            [self?.cardNameLabel, self?.sendTagLabel, self?.sendButton, self?.backButton].forEach { $0?.alpha = 0 }
+            
+            self?.view.layoutIfNeeded()
         }, completion: { [weak self] _ in
+            self?.cardNameLabel.isHidden = true
+            self?.sendTagLabel.isHidden = true
             self?.sendButton.isHidden = true
             self?.backButton.isHidden = true
             
             UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn) {
-                self?.sendTagLabel.isHidden = true
                 self?.subtitleLabel.isHidden = false
                 self?.subtitleLabel.alpha = 1
                 self?.collectionView.isHidden = false
                 self?.collectionView.alpha = 1
+                self?.nextButton.isHidden = false
+                self?.nextButton.alpha = 1
             }
         })
     }
     private func setSendUIWithAnimation() {
+        colorView.snp.updateConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(20)
+        }
+        
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: { [weak self] in
-            [self?.subtitleLabel, self?.collectionView].forEach { $0?.alpha = 0 }
+            [self?.subtitleLabel, self?.collectionView, self?.nextButton].forEach { $0?.alpha = 0 }
+            
+            self?.view.layoutIfNeeded()
         }, completion: { [weak self] _ in
             self?.subtitleLabel.isHidden = true
             self?.collectionView.isHidden = true
+            self?.nextButton.isHidden = true
             
             UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn) {
                 self?.sendTagLabel.isHidden = false
                 self?.sendTagLabel.alpha = 1
+                self?.cardNameLabel.isHidden = false
+                self?.cardNameLabel.alpha = 1
                 self?.backButton.isHidden = false
                 self?.backButton.alpha = 1
                 self?.sendButton.isHidden = false
@@ -244,24 +262,21 @@ extension SendTagSheetVC {
     }
     private func setCompletedUIWithAnimation() {
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: { [weak self] in
-            [self?.sendTagLabel, self?.backButton, self?.sendButton, self?.colorView].forEach { $0?.alpha = 0 }
+            [self?.backButton, self?.sendButton, self?.colorView, self?.sendTagLabel, self?.cardNameLabel].forEach { $0?.alpha = 0 }
         }, completion: { [weak self] _ in
             self?.backButton.isHidden = true
             self?.sendButton.isHidden = true
             self?.colorView.isHidden = true
             
-            let attributeString = NSMutableAttributedString(string: "ID \(self?.cardUUID ?? "") 명함에 태그를 보냈어요!")
-            attributeString.addAttribute(.font, value: UIFont.textBold01, range: NSRange(location: 0, length: 2))
-            attributeString.addAttribute(.font, value: UIFont.textRegular03, range: NSRange(location: 2, length: attributeString.length - 2))
-            
-            self?.sendTagLabel.attributedText = attributeString
+            self?.sendTagLabel.text = "명함에 태그를 보냈어요!"
             
             UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn) {
-                self?.sendTagLabel.alpha = 1.0
                 self?.checkImageView.isHidden = false
                 self?.checkImageView.alpha = 1.0
                 self?.completeButton.isHidden = false
                 self?.completeButton.alpha = 1.0
+                self?.sendTagLabel.alpha = 1.0
+                self?.cardNameLabel.alpha = 1.0
             }
         })
     }

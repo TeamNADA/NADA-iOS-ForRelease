@@ -196,7 +196,7 @@ extension SendTagSheetVC {
             .bind(with: self) { owner, text in
                 owner.countTextFieldText(text, owner.adjectiveTextFiled)
                 
-                if !text.isEmpty && !(owner.nounTextFiled.text ?? "").isEmpty {
+                if !text.isEmpty && owner.nounTextFiled.hasText {
                     owner.nextButton.isUserInteractionEnabled = true
                     owner.nextButton.backgroundColor = .mainColorNadaMain
                     owner.nextButton.setTitleColor(.white, for: .normal)
@@ -213,7 +213,7 @@ extension SendTagSheetVC {
             .bind(with: self) { owner, text in
                 owner.countTextFieldText(text, owner.nounTextFiled)
                 
-                if !(owner.adjectiveTextFiled.text ?? "").isEmpty && !text.isEmpty {
+                if !text.isEmpty && owner.adjectiveTextFiled.hasText {
                     owner.nextButton.isUserInteractionEnabled = true
                     owner.nextButton.backgroundColor = .mainColorNadaMain
                     owner.nextButton.setTitleColor(.white, for: .normal)

@@ -26,10 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         FirebaseApp.configure()
         
-        
-        // TODO: - 명시적으로 알림 권한 동의를 얻을 후에 토큰을 생성하고 싶다면 info.plist 수정
-//         FirebaseMessagingAutoInitEnabled = NO
-//        Messaging.messaging().autoInitEnabled = true
+        Messaging.messaging().isAutoInitEnabled = true
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
         UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: { _, _ in })
         application.registerForRemoteNotifications()

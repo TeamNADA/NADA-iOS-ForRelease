@@ -168,6 +168,10 @@ extension SendTagSheetVC {
         [sendTagLabel, backButton, sendButton, checkImageView, completeButton].forEach { $0.isHidden = true }
     }
     private func bind() {
+        nextButton.rx.tap.bind { [weak self] in
+            self?.checkTag()
+        }.disposed(by: disposeBag)
+        
         backButton.rx.tap.bind { [weak self] in
             self?.adjectiveTextFiled.isUserInteractionEnabled = true
             self?.nounTextFiled.isUserInteractionEnabled = true
@@ -305,6 +309,21 @@ extension SendTagSheetVC {
             let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
             let newString = String(text[text.startIndex..<maxIndex])
             textField.text = newString
+        }
+    }
+    private func checkTag() {
+        if let adjectiveText = adjectiveTextFiled.text, let nounText = nounTextFiled.text,
+           !adjectiveText.isEmpty, !nounText.isEmpty {
+            if let items = collectionView.indexPathsForSelectedItems?.map({ index in index.item }) {
+                creationTagRequest = .init(adjective: adjectiveText, cardUUID: cardUUID ?? "", icon: tags[items[0]].icon, noun: nounText)
+                
+                tagFilteringWithAPI(request: CreationTagRequest(adjective: adjectiveText,
+                                                                cardUUID: cardUUID ?? "",
+                                                                icon: tags[items[0]].icon,
+                                                                noun: nounText)) { [weak self] in
+                    self?.setSendUIWithAnimation()
+                }
+            }
         }
     }
     public func setCardUUID(_ cardUUID: String) {

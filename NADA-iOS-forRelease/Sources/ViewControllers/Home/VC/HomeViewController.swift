@@ -53,17 +53,14 @@ final class HomeViewController: UIViewController {
         $0.backgroundColor = .background
         $0.layer.cornerRadius = 15
         $0.layer.masksToBounds = false
-        $0.layer.shadowColor = UIColor.black.cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 1)
-        $0.layer.shadowOpacity = 0.1
-        $0.layer.shadowRadius = 15
     }
     private let tryCardIcon = UIImageView().then {
         $0.image = UIImage(named: "icnTryCard")
     }
     private let tryCardLabel = UILabel().then {
         $0.text = "내 명함을 만들어 보세요!"
-        $0.addCharacterColor(color: .mainColorNadaMain, range: "내 명함")
+        $0.font = .textRegular03
+        $0.addCharacterFontColor(color: .mainColorNadaMain, font: .textBold01, range: "내 명함")
     }
     private let tryCardArrowIcon = UIImageView().then {
         $0.image = UIImage(named: "iconArrowRight")
@@ -145,6 +142,10 @@ extension HomeViewController {
         giveCardView.backgroundColor = .cardCreationUnclicked
         takeCardView.backgroundColor = .cardCreationUnclicked
         aroundMeView.backgroundColor = .cardCreationUnclicked
+        self.traitCollection.performAsCurrent {
+            tryCardView.layer.borderWidth = 1
+            tryCardView.layer.borderColor = UIColor.button.cgColor
+        }
     }
     
     private func setLayout() {
@@ -177,13 +178,13 @@ extension HomeViewController {
         }
         tryCardView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(bannerBackView.snp.bottom).offset(24)
+            make.top.equalTo(bannerBackView.snp.bottom).offset(54)
             make.leading.equalToSuperview().inset(24)
             make.height.equalTo(54)
         }
         stackview.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(tryCardView.snp.bottom).offset(24)
+            make.top.equalTo(tryCardView.snp.bottom).offset(20)
             make.leading.equalToSuperview().inset(24)
             make.height.equalTo(205)
         }
@@ -501,7 +502,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 12)
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 24)
     }
 }
 

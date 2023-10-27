@@ -52,6 +52,9 @@ class BannerCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
+        bannerTextLabel.text = ""
+        bannerTextLabel.text = ""
     }
     
     // MARK: - Methods

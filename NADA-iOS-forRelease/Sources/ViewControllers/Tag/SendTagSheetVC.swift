@@ -81,10 +81,10 @@ class SendTagSheetVC: UIViewController {
     private let nextButton = UIButton().then {
         $0.setTitle("다음", for: .normal)
         $0.backgroundColor = .textBox
-        $0.titleLabel?.textColor = .quaternary
+        $0.setTitleColor(.quaternary, for: .normal)
         $0.titleLabel?.font = .button01
         $0.layer.cornerRadius = 15
-        $0.isEnabled = false
+        $0.isUserInteractionEnabled = false
     }
     private var cardNameLabel = UILabel().then {
         $0.textColor = .mainColorNadaMain
@@ -191,6 +191,16 @@ extension SendTagSheetVC {
             .distinctUntilChanged()
             .bind(with: self) { owner, text in
                 owner.countTextFieldText(text, owner.adjectiveTextFiled)
+                
+                if !text.isEmpty && !(owner.nounTextFiled.text ?? "").isEmpty {
+                    owner.nextButton.isUserInteractionEnabled = true
+                    owner.nextButton.backgroundColor = .mainColorNadaMain
+                    owner.nextButton.setTitleColor(.white, for: .normal)
+                } else {
+                    owner.nextButton.isUserInteractionEnabled = true
+                    owner.nextButton.backgroundColor = .textBox
+                    owner.nextButton.setTitleColor(.quaternary, for: .normal)
+                }
             }.disposed(by: disposeBag)
         
         nounTextFiled.rx.text
@@ -198,6 +208,16 @@ extension SendTagSheetVC {
             .distinctUntilChanged()
             .bind(with: self) { owner, text in
                 owner.countTextFieldText(text, owner.nounTextFiled)
+                
+                if !(owner.adjectiveTextFiled.text ?? "").isEmpty && !text.isEmpty {
+                    owner.nextButton.isUserInteractionEnabled = true
+                    owner.nextButton.backgroundColor = .mainColorNadaMain
+                    owner.nextButton.setTitleColor(.white, for: .normal)
+                } else {
+                    owner.nextButton.isUserInteractionEnabled = true
+                    owner.nextButton.backgroundColor = .textBox
+                    owner.nextButton.setTitleColor(.quaternary, for: .normal)
+                }
             }.disposed(by: disposeBag)
     }
     private func setDelegate() {

@@ -22,9 +22,16 @@ class SendTagSheetVC: UIViewController {
     private var tags: [Tag] = []
     private var keyboardOn: Bool = false
     private var creationTagRequest: CreationTagRequest?
+    private var mode: Mode = .edit
     
     private let maxLength: Int = 7
     private let disposeBag = DisposeBag()
+    
+    private enum Mode {
+        case edit
+        case send
+        case completed
+    }
 
     // MARK: - Components
     
@@ -294,6 +301,10 @@ extension SendTagSheetVC {
             switch networkResult {
             case .success:
                 print("tagCreationWithAPI - success")
+                
+                DispatchQueue.main.async {
+                    self?.mode = .completed
+                }
                 
                 completion()
             case .requestErr:

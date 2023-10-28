@@ -39,11 +39,22 @@ class CardDetailViewController: UIViewController {
         cardHarmonyFetchWithAPI(cardUUID: cardDataModel?.cardUUID ?? "")
     }
     
+    @IBAction func touchHelpButton(_ sender: UIButton) {
+        print("help help")
+    }
+    
+    @IBAction func touchSendButton(_ sender: UIButton) {
+        print("send send")
+    }
+    
     @IBOutlet weak var optionButton: UIButton!
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var idStackView: UIStackView!
     @IBOutlet weak var idLabel: UILabel!
+
+    @IBOutlet weak var receiveTitleLabel: UILabel!
+    @IBOutlet weak var sendButton: UIButton!
     
     public var cardDataModel: Card?
     private var isShareable: Bool = false
@@ -140,6 +151,8 @@ extension CardDetailViewController {
         }
         idStackView.isHidden = true
         idLabel.text = cardDataModel?.cardUUID
+        receiveTitleLabel.font = .title02
+        sendButton.titleLabel?.font = .textBold02
     }
     private func setMenu() {
         let changeGroup = UIAction(title: "그룹 변경",

@@ -16,11 +16,11 @@ struct CustomDetent {
         return 572 - safeAreaBottom
     }
     
-    static let editTagDetent = UISheetPresentationController.Detent.custom(identifier: .init("editTagDetent")) { _ in
-        return 304 - safeAreaBottom
-    }
+//    static let editTagDetent = UISheetPresentationController.Detent.custom(identifier: .init("editTagDetent")) { _ in
+//        return 304 - safeAreaBottom
+//    }
     
     static let sendTagDetent = UISheetPresentationController.Detent.custom(identifier: .init("sendTagDetent")) { _ in
-        return 389 - safeAreaBottom
+        return 388 - safeAreaBottom
     }
 }

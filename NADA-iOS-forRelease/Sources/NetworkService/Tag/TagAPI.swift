@@ -106,26 +106,22 @@ public class TagAPI: BasicAPI {
         }
     }
     
-    // MARK: - JudgeStatus methods
-  
-    private func judgeStatus<T: Codable>(by statusCode: Int, data: Data, type: T.Type) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<T>.self, from: data)
-        else { return .pathErr }
-        
-        switch statusCode {
-        case 200:
-            if decodedData.status == 400 {
-                return .requestErr(decodedData.message ?? "error message")
-            } else {
-                return .success(decodedData.data ?? "None-Data")
+    public func tagFiltering(query: String) -> Single<NetworkResult2<GenericResponse<Bool>>> {
+        return Single<NetworkResult2<GenericResponse<Bool>>>.create { [weak self] single in
+            self?.tagProvider.request(.tagFiltering(query: query)) { result in
+                switch result {
+                case .success(let response):
+                    let networkResult = self?.judgeStatus(response: response, type: Bool.self)
+                    if let networkResult {
+                        single(.success(networkResult))
+                        return
+                    }
+                case .failure(let error):
+                    single(.failure(error))
+                    return
+                }
             }
-        case 400..<500:
-            return .requestErr(decodedData.message ?? "error message")
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
+            return Disposables.create()
         }
     }
 }

@@ -116,7 +116,7 @@ extension FrontViewController {
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(didRecievePresentCardShare(_:)), name: .presentCardShare, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setCreationReloadMainCardSwiper), name: .creationReloadMainCardSwiper, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(presentToTagSheet(_:)), name: .presentToTagSheet, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(presentToReceivedTagSheet(_:)), name: .presentToReceivedTagSheet, object: nil)
     }
     
     private func setActivityIndicator() {
@@ -170,7 +170,7 @@ extension FrontViewController {
     }
     
     @objc
-    private func presentToTagSheet(_ notification: Notification) {
+    private func presentToReceivedTagSheet(_ notification: Notification) {
         if let cardUUID = notification.object as? String {
             let tagSheet = FetchTagSheetVC()
             

@@ -14,6 +14,7 @@ enum TagService {
     case tagFetch
     case receivedTagFetch(cardUUID: String)
     case tagDelete(request: [TagDeletionRequest])
+    case tagFiltering(query: String)
 }
 
 extension TagService: TargetType {
@@ -31,6 +32,8 @@ extension TagService: TargetType {
             return "/v1/card/tag/card/\(cardUUID)"
         case .tagDelete:
             return "/v1/card/tag/delete"
+        case .tagFiltering:
+            return "/v1/slang"
         }
     }
     
@@ -38,7 +41,7 @@ extension TagService: TargetType {
         switch self {
         case .tagCreation, .tagDelete:
             return .post
-        case .tagFetch, .receivedTagFetch:
+        case .tagFetch, .receivedTagFetch, .tagFiltering:
             return .get
         }
     }
@@ -49,6 +52,8 @@ extension TagService: TargetType {
             return .requestJSONEncodable(request)
         case .tagDelete(let request):
             return .requestJSONEncodable(request)
+        case .tagFiltering(let query):
+            return .requestParameters(parameters: ["text": query], encoding: URLEncoding.queryString)
         case .tagFetch, .receivedTagFetch:
             return .requestPlain
         }
@@ -58,7 +63,7 @@ extension TagService: TargetType {
         switch self {
         case .tagCreation, .tagDelete:
             return Const.Header.basicHeader()
-        case .tagFetch, .receivedTagFetch:
+        case .tagFetch, .receivedTagFetch, .tagFiltering:
             return Const.Header.bearerHeader()
         }
     }

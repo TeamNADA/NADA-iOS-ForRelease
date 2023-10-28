@@ -317,11 +317,27 @@ extension SendTagSheetVC {
             if let items = collectionView.indexPathsForSelectedItems?.map({ index in index.item }) {
                 creationTagRequest = .init(adjective: adjectiveText, cardUUID: cardUUID ?? "", icon: tags[items[0]].icon, noun: nounText)
                 
-                tagFilteringWithAPI(request: CreationTagRequest(adjective: adjectiveText,
-                                                                cardUUID: cardUUID ?? "",
-                                                                icon: tags[items[0]].icon,
-                                                                noun: nounText)) { [weak self] in
-                    self?.setSendUIWithAnimation()
+                tagFilteringWithAPI(text: adjectiveText) { [weak self] in
+                    self?.tagFilteringWithAPI(text: nounText) {
+                        DispatchQueue.main.async {
+                            self?.mode = .send
+                            self?.adjectiveTextFiled.resignFirstResponder()
+                            self?.nounTextFiled.resignFirstResponder()
+                            self?.adjectiveTextFiled.isUserInteractionEnabled = false
+                            self?.nounTextFiled.isUserInteractionEnabled = false
+                            
+                            self?.setSendUIWithAnimation()
+                            
+                            // TODO: - Detent 높이 수정.
+                            if #available(iOS 16.0, *) {
+                                self?.sheetPresentationController?.animateChanges {
+    //                                self?.sheetPresentationController?.invalidateDetents()
+    //                                self?.sheetPresentationController?.selectedDetentIdentifier = .init("sendTagDetent")
+    //                                self?.sheetPresentationController?.selectedDetentIdentifier = .large
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -362,7 +378,35 @@ extension SendTagSheetVC {
             print("tagFetchWithAPI - error: \(error)")
         }).disposed(by: disposeBag)
     }
-    private func tagFilteringWithAPI(request: CreationTagRequest, completion: @escaping () -> Void) {
+    private func tagFilteringWithAPI(text: String, completion: @escaping () -> Void) {
+        TagAPI.shared.tagFiltering(query: text).subscribe(onSuccess: { [weak self] networkResult in
+            switch networkResult {
+            case .success(let response):
+                print("tagFilteringWithAPI - success")
+                
+                if let isSlang = response.data {
+                    if isSlang {
+                        DispatchQueue.main.async {
+                            self?.subtitleLabel.text = "욕설, 비속어가 포함되어 있어 전송할 수 없습니다."
+                            self?.subtitleLabel.textColor = .stateColorError
+                        }
+                    } else {
+                        completion()
+                    }
+                }
+            case .requestErr:
+                print("tagFilteringWithAPI - requestErr")
+            case .pathErr:
+                print("tagFilteringWithAPI - pathErr")
+            case .serverErr:
+                print("tagFilteringWithAPI - serverErr")
+            case .networkFail:
+                print("tagFilteringWithAPI - networkFail")
+            }
+        }, onFailure: { error in
+            print("tagFilteringWithAPI - error: \(error)")
+        })
+        .disposed(by: disposeBag)
     }
     private func tagCreationWithAPI(request: CreationTagRequest, completion: @escaping () -> Void) {
         TagAPI.shared.tagCreation(request: request).subscribe(onSuccess: { [weak self] networkResult in

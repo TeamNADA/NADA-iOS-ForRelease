@@ -8,6 +8,7 @@
 import UIKit
 
 import FirebaseAnalytics
+import RxSwift
 
 class CardDetailViewController: UIViewController {
     
@@ -44,7 +45,24 @@ class CardDetailViewController: UIViewController {
     }
     
     @IBAction func touchSendButton(_ sender: UIButton) {
-        print("send send")
+        let tagSheet = SendTagSheetVC()
+        
+        if #available(iOS 16.0, *) {
+            
+            if let sheet = tagSheet.sheetPresentationController {
+                sheet.detents = [CustomDetent.sendTagDetent]
+                sheet.preferredCornerRadius = 30
+            }
+        } else {
+            if let sheet = tagSheet.sheetPresentationController {
+                sheet.detents = [.medium()]
+                sheet.preferredCornerRadius = 30
+            }
+        }
+        tagSheet.setCardDataModel(cardDataModel)
+        tagSheet.modalPresentationStyle = .pageSheet
+        
+        present(tagSheet, animated: true)
     }
     
     @IBOutlet weak var scrollView: UIScrollView!

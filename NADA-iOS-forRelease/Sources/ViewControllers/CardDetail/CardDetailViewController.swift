@@ -65,6 +65,7 @@ class CardDetailViewController: UIViewController {
     var serverGroups: [String]?
     var groupName: String?
     var cardType: String = ""
+    private var receivedTags: [ReceivedTag]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +75,7 @@ class CardDetailViewController: UIViewController {
         setGestureRecognizer()
         setRegister()
         setDelegate()
+        receivedTagFetchWithAPI(cardUUID: cardDataModel?.cardUUID ?? "")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -130,6 +132,27 @@ extension CardDetailViewController {
                 print("cardHarmonyFetchWithAPI - serverErr")
             case .networkFail:
                 print("cardHarmonyFetchWithAPI - networkFail")
+            }
+        }
+    }
+    
+    private func receivedTagFetchWithAPI(cardUUID: String) {
+        TagAPI.shared.receivedTagFetch(cardUUID: cardUUID) { response in
+            switch response {
+            case .success(let data):
+                if let tagModel = data as? [ReceivedTag] {
+                    self.receivedTags = tagModel
+                    self.tagCollectionView.reloadData()
+                }
+                print("receivedTagFetchWithAPI - success")
+            case .requestErr(let message):
+                print("receivedTagFetchWithAPI - requestErr", message)
+            case .pathErr:
+                print("receivedTagFetchWithAPI - pathErr")
+            case .serverErr:
+                print("receivedTagFetchWithAPI - serverErr")
+            case .networkFail:
+                print("receivedTagFetchWithAPI - networkFail")
             }
         }
     }
@@ -328,13 +351,23 @@ extension CardDetailViewController: UICollectionViewDelegateFlowLayout {
 
 extension CardDetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return receivedTags?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCVC.className, for: indexPath) as? TagCVC else {
             return UICollectionViewCell()
         }
+        
+        tagCell.initCell(receivedTags?[indexPath.row].adjective ?? "",
+                         receivedTags?[indexPath.row].noun ?? "",
+                         receivedTags?[indexPath.row].icon ?? "",
+                         receivedTags?[indexPath.row].lr ?? 0,
+                         receivedTags?[indexPath.row].lg ?? 0,
+                         receivedTags?[indexPath.row].lb ?? 0,
+                         receivedTags?[indexPath.row].dr ?? 0,
+                         receivedTags?[indexPath.row].dg ?? 0,
+                         receivedTags?[indexPath.row].db ?? 0)
 
         return tagCell
     }

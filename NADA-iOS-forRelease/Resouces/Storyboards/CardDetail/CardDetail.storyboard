@@ -65,13 +65,13 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ng0-ab-88D">
-                                <rect key="frame" x="16" y="100" width="343" height="1366"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="1366"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lcZ-YD-xcC">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="1500"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0P6-1k-dQm">
-                                                <rect key="frame" x="8" y="20" width="327" height="540"/>
+                                                <rect key="frame" x="24" y="20" width="327" height="540"/>
                                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="540" id="QoQ-xU-ny7"/>
@@ -84,7 +84,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yM7-jk-cSi">
-                                                <rect key="frame" x="119.66666666666666" y="573" width="104" height="24"/>
+                                                <rect key="frame" x="135.66666666666666" y="573" width="104" height="24"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FI1-Es-26m">
                                                         <rect key="frame" x="0.0" y="0.0" width="21" height="24"/>
@@ -101,7 +101,7 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3LS-7h-1h3">
-                                                <rect key="frame" x="8" y="624" width="327" height="54"/>
+                                                <rect key="frame" x="24" y="624" width="327" height="54"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="btnMainMatch"/>
                                                 <connections>
@@ -109,7 +109,7 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSp-1W-l8j">
-                                                <rect key="frame" x="0.0" y="704" width="343" height="8"/>
+                                                <rect key="frame" x="0.0" y="704" width="375" height="8"/>
                                                 <color key="backgroundColor" name="card"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="8" id="yVh-Y8-709"/>
@@ -134,8 +134,8 @@
                                                 </connections>
                                             </button>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yy9-XM-5Du">
-                                                <rect key="frame" x="24" y="783.66666666666652" width="295" height="716.33333333333348"/>
-                                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                <rect key="frame" x="24" y="783.66666666666652" width="327" height="716.33333333333348"/>
+                                                <color key="backgroundColor" name="background"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PqA-Jt-42i">
                                                     <size key="itemSize" width="128" height="128"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -154,7 +154,7 @@
                                                 </cells>
                                             </collectionView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ad3-Ph-HIb">
-                                                <rect key="frame" x="266" y="738" width="53" height="30"/>
+                                                <rect key="frame" x="298" y="738" width="53" height="30"/>
                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="보내기 &gt;">
@@ -203,7 +203,7 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="background"/>
                         <constraints>
-                            <constraint firstItem="Ng0-ab-88D" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leadingMargin" id="Cc8-Nu-Iwp"/>
+                            <constraint firstItem="Ng0-ab-88D" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Cc8-Nu-Iwp"/>
                             <constraint firstItem="Bq2-MB-M50" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="DKg-sD-igs"/>
                             <constraint firstItem="Bq2-MB-M50" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Oh4-BP-iH9"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Ng0-ab-88D" secondAttribute="bottom" id="dTa-RW-H9x"/>
@@ -221,6 +221,7 @@
                         <outlet property="optionButton" destination="YU7-vs-utH" id="Jg4-K3-dTV"/>
                         <outlet property="receiveTitleLabel" destination="9XU-CD-Avs" id="7iF-aN-H7o"/>
                         <outlet property="sendButton" destination="ad3-Ph-HIb" id="1sA-Qd-TMj"/>
+                        <outlet property="tagCollectionView" destination="yy9-XM-5Du" id="7aD-QR-V8m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -251,9 +252,6 @@
         <namedColor name="tertiary">
             <color red="0.40000000000000002" green="0.42352941176470588" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

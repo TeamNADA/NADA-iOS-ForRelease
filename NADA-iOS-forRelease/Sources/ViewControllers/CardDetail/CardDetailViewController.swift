@@ -55,6 +55,7 @@ class CardDetailViewController: UIViewController {
 
     @IBOutlet weak var receiveTitleLabel: UILabel!
     @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var tagCollectionView: UICollectionView!
     
     public var cardDataModel: Card?
     private var isShareable: Bool = false
@@ -71,6 +72,8 @@ class CardDetailViewController: UIViewController {
         setMenu()
         setFrontCard()
         setGestureRecognizer()
+        setRegister()
+        setDelegate()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -153,6 +156,15 @@ extension CardDetailViewController {
         idLabel.text = cardDataModel?.cardUUID
         receiveTitleLabel.font = .title02
         sendButton.titleLabel?.font = .textBold02
+    }
+    
+    private func setDelegate() {
+        tagCollectionView.dataSource = self
+        tagCollectionView.delegate = self
+    }
+    
+    private func setRegister() {
+        tagCollectionView.register(TagCVC.self, forCellWithReuseIdentifier: TagCVC.className)
     }
     private func setMenu() {
         let changeGroup = UIAction(title: "그룹 변경",
@@ -290,4 +302,46 @@ extension CardDetailViewController {
             }
         }
     }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension CardDetailViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width: CGFloat = UIScreen.main.bounds.width - 48
+        let height: CGFloat = 48
+        
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 12
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsets(top: 0, left: 0, bottom: 55, right: 0)
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+
+extension CardDetailViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCVC.className, for: indexPath) as? TagCVC else {
+            return UICollectionViewCell()
+        }
+
+        return tagCell
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+
+extension CardDetailViewController: UICollectionViewDelegate {
+    
 }

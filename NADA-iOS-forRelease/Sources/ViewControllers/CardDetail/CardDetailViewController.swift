@@ -68,6 +68,7 @@ class CardDetailViewController: UIViewController {
     var groupName: String?
     var cardType: String = ""
     private var receivedTags: [ReceivedTag]?
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,19 +140,20 @@ extension CardDetailViewController {
     }
     
     private func receivedTagFetchWithAPI(cardUUID: String) {
-        TagAPI.shared.receivedTagFetch(cardUUID: cardUUID) { response in
-            switch response {
-            case .success(let data):
-                if let tagModel = data as? [ReceivedTag] {
-                    self.receivedTags = tagModel
+        TagAPI.shared.receivedTagFetch(cardUUID: cardUUID ?? "").subscribe(with: self, onSuccess: { owner, networkResult in
+            switch networkResult {
+            case .success(let response):
+                print("receivedTagFetchWithAPI - success")
+                
+                if let data = response.data {
+                    self.receivedTags = data
                     self.tagCollectionView.reloadData()
                     self.scrollView.layoutIfNeeded()
 //                    self.backView.layoutIfNeeded()
 //                    self.scrollView.updateContentSize()
                 }
-                print("receivedTagFetchWithAPI - success")
-            case .requestErr(let message):
-                print("receivedTagFetchWithAPI - requestErr", message)
+            case .requestErr:
+                print("receivedTagFetchWithAPI - requestErr")
             case .pathErr:
                 print("receivedTagFetchWithAPI - pathErr")
             case .serverErr:
@@ -159,7 +161,10 @@ extension CardDetailViewController {
             case .networkFail:
                 print("receivedTagFetchWithAPI - networkFail")
             }
-        }
+        }, onFailure: { _, error in
+            print("deleteTagWithAPI - error : \(error)")
+        })
+        .disposed(by: disposeBag)
     }
 }
 

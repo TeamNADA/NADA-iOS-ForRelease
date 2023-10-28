@@ -47,6 +47,8 @@ class CardDetailViewController: UIViewController {
         print("send send")
     }
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var backView: UIView!
     @IBOutlet weak var optionButton: UIButton!
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var backButton: UIButton!
@@ -143,6 +145,9 @@ extension CardDetailViewController {
                 if let tagModel = data as? [ReceivedTag] {
                     self.receivedTags = tagModel
                     self.tagCollectionView.reloadData()
+                    self.scrollView.layoutIfNeeded()
+//                    self.backView.layoutIfNeeded()
+//                    self.scrollView.updateContentSize()
                 }
                 print("receivedTagFetchWithAPI - success")
             case .requestErr(let message):
@@ -377,4 +382,25 @@ extension CardDetailViewController: UICollectionViewDataSource {
 
 extension CardDetailViewController: UICollectionViewDelegate {
     
+}
+
+extension UIScrollView {
+    func updateContentSize() {
+        let unionCalculatedTotalRect = recursiveUnionInDepthFor(view: self)
+        
+        // 계산된 크기로 컨텐츠 사이즈 설정
+        self.contentSize = CGSize(width: self.frame.width, height: unionCalculatedTotalRect.height)
+    }
+    
+    private func recursiveUnionInDepthFor(view: UIView) -> CGRect {
+        var totalRect: CGRect = .zero
+        
+        // 모든 자식 View의 컨트롤의 크기를 재귀적으로 호출하며 최종 영역의 크기를 설정
+        for subView in view.subviews {
+            totalRect = totalRect.union(recursiveUnionInDepthFor(view: subView))
+        }
+        
+        // 최종 계산 영역의 크기를 반환
+        return totalRect.union(view.frame)
+    }
 }

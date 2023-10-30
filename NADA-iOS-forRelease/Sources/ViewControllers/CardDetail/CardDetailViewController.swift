@@ -202,7 +202,7 @@ extension CardDetailViewController {
         case .add, .addWithQR:
             backButton.setImage(UIImage(named: "iconClear"), for: .normal)
         case .detail:
-            return 
+            return
         }
         idStackView.isHidden = true
         idLabel.text = cardDataModel?.cardUUID
@@ -253,7 +253,7 @@ extension CardDetailViewController {
     }
     private func setFrontCard() {
         guard let cardTypeString = cardDataModel?.cardType,
-            let cardType = CardType(rawValue: cardTypeString) else { return }
+              let cardType = CardType(rawValue: cardTypeString) else { return }
         
         switch cardType {
         case .basic:
@@ -331,7 +331,6 @@ extension CardDetailViewController {
     @objc func didRecieveDataNotification(_ notification: Notification) {
         groupName = notification.object as? String ?? ""
     }
-    
     @objc
     private func transitionCardWithAnimation(_ swipeGesture: UISwipeGestureRecognizer) {
         if isFront {

@@ -97,6 +97,7 @@ class CardDetailViewController: UIViewController {
         setRegister()
         setDelegate()
         receivedTagFetchWithAPI(cardUUID: cardDataModel?.cardUUID ?? "")
+        setNotification()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -320,7 +321,9 @@ extension CardDetailViewController {
                                totalGrade: percentage.totalGrade,
                                color: .harmonyRed, description: "", cardtype: "BASIC")
         }
-   
+    }
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadReceivedTags), name: .completeSendTag, object: nil)
     }
     
     // MARK: - @objc Methods
@@ -352,6 +355,10 @@ extension CardDetailViewController {
                 self.cardView.subviews[0].removeFromSuperview()
             }
         }
+    }
+    @objc
+    private func reloadReceivedTags() {
+        receivedTagFetchWithAPI(cardUUID: cardDataModel?.cardUUID ?? "")
     }
 }
 

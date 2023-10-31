@@ -77,6 +77,7 @@ extension BackCardCreationCollectionViewCell {
         
         refreshButton.setTitle("", for: .normal)
         refreshButton.setBackgroundImage(UIImage(named: "icnRandom"), for: .normal)
+        refreshButton.setBackgroundImage(UIImage(named: "icnHoverRandom"), for: .highlighted)
         
         optionalInfoTextLabel.text = "나의 재밌는 TMI를 알려주세요."
         optionalInfoTextLabel.textColor = .secondary

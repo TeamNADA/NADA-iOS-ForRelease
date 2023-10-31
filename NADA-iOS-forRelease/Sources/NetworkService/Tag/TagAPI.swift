@@ -106,6 +106,25 @@ public class TagAPI: BasicAPI {
         }
     }
     
+    public func tagFiltering(query: String) -> Single<NetworkResult2<GenericResponse<Bool>>> {
+        return Single<NetworkResult2<GenericResponse<Bool>>>.create { [weak self] single in
+            self?.tagProvider.request(.tagFiltering(query: query)) { result in
+                switch result {
+                case .success(let response):
+                    let networkResult = self?.judgeStatus(response: response, type: Bool.self)
+                    if let networkResult {
+                        single(.success(networkResult))
+                        return
+                    }
+                case .failure(let error):
+                    single(.failure(error))
+                    return
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
     // MARK: - JudgeStatus methods
   
     private func judgeStatus<T: Codable>(by statusCode: Int, data: Data, type: T.Type) -> NetworkResult<Any> {

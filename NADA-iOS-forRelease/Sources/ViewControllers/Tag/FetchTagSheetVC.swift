@@ -156,7 +156,17 @@ extension FetchTagSheetVC {
         snapshot.appendSections([.main])
         
         if let receivedTags {
-            snapshot.appendItems(receivedTags)
+            if receivedTags.isEmpty {
+                emptyView.isHidden = false
+                deleteButton.setTitleColor(.quaternary, for: .normal)
+                deleteButton.isEnabled = false
+            } else {
+                emptyView.isHidden = true
+                deleteButton.setTitleColor(.primary, for: .normal)
+                deleteButton.isEnabled = true
+                
+                snapshot.appendItems(receivedTags)
+            }
         }
         
         diffableDataSource?.apply(snapshot, animatingDifferences: true)

@@ -187,7 +187,9 @@ extension SendTagSheetVC {
         }.disposed(by: disposeBag)
         
         completeButton.rx.tap.bind { [weak self] in
-            self?.dismiss(animated: true)
+            self?.dismiss(animated: true) {
+                NotificationCenter.default.post(name: .completeSendTag, object: nil)
+            }
         }.disposed(by: disposeBag)
         
         adjectiveTextFiled.rx.text

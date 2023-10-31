@@ -97,6 +97,7 @@ class CardDetailViewController: UIViewController {
         setRegister()
         setDelegate()
         receivedTagFetchWithAPI(cardUUID: cardDataModel?.cardUUID ?? "")
+        setNotification()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -110,81 +111,7 @@ class CardDetailViewController: UIViewController {
     }
 }
 
-extension CardDetailViewController {
-    func cardDeleteInGroupWithAPI(cardUUID: String, cardGroupName: String) {
-        GroupAPI.shared.cardDeleteInGroup(cardUUID: cardUUID, cardGroupName: cardGroupName) { response in
-            switch response {
-            case .success:
-                print("cardDeleteInGroupWithAPI - success")
-                self.navigationController?.popViewController(animated: true)
-            case .requestErr(let message):
-                print("cardDeleteInGroupWithAPI - requestErr: \(message)")
-            case .pathErr:
-                print("cardDeleteInGroupWithAPI - pathErr")
-            case .serverErr:
-                print("cardDeleteInGroupWithAPI - serverErr")
-            case .networkFail:
-                print("cardDeleteInGroupWithAPI - networkFail")
-            }
-            
-        }
-    }
-    
-    func cardHarmonyFetchWithAPI(cardUUID: String) {
-        UtilAPI.shared.cardHarmonyFetch(cardUUID: cardUUID) { response in
-            switch response {
-            case .success(let data):
-                if let harmony = data as? HarmonyResponse {
-                    let nextVC = NewCardHarmonyViewController()
-                    nextVC.harmonyData = self.updateHarmony(percentage: harmony, cardtype: self.cardDataModel?.cardType ?? "BASIC")
-                    nextVC.modalPresentationStyle = .overFullScreen
-                    self.present(nextVC, animated: false, completion: nil)
-                }
-            case .requestErr(let message):
-                print("cardHarmonyFetchWithAPI - requestErr: \(message)")
-                self.makeOKAlert(title: "", message: "내 명함이 없어 궁합을 볼 수 없어요!\n지금 명함을 만들러 가볼까요?", okAction: {_ in
-                    self.tabBarController?.selectedIndex = 1
-                    self.navigationController?.popViewController(animated: true)
-                }, completion: nil)
-                
-            case .pathErr:
-                print("cardHarmonyFetchWithAPI - pathErr")
-            case .serverErr:
-                print("cardHarmonyFetchWithAPI - serverErr")
-            case .networkFail:
-                print("cardHarmonyFetchWithAPI - networkFail")
-            }
-        }
-    }
-    
-    private func receivedTagFetchWithAPI(cardUUID: String) {
-        TagAPI.shared.receivedTagFetch(cardUUID: cardUUID ?? "").subscribe(with: self, onSuccess: { owner, networkResult in
-            switch networkResult {
-            case .success(let response):
-                print("receivedTagFetchWithAPI - success")
-                
-                if let data = response.data {
-                    self.receivedTags = data
-                    self.tagCollectionView.reloadData()
-                    self.scrollView.layoutIfNeeded()
-//                    self.backView.layoutIfNeeded()
-//                    self.scrollView.updateContentSize()
-                }
-            case .requestErr:
-                print("receivedTagFetchWithAPI - requestErr")
-            case .pathErr:
-                print("receivedTagFetchWithAPI - pathErr")
-            case .serverErr:
-                print("receivedTagFetchWithAPI - serverErr")
-            case .networkFail:
-                print("receivedTagFetchWithAPI - networkFail")
-            }
-        }, onFailure: { _, error in
-            print("deleteTagWithAPI - error : \(error)")
-        })
-        .disposed(by: disposeBag)
-    }
-}
+// MARK: - Extension
 
 extension CardDetailViewController {
     private func setTracking() {
@@ -201,7 +128,7 @@ extension CardDetailViewController {
         case .add, .addWithQR:
             backButton.setImage(UIImage(named: "iconClear"), for: .normal)
         case .detail:
-            return 
+            return
         }
         idStackView.isHidden = true
         idLabel.text = cardDataModel?.cardUUID
@@ -252,7 +179,7 @@ extension CardDetailViewController {
     }
     private func setFrontCard() {
         guard let cardTypeString = cardDataModel?.cardType,
-            let cardType = CardType(rawValue: cardTypeString) else { return }
+              let cardType = CardType(rawValue: cardTypeString) else { return }
         
         switch cardType {
         case .basic:
@@ -320,7 +247,9 @@ extension CardDetailViewController {
                                totalGrade: percentage.totalGrade,
                                color: .harmonyRed, description: "", cardtype: "BASIC")
         }
-   
+    }
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadReceivedTags), name: .completeSendTag, object: nil)
     }
     
     // MARK: - @objc Methods
@@ -328,7 +257,6 @@ extension CardDetailViewController {
     @objc func didRecieveDataNotification(_ notification: Notification) {
         groupName = notification.object as? String ?? ""
     }
-    
     @objc
     private func transitionCardWithAnimation(_ swipeGesture: UISwipeGestureRecognizer) {
         if isFront {
@@ -352,6 +280,88 @@ extension CardDetailViewController {
                 self.cardView.subviews[0].removeFromSuperview()
             }
         }
+    }
+    @objc
+    private func reloadReceivedTags() {
+        receivedTagFetchWithAPI(cardUUID: cardDataModel?.cardUUID ?? "")
+    }
+}
+
+// MARK: - Network
+
+extension CardDetailViewController {
+    func cardDeleteInGroupWithAPI(cardUUID: String, cardGroupName: String) {
+        GroupAPI.shared.cardDeleteInGroup(cardUUID: cardUUID, cardGroupName: cardGroupName) { response in
+            switch response {
+            case .success:
+                print("cardDeleteInGroupWithAPI - success")
+                self.navigationController?.popViewController(animated: true)
+            case .requestErr(let message):
+                print("cardDeleteInGroupWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("cardDeleteInGroupWithAPI - pathErr")
+            case .serverErr:
+                print("cardDeleteInGroupWithAPI - serverErr")
+            case .networkFail:
+                print("cardDeleteInGroupWithAPI - networkFail")
+            }
+            
+        }
+    }
+    
+    func cardHarmonyFetchWithAPI(cardUUID: String) {
+        UtilAPI.shared.cardHarmonyFetch(cardUUID: cardUUID) { response in
+            switch response {
+            case .success(let data):
+                if let harmony = data as? HarmonyResponse {
+                    let nextVC = NewCardHarmonyViewController()
+                    nextVC.harmonyData = self.updateHarmony(percentage: harmony, cardtype: self.cardDataModel?.cardType ?? "BASIC")
+                    nextVC.modalPresentationStyle = .overFullScreen
+                    self.present(nextVC, animated: false, completion: nil)
+                }
+            case .requestErr(let message):
+                print("cardHarmonyFetchWithAPI - requestErr: \(message)")
+                self.makeOKAlert(title: "", message: "내 명함이 없어 궁합을 볼 수 없어요!\n지금 명함을 만들러 가볼까요?", okAction: {_ in
+                    self.tabBarController?.selectedIndex = 1
+                    self.navigationController?.popViewController(animated: true)
+                }, completion: nil)
+                
+            case .pathErr:
+                print("cardHarmonyFetchWithAPI - pathErr")
+            case .serverErr:
+                print("cardHarmonyFetchWithAPI - serverErr")
+            case .networkFail:
+                print("cardHarmonyFetchWithAPI - networkFail")
+            }
+        }
+    }
+    
+    private func receivedTagFetchWithAPI(cardUUID: String) {
+        TagAPI.shared.receivedTagFetch(cardUUID: cardUUID).subscribe(with: self, onSuccess: { owner, networkResult in
+            switch networkResult {
+            case .success(let response):
+                print("receivedTagFetchWithAPI - success")
+                
+                if let data = response.data {
+                    owner.receivedTags = data
+                    owner.tagCollectionView.reloadData()
+                    owner.scrollView.layoutIfNeeded()
+//                    self.backView.layoutIfNeeded()
+//                    self.scrollView.updateContentSize()
+                }
+            case .requestErr:
+                print("receivedTagFetchWithAPI - requestErr")
+            case .pathErr:
+                print("receivedTagFetchWithAPI - pathErr")
+            case .serverErr:
+                print("receivedTagFetchWithAPI - serverErr")
+            case .networkFail:
+                print("receivedTagFetchWithAPI - networkFail")
+            }
+        }, onFailure: { _, error in
+            print("deleteTagWithAPI - error : \(error)")
+        })
+        .disposed(by: disposeBag)
     }
 }
 

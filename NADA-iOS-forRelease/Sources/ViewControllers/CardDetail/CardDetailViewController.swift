@@ -39,11 +39,25 @@ class CardDetailViewController: UIViewController {
         cardHarmonyFetchWithAPI(cardUUID: cardDataModel?.cardUUID ?? "")
     }
     
+    @IBAction func touchHelpButton(_ sender: UIButton) {
+        print("help help")
+    }
+    
+    @IBAction func touchSendButton(_ sender: UIButton) {
+        print("send send")
+    }
+    
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var backView: UIView!
     @IBOutlet weak var optionButton: UIButton!
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var idStackView: UIStackView!
     @IBOutlet weak var idLabel: UILabel!
+
+    @IBOutlet weak var receiveTitleLabel: UILabel!
+    @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var tagCollectionView: UICollectionView!
     
     public var cardDataModel: Card?
     private var isShareable: Bool = false
@@ -53,6 +67,7 @@ class CardDetailViewController: UIViewController {
     var serverGroups: [String]?
     var groupName: String?
     var cardType: String = ""
+    private var receivedTags: [ReceivedTag]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +75,9 @@ class CardDetailViewController: UIViewController {
         setMenu()
         setFrontCard()
         setGestureRecognizer()
+        setRegister()
+        setDelegate()
+        receivedTagFetchWithAPI(cardUUID: cardDataModel?.cardUUID ?? "")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -119,6 +137,30 @@ extension CardDetailViewController {
             }
         }
     }
+    
+    private func receivedTagFetchWithAPI(cardUUID: String) {
+        TagAPI.shared.receivedTagFetch(cardUUID: cardUUID) { response in
+            switch response {
+            case .success(let data):
+                if let tagModel = data as? [ReceivedTag] {
+                    self.receivedTags = tagModel
+                    self.tagCollectionView.reloadData()
+                    self.scrollView.layoutIfNeeded()
+//                    self.backView.layoutIfNeeded()
+//                    self.scrollView.updateContentSize()
+                }
+                print("receivedTagFetchWithAPI - success")
+            case .requestErr(let message):
+                print("receivedTagFetchWithAPI - requestErr", message)
+            case .pathErr:
+                print("receivedTagFetchWithAPI - pathErr")
+            case .serverErr:
+                print("receivedTagFetchWithAPI - serverErr")
+            case .networkFail:
+                print("receivedTagFetchWithAPI - networkFail")
+            }
+        }
+    }
 }
 
 extension CardDetailViewController {
@@ -140,6 +182,17 @@ extension CardDetailViewController {
         }
         idStackView.isHidden = true
         idLabel.text = cardDataModel?.cardUUID
+        receiveTitleLabel.font = .title02
+        sendButton.titleLabel?.font = .textBold02
+    }
+    
+    private func setDelegate() {
+        tagCollectionView.dataSource = self
+        tagCollectionView.delegate = self
+    }
+    
+    private func setRegister() {
+        tagCollectionView.register(TagCVC.self, forCellWithReuseIdentifier: TagCVC.className)
     }
     private func setMenu() {
         let changeGroup = UIAction(title: "그룹 변경",
@@ -276,5 +329,78 @@ extension CardDetailViewController {
                 self.cardView.subviews[0].removeFromSuperview()
             }
         }
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension CardDetailViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width: CGFloat = UIScreen.main.bounds.width - 48
+        let height: CGFloat = 48
+        
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 12
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsets(top: 0, left: 0, bottom: 55, right: 0)
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+
+extension CardDetailViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return receivedTags?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCVC.className, for: indexPath) as? TagCVC else {
+            return UICollectionViewCell()
+        }
+        
+        tagCell.initCell(receivedTags?[indexPath.row].adjective ?? "",
+                         receivedTags?[indexPath.row].noun ?? "",
+                         receivedTags?[indexPath.row].icon ?? "",
+                         receivedTags?[indexPath.row].lr ?? 0,
+                         receivedTags?[indexPath.row].lg ?? 0,
+                         receivedTags?[indexPath.row].lb ?? 0,
+                         receivedTags?[indexPath.row].dr ?? 0,
+                         receivedTags?[indexPath.row].dg ?? 0,
+                         receivedTags?[indexPath.row].db ?? 0)
+
+        return tagCell
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+
+extension CardDetailViewController: UICollectionViewDelegate {
+    
+}
+
+extension UIScrollView {
+    func updateContentSize() {
+        let unionCalculatedTotalRect = recursiveUnionInDepthFor(view: self)
+        
+        // 계산된 크기로 컨텐츠 사이즈 설정
+        self.contentSize = CGSize(width: self.frame.width, height: unionCalculatedTotalRect.height)
+    }
+    
+    private func recursiveUnionInDepthFor(view: UIView) -> CGRect {
+        var totalRect: CGRect = .zero
+        
+        // 모든 자식 View의 컨트롤의 크기를 재귀적으로 호출하며 최종 영역의 크기를 설정
+        for subView in view.subviews {
+            totalRect = totalRect.union(recursiveUnionInDepthFor(view: subView))
+        }
+        
+        // 최종 계산 영역의 크기를 반환
+        return totalRect.union(view.frame)
     }
 }

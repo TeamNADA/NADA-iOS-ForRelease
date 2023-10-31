@@ -42,6 +42,9 @@ class FetchTagSheetVC: UIViewController {
         $0.showsVerticalScrollIndicator = false
         $0.allowsMultipleSelection = true
     }
+    private let emptyView = UIImageView(image: UIImage(named: "imgSendTagEmpty")).then {
+        $0.isHidden = true
+    }
     
     // MARK: - Properties
     
@@ -146,7 +149,17 @@ extension FetchTagSheetVC {
         snapshot.appendSections([.main])
         
         if let receivedTags {
-            snapshot.appendItems(receivedTags)
+            if receivedTags.isEmpty {
+                emptyView.isHidden = false
+                deleteButton.setTitleColor(.quaternary, for: .normal)
+                deleteButton.isEnabled = false
+            } else {
+                emptyView.isHidden = true
+                deleteButton.setTitleColor(.primary, for: .normal)
+                deleteButton.isEnabled = true
+                
+                snapshot.appendItems(receivedTags)
+            }
         }
         
         diffableDataSource?.apply(snapshot, animatingDifferences: true)
@@ -258,7 +271,7 @@ extension FetchTagSheetVC {
 
 extension FetchTagSheetVC {
     private func setLayout() {
-        view.addSubviews([grabber, titleLabel, cancelButton, deleteButton, collectionView])
+        view.addSubviews([grabber, titleLabel, cancelButton, deleteButton, collectionView, emptyView])
         
         grabber.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(12)
@@ -280,6 +293,10 @@ extension FetchTagSheetVC {
             make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.left.right.equalToSuperview().inset(24)
             make.bottom.equalToSuperview()
+        }
+        emptyView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(166)
+            make.centerX.equalToSuperview()
         }
     }
 }

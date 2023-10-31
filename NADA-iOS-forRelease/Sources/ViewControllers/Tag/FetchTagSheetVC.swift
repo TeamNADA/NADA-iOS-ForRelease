@@ -114,13 +114,6 @@ extension FetchTagSheetVC {
                     }
                     
                     owner.deleteTagWithAPI(request: tagDeletionRequests)
-                    
-                    owner.deleteButton.setTitle("편집", for: .normal)
-                    owner.deleteButton.setTitleColor(.primary, for: .normal)
-                    owner.deleteButton.isEnabled = true
-                    owner.cancelButton.isHidden = true
-                    
-                    owner.mode = .fetch
                 }
             }
             .disposed(by: disposeBag)
@@ -238,6 +231,13 @@ extension FetchTagSheetVC {
                 print("deleteTagWithAPI - success")
                 
                 owner.receivedTagFetchWithAPI()
+                
+                owner.deleteButton.setTitle("편집", for: .normal)
+                owner.deleteButton.setTitleColor(.primary, for: .normal)
+                owner.deleteButton.isEnabled = true
+                owner.cancelButton.isHidden = true
+                
+                owner.mode = .fetch
             case .requestErr:
                 print("deleteTagWithAPI - requestErr")
             case .pathErr:

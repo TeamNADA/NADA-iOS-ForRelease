@@ -18,7 +18,7 @@ class SendTagSheetVC: UIViewController {
     
     // MARK: - Properties
     
-    private var cardUUID: String?
+    private var cardDataModel: Card?
     private var tags: [Tag] = []
     private var keyboardOn: Bool = false
     private var creationTagRequest: CreationTagRequest?
@@ -163,7 +163,7 @@ extension SendTagSheetVC {
         
         IQKeyboardManager.shared.shouldResignOnTouchOutside = false
         
-        cardNameLabel.text = cardUUID
+        cardNameLabel.text = cardDataModel?.cardName ?? ""
         
         [sendTagLabel, backButton, sendButton, checkImageView, completeButton].forEach { $0.isHidden = true }
     }
@@ -315,7 +315,7 @@ extension SendTagSheetVC {
         if let adjectiveText = adjectiveTextFiled.text, let nounText = nounTextFiled.text,
            !adjectiveText.isEmpty, !nounText.isEmpty {
             if let items = collectionView.indexPathsForSelectedItems?.map({ index in index.item }) {
-                creationTagRequest = .init(adjective: adjectiveText, cardUUID: cardUUID ?? "", icon: tags[items[0]].icon, noun: nounText)
+                creationTagRequest = .init(adjective: adjectiveText, cardUUID: cardDataModel?.cardUUID ?? "", icon: tags[items[0]].icon, noun: nounText)
                 
                 tagFilteringWithAPI(text: adjectiveText) { [weak self] in
                     self?.tagFilteringWithAPI(text: nounText) {
@@ -342,8 +342,8 @@ extension SendTagSheetVC {
             }
         }
     }
-    public func setCardUUID(_ cardUUID: String) {
-        self.cardUUID = cardUUID
+    public func setCardDataModel(_ cardDataModel: Card?) {
+        self.cardDataModel = cardDataModel
     }
 }
 

@@ -15,7 +15,7 @@ public class TagAPI: BasicAPI {
     var tagProvider = MoyaProvider<TagService>(plugins: [MoyaLoggerPlugin()])
     
     private override init() { }
-    
+
     public func receivedTagFetch(cardUUID: String) -> Single<NetworkResult2<GenericResponse<[ReceivedTag]>>> {
         return Single<NetworkResult2<GenericResponse<[ReceivedTag]>>>.create { single in
             self.tagProvider.request(.receivedTagFetch(cardUUID: cardUUID)) { result in

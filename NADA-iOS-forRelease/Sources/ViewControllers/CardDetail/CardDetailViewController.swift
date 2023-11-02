@@ -60,6 +60,7 @@ class CardDetailViewController: UIViewController {
             }
         }
         tagSheet.setCardDataModel(cardDataModel)
+        tagSheet.setEditingTag(adjectiveText: editingAdjectiveTagText, nounText: editingNounTagText)
         tagSheet.modalPresentationStyle = .pageSheet
         
         present(tagSheet, animated: true)

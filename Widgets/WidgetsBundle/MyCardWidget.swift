@@ -225,7 +225,7 @@ struct MyCardWidget_Previews: PreviewProvider {
     static var previews: some View {
         MyCardEntryView(entry: MyCardEntry(date: Date(), widgetCard: nil))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
-        MyCardEntryView(entry: MyCardEntry(date: Date(), widgetCard: WidgetCard(cardUUID: Card.mockData[0].cardUUID, title: Card.mockData[0].cardName, userName: Card.mockData[0].userName, backgroundImage: UIImage(named: Card.mockData[2].cardImage) ?? UIImage())))
+        MyCardEntryView(entry: MyCardEntry(date: Date(), widgetCard: WidgetCard(cardUUID: Card.mockData[0].cardUUID, title: Card.mockData[0].cardName, userName: Card.mockData[0].userName, backgroundImage: UIImage(named: Card.mockData[0].cardImage) ?? UIImage())))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

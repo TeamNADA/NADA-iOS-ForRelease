@@ -29,4 +29,12 @@ extension Color {
             return Color(red: 19.0 / 255.0, green: 20.0 / 255.0, blue: 22.0 / 255.0)
         }
     }
+    
+    static func secondaryColor(for colorScheme: ColorScheme) -> Color {
+        if colorScheme == .light {
+            return Color(red: 43.0 / 255.0, green: 45.0 / 255.0, blue: 49.0 / 255.0)
+        } else {
+            return Color(red: 241.0 / 255.0, green: 243.0 / 255.0, blue: 245.0 / 255.0)
+        }
+    }
 }

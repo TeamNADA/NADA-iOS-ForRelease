@@ -291,6 +291,22 @@ extension CardDetailViewController {
     private func reloadReceivedTags() {
         receivedTagFetchWithAPI(cardUUID: cardDataModel?.cardUUID ?? "")
     }
+    @objc
+    private func setEditingTags(_ notification: Notification) {
+        guard let tags = notification.object as? [String: Any] else { return }
+        
+        if let text = tags["editingAdjectiveTagText"] as? String {
+            editingAdjectiveTagText = text
+        }
+        
+        if let text = tags["editingNounTagText"] as? String {
+            editingNounTagText = text
+        }
+        
+        if let item = tags["selectedItem"] as? Int {
+            editingItem = item
+        }
+    }
 }
 
 // MARK: - Network

@@ -89,7 +89,7 @@ class CardDetailViewController: UIViewController {
     private var receivedTags: [ReceivedTag]?
     private var editingAdjectiveTagText: String?
     private var editingNounTagText: String?
-    private var editingItem: Int = 0
+    private var editingItem: Int?
     
     private let disposeBag = DisposeBag()
     

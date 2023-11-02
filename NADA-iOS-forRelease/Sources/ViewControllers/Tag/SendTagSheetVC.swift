@@ -367,14 +367,10 @@ extension SendTagSheetVC {
     public func setCardDataModel(_ cardDataModel: Card?) {
         self.cardDataModel = cardDataModel
     }
-    public func setEditingTag(adjectiveText: String?, nounText: String?) {
-        if let adjectiveText {
-            adjectiveTextFiled.text = adjectiveText
-        }
-        
-        if let nounText {
-            nounTextFiled.text = nounText
-        }
+    public func setEditingTag(adjectiveText: String?, nounText: String?, item: Int) {
+        adjectiveTextField.text = adjectiveText
+        nounTextField.text = nounText
+        selectedItem = item
     }
 }
 

@@ -48,7 +48,6 @@ class CardDetailViewController: UIViewController {
         let tagSheet = SendTagSheetVC()
         
         if #available(iOS 16.0, *) {
-            
             if let sheet = tagSheet.sheetPresentationController {
                 sheet.detents = [CustomDetent.sendTagDetent]
                 sheet.preferredCornerRadius = 30
@@ -59,6 +58,7 @@ class CardDetailViewController: UIViewController {
                 sheet.preferredCornerRadius = 30
             }
         }
+        
         tagSheet.setCardDataModel(cardDataModel)
         tagSheet.setEditingTag(adjectiveText: editingAdjectiveTagText, nounText: editingNounTagText)
         tagSheet.modalPresentationStyle = .pageSheet

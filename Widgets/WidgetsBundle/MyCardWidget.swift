@@ -80,7 +80,6 @@ struct MyCardProvider: IntentTimelineProvider {
             }
         } else {
             // Configuration 로 부터 card 받지 못함.(=로그인 전 위젯 생성 시)
-            print("Configuration")
             let entry = MyCardEntry(date: entryDate, widgetCard: nil)
             entries = [entry]
             let timeline = Timeline(entries: entries, policy: .atEnd)

@@ -23,6 +23,8 @@ class SendTagSheetVC: UIViewController {
     private var keyboardOn: Bool = false
     private var creationTagRequest: CreationTagRequest?
     private var mode: Mode = .edit
+    private var editingAjectiveTagText: String?
+    private var editingNounTagText: String?
     
     private let maxLength: Int = 7
     private let disposeBag = DisposeBag()

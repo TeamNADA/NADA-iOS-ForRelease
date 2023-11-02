@@ -78,13 +78,13 @@ class CardDetailViewController: UIViewController {
     @IBOutlet weak var tagCollectionView: UICollectionView!
     
     public var cardDataModel: Card?
-    private var isShareable: Bool = false
+    public var status: Status = .group
+    public var serverGroups: [String]?
+    public var groupName: String?
+    public var cardType: String = ""
     
+    private var isShareable: Bool = false
     private var isFront = true
-    var status: Status = .group
-    var serverGroups: [String]?
-    var groupName: String?
-    var cardType: String = ""
     private var receivedTags: [ReceivedTag]?
     private let disposeBag = DisposeBag()
     

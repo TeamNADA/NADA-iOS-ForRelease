@@ -149,6 +149,7 @@ extension BackCardCell {
                 visualEffectView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
             }
             visualEffectView.layer.cornerRadius = 35 / 2
+            visualEffectView.layer.masksToBounds = true
         }
         
         for index in 0..<tasteLabels.count {

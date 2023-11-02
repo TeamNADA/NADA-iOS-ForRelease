@@ -28,4 +28,5 @@ extension Notification.Name {
     static let backToHome = Notification.Name("backToHome")
     static let presentToReceivedTagSheet = Notification.Name("presentToTagSheet")
     static let completeSendTag = Notification.Name("completeSendTag")
+    static let sendEditingTags = Notification.Name("sendEditingTags")
 }

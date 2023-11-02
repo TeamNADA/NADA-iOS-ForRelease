@@ -254,6 +254,7 @@ extension CardDetailViewController {
     }
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(reloadReceivedTags), name: .completeSendTag, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setEditingTags), name: .sendEditingTags, object: nil)
     }
     
     // MARK: - @objc Methods

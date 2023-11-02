@@ -158,6 +158,26 @@ struct MyCardEntry: TimelineEntry {
 
 struct MyCardEntryView: View {
     var entry: MyCardProvider.Entry
+struct EmptyMyCardView: View {
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        ZStack {
+            Color.widgetBackgrounColor(for: colorScheme)
+            VStack(spacing: 4) {
+                Text("아직 내 명함이 없어요😥")
+                    .font(.textRegular05)
+                    .foregroundColor(.primaryColor(for: colorScheme))
+                HStack {
+                    Text("명함 만들러 가기")
+                        .font(.textRegular05)
+                        .foregroundColor(.primaryColor(for: colorScheme))
+                    Image("icnArrowForwardIos")
+                }
+            }
+        }
+    }
+}
 
     @Environment(\.colorScheme) var colorScheme
     
@@ -202,6 +222,14 @@ struct MyCardEntryView: View {
             Image("widgetEmpty")
                 .resizable()
                 .scaledToFill()
+            if #available(iOSApplicationExtension 17.0, *) {
+                EmptyMyCardView()
+                .containerBackground(for: .widget) {
+                    Color.widgetBackgrounColor(for: colorScheme)
+                }
+            } else {
+                EmptyMyCardView()
+            }
         }
     }
 }

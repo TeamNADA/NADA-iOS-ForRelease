@@ -45,17 +45,36 @@ struct QRCodeEntryView: View {
         if #available(iOSApplicationExtension 16.0, *) {
             switch widgetFamily {
             case .accessoryCircular:
-                ZStack {
-                    AccessoryWidgetBackground()
-                    Image("widgetQrLockscreenWhite")
-                        .resizable()
-                        .widgetURL(URL(string: "openQRCodeWidget"))
+                if #available(iOSApplicationExtension 17.0, *) {
+                    ZStack {
+                        Image("widgetQrLockscreenWhite")
+                            .resizable()
+                    }
+                    .widgetURL(URL(string: "openQRCodeWidget"))
+                    .containerBackground(for: .widget) {
+                        AccessoryWidgetBackground()
+                    }
+                } else {
+                    ZStack {
+                        AccessoryWidgetBackground()
+                        Image("widgetQrLockscreenWhite")
+                            .resizable()
+                            .widgetURL(URL(string: "openQRCodeWidget"))
+                    }
                 }
             default:
-                Image("widgetQr")
-                    .resizable()
-                    .scaledToFill()
-                    .widgetURL(URL(string: "openQRCodeWidget"))
+                if #available(iOSApplicationExtension 17.0, *) {
+                    Image("widgetQr")
+                        .resizable()
+                        .scaledToFill()
+                        .widgetURL(URL(string: "openQRCodeWidget"))
+                        .containerBackground(for: .widget) { }
+                } else {
+                    Image("widgetQr")
+                        .resizable()
+                        .scaledToFill()
+                        .widgetURL(URL(string: "openQRCodeWidget"))
+                }
             }
         } else {
             Image("widgetQr")

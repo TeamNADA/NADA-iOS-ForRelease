@@ -19,7 +19,9 @@ class BackCardCell: CardCell {
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var tasteTitleLabel: UILabel!
-    @IBOutlet var tasteImageViews: [UIImageView]!
+    @IBOutlet var leftTasteViews: [UIView]!
+    @IBOutlet var rightTasteViews: [UIView]!
+    @IBOutlet var tasteViews: [UIView]!
     @IBOutlet var tasteLabels: [UILabel]!
     @IBOutlet weak var tmiTitleLabel: UILabel!
     @IBOutlet weak var tmiLabel: UILabel!
@@ -60,6 +62,16 @@ extension BackCardCell {
         tmiLabel.font = .textRegular04
         tmiLabel.textColor = .white
         tmiLabel.numberOfLines = 0
+        
+        leftTasteViews.forEach {
+            $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+            $0.layer.cornerRadius = 35 / 2
+        }
+        
+        rightTasteViews.forEach {
+            $0.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+            $0.layer.cornerRadius = 35 / 2
+        }
     }
     
     /// 명함 미리보기 시 사용.
@@ -70,12 +82,23 @@ extension BackCardCell {
         
         let cardTasteInfo: [CardTasteInfo] = cardTasteInfo.sorted { $0.sortOrder > $1.sortOrder }
         
-        for index in stride(from: 0, to: cardTasteInfo.count, by: 2) {
-            if cardTasteInfo[index].isChoose {
-                tasteImageViews[index / 2].image = UIImage(named: "imgBalanceLeft")
+        for index in 0..<tasteViews.count where !cardTasteInfo[index].isChoose {
+            let blurEffect = UIBlurEffect(style: .light)
+            let visualEffectView = UIVisualEffectView(frame: tasteViews[index].frame)
+            
+            tasteViews[index].backgroundColor = .clear
+            visualEffectView.effect = blurEffect
+            backgroundImageView.addSubview(visualEffectView)
+//            tasteViews[index].addSubview(visualEffectView)
+//            tasteViews[index].layer.masksToBounds = true
+            
+            // FIXME: - 둥글기 적용 안됨.
+            if index % 2 == 0 {
+                visualEffectView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
             } else {
-                tasteImageViews[index / 2].image = UIImage(named: "imgBalanceRight")
+                visualEffectView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
             }
+            visualEffectView.layer.cornerRadius = 35 / 2
         }
         
         for index in 0..<tasteLabels.count {
@@ -106,12 +129,24 @@ extension BackCardCell {
         
         let cardTasteInfo: [CardTasteInfo] = cardTasteInfo.sorted { $0.sortOrder > $1.sortOrder }
         
-        for index in stride(from: 0, to: cardTasteInfo.count, by: 2) {
-            if cardTasteInfo[index].isChoose {
-                tasteImageViews[index / 2].image = UIImage(named: "imgBalanceLeft")
+        for index in 0..<tasteViews.count where !cardTasteInfo[index].isChoose {
+            let blurEffect = UIBlurEffect(style: .light)
+            let visualEffectView = UIVisualEffectView(frame: tasteViews[index].frame)
+            
+            tasteViews[index].backgroundColor = .clear
+            visualEffectView.effect = blurEffect
+            backgroundImageView.addSubview(visualEffectView)
+            // FIXME: - 둥글기 설정을 위해서 view 에 추가. 그러면 backgroundImageView blur 안됨.
+//            tasteViews[index].addSubview(visualEffectView)
+//            tasteViews[index].layer.masksToBounds = true
+            
+            // FIXME: - 둥글기 적용 안됨.
+            if index % 2 == 0 {
+                visualEffectView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
             } else {
-                tasteImageViews[index / 2].image = UIImage(named: "imgBalanceRight")
+                visualEffectView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
             }
+            visualEffectView.layer.cornerRadius = 35 / 2
         }
         
         for index in 0..<tasteLabels.count {

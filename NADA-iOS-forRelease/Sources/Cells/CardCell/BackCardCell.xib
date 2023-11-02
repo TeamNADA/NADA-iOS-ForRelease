@@ -248,6 +248,7 @@
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="backgroundImageView" destination="Rmd-7u-oYx" id="Ci4-HW-97h"/>
+                <outlet property="bgView" destination="Q9H-oG-tzn" id="J1Q-uy-j1j"/>
                 <outlet property="tagButton" destination="aNM-Fl-RCk" id="ua1-4D-XLB"/>
                 <outlet property="tasteTitleLabel" destination="dHb-jJ-jng" id="s2A-b9-Osl"/>
                 <outlet property="tmiLabel" destination="Ch6-5U-VOL" id="soW-Sy-5Zm"/>

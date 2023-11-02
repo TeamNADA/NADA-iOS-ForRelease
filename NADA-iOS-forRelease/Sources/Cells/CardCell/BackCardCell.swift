@@ -18,6 +18,7 @@ class BackCardCell: CardCell {
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var tasteTitleLabel: UILabel!
     @IBOutlet var leftTasteViews: [UIView]!
     @IBOutlet var rightTasteViews: [UIView]!
@@ -83,12 +84,13 @@ extension BackCardCell {
         let cardTasteInfo: [CardTasteInfo] = cardTasteInfo.sorted { $0.sortOrder > $1.sortOrder }
         
         for index in 0..<tasteViews.count where !cardTasteInfo[index].isChoose {
-            let blurEffect = UIBlurEffect(style: .light)
+            let blurEffect = UIBlurEffect(style: .systemMaterialLight)
             let visualEffectView = UIVisualEffectView(frame: tasteViews[index].frame)
             
             tasteViews[index].backgroundColor = .clear
             visualEffectView.effect = blurEffect
-            backgroundImageView.addSubview(visualEffectView)
+            bgView.addSubview(visualEffectView)
+            // FIXME: - 둥글기 설정을 위해서 view 에 추가. 그러면 backgroundImageView blur 안됨.
 //            tasteViews[index].addSubview(visualEffectView)
 //            tasteViews[index].layer.masksToBounds = true
             
@@ -130,12 +132,12 @@ extension BackCardCell {
         let cardTasteInfo: [CardTasteInfo] = cardTasteInfo.sorted { $0.sortOrder > $1.sortOrder }
         
         for index in 0..<tasteViews.count where !cardTasteInfo[index].isChoose {
-            let blurEffect = UIBlurEffect(style: .light)
+            let blurEffect = UIBlurEffect(style: .systemMaterialLight)
             let visualEffectView = UIVisualEffectView(frame: tasteViews[index].frame)
             
             tasteViews[index].backgroundColor = .clear
             visualEffectView.effect = blurEffect
-            backgroundImageView.addSubview(visualEffectView)
+            bgView.addSubview(visualEffectView)
             // FIXME: - 둥글기 설정을 위해서 view 에 추가. 그러면 backgroundImageView blur 안됨.
 //            tasteViews[index].addSubview(visualEffectView)
 //            tasteViews[index].layer.masksToBounds = true

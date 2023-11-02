@@ -86,6 +86,9 @@ class CardDetailViewController: UIViewController {
     private var isShareable: Bool = false
     private var isFront = true
     private var receivedTags: [ReceivedTag]?
+    private var editingAdjectiveTagText: String?
+    private var editingNounTagText: String?
+    
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {

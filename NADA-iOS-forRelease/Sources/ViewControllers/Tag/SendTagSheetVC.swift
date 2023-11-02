@@ -153,11 +153,6 @@ class SendTagSheetVC: UIViewController {
             adjectiveTextField.becomeFirstResponder()
             keyboardOn = true
         }
-        
-        if let selectedItem {
-            collectionView.selectItem(at: IndexPath(item: selectedItem, section: 0), animated: false, scrollPosition: .left)
-            collectionView(collectionView, didSelectItemAt: IndexPath(item: selectedItem, section: 0))
-        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -388,8 +383,8 @@ extension SendTagSheetVC {
                     DispatchQueue.main.async {
                         self?.collectionView.reloadData()
                         
-                        self?.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .left)
-                        self?.collectionView(self?.collectionView ?? UICollectionView(), didSelectItemAt: IndexPath(item: 0, section: 0))
+                        self?.collectionView.selectItem(at: IndexPath(item: self?.selectedItem ?? 0, section: 0), animated: false, scrollPosition: .left)
+                        self?.collectionView(self?.collectionView ?? UICollectionView(), didSelectItemAt: IndexPath(item: self?.selectedItem ?? 0, section: 0))
                     }
                 }
             case .requestErr:

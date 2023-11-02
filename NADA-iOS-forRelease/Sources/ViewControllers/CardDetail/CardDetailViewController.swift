@@ -60,7 +60,7 @@ class CardDetailViewController: UIViewController {
         }
         
         tagSheet.setCardDataModel(cardDataModel)
-        tagSheet.setEditingTag(adjectiveText: editingAdjectiveTagText, nounText: editingNounTagText)
+        tagSheet.setEditingTag(adjectiveText: editingAdjectiveTagText, nounText: editingNounTagText, item: editingItem)
         tagSheet.modalPresentationStyle = .pageSheet
         
         present(tagSheet, animated: true)
@@ -89,6 +89,7 @@ class CardDetailViewController: UIViewController {
     private var receivedTags: [ReceivedTag]?
     private var editingAdjectiveTagText: String?
     private var editingNounTagText: String?
+    private var editingItem: Int = 0
     
     private let disposeBag = DisposeBag()
     

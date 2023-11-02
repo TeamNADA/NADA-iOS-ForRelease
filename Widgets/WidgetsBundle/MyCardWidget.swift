@@ -218,6 +218,7 @@ struct MyCardWidget: Widget {
         .configurationDisplayName("명함 위젯")
         .description("명함 이미지를 보여주고,\n내 명함으로 빠르게 접근합니다.")
         .supportedFamilies([.systemSmall])
+        .contentMarginsDisabled()
     }
 }
 

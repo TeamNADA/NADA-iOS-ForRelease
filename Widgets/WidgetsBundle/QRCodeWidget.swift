@@ -104,6 +104,7 @@ struct QRCodeWidget: Widget {
         .configurationDisplayName("QR Code 위젯")
         .description("QR Code 를 인식할 수 있도록 카메라로 빠르게 접근합니다.")
         .supportedFamilies(supportedFamilies)
+        .contentMarginsDisabled()
     }
 }
 

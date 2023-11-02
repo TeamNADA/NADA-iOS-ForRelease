@@ -23,7 +23,7 @@ class SendTagSheetVC: UIViewController {
     private var keyboardOn: Bool = false
     private var creationTagRequest: CreationTagRequest?
     private var mode: Mode = .edit
-    private var editingAjectiveTagText: String?
+    private var editingAdjectiveTagText: String?
     private var editingNounTagText: String?
     
     private let maxLength: Int = 7
@@ -54,7 +54,7 @@ class SendTagSheetVC: UIViewController {
         $0.layer.cornerRadius = 15
     }
     private let iconImageView = UIImageView()
-    private let adjectiveTextFiled = UITextField().then {
+    private let adjectiveTextField = UITextField().then {
         $0.textAlignment = .center
         $0.textColor = .white
         $0.font = .title02
@@ -62,7 +62,7 @@ class SendTagSheetVC: UIViewController {
         $0.attributedPlaceholder = NSAttributedString(string: "형용사", attributes: [.foregroundColor: UIColor.white.withAlphaComponent(0.3), .font: UIFont.title02])
         $0.returnKeyType = .done
     }
-    private let nounTextFiled = UITextField().then {
+    private let nounTextField = UITextField().then {
         $0.textAlignment = .center
         $0.textColor = .white
         $0.font = .title01
@@ -149,9 +149,24 @@ class SendTagSheetVC: UIViewController {
         super.viewWillAppear(animated)
     
         if !keyboardOn {
-            adjectiveTextFiled.becomeFirstResponder()
+            adjectiveTextField.becomeFirstResponder()
             keyboardOn = true
         }
+        
+        if let selectedItem {
+            collectionView.selectItem(at: IndexPath(item: selectedItem, section: 0), animated: false, scrollPosition: .left)
+            collectionView(collectionView, didSelectItemAt: IndexPath(item: selectedItem, section: 0))
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        let selectedItem = collectionView.indexPathsForSelectedItems?.map({ index in index.item })[0] ?? 0
+        NotificationCenter.default.post(name: .sendEditingTags,
+                                        object: ["editingAdjectiveTagText": editingAdjectiveTagText ?? "",
+                                                 "editingNounTagText": editingNounTagText ?? "",
+                                                 "selectedItem": selectedItem])
     }
 }
 
@@ -175,8 +190,8 @@ extension SendTagSheetVC {
         }.disposed(by: disposeBag)
         
         backButton.rx.tap.bind { [weak self] in
-            self?.adjectiveTextFiled.isUserInteractionEnabled = true
-            self?.nounTextFiled.isUserInteractionEnabled = true
+            self?.adjectiveTextField.isUserInteractionEnabled = true
+            self?.nounTextField.isUserInteractionEnabled = true
             self?.setEditUIWithAnimation()
         }.disposed(by: disposeBag)
         
@@ -194,13 +209,14 @@ extension SendTagSheetVC {
             }
         }.disposed(by: disposeBag)
         
-        adjectiveTextFiled.rx.text
+        adjectiveTextField.rx.text
             .orEmpty
             .distinctUntilChanged()
             .bind(with: self) { owner, text in
-                owner.countTextFieldText(text, owner.adjectiveTextFiled)
+                owner.countTextFieldText(text, owner.adjectiveTextField)
+                owner.editingAdjectiveTagText = text
                 
-                if !text.isEmpty && owner.nounTextFiled.hasText {
+                if !text.isEmpty && owner.nounTextField.hasText {
                     owner.nextButton.isUserInteractionEnabled = true
                     owner.nextButton.backgroundColor = .mainColorNadaMain
                     owner.nextButton.setTitleColor(.white, for: .normal)
@@ -211,13 +227,14 @@ extension SendTagSheetVC {
                 }
             }.disposed(by: disposeBag)
         
-        nounTextFiled.rx.text
+        nounTextField.rx.text
             .orEmpty
             .distinctUntilChanged()
             .bind(with: self) { owner, text in
-                owner.countTextFieldText(text, owner.nounTextFiled)
+                owner.countTextFieldText(text, owner.nounTextField)
+                owner.editingNounTagText = text
                 
-                if !text.isEmpty && owner.adjectiveTextFiled.hasText {
+                if !text.isEmpty && owner.adjectiveTextField.hasText {
                     owner.nextButton.isUserInteractionEnabled = true
                     owner.nextButton.backgroundColor = .mainColorNadaMain
                     owner.nextButton.setTitleColor(.white, for: .normal)
@@ -236,7 +253,7 @@ extension SendTagSheetVC {
     private func setEditUIWithAnimation() {
         subtitleLabel.text = "명함을 자유롭게 표현해 보세요"
         subtitleLabel.textColor = .mainColorButtonText
-        adjectiveTextFiled.becomeFirstResponder()
+        adjectiveTextField.becomeFirstResponder()
         
         colorView.snp.updateConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(41)
@@ -316,7 +333,7 @@ extension SendTagSheetVC {
         }
     }
     private func checkTag() {
-        if let adjectiveText = adjectiveTextFiled.text, let nounText = nounTextFiled.text,
+        if let adjectiveText = adjectiveTextField.text, let nounText = nounTextField.text,
            !adjectiveText.isEmpty, !nounText.isEmpty {
             if let items = collectionView.indexPathsForSelectedItems?.map({ index in index.item }) {
                 creationTagRequest = .init(adjective: adjectiveText, cardUUID: cardDataModel?.cardUUID ?? "", icon: tags[items[0]].icon, noun: nounText)
@@ -325,10 +342,10 @@ extension SendTagSheetVC {
                     self?.tagFilteringWithAPI(text: nounText) {
                         DispatchQueue.main.async {
                             self?.mode = .send
-                            self?.adjectiveTextFiled.resignFirstResponder()
-                            self?.nounTextFiled.resignFirstResponder()
-                            self?.adjectiveTextFiled.isUserInteractionEnabled = false
-                            self?.nounTextFiled.isUserInteractionEnabled = false
+                            self?.adjectiveTextField.resignFirstResponder()
+                            self?.nounTextField.resignFirstResponder()
+                            self?.adjectiveTextField.isUserInteractionEnabled = false
+                            self?.nounTextField.isUserInteractionEnabled = false
                             
                             self?.setSendUIWithAnimation()
                             
@@ -511,18 +528,18 @@ extension SendTagSheetVC {
             make.height.equalTo(54)
         }
         
-        colorView.addSubviews([iconImageView, adjectiveTextFiled, nounTextFiled])
+        colorView.addSubviews([iconImageView, adjectiveTextField, nounTextField])
         
         iconImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(9)
             make.centerX.equalToSuperview()
         }
-        adjectiveTextFiled.snp.makeConstraints { make in
+        adjectiveTextField.snp.makeConstraints { make in
             make.top.equalTo(iconImageView.snp.bottom).offset(17)
             make.left.right.equalToSuperview().inset(12.5)
         }
-        nounTextFiled.snp.makeConstraints { make in
-            make.top.equalTo(adjectiveTextFiled.snp.bottom).offset(8)
+        nounTextField.snp.makeConstraints { make in
+            make.top.equalTo(adjectiveTextField.snp.bottom).offset(8)
             make.left.right.equalToSuperview().inset(12.5)
         }
     }

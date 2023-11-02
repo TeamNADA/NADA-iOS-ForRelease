@@ -25,6 +25,7 @@ class SendTagSheetVC: UIViewController {
     private var mode: Mode = .edit
     private var editingAdjectiveTagText: String?
     private var editingNounTagText: String?
+    private var selectedItem: Int?
     
     private let maxLength: Int = 7
     private let disposeBag = DisposeBag()

@@ -89,18 +89,16 @@ extension BackCardCell {
             
             tasteViews[index].backgroundColor = .clear
             visualEffectView.effect = blurEffect
-            bgView.addSubview(visualEffectView)
-            // FIXME: - 둥글기 설정을 위해서 view 에 추가. 그러면 backgroundImageView blur 안됨.
-//            tasteViews[index].addSubview(visualEffectView)
-//            tasteViews[index].layer.masksToBounds = true
-            
-            // FIXME: - 둥글기 적용 안됨.
+
             if index % 2 == 0 {
                 visualEffectView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
             } else {
                 visualEffectView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
             }
             visualEffectView.layer.cornerRadius = 35 / 2
+            visualEffectView.layer.masksToBounds = true
+            
+            bgView.addSubview(visualEffectView)
         }
         
         for index in 0..<tasteLabels.count {
@@ -137,12 +135,7 @@ extension BackCardCell {
             
             tasteViews[index].backgroundColor = .clear
             visualEffectView.effect = blurEffect
-            bgView.addSubview(visualEffectView)
-            // FIXME: - 둥글기 설정을 위해서 view 에 추가. 그러면 backgroundImageView blur 안됨.
-//            tasteViews[index].addSubview(visualEffectView)
-//            tasteViews[index].layer.masksToBounds = true
-            
-            // FIXME: - 둥글기 적용 안됨.
+
             if index % 2 == 0 {
                 visualEffectView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
             } else {
@@ -150,6 +143,8 @@ extension BackCardCell {
             }
             visualEffectView.layer.cornerRadius = 35 / 2
             visualEffectView.layer.masksToBounds = true
+            
+            bgView.addSubview(visualEffectView)
         }
         
         for index in 0..<tasteLabels.count {

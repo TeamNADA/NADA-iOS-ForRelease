@@ -148,7 +148,15 @@ class SendTagSheetVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        IQKeyboardManager.shared.enable = false
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = false
+        IQKeyboardManager.shared.enableAutoToolbar = true
+    }
     
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        
         if !keyboardOn {
             adjectiveTextField.becomeFirstResponder()
             keyboardOn = true
@@ -173,8 +181,6 @@ extension SendTagSheetVC {
         view.backgroundColor = .background
         
         collectionView.backgroundColor = .background
-        
-        IQKeyboardManager.shared.shouldResignOnTouchOutside = false
         
         cardNameLabel.text = cardDataModel?.cardName ?? ""
         

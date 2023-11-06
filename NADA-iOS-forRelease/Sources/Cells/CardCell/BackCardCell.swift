@@ -73,6 +73,10 @@ extension BackCardCell {
             $0.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
             $0.layer.cornerRadius = 35 / 2
         }
+        
+        tasteViews.forEach {
+            $0.backgroundColor = .white
+        }
     }
     
     /// 명함 미리보기 시 사용.

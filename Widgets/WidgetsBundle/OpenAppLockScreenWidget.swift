@@ -45,10 +45,18 @@ struct OpenAppLockScreenEntryView: View {
     var body: some View {
         switch widgetFamily {
         case .accessoryCircular:
-            ZStack {
-                AccessoryWidgetBackground()
+            if #available(iOSApplicationExtension 17.0, *) {
                 Image("widgetLogoWhite")
                     .resizable()
+                    .containerBackground(for: .widget) {
+                        AccessoryWidgetBackground()
+                    }
+            } else {
+                ZStack {
+                    AccessoryWidgetBackground()
+                    Image("widgetLogoWhite")
+                        .resizable()
+                }
             }
         default:
             Image("widgetLogoWhite")

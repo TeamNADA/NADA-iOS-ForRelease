@@ -80,7 +80,6 @@ struct MyCardProvider: IntentTimelineProvider {
             }
         } else {
             // Configuration 로 부터 card 받지 못함.(=로그인 전 위젯 생성 시)
-            print("Configuration")
             let entry = MyCardEntry(date: entryDate, widgetCard: nil)
             entries = [entry]
             let timeline = Timeline(entries: entries, policy: .atEnd)
@@ -156,52 +155,94 @@ struct MyCardEntry: TimelineEntry {
     let widgetCard: WidgetCard?
 }
 
-struct MyCardEntryView: View {
-    var entry: MyCardProvider.Entry
-
+struct EmptyMyCardView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        if let widgetCard = entry.widgetCard {
-            ZStack {
-                Color.white
-                GeometryReader { proxy in
-                    HStack(spacing: 0) {
-                        Image(uiImage: widgetCard.backgroundImage)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: proxy.size.height * (92 / 152), height: proxy.size.height)
-                            .clipped()
-                        Color.backgroundColor(for: colorScheme)
-                    }
-                }
-                VStack {
-                    HStack {
-                        Text(widgetCard.title)
-                            .font(.cardName)
-                            .foregroundColor(.init(white: 1.0))
-                            .padding(EdgeInsets(top: 12, leading: 10, bottom: 0, trailing: 0))
-                            .lineLimit(1)
-                        Spacer()
-                        Image("logoNada")
-                            .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 10))
-                    }
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        Text(widgetCard.userName)
-                            .font(.userName)
-                            .foregroundColor(.userNameColor(for: colorScheme))
-                            .padding(EdgeInsets(top: 0, leading: 10, bottom: 11, trailing: 10))
-                            .lineLimit(1)
-                    }
+        ZStack {
+            Color.widgetBackgrounColor(for: colorScheme)
+            VStack(spacing: 4) {
+                Text("아직 내 명함이 없어요😥")
+                    .font(.textRegular05)
+                    .foregroundColor(.primaryColor(for: colorScheme))
+                HStack {
+                    Text("명함 만들러 가기")
+                        .font(.textRegular05)
+                        .foregroundColor(.primaryColor(for: colorScheme))
+                    Image("icnArrowForwardIos")
                 }
             }
-            .widgetURL(URL(string: "openMyCardWidget://?cardUUID=\(widgetCard.cardUUID)"))
+        }
+    }
+}
+
+struct MyCardView: View {
+    var widgetCard: WidgetCard
+    
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        ZStack {
+            Color.white
+            GeometryReader { proxy in
+                HStack(spacing: 0) {
+                    Image(uiImage: widgetCard.backgroundImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: proxy.size.height * (92 / 152), height: proxy.size.height)
+                        .clipped()
+                    Color.backgroundColor(for: colorScheme)
+                }
+            }
+            VStack {
+                HStack {
+                    Text(widgetCard.title)
+                        .font(.cardName)
+                        .foregroundColor(.init(white: 1.0))
+                        .padding(EdgeInsets(top: 12, leading: 10, bottom: 0, trailing: 0))
+                        .lineLimit(1)
+                    Spacer()
+                    Image("logoNada")
+                        .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 10))
+                }
+                Spacer()
+                HStack {
+                    Spacer()
+                    Text(widgetCard.userName)
+                        .font(.userName)
+                        .foregroundColor(.userNameColor(for: colorScheme))
+                        .padding(EdgeInsets(top: 0, leading: 10, bottom: 11, trailing: 10))
+                        .lineLimit(1)
+                }
+            }
+        }
+    }
+}
+
+struct MyCardEntryView: View {
+    var entry: MyCardProvider.Entry
+    
+    @Environment(\.colorScheme) var colorScheme
+
+    var body: some View {
+        if let widgetCard = entry.widgetCard {
+            if #available(iOSApplicationExtension 17.0, *) {
+                MyCardView(widgetCard: widgetCard)
+                .widgetURL(URL(string: "openMyCardWidget://?cardUUID=\(widgetCard.cardUUID)"))
+                .containerBackground(for: .widget) { }
+            } else {
+                MyCardView(widgetCard: widgetCard)
+                .widgetURL(URL(string: "openMyCardWidget://?cardUUID=\(widgetCard.cardUUID)"))
+            }
         } else {
-            Image("widgetEmpty")
-                .resizable()
-                .scaledToFill()
+            if #available(iOSApplicationExtension 17.0, *) {
+                EmptyMyCardView()
+                .containerBackground(for: .widget) {
+                    Color.widgetBackgrounColor(for: colorScheme)
+                }
+            } else {
+                EmptyMyCardView()
+            }
         }
     }
 }
@@ -218,6 +259,7 @@ struct MyCardWidget: Widget {
         .configurationDisplayName("명함 위젯")
         .description("명함 이미지를 보여주고,\n내 명함으로 빠르게 접근합니다.")
         .supportedFamilies([.systemSmall])
+        .contentMarginsDisabled()
     }
 }
 
@@ -225,7 +267,7 @@ struct MyCardWidget_Previews: PreviewProvider {
     static var previews: some View {
         MyCardEntryView(entry: MyCardEntry(date: Date(), widgetCard: nil))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
-        MyCardEntryView(entry: MyCardEntry(date: Date(), widgetCard: WidgetCard(cardUUID: Card.mockData[0].cardUUID, title: Card.mockData[0].cardName, userName: Card.mockData[0].userName, backgroundImage: UIImage(named: Card.mockData[2].cardImage) ?? UIImage())))
+        MyCardEntryView(entry: MyCardEntry(date: Date(), widgetCard: WidgetCard(cardUUID: Card.mockData[0].cardUUID, title: Card.mockData[0].cardName, userName: Card.mockData[0].userName, backgroundImage: UIImage(named: Card.mockData[0].cardImage) ?? UIImage())))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

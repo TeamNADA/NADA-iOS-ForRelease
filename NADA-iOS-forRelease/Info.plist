@@ -237,7 +237,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<string>13</string>
 	<key>FirebaseAutomaticScreenReportingEnabled</key>
 	<false/>
 	<key>ITSAppUsesNonExemptEncryption</key>

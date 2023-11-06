@@ -48,7 +48,6 @@ class CardDetailViewController: UIViewController {
         let tagSheet = SendTagSheetVC()
         
         if #available(iOS 16.0, *) {
-            
             if let sheet = tagSheet.sheetPresentationController {
                 sheet.detents = [CustomDetent.sendTagDetent]
                 sheet.preferredCornerRadius = 30
@@ -59,7 +58,9 @@ class CardDetailViewController: UIViewController {
                 sheet.preferredCornerRadius = 30
             }
         }
+        
         tagSheet.setCardDataModel(cardDataModel)
+        tagSheet.setEditingTag(adjectiveText: editingAdjectiveTagText, nounText: editingNounTagText, item: editingItem)
         tagSheet.modalPresentationStyle = .pageSheet
         
         present(tagSheet, animated: true)
@@ -78,14 +79,18 @@ class CardDetailViewController: UIViewController {
     @IBOutlet weak var tagCollectionView: UICollectionView!
     
     public var cardDataModel: Card?
-    private var isShareable: Bool = false
+    public var status: Status = .group
+    public var serverGroups: [String]?
+    public var groupName: String?
+    public var cardType: String = ""
     
+    private var isShareable: Bool = false
     private var isFront = true
-    var status: Status = .group
-    var serverGroups: [String]?
-    var groupName: String?
-    var cardType: String = ""
     private var receivedTags: [ReceivedTag]?
+    private var editingAdjectiveTagText: String?
+    private var editingNounTagText: String?
+    private var editingItem: Int?
+    
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -250,6 +255,7 @@ extension CardDetailViewController {
     }
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(reloadReceivedTags), name: .completeSendTag, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setEditingTags), name: .sendEditingTags, object: nil)
     }
     
     // MARK: - @objc Methods
@@ -284,6 +290,22 @@ extension CardDetailViewController {
     @objc
     private func reloadReceivedTags() {
         receivedTagFetchWithAPI(cardUUID: cardDataModel?.cardUUID ?? "")
+    }
+    @objc
+    private func setEditingTags(_ notification: Notification) {
+        guard let tags = notification.object as? [String: Any] else { return }
+        
+        if let text = tags["editingAdjectiveTagText"] as? String {
+            editingAdjectiveTagText = text
+        }
+        
+        if let text = tags["editingNounTagText"] as? String {
+            editingNounTagText = text
+        }
+        
+        if let item = tags["selectedItem"] as? Int {
+            editingItem = item
+        }
     }
 }
 

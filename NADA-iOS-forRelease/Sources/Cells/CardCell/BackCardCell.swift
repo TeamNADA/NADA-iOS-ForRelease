@@ -88,7 +88,7 @@ extension BackCardCell {
         let cardTasteInfo: [CardTasteInfo] = cardTasteInfo.sorted { $0.sortOrder > $1.sortOrder }
         
         for index in 0..<tasteViews.count where !cardTasteInfo[index].isChoose {
-            let blurEffect = UIBlurEffect(style: .systemMaterialLight)
+            let blurEffect = UIBlurEffect(style: .extraLight)
             let visualEffectView = UIVisualEffectView(frame: tasteViews[index].frame)
             
             tasteViews[index].backgroundColor = .clear
@@ -134,7 +134,7 @@ extension BackCardCell {
         let cardTasteInfo: [CardTasteInfo] = cardTasteInfo.sorted { $0.sortOrder > $1.sortOrder }
         
         for index in 0..<tasteViews.count where !cardTasteInfo[index].isChoose {
-            let blurEffect = UIBlurEffect(style: .systemMaterialLight)
+            let blurEffect = UIBlurEffect(style: .extraLight)
             let visualEffectView = UIVisualEffectView(frame: tasteViews[index].frame)
             
             tasteViews[index].backgroundColor = .clear

@@ -102,7 +102,7 @@ extension BackCardCell {
             visualEffectView.layer.cornerRadius = 35 / 2
             visualEffectView.layer.masksToBounds = true
             
-            bgView.addSubview(visualEffectView)
+            backgroundImageView.addSubview(visualEffectView)
         }
         
         for index in 0..<tasteLabels.count {
@@ -148,7 +148,7 @@ extension BackCardCell {
             visualEffectView.layer.cornerRadius = 35 / 2
             visualEffectView.layer.masksToBounds = true
             
-            bgView.addSubview(visualEffectView)
+            backgroundImageView.addSubview(visualEffectView)
         }
         
         for index in 0..<tasteLabels.count {

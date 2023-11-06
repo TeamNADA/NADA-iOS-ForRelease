@@ -35,6 +35,7 @@ class MainCardCell: CardCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
+        isFront = true
         contentView.subviews.forEach { $0.removeFromSuperview() }
         contentView.frame = CGRect(x: 0, y: 0, width: Size.cellWidth, height: Size.cellHeight)
     }

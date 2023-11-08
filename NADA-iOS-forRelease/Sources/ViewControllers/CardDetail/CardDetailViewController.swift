@@ -93,6 +93,10 @@ class CardDetailViewController: UIViewController {
         $0.font = .textRegular05
         $0.numberOfLines = 0
     }
+    private let emptyView = UIImageView(image: UIImage(named: "imgSendTagEmpty")).then {
+        $0.isHidden = true
+        $0.contentMode = .scaleAspectFit
+    }
     
     public var cardDataModel: Card?
     public var status: Status = .group
@@ -166,7 +170,7 @@ extension CardDetailViewController {
     private func setLayout() {
         helpView.addSubview(helpTextView)
         helpDimmedView.addSubview(helpView)
-        view.addSubviews([helpDimmedView])
+        view.addSubviews([helpDimmedView, emptyView])
         
         helpDimmedView.snp.makeConstraints { make in
             make.top.leading.trailing.bottom.equalTo(view)
@@ -180,6 +184,9 @@ extension CardDetailViewController {
             make.centerX.centerY.equalToSuperview()
             make.top.equalToSuperview().offset(10)
             make.leading.equalToSuperview().inset(10)
+        }
+        emptyView.snp.makeConstraints { make in
+            make.top.leading.trailing.bottom.equalTo(tagCollectionView)
         }
     }
     
@@ -414,6 +421,11 @@ extension CardDetailViewController {
                     owner.receivedTags = data
                     owner.tagCollectionView.reloadData()
                     owner.scrollView.layoutIfNeeded()
+                    if data.isEmpty {
+                        self.emptyView.isHidden = false
+                    } else {
+                        self.emptyView.isHidden = true
+                    }
 //                    self.backView.layoutIfNeeded()
 //                    self.scrollView.updateContentSize()
                 }

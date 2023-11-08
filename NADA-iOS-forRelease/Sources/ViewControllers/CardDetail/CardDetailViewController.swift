@@ -158,6 +158,7 @@ extension CardDetailViewController {
             return
         }
         tagCollectionView.isScrollEnabled = false
+        tagCollectionView.allowsSelection = false
         idLabel.text = cardDataModel?.cardUUID
         receiveTitleLabel.font = .title02
         sendButton.titleLabel?.font = .textBold02

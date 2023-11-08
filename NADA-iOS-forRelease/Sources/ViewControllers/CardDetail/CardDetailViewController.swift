@@ -135,7 +135,6 @@ extension CardDetailViewController {
         case .detail:
             return
         }
-        idStackView.isHidden = true
         idLabel.text = cardDataModel?.cardUUID
         receiveTitleLabel.font = .title02
         sendButton.titleLabel?.font = .textBold02

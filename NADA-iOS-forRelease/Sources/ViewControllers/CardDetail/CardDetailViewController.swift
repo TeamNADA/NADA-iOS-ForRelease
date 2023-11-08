@@ -44,7 +44,6 @@ class CardDetailViewController: UIViewController {
     
     @IBAction func touchHelpButton(_ sender: UIButton) {
         helpDimmedView.isHidden.toggle()
-        tagHelpFetchWithAPI()
     }
     
     @IBAction func touchSendButton(_ sender: UIButton) {
@@ -90,8 +89,9 @@ class CardDetailViewController: UIViewController {
         $0.borderWidth = 1
         $0.borderColor = .button
     }
-    private var helpTextView = UITextView().then {
+    private var helpTextView = UILabel().then {
         $0.font = .textRegular05
+        $0.numberOfLines = 0
     }
     
     public var cardDataModel: Card?
@@ -119,6 +119,7 @@ class CardDetailViewController: UIViewController {
         setRegister()
         setDelegate()
         receivedTagFetchWithAPI(cardUUID: cardDataModel?.cardUUID ?? "")
+        tagHelpFetchWithAPI()
         setNotification()
     }
 
@@ -435,8 +436,10 @@ extension CardDetailViewController {
         CardAPI.shared.tagHelpFetch { response in
             switch response {
             case .success(let data):
-                print("tagHelpFetchWithAPI - success")
-                print(data)
+                if let help = data as? String {
+                    self.helpTextView.text = help
+                    self.helpTextView.setNeedsDisplay()
+                }
             case .requestErr(let message):
                 print("tagHelpFetchWithAPI - requestErr: \(message)")
             case .pathErr:

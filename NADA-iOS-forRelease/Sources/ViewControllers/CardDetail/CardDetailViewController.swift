@@ -44,6 +44,7 @@ class CardDetailViewController: UIViewController {
     
     @IBAction func touchHelpButton(_ sender: UIButton) {
         helpDimmedView.isHidden.toggle()
+        tagHelpFetchWithAPI()
     }
     
     @IBAction func touchSendButton(_ sender: UIButton) {
@@ -428,6 +429,25 @@ extension CardDetailViewController {
             print("deleteTagWithAPI - error : \(error)")
         })
         .disposed(by: disposeBag)
+    }
+    
+    private func tagHelpFetchWithAPI() {
+        CardAPI.shared.tagHelpFetch { response in
+            switch response {
+            case .success(let data):
+                print("tagHelpFetchWithAPI - success")
+                print(data)
+            case .requestErr(let message):
+                print("tagHelpFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("tagHelpFetchWithAPI - pathErr")
+            case .serverErr:
+                print("tagHelpFetchWithAPI - serverErr")
+            case .networkFail:
+                print("tagHelpFetchWithAPI - networkFail")
+            }
+            
+        }
     }
 }
 

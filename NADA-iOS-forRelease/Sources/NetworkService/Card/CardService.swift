@@ -17,6 +17,7 @@ enum CardService {
     case cardDelete(cardID: Int)
     case imageUpload(image: UIImage)
     case tasteFetch(cardType: CardType)
+    case tagHelpFetch
 }
 
 extension CardService: TargetType {
@@ -43,12 +44,14 @@ extension CardService: TargetType {
             return "/v1/image"
         case .tasteFetch(let cardType):
             return "/v2/card/\(cardType.rawValue)/taste"
+        case .tagHelpFetch:
+            return "/v1/card/tag/help"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .cardDetailFetch, .cardListPageFetch, .cardListFetch, .tasteFetch:
+        case .cardDetailFetch, .cardListPageFetch, .cardListFetch, .tasteFetch, .tagHelpFetch:
             return .get
         case .cardCreation(_, let creationType, _):
             switch creationType {
@@ -70,7 +73,7 @@ extension CardService: TargetType {
     
     var task: Task {
         switch self {
-        case .cardDetailFetch, .cardDelete, .tasteFetch, .cardListFetch:
+        case .cardDetailFetch, .cardDelete, .tasteFetch, .cardListFetch, .tagHelpFetch:
             return .requestPlain
         case .cardCreation(let request, let creationType, let cardUUID):
             var parameters: [String: Any] = ["birth": request.frontCard.birth,
@@ -138,7 +141,7 @@ extension CardService: TargetType {
         switch self {
         case .cardDetailFetch, .cardListPageFetch, .cardListFetch, .cardDelete, .tasteFetch:
             return Const.Header.bearerHeader()
-        case .cardReorder, .cardCreation:
+        case .cardReorder, .cardCreation, .tagHelpFetch:
             return Const.Header.basicHeader()
         case .imageUpload:
             return Const.Header.multipartFormHeader()

@@ -9,6 +9,8 @@ import UIKit
 
 import FirebaseAnalytics
 import RxSwift
+import SnapKit
+import Then
 
 class CardDetailViewController: UIViewController {
     
@@ -41,7 +43,7 @@ class CardDetailViewController: UIViewController {
     }
     
     @IBAction func touchHelpButton(_ sender: UIButton) {
-        print("help help")
+        helpDimmedView.isHidden.toggle()
     }
     
     @IBAction func touchSendButton(_ sender: UIButton) {
@@ -78,6 +80,19 @@ class CardDetailViewController: UIViewController {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var tagCollectionView: UICollectionView!
     
+    private var helpDimmedView = UIView().then {
+        $0.backgroundColor = .black.withAlphaComponent(0.4)
+    }
+    private var helpView = UIView().then {
+        $0.backgroundColor = .card
+        $0.layer.cornerRadius = 5
+        $0.borderWidth = 1
+        $0.borderColor = .button
+    }
+    private var helpTextView = UITextView().then {
+        $0.font = .textRegular05
+    }
+    
     public var cardDataModel: Card?
     public var status: Status = .group
     public var serverGroups: [String]?
@@ -96,6 +111,7 @@ class CardDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        setLayout()
         setMenu()
         setFrontCard()
         setGestureRecognizer()
@@ -139,6 +155,30 @@ extension CardDetailViewController {
         idLabel.text = cardDataModel?.cardUUID
         receiveTitleLabel.font = .title02
         sendButton.titleLabel?.font = .textBold02
+        helpDimmedView.isHidden = true
+        
+        let dimmedTap = UITapGestureRecognizer(target: self, action: #selector(helpDimmedViewTapped))
+        helpDimmedView.addGestureRecognizer(dimmedTap)
+        helpDimmedView.isUserInteractionEnabled = true
+    }
+    private func setLayout() {
+        helpView.addSubview(helpTextView)
+        helpDimmedView.addSubview(helpView)
+        view.addSubviews([helpDimmedView])
+        
+        helpDimmedView.snp.makeConstraints { make in
+            make.top.leading.bottom.trailing.equalTo(scrollView)
+        }
+        helpView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(receiveTitleLabel.snp.bottom).offset(6)
+            make.leading.equalToSuperview().inset(24)
+        }
+        helpTextView.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.top.equalToSuperview().offset(10)
+            make.leading.equalToSuperview().inset(10)
+        }
     }
     
     private func setDelegate() {
@@ -290,6 +330,10 @@ extension CardDetailViewController {
     @objc
     private func reloadReceivedTags() {
         receivedTagFetchWithAPI(cardUUID: cardDataModel?.cardUUID ?? "")
+    }
+    @objc
+    private func helpDimmedViewTapped() {
+        helpDimmedView.isHidden = true
     }
     @objc
     private func setEditingTags(_ notification: Notification) {

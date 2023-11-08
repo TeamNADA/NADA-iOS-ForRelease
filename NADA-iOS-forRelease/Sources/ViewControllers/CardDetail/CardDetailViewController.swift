@@ -167,7 +167,7 @@ extension CardDetailViewController {
         view.addSubviews([helpDimmedView])
         
         helpDimmedView.snp.makeConstraints { make in
-            make.top.leading.bottom.trailing.equalTo(scrollView)
+            make.top.leading.trailing.bottom.equalTo(view)
         }
         helpView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()

@@ -139,6 +139,21 @@ public class CardAPI {
         }
     }
     
+    func tagHelpFetch(completion: @escaping (NetworkResult<Any>) -> Void) {
+        cardProvider.request(.tagHelpFetch) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data: data, type: String.self)
+                
+                completion(networkResult)
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
     // MARK: - JudgeStatus methods
     
     private func judgeStatus<T: Codable>(by statusCode: Int, data: Data, type: T.Type) -> NetworkResult<Any> {

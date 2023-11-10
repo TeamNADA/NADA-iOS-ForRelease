@@ -9,6 +9,8 @@ import UIKit
 
 import FirebaseAnalytics
 import RxSwift
+import SnapKit
+import Then
 
 class CardDetailViewController: UIViewController {
     
@@ -41,7 +43,7 @@ class CardDetailViewController: UIViewController {
     }
     
     @IBAction func touchHelpButton(_ sender: UIButton) {
-        print("help help")
+        helpDimmedView.isHidden.toggle()
     }
     
     @IBAction func touchSendButton(_ sender: UIButton) {
@@ -78,6 +80,24 @@ class CardDetailViewController: UIViewController {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var tagCollectionView: UICollectionView!
     
+    private var helpDimmedView = UIView().then {
+        $0.backgroundColor = .black.withAlphaComponent(0.4)
+    }
+    private var helpView = UIView().then {
+        $0.backgroundColor = .card
+        $0.layer.cornerRadius = 5
+        $0.borderWidth = 1
+        $0.borderColor = .button
+    }
+    private var helpTextView = UILabel().then {
+        $0.font = .textRegular05
+        $0.numberOfLines = 0
+    }
+    private let emptyView = UIImageView(image: UIImage(named: "imgSendTagEmpty")).then {
+        $0.isHidden = true
+        $0.contentMode = .scaleAspectFit
+    }
+    
     public var cardDataModel: Card?
     public var status: Status = .group
     public var serverGroups: [String]?
@@ -96,12 +116,14 @@ class CardDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        setLayout()
         setMenu()
         setFrontCard()
         setGestureRecognizer()
         setRegister()
         setDelegate()
         receivedTagFetchWithAPI(cardUUID: cardDataModel?.cardUUID ?? "")
+        tagHelpFetchWithAPI()
         setNotification()
     }
 
@@ -135,10 +157,38 @@ extension CardDetailViewController {
         case .detail:
             return
         }
-        idStackView.isHidden = true
+        tagCollectionView.isScrollEnabled = false
+        tagCollectionView.allowsSelection = false
         idLabel.text = cardDataModel?.cardUUID
         receiveTitleLabel.font = .title02
         sendButton.titleLabel?.font = .textBold02
+        helpDimmedView.isHidden = true
+        
+        let dimmedTap = UITapGestureRecognizer(target: self, action: #selector(helpDimmedViewTapped))
+        helpDimmedView.addGestureRecognizer(dimmedTap)
+        helpDimmedView.isUserInteractionEnabled = true
+    }
+    private func setLayout() {
+        helpView.addSubview(helpTextView)
+        helpDimmedView.addSubview(helpView)
+        view.addSubviews([helpDimmedView, emptyView])
+        
+        helpDimmedView.snp.makeConstraints { make in
+            make.top.leading.trailing.bottom.equalTo(view)
+        }
+        helpView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(receiveTitleLabel.snp.bottom).offset(6)
+            make.leading.equalToSuperview().inset(24)
+        }
+        helpTextView.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.top.equalToSuperview().offset(10)
+            make.leading.equalToSuperview().inset(10)
+        }
+        emptyView.snp.makeConstraints { make in
+            make.top.leading.trailing.bottom.equalTo(tagCollectionView)
+        }
     }
     
     private func setDelegate() {
@@ -292,6 +342,10 @@ extension CardDetailViewController {
         receivedTagFetchWithAPI(cardUUID: cardDataModel?.cardUUID ?? "")
     }
     @objc
+    private func helpDimmedViewTapped() {
+        helpDimmedView.isHidden = true
+    }
+    @objc
     private func setEditingTags(_ notification: Notification) {
         guard let tags = notification.object as? [String: Any] else { return }
         
@@ -368,6 +422,11 @@ extension CardDetailViewController {
                     owner.receivedTags = data
                     owner.tagCollectionView.reloadData()
                     owner.scrollView.layoutIfNeeded()
+                    if data.isEmpty {
+                        self.emptyView.isHidden = false
+                    } else {
+                        self.emptyView.isHidden = true
+                    }
 //                    self.backView.layoutIfNeeded()
 //                    self.scrollView.updateContentSize()
                 }
@@ -384,6 +443,27 @@ extension CardDetailViewController {
             print("deleteTagWithAPI - error : \(error)")
         })
         .disposed(by: disposeBag)
+    }
+    
+    private func tagHelpFetchWithAPI() {
+        CardAPI.shared.tagHelpFetch { response in
+            switch response {
+            case .success(let data):
+                if let help = data as? String {
+                    self.helpTextView.text = help
+                    self.helpTextView.setNeedsDisplay()
+                }
+            case .requestErr(let message):
+                print("tagHelpFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("tagHelpFetchWithAPI - pathErr")
+            case .serverErr:
+                print("tagHelpFetchWithAPI - serverErr")
+            case .networkFail:
+                print("tagHelpFetchWithAPI - networkFail")
+            }
+            
+        }
     }
 }
 

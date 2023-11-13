@@ -42,7 +42,7 @@ class FetchTagSheetVC: UIViewController {
         $0.showsVerticalScrollIndicator = false
         $0.allowsMultipleSelection = true
     }
-    private let emptyView = UIImageView(image: UIImage(named: "imgSendTagEmpty")).then {
+    private let emptyView = UIImageView(image: UIImage(named: "imgTagEmptyView")).then {
         $0.isHidden = true
     }
     

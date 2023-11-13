@@ -24,6 +24,7 @@ class BackCardCell: CardCell {
     @IBOutlet var rightTasteViews: [UIView]!
     @IBOutlet var tasteViews: [UIView]!
     @IBOutlet var tasteLabels: [UILabel]!
+    @IBOutlet var heartImageViews: [UIImageView]!
     @IBOutlet weak var tmiTitleLabel: UILabel!
     @IBOutlet weak var tmiLabel: UILabel!
     @IBOutlet weak var tagButton: UIButton!
@@ -149,6 +150,8 @@ extension BackCardCell {
             visualEffectView.layer.masksToBounds = true
             
             backgroundImageView.addSubview(visualEffectView)
+            
+            heartImageViews[index].isHidden = true
         }
         
         for index in 0..<tasteLabels.count {

@@ -151,7 +151,6 @@ class SendTagSheetVC: UIViewController {
         
         IQKeyboardManager.shared.enable = false
         IQKeyboardManager.shared.shouldResignOnTouchOutside = false
-        IQKeyboardManager.shared.enableAutoToolbar = true
     }
     
     override func viewIsAppearing(_ animated: Bool) {

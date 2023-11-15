@@ -427,16 +427,17 @@ extension CardDetailViewController {
                 
                 if let data = response.data {
                     owner.receivedTags = data
-                    owner.tagCollectionView.reloadData()
-                    owner.scrollView.refreshControl?.endRefreshing()
-                    owner.scrollView.layoutIfNeeded()
                     if data.isEmpty {
                         self.emptyView.isHidden = false
                     } else {
                         self.emptyView.isHidden = true
                     }
-//                    self.backView.layoutIfNeeded()
-//                    self.scrollView.updateContentSize()
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                    owner.tagCollectionView.reloadData()
+                    owner.scrollView.refreshControl?.endRefreshing()
+                    owner.scrollView.layoutIfNeeded()
                 }
             case .requestErr:
                 print("receivedTagFetchWithAPI - requestErr")

@@ -167,6 +167,9 @@ extension CardDetailViewController {
         let dimmedTap = UITapGestureRecognizer(target: self, action: #selector(helpDimmedViewTapped))
         helpDimmedView.addGestureRecognizer(dimmedTap)
         helpDimmedView.isUserInteractionEnabled = true
+        
+        scrollView.refreshControl = UIRefreshControl()
+        scrollView.refreshControl?.addTarget(self, action: #selector(pullToRefresh(_:)), for: .valueChanged)
     }
     private func setLayout() {
         helpView.addSubview(helpTextView)
@@ -361,6 +364,10 @@ extension CardDetailViewController {
             editingItem = item
         }
     }
+    @objc
+    private func pullToRefresh(_ sender: Any) {
+        receivedTagFetchWithAPI(cardUUID: cardDataModel?.cardUUID ?? "")
+    }
 }
 
 // MARK: - Network
@@ -421,6 +428,7 @@ extension CardDetailViewController {
                 if let data = response.data {
                     owner.receivedTags = data
                     owner.tagCollectionView.reloadData()
+                    owner.scrollView.refreshControl?.endRefreshing()
                     owner.scrollView.layoutIfNeeded()
                     if data.isEmpty {
                         self.emptyView.isHidden = false

@@ -138,7 +138,7 @@
                                             </button>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yy9-XM-5Du">
                                                 <rect key="frame" x="24" y="783.66666666666652" width="327" height="716.33333333333348"/>
-                                                <color key="backgroundColor" name="AccentColor"/>
+                                                <color key="backgroundColor" name="background"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PqA-Jt-42i">
                                                     <size key="itemSize" width="128" height="128"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -168,7 +168,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" name="harmonyGreen"/>
+                                        <color key="backgroundColor" name="background"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="yy9-XM-5Du" secondAttribute="bottom" id="8Ui-ah-S5t"/>
                                             <constraint firstItem="0P6-1k-dQm" firstAttribute="top" secondItem="lcZ-YD-xcC" secondAttribute="top" constant="20" id="9PO-Qa-LgX"/>
@@ -242,17 +242,11 @@
         <image name="icnInformation" width="16" height="16"/>
         <image name="iconArrow" width="24" height="24"/>
         <image name="iconOption" width="24" height="24"/>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="background">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="card">
             <color red="0.96470588235294119" green="0.96862745098039216" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="harmonyGreen">
-            <color red="0.43137254901960786" green="0.94117647058823528" blue="0.65098039215686276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="primary">
             <color red="0.074509803921568626" green="0.078431372549019607" blue="0.086274509803921567" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

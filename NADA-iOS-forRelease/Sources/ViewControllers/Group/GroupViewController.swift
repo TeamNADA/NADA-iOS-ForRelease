@@ -290,8 +290,9 @@ extension GroupViewController: UICollectionViewDelegate {
                 if isInfiniteScroll {
                     isInfiniteScroll = false
                     offset += 1
+                    print("🔥offset: ", offset)
                     cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(pageNo: offset,
-                                                                                          pageSize: 10,
+                                                                                          pageSize: 12,
                                                                                           groupName: serverGroups?[self.selectedRow] ?? "")) {
                         self.isInfiniteScroll = true
                     }
@@ -379,9 +380,8 @@ extension GroupViewController: UICollectionViewDataSource {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.cardListInGroupWithAPI(cardListInGroupRequest:
-                                                CardListInGroupRequest(pageNo: 1, pageSize: 10, groupName: self.groupName)) {
+                                                CardListInGroupRequest(pageNo: 1, pageSize: 6, groupName: self.groupName))
                     self.isInfiniteScroll = true
-                }
             }
         case cardsCollectionView:
             Analytics.logEvent(Tracking.Event.touchGroupCard + String(indexPath.row+1), parameters: nil)

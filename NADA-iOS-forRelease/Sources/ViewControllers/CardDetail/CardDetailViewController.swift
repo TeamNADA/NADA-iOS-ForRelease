@@ -97,7 +97,6 @@ class CardDetailViewController: UIViewController {
     private let emptyView = UIImageView(image: UIImage(named: "imgSendTagEmpty")).then {
         $0.isHidden = true
         $0.contentMode = .scaleAspectFit
-        $0.backgroundColor = .systemPink
     }
     
     public var cardDataModel: Card?
@@ -431,10 +430,9 @@ extension CardDetailViewController {
                         owner.backViewHeight.constant = CGFloat(790 + 281)
                     } else {
                         self.emptyView.isHidden = true
-                        owner.backViewHeight.constant = CGFloat(790 + (data.count * 60) + 21)
+                        owner.backViewHeight.constant = CGFloat(790 + (data.count * 60) + 20)
                     }
                     owner.backView.layoutIfNeeded()
-                    owner.scrollView.layoutIfNeeded()
                 }
             case .requestErr:
                 print("receivedTagFetchWithAPI - requestErr")

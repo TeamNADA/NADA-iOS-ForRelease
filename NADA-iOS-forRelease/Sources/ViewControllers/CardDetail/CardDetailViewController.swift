@@ -79,6 +79,7 @@ class CardDetailViewController: UIViewController {
     @IBOutlet weak var receiveTitleLabel: UILabel!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var tagCollectionView: UICollectionView!
+    @IBOutlet weak var backViewHeight: NSLayoutConstraint!
     
     private var helpDimmedView = UIView().then {
         $0.backgroundColor = .black.withAlphaComponent(0.4)
@@ -96,6 +97,7 @@ class CardDetailViewController: UIViewController {
     private let emptyView = UIImageView(image: UIImage(named: "imgSendTagEmpty")).then {
         $0.isHidden = true
         $0.contentMode = .scaleAspectFit
+        $0.backgroundColor = .systemPink
     }
     
     public var cardDataModel: Card?
@@ -171,7 +173,7 @@ extension CardDetailViewController {
     private func setLayout() {
         helpView.addSubview(helpTextView)
         helpDimmedView.addSubview(helpView)
-        view.addSubviews([helpDimmedView, emptyView])
+        backView.addSubviews([helpDimmedView, emptyView])
         
         helpDimmedView.snp.makeConstraints { make in
             make.top.leading.trailing.bottom.equalTo(view)
@@ -187,7 +189,10 @@ extension CardDetailViewController {
             make.leading.equalToSuperview().inset(10)
         }
         emptyView.snp.makeConstraints { make in
-            make.top.leading.trailing.bottom.equalTo(tagCollectionView)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(receiveTitleLabel.snp.bottom).offset(37)
+            make.leading.equalToSuperview().inset(105)
+            make.bottom.equalToSuperview().inset(20)
         }
     }
     
@@ -421,14 +426,15 @@ extension CardDetailViewController {
                 if let data = response.data {
                     owner.receivedTags = data
                     owner.tagCollectionView.reloadData()
-                    owner.scrollView.layoutIfNeeded()
                     if data.isEmpty {
                         self.emptyView.isHidden = false
+                        owner.backViewHeight.constant = CGFloat(790 + 281)
                     } else {
                         self.emptyView.isHidden = true
+                        owner.backViewHeight.constant = CGFloat(790 + (data.count * 60) + 21)
                     }
-//                    self.backView.layoutIfNeeded()
-//                    self.scrollView.updateContentSize()
+                    owner.backView.layoutIfNeeded()
+                    owner.scrollView.layoutIfNeeded()
                 }
             case .requestErr:
                 print("receivedTagFetchWithAPI - requestErr")
@@ -483,7 +489,7 @@ extension CardDetailViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        return UIEdgeInsets(top: 0, left: 0, bottom: 55, right: 0)
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 }
 
@@ -517,25 +523,4 @@ extension CardDetailViewController: UICollectionViewDataSource {
 
 extension CardDetailViewController: UICollectionViewDelegate {
     
-}
-
-extension UIScrollView {
-    func updateContentSize() {
-        let unionCalculatedTotalRect = recursiveUnionInDepthFor(view: self)
-        
-        // 계산된 크기로 컨텐츠 사이즈 설정
-        self.contentSize = CGSize(width: self.frame.width, height: unionCalculatedTotalRect.height)
-    }
-    
-    private func recursiveUnionInDepthFor(view: UIView) -> CGRect {
-        var totalRect: CGRect = .zero
-        
-        // 모든 자식 View의 컨트롤의 크기를 재귀적으로 호출하며 최종 영역의 크기를 설정
-        for subView in view.subviews {
-            totalRect = totalRect.union(recursiveUnionInDepthFor(view: subView))
-        }
-        
-        // 최종 계산 영역의 크기를 반환
-        return totalRect.union(view.frame)
-    }
 }

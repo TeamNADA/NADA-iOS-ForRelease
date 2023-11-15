@@ -151,7 +151,6 @@ class SendTagSheetVC: UIViewController {
         
         IQKeyboardManager.shared.enable = false
         IQKeyboardManager.shared.shouldResignOnTouchOutside = false
-        IQKeyboardManager.shared.enableAutoToolbar = true
     }
     
     override func viewIsAppearing(_ animated: Bool) {
@@ -161,6 +160,12 @@ class SendTagSheetVC: UIViewController {
             adjectiveTextField.becomeFirstResponder()
             keyboardOn = true
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        IQKeyboardManager.shared.enable = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {

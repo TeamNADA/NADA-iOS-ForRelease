@@ -170,6 +170,7 @@ extension CardDetailViewController {
         
         scrollView.refreshControl = UIRefreshControl()
         scrollView.refreshControl?.addTarget(self, action: #selector(pullToRefresh(_:)), for: .valueChanged)
+        scrollView.refreshControl?.tintColor = .mainColorNadaMain
     }
     private func setLayout() {
         helpView.addSubview(helpTextView)

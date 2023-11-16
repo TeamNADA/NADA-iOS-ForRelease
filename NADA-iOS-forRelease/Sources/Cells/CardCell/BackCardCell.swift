@@ -16,15 +16,15 @@ class BackCardCell: CardCell {
 //    private var cardData: Card?
     private var cardUUID: String?
     private var heartImageViews: [UIImageView] = []
+    private var leftViews: [UIView] = []
+    private var rightViews: [UIView] = []
+    private var tasteViews: [UIView] = []
     private var blurViews: [UIVisualEffectView] = []
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var tasteTitleLabel: UILabel!
-    @IBOutlet var leftTasteViews: [UIView]!
-    @IBOutlet var rightTasteViews: [UIView]!
-    @IBOutlet var tasteViews: [UIView]!
     @IBOutlet var tasteLabels: [UILabel]!
     @IBOutlet weak var tmiTitleLabel: UILabel!
     @IBOutlet weak var tmiLabel: UILabel!
@@ -38,6 +38,25 @@ class BackCardCell: CardCell {
     @IBOutlet weak var rightThirdBlurView: UIVisualEffectView!
     @IBOutlet weak var leftFourthBlurView: UIVisualEffectView!
     @IBOutlet weak var rightFourthBlurView: UIVisualEffectView!
+
+    @IBOutlet weak var leftFirstView: UIView!
+    @IBOutlet weak var rightFirstView: UIView!
+    @IBOutlet weak var leftSecondView: UIView!
+    @IBOutlet weak var rightSecondView: UIView!
+    @IBOutlet weak var leftThirdView: UIView!
+    @IBOutlet weak var rightThirdView: UIView!
+    @IBOutlet weak var leftFourthView: UIView!
+    @IBOutlet weak var rightFourthView: UIView!
+    
+    @IBOutlet weak var leftFirstHeartImageView: UIImageView!
+    @IBOutlet weak var rightFirstHeartImageView: UIImageView!
+    @IBOutlet weak var leftSecondHeartImageView: UIImageView!
+    @IBOutlet weak var rightSecondHeartImageView: UIImageView!
+    @IBOutlet weak var leftThirdHeartImageView: UIImageView!
+    @IBOutlet weak var rightThirdHeartImageView: UIImageView!
+    @IBOutlet weak var leftFourthHeartImageView: UIImageView!
+    @IBOutlet weak var rightFourthHeartImageView: UIImageView!
+    
     // MARK: - View Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -74,7 +93,14 @@ extension BackCardCell {
         tmiLabel.textColor = .white
         tmiLabel.numberOfLines = 0
         
-        leftTasteViews.forEach {
+        leftViews = [leftFirstView, leftSecondView, leftThirdView, leftFourthView]
+        
+        rightViews = [rightFirstView, rightSecondView, rightThirdView, rightFourthView]
+        
+        tasteViews = [leftFirstView, rightFirstView,
+                      leftSecondView, rightSecondView,
+                      leftThirdView, rightThirdView,
+                      leftFourthView, rightFourthView]
         
         heartImageViews = [leftFirstHeartImageView, rightFirstHeartImageView,
                           leftSecondHeartImageView, rightSecondHeartImageView,
@@ -85,11 +111,13 @@ extension BackCardCell {
                      leftSecondBlurView, rightSecondBlurView,
                      leftThirdBlurView, rightThirdBlurView,
                      leftFourthBlurView, rightFourthBlurView]
+        
+        leftViews.forEach {
             $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
             $0.layer.cornerRadius = 35 / 2
         }
         
-        rightTasteViews.forEach {
+        rightViews.forEach {
             $0.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
             $0.layer.cornerRadius = 35 / 2
         }

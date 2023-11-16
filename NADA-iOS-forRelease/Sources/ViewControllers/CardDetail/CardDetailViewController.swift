@@ -168,6 +168,10 @@ extension CardDetailViewController {
         let dimmedTap = UITapGestureRecognizer(target: self, action: #selector(helpDimmedViewTapped))
         helpDimmedView.addGestureRecognizer(dimmedTap)
         helpDimmedView.isUserInteractionEnabled = true
+        
+        scrollView.refreshControl = UIRefreshControl()
+        scrollView.refreshControl?.addTarget(self, action: #selector(pullToRefresh(_:)), for: .valueChanged)
+        scrollView.refreshControl?.tintColor = .mainColorNadaMain
     }
     private func setLayout() {
         helpView.addSubview(helpTextView)
@@ -365,6 +369,10 @@ extension CardDetailViewController {
             editingItem = item
         }
     }
+    @objc
+    private func pullToRefresh(_ sender: Any) {
+        receivedTagFetchWithAPI(cardUUID: cardDataModel?.cardUUID ?? "")
+    }
 }
 
 // MARK: - Network
@@ -424,7 +432,6 @@ extension CardDetailViewController {
                 
                 if let data = response.data {
                     owner.receivedTags = data
-                    owner.tagCollectionView.reloadData()
                     if data.isEmpty {
                         self.emptyView.isHidden = false
                         owner.backViewHeight.constant = CGFloat(790 + 281)
@@ -433,6 +440,12 @@ extension CardDetailViewController {
                         owner.backViewHeight.constant = CGFloat(845 + (data.count * 60)) - safeAreaBottomInset()
                     }
                     owner.backView.layoutIfNeeded()
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                    owner.tagCollectionView.reloadData()
+                    owner.scrollView.refreshControl?.endRefreshing()
+                    owner.scrollView.layoutIfNeeded()
                 }
             case .requestErr:
                 print("receivedTagFetchWithAPI - requestErr")

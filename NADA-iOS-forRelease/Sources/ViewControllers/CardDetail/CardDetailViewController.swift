@@ -430,7 +430,7 @@ extension CardDetailViewController {
                         owner.backViewHeight.constant = CGFloat(790 + 281)
                     } else {
                         self.emptyView.isHidden = true
-                        owner.backViewHeight.constant = CGFloat(790 + (data.count * 60) + 20)
+                        owner.backViewHeight.constant = CGFloat(845 + (data.count * 60)) - safeAreaBottomInset()
                     }
                     owner.backView.layoutIfNeeded()
                 }

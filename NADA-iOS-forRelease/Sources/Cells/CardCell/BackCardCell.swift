@@ -15,6 +15,7 @@ class BackCardCell: CardCell {
     // MARK: - Properties
 //    private var cardData: Card?
     private var cardUUID: String?
+    private var blurViews: [UIVisualEffectView] = []
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var backgroundImageView: UIImageView!
@@ -29,6 +30,14 @@ class BackCardCell: CardCell {
     @IBOutlet weak var tmiLabel: UILabel!
     @IBOutlet weak var tagButton: UIButton!
     
+    @IBOutlet weak var leftFirstBlurView: UIVisualEffectView!
+    @IBOutlet weak var rightFirstBlurView: UIVisualEffectView!
+    @IBOutlet weak var leftSecondBlurView: UIVisualEffectView!
+    @IBOutlet weak var rightSecondBlurView: UIVisualEffectView!
+    @IBOutlet weak var leftThirdBlurView: UIVisualEffectView!
+    @IBOutlet weak var rightThirdBlurView: UIVisualEffectView!
+    @IBOutlet weak var leftFourthBlurView: UIVisualEffectView!
+    @IBOutlet weak var rightFourthBlurView: UIVisualEffectView!
     // MARK: - View Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -66,6 +75,10 @@ extension BackCardCell {
         tmiLabel.numberOfLines = 0
         
         leftTasteViews.forEach {
+        blurViews = [leftFirstBlurView, rightFirstBlurView,
+                     leftSecondBlurView, rightSecondBlurView,
+                     leftThirdBlurView, rightThirdBlurView,
+                     leftFourthBlurView, rightFourthBlurView]
             $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
             $0.layer.cornerRadius = 35 / 2
         }
@@ -78,6 +91,12 @@ extension BackCardCell {
         tasteViews.forEach {
             $0.backgroundColor = .white
         }
+        
+        blurViews.forEach {
+            $0.effect = UIBlurEffect(style: .extraLight)
+            $0.layer.cornerRadius = 35 / 2
+            $0.layer.masksToBounds = true
+        }
     }
     
     /// 명함 미리보기 시 사용.
@@ -89,21 +108,14 @@ extension BackCardCell {
         let cardTasteInfo: [CardTasteInfo] = cardTasteInfo.sorted { $0.sortOrder > $1.sortOrder }
         
         for index in 0..<tasteViews.count where !cardTasteInfo[index].isChoose {
-            let blurEffect = UIBlurEffect(style: .extraLight)
-            let visualEffectView = UIVisualEffectView(frame: tasteViews[index].frame)
-            
             tasteViews[index].backgroundColor = .clear
-            visualEffectView.effect = blurEffect
 
             if index % 2 == 0 {
-                visualEffectView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+                blurViews[index].layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
             } else {
-                visualEffectView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+                blurViews[index].layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
             }
-            visualEffectView.layer.cornerRadius = 35 / 2
-            visualEffectView.layer.masksToBounds = true
             
-            backgroundImageView.addSubview(visualEffectView)
         }
         
         for index in 0..<tasteLabels.count {
@@ -135,21 +147,13 @@ extension BackCardCell {
         let cardTasteInfo: [CardTasteInfo] = cardTasteInfo.sorted { $0.sortOrder > $1.sortOrder }
         
         for index in 0..<tasteViews.count where !cardTasteInfo[index].isChoose {
-            let blurEffect = UIBlurEffect(style: .extraLight)
-            let visualEffectView = UIVisualEffectView(frame: tasteViews[index].frame)
-            
             tasteViews[index].backgroundColor = .clear
-            visualEffectView.effect = blurEffect
 
             if index % 2 == 0 {
-                visualEffectView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+                blurViews[index].layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
             } else {
-                visualEffectView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+                blurViews[index].layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
             }
-            visualEffectView.layer.cornerRadius = 35 / 2
-            visualEffectView.layer.masksToBounds = true
-            
-            backgroundImageView.addSubview(visualEffectView)
             
             heartImageViews[index].isHidden = true
         }

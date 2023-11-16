@@ -28,8 +28,8 @@ class GroupViewController: UIViewController {
     // 네비게이션 바
     @IBAction func presentToAddWithIdView(_ sender: Any) {
         let nextVC = AddWithIdBottomSheetViewController()
-                    .setTitle("ID로 명함 추가")
-                    .setHeight(184)
+            .setTitle("ID로 명함 추가")
+            .setHeight(184)
         nextVC.modalPresentationStyle = .overFullScreen
         self.present(nextVC, animated: false, completion: nil)
     }
@@ -38,10 +38,10 @@ class GroupViewController: UIViewController {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .denied:
             makeOKCancelAlert(title: "카메라 권한이 허용되어 있지 않아요.",
-                        message: "QR코드 인식을 위해 카메라 권한이 필요합니다. 앱 설정으로 이동해 허용해 주세요.",
-                        okAction: { _ in UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)},
-                        cancelAction: nil,
-                        completion: nil)
+                              message: "QR코드 인식을 위해 카메라 권한이 필요합니다. 앱 설정으로 이동해 허용해 주세요.",
+                              okAction: { _ in UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)},
+                              cancelAction: nil,
+                              completion: nil)
         case .authorized:
             guard let nextVC = UIStoryboard.init(name: Const.Storyboard.Name.qrScan, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.qrScanViewController) as? QRScanViewController else { return }
             nextVC.modalPresentationStyle = .overFullScreen
@@ -147,7 +147,7 @@ extension GroupViewController {
         groupCollectionView.dataSource = self
         cardsCollectionView.delegate = self
         cardsCollectionView.dataSource = self
-         
+        
         groupCollectionView.register(GroupCollectionViewCell.nib(), forCellWithReuseIdentifier: Const.Xib.groupCollectionViewCell)
         cardsCollectionView.register(FrontCardCell.nib(), forCellWithReuseIdentifier: FrontCardCell.className)
         cardsCollectionView.register(FanFrontCardCell.nib(), forCellWithReuseIdentifier: FanFrontCardCell.className)
@@ -203,12 +203,11 @@ extension GroupViewController {
                     self.serverGroups = group
                     self.groupCollectionView.reloadData()
                     print("selectedRow: ", self.selectedRow)
-                    self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(pageNo: 1, pageSize: 6, groupName: self.groupName)) {
-                        if self.frontCards?.count != 0 {
-                            self.cardsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
-                        }
-                        self.isInfiniteScroll = true
+                    self.cardListInGroupWithAPI(cardListInGroupRequest: CardListInGroupRequest(pageNo: 1, pageSize: 6, groupName: self.groupName)) 
+                    if self.frontCards?.count != 0 {
+                        self.cardsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
                     }
+                    self.isInfiniteScroll = true
                 }
                 print("groupListFetchWithAPI - success")
             case .requestErr(let message):
@@ -266,7 +265,7 @@ extension GroupViewController {
                     nextVC.cardDataModel = card
                     nextVC.groupName = self.groupName
                     nextVC.serverGroups = self.serverGroups
-//                    nextVC.cardType = card.cardType 
+                    //                    nextVC.cardType = card.cardType 
                     self.navigationController?.pushViewController(nextVC, animated: true)
                 }
             case .requestErr(let message):
@@ -381,7 +380,7 @@ extension GroupViewController: UICollectionViewDataSource {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.cardListInGroupWithAPI(cardListInGroupRequest:
                                                 CardListInGroupRequest(pageNo: 1, pageSize: 6, groupName: self.groupName))
-                    self.isInfiniteScroll = true
+                self.isInfiniteScroll = true
             }
         case cardsCollectionView:
             Analytics.logEvent(Tracking.Event.touchGroupCard + String(indexPath.row+1), parameters: nil)

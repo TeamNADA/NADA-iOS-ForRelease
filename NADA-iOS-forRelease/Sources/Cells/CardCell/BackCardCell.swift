@@ -15,6 +15,7 @@ class BackCardCell: CardCell {
     // MARK: - Properties
 //    private var cardData: Card?
     private var cardUUID: String?
+    private var heartImageViews: [UIImageView] = []
     private var blurViews: [UIVisualEffectView] = []
     
     // MARK: - @IBOutlet Properties
@@ -25,7 +26,6 @@ class BackCardCell: CardCell {
     @IBOutlet var rightTasteViews: [UIView]!
     @IBOutlet var tasteViews: [UIView]!
     @IBOutlet var tasteLabels: [UILabel]!
-    @IBOutlet var heartImageViews: [UIImageView]!
     @IBOutlet weak var tmiTitleLabel: UILabel!
     @IBOutlet weak var tmiLabel: UILabel!
     @IBOutlet weak var tagButton: UIButton!
@@ -75,6 +75,12 @@ extension BackCardCell {
         tmiLabel.numberOfLines = 0
         
         leftTasteViews.forEach {
+        
+        heartImageViews = [leftFirstHeartImageView, rightFirstHeartImageView,
+                          leftSecondHeartImageView, rightSecondHeartImageView,
+                          leftThirdHeartImageView, rightThirdHeartImageView,
+                          leftFourthHeartImageView, rightFourthHeartImageView]
+        
         blurViews = [leftFirstBlurView, rightFirstBlurView,
                      leftSecondBlurView, rightSecondBlurView,
                      leftThirdBlurView, rightThirdBlurView,

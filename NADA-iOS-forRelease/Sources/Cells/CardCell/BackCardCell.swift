@@ -116,6 +116,7 @@ extension BackCardCell {
                 blurViews[index].layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
             }
             
+            heartImageViews[index].isHidden = true
         }
         
         for index in 0..<tasteLabels.count {

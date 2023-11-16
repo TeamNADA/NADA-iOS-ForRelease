@@ -70,6 +70,7 @@
 		7705CF402752C844005195DF /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7705CF3F2752C844005195DF /* CardView.xib */; };
 		770E58862778A78900498C2E /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770E58852778A78900498C2E /* Status.swift */; };
 		7713E8482752E2A900724C8B /* SelectGroupBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7713E8472752E2A900724C8B /* SelectGroupBottomSheetViewController.swift */; };
+		7727B60E2B05F966005847BC /* safeAreaInset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7727B60D2B05F966005847BC /* safeAreaInset.swift */; };
 		7734D5AA27719520004360E4 /* CardShareBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7734D5A927719520004360E4 /* CardShareBottomSheetViewController.swift */; };
 		7734D5B427778EFB004360E4 /* HarmonyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7734D5B327778EFB004360E4 /* HarmonyResponse.swift */; };
 		7734D5B627779EF0004360E4 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7734D5B527779EF0004360E4 /* QRCodeView.swift */; };
@@ -371,6 +372,7 @@
 		7705CF3F2752C844005195DF /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
 		770E58852778A78900498C2E /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		7713E8472752E2A900724C8B /* SelectGroupBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGroupBottomSheetViewController.swift; sourceTree = "<group>"; };
+		7727B60D2B05F966005847BC /* safeAreaInset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = safeAreaInset.swift; sourceTree = "<group>"; };
 		7734D5A927719520004360E4 /* CardShareBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardShareBottomSheetViewController.swift; sourceTree = "<group>"; };
 		7734D5B327778EFB004360E4 /* HarmonyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmonyResponse.swift; sourceTree = "<group>"; };
 		7734D5B527779EF0004360E4 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
@@ -919,6 +921,7 @@
 				77A4D5EA29AE20CB00367B7C /* makeVibrate.swift */,
 				77A4D60729BD74BC00367B7C /* getClassName.swift */,
 				77A4D60929C09D2900367B7C /* calculateTime.swift */,
+				7727B60D2B05F966005847BC /* safeAreaInset.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2092,6 +2095,7 @@
 				F8915A22275728F20013D609 /* SelectBirthBottomViewController.swift in Sources */,
 				F8FC438626C01CDD0033E151 /* AppDelegate.swift in Sources */,
 				F8915A23275728F20013D609 /* SelectMBTIBottomViewController.swift in Sources */,
+				7727B60E2B05F966005847BC /* safeAreaInset.swift in Sources */,
 				393E3345275F69EE00965BBF /* SplashViewController.swift in Sources */,
 				F8C83FB8272F9E3F0009DF0D /* UtilAPI.swift in Sources */,
 				77A196C729F661DC000DEF49 /* NearbyAPI.swift in Sources */,

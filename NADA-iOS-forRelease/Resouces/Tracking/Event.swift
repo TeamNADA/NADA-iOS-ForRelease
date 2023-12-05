@@ -80,7 +80,7 @@ extension Tracking {
         static let touchBackCreateCompanyCard = "C8_명함만들기_직장_뒷면"
         static let touchCompanyCameraImage = "C8_명함만들기_직장_사진"
         static let touchCompanyDefaultImage = "C8_명함만들기_직장_이미지"
-        static let touchCompanyTasteInfo = "C8_명함만들기_직장"
+        static let touchCompanyTasteInfo = "C8_명함만들기_직장_"
         static let touchCompanyCardPreview = "C8_명함만들기_직장_미리보기"
         
         static let touchBackFromCompanyPreview = "C9_명함만들기_직장_미리보기_뒤로가기"

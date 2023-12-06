@@ -192,7 +192,7 @@ extension FetchTagSheetVC: UICollectionViewDelegate {
             collectionView.deselectItem(at: indexPath, animated: false)
         case .edit:
             deleteButton.isEnabled = true
-            Analytics.logEvent(Tracking.Event.touchTagEdit + "\(indexPath.item)", parameters: nil)
+            Analytics.logEvent(Tracking.Event.touchTag + "\(indexPath.item)", parameters: nil)
         }
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

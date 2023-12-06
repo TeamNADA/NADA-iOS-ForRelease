@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import VerticalCardSwiper
 import Kingfisher
 
@@ -38,6 +39,7 @@ class BackCardCell: CardCell {
     // MARK: - Functions
     @IBAction func touchTagButton(_ sender: Any) {
         NotificationCenter.default.post(name: .presentToReceivedTagSheet, object: cardUUID)
+        Analytics.logEvent(Tracking.Event.touchReceivedTag, parameters: nil)
     }
     
     static func nib() -> UINib {

@@ -160,6 +160,9 @@ class SendTagSheetVC: UIViewController {
         
         if !keyboardOn {
             adjectiveTextField.becomeFirstResponder()
+            
+            Analytics.logEvent(Tracking.Event.touchTagAdjective, parameters: nil)
+            
             keyboardOn = true
         }
     }
@@ -226,6 +229,11 @@ extension SendTagSheetVC {
             Analytics.logEvent(Tracking.Event.touchSendTagCompleteButton, parameters: nil)
         }.disposed(by: disposeBag)
         
+        adjectiveTextField.rx.controlEvent(.editingDidBegin)
+            .subscribe(with: self) { _, _ in
+                Analytics.logEvent(Tracking.Event.touchTagAdjective, parameters: nil)
+            }.disposed(by: disposeBag)
+        
         adjectiveTextField.rx.text
             .orEmpty
             .distinctUntilChanged()
@@ -242,6 +250,11 @@ extension SendTagSheetVC {
                     owner.nextButton.backgroundColor = .textBox
                     owner.nextButton.setTitleColor(.quaternary, for: .normal)
                 }
+            }.disposed(by: disposeBag)
+        
+        nounTextField.rx.controlEvent(.editingDidBegin)
+            .subscribe(with: self) { _, _ in
+                Analytics.logEvent(Tracking.Event.touchTagNoun, parameters: nil)
             }.disposed(by: disposeBag)
         
         nounTextField.rx.text
@@ -271,6 +284,8 @@ extension SendTagSheetVC {
         subtitleLabel.text = "명함을 자유롭게 표현해 보세요"
         subtitleLabel.textColor = .mainColorButtonText
         adjectiveTextField.becomeFirstResponder()
+        
+        Analytics.logEvent(Tracking.Event.touchTagAdjective, parameters: nil)
         
         colorView.snp.updateConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(41)

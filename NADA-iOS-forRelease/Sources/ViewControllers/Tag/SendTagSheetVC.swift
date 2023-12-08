@@ -579,6 +579,8 @@ extension SendTagSheetVC: UICollectionViewDelegate {
         } else {
             colorView.backgroundColor = UIColor(red: CGFloat(tags[indexPath.item].lr) / 255.0, green: CGFloat(tags[indexPath.item].lg) / 255.0, blue: CGFloat(tags[indexPath.item].lb) / 255.0, alpha: 1.0)
         }
+        
+        Analytics.logEvent(Tracking.Event.touchTagThema + "\(indexPath.item)", parameters: nil)
     }
 }
 

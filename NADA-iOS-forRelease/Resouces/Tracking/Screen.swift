@@ -36,6 +36,7 @@ extension Tracking {
         static let cardGroupList = "D1_명함모음"
         static let editGroupList = "D2_그룹편집"
         static let cardDetail = "D3_명함상세"
+        static let sendTag = "D4_명함모음_상세보기_태그보내기"
         
         static let more = "E1_설정"
         static let myCardWidget = "F1_명함_위젯"

@@ -161,8 +161,6 @@ class SendTagSheetVC: UIViewController {
         if !keyboardOn {
             adjectiveTextField.becomeFirstResponder()
             
-            Analytics.logEvent(Tracking.Event.touchTagAdjective, parameters: nil)
-            
             keyboardOn = true
         }
     }
@@ -284,8 +282,6 @@ extension SendTagSheetVC {
         subtitleLabel.text = "명함을 자유롭게 표현해 보세요"
         subtitleLabel.textColor = .mainColorButtonText
         adjectiveTextField.becomeFirstResponder()
-        
-        Analytics.logEvent(Tracking.Event.touchTagAdjective, parameters: nil)
         
         colorView.snp.updateConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(41)

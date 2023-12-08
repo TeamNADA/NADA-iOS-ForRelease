@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import Moya
 import RxCocoa
 import RxSwift
@@ -144,6 +145,7 @@ class SendTagSheetVC: UIViewController {
         setLayout()
         setDelegate()
         tagFetchWithAPI()
+        setTracking()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -369,6 +371,12 @@ extension SendTagSheetVC {
                 }
             }
         }
+    }
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.sendTag
+                           ])
     }
     public func setCardDataModel(_ cardDataModel: Card?) {
         self.cardDataModel = cardDataModel

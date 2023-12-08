@@ -180,11 +180,35 @@ extension BackCardCreationCollectionViewCell: UICollectionViewDelegate {
         
         switch cardType {
         case .basic:
-            Analytics.logEvent(Tracking.Event.touchBasicTasteInfo + (tasteInfo?[indexPath.item] ?? ""), parameters: nil)
+            if collectionView == firstTasteCollectionView {
+                Analytics.logEvent(Tracking.Event.touchBasicTasteInfo + (tasteInfo?[indexPath.item] ?? "").replacingOccurrences(of: " ", with: "_"), parameters: nil)
+            } else if collectionView == secondTasteCollectionView {
+                Analytics.logEvent(Tracking.Event.touchBasicTasteInfo + (tasteInfo?[indexPath.item + 2] ?? "").replacingOccurrences(of: " ", with: "_"), parameters: nil)
+            } else if collectionView == thirdTasteCollectionView {
+                Analytics.logEvent(Tracking.Event.touchBasicTasteInfo + (tasteInfo?[indexPath.item + 4] ?? "").replacingOccurrences(of: " ", with: "_"), parameters: nil)
+            } else if collectionView == fourthTasteCollectionView {
+                Analytics.logEvent(Tracking.Event.touchBasicTasteInfo + (tasteInfo?[indexPath.item + 6] ?? "").replacingOccurrences(of: " ", with: "_"), parameters: nil)
+            }
         case .company:
-            Analytics.logEvent(Tracking.Event.touchCompanyTasteInfo + (tasteInfo?[indexPath.item] ?? ""), parameters: nil)
+            if collectionView == firstTasteCollectionView {
+                Analytics.logEvent(Tracking.Event.touchCompanyTasteInfo + (tasteInfo?[indexPath.item] ?? "").replacingOccurrences(of: " ", with: "_"), parameters: nil)
+            } else if collectionView == secondTasteCollectionView {
+                Analytics.logEvent(Tracking.Event.touchCompanyTasteInfo + (tasteInfo?[indexPath.item + 2] ?? "").replacingOccurrences(of: " ", with: "_"), parameters: nil)
+            } else if collectionView == thirdTasteCollectionView {
+                Analytics.logEvent(Tracking.Event.touchCompanyTasteInfo + (tasteInfo?[indexPath.item + 4] ?? "").replacingOccurrences(of: " ", with: "_"), parameters: nil)
+            } else if collectionView == fourthTasteCollectionView {
+                Analytics.logEvent(Tracking.Event.touchCompanyTasteInfo + (tasteInfo?[indexPath.item + 6] ?? "").replacingOccurrences(of: " ", with: "_"), parameters: nil)
+            }
         case .fan:
-            Analytics.logEvent(Tracking.Event.touchFanTasteInfo + (tasteInfo?[indexPath.item] ?? ""), parameters: nil)
+            if collectionView == firstTasteCollectionView {
+                Analytics.logEvent(Tracking.Event.touchFanTasteInfo + (tasteInfo?[indexPath.item] ?? "").replacingOccurrences(of: " ", with: "_"), parameters: nil)
+            } else if collectionView == secondTasteCollectionView {
+                Analytics.logEvent(Tracking.Event.touchFanTasteInfo + (tasteInfo?[indexPath.item + 2] ?? "").replacingOccurrences(of: " ", with: "_"), parameters: nil)
+            } else if collectionView == thirdTasteCollectionView {
+                Analytics.logEvent(Tracking.Event.touchFanTasteInfo + (tasteInfo?[indexPath.item + 4] ?? "").replacingOccurrences(of: " ", with: "_"), parameters: nil)
+            } else if collectionView == fourthTasteCollectionView {
+                Analytics.logEvent(Tracking.Event.touchFanTasteInfo + (tasteInfo?[indexPath.item + 6] ?? "").replacingOccurrences(of: " ", with: "_"), parameters: nil)
+            }
         }
     }
 }

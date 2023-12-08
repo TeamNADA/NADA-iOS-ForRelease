@@ -196,12 +196,16 @@ extension SendTagSheetVC {
     private func bind() {
         nextButton.rx.tap.bind { [weak self] in
             self?.checkTag()
+            
+            Analytics.logEvent(Tracking.Event.touchSendTagNextButton, parameters: nil)
         }.disposed(by: disposeBag)
         
         backButton.rx.tap.bind { [weak self] in
             self?.adjectiveTextField.isUserInteractionEnabled = true
             self?.nounTextField.isUserInteractionEnabled = true
             self?.setEditUIWithAnimation()
+            
+            Analytics.logEvent(Tracking.Event.touchSendTagBackButton, parameters: nil)
         }.disposed(by: disposeBag)
         
         sendButton.rx.tap.bind { [weak self] in
@@ -210,12 +214,16 @@ extension SendTagSheetVC {
                     self?.setCompletedUIWithAnimation()
                 }
             }
+            
+            Analytics.logEvent(Tracking.Event.touchSendTagSendButton, parameters: nil)
         }.disposed(by: disposeBag)
         
         completeButton.rx.tap.bind { [weak self] in
             self?.dismiss(animated: true) {
                 NotificationCenter.default.post(name: .completeSendTag, object: nil)
             }
+            
+            Analytics.logEvent(Tracking.Event.touchSendTagCompleteButton, parameters: nil)
         }.disposed(by: disposeBag)
         
         adjectiveTextField.rx.text

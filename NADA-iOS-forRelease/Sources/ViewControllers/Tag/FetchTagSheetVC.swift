@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import RxCocoa
 import RxSwift
 import SnapKit
@@ -70,6 +71,7 @@ class FetchTagSheetVC: UIViewController {
         setAction()
         receivedTagFetchWithAPI()
         setDelegate()
+        setTracking()
     }
 }
 
@@ -93,6 +95,8 @@ extension FetchTagSheetVC {
                 owner.deleteButton.isEnabled = true
                 
                 owner.mode = .fetch
+                
+                Analytics.logEvent(Tracking.Event.touchTagCancel, parameters: nil)
             }
             .disposed(by: disposeBag)
         
@@ -106,6 +110,8 @@ extension FetchTagSheetVC {
                     owner.cancelButton.isHidden = false
                     
                     owner.mode = .edit
+                    
+                    Analytics.logEvent(Tracking.Event.touchTagEdit, parameters: nil)
                 case .edit:
                     guard let selectedItems = owner.collectionView.indexPathsForSelectedItems else { return }
                     
@@ -117,6 +123,8 @@ extension FetchTagSheetVC {
                     }
                     
                     owner.deleteTagWithAPI(request: tagDeletionRequests)
+                    
+                    Analytics.logEvent(Tracking.Event.touchTagDelete, parameters: nil)
                 }
             }
             .disposed(by: disposeBag)
@@ -164,6 +172,12 @@ extension FetchTagSheetVC {
         
         diffableDataSource?.apply(snapshot, animatingDifferences: true)
     }
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.receivedTag
+                           ])
+    }
     public func setCardUUID(_ cardUUID: String) {
         self.cardUUID = cardUUID
     }
@@ -178,6 +192,7 @@ extension FetchTagSheetVC: UICollectionViewDelegate {
             collectionView.deselectItem(at: indexPath, animated: false)
         case .edit:
             deleteButton.isEnabled = true
+            Analytics.logEvent(Tracking.Event.touchTag + "\(indexPath.item)", parameters: nil)
         }
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

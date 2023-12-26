@@ -115,6 +115,14 @@ extension Tracking {
         static let touchCardDetailFanURL2 = "D3_명함상세_덕질_url2"
         static let touchCardDetailCompanyURL = "D3_명함상세_직장_url"
         
+        static let touchTagThema = "D4_태그_테마_"
+        static let touchTagAdjective = "D4_태그_테마_형용사"
+        static let touchTagNoun = "D4_태그_테마_명사"
+        static let touchSendTagNextButton = "D4_태그_다음"
+        static let touchSendTagBackButton = "D4_태그_뒤로가기"
+        static let touchSendTagSendButton = "D4_태그_보내기"
+        static let touchSendTagCompleteButton = "D4_태그_완료"
+        
         static let touchDarkmode = "E1_설정_다크모드"
         static let touchPrivacyPolicy = "E1_설정_개인정보"
         static let touchTermsOfUse = "E1_설정_이용약관"

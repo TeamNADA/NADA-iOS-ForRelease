@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import Moya
 import RxCocoa
 import RxSwift
@@ -144,6 +145,7 @@ class SendTagSheetVC: UIViewController {
         setLayout()
         setDelegate()
         tagFetchWithAPI()
+        setTracking()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -158,6 +160,7 @@ class SendTagSheetVC: UIViewController {
         
         if !keyboardOn {
             adjectiveTextField.becomeFirstResponder()
+            
             keyboardOn = true
         }
     }
@@ -194,12 +197,16 @@ extension SendTagSheetVC {
     private func bind() {
         nextButton.rx.tap.bind { [weak self] in
             self?.checkTag()
+            
+            Analytics.logEvent(Tracking.Event.touchSendTagNextButton, parameters: nil)
         }.disposed(by: disposeBag)
         
         backButton.rx.tap.bind { [weak self] in
             self?.adjectiveTextField.isUserInteractionEnabled = true
             self?.nounTextField.isUserInteractionEnabled = true
             self?.setEditUIWithAnimation()
+            
+            Analytics.logEvent(Tracking.Event.touchSendTagBackButton, parameters: nil)
         }.disposed(by: disposeBag)
         
         sendButton.rx.tap.bind { [weak self] in
@@ -208,13 +215,22 @@ extension SendTagSheetVC {
                     self?.setCompletedUIWithAnimation()
                 }
             }
+            
+            Analytics.logEvent(Tracking.Event.touchSendTagSendButton, parameters: nil)
         }.disposed(by: disposeBag)
         
         completeButton.rx.tap.bind { [weak self] in
             self?.dismiss(animated: true) {
                 NotificationCenter.default.post(name: .completeSendTag, object: nil)
             }
+            
+            Analytics.logEvent(Tracking.Event.touchSendTagCompleteButton, parameters: nil)
         }.disposed(by: disposeBag)
+        
+        adjectiveTextField.rx.controlEvent(.editingDidBegin)
+            .subscribe(with: self) { _, _ in
+                Analytics.logEvent(Tracking.Event.touchTagAdjective, parameters: nil)
+            }.disposed(by: disposeBag)
         
         adjectiveTextField.rx.text
             .orEmpty
@@ -232,6 +248,11 @@ extension SendTagSheetVC {
                     owner.nextButton.backgroundColor = .textBox
                     owner.nextButton.setTitleColor(.quaternary, for: .normal)
                 }
+            }.disposed(by: disposeBag)
+        
+        nounTextField.rx.controlEvent(.editingDidBegin)
+            .subscribe(with: self) { _, _ in
+                Analytics.logEvent(Tracking.Event.touchTagNoun, parameters: nil)
             }.disposed(by: disposeBag)
         
         nounTextField.rx.text
@@ -369,6 +390,12 @@ extension SendTagSheetVC {
                 }
             }
         }
+    }
+    private func setTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.Screen.sendTag
+                           ])
     }
     public func setCardDataModel(_ cardDataModel: Card?) {
         self.cardDataModel = cardDataModel
@@ -563,6 +590,8 @@ extension SendTagSheetVC: UICollectionViewDelegate {
         } else {
             colorView.backgroundColor = UIColor(red: CGFloat(tags[indexPath.item].lr) / 255.0, green: CGFloat(tags[indexPath.item].lg) / 255.0, blue: CGFloat(tags[indexPath.item].lb) / 255.0, alpha: 1.0)
         }
+        
+        Analytics.logEvent(Tracking.Event.touchTagThema + "\(indexPath.item)", parameters: nil)
     }
 }
 

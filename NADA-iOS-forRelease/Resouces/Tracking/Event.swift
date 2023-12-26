@@ -18,6 +18,9 @@ extension Tracking {
         static let touchGiveCard = "B1_메인탭_명함주기"
         static let touchTakeCard = "B1_메인탭_명함받기"
         static let touchAroundMe = "B1_메인탭_내근처의명함"
+        static let touchBanner = "B1_메인탭_상단배너_"
+        static let touchMakeCard = "B1_메인탭_명함만들기"
+        static let touchAd = "B1_메인탭_광고"
         
         static let touchAddByID = "B2 명함받기모달_ID로받기"
         static let touchAddByQR = "B2_명함받기모달_QR로받기"

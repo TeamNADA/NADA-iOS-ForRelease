@@ -148,6 +148,8 @@ extension CardListViewController: UITableViewDelegate {
             let modifyAction = UIContextualAction(style: .normal, title: "수정") { _, _, _ in
                 let navigationController = self.moduleFactory.makeCardCreationVC(cardType: CardType(rawValue: self.cardItems[indexPath.row].cardType) ?? .basic, preCardDataModel: self.cardItems[indexPath.row])
                 self.navigationController?.present(navigationController, animated: true)
+                
+                Analytics.logEvent(Tracking.Event.touchCardModify, parameters: nil)
             }
             modifyAction.backgroundColor = .cardModify
             

@@ -157,6 +157,17 @@ extension BackCardCreationCollectionViewCell {
         preTasteInfo = nil
         backCardCreationDelegate?.backCardCreationTouchRefresh()
         backCardCreationDelegate?.backCardCreation(requiredInfo: false)
+        
+        guard let cardType else { return }
+        
+        switch cardType {
+        case .basic:
+            Analytics.logEvent(Tracking.Event.touchBasicTasteInfo + "다른질문", parameters: nil)
+        case .company:
+            Analytics.logEvent(Tracking.Event.touchCompanyTasteInfo + "다른질문", parameters: nil)
+        case .fan:
+            Analytics.logEvent(Tracking.Event.touchFanTasteInfo + "다른질문", parameters: nil)
+        }
     }
 }
 

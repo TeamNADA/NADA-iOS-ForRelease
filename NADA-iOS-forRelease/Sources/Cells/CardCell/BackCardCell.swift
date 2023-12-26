@@ -15,19 +15,47 @@ class BackCardCell: CardCell {
     // MARK: - Properties
 //    private var cardData: Card?
     private var cardUUID: String?
+    private var heartImageViews: [UIImageView] = []
+    private var leftViews: [UIView] = []
+    private var rightViews: [UIView] = []
+    private var tasteViews: [UIView] = []
+    private var blurViews: [UIVisualEffectView] = []
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var tasteTitleLabel: UILabel!
-    @IBOutlet var leftTasteViews: [UIView]!
-    @IBOutlet var rightTasteViews: [UIView]!
-    @IBOutlet var tasteViews: [UIView]!
     @IBOutlet var tasteLabels: [UILabel]!
-    @IBOutlet var heartImageViews: [UIImageView]!
     @IBOutlet weak var tmiTitleLabel: UILabel!
     @IBOutlet weak var tmiLabel: UILabel!
     @IBOutlet weak var tagButton: UIButton!
+    
+    @IBOutlet weak var leftFirstBlurView: UIVisualEffectView!
+    @IBOutlet weak var rightFirstBlurView: UIVisualEffectView!
+    @IBOutlet weak var leftSecondBlurView: UIVisualEffectView!
+    @IBOutlet weak var rightSecondBlurView: UIVisualEffectView!
+    @IBOutlet weak var leftThirdBlurView: UIVisualEffectView!
+    @IBOutlet weak var rightThirdBlurView: UIVisualEffectView!
+    @IBOutlet weak var leftFourthBlurView: UIVisualEffectView!
+    @IBOutlet weak var rightFourthBlurView: UIVisualEffectView!
+
+    @IBOutlet weak var leftFirstView: UIView!
+    @IBOutlet weak var rightFirstView: UIView!
+    @IBOutlet weak var leftSecondView: UIView!
+    @IBOutlet weak var rightSecondView: UIView!
+    @IBOutlet weak var leftThirdView: UIView!
+    @IBOutlet weak var rightThirdView: UIView!
+    @IBOutlet weak var leftFourthView: UIView!
+    @IBOutlet weak var rightFourthView: UIView!
+    
+    @IBOutlet weak var leftFirstHeartImageView: UIImageView!
+    @IBOutlet weak var rightFirstHeartImageView: UIImageView!
+    @IBOutlet weak var leftSecondHeartImageView: UIImageView!
+    @IBOutlet weak var rightSecondHeartImageView: UIImageView!
+    @IBOutlet weak var leftThirdHeartImageView: UIImageView!
+    @IBOutlet weak var rightThirdHeartImageView: UIImageView!
+    @IBOutlet weak var leftFourthHeartImageView: UIImageView!
+    @IBOutlet weak var rightFourthHeartImageView: UIImageView!
     
     // MARK: - View Life Cycle
     override func awakeFromNib() {
@@ -65,18 +93,43 @@ extension BackCardCell {
         tmiLabel.textColor = .white
         tmiLabel.numberOfLines = 0
         
-        leftTasteViews.forEach {
+        leftViews = [leftFirstView, leftSecondView, leftThirdView, leftFourthView]
+        
+        rightViews = [rightFirstView, rightSecondView, rightThirdView, rightFourthView]
+        
+        tasteViews = [leftFirstView, rightFirstView,
+                      leftSecondView, rightSecondView,
+                      leftThirdView, rightThirdView,
+                      leftFourthView, rightFourthView]
+        
+        heartImageViews = [leftFirstHeartImageView, rightFirstHeartImageView,
+                          leftSecondHeartImageView, rightSecondHeartImageView,
+                          leftThirdHeartImageView, rightThirdHeartImageView,
+                          leftFourthHeartImageView, rightFourthHeartImageView]
+        
+        blurViews = [leftFirstBlurView, rightFirstBlurView,
+                     leftSecondBlurView, rightSecondBlurView,
+                     leftThirdBlurView, rightThirdBlurView,
+                     leftFourthBlurView, rightFourthBlurView]
+        
+        leftViews.forEach {
             $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
             $0.layer.cornerRadius = 35 / 2
         }
         
-        rightTasteViews.forEach {
+        rightViews.forEach {
             $0.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
             $0.layer.cornerRadius = 35 / 2
         }
         
         tasteViews.forEach {
             $0.backgroundColor = .white
+        }
+        
+        blurViews.forEach {
+            $0.effect = UIBlurEffect(style: .extraLight)
+            $0.layer.cornerRadius = 35 / 2
+            $0.layer.masksToBounds = true
         }
     }
     
@@ -89,21 +142,15 @@ extension BackCardCell {
         let cardTasteInfo: [CardTasteInfo] = cardTasteInfo.sorted { $0.sortOrder > $1.sortOrder }
         
         for index in 0..<tasteViews.count where !cardTasteInfo[index].isChoose {
-            let blurEffect = UIBlurEffect(style: .extraLight)
-            let visualEffectView = UIVisualEffectView(frame: tasteViews[index].frame)
-            
             tasteViews[index].backgroundColor = .clear
-            visualEffectView.effect = blurEffect
 
             if index % 2 == 0 {
-                visualEffectView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+                blurViews[index].layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
             } else {
-                visualEffectView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+                blurViews[index].layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
             }
-            visualEffectView.layer.cornerRadius = 35 / 2
-            visualEffectView.layer.masksToBounds = true
             
-            backgroundImageView.addSubview(visualEffectView)
+            heartImageViews[index].isHidden = true
         }
         
         for index in 0..<tasteLabels.count {
@@ -135,21 +182,13 @@ extension BackCardCell {
         let cardTasteInfo: [CardTasteInfo] = cardTasteInfo.sorted { $0.sortOrder > $1.sortOrder }
         
         for index in 0..<tasteViews.count where !cardTasteInfo[index].isChoose {
-            let blurEffect = UIBlurEffect(style: .extraLight)
-            let visualEffectView = UIVisualEffectView(frame: tasteViews[index].frame)
-            
             tasteViews[index].backgroundColor = .clear
-            visualEffectView.effect = blurEffect
 
             if index % 2 == 0 {
-                visualEffectView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+                blurViews[index].layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
             } else {
-                visualEffectView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+                blurViews[index].layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
             }
-            visualEffectView.layer.cornerRadius = 35 / 2
-            visualEffectView.layer.masksToBounds = true
-            
-            backgroundImageView.addSubview(visualEffectView)
             
             heartImageViews[index].isHidden = true
         }

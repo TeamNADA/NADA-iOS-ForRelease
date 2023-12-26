@@ -331,6 +331,15 @@ extension HomeViewController {
                 owner.makeVibrate()
                 let cardcreationcategoryVC = self.moduleFactory.makeCardCreationCategoryVC()
                 owner.navigationController?.pushViewController(cardcreationcategoryVC, animated: true)
+                Analytics.logEvent(Tracking.Event.touchMakeCard, parameters: nil)
+            }.disposed(by: self.disposeBag)
+        
+        googleAdView.rx.tapGesture()
+            .when(.recognized)
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.makeVibrate()
+                Analytics.logEvent(Tracking.Event.touchAd, parameters: nil)
             }.disposed(by: self.disposeBag)
     }
     
@@ -518,6 +527,7 @@ extension HomeViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         bannerCell.setData(banners[indexPath.row])
+        Analytics.logEvent(Tracking.Event.touchBanner + banners[indexPath.row].text.replacingOccurrences(of: " ", with: "_"), parameters: nil)
         return bannerCell
     }
     

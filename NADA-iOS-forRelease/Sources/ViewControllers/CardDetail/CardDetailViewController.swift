@@ -44,6 +44,7 @@ class CardDetailViewController: UIViewController {
     
     @IBAction func touchHelpButton(_ sender: UIButton) {
         helpDimmedView.isHidden.toggle()
+        Analytics.logEvent(Tracking.Event.touchCardDetailTagHelp, parameters: nil)
     }
     
     @IBAction func touchSendButton(_ sender: UIButton) {
@@ -65,6 +66,7 @@ class CardDetailViewController: UIViewController {
         tagSheet.setEditingTag(adjectiveText: editingAdjectiveTagText, nounText: editingNounTagText, item: editingItem)
         tagSheet.modalPresentationStyle = .pageSheet
         
+        Analytics.logEvent(Tracking.Event.touchCardDetailSendTag, parameters: nil)
         present(tagSheet, animated: true)
     }
     

@@ -392,8 +392,10 @@ extension HomeViewController {
         
         if currentVersionArray[0] < appStoreVersionArray[0] {
             return true
-        } else {
+        } else if currentVersionArray[0] == appStoreVersionArray[0] {
             return currentVersionArray[1] < appStoreVersionArray[1] ? true : false
+        } else {
+            return false
         }
     }
     

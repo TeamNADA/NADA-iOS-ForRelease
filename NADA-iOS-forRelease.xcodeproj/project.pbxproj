@@ -117,8 +117,6 @@
 		77C58CD92ABD448500327BD9 /* BannerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C58CD82ABD448500327BD9 /* BannerResponse.swift */; };
 		77C6E350299B84E300E059F9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6E34F299B84E300E059F9 /* HomeViewModel.swift */; };
 		77DFB871274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFB870274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift */; };
-		77F2C0EB27632A91007641E3 /* CardHarmonyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */; };
-		77F2C0ED27632AA7007641E3 /* CardHarmony.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */; };
 		77F47D93276C79B600414659 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F47D92276C79B600414659 /* Header.swift */; };
 		F800EA102ACDAEC100A664AD /* SendTagSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F800EA0F2ACDAEC100A664AD /* SendTagSheetVC.swift */; };
 		F805588529C993E7002E8EA3 /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F805588429C993E7002E8EA3 /* UpdateViewController.swift */; };
@@ -423,8 +421,6 @@
 		77C58CD82ABD448500327BD9 /* BannerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerResponse.swift; sourceTree = "<group>"; };
 		77C6E34F299B84E300E059F9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		77DFB870274F92F9000CD36F /* AddWithIdBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWithIdBottomSheetViewController.swift; sourceTree = "<group>"; };
-		77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHarmonyViewController.swift; sourceTree = "<group>"; };
-		77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardHarmony.storyboard; sourceTree = "<group>"; };
 		77F47D92276C79B600414659 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		F800EA0F2ACDAEC100A664AD /* SendTagSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTagSheetVC.swift; sourceTree = "<group>"; };
 		F805588429C993E7002E8EA3 /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
@@ -875,7 +871,6 @@
 			isa = PBXGroup;
 			children = (
 				77812946275F6EA3004B34F4 /* CardDetailViewController.swift */,
-				77F2C0EA27632A91007641E3 /* CardHarmonyViewController.swift */,
 				7773124E2A083357002C094B /* NewCardHarmonyViewController.swift */,
 			);
 			path = CardDetail;
@@ -885,7 +880,6 @@
 			isa = PBXGroup;
 			children = (
 				77812949275F6ED7004B34F4 /* CardDetail.storyboard */,
-				77F2C0EC27632AA7007641E3 /* CardHarmony.storyboard */,
 			);
 			path = CardDetail;
 			sourceTree = "<group>";
@@ -1800,7 +1794,6 @@
 				3979709826FA0BF0003FB4F5 /* Login.storyboard in Resources */,
 				F82FEB4D27639F3100DA7847 /* MainCardCell.xib in Resources */,
 				39369945274A568900684420 /* GroupEditTableViewCell.xib in Resources */,
-				77F2C0ED27632AA7007641E3 /* CardHarmony.storyboard in Resources */,
 				39C394D5277CD33500DBA566 /* EmptyCardListTableViewCell.xib in Resources */,
 				F84BAFB226FDB552004CA335 /* BackCardCreationCollectionViewCell.xib in Resources */,
 				F8458D6C29F54EDF000D53A7 /* FanFrontCardCell.xib in Resources */,
@@ -1987,7 +1980,6 @@
 				39C394D0277CCFD500DBA566 /* EmptyGroupEditTableViewCell.swift in Sources */,
 				777FF89F27364B7B00BF69D3 /* GroupEditRequest.swift in Sources */,
 				399C55DF2711949D00845A54 /* CGPoint+Distance.swift in Sources */,
-				77F2C0EB27632A91007641E3 /* CardHarmonyViewController.swift in Sources */,
 				F83206AA26F61E3700D61711 /* FrontCardCell.swift in Sources */,
 				3979709626FA0BE5003FB4F5 /* LoginViewController.swift in Sources */,
 				F856EB6C2AD904FF0039D32E /* CustomDetent.swift in Sources */,

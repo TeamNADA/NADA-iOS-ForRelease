@@ -201,7 +201,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         longitude = locationManager.location?.coordinate.longitude ?? 0
         
         if isActivate {
-            //TODO: 여기서 활성화된 명함 정보/위치정보 API로 쏴주기
+            // TODO: 여기서 활성화된 명함 정보/위치정보 API로 쏴주기
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(processTimer), userInfo: nil, repeats: true)
             
             print("✅✅ activated")
@@ -237,7 +237,7 @@ class CardShareBottomSheetViewController: CommonBottomSheetViewController {
         _ = isActivate ? lottieImage.play() : lottieImage.stop()
         
         if isActivate {
-            //TODO: 여기서 활성화된 명함 정보/위치정보 API로 쏴주기
+            // TODO: 여기서 활성화된 명함 정보/위치정보 API로 쏴주기
             if secondsLeft < 0 {
                 postNearByCardWithAPI(nearByRequest: NearByRequest(cardUUID: cardDataModel?.cardUUID ?? "", isActive: false, latitude: latitude, longitude: longitude))
             }
@@ -555,7 +555,7 @@ extension CardShareBottomSheetViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-         //location5
+         // location5
          switch status {
          case .authorizedAlways, .authorizedWhenInUse:
              print("GPS 권한 설정됨")
@@ -599,12 +599,13 @@ extension CardShareBottomSheetViewController {
                 if let nearByUUIDResponse = data as? NearByUUIDResponse {
                     print("✅✅✅")
                     let interval = Date() - (nearByUUIDResponse.activeTime?.toDate() ?? Date())
-                    self.timesLeft = 600 - (interval.second ?? 0) ?? 600
+                    self.timesLeft = 600 - (interval.second ?? 0) 
                     print("✅ now: ", Date())
                     print("✅ activated Time: ", nearByUUIDResponse.activeTime?.toDate())
                     print("✅ timesleft: ", self.timesLeft)
                     self.nearByTimeLabel.text = ""
-                    self.setCardActivationUI(with: nearByUUIDResponse.isActive, secondsLeft: self.timesLeft ?? 0)
+                    self.setCardActivationUI(with: nearByUUIDResponse.isActive,
+                                             secondsLeft: self.timesLeft)
                 }
                 print("nearByUUIDFetchWithAPI - success")
             case .requestErr(let message):

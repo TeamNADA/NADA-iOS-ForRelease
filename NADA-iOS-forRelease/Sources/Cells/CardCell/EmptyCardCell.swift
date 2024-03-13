@@ -10,11 +10,6 @@ import VerticalCardSwiper
 
 class EmptyCardCell: CardCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
     // MARK: - Methods
     
     static func nib() -> UINib {

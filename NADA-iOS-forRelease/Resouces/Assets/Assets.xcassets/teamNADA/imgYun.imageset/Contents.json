@@ -1,23 +1,23 @@
 {
   "images" : [
     {
-      "scale" : "1x",
+      "filename" : "imgYun.png",
       "idiom" : "universal",
-      "filename" : "imgYe.png"
+      "scale" : "1x"
     },
     {
+      "filename" : "imgYun@2x.png",
       "idiom" : "universal",
-      "filename" : "imgYe@2x.png",
       "scale" : "2x"
     },
     {
+      "filename" : "imgYun@3x.png",
       "idiom" : "universal",
-      "filename" : "imgYe@3x.png",
       "scale" : "3x"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }

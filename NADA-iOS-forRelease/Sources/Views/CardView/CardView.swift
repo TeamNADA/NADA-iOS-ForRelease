@@ -27,10 +27,6 @@ class CardView: UIView {
         xibSetup()
     }
     
-    override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-    }
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         xibSetup()

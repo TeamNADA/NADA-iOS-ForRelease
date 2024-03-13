@@ -54,10 +54,6 @@ class AroundMeCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
-    
     // MARK: - Methods
     
     public func setData(_ model: AroundMeResponse) {

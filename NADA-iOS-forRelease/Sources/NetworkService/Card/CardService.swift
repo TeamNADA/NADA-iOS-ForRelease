@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import UIKit
+
 import Moya
 
 enum CardService {

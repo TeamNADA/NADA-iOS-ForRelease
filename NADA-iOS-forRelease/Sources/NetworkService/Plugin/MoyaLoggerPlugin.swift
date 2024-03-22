@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import UIKit
+
 import Moya
 
 final class MoyaLoggerPlugin: PluginType {

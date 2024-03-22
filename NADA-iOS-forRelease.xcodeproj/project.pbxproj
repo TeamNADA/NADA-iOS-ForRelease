@@ -63,6 +63,41 @@
 		39D88B642745FDD400A72164 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39D88B632745FDD400A72164 /* TabBar.storyboard */; };
 		39D88B662745FE5F00A72164 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D88B652745FE5F00A72164 /* TabBarViewController.swift */; };
 		39D88B6B274600B100A72164 /* CommonBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D88B6A274600B100A72164 /* CommonBottomSheetViewController.swift */; };
+		39EC2B052BADA6B400D34229 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B042BADA6B400D34229 /* FirebaseAnalytics */; };
+		39EC2B072BADA6B400D34229 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B062BADA6B400D34229 /* FirebaseAnalyticsOnDeviceConversion */; };
+		39EC2B092BADA6B400D34229 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B082BADA6B400D34229 /* FirebaseAnalyticsSwift */; };
+		39EC2B0B2BADA6B400D34229 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B0A2BADA6B400D34229 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		39EC2B0D2BADA6B400D34229 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B0C2BADA6B400D34229 /* FirebaseAppCheck */; };
+		39EC2B102BADA71900D34229 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B0F2BADA71900D34229 /* IQKeyboardManagerSwift */; };
+		39EC2B142BADA82800D34229 /* GoogleAppMeasurement in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B132BADA82800D34229 /* GoogleAppMeasurement */; };
+		39EC2B162BADA82800D34229 /* GoogleAppMeasurementOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B152BADA82800D34229 /* GoogleAppMeasurementOnDeviceConversion */; };
+		39EC2B182BADA82800D34229 /* GoogleAppMeasurementWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B172BADA82800D34229 /* GoogleAppMeasurementWithoutAdIdSupport */; };
+		39EC2B1A2BADA84B00D34229 /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B192BADA84B00D34229 /* RxAlamofire */; };
+		39EC2B212BADA8A400D34229 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B202BADA8A400D34229 /* Alamofire */; };
+		39EC2B232BADA8A400D34229 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B222BADA8A400D34229 /* AlamofireDynamic */; };
+		39EC2B262BADA93F00D34229 /* YPImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B252BADA93F00D34229 /* YPImagePicker */; };
+		39EC2B292BADAA0500D34229 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B282BADAA0500D34229 /* CombineMoya */; };
+		39EC2B2B2BADAA0500D34229 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B2A2BADAA0500D34229 /* Moya */; };
+		39EC2B2D2BADAA0500D34229 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B2C2BADAA0500D34229 /* ReactiveMoya */; };
+		39EC2B2F2BADAA0500D34229 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B2E2BADAA0500D34229 /* RxMoya */; };
+		39EC2B322BADAA2800D34229 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B312BADAA2800D34229 /* Kingfisher */; };
+		39EC2B352BADAA5000D34229 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B342BADAA5000D34229 /* NVActivityIndicatorView */; };
+		39EC2B372BADAA5000D34229 /* NVActivityIndicatorViewExtended in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B362BADAA5000D34229 /* NVActivityIndicatorViewExtended */; };
+		39EC2B3A2BADAA6C00D34229 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B392BADAA6C00D34229 /* RxGesture */; };
+		39EC2B3D2BADAA8500D34229 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B3C2BADAA8500D34229 /* SnapKit */; };
+		39EC2B402BADAA9C00D34229 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B3F2BADAA9C00D34229 /* Then */; };
+		39EC2B432BADAAC300D34229 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B422BADAAC300D34229 /* KakaoSDK */; };
+		39EC2B452BADAAC300D34229 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B442BADAAC300D34229 /* KakaoSDKAuth */; };
+		39EC2B472BADAAC300D34229 /* KakaoSDKCert in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B462BADAAC300D34229 /* KakaoSDKCert */; };
+		39EC2B492BADAAC300D34229 /* KakaoSDKCertCore in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B482BADAAC300D34229 /* KakaoSDKCertCore */; };
+		39EC2B4B2BADAAC300D34229 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B4A2BADAAC300D34229 /* KakaoSDKCommon */; };
+		39EC2B4E2BADAAEC00D34229 /* VerticalCardSwiper in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B4D2BADAAEC00D34229 /* VerticalCardSwiper */; };
+		39EC2B502BADAC0100D34229 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B4F2BADAC0100D34229 /* FirebaseMessaging */; };
+		39EC2B522BADAC1A00D34229 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B512BADAC1A00D34229 /* FirebaseDynamicLinks */; };
+		39EC2B552BADAC3C00D34229 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B542BADAC3C00D34229 /* Lottie */; };
+		39EC2B582BADAC6300D34229 /* FlexLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B572BADAC6300D34229 /* FlexLayout */; };
+		39EC2B5B2BADAC8900D34229 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B5A2BADAC8900D34229 /* PinLayout */; };
+		39EC2B5E2BADACDB00D34229 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 39EC2B5D2BADACDB00D34229 /* GoogleMobileAds */; };
 		39F5A3D0271461EA00191F94 /* BackCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5A3CE271461EA00191F94 /* BackCardCell.swift */; };
 		39F5A3D1271461EA00191F94 /* BackCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39F5A3CF271461EA00191F94 /* BackCardCell.xib */; };
 		7701665D2A94EC2400D7E72C /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7701665C2A94EC2400D7E72C /* BannerCollectionViewCell.swift */; };
@@ -259,7 +294,6 @@
 		F8FC43BA26C022900033E151 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43B926C022900033E151 /* ViewController.swift */; };
 		F8FC43BC26C022A20033E151 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC43BB26C022A20033E151 /* Storyboard.swift */; };
 		F8FC43BF26C025180033E151 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F8FC43BE26C025180033E151 /* .swiftlint.yml */; };
-		FF46241630BB3F2D09D5A1AF /* Pods_NADA_iOS_forRelease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F6A2AA0066BA1941116A267 /* Pods_NADA_iOS_forRelease.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -303,9 +337,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0F6A2AA0066BA1941116A267 /* Pods_NADA_iOS_forRelease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NADA_iOS_forRelease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B19E918E93248BE054C89A /* Pods-NADA-iOS-forRelease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.debug.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.debug.xcconfig"; sourceTree = "<group>"; };
-		19298D75B81F3260A870AB0B /* Pods-NADA-iOS-forRelease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NADA-iOS-forRelease.release.xcconfig"; path = "Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease.release.xcconfig"; sourceTree = "<group>"; };
 		39007F2B27080D8200E7143E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		3903CC1E2769F4F40094C458 /* EmptyCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCardCell.swift; sourceTree = "<group>"; };
 		3903CC1F2769F4F40094C458 /* EmptyCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyCardCell.xib; sourceTree = "<group>"; };
@@ -582,22 +613,47 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF46241630BB3F2D09D5A1AF /* Pods_NADA_iOS_forRelease.framework in Frameworks */,
+				39EC2B522BADAC1A00D34229 /* FirebaseDynamicLinks in Frameworks */,
+				39EC2B092BADA6B400D34229 /* FirebaseAnalyticsSwift in Frameworks */,
+				39EC2B232BADA8A400D34229 /* AlamofireDynamic in Frameworks */,
+				39EC2B052BADA6B400D34229 /* FirebaseAnalytics in Frameworks */,
+				39EC2B072BADA6B400D34229 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
+				39EC2B1A2BADA84B00D34229 /* RxAlamofire in Frameworks */,
+				39EC2B2D2BADAA0500D34229 /* ReactiveMoya in Frameworks */,
+				39EC2B0D2BADA6B400D34229 /* FirebaseAppCheck in Frameworks */,
+				39EC2B212BADA8A400D34229 /* Alamofire in Frameworks */,
+				39EC2B582BADAC6300D34229 /* FlexLayout in Frameworks */,
+				39EC2B4B2BADAAC300D34229 /* KakaoSDKCommon in Frameworks */,
+				39EC2B142BADA82800D34229 /* GoogleAppMeasurement in Frameworks */,
+				39EC2B372BADAA5000D34229 /* NVActivityIndicatorViewExtended in Frameworks */,
+				39EC2B2B2BADAA0500D34229 /* Moya in Frameworks */,
+				39EC2B502BADAC0100D34229 /* FirebaseMessaging in Frameworks */,
+				39EC2B262BADA93F00D34229 /* YPImagePicker in Frameworks */,
+				39EC2B352BADAA5000D34229 /* NVActivityIndicatorView in Frameworks */,
+				39EC2B3A2BADAA6C00D34229 /* RxGesture in Frameworks */,
+				39EC2B162BADA82800D34229 /* GoogleAppMeasurementOnDeviceConversion in Frameworks */,
+				39EC2B322BADAA2800D34229 /* Kingfisher in Frameworks */,
+				39EC2B2F2BADAA0500D34229 /* RxMoya in Frameworks */,
+				39EC2B492BADAAC300D34229 /* KakaoSDKCertCore in Frameworks */,
+				39EC2B472BADAAC300D34229 /* KakaoSDKCert in Frameworks */,
+				39EC2B432BADAAC300D34229 /* KakaoSDK in Frameworks */,
+				39EC2B5B2BADAC8900D34229 /* PinLayout in Frameworks */,
+				39EC2B552BADAC3C00D34229 /* Lottie in Frameworks */,
+				39EC2B292BADAA0500D34229 /* CombineMoya in Frameworks */,
+				39EC2B5E2BADACDB00D34229 /* GoogleMobileAds in Frameworks */,
+				39EC2B402BADAA9C00D34229 /* Then in Frameworks */,
+				39EC2B0B2BADA6B400D34229 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				39EC2B102BADA71900D34229 /* IQKeyboardManagerSwift in Frameworks */,
+				39EC2B182BADA82800D34229 /* GoogleAppMeasurementWithoutAdIdSupport in Frameworks */,
+				39EC2B3D2BADAA8500D34229 /* SnapKit in Frameworks */,
+				39EC2B452BADAAC300D34229 /* KakaoSDKAuth in Frameworks */,
+				39EC2B4E2BADAAEC00D34229 /* VerticalCardSwiper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		186051B2C99DBAECC539DAC9 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				13B19E918E93248BE054C89A /* Pods-NADA-iOS-forRelease.debug.xcconfig */,
-				19298D75B81F3260A870AB0B /* Pods-NADA-iOS-forRelease.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		392F7FB1274621CF008CDBF5 /* MoreList */ = {
 			isa = PBXGroup;
 			children = (
@@ -822,7 +878,6 @@
 				F838B661298E5C5300D84340 /* SwiftUI.framework */,
 				F87D2229298ECAFB001A882B /* Intents.framework */,
 				F87D2234298ECAFB001A882B /* IntentsUI.framework */,
-				0F6A2AA0066BA1941116A267 /* Pods_NADA_iOS_forRelease.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1418,7 +1473,6 @@
 				F87D222B298ECAFB001A882B /* IntentsExtension */,
 				F87D2236298ECAFB001A882B /* IntentsExtensionUI */,
 				F8FC438326C01CDD0033E151 /* Products */,
-				186051B2C99DBAECC539DAC9 /* Pods */,
 				4D28D444572353D68574D2B0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -1676,13 +1730,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8FC439626C01CDE0033E151 /* Build configuration list for PBXNativeTarget "NADA-iOS-forRelease" */;
 			buildPhases = (
-				968E60C36CA3B9A2790CB1AA /* [CP] Check Pods Manifest.lock */,
 				F8FC437E26C01CDD0033E151 /* Sources */,
 				F8FC437F26C01CDD0033E151 /* Frameworks */,
 				F8FC438026C01CDD0033E151 /* Resources */,
 				F8FC43BD26C0244D0033E151 /* ShellScript */,
 				F838B673298E5C5400D84340 /* Embed Foundation Extensions */,
-				3DFB37457B9A5C839910082B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1692,6 +1744,43 @@
 				F87D2241298ECAFB001A882B /* PBXTargetDependency */,
 			);
 			name = "NADA-iOS-forRelease";
+			packageProductDependencies = (
+				39EC2B042BADA6B400D34229 /* FirebaseAnalytics */,
+				39EC2B062BADA6B400D34229 /* FirebaseAnalyticsOnDeviceConversion */,
+				39EC2B082BADA6B400D34229 /* FirebaseAnalyticsSwift */,
+				39EC2B0A2BADA6B400D34229 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				39EC2B0C2BADA6B400D34229 /* FirebaseAppCheck */,
+				39EC2B0F2BADA71900D34229 /* IQKeyboardManagerSwift */,
+				39EC2B132BADA82800D34229 /* GoogleAppMeasurement */,
+				39EC2B152BADA82800D34229 /* GoogleAppMeasurementOnDeviceConversion */,
+				39EC2B172BADA82800D34229 /* GoogleAppMeasurementWithoutAdIdSupport */,
+				39EC2B192BADA84B00D34229 /* RxAlamofire */,
+				39EC2B202BADA8A400D34229 /* Alamofire */,
+				39EC2B222BADA8A400D34229 /* AlamofireDynamic */,
+				39EC2B252BADA93F00D34229 /* YPImagePicker */,
+				39EC2B282BADAA0500D34229 /* CombineMoya */,
+				39EC2B2A2BADAA0500D34229 /* Moya */,
+				39EC2B2C2BADAA0500D34229 /* ReactiveMoya */,
+				39EC2B2E2BADAA0500D34229 /* RxMoya */,
+				39EC2B312BADAA2800D34229 /* Kingfisher */,
+				39EC2B342BADAA5000D34229 /* NVActivityIndicatorView */,
+				39EC2B362BADAA5000D34229 /* NVActivityIndicatorViewExtended */,
+				39EC2B392BADAA6C00D34229 /* RxGesture */,
+				39EC2B3C2BADAA8500D34229 /* SnapKit */,
+				39EC2B3F2BADAA9C00D34229 /* Then */,
+				39EC2B422BADAAC300D34229 /* KakaoSDK */,
+				39EC2B442BADAAC300D34229 /* KakaoSDKAuth */,
+				39EC2B462BADAAC300D34229 /* KakaoSDKCert */,
+				39EC2B482BADAAC300D34229 /* KakaoSDKCertCore */,
+				39EC2B4A2BADAAC300D34229 /* KakaoSDKCommon */,
+				39EC2B4D2BADAAEC00D34229 /* VerticalCardSwiper */,
+				39EC2B4F2BADAC0100D34229 /* FirebaseMessaging */,
+				39EC2B512BADAC1A00D34229 /* FirebaseDynamicLinks */,
+				39EC2B542BADAC3C00D34229 /* Lottie */,
+				39EC2B572BADAC6300D34229 /* FlexLayout */,
+				39EC2B5A2BADAC8900D34229 /* PinLayout */,
+				39EC2B5D2BADACDB00D34229 /* GoogleMobileAds */,
+			);
 			productName = "NADA-iOS-forRelease";
 			productReference = F8FC438226C01CDD0033E151 /* NADA-iOS-forRelease.app */;
 			productType = "com.apple.product-type.application";
@@ -1729,6 +1818,26 @@
 				Base,
 			);
 			mainGroup = F8FC437926C01CDD0033E151;
+			packageReferences = (
+				39EC2B032BADA6B400D34229 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				39EC2B0E2BADA71900D34229 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				39EC2B112BADA74300D34229 /* XCRemoteSwiftPackageReference "RxAlamofire" */,
+				39EC2B122BADA82800D34229 /* XCRemoteSwiftPackageReference "GoogleAppMeasurement" */,
+				39EC2B1B2BADA86C00D34229 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				39EC2B242BADA93F00D34229 /* XCRemoteSwiftPackageReference "YPImagePicker" */,
+				39EC2B272BADAA0500D34229 /* XCRemoteSwiftPackageReference "Moya" */,
+				39EC2B302BADAA2800D34229 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				39EC2B332BADAA5000D34229 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
+				39EC2B382BADAA6C00D34229 /* XCRemoteSwiftPackageReference "RxGesture" */,
+				39EC2B3B2BADAA8500D34229 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				39EC2B3E2BADAA9C00D34229 /* XCRemoteSwiftPackageReference "Then" */,
+				39EC2B412BADAAC300D34229 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				39EC2B4C2BADAAEC00D34229 /* XCRemoteSwiftPackageReference "VerticalCardSwiper" */,
+				39EC2B532BADAC3C00D34229 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				39EC2B562BADAC6300D34229 /* XCRemoteSwiftPackageReference "FlexLayout" */,
+				39EC2B592BADAC8900D34229 /* XCRemoteSwiftPackageReference "PinLayout" */,
+				39EC2B5C2BADACDB00D34229 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
 			productRefGroup = F8FC438326C01CDD0033E151 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1841,47 +1950,9 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3DFB37457B9A5C839910082B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NADA-iOS-forRelease/Pods-NADA-iOS-forRelease-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		968E60C36CA3B9A2790CB1AA /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NADA-iOS-forRelease-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		F8FC43BD26C0244D0033E151 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -1895,7 +1966,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2147,6 +2218,7 @@
 /* Begin XCBuildConfiguration section */
 		F838B674298E5C5400D84340 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77B4E7422990E00B006098DC /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
@@ -2182,6 +2254,7 @@
 		};
 		F838B675298E5C5400D84340 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77B4E7442990E021006098DC /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
@@ -2217,6 +2290,7 @@
 		};
 		F87D2244298ECAFB001A882B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77B4E7422990E00B006098DC /* Debug.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -2249,6 +2323,7 @@
 		};
 		F87D2245298ECAFB001A882B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77B4E7442990E021006098DC /* Release.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
@@ -2281,6 +2356,7 @@
 		};
 		F87D2247298ECAFB001A882B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77B4E7422990E00B006098DC /* Debug.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_ENTITLEMENTS = IntentsExtension/IntentsExtension.entitlements;
@@ -2314,6 +2390,7 @@
 		};
 		F87D2248298ECAFB001A882B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77B4E7442990E021006098DC /* Release.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_ENTITLEMENTS = IntentsExtension/IntentsExtension.entitlements;
@@ -2381,8 +2458,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -2443,8 +2522,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -2477,6 +2558,7 @@
 				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = T3VFJ764ZC;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = T3VFJ764ZC;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = "NADA-iOS-forRelease/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2507,6 +2589,7 @@
 				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = T3VFJ764ZC;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = T3VFJ764ZC;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = "NADA-iOS-forRelease/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2572,6 +2655,331 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		39EC2B032BADA6B400D34229 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.23.0;
+			};
+		};
+		39EC2B0E2BADA71900D34229 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				kind = exactVersion;
+				version = 6.5.16;
+			};
+		};
+		39EC2B112BADA74300D34229 /* XCRemoteSwiftPackageReference "RxAlamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxAlamofire";
+			requirement = {
+				kind = exactVersion;
+				version = 6.1.1;
+			};
+		};
+		39EC2B122BADA82800D34229 /* XCRemoteSwiftPackageReference "GoogleAppMeasurement" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleAppMeasurement";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.23.0;
+			};
+		};
+		39EC2B1B2BADA86C00D34229 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.0;
+			};
+		};
+		39EC2B242BADA93F00D34229 /* XCRemoteSwiftPackageReference "YPImagePicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Yummypets/YPImagePicker";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.2;
+			};
+		};
+		39EC2B272BADAA0500D34229 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
+		39EC2B302BADAA2800D34229 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
+		39EC2B332BADAA5000D34229 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
+		39EC2B382BADAA6C00D34229 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.4;
+			};
+		};
+		39EC2B3B2BADAA8500D34229 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		39EC2B3E2BADAA9C00D34229 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		39EC2B412BADAAC300D34229 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.22.0;
+			};
+		};
+		39EC2B4C2BADAAEC00D34229 /* XCRemoteSwiftPackageReference "VerticalCardSwiper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JoniVR/VerticalCardSwiper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.1;
+			};
+		};
+		39EC2B532BADAC3C00D34229 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.1;
+			};
+		};
+		39EC2B562BADAC6300D34229 /* XCRemoteSwiftPackageReference "FlexLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/layoutBox/FlexLayout";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.7;
+			};
+		};
+		39EC2B592BADAC8900D34229 /* XCRemoteSwiftPackageReference "PinLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/layoutBox/PinLayout";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.10.5;
+			};
+		};
+		39EC2B5C2BADACDB00D34229 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		39EC2B042BADA6B400D34229 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B032BADA6B400D34229 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		39EC2B062BADA6B400D34229 /* FirebaseAnalyticsOnDeviceConversion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B032BADA6B400D34229 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsOnDeviceConversion;
+		};
+		39EC2B082BADA6B400D34229 /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B032BADA6B400D34229 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		39EC2B0A2BADA6B400D34229 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B032BADA6B400D34229 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		39EC2B0C2BADA6B400D34229 /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B032BADA6B400D34229 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		39EC2B0F2BADA71900D34229 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B0E2BADA71900D34229 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+		39EC2B132BADA82800D34229 /* GoogleAppMeasurement */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B122BADA82800D34229 /* XCRemoteSwiftPackageReference "GoogleAppMeasurement" */;
+			productName = GoogleAppMeasurement;
+		};
+		39EC2B152BADA82800D34229 /* GoogleAppMeasurementOnDeviceConversion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B122BADA82800D34229 /* XCRemoteSwiftPackageReference "GoogleAppMeasurement" */;
+			productName = GoogleAppMeasurementOnDeviceConversion;
+		};
+		39EC2B172BADA82800D34229 /* GoogleAppMeasurementWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B122BADA82800D34229 /* XCRemoteSwiftPackageReference "GoogleAppMeasurement" */;
+			productName = GoogleAppMeasurementWithoutAdIdSupport;
+		};
+		39EC2B192BADA84B00D34229 /* RxAlamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B112BADA74300D34229 /* XCRemoteSwiftPackageReference "RxAlamofire" */;
+			productName = RxAlamofire;
+		};
+		39EC2B202BADA8A400D34229 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B1B2BADA86C00D34229 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		39EC2B222BADA8A400D34229 /* AlamofireDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B1B2BADA86C00D34229 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = AlamofireDynamic;
+		};
+		39EC2B252BADA93F00D34229 /* YPImagePicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B242BADA93F00D34229 /* XCRemoteSwiftPackageReference "YPImagePicker" */;
+			productName = YPImagePicker;
+		};
+		39EC2B282BADAA0500D34229 /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B272BADAA0500D34229 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		39EC2B2A2BADAA0500D34229 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B272BADAA0500D34229 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		39EC2B2C2BADAA0500D34229 /* ReactiveMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B272BADAA0500D34229 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = ReactiveMoya;
+		};
+		39EC2B2E2BADAA0500D34229 /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B272BADAA0500D34229 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
+		};
+		39EC2B312BADAA2800D34229 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B302BADAA2800D34229 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		39EC2B342BADAA5000D34229 /* NVActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B332BADAA5000D34229 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorView;
+		};
+		39EC2B362BADAA5000D34229 /* NVActivityIndicatorViewExtended */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B332BADAA5000D34229 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorViewExtended;
+		};
+		39EC2B392BADAA6C00D34229 /* RxGesture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B382BADAA6C00D34229 /* XCRemoteSwiftPackageReference "RxGesture" */;
+			productName = RxGesture;
+		};
+		39EC2B3C2BADAA8500D34229 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B3B2BADAA8500D34229 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		39EC2B3F2BADAA9C00D34229 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B3E2BADAA9C00D34229 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+		39EC2B422BADAAC300D34229 /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B412BADAAC300D34229 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
+		};
+		39EC2B442BADAAC300D34229 /* KakaoSDKAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B412BADAAC300D34229 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKAuth;
+		};
+		39EC2B462BADAAC300D34229 /* KakaoSDKCert */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B412BADAAC300D34229 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCert;
+		};
+		39EC2B482BADAAC300D34229 /* KakaoSDKCertCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B412BADAAC300D34229 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCertCore;
+		};
+		39EC2B4A2BADAAC300D34229 /* KakaoSDKCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B412BADAAC300D34229 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCommon;
+		};
+		39EC2B4D2BADAAEC00D34229 /* VerticalCardSwiper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B4C2BADAAEC00D34229 /* XCRemoteSwiftPackageReference "VerticalCardSwiper" */;
+			productName = VerticalCardSwiper;
+		};
+		39EC2B4F2BADAC0100D34229 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B032BADA6B400D34229 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		39EC2B512BADAC1A00D34229 /* FirebaseDynamicLinks */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B032BADA6B400D34229 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDynamicLinks;
+		};
+		39EC2B542BADAC3C00D34229 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B532BADAC3C00D34229 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+		39EC2B572BADAC6300D34229 /* FlexLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B562BADAC6300D34229 /* XCRemoteSwiftPackageReference "FlexLayout" */;
+			productName = FlexLayout;
+		};
+		39EC2B5A2BADAC8900D34229 /* PinLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B592BADAC8900D34229 /* XCRemoteSwiftPackageReference "PinLayout" */;
+			productName = PinLayout;
+		};
+		39EC2B5D2BADACDB00D34229 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EC2B5C2BADACDB00D34229 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F8FC437A26C01CDD0033E151 /* Project object */;
 }

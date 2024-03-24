@@ -1,23 +1,12 @@
 {
   "images" : [
     {
-      "scale" : "1x",
-      "filename" : "iconInstagram.png",
+      "filename" : "iconInstagram.svg",
       "idiom" : "universal"
-    },
-    {
-      "filename" : "iconInstagram@2x.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "scale" : "3x",
-      "idiom" : "universal",
-      "filename" : "iconInstagram@3x.png"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }

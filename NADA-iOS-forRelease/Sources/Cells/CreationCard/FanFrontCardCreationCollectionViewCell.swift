@@ -139,12 +139,12 @@ extension FanFrontCardCreationCollectionViewCell {
         birthLabel.textColor = .quaternary
         birthLabel.text = "기념일 (최애 생일, 입덕일, 내 생일, 데뷔일 등)"
         
-        instagramButton.setImage(UIImage(named: "iconDisabledInstagram"), for: .normal)
+        instagramButton.setImage(UIImage(named: "iconInstagramDeselected"), for: .normal)
         instagramButton.setImage(UIImage(named: "iconInstagramSelected"), for: .selected)
         instagramButton.setTitle("", for: .normal)
         instagramButton.tintColor = .white
         
-        twitterButton.setImage(UIImage(named: "iconDisabledTwitter"), for: .normal)
+        twitterButton.setImage(UIImage(named: "iconTwitter"), for: .normal)
         twitterButton.setImage(UIImage(named: "iconTwitterSelected"), for: .selected)
         twitterButton.setTitle("", for: .normal)
         twitterButton.tintColor = .white

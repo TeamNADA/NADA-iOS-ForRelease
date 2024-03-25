@@ -1,19 +1,8 @@
 {
   "images" : [
     {
-      "filename" : "icon_mbti.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "icon_mbti@2x.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "icon_mbti@3x.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "iconMbtiFront.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

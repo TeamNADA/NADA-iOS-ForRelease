@@ -1,9 +1,8 @@
 {
   "images" : [
     {
-      "filename" : "personAddAlt1.png",
-      "idiom" : "universal",
-      "scale" : "1x"
+      "filename" : "personAddAlt1.svg",
+      "idiom" : "universal"
     },
     {
       "appearances" : [
@@ -12,41 +11,8 @@
           "value" : "dark"
         }
       ],
-      "filename" : "idAddIcon.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "personAddAlt1@2x.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
-      "filename" : "idAddIcon@2x.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "personAddAlt1@3x.png",
-      "idiom" : "universal",
-      "scale" : "3x"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
-      "filename" : "idAddIcon@3x.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "personAddAlt1 1.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

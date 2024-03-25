@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "iconInstagramDeselected.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

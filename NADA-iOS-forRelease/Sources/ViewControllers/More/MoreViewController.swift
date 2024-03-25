@@ -147,7 +147,6 @@ extension MoreViewController {
                 if let acToken = UserDefaults.appGroup.string(forKey: Const.UserDefaultsKey.accessToken) {
                     UserDefaults.appGroup.removeObject(forKey: Const.UserDefaultsKey.accessToken)
                     WidgetCenter.shared.reloadTimelines(ofKind: "MyCardWidget")
-//                    self.defaults.removeObject(forKey: Const.UserDefaultsKey.refreshToken)
                     self.defaults.removeObject(forKey: Const.UserDefaultsKey.darkModeState)
                     
                     let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)
@@ -174,7 +173,6 @@ extension MoreViewController {
                 self?.makeOKAlert(title: "", message: "나다를 이용해주셔서 감사합니다.\n다음에 또 뵈어요! 🥺") { _ in
                     UserDefaults.appGroup.removeObject(forKey: Const.UserDefaultsKey.accessToken)
                     WidgetCenter.shared.reloadTimelines(ofKind: "MyCardWidget")
-//                        self.defaults.removeObject(forKey: Const.UserDefaultsKey.refreshToken)
                     self?.defaults.removeObject(forKey: Const.UserDefaultsKey.darkModeState)
                     
                     let nextVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.loginViewController)

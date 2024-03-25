@@ -24,10 +24,6 @@ class CardInGroupCollectionViewCell: UICollectionViewCell {
     var groupID: Int?
     var cardUUID: String?
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         

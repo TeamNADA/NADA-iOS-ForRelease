@@ -1,0 +1,10 @@
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#spghulweya)">
+        <path d="M12.667 2H3.333C2.6 2 2 2.6 2 3.333v9.334C2 13.4 2.6 14 3.333 14h9.334C13.4 14 14 13.4 14 12.667V3.333C14 2.6 13.4 2 12.667 2zM7.14 10.86c-.26.26-.68.26-.94 0L3.807 8.467a.664.664 0 1 1 .94-.94l1.92 1.92 4.586-4.587a.664.664 0 1 1 .94.94L7.14 10.86z" fill="#666C76"/>
+    </g>
+    <defs>
+        <clipPath id="spghulweya">
+            <path fill="#fff" d="M0 0h16v16H0z"/>
+        </clipPath>
+    </defs>
+</svg>
